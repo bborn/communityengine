@@ -1,1 +1,0 @@
-require 'resource_hacks'

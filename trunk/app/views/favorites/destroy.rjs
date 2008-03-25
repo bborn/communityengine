@@ -1,6 +1,0 @@
-case @favorite.favoritable.class.to_s.tableize
-  when 'clippings'
-    page.replace "clipping_#{@favorite.favoritable.id}", :partial => 'clippings/clipping', :object => @favorite.favoritable
-  when 'posts'
-    page.replace "post_#{@favorite.favoritable.id}_meta", :partial => 'posts/meta', :locals => {:post => @favorite.favoritable} 
-end

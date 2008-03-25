@@ -1,3 +1,0 @@
-<%= chart :stacked_bar %>
-  <%=component :chart_border %>
-    left_thickness:   3

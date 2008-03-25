@@ -1,7 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-minnesota:
-  id: 1
-  name: 'MN'
-michigan:
-  id: 2
-  name: 'MI'
