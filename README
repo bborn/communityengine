@@ -82,3 +82,8 @@ Other notes
 ===========
 If you have an existing application.rb, nothing will work unless you modify it to 
 include the methods in community_engine's application.rb (your application.rb takes precedence)
+
+
+
+### TO DO ###
+switch to git
