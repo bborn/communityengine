@@ -1,0 +1,44 @@
+<div class="col_full">
+	<% rounded do %>
+		<% form_tag( statistics_user_path(@user)) do %>
+			<p>Month: 
+		  		<%= select_month(@month) %>
+				<%= select_year(@month, :start_year => 1.years.ago.year, :end_year => 1.years.from_now.year) %>
+				<%= submit_tag "Go" %>
+			</p>
+		<% end %>
+
+		<% if current_user.admin? %>
+			<p>
+				<%= link_to "&laquo; Back to all statistics", statistics_path %>
+			</p>
+			<p>
+				Estimated total for this month: <strong>$<%= @estimated_payment %></strong>
+			</p>
+		<% end %>
+
+		<table width="100%">			
+		<% @posts.group_by(&:category).each do |category, posts| %>
+				<thead>
+					<tr>
+						<th>
+							<%= category.name %>: <%= posts.size %> posts
+						</th>
+						<th>Comments</th>
+						<th width="7%">Views</th>
+					</tr>						
+				</thead>
+				<tbody>					
+					<% posts.each do |post| %>
+						<tr>
+							<td><%= post.title %></td>
+							<td><%= post.comments.count %></td>								
+							<td><%= post.view_count %></td>
+						</tr>
+					<% end %>
+				</tbody>
+		<% end %>	
+		</table>		
+			
+	<% end %>
+</div>

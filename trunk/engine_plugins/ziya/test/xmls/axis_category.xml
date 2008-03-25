@@ -1,0 +1,17 @@
+<axis_category 
+  decimals='2' 
+  orientation='horizontal' 
+  max='100' 
+  decimal_char='.' 
+  margin='1' 
+  font='Arial' 
+  skip='1' 
+  separator='_' 
+  size='10' 
+  steps='4' 
+  bold='true' 
+  prefix='hello' 
+  color='ff00ff' 
+  suffix='mama' 
+  alpha='50' 
+  min='-40'/>

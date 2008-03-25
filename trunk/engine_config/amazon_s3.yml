@@ -1,0 +1,17 @@
+development:
+  bucket_name: bucket
+  access_key_id: 'KEY'
+  secret_access_key: 'SECRET_KEY'
+  use_persistent: true
+
+test:
+  bucket_name: bucket
+  access_key_id: 'KEY'
+  secret_access_key: 'SECRET_KEY'
+  use_persistent: true
+
+production:
+  bucket_name: bucket
+  access_key_id: 'KEY'
+  secret_access_key: 'SECRET_KEY'
+  use_persistent: false

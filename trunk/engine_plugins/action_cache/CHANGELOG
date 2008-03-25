@@ -1,0 +1,57 @@
+
+
+=== v0.0.1
+
+* Initial implemenation
+* Plugin implementation
+
+=== v0.0.2
+
+* Add the ability to replace the fragment_key method to do your own thing
+
+=== v0.0.3
+
+* Add timed expiry of action cache items with response.time_to_live = x
+
+=== v.0.0.4
+
+* Set the max-age value of the Cache-Control header to be the response.time_to_live
+  value if it is set, or 1 second if not
+
+=== v.0.0.5
+
+* Changed the Last-Modified header setting to not set Time.now if the header has already
+  been set.  Fix from Eli Miller.
+
+=== v.0.0.6
+
+* Added encoding/decoding of the response body to allow UTF-8 encodings to not break due to
+  YAML bugs.  Fix from Hui
+* Handle potential problem with LastModified not being set correctly
+* Add some simple tests using the Plugin Test Kit system
+  
+=== v.0.1.0
+
+* Added support for the X-Sendfile feature in lighttpd
+* Changed fragment usage to have body and headers in different fragments to allow X-Sendfile to work
+* Refactored the code to make it easier to read
+
+=== v.0.1.1
+
+* Add the ability to decide whether to cache a request at request time
+
+=== v.0.1.2
+
+* Add support for the X-Accel-Redirect header in nginx
+
+=== v.0.1.3
+
+* Add the ability to enable the X-Sendfile feature by sending a HTTP_X_ENABLE_X_SENDFILE request 
+  header for when lighttpd doesn't create the Rails process
+  
+=== v.0.1.4
+  
+* Change cache key generation from fragment_key member of an internal class to be an method
+  on the application controller that you can override in your own code.
+* Make expire_action work with the user generated cache key
+* Add an expire_all_actions method to clean everything out

@@ -1,0 +1,54 @@
+<% @user_skills = @user.offerings.collect{|o| o.skill} %>
+<% @skills = Skill.find(:all) - @user_skills %>
+
+<div class="yui-g">
+	<h2>My Skills</h2>
+	<div class="yui-u">
+		<ul id="skills" class="sortable">
+			<% @skills.each do |s| %>
+				<li id="skill_<%= s.id %>">
+					<%= s.name %>
+				</li>
+			<% end %>
+			<br class="clear" />
+		</ul>
+	</div>
+
+	<div class="yui-u">				
+		<ul id="users_skills" class="sortable">
+			<%= render :partial => 'skill', :collection => @user.offerings.collect{ |o| o.skill } %>
+		</ul>
+		<strong>Drag and drop up to three skills into the gray area above.</strong>		
+	</div>
+
+	<script type="text/javascript">
+		// <![CDATA[
+		Sortable.create('skills',{tag:'li',dropOnEmpty: true, 
+				containment: ['skills', 'users_skills'], hoverclass : "sortable_hover", constraint: false, overlap:'horizontal'
+			}
+		);
+
+		offerings = Sortable.create('users_skills',{
+				onUpdate: function(){ 
+						limitListTo(3);
+						new Ajax.Request('<%= @user.to_param %>/offerings;replace', 			
+							{parameters:Sortable.serialize('users_skills'),
+							asynchronous:true, evalScripts:true, method:'put'}
+						);
+					}, 
+				tag:'li',dropOnEmpty: true, containment: ['skills', 'users_skills'], constraint: false,
+				hoverclass : "sortable_hover"
+			}
+		);			
+
+		function limitListTo(i){ 
+			items = Sortable.findElements($('users_skills'), {tag:'li'});
+			if (items && (items.length > i)){
+				last_item = items[ items.length - 1 ]
+				$('skills').appendChild(last_item)
+			}
+		}
+		// ]]>
+	 </script>
+					
+</div>

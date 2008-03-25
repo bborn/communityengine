@@ -1,0 +1,15 @@
+<div class="crumbs">
+  <%= link_to _('Forums'), forum_home_path %> <span class="arrow">&rarr;</span>
+</div>
+
+<h1><%= _('Edit Forum') %></h1>
+<p>
+  <%= link_to _('Delete this forum'), forum_path(@forum), :method => :delete, :class => "utility", :confirm => _("Are you sure?") %>  
+</p>
+
+<% form_for :forum,
+     :url  => forum_path(@forum),
+     :html => { :method => :put } do |f| -%>
+  <%= render :partial => "form", :object => f %>
+  <%= submit_tag _('Save Forum'), :or => link_to(_('Cancel'), forums_path) %>
+<% end -%>

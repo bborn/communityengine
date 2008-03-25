@@ -1,0 +1,34 @@
+<div class="col_full">
+	<% rounded do %>
+		<h1>New Homepage Feature</h1>
+
+		<%= error_messages_for :homepage_feature %>
+
+		<% form_for(:homepage_feature, :url => homepage_features_path, :html => {:multipart =>true} ) do |f| %>
+		  <p>
+		    <b>Url</b><br />
+		    <%= f.text_field :url %>
+		  </p>
+
+		  <p>
+		    <b>Title</b><br />
+		    <%= f.text_field :title %>
+		  </p>
+
+		  <p>
+		    <b>Description</b><br />
+			<%= f.text_area :description, :size => "69x10", :class => "rich_text_editor" %>
+		  </p>
+
+
+		  <p>
+		    <b>Filename</b><br />
+			<%= f.file_field :uploaded_data %>
+		  </p>
+
+		  <p>
+		    <%= submit_tag "Create" %> or <%= link_to 'cancel', homepage_features_path %>
+		  </p>
+		<% end %>
+	<% end %>
+</div>

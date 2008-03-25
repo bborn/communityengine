@@ -1,0 +1,13 @@
+Description:
+    The migration generator creates a migration to add the activities table to your database
+
+    The generator takes no arguments.
+
+    The generator creates a migration in db/migrate.
+
+Example:
+    ./script/generate activity_migration
+	
+	Migration:  db/migrate/add_activities_table.rb
+	The Activity model lives in the lib directory of this plugin. You can move that model into your models directory and modify it if you like.
+

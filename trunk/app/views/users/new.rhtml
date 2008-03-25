@@ -1,0 +1,56 @@
+<div class="yui-b col_236">
+	<% rounded do %>
+		<h2 class="super">Why Sign up?</h2>
+		<p>Some reasons why people should sign up go here!</p>
+	<% end %>
+
+	<% rounded do %>
+		<h2 class="impact">Tips</h2>
+		<p>After signing up, <strong>you'll receive an e-mail confirmation message.</strong></p>
+		<p><strong>Click the activation link in the e-mail</strong> to log in.</p>
+		<p><%= link_to "Already have an account?", "/login" %></p>
+	<% end %>
+</div>
+<div id="yui-main">
+	<div class="yui-b col_723">
+		<% rounded do %>
+			<h2 class="super">Sign up!</h2>
+
+			<%= error_messages_for :user %>
+
+			<% form_for :user, :url => users_path do |f| -%>
+				<p><label for="login">Username:</label><br/>
+				<%= f.text_field :login %>
+				<br /><small>Required: Your username must not contain numerals, spaces or special characters.</small>
+				</p>
+
+				<p><label for="email">E-mail address:</label><br/>
+				<%= f.text_field :email %>
+				<br /><small>Required: We will send a confirmation e-mail to the address you enter.</small>
+				</p>
+
+				<p><label for="birthdate">Birthday:</label><br/>
+				<%= date_select :user, :birthday, {:start_year => 1926, :end_year => Time.now.year - 13}  %>
+				<br /> <small>Required: you must be at least 13 years old to sign up.</small>
+				</p>
+
+				<p><label for="password">Type your password:</label><br/>
+				<%= f.password_field :password %></p>
+
+				<p><label for="password_confirmation">Re-type your password to confirm:</label><br/>
+				<%= f.password_field :password_confirmation %></p>
+		
+				<!-- un comment this if you want to allow users to select themselves as 'pros 				 -->
+				<!-- <p><%#= f.check_box :vendor %><label for="vendor">&nbsp; Are you a <%= AppConfig.community_name %> Pro?</label>
+				<br /><small>Explanation of what pro means in your context</small>
+				</p> -->
+				
+				<%= hidden_field_tag :inviter_id, params[:inviter_id] %>
+				<%= hidden_field_tag :inviter_code, params[:inviter_code] %>
+
+				<p><%= submit_tag 'Sign up' %></p>
+			<% end -%>
+
+		<% end %>
+	</div>
+</div>

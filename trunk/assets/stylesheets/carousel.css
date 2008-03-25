@@ -1,0 +1,120 @@
+/**
+ * Copyright (c) 2006, Bill W. Scott
+ * All rights reserved.
+ *
+ * This work is licensed under the Creative Commons Attribution 2.5 License. To view a copy 
+ * of this license, visit http://creativecommons.org/licenses/by/2.5/ or send a letter to 
+ * Creative Commons, 543 Howard Street, 5th Floor, San Francisco, California, 94105, USA.
+ *
+ * This work was created by Bill Scott (billwscott.com, looksgoodworkswell.com).
+ * 
+ * The only attribution I require is to keep this notice of copyright & license 
+ * in this original source file.
+ */
+
+/**
+ * Standard Configuration. It is advised that this section NOT be modified as the
+ * carousel.js expects the behavior outlined below.
+ **/
+.carousel-component { 
+	position:relative;
+	overflow:hidden;
+	visibility:visible; /* component turns it on when first item is rendered */
+}
+				
+.carousel-component ul.carousel-list { 
+	width:10000000px;
+	position:relative;
+	z-index:1; 
+}
+
+.carousel-component .carousel-list li { 
+	float:left;
+	list-style:none;
+	overflow:hidden;
+}
+
+.carousel-component .carousel-vertical li { 
+	float:none;
+	margin-bottom:0px;
+}
+
+.carousel-component ul.carousel-vertical { 
+	width:auto;
+}
+
+.carousel-component .carousel-clip-region { 
+	overflow:hidden;
+	margin:0px auto;
+	position:relative; 
+}
+
+/**
+ * Safe to override. It is safe to override background, padding, margin, color,
+ * text alignment, fonts, etc. Define a separate CSS file and override your style
+ * preferences.
+ **/
+
+.carousel-component { 
+	background:#F1F6D7;
+	padding:0;
+	color:#618cbe;
+	height:65px;
+}
+.carousel-component ul.carousel-list { 
+	margin:0px;
+	padding:0px 0px 0px 0px;
+}
+.carousel-component .carousel-list li { 
+	text-align:center;
+	margin:0px 0px 0px 0px;
+	padding:0px;
+	font:10px verdana,arial,sans-serif;
+	color:#666;
+}
+.carousel-component .carousel-vertical li { 
+}
+.carousel-component ul.carousel-vertical { 
+}
+
+#small-carousel .carousel-list li {
+    margin:4px 5px 0px 5px;
+}
+
+/* The width = img size + a.borderLeftWidth + a.borderRightWidth + img.borderLeftWidth + img.borderRightWidth */
+#small-carousel  .carousel-list li {
+    width:55px; /*50 + 2 + 2 + 1 + 1 */
+}
+
+#small-carousel .carousel-list li img {
+    border:1px solid #999;
+    display:block;
+		cursor:pointer;
+		cursor:hand;
+}
+#small-carousel .carousel-list li img.current {
+	border:1px solid #268999;
+}
+
+
+#small-carousel {
+    padding-right:10px;
+    float:left;
+    margin-bottom:10px;
+    width: 580px;
+}
+
+/* BUTTONS */
+#prev-arrow-container, #next-arrow-container {
+    float:left;
+		display:block;
+		height:100px;
+}
+
+#prev-arrow-small {
+    cursor:pointer;
+}
+
+#next-arrow-small {
+    cursor:pointer;
+}

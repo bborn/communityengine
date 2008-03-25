@@ -1,0 +1,15 @@
+library_general:
+  id: 1
+  tag_id: 1
+  taggable_id: 1
+  taggable_type: Photo
+google_clipping_tagged_misc:
+  id: 2
+  tag_id: 2
+  taggable_id: 1
+  taggable_type: Clipping
+yahoo_clipping_tagged_misc:
+  id: 3
+  tag_id: 2
+  taggable_id: 2
+  taggable_type: Clipping  

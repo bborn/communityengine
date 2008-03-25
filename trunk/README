@@ -1,0 +1,84 @@
+COMMUNITY ENGINE
+================
+Requires RAILS VERSION 2.0.2 AND the engines plugin (http://rails-engines.org/news/2007/12/11/engines-2-0-ish/)
+
+REQUIREMENTS (if you don't do these things, the plugin won't work)
+==================================================================
+
+STEPS:
+1. rails site_name
+2. Commit to svn
+3. Install engines plugin
+4. Checkout community engine plugin into plugins directory
+5. set svn props external on community_engine dir 
+    - svn propset svn:externals "community_engine https://feedmarker.textdriven.com/svn/missingmethod/plugins/community_engine/trunk" vendor/plugins/
+
+6. Delete default application.rb and application_helper
+7. Add s3.yml and amazon_s3.yml to root config directory
+8. Create your database and modify your config/database.yml appropriately
+9. Delete public/index.html (if you haven't already)
+10. Modify your environment files
+11. Generate community engine migrations: script/generate plugin_migration
+12. Generate sql_sessions migration: script/generate sql_session_store mysql
+13. rake db:migrate
+
+Modify your environment file
+Here's a sample:
+============================
+
+RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
+require File.join(File.dirname(__FILE__), 'boot')
+require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
+
+Rails::Initializer.run do |config|
+  #resource_hacks required here to ensure routes like /:login_slug work
+  #if removed, defaults to /users/:login_slug
+  config.plugins = ["engines", "community_engine", 'resource_hacks', 'white_list', '*']
+  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
+end
+
+# Include your application configuration below
+require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/community_engine.rb"
+
+
+Modify your routes.rb, adding this after any of your own existing routes:
+==============================
+  map.from_plugin :community_engine  
+
+
+Modify each environment file (development.rb, production.rb, test.rb) to include something like:
+================================================================================================
+APP_URL = "http://localhost:3000"
+
+
+Create an application.yml file in RAILS_ROOT/config (OPTIONAL)
+=================================================
+The application configuration defined in this file overrides the one defined in /community_engine/engine_config/application.yml
+This is where you can change commonly used config variables, like AppConfig.community_name, etc.
+
+
+Create an amazon_s3.yml file in RAILS_ROOT/config (REQUIRED)
+=================================================
+CommunityEngine uses attachment_fu (engine_plugins/attachment_fu) for image processing
+And attachment_fu needs the s3 config in order to store images on s3. Duh. (Sample in engine_config/amazon_s3.yml)
+
+
+Create an s3.yml file in RAILS_ROOT/config (OPTIONAL)
+=================================================
+CommunityEngine includes the s3.rake tasks for backing up your site to S3. If you plan on using these, you'll need to add a file
+in RAILS_ROOT/config/s3.yml. (Sample in engine_config/s3.yml)
+
+
+
+
+Getting started
+===============
+From your app root, run:
+script/generate plugin_migration
+rake db:migrate
+
+
+Other notes
+===========
+If you have an existing application.rb, nothing will work unless you modify it to 
+include the methods in community_engine's application.rb (your application.rb takes precedence)

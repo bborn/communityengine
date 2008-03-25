@@ -1,0 +1,36 @@
+<div class="profile">
+	<div id="yui-main">
+		<div class="yui-b section">
+			<h2>New contest</h2>
+
+			<% form_for(:contest, :url => contests_path) do |f| %>
+								
+			Title (required):
+			<p><%= f.text_field :title %></p>
+
+			Banner Title (required):
+			<p><%= f.text_field :banner_title %></p>
+
+			Banner SubTitle (required):
+			<p><%= f.text_field :banner_subtitle %></p>
+
+			Begin (required):
+			<p><%= f.date_select :begin %></p>
+
+			End (required):
+			<p><%= f.date_select :end %></p>
+
+			Body Text (required):
+			<p>
+				<%= f.text_area :raw_post, :size => "103x15" %>
+			</p>
+
+			<p>
+				<%= submit_tag "Save" %> or <%= link_to 'cancel and go back to all contests', contests_path %>
+			</p>
+			<% end %>
+		</div>
+	</div>
+
+	<br class="clear" />
+</div>

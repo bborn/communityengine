@@ -1,0 +1,10 @@
+<div class="post">
+	<h1 id="post_<%= post.id %>"><%= link_to post.title, user_post_path(@user, post) %></h1>
+	<% if @is_current_user %>
+		<%= link_to "Edit post", edit_user_post_path(@user, post) %>
+		 | <%= link_to("Delete this post", user_post_path(@user, post), {:method => :delete, :confirm => "Permanently delete this post?"}) %><br />
+	<% end %>
+
+	<em><%= post.created_at.strftime("%B %d, %Y") %></em> | <%= link_to pluralize( post.comments.size, 'comment'), user_post_path(@user, post)+"#comments" %> | Viewed <%= pluralize post.view_count, 'time' %>
+	<p><%= excerpt_with_jump( post.post, "<br />"+link_to( '&raquo; Read more.', user_post_path(@user, post)) ) %></p>
+</div>

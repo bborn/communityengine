@@ -1,0 +1,70 @@
+-@meta = { :description => AppConfig.meta_description, :keywords => AppConfig.meta_keywords }
+
+-if !logged_in?
+  =render :partial => 'application/homepage_banner_message'
+  %br/
+
+-if @active_contest
+  =render :partial => 'contests/banner'
+
+.yui-b.col_236
+  =render :partial => 'application/homepage_nav'
+
+  .centered#featured_ads
+    %small.gray
+      Advertisements | 
+      %a{:href=>"/advertise",:target=>"_blank",:title=>"Advertise with us"} Advertise with us
+  %br.clear
+  
+  .rounded.blue_sidebar
+    .padded
+      %h2 What's Hot?
+      %ul.sidebar_posts
+        -@popular_posts.each do |post|
+          %li=link_to truncate(post.title, 75), user_post_path(post.user, post)
+  %br.clear
+
+  .rounded.active_users
+    .padded
+      %h2= AppConfig.featured_writer_label
+      -@featured_writers.each do |user|
+        =render :partial => "shared/featured_writer", :locals => {:user => user}
+  %br.clear
+
+  .rounded.active_users
+    .padded
+      %h2 Active Users
+      -@active_users.each do |user|
+        =render :partial => "shared/new_user", :locals => {:user => user}
+  %br.clear
+  %br
+
+#yui-main
+  .yui-b.col_723
+    =render :partial => '/application/homepage_features'
+
+    %br.clear
+    -rounded(:class => 'green_gradient blog' ) do 
+      .gradient
+        = link_to "Archive.", recent_url, :class => "btn_green right"
+        %h2.super 
+          Recent Posts (looking for 
+          = link_to "most popular", popular_url
+          ?)
+
+      .padded
+        -@posts.each do |post|
+          = render :partial => "shared/blog_excerpt", :locals => {:post => post}
+        = link_to "Archive.", recent_url, :class => "btn_green right"
+
+%br.clear
+
+%h2.impact What's Fresh?
+.footer_content.rounded
+  .padded#footer_content
+    %span
+      =image_tag 'spinner.gif', :plugin => "community_engine"
+      Loading recent content...
+
+%script{:type=>"text/javascript"}
+  ="Event.observe(window, 'load', function(){	#{remote_function(:update => "footer_content", :url => { :controller => 'application', :action => 'footer_content' })} });"

@@ -1,0 +1,6 @@
+.clear    
+%h2 
+  Featured Posts
+%ul
+  -posts.each do |post|
+    %li=link_to truncate_words(post.title, 10), user_post_path(post.user, post)

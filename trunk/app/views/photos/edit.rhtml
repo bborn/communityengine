@@ -1,0 +1,48 @@
+<div class="profile">
+	<div class="yui-b section">
+		<h2>Help</h2>
+		<p>
+			Tags are keywords you use to organize your photos. Separate multiple tags with commas.
+		</p>
+		<%= link_to 'Show this photo', user_photo_path(@user, @photo) %> |
+		<%= link_to 'Back to my photos', user_photos_path(@user) %>		
+		<br /><br />
+		<%= link_to "Delete this photo", user_photo_path(@user, @photo), :method => :delete, :confirm => "Are you sure you want to delete this photo?" %>
+	</div>
+
+	<div id="yui-main">
+		<div class="yui-b section">
+			<h2>Editing photo</h2>
+			<%= error_messages_for :photo %>
+				<% form_for(:photo, :url => user_photo_path(@user, @photo), :html => { :method => :put }) do |f| %>
+
+				<%= image_tag( @photo.public_filename(:medium), :class => "polaroid" ) %> 
+
+				<p>
+					Tags: <br />
+					<%= text_field_tag 'tag_list', @photo.tags.collect{|t| t.name}.join(" "), {:autocomplete => "off", :size => 35} %>
+					<div class="auto_complete" id="tag_list_auto_complete"></div>	
+
+					<%= auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, 
+						 :tokens => [',', ' ']  } %>
+				<p>
+
+				<p>
+					Name: <br />
+					<%= f.text_field :name, :size => 35 %>
+				</p>
+			
+				<p>
+					Description: <br />
+					<%= f.text_area :description, :size => "58x5" %>
+				</p>
+
+				<p>
+					<%= submit_tag "Update" %> or <%= link_to 'cancel and go back to my photos', user_photos_path(@user) %>
+				</p>
+			<% end %>
+		</div>
+	</div>
+
+	<br class="clear" />
+</div>

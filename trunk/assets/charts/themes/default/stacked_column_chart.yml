@@ -1,0 +1,14 @@
+<%= chart :stacked_column %>   
+  <%=component :chart_value %>
+    position: top
+    
+  <%=component :chart_border %>
+    left_thickness:   1
+    bottom_thickness: 3
+    
+  <%=component :chart_grid_h %>
+    thickness: 3
+  
+  <%=component :chart_grid_v %>
+    thickness: 1
+    

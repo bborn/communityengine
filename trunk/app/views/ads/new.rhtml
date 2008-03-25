@@ -1,0 +1,71 @@
+<div class="col_full">
+	<% rounded do %>
+	<h1>New ad</h1>
+
+	<%= error_messages_for :ad %>
+
+	<% form_for(:ad, :url => ads_path) do |f| %>
+	  <p>
+	    <b>Name</b><br />
+	    <%= f.text_field :name %>
+	  </p>
+
+	  <p>
+	    <b>Html</b><br />
+      <%= f.text_area :html, :size => '80x10' %>
+	  </p>
+
+	  <p>
+	    <b>Frequency</b><br />
+		<select name="ad[frequency]">
+			<%= options_for_select Ad.frequencies_for_select %>
+		</select>
+	  </p>
+
+	  <p>
+	    <b>Audience</b><br />
+		<select name="ad[audience]">
+			<%= options_for_select Ad.audiences_for_select %>
+		</select>
+	  </p>
+
+
+	  <p>
+	    <b>Published?</b><br />
+		<%= f.check_box :published %>
+	  </p>
+
+	  <p>
+	    <b>Time constrained?</b><br />
+		<%= f.check_box :time_constrained %>
+	  </p>
+
+		<div id="time_constraints" style="display:none">
+			<p>
+				<b>Start date</b><br />
+				<%= f.datetime_select :start_date %>
+			</p>
+
+			<p>
+				<b>End date</b><br />
+				<%= f.datetime_select :end_date %>
+			</p>	
+		</div>
+	
+		<script type="text/javascript" charset="utf-8">
+			Event.observe("ad_time_constrained", "click", function(){$('time_constraints').toggle()})
+		</script>
+
+	  <p>
+	    <b>Location</b><br />
+	    <%= f.text_field :location %>
+	  </p>
+
+	  <p>
+	    <%= submit_tag "Create" %>
+	  </p>
+	<% end %>
+
+	<%= link_to 'Back', ads_path %>
+	<% end %>
+</div>

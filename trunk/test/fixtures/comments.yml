@@ -1,0 +1,55 @@
+quentins_comment_on_his_own_post:
+  id: 1
+  user_id: 1
+  title: I want to comment on this post
+  comment: I think you are really cool
+  created_at: <%= 4.days.ago.to_s :db %>
+  commentable_id: 1
+  commentable_type: Post
+  recipient_id: 1
+aarons_comment_on_quentins_post:
+  id: 2
+  user_id: 2
+  title: I think you are weird
+  comment: I think you are not cool at all
+  created_at: <%= 4.days.ago.to_s :db %>
+  commentable_id: 1
+  commentable_type: Post
+  recipient_id: 1
+aarons_comment_on_his_own_profile:
+  id: 3
+  user_id: 2
+  title: Hey aarom
+  comment: what are you doing this weekend?
+  created_at: <%= 6.days.ago.to_s :db %>
+  commentable_id: 2
+  commentable_type: User
+  recipient_id: 2
+privateusers_comment_on_his_own_profile:
+  id: 4
+  user_id: 10
+  title: Hey private guy
+  comment: what are you doing this weekend?
+  created_at: <%= 6.days.ago.to_s :db %>
+  commentable_id: 10
+  commentable_type: User
+  recipient_id: 10
+quentins_comment_on_another_post:
+  id: 5
+  user_id: 1
+  title: I want to comment on this post
+  comment: I think you are really cool
+  created_at: <%= 4.days.ago.to_s :db %>
+  commentable_id: 3
+  commentable_type: Post
+  recipient_id: 2
+quentins_comment_on_aarons_profile:
+  id: 6
+  user_id: 1
+  title: Hey aaron, you!
+  comment: I am quentin
+  created_at: <%= 4.days.ago.to_s :db %>
+  commentable_id: 2
+  commentable_type: User
+  recipient_id: 2
+  

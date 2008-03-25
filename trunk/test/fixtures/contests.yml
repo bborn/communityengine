@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  title: Enter to win!
+  banner_title: Enter to win!
+  banner_subtitle: It's cool
+  begin: <%= 500.days.ago.to_s :db %>
+  end: <%= 0.days.ago.to_s :db %>
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+current:
+  id: 2
+  title: Another great contest
+  banner_title: Another great contest
+  banner_subtitle: dude
+  begin: <%= 500.days.ago.to_s :db %>
+  end: <%= (0.days.ago + 4.days).to_s :db %>
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>

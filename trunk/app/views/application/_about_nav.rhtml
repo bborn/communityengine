@@ -1,0 +1,32 @@
+<div class="yui-b col_236">
+	<% rounded do %>
+		<h2 class="impact info">About <%= AppConfig.community_name %></h2>
+	
+		<ul>
+			<li>
+				<a href="/faq">Frequently Asked Questions</a>
+			</li>
+			<li>
+				<a href="/about">About <%= AppConfig.community_name %></a>
+			</li>
+			<li>
+				<a href="/advertise">Advertise</a>
+			</li>
+
+		</ul>
+		
+	<% end %>
+
+	<% rounded do %>
+		<h2 class="impact email">Need to contact us?</h2>
+		Don't wait! It's <a href="mailto:<%= AppConfig.support_email %>"><%= AppConfig.support_email %></a>.
+	<% end %>
+	
+	<div class="rounded signup_pink">
+		<div class="padded">
+		<%= link_to image_tag('signup_pink.png', :plugin => "community_engine"), 'signup', {:class => "left"} %>
+		<a href="/signup" title="Sign up for a <%= AppConfig.community_name %> account">Sign up for an account.</a>
+		<br /><small class="gray">Have an account? <a href="/login" title="Log in to your <%= AppConfig.community_name %> account">&raquo;Login</a></small>
+		</div>
+	</div>
+</div>

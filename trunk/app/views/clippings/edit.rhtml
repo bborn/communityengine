@@ -1,0 +1,41 @@
+<div class="profile">
+	<div class="yui-b section">
+		<h2>Help</h2>
+		<p>
+			Tags are keywords you use to organize your clippings. Separate multiple tags with commas.
+		</p>
+		
+		
+	</div>
+	
+	<div id="yui-main">
+		<div class="yui-b section">
+			<h2>Editing clipping</h2>
+
+			<img src="<%=h @clipping.image_uri %>" class="polaroid"/>
+			<% form_for(:clipping, :url => user_clipping_path(@user, @clipping), :html => { :method => :put }) do |f| %>
+			  <p>
+			    <b>Url</b><br />
+			    <%= f.text_field :url %>
+			  </p>
+
+			  <p>
+			    <b>Description</b><br />
+			    <%= f.text_field :description %>
+			  </p>
+
+			  <p>
+			    <b>Tags:</b><br />
+				<%= text_field_tag 'tag_list', @clipping.tags.collect{|t| t.name}.join(" ") %>
+			  </p>
+
+
+			  <p>
+			    <%= submit_tag "Save" %> or <%= link_to 'cancel, and go back to my clippings', user_clippings_path(@user) %>
+			  </p>
+			<% end %>
+			
+		</div>
+	</div>
+	<br class="clear" />
+</div>

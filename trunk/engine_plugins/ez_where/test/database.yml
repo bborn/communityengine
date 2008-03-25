@@ -1,0 +1,16 @@
+sqlite3:
+  :adapter: sqlite3
+  :dbfile: ':memory:'
+  
+mysql:
+  :adapter: mysql
+  :database: ar_test
+  :user: root
+  :password: ****
+  :encoding: utf8
+
+postgresql:
+  :adapter: postgresql
+  :database: ez_where_tests
+  :user: root
+  :encoding: UNICODE

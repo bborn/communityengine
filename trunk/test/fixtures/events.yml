@@ -1,0 +1,10 @@
+cool_event:
+  id: 1
+  name: a great event
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 5.days.ago.to_s :db %>  
+  start_time: <%= 4.days.ago.to_s :db %>
+  end_time:   <%= 1.days.ago.to_s :db %>  
+  user_id: 4
+  metro_area_id: 1
+  

@@ -1,0 +1,15 @@
+Hey <%= @user.login %>!
+
+<%= @commenter.login %> has added a comment to a <%= @comment.commentable_type %> 
+that you commented on. Use this link to check it out:
+
+<%= @url %> 
+
+Thanks,
+The <%= AppConfig.community_name %> team
+
+---------------------------------------------------------------------------------
+If you don't want to receive e-mails like this one from <%= AppConfig.community_name %>, you can change 
+your e-mail preferences here:
+
+<%= APP_URL %>/<%= @user.login_slug %>;edit_account

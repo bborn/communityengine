@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+plumbing:
+  id: 1
+  name: plumbing
+carpentry:
+  id: 2
+  name: carpentry
+flooring:
+  id: 3
+  name: flooring
+tiling:
+  id: 4
+  name: tiling

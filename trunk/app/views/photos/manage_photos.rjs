@@ -1,0 +1,1 @@
+page.replace_html :dynamic_images_list, :partial => 'manage_photos', :locals => { :photos => @photos }

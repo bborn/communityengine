@@ -1,0 +1,6 @@
+mysql:
+  :adapter: mysql
+  :host: localhost
+  :username: rails
+  :password: 
+  :database: validates_date_time_plugin_test

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  title: "What's in the package?"
+  body: "Rails is a full-stack framework for developing database-backed web applications according to the Model-View-Control pattern. From the Ajax in the view, to the request and response in the controller, to the domain model wrapping the database, Rails gives you a pure-Ruby development environment. To go live, all you need to add is a database and a web server."
+  author_id: 1
+second:
+  id: 2
+  title: "Who is already on Rails?"
+  body: "Everyone from startups to non-profits to enterprise organizations are using Rails. Rails is all about infrastructure so it's a great fit for practically any type of web application. Be it software for collaboration, community, e-commerce, content management, statistics, management, you name it."
+  author_id: 2

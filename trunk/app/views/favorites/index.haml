@@ -1,0 +1,18 @@
+.profile
+  .column.span-9.first
+    .favorites.section
+      %h2= link_to "#{@user.login}'s favorites", user_favorites_path(@user)        
+
+      - @favorites.in_groups_of(2) do |group|
+        .row  
+          - group.compact.each do |f|
+            =render :partial => "favorite", :locals => {:favorite => f}
+          .clear
+
+    =pagination_links
+
+        
+  #sidebar.column.span-5.last
+    = Ad.display(:sidebar_1, logged_in?)
+
+    = Ad.display(:sidebar_2, logged_in?)

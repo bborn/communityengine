@@ -1,0 +1,10 @@
+<div class="col_full">
+	<% rounded do %>
+		<h2 class="impact">Go check your e-mail!</h2>
+		<ol>
+			<li>We just sent an e-mail to <strong><%= @user.email %></strong> that will let you activate your account. </li
+			<li>Look for a message from <%= AppConfig.community_name %> (check your junk mail folder too, just in case).</li>
+			<li>See you in a sec...</li>
+		</ol>
+	<% end %>
+</div>

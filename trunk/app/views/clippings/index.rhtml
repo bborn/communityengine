@@ -1,0 +1,88 @@
+<div class="profile">
+	<div class="yui-b">
+		<%= render :partial => 'shared/small_profile', :locals => {:user => @user} %>
+		
+		<% unless !@is_current_user or @clippings.empty? %>
+		<div class='section'>
+			<h2>Widget</h2>
+			<p>Put these clippings on your site!<br />
+			Embed this code on your page:
+			<input style="font-size:0.8em" type="text" id="widget_code" value='<script type="text/javascript" src="<%= formatted_user_clippings_url(@user, :widget) %>"></script>"' onClick="$('widget_code').focus();$('widget_code').select();" readonly="true" />
+			</br>
+			<small><a href="#" onclick="$('preview').toggle(); return false;">&raquo; Preview your widget</a>
+				<div id="preview" style="display:none;"><script type="text/javascript" src="<%= formatted_user_clippings_url(@user, :widget) %>"></script></div
+			</small>
+		</div>
+		<% end %>
+		
+	</div>
+	
+	<div id="yui-main">
+		<div class="yui-b">
+			<div class="yui-gc">
+
+				<div class="yui-u first section" id="clippings">
+					<h2><%= link_to "#{@user.login}'s clippings", user_clippings_path(@user) %></h2>
+
+					<% unless @clippings.empty? %>
+						<div style="margin:1em;">
+							<span class="right"><%= pagination_info_for @pages %></span>				
+							<%= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1 %>			
+						</div>
+						<br class="clear" />
+
+						<% @clippings.each do |clipping| %>
+							<a href="<%=h user_clipping_url(@user, clipping) %>">
+								<img src="<%=h clipping.image_uri %>" class="polaroid clipping"/>
+							</a>
+						<% end %>
+						<br />				
+					<% else %>
+						<p>
+						<%= @is_current_user ? 'You have no clippings. Use the bookmarklet on the right to add some.' : 'No clippings yet.' %>
+						</p>
+					<% end %>
+				</div>
+				
+				<div class="yui-u section" id="tag_list">				
+					<% if @is_current_user %>
+						<div class="section">
+							<h2>Help!</h2>
+							<p>
+								Clippings let you to save cool images from around the Web.
+							</p>
+							<p>
+								Drag the '<%= AppConfig.community_name %> It!' bookmarklet (below) to your browser's toolbar.
+							</p>
+							<p>When you see an image you like on the Web, click the bookmarklet to save it to <%= AppConfig.community_name %>.
+							</p>
+						</div>
+
+						<div id="clipping_tools" class="section">
+							<h2>Bookmarklet</h2>
+							Drag this to your bookmarks toolbar:
+							<p>
+                <%= link_to "#{AppConfig.community_name} It!", clippings_link, :style=>"border:1px solid #ccc; background:#efefef; padding: 5px;", :title=>"#{AppConfig.community_name} Scrapbook" %>
+							</p>
+							
+							
+						</div>
+						
+					<% end %>
+				
+					<h2>Tags</h2>
+					<% tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class| %>
+						<% css_class = css_class + (name.eql?(params[:tag_name]) ? " selected": "") %>
+						<%= link_to name, user_clippings_path(:user_id => @user, :tag_name => name), :class => css_class %>
+					<% end %>				
+				
+				</div>
+
+			</div>
+		</div>
+	</div>
+		
+	<br class="clear" />	
+</div>
+
+<%= resize_img('clipping', 110, 135) %>

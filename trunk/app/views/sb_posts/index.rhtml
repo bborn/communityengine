@@ -1,0 +1,61 @@
+<% @page_title = search_posts_title -%>
+
+<h1>
+<% if params[:q].blank? -%>
+  <%= @page_title %>
+<% else -%>
+  <%= _('Searching for') %> '<%= h params[:q] %>'
+<% end -%>
+</h1>
+<p class="subtitle">
+  <%= feed_icon_tag @page_title, formatted_search_all_sb_posts_path(:format => 'rss') %>
+  <%= pluralize(@post_pages.item_count,"post") %> found
+</p>
+
+<% if @post_pages.page_count > 1 -%>
+<p class="pages"><%= _('Pages:') %> <strong><%= pagination_links @post_pages, :window_size => 10, :params => params %></strong></p>
+<% end -%>
+
+<table border="0" cellspacing="0" cellpadding="0" class="posts wide">
+<% for post in @posts do %>
+<% unless post == @posts.first %>
+<tr class="spacer">
+  <td colspan="2">&nbsp;</td>
+</tr>
+<% end %>
+<tr class="post hentry" id="<%= post.dom_id %>">
+  <td class="author vcard">
+    <div class="date">
+      <abbr class="updated" title="<%= post.created_at.xmlschema %>">
+      <% if post.created_at > Time.now.utc-24.hours%>
+      <%= time_ago_in_words(post.created_at).sub(/about /, '') %> ago
+      <% else %>
+      <%= post.created_at.strftime("%b %e, %Y")%>
+      <% end %>
+      </abbr>
+    </div>
+
+    <%= avatar_for @users[post.user_id] %>
+    <span class="fn"><%= link_to truncate(h(@users[post.user_id].display_name), 15), user_path(post.user) %></span>
+    <span class="posts"><%= pluralize @users[post.user_id].sb_posts_count, 'post' %></span>
+  </td>
+  <td class="body entry-content">
+    <p class="topic">
+      Topic: <%= link_to h(post.forum_name), forum_path(post.forum_id) %> / 
+      <%= link_to h(post.topic_title), forum_topic_path(post.forum_id, post.topic_id) %>
+    </p>
+    
+    <%= post.body_html %>
+  </td>
+</tr>
+
+<% end %>
+</table>
+
+<% if @post_pages and @post_pages.current.next %>
+<p style="float:right;"><%= link_to _('Next page'), { :page => @post_pages.current.next }.merge(params.reject{|k,v| k=="page"})  %></p>
+<% end %>
+
+<% if @post_pages.page_count > 1 -%>
+<p class="pages"><%= _('Pages:') %> <strong><%= pagination_links @post_pages, :window_size => 10, :params => params %></strong></p>
+<% end -%>

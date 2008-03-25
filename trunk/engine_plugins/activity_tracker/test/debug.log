@@ -1,0 +1,3329 @@
+# Logfile created on Thu Feb 01 08:01:15 CST 2007 by logger.rb/1.5.2.7
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: activities: DROP TABLE activities[0m
+
+  [4;35;1mSQL (0.322856)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10) DEFAULT 0 NOT NULL, "action" varchar(50), "item_id" integer(10), "points" integer(10), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.230177)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.232625)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+
+  [4;36;1mSQL (0.000386)[0m   [0;1mPRAGMA table_info(schema_info)[0m
+
+  [4;35;1mSQL (0.231457)[0m   [0mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.317085)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.253781)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10) DEFAULT 0 NOT NULL, "action" varchar(50), "item_id" integer(10), "points" integer(10), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000369)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.234932)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.270900)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221010)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10) DEFAULT 0 NOT NULL, "action" varchar(50), "item_id" integer(10), "points" integer(10), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000365)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219052)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.415902)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243153)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10) DEFAULT 0 NOT NULL, "action" varchar(50), "item_id" integer(10), "points" integer(10), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000385)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241537)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.356802)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254481)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10) DEFAULT 0 NOT NULL, "action" varchar(50), "item_id" integer(10), "points" integer(10), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000395)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252629)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.366713)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.253159)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10) DEFAULT 0 NOT NULL, "action" varchar(50), "item_id" integer(10), "points" integer(10), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000376)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252305)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001020)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000479)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.001025)[0m   [0mINSERT INTO activities ("item_id", "points", "action", "user_id", "created_at") VALUES(NULL, NULL, NULL, 0, '2007-02-01 08:05:43')[0m
+
+  [4;36;1mSQL (0.000565)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.319978)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232177)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000386)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.230527)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001799)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000525)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.479882)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.443574)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.242931)[0m   [0;1mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;35;1mSQL (0.256696)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000381)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.227730)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001138)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000385)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000517)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000322)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mSQL (0.000529)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, NULL, 1, '2007-02-01 08:15:03', NULL)[0m
+
+  [4;36;1mSQL (0.000263)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.340610)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243410)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table users already exists: CREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.337259)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243390)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table users already exists: CREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.333756)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243329)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254594)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.254852)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.242955)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.243575)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000395)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252502)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001140)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000421)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000508)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000324)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mSQL (0.000517)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mPost Load (0.000314)[0m   [0;1mSELECT * FROM posts WHERE (posts.id = 1) [0m
+
+  [4;35;1mSQL (0.000602)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(1, NULL, 1, '2007-02-01 08:16:25', 'Post')[0m
+
+  [4;36;1mSQL (0.000276)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.372728)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.220711)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.220929)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.232459)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254532)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.221467)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000383)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218880)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001159)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000521)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000526)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000303)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mSQL (0.000453)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mPost Load (0.000250)[0m   [0;1mSELECT * FROM posts WHERE (posts.id = 1) [0m
+
+  [4;36;1mSQL (0.347223)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254443)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232338)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221198)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243601)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.243342)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000409)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241572)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001246)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000402)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000508)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000307)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mSQL (0.000772)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mPost Load (0.000351)[0m   [0;1mSELECT * FROM posts WHERE (posts.id = 1) [0m
+
+  [4;35;1mSQL (0.001030)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(1, NULL, 1, '2007-02-01 08:16:58', 'Post')[0m
+
+  [4;36;1mSQL (0.000345)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.353853)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243421)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243093)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.243758)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243517)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.254637)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000421)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.263105)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.364106)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254355)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243354)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.243649)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254555)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.243409)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000903)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.240532)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001153)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000503)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000324)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.327426)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221127)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232379)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.243613)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254544)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.232495)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000412)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252399)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.307103)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.231878)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243366)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221376)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221252)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.232362)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000498)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252028)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.306780)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221117)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.220988)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.254774)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243435)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.221548)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000423)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218686)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001169)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000400)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000513)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000354)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mSQL (0.000515)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mPost Load (0.000315)[0m   [0;1mSELECT * FROM posts WHERE (posts.id = 1) [0m
+
+  [4;35;1mSQL (0.000601)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(1, NULL, 1, '2007-02-01 10:31:44', 'Post')[0m
+
+  [4;36;1mSQL (0.000291)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000534)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000371)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.328659)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232324)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221218)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221270)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254626)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.243534)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000412)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219175)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.322945)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221013)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254479)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221594)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221004)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.221381)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000411)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241291)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001156)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000393)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000538)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000311)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mSQL (0.319292)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221185)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221130)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.254714)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232357)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.221252)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000399)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219174)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001152)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000394)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000547)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000318)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mSQL (0.343585)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232304)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.220764)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221306)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232095)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.232421)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000399)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219049)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001142)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000382)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000529)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000348)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mSQL (0.340271)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221238)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221134)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.444104)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.343092)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.242817)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000393)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252579)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001151)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000394)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000522)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000391)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mSQL (0.329645)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232299)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243319)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221415)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221035)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.232515)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000408)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241507)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001137)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000387)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000524)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000320)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mSQL (0.000450)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mPost Load (0.000260)[0m   [0;1mSELECT * FROM posts WHERE (posts.id = 1) [0m
+
+  [4;35;1mSQL (0.000538)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(1, NULL, 1, '2007-02-01 10:48:00', 'Post')[0m
+
+  [4;36;1mSQL (0.000254)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000509)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mUser Load (0.000435)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mSQL (0.000599)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000325)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.321402)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232277)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243362)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221392)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221125)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.232498)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000414)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.229925)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000500)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000389)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.001183)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000291)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000479)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000297)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mUser Load (0.000346)[0m   [0mSELECT * FROM users WHERE (users.id = 1) [0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mSQL (0.000261)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.356747)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254408)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221156)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221419)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221281)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.243443)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000419)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241317)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000545)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000419)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000498)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000316)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;35;1mUser Load (0.000389)[0m   [0mSELECT * FROM users WHERE (users.id = 1) [0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mSQL (0.000354)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;36;1mSQL (0.328396)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243310)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232002)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.221339)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221235)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.254531)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000441)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.230084)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000506)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000392)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000543)[0m   [0mPRAGMA table_info(users)[0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mUser Load (0.000319)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+  [4;36;1mSQL (0.350186)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254395)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254569)[0m   [0;1mDROP TABLE users[0m
+
+  [4;35;1mSQL (0.243601)[0m   [0mCREATE TABLE users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243350)[0m   [0;1mDROP TABLE posts[0m
+
+  [4;35;1mSQL (0.254893)[0m   [0mCREATE TABLE posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000408)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252417)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.362979)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221543)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: test_users: DROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.241335)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: test_posts: DROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.253362)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000414)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252508)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000543)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000416)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;36;1mSQL (0.317948)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243373)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254574)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254619)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243468)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243515)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000420)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252465)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000562)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000410)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000516)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000310)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.332476)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243338)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254489)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243609)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243426)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.365722)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000577)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.431977)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000545)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000411)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000620)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000335)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000515)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000565)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;36;1mSQL (0.337338)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243318)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243362)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254726)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254493)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254744)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000412)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241266)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000497)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000387)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000425)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000275)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000440)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000513)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.000978)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:23:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.330105)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254715)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243103)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243516)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243505)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254593)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000410)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241622)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.342465)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254642)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232108)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254699)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254369)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232402)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000413)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241462)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.333396)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254493)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254335)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232601)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243112)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243668)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000416)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252503)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000473)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000369)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000426)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000272)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000438)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000505)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.000984)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:24:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.238947)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243311)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243531)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232400)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232313)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243530)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000822)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.240824)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000460)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000386)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000567)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000286)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000429)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000506)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.000991)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:24:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.330627)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232046)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221146)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232788)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.242968)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254745)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000410)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219142)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.340655)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232158)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243414)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243584)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232366)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232425)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000418)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241389)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000545)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000400)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000522)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000363)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000513)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000584)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.001183)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.312932)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243319)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243314)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254613)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254473)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243723)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000441)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.240979)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000547)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000400)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000520)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000320)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000507)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000554)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.000979)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.242163)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254465)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243425)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243341)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243164)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254675)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000400)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252490)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000469)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000339)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000427)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000267)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000420)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000516)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.001071)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.348584)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232214)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243382)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243681)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254507)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232202)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000397)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241497)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000571)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000407)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000526)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000327)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000416)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000516)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.000985)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.344917)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243409)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254632)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243363)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254765)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243415)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000397)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252480)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000491)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000341)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000435)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000265)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000417)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000507)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.000961)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.343879)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243338)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.253680)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232460)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254603)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243471)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000417)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241424)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000476)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000354)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000429)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000290)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000443)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000530)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.000989)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.352806)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.231951)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243425)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243548)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243319)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221526)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000425)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241191)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000585)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000472)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000528)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000308)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000512)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000581)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.001168)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.339542)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243393)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243389)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243552)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232492)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232347)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000416)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241403)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000507)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000353)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000424)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000255)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000423)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000514)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.001076)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000272)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;36;1mSQL (0.329837)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232194)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243593)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254556)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232231)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243529)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000399)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241512)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000605)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000417)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000493)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000319)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000507)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000578)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.001200)[0m   [0mPRAGMA table_info(activities)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000292)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;36;1mSQL (0.375004)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232217)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232308)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254589)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254616)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232382)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255)) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000400)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.230155)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000457)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000352)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000405)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000256)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000412)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000523)[0m   [0;1mINSERT INTO test_posts ("title") VALUES('New Post')[0m
+
+  [4;35;1mSQL (0.000243)[0m   [0mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;36;1mSQL (0.404478)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221061)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232284)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221311)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.335680)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254292)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221368)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243521)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221250)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232274)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.001192)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.240024)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000486)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000351)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000410)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000258)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000560)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000524)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', NULL)[0m
+
+  [4;35;1mSQL (0.000234)[0m   [0mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;36;1mSQL (0.452614)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221105)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232263)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.299347)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.478175)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.252535)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000418)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219145)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000497)[0m   [0mPRAGMA table_info(posts)[0m
+
+  [4;36;1mSQL (0.000338)[0m   [0;1mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;35;1mSQL (0.000535)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000516)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', NULL)[0m
+
+  [4;35;1mSQL (0.000228)[0m   [0mSELECT count(*) AS count_all FROM posts [0m
+
+  [4;36;1mSQL (0.310449)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232265)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243183)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254739)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.220735)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221382)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000448)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.240472)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000663)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000422)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.315431)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221379)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.220963)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254626)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243343)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221229)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000417)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219171)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000668)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000420)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000502)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000309)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000621)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000305)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.368337)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243206)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.255827)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.253390)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.287711)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.332315)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000410)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.230490)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000679)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000398)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001167)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000295)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000522)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000319)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000576)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000274)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.343582)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232139)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243499)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254711)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243338)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232403)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000409)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241363)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000671)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000416)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001196)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000297)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000477)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000264)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000508)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.365953)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243138)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232298)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221438)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254479)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243542)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000410)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219158)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000670)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000405)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001280)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000303)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000523)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000337)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000609)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000564)[0m   [0;1mPRAGMA table_info(users)[0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:33:in `create_activity_from_self'[0m
+  [4;35;1mUser Load (0.000228)[0m   [0mSELECT * FROM users WHERE (users.id = 1) [0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:33:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000277)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.332787)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221176)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243458)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243554)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254497)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221498)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000451)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.240931)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000667)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000399)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001176)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000311)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000475)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000265)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000511)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000494)[0m   [0;1mPRAGMA table_info(users)[0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;35;1mUser Load (0.000167)[0m   [0mSELECT * FROM users WHERE (users.id = 1) [0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000219)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.375637)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232258)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221074)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232695)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.253672)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232324)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000413)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219267)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000669)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000396)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001176)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000297)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000473)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000280)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000496)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000492)[0m   [0;1mPRAGMA table_info(users)[0m
+    [36;2mapp/models/user.rb:72:in `find'[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;35;1mUser Load (0.000170)[0m   [0mSELECT * FROM users WHERE (users.id = 1) [0m
+    [35;2mapp/models/user.rb:72:in `find'[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.365424)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.231973)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254565)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232445)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221179)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232400)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000706)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252129)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000672)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000401)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001161)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000311)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000473)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000304)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000552)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000175)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:23:05', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000186)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:23:05', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000246)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.368836)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.215022)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254521)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221401)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.220840)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243486)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000462)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252001)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000657)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000387)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001153)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000295)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000467)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000298)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000501)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000168)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:23:45', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000133)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:23:45', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000250)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.359625)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221170)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243389)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243579)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221214)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232479)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000408)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241381)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000674)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000393)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000508)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000317)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000569)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.001182)[0m   [0;1mPRAGMA table_info(activities)[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000239)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:24:07', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000137)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:24:07', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000241)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.452796)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232222)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221456)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254458)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243349)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243663)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000505)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218403)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000664)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000532)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001160)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000290)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000525)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000275)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000546)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000298)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:24:30', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000190)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:24:30', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000309)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.330254)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254567)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243392)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221441)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.220998)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243589)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000408)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241497)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000659)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000401)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001158)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000318)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000527)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000307)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000622)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000329)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:24:40', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000241)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:24:40', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000384)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.313593)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221100)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221173)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243520)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254530)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221306)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000414)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219153)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000733)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000409)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001273)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000293)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000524)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000349)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000577)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.377995)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221197)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.231603)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243622)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254279)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221474)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000410)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219017)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000663)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000402)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001158)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000287)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000525)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000354)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000594)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000398)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:25:23', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000391)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:25:23', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000388)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.344658)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221276)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232315)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254755)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243333)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221318)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000510)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218839)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000666)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000405)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001165)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000312)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000538)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000313)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000574)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000310)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:26:04', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000237)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:26:04', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000364)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.367369)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221074)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221455)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232095)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254610)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232420)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000409)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219230)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001142)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000379)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000659)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000497)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000304)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000509)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000288)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:26:24', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000219)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:26:24', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000287)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.344626)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221222)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243636)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243336)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254168)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221320)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000411)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.230142)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001174)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000396)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000695)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000533)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000345)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000580)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000290)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.313895)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221129)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254554)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221322)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221166)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221206)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000403)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252562)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001166)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000396)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000654)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000578)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000347)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000606)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000363)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.387288)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221011)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254433)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243870)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.220912)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221409)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000412)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241447)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001246)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000394)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000652)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000507)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000323)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000581)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000291)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.411480)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243126)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232309)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232363)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.220920)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221392)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000383)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218929)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001237)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000387)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000659)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000495)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000309)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.144706)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000256)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:30:25', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:36:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000222)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:31:41', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:36:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000281)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000601)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000309)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000607)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000260)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.326487)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232162)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221216)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221016)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254214)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232454)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000382)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219126)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001210)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000387)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000660)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000498)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000306)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000557)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000308)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'post', 1, '2007-02-01 11:33:16', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:29:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000226)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:33:36', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:36:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000222)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:33:40', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:36:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000289)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000620)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000342)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000514)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000230)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.295657)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221069)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221113)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254505)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232214)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221193)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000386)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219029)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001152)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000430)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000667)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000508)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000333)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000624)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000252)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:34:08', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:36:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000185)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:34:08', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:36:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000292)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000639)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000380)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000595)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000275)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.325662)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232101)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221111)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221368)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243266)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232351)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000369)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219008)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001148)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000384)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000661)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000500)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000391)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000588)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000209)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:34:52', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000205)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:34:52', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:35:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000316)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000570)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000307)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000546)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000257)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.278265)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232375)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.220947)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232528)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221104)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254644)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000411)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218979)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001164)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000371)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000683)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000498)[0m   [0;1mPRAGMA table_info(test_users)[0m
+
+  [4;35;1mTestUser Load (0.000286)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000564)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;35;1mSQL (0.000275)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:35:33', 'TestPost')[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;36;1mSQL (0.000338)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.353169)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221148)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221090)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254814)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232133)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232379)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000408)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219298)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000673)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000418)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001157)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000298)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000528)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000314)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000539)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000177)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:35:50', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:33:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000234)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000218)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.327126)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221471)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243131)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232476)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221200)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221070)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000404)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.253031)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000674)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000393)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001141)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000293)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000523)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000308)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000562)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', NULL)[0m
+
+  [4;36;1mSQL (0.335637)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221176)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243266)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232354)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232380)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221301)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000416)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241263)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000662)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000394)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001187)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000294)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000508)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000316)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000565)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000227)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:36:42', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:33:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000275)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000269)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000618)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000874)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000576)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000295)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.292282)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243728)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.220803)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221379)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221173)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254509)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000492)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218471)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000669)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000409)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001233)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000319)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000467)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000294)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000502)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000186)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-01 11:36:51', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:33:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000237)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000206)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.405525)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221067)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221090)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254755)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232390)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221344)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000405)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218868)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001140)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000379)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000666)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000566)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.314293)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221147)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232315)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232491)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221151)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221390)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000449)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219017)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001142)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000382)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000659)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000594)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;35;1mSQL (0.000415)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.349819)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221068)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.220972)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232425)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254399)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232320)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000409)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219205)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000663)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000450)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001137)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000297)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000565)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000337)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000581)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000235)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-02 06:56:45', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:33:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000269)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000277)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000628)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000452)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.001682)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000596)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;35;1mSQL (0.000410)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.346005)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232185)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221161)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221318)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254616)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232454)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000404)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219089)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000741)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000458)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001257)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000345)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000531)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000326)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000550)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000228)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-02 07:00:54', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:34:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000237)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000240)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001055)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000455)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000597)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.001162)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;35;1mSQL (0.000276)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.276377)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221120)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254425)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232441)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221035)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221224)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000408)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252576)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000662)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000394)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001136)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000277)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000511)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000315)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000571)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000213)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-02 07:01:59', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:40:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000271)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000278)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000620)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000469)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.001263)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000583)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;35;1mSQL (0.000355)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.321781)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221228)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.265476)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232512)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221043)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221433)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000417)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241396)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001139)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000390)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000493)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000330)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.340542)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243338)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.221326)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221258)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232290)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.354466)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000395)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.385747)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001160)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000391)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000491)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000308)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.351763)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243416)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243430)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254735)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243314)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243555)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000393)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241303)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.339300)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243321)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254455)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243638)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243407)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254878)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000397)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.263148)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;36;1mSQL (0.344393)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243289)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.254546)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.231992)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243375)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243564)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000395)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252461)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001153)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000392)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000493)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000326)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000555)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 07:09:16', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:49:in `track_activity'[0m
+  [4;36;1mSQL (0.000267)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.364593)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232205)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243365)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243465)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254663)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232208)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000396)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241487)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001200)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000397)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000507)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000325)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.344148)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243276)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243251)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254703)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243336)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254761)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000400)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.252660)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001147)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000384)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000557)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000330)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.322935)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.232129)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243379)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254682)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.265650)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.232398)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000424)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.230028)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.001165)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000384)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000502)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000322)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.357382)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.254369)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243426)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232419)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243207)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243660)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000398)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.253691)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000527)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000442)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.368719)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.221119)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232180)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243714)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.254457)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221307)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000394)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.219007)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000551)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000437)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.353873)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.220972)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.232246)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254903)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243216)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221276)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000479)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218525)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000598)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000439)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.374877)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.243333)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.243397)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243610)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.231931)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243547)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000394)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241360)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000660)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000394)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001158)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000317)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000509)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000332)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000534)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000181)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-02 07:22:09', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:50:in `create_activity_from_self'[0m
+  [4;35;1mSQL (0.000226)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000229)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000544)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000437)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.001008)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 07:22:09', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:58:in `track_activity'[0m
+  [4;36;1mSQL (0.000336)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000606)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000623)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000615)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.000282)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.336023)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.245225)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.229773)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.245966)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.251751)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243602)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000702)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.224240)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000735)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000496)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001337)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000355)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000540)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000367)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;35;1mSQL (0.000651)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;36;1mSQL (0.000533)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.364080)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.230932)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.222144)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.254627)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.257247)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.218448)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000462)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.229805)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000696)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000413)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001169)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000288)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000457)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000301)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;35;1mSQL (0.000483)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;36;1mSQL (0.000256)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000228)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.292938)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.301191)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.218253)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.225503)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.272497)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.244170)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000399)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.218290)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000700)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000453)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001098)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000304)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000457)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000310)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000593)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000252)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-02 22:36:42', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:60:in `create_activity_from_self'[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:25:in `acts_as_activity'[0m
+  [4;35;1mSQL (0.000317)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000225)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000593)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000478)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000592)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 22:36:42', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:68:in `track_activity'[0m
+  [4;36;1mSQL (0.000317)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000568)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000532)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000667)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.000695)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000311)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000352)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;35;1mSQL (0.000558)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;36;1mSQL (0.000286)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000423)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.312259)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.233906)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.218998)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.234133)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.241665)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.243591)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000404)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.230373)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000648)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000382)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001142)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000283)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000460)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000282)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000466)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000182)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-02 22:37:34', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:60:in `create_activity_from_self'[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:25:in `acts_as_activity'[0m
+  [4;35;1mSQL (0.000244)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000217)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000550)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000453)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000619)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 22:37:34', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:68:in `track_activity'[0m
+  [4;36;1mSQL (0.000361)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000600)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000558)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000629)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.000724)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000272)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000269)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;35;1mSQL (0.000456)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;36;1mSQL (0.000224)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000205)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.280525)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.256109)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.229929)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221320)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.232082)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254784)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000383)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241288)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000672)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000402)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001152)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000275)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000450)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000280)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000465)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000168)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-02 22:39:01', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:60:in `create_activity_from_self'[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:25:in `acts_as_activity'[0m
+  [4;35;1mSQL (0.000229)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000209)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000492)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000257)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000622)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 22:39:01', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:68:in `track_activity'[0m
+  [4;36;1mSQL (0.000318)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000651)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000487)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000462)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.000552)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000270)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000259)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;35;1mSQL (0.003828)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;36;1mTestPost Update (0.000895)[0m   [0;1mUPDATE test_posts SET "title" = 'New Post', "test_user_id" = 2 WHERE id = 2[0m
+
+  [4;35;1mSQL (0.000297)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000263)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.283995)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.244770)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.229855)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.256946)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.229606)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221275)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000390)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.230320)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000694)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000477)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001166)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000272)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000429)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000264)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000463)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000408)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000561)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000376)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000606)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 22:40:08', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:68:in `track_activity'[0m
+  [4;36;1mSQL (0.000304)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000571)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000477)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000457)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.000409)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000581)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.001616)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000397)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;36;1mSQL (0.000561)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;35;1mSQL (0.000391)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000257)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.298140)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.333611)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.218818)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.221378)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.243286)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.254648)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000392)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.241463)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000690)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000481)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001148)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000327)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000472)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000271)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000472)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000390)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000776)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000396)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000576)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 22:40:21', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:68:in `track_activity'[0m
+  [4;36;1mSQL (0.000263)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000563)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000555)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000488)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.000408)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000588)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.001530)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000421)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;36;1mSQL (0.000573)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;35;1mSQL (0.000411)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000270)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.308855)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.244656)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.218721)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.234321)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.251945)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.245095)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000429)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.216368)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000677)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000400)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001155)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000297)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000497)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000317)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000524)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000411)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000564)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000385)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000618)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 22:40:39', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:68:in `track_activity'[0m
+  [4;36;1mSQL (0.000272)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000574)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000457)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000458)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.000392)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000566)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.000336)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000411)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;36;1mSQL (0.000573)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;35;1mSQL (0.000403)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000261)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.396397)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.257219)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.251369)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.232576)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221185)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.234869)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000411)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.250021)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000666)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000398)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001163)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000288)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000458)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000284)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000471)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 1)[0m
+
+  [4;36;1mSQL (0.000184)[0m   [0;1mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(2, 'test_post', 1, '2007-02-02 22:41:55', 'TestPost')[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:60:in `create_activity_from_self'[0m
+    [36;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:25:in `acts_as_activity'[0m
+  [4;35;1mSQL (0.000230)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000237)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.000556)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mTestUser Load (0.000440)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;35;1mSQL (0.000621)[0m   [0mINSERT INTO activities ("item_id", "action", "user_id", "created_at", "item_type") VALUES(NULL, 'logged_in', 1, '2007-02-02 22:41:55', NULL)[0m
+    [35;2mvendor/plugins/activity_tracker/lib/activity_tracker.rb:68:in `track_activity'[0m
+  [4;36;1mSQL (0.000275)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000691)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 1) [0m
+
+  [4;36;1mSQL (0.000547)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000724)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES(NULL, NULL)[0m
+
+  [4;36;1mSQL (0.000273)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000582)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.000324)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mTestUser Load (0.000288)[0m   [0mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;36;1mSQL (0.000472)[0m   [0;1mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;35;1mSQL (0.000239)[0m   [0mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;36;1mSQL (0.000217)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;36;1mSQL (0.284864)[0m   [0;1mDROP TABLE activities[0m
+
+  [4;35;1mSQL (0.310938)[0m   [0mCREATE TABLE activities ("id" INTEGER PRIMARY KEY NOT NULL, "user_id" integer(10), "action" varchar(50), "item_id" integer(10), "item_type" varchar(255), "created_at" datetime) [0m
+
+  [4;36;1mSQL (0.242039)[0m   [0;1mDROP TABLE test_users[0m
+
+  [4;35;1mSQL (0.243451)[0m   [0mCREATE TABLE test_users ("id" INTEGER PRIMARY KEY NOT NULL, "login" varchar(255)) [0m
+
+  [4;36;1mSQL (0.221146)[0m   [0;1mDROP TABLE test_posts[0m
+
+  [4;35;1mSQL (0.221410)[0m   [0mCREATE TABLE test_posts ("id" INTEGER PRIMARY KEY NOT NULL, "title" varchar(255), "test_user_id" integer) [0m
+
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+
+  [4;35;1mSQL (0.000495)[0m   [0mPRAGMA table_info(schema_info)[0m
+
+  [4;36;1mSQL (0.242816)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+
+  [4;35;1mSQL (0.000669)[0m   [0mPRAGMA table_info(test_posts)[0m
+
+  [4;36;1mSQL (0.000396)[0m   [0;1mSELECT count(*) AS count_all FROM test_posts [0m
+
+  [4;35;1mSQL (0.001173)[0m   [0mPRAGMA table_info(activities)[0m
+
+  [4;36;1mSQL (0.000279)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000494)[0m   [0mPRAGMA table_info(test_users)[0m
+
+  [4;36;1mTestUser Load (0.000314)[0m   [0;1mSELECT * FROM test_users WHERE (test_users.id = 2) [0m
+
+  [4;35;1mSQL (0.000531)[0m   [0mINSERT INTO test_posts ("title", "test_user_id") VALUES('New Post', 2)[0m
+
+  [4;36;1mSQL (0.000399)[0m   [0;1mSELECT count(*) AS count_all FROM activities [0m
+
+  [4;35;1mSQL (0.000268)[0m   [0mSELECT count(*) AS count_all FROM test_posts [0m
+

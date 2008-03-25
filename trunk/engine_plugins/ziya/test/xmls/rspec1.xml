@@ -1,0 +1,57 @@
+<chart>
+	<axis_value_text>
+		<string>1</string>
+		<string>2</string>
+		<string>3</string>
+	</axis_value_text>
+	<axis_category alpha="100" size="10" color="61332b" bold="true"/>
+	<axis_ticks minor_color="a19d91" value_ticks="true" major_color="54544c"/><axis_value alpha="100" size="10" color="a79d91"/>
+	<chart_rect negative_color="f88868" positive_alpha="40" negative_alpha="40" positive_color="f8af68"/>
+	<chart_border left_thickness="2" right_thickness="1" top_thickness="1" bottom_thickness="1"/>
+	<chart_grid_h alpha="7" thickness="1" color="0"/>
+	<chart_grid_v alpha="7" thickness="3" color="0"/>
+	<chart_transition type="none" order="category" duration="0.2"/>
+	<chart_value alpha="100" size="9" color="F5F0BE" position="right"/>
+	<legend_rect fill_color="f8af68" fill_alpha="40"/>
+	<legend_transition type="none"/>
+	<legend_label size="10" color="0"/>
+	<series_color>
+	  <color>5f5a38</color>
+		<color>f8af68</color>
+		<color>4e6b49</color>
+		<color>e99e57</color>
+	</series_color>
+	<series_gap/>
+	<series_switch></series_switch>
+	<chart_pref/>
+	<live_update/>
+	<link_data/>
+	<chart_data>
+		<row>
+			<null/>
+			<string>2004</string>
+			<string>2005</string>
+			<string>2006</string>
+		</row>
+		<row>
+			<string>SerieA</string>
+			<number>10</number>
+			<number>20</number>
+			<number>30</number>
+		</row>
+	</chart_data>
+	<chart_value_text>
+		<row>
+			<null/>
+			<string></string>
+			<string></string>
+			<string></string>
+		</row>
+		<row>
+			<null/>
+			<string>dog</string>
+			<string>cat</string>
+			<string>rat</string>
+		</row>
+	</chart_value_text>
+</chart>

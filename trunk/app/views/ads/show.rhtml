@@ -1,0 +1,39 @@
+<div class="col_full">
+	<% rounded do %>
+
+	<p>
+	  <b>Name:</b>
+	  <%=h @ad.name %>
+	</p>
+
+	<p>
+	  <b>Html:</b>
+	  <%= @ad.html %>
+	</p>
+
+	<p>
+	  <b>Frequency:</b>
+	  <%=h @ad.frequency %>
+	</p>
+
+	<p>
+		<strong>Published?</strong>
+		<%= @ad.published? %>
+	</p>
+
+	<p>
+	  <b>Run:</b>
+	  <%=h @ad.time_constrained? ? "#{@ad.start_date.to_formatted_s(:long)} - #{@ad.end_date.to_formatted_s(:long)}" : 'n/a' %>
+	</p>
+
+	<p>
+	  <b>Location:</b>
+	  <%=h @ad.location %>
+	</p>
+
+
+	<%= link_to 'Edit', edit_ad_path(@ad) %> |
+	<%= link_to 'Back', ads_path %>
+	
+	<% end %>
+</div>

@@ -1,0 +1,58 @@
+<div class="yui-b col_236">
+	<% rounded do %>
+		<%= render :partial => 'shared/admin_nav' %>		
+	<% end %>
+</div>
+
+<div id="yui-main">
+	<div class="yui-b col_723">
+		<% rounded do %>
+			<h1>Statistics</h1>
+
+<%= ziya_chart( activities_chart_statistics_url(:range => params[:range]), {:bgcolor => '#ffffff', :width => 600, :height => 400, :id => "Activities", :swf_path => "/plugin_assets/community_engine/charts/"} )%>
+
+			<h2>Total users: <%= @total_users %></h2>
+			<h2>Unactivated users: <%= @unactivated_users %></h2>
+
+			<h2>New today: <%= @today_new_users.size %></h2>
+			<ul>
+				<% @today_new_users.each do |user| %>
+					<li><%= link_to user.login, user_path(user) %></li>
+				<% end %>
+			</ul>
+
+			<h2>New yesterday: <%= @yesterday_new_users.size %></h2>
+			<ul>
+				<% @yesterday_new_users.each do |user| %>
+					<li><%= link_to user.login, user_path(user) %></li>
+				<% end %>
+			</ul>
+
+			<h2>Active: <%= pluralize @active_users_count, 'user' %> (<%= number_to_percentage((@active_users_count/@total_users.to_f)*100, :precision => 1) %>, 1 month)
+			</h2>
+
+			<h2>Most active (1 month)</h2>
+			<ul>
+				<% @active_users.each do |user| %>
+					  <li><%= link_to user.login, user_path(user.id) %> (<%= user.activities_count %>)</li>
+				<% end %>				
+			</ul>
+
+			<h2>Average reported age: <%= @average_age.first['avg_age'] %></h2>
+
+			<h2>% Reporting ZIP: <%= number_to_percentage @percent_reporting_zip, :precision => 1 %></h2>
+
+			<h2>Male: <%= number_to_percentage @percent_male %>, Female: <%= number_to_percentage @percent_female %></h2>	
+
+			<h2>Featured Writers</h2>
+			<ul>
+				<% @featured_writers.each do |w| %>
+					<li><%= link_to w.login, statistics_user_path(w) %></li>
+				<% end %>
+			</ul>
+
+			<h2>Estimated Writers' Costs this month</h2>			
+				$<%= @estimated_payment %> - <%= @posts.length %> posts ($<%= (@estimated_payment.to_i / @posts.length.to_i) rescue "0" %>/post)
+		<% end %>
+	</div>
+</div>

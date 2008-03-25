@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+us:
+  id: 1
+  name: United States
+argentina:
+  id: 2
+  name: Argentina
+germany:
+  id: 3
+  name: Germany
+mongolia:
+  id: 4
+  name: Mongolia

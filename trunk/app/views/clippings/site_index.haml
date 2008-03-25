@@ -1,0 +1,37 @@
+-@section = 'clippings'
+
+#main.column.span-9
+  .right
+    = link_to "Popular", site_clippings_path, :class => (params[:recent] ? '' : 'active')
+    |
+    = link_to "Recent", site_clippings_path(:recent => 'DESC'), :class => (params[:recent] ? 'active' : '')
+    
+  %h2
+    Clippings
+    = params[:popular] ? " (Popular) " : ""
+
+  .clippings_grid
+    - @clippings.in_groups_of(2) do |group|
+      .row  
+        - group.compact.each do |clipping|
+          =render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+        .clear
+      
+  =pagination_links
+  .clear
+  %br
+          
+#sidebar.column.span-5.last
+  = Ad.display(:sidebar_1, logged_in?)
+  
+  .clear
+  %br
+  .padded
+    Clippings are visual bookmarks. Use clippings to keep track of images you like from around the web. 
+    -if logged_in?
+      =link_to 'Go to your clippings page to get started.', user_clippings_path(current_user)
+    -else
+      To get started with clippings, first 
+      =link_to 'create an account.', signup_path
+  
+    = Ad.display(:sidebar_2, logged_in?)

@@ -1,0 +1,29 @@
+<%= chart :pie %>
+
+  <%=component :legend_rect %>
+    x:          40
+    y:          0
+    width:      0
+    
+  <%=component :chart_rect %>
+    x:              110
+    y:              0 
+    height:         200
+    width:          200      
+    positive_alpha: 0
+    negative_alpha: 0
+    
+  <%=component :chart_value %>
+    position: inside
+    
+  <%=component :chart_border %>
+    left_thickness:   0
+    bottom_thickness: 0
+    top_thickness:    0
+    right_thickness:  0    
+    
+  <%=component :chart_grid_h %>
+    alpha:     0
+  
+  <%=component :chart_grid_v %>
+    alpha:     0     

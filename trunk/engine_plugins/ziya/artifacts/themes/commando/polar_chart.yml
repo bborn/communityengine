@@ -1,0 +1,11 @@
+<%= chart :polar %>
+  <%=component :chart_rect %>
+    x:              80
+    y:              5 
+    height:         200
+    width:          200   
+    
+  <%=component :legend_rect %>
+    x:          80
+    y:          230
+    width:      200

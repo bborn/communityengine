@@ -1,0 +1,34 @@
+<p>
+  <label for="topic_title"><%= _('Title') %></label><br />
+  <%= form.text_field :title, :class => "primary" %>
+
+  <% if admin? or current_user.moderator_of?(@topic.forum) %>
+    <label style="margin-left:1em;">
+    <%= form.check_box :sticky %> <%= _('Sticky') %>
+    </label>
+
+    <label style="margin-left:1em;">
+    <%= form.check_box :locked %> <%= _('Locked') %>
+    </label>
+  <% end %>
+</p>
+
+<% if @topic.new_record? %>
+  <p>
+  	Tags: <br />
+  	<%= text_field_tag 'tag_list', @topic.tags.collect{|t| t.name}.join(" "), {:autocomplete => "off", :size => 35} %>
+  	<div class="auto_complete" id="tag_list_auto_complete"></div>	
+  	<%= auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, 
+  		 :tokens => [',', ' ']  } %>
+  <p>
+  <p>  
+  <label for="topic_body"><%= _('Body') %></label><br />
+  <%= form.text_area :body, :rows => 12 %></p>
+  <% end %>
+
+  <% if admin? and not @topic.new_record? %>
+  <p id="topic_forum_id">
+    <label for="topic_forum_id"><%= _('Forum') %></label><br />
+    <%= form.select :forum_id, Forum.find(:all, :order => "position").map {|x| [x.name, x.id] } %></p>
+  </p>
+<% end %>

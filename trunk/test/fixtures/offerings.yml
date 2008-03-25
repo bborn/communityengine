@@ -1,0 +1,6 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+plumberbob_plumbing:
+  id: 1
+  user_id: 9
+  skill_id: 1
+  

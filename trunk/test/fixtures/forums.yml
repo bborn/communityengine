@@ -1,0 +1,10 @@
+rails:
+  id: 1
+  name: rails
+  topics_count: 2
+  sb_posts_count: 4
+comics:
+  id: 2
+  name: comics
+  topics_count: 0
+  sb_posts_count: 0

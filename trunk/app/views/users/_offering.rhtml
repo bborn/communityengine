@@ -1,0 +1,8 @@
+<li id="offering_<%= offering.id %>">
+	<%= offering.skill.name %>
+	<%= (link_to_remote( "Delete this", {:url => user_offering_path(offering.user, offering), 
+			:method => :delete,
+			500 => 'alert(request.responseText); return false', 
+			:success => visual_effect(:fade, "offering_#{offering.id}"),
+			:confirm => "Are you sure you want to permanently delete this?"} )) if (current_user && current_user.eql?(offering.user) ) %>
+</li>

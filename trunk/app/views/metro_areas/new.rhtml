@@ -1,0 +1,23 @@
+<div class="col_full">
+	<% rounded do %>
+
+		<h1>New Metro Area</h1>
+		<%= error_messages_for :metro_area %>
+		<% form_for(:metro_area, :url => metro_areas_path) do |f| %>
+			<p>Country: 
+				<%= f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name %></p>
+			</p>
+			<p>State: 
+				<%= f.collection_select :state_id, State.find(:all), :id, :name, :include_blank => true %></p>
+			</p>
+		  <p>Name: 
+		    <%= f.text_field :name %>
+		  </p>
+		  <p>
+		    <%= submit_tag "Create" %>
+		  </p>
+		<% end %>
+
+		<%= link_to 'Back', metro_areas_path %>
+	<% end %>
+</div>

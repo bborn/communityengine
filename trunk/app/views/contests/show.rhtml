@@ -1,0 +1,33 @@
+<div class="column span-9 posts">
+	<div class="contest">			
+		<h2><%= @contest.title %></h2>
+		<h3>From <%= @contest.begin.strftime("%B %d, %Y") %> To <%= @contest.end.strftime("%B %d, %Y") %></h3>
+		<p><%= @contest.post %></p>
+	</div>
+  
+  <hr />
+	<h2 class="super">Contest Entries</h2>
+		<% @contest.posts.each do |post| %>
+			<%= render :partial => "posts/post", :locals => {:post => post} %>
+		<% end %>
+</div>
+
+<div class="column span-5 last">
+  <br />
+  <br />  
+	<% if @contest.active? %>
+		<h3 class="centered">			
+		<% if current_user %>
+			<%= link_to "Click here to enter this contest!", new_user_post_path({:user_id => current_user, 'post[contest_id]' => @contest.id, 'post[category_id]' => (Category.get(:talk).id rescue Category.find(:first).id ) }) %>
+		<% else %>		
+			<%= link_to "Click here to sign up for an account and enter", signup_path %>
+		<% end %>
+		</h3>
+    <div class="padded">
+        <small>For detailed contest rules, <a href="/rules.html">click here</a>.</small>
+    </div>						
+	<% else %>
+		<h3>This contest is closed</h3>
+	<% end %>  
+</div>
+		

@@ -1,0 +1,5 @@
+%h2 Most Commented
+%ul
+  -posts.each do |post|
+    %li
+      =link_to "#{truncate(post.title, 75)} <small class='quiet'>(#{post['comments_count'] })</small>", user_post_path(post.user, post)

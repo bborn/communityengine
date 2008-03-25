@@ -1,0 +1,38 @@
+<chart>
+	<license>test_license</license>
+	<axis_category alpha='100' size='50' bold='true' color='0'/>
+	<axis_ticks major_color='54544c' minor_color='a19d91' value_ticks='true'/>
+	<axis_value alpha='50' size='10' color='0'/>
+	<chart_rect positive_color='ffffff' negative_color='ffff66' positive_alpha='50' negative_alpha='50'/>
+	<chart_border bottom_thickness='1' left_thickness='1' right_thickness='1' top_thickness='1'/>
+	<chart_grid_h alpha='20' thickness='1' color='0'/>
+	<chart_grid_v alpha='20' thickness='3' color='0'/>
+	<chart_transition type='none' duration='0.2' order='category'/>
+	<chart_value alpha='100' position='right' size='9' color='F5F0BE'/>
+	<legend_rect y='0' x='40' fill_color='ffffff' fill_alpha='90'/>
+	<legend_transition type='none'/>
+	<legend_label size='10' color='0'/>
+	<series_color>
+	<color>666666</color>
+	<color>768bb3</color>
+	</series_color>
+	<series_gap/>
+	<series_switch>
+	</series_switch>
+	<chart_pref/><live_update/>
+	<link_data/><chart_data>
+	<row>
+	<null/>
+	<string>12/10</string>
+	</row>
+	<row>
+		<string>Series A</string>
+		<number>100</number>
+		</row>
+		<row>
+			<string>Series B</string>
+			<number>50</number>
+		</row>
+	</chart_data>
+	<chart_value_text></chart_value_text>
+</chart>

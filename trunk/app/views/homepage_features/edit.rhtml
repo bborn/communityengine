@@ -1,0 +1,35 @@
+<div class="col_full">
+	<% rounded do %>
+		<h1>Editing homepage feature</h1>
+
+		<%= error_messages_for :homepage_feature %>
+
+		<% form_for(:homepage_feature, :url => homepage_feature_path(@homepage_feature), :html => { :multipart => true, :method => :put }) do |f| %>
+
+		  <p>
+		    <b>URL</b><br />
+		    <%= f.text_field :url %>
+		  </p>
+
+		  <p>
+		    <b>Title</b><br />
+		    <%= f.text_field :title %>
+		  </p>
+
+		  <p>
+		    <b>Description</b><br />
+			<%= f.text_area :description, :size => "69x10", :class => "rich_text_editor" %>
+		  </p>
+
+		  <p>
+		    <b>Filename</b><br />
+			<%= f.file_field :uploaded_data %>
+		  </p>
+
+		  <p>
+		    <%= submit_tag "Update" %> 	or <%= link_to 'Cancel, and go back to all features', homepage_features_path %>
+		  </p>
+		<% end %>
+
+	<% end %>
+</div>

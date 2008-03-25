@@ -1,0 +1,18 @@
+<%= link_to 'Edit', edit_metro_area_path(@metro_area) %> |
+<%= link_to 'Back', metro_areas_path %>
+<p>
+  <b>Country:</b>
+  <%=h @metro_area.country.name %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @metro_area.state.name if @metro_area.state%>
+</p>
+<p>
+  <b>Name:</b>
+  <%= @metro_area.name %>
+</p>
+
+<%= link_to 'Edit', edit_metro_area_path(@metro_area) %> |
+<%= link_to 'Back', metro_areas_path %>

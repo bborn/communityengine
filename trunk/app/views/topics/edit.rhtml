@@ -1,0 +1,10 @@
+<h1><%= _('Edit Topic') %></h1>
+
+<%= error_messages_for :topic %>
+<% form_for :topic,
+     :url  => forum_topic_path(@forum, @topic),
+     :html => { :method => :put } do |f| -%>
+<%= render :partial => "form", :object => f %>
+<br />
+<%= submit_tag _('Save Changes'), :or => link_to(_('Cancel'), forum_topic_path(@forum, @topic)) %>
+<% end -%>

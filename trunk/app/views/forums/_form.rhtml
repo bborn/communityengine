@@ -1,0 +1,29 @@
+<p style="float:right; margin-top:0">
+</p>
+
+<p id="forum_name">
+
+<table border="0" cellspacing="0" cellpadding="0" class="noborder nopad wide">
+  <td>
+    <label><%= _('Title') %></label><br />
+    <%= form.text_field :name, :class => "primary" %>
+  </td>
+  <td style="text-align:right">
+    <label><%= _('Position') %></label><br />
+    <%= form.text_field :position, :size => 5 %>
+		<p>
+			Tags: <br />
+			<%= text_field_tag 'tag_list', @forum.tags.collect{|t| t.name}.join(" "), {:autocomplete => "off", :size => 35} %>
+			<div class="auto_complete" id="tag_list_auto_complete"></div>	
+
+			<%= auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, 
+				 :tokens => [',', ' ']  } %>
+		<p>
+
+  </td>
+</table>
+
+</p>
+<p id="forum_descripion">
+<label><%= _('Description') %></label><br />
+<%= form.text_area :description, :rows => 7 %></p>

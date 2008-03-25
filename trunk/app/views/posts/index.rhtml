@@ -1,0 +1,52 @@
+<div class="profile">
+	<div class="yui-b">
+		<%= render :partial => 'blog_profile_details' %>
+
+		<% if AppConfig.show_advertising %>
+			<% unless @is_current_user %>
+				<div class="section">
+					<h2>Sponsors</h2>
+					<%= google_ad_unit(AdvertisingHelper::AD_FORMATS['250x250_as'], AdvertisingHelper::CHANNELS[:show_blog_sidebar]) %>
+				</div>
+			<% end %>
+		<% end %>
+
+		<% unless @popular_posts.empty? %>
+			<div id="posts" class="section">
+				<h2>Popular Posts</h2>
+				<ul>
+					<% @popular_posts.each do |post| %>
+						<li>
+							<%= link_to truncate(post.title, 75), user_post_path(@user, post) %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+	</div>
+
+	<div id="yui-main">
+		<div class="yui-b">
+				<div class="section posts">
+					<h2>
+						<%= link_to "#{@user.login}'s blog", user_posts_path(@user) %>
+						<%= @category ? "&raquo; " + link_to(@category.name.upcase, users_posts_in_category_path(@user, @category.name)) : '' %>
+					</h2>
+					<%= link_to( 'New post.', new_user_post_path(@user), {:class => "right"})  if @is_current_user%><br />
+
+						<%= render :partial => 'post', :collection => @posts %>
+
+						<% if @pages.length > 1 %>
+							<div style="margin:1em;">
+								<%= link_to "&laquo; Earlier posts", { :page => @pages.current.next } if @pages.current.next %>								
+								<%= link_to " | Later posts &raquo; ", { :page => @pages.current.previous } if @pages.current.previous %>								
+							</div>
+						<% end %>
+				</div>
+		</div>
+	</div>
+
+	<br class="clear" />
+</div>
+

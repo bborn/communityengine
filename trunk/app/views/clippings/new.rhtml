@@ -1,0 +1,43 @@
+<div class="profile">
+	<div class="yui-b">
+		<h2>Tips</h2>
+		<p>
+			Clippings are a way to save images you like from around the Web.
+		</p>
+		<p>
+			
+		</p>
+	</div>
+
+	<div id="yui-main">
+		<div class="yui-b section">
+
+			<h2>New clipping</h2>
+
+			<% form_for(:clipping, :url => user_clippings_path ) do |f| %>
+			  <p>
+			    <b>Url</b><br />
+			    <%= f.text_field :url %>
+			  </p>
+
+			  <p>
+			    <b>Image url</b><br />
+			    <%= f.text_field :image_url %>
+			  </p>
+
+			  <p>
+			    <b>Description</b><br />
+			    <%= f.text_field :description %>
+			  </p>
+
+			  <p>
+			    <%= submit_tag "Create" %> or <%= link_to 'cancel, and go back to my clippings', user_clippings_path(@user) %>
+			  </p>
+			<% end %>
+
+
+		</div>
+	</div>
+	
+	<br class="clear" />
+</div>

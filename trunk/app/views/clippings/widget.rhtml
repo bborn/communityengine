@@ -1,0 +1,37 @@
+document.write('<script type="text/javascript" src="<%= APP_URL%>/plugin_assets/community_engine/javascripts/prototype.js"></script>\n');
+document.write('<script type="text/javascript" src="<%= APP_URL%>/plugin_assets/community_engine/javascripts/effects.js"></script>\n');
+document.write('<script type="text/javascript" src="<%= APP_URL%>/plugin_assets/community_engine/javascripts/slideshow/slideshow.js"></script>\n');
+    
+document.write('<link href="<%= APP_URL %>/plugin_assets/community_engine/javascripts/slideshow/slideshow.css" media="screen" rel="Stylesheet" type="text/css" />\n');
+
+document.write('<div class="community">\n');
+document.write('<div class="community_widget">\n');
+	document.write('<h1><a href="<%= APP_URL + "/users/" + @user.login_slug %>">My <%= AppConfig.community_name %> clippings</a></h1>\n');
+	document.write('<div id="my_clippings" class="community_slideshow">\n');
+		document.write('<span id="loading">\n');
+			document.write('<img src="<%= APP_URL %>/plugin_assets/community_engine/images/spinner.gif"/> Loading images from <%= AppConfig.community_name %>.com.\n');
+		document.write('</span>\n');
+		document.write('<img class="slideshow_image" src="<%= APP_URL %>/plugin_assets/community_engine/javascripts/slideshow/blank.gif" />\n');
+	document.write('</div>');
+document.write('</div>\n');
+document.write('<a href="<%= APP_URL %>" title="<%= AppConfig.community_name %>"></a>\n');
+document.write('</div>\n');
+
+function loadSlideshow(){ new Slideshow($('my_clippings'), <%= @clippings_data.to_json %>);}
+
+
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+
+addLoadEvent(loadSlideshow);

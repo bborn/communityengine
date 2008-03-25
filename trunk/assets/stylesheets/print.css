@@ -1,0 +1,51 @@
+a {
+	color:#000;
+	}
+	
+a#community-logo {
+	font-size:2em;
+	}
+	
+	
+/* HIDE THESE */
+div#hd div.toolbar {
+	display:none;
+	}
+
+div#ft {
+	display:none;
+	}
+
+div.profile div.section {
+	display:none;
+	}
+div.profile div.post #post_tools {
+	display:none;
+	}
+div.profile div.comments form {
+	display:none;
+	}
+div.profile div.comments #comment_help {
+	display:none;
+	}			
+div.profile div.sponsors {
+	display:none;
+	}
+div.profile span#more_comments_links {
+	display:none;
+	}
+	
+
+/* SHOW THESE */
+div.profile div.post {
+	display:block;
+	}
+div.profile div.posts {
+	display:block;
+	}
+div.profile div.comments {
+	display:block;
+	}
+div.profile div#blog_details {
+	display:block;
+	}

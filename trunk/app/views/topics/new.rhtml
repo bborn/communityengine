@@ -1,0 +1,16 @@
+<div class="crumbs" xstyle="margin-top:1.1em;">
+  <%= link_to _('Forums'), forum_home_path %> <span class="arrow">&rarr;</span>
+  <%= link_to h(@forum.name), forum_path(@forum) %> <span class="arrow">&rarr;</span>
+</div>
+
+<h1 id="new_topic"><%= _('New Topic') %></h1>
+<p class="subtitle"><%= _('by') %> <%= current_user.display_name %></p>
+
+<%= error_messages_for :topic %>
+<% form_for :topic, :url  => forum_topics_path(@forum) do |f| -%>
+  <%= render :partial => "form", :object => f %>
+  <%= submit_tag _('Post Topic'), :or => link_to(_('Cancel'), forum_path(@forum)) %>
+<% end -%>
+
+<%= javascript_tag "$('topic_title').focus();" %>
+

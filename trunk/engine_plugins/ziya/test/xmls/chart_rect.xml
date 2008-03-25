@@ -1,0 +1,9 @@
+<chart_rect 
+	positive_color='ff0000' 
+	positive_alpha='20' 
+	x='10' 
+	negative_color='00ff00' 
+	y='100' 
+	negative_alpha='10' 
+	width='300' 
+	height='200'/>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+quentin_init_aaron_pending:
+  id: 1
+  user_id: 1
+  friend_id: 2
+  friendship_status_id: 1
+  initiator: 1
+  created_at: <%= 5.days.ago.to_s :db %>
+aaron_receive_quentin_pending:
+  id: 2
+  user_id: 2
+  friend_id: 1
+  friendship_status_id: 1
+  initiator: 0
+  created_at: <%= 5.days.ago.to_s :db %>

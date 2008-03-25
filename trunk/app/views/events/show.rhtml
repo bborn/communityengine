@@ -1,0 +1,32 @@
+<% @section = 'events' %>
+
+<div class="yui-b col_236">
+	<% if @is_admin_user %>
+		<% rounded do %>
+			<%= link_to "New event", new_event_path %>
+		<% end %>
+	<% end %>
+	
+	<% rounded do %>
+		<%= link_to "See all events", events_path %>
+	<% end %>
+</div>
+
+<div id="yui-main">
+	<div class="yui-b col_723">
+		<% rounded(:class => "event") do %>
+
+				<h2><%= @event.name %></h2>
+				<% if @event.user.eql?(current_user) %>
+					<%= link_to "Edit this event", edit_event_path(@event)  %> | 
+					<%= link_to("Delete this event", event_path(@event), {:method => :delete, :confirm => 'Permanently delete this event?'}) %><br />
+				<% end %>
+
+				<strong><%=h @event.time_and_date %></strong><br />
+				<strong><%=h @event.location %></strong>						
+				
+				<p><%= @event.description %></p>
+
+		<% end %>
+	</div>	
+</div>
