@@ -2,6 +2,6 @@ author: Bruno Bornsztein
 email: bruno.bornsztein@gmail.com
 homepage: http://www.missingmethod.com
 summary: A social netorking engine
-description: Adds basic social networking capabilities to your existing application, including user object, blogs, photos
+description: Adds basic social networking capabilities to your existing application, including users, blogs, photos, clippings, favorites, and more.
 license: MIT
 version: 0.0.1
