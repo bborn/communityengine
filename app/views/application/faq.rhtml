@@ -1,0 +1,45 @@
+<%= render :partial => 'about_nav' %>
+
+<div id="yui-main">
+	<div class="yui-b col_723">
+		<% rounded(:class => 'marketing') do %>
+			<div class="gradient">
+				<h2 class="impact">Frequently Asked Questions:</h2>
+			</div>
+
+			<h3 id="what_is_it">What Is <%= AppConfig.community_name %>?</h3>
+			<p>Explain what it is</p>
+
+			<h3 id="asking_a_question">How Do I Ask A Question?</h3>
+			<p>To post a question, go to your blog and create a new blog post in the <%= link_to "Questions category", category_path(Category.get(:questions)) %> category. Of course, you'll need
+				to <a href="/signup" title="Sign up for a <%= AppConfig.community_name %> account">sign up for an account</a> and <a href="/login" title="Log in to your <%= AppConfig.community_name %> account">log in</a> first.
+			</p>
+
+			<h3 id="answering">How Can I Help Other Members?</h3>
+			<p>
+				Check out the <%= link_to "Questions category", category_path(Category.get(:questions)) %> to
+				see what others need help with. When you spot a chance to give someone a piece of advice or a useful tip, reply to their
+				question in the comments.
+			</p>
+
+			<h3 id="tags">What Are "Tags"?</h3>
+			<p>Tags are one-word descriptors that you can assign to your blogs, pictures, and clippings.</p>
+			<p>Tags are a keywords you choose to help organize your stuff on this site. You can assign as many tags as you like and rename or delete them later.</p>
+
+
+			<h3 id="images_and_flash">How do I embed images and flash using the rich text editor?</h3>
+			<p>You can add images or flash media to your profile and your blog posts by using the image <img src="/plugin_assets/community_engine/javascripts/tiny_mce/themes/advanced/images/image.gif" />
+				 and media <img src="/plugin_assets/community_engine/javascripts/tiny_mce/plugins/media/images/media.gif"/> buttons on the rich text editor.</p>
+
+			<h3 id="pro">What is a Pro?</h3>
+			<p>A descripion of what a pro is in the context of this community. May not be applicable.
+			</p>
+
+			<h3 id="request_feature">Can You Build Me A Time Machine?</h3>
+			<p>No, but we're always looking for ways to improve the <%= AppConfig.community_name %> community.</p>
+			<p>If you have a suggestion for a change or feature that you think would make the site better, please let us know at <a href="mailto:<%= AppConfig.support_email %>"><%= AppConfig.support_email %></a></p>
+
+
+		<% end %>
+	</div>
+</div>

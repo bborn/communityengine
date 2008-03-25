@@ -1,0 +1,15 @@
+<chart_value 
+  bold='true' 
+  separator='_' 
+	color='ff00ff' 
+	position='2' 
+	prefix='blee' 
+	background_color='000000' 
+	hide_zero='true' 
+	size='10' 
+	suffix='doh' 
+	alpha='10' 
+	as_percentage='true' 
+	decimals='2' 
+	font='Arial' 
+	decimal_char='.'/>

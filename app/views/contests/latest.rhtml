@@ -1,0 +1,50 @@
+<div class="profile">
+	<div id="yui-main">
+			
+			<div class="contest polaroid" class="section">			
+				<%= @active_contest.descript %>
+				<h1>EVERYBODY GET HAPPY!</h1>
+				<h2>We're kicking things off with our first contest!</h2>
+
+				<%= image_tag "happy3.jpg", :plugin => "community_engine" %>
+				<h2>You know how's there's that special place in your home that makes you feel soooo good?</h2>
+				<%= image_tag "happy4.jpg", :plugin => "community_engine" %>
+				<br />
+				<br />	
+				<h1>Post a picture of your favorite "happy" place in your home, <br />and win gift certificates at IKEA</h1>
+				<br />
+				<br />
+				<br />					
+				<h1>We'll judge the entries and announce the winners on December 8</h1>	
+				<br />
+				<br />
+				<br />								
+				<%= image_tag "ikea_gift_card.jpg", :plugin => "community_engine" %>
+				<h1>Grand Prize is a $200 Gift Card to IKEA</h1>
+				
+				<h1>Two runners-up will recieve $100 gift cards to IKEA as well!</h1>
+
+				<h2>
+				<% if current_user %>
+					<%= link_to "Click here to enter", new_user_post_path({:user_id => current_user, 'post[contest_id]' => Contest.current.id }) %>
+				<% else %>
+					<%= link_to "Click here to sign up for an account and enter", signup_path %>
+				<% end %>
+				</h2>
+
+			</div>
+	
+		
+	</div>
+	<br class="clear" />
+</div>
+<div class="col_full">
+	<% rounded(:class => "blog") do %>
+		<h2 class="super">Latest Contest Entries</h2>
+		<div class="padded">			
+			<% @contest.posts.each do |post| %>
+				<%= render :partial => "shared/blog_excerpt", :locals => {:post => post} %>
+			<% end %>
+		</div>
+	<% end %>
+</div>

@@ -1,0 +1,11 @@
+if @favorite.new_record?
+  #it didn't work
+  page.alert(@favorite.errors.full_messages.join(', '))
+else
+  case @favorite.favoritable.class.to_s.tableize
+    when 'clippings'
+      page.replace("clipping_#{@favorite.favoritable.id}", :partial => 'clippings/clipping', :object => @favorite.favoritable)
+    when 'posts'
+      page.replace("post_#{@favorite.favoritable.id}_meta", :partial => 'posts/meta', :locals => {:post => @favorite.favoritable})
+  end
+end

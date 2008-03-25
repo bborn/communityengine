@@ -1,0 +1,23 @@
+<div id="comment_<%= comment.id %>">
+	<div class="yui-u first centered">
+		<%= link_to image_tag(comment.user.avatar_user_photo_url(:thumb), :class => "polaroid"), user_path(comment.user) %>
+		<%= ("<br />" + link_to_remote( "Delete this", {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), 
+				:method => :delete,
+				500 => 'alert(\'Sorry, there was a server error\'); return false', 
+				:success => visual_effect(:fade, "comment_#{comment.id}"),
+				:confirm => "Are you sure you want to permanently delete this comment"} )) if (current_user && current_user.eql?(comment.user) ) %>
+	</div>
+	<div class="yui-u" >
+		<h3 class="black"><%= comment.user.login %> writes:</h3>
+		<div class="comment-meta"><%= comment.created_at.strftime("%B %d, %Y") %></div>
+		<p><%= comment.comment %></p>
+	</div>
+	<br class="clear" />
+
+	<% highlighted = highlighted || nil %>
+	<% if highlighted %>
+		<script type="text/javascript">
+			<%= visual_effect :highlight, "comment_#{comment.id}", :duration => 1 %>
+		</script>
+	<% end %>
+</div>

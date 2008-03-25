@@ -1,0 +1,12 @@
+	<% rounded do %>
+	<span class="lower-gray">Explore <%= AppConfig.community_name %>:</span>
+	<ul class="sidebar_nav">
+		<% Category.find(:all).each do |c| %>
+			<li>
+				<%= link_to c.name, category_path(c) %>
+			</li>
+		<% end %>
+		<li><%= link_to "What's Popular", popular_url, {:class => 'popular'} %></li>
+		<li><%= link_to "Find an Expert", skills_path, {:class => 'users'} %></li> 		
+	</ul>
+	<% end %>

@@ -1,0 +1,39 @@
+<% if current_user %>
+	<script type="text/javascript">
+		function scrollToNewestComment(){
+			loc = document.location.toString();
+			if (loc.indexOf("#") != -1){
+				parts = loc.split('#')
+				loc = parts[0] + "#newest_comment"
+			} else {
+				loc = loc + "#newest_comment";
+			}
+			document.location.href = loc;
+		}
+	</script>
+	<div class="yui-u first clear" id="comment_help">
+		<h3>Add Your Comment!</h3>
+		(2000 character limit)
+	</div>
+	<div class="yui-u">
+	  	<div class="errors"></div>
+		<% form_remote_for(:comment, 
+			:loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();",	
+			:before => "tinyMCE.activeEditor.save();",
+			:url => comments_url(Inflector.underscore(commentable.class), commentable.id ),
+			500 => "$$('div#comments div.errors')[0].innerHTML = request.responseText; return false;",
+			:success => "new Insertion.#{commentable.class.to_s.eql?('User') ? 'After': 'After' }('newest_comment', request.responseText); tinyMCE.activeEditor.setContent(\'\'); scrollToNewestComment();",
+			:complete => "$('comment_spinner').hide();"			
+			 ) do |f| %>
+			<%= text_area :comment, :comment, {:size => "70x5", :class => "rich_text_editor"} %>
+
+			<p>
+			  <%= submit_tag "Add Comment" %>
+			  <%= image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner' %>
+			</p>
+		<% end %>			
+	</div>
+<% else %>
+  <h3>Add Your Comment!</h3>
+  <%= link_to "Log in to leave a comment", new_comment_path(commentable.class, commentable.id) %> or <%= link_to "Create an account", signup_path %>
+<% end %>

@@ -1,0 +1,17 @@
+<axis_value 
+  color='ff00ff' 
+  max='100' 
+  decimal_char=',' 
+  background_color='00ff00' 
+  separator='_' 
+  prefix='blee' 
+  alpha='10' 
+  show_min='true' 
+  size='10' 
+  steps='3' 
+  orientation='horizontal' 
+  font='Arial' 
+  suffix='duh' 
+  bold='true' 
+  min='-100' 
+  decimals='2'/>

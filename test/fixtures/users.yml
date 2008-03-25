@@ -1,0 +1,174 @@
+quentin:
+  id: 1
+  login: quentin
+  email: quentin@example.com
+  description: I am friggin awesome
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>  
+  activation_code: 
+  admin: 0
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+aaron:
+  id: 2
+  login: aaron
+  email: aaron@example.com
+  description: I am happy to be here. Community rawks!
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  activation_code: 
+  sb_posts_count: 2
+  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
+  admin: 0
+  login_slug: aaron
+  birthday: <%= 15.years.ago.to_s :db %>  
+kevin:
+  id: 3
+  login: kevin
+  email: kevin@example.com
+  description: I am Garnett
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>  
+  activation_code: 
+  admin: 0
+  login_slug: kevin
+  birthday: <%= 15.years.ago.to_s :db %>  
+admin:
+  id: 4
+  login: admin
+  email: admin@example.com
+  description: I am all powerful
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  activation_code: 
+  admin: 1
+  login_slug: admin
+  birthday: <%= 15.years.ago.to_s :db %>  
+dwr:
+  id: 5
+  login: dwreach
+  email: dwr@example.com
+  description: We are the best design company in the world
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  activation_code: 
+  admin: 0
+  vendor: 1
+  login_slug: dwreach
+  birthday: <%= 15.years.ago.to_s :db %>  
+leopoldo:
+  id: 6
+  login: leopoldo
+  email: leopoldo@example.com
+  description: I am Bruno's dad
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>  
+  metro_area_id: 4
+  activation_code: 
+  admin: 0
+  login_slug: leopoldo
+  birthday: <%= 15.years.ago.to_s :db %>  
+florian:
+  id: 7
+  login: florian
+  email: florian@example.com
+  description: I am Ben's friend
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 30.minutes.ago.to_s :db %>
+  activated_at: <%= 10.minutes.ago.to_s :db %>  
+  metro_area_id: 5
+  activation_code: 
+  admin: 0
+  login_slug: florian
+  birthday: <%= 15.years.ago.to_s :db %>  
+super_writer:
+  id: 8
+  login: superwriter
+  email: superwriter@example.com
+  description: I am Such An Awesome Writer!!
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 30.minutes.ago.to_s :db %>
+  activated_at: <%= 10.minutes.ago.to_s :db %>  
+  metro_area_id: 5
+  activation_code: 
+  admin: 0
+  featured_writer: 1
+  login_slug: superwriter
+  birthday: <%= 15.years.ago.to_s :db %>  
+plumberbob:
+  id: 9
+  login: plumberbob
+  email: plumberbob@example.com
+  description: I love pipe fitting, Hello! I'm one of the Community founders.  Thanks for checking out my profile.  If you have any questions or comments, don't hesitate to email me at founder at community dot com, or comment on my profile.
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  activation_code: 
+  admin: 0
+  vendor: 1
+  login_slug: plumberbob
+  birthday: <%= 15.years.ago.to_s :db %>  
+privateuser:
+  id: 10
+  login: privateuser
+  email: privateuser@example.com
+  description: I am a private user, which means you can't see my profile stuff unless logged in
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  activation_code: 
+  admin: 0
+  vendor: 0
+  login_slug: privateuser
+  profile_public: 0
+  birthday: <%= 15.years.ago.to_s :db %>  
+sam:
+  id: 11
+  login: sam
+  login_slug: sam  
+  email: sam@email.com
+  created_at: <%= 4.days.ago.to_s :db %>
+  sb_posts_count: 2
+  sb_last_seen_at: <%= 4.minutes.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>  
+  activation_code: 
+joe:
+  id: 12
+  login: joe
+  login_slug: joe  
+  email: joe@email.com
+  created_at: <%= 4.days.ago.to_s :db %>
+  sb_posts_count: 2
+  sb_last_seen_at: <%= 4.minutes.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>  
+  activation_code: 
+kyle:
+  id: 13
+  login: kyle
+  login_slug: kyle  
+  email: kyle@email.com
+  created_at: <%= 3.days.ago.to_s :db %>
+  sb_posts_count: 0  
+  activated_at: <%= 5.days.ago.to_s :db %>  
+  activation_code: 
+  

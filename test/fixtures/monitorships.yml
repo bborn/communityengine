@@ -1,0 +1,10 @@
+aaron_pdi:
+  id: 1
+  user_id: 2
+  topic_id: 1
+  active: true
+sam_pdi:
+  id: 2
+  user_id: 11
+  topic_id: 1
+  active: false

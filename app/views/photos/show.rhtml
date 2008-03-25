@@ -1,0 +1,54 @@
+<div class="profile">
+	<div class="yui-b">
+	<%= render :partial => 'shared/small_profile', :locals => {:user => @user} %>
+
+	<% if @previous || @next %>
+		<div class="section photo_nav">
+			<%= link_to "<img src='#{@previous.public_filename(:thumb)}' /><br />&laquo; Prev ", user_photo_path(@user, @previous), :class => 'left' if @previous %>
+			<%= link_to "<img src='#{@next.public_filename(:thumb)}' /><br />Next &raquo;", user_photo_path(@user, @next), :class => 'right' if @next %>
+			<br class="clear" />
+		</div>
+	<% end %>
+
+	<% unless @related.empty? %>
+		<h2>Related Photos (all members)</h2>
+		<div class="centered">
+		<% @related.each do |photo| %>
+			<%= link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo), {:title => "#{h(photo.description)} from #{photo.user.login}"} %>
+		<% end %>			
+		</div>		
+	<% end %>
+
+	</div>
+
+	<div id="yui-main">
+		<div class="yui-b section">
+			<h2><%= link_to "#{@user.login}'s photos", user_photos_path(@user) %> &raquo; <%= link_to h(@photo.display_name), user_photo_path(@user, @photo) %></h2>
+			<% if @is_current_user %>
+				<%= link_to "Make my profile photo", change_profile_photo_user_path({:id => @user, :photo_id => @photo}), :method => :put %> | 
+				<%= link_to "Edit this photo's details", edit_user_photo_path(@user, @photo) if @is_current_user %> | 
+				<%= link_to("Delete this photo", user_photo_path(@user, @photo), :method => :delete) + "<br class='clear' />" %>
+			<% end %>
+			
+			<p class="centered">
+				<%= image_tag( @photo.public_filename, :class => "polaroid" ) %>
+			</p>
+
+			<p><%=h @photo.description %></p>
+
+			<p><%= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t.name), :class => 'tag') }.join(" ") %></p>
+
+			<div class="yui-gf comments section" id="comments">
+				<h2>Photo Comments</h2>
+				<%= render :partial => 'shared/comment_form', :locals => {:commentable => @photo} %>
+				<div class="line" id="comment_separator"></div>
+				<%= render :partial => 'comments/comment', :collection => @photo.comments %>
+				<a id="newest_comment"></a>
+				<%= more_comments_links(@photo) %>				
+			</div>			
+			
+		</div>
+	</div>
+	<br class="clear" />
+</div>
+

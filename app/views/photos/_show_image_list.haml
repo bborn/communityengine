@@ -1,0 +1,22 @@
+- unless photos.empty?
+  %ul.curblyadvimage_list
+    - photos.each do |p|
+      %li{:id => p.id, :class => @selected.eql?(p.id.to_s) ? 'selected' : ''}
+        .thumbs
+          Insert:
+          %br
+          %a{:href=>'#_thumb', :onclick=>"select_thumb(this);return false;"}
+            Thumb
+          %a{:href=>'#_medium', :onclick=>"select_thumb(this);return false;"}
+            Medium
+          %a{:href=>'#', :onclick=>"select_thumb(this);return false;"}
+            Large
+          %br
+          %a{:href=>'#', :onclick=>"$(this).up('li').removeClassName('selected');return false;", :style => 'float:right; font-size: .4em;'}
+            cancel
+        %a{:href=>'#', :onclick=>"select_image(this);return false;"}
+          = image_tag( p.public_filename(:thumb), :alt => p.display_name )
+
+
+- else
+  No Images Uploaded Yet.

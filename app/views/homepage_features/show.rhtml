@@ -1,0 +1,33 @@
+<%= link_to 'Edit', edit_homepage_feature_path(@homepage_feature) %> |
+<%= link_to 'Back', homepage_features_path %>
+<p>
+  <b>Url:</b>
+  <%=h @homepage_feature.url %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @homepage_feature.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @homepage_feature.description %>
+</p>
+<p>
+  <b>Created at:</b>
+  <%=h @homepage_feature.created_at %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%=h @homepage_feature.updated_at %>
+</p>
+
+<p>
+  <%= image_tag @homepage_feature.public_filename(:large) %>
+</p>
+
+
+<%= link_to 'Edit', edit_homepage_feature_path(@homepage_feature) %> |
+<%= link_to 'Back', homepage_features_path %>

@@ -1,0 +1,108 @@
+<html>
+<head>
+	<title><%= AppConfig.community_name %> - someone sent you an article!</title>
+	<style>
+		<!--
+		p {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #000;
+			}
+		
+		a:link, a:visited, a:active {
+			color: #03C;
+			}
+		
+		h1, h2, h3 {
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
+			color: #000;
+			}
+		
+		h1 {
+			font-size: 24px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			}
+
+		h2 {
+			font-size: 14px;
+			}
+			
+		h3 {
+			font-size: 12px;
+			}
+		
+		div.footer {
+			border-top: 1px dashed #006;
+			}
+					
+		div.container {
+			padding: 10px;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			background-color: #FFF;
+			}
+		
+		p.footnote {
+			font-size: 10px;
+			color: #999;
+			}
+		
+		p.copyright {
+			color: #999;
+			}
+		-->
+	</style>
+</head>
+
+<body>
+<div class="container">
+	<div class="header">
+		<h1><%= AppConfig.community_name %>&trade; &#8211; <%= AppConfig.community_tagline %></h1>
+	</div>
+	<div class="mainbody">
+<h2>
+	<%= @name %> wants to share the following article with you:
+</h2>
+
+<h2><a href="<%= @url %>"><%= @title %></a></h2>
+
+<h3>Description</h3>
+
+<div class="story">
+	<p>
+		<a href="<%= @url %>">
+			<% if @post.first_image_in_body %>
+				<img src="<%= APP_URL + @post.first_image_in_body  %>" />
+			<% else %>
+				<img src="<%= APP_URL + '/images/' + @post.user.avatar_user_photo_url(:thumb) %>" />
+			<% end %>
+		</a>
+		<%= @description %>
+	</p>
+</div>
+
+<h3>Personal Message</h3>
+
+<p>
+	<%= @message %>
+</p>
+
+<p>
+	Use this link to sign up for your own <%= AppConfig.community_name %> account: <a href="<%= @signup_link %>">Sign up!</a>
+</p>
+
+<p>Thanks,<br />
+<%= @name.eql?('Someone') ? "The #{AppConfig.community_name} Team" : @name %></p>
+
+	<p class="footnote">
+		<%= AppConfig.community_description %><br />
+		For support, or to report abuse, please contact <%= AppConfig.support_email %>.	
+	</p>
+	</div>
+	<div class="footer">
+		<p class="copyright">Copyright &copy; 2007 <%= AppConfig.community_name %></p>
+	</div>
+</body>
+</html>

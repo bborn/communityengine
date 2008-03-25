@@ -1,0 +1,17 @@
+<% if category %>
+	<h2><%= category.name %></h2>
+	<p>
+		<%= category.tips %>
+	</p>
+	<p>
+		Need some help?  Check out our <%= link_to "FAQ section", faq_url %>.
+	</p>	
+<% else %>
+	<h2>We need <em>YOU</em></h2>
+	<p>
+		<em>Every single person</em> has something to say, something to give, something that will help someone else.  Join in!
+	</p>
+	<p>
+		Need some help?  Check out our <%= link_to "FAQ section", faq_url %>.
+	</p>	
+<% end %>

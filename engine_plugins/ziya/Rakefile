@@ -1,0 +1,31 @@
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'spec'
+require 'spec/rake/spectask'
+
+desc 'Default: run unit tests.'
+task :default => :test
+
+desc 'Test the ZiYa plugin.'
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'lib'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = true
+end
+
+desc 'Generate documentation for the ZiYa plugin.'
+Rake::RDocTask.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'ZiYa'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+desc 'Runs all RSpec specs'
+Spec::Rake::SpecTask.new do |t|
+  t.rcov       = true
+  t.spec_opts  = ['-f','s' ]
+  t.spec_files = FileList['spec/**/*_spec.rb']
+end

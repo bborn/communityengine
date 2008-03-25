@@ -1,0 +1,15 @@
+<div class="profile">
+	<div class="yui-b">
+		<%= render :partial => 'users/profile_details' %>
+	</div>
+
+	<div id="yui-main">
+		<div class="yui-b">
+			<div class="yui-gd section" id="friends">
+				<h2>Denied friendships</h2>
+				<%= render :partial => "shared/friendship", :collection => @friendships %>
+			</div>
+		</div>
+	</div>
+	<br class="clear" />
+</div>

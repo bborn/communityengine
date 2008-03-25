@@ -1,0 +1,10 @@
+<h1>Editing offering</h1>
+
+<% form_for(:offering, :url => user_offering_path(@offering), :html => { :method => :put }) do |f| %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', user_offering_path(@offering) %> |
+<%= link_to 'Back', user_offerings_path %>

@@ -1,0 +1,27 @@
+<div id="post_tools" class="right">	
+	<small><a href="#" onclick="showSendTo_friend(); return false;" title="E-mail this story to friends" ><%= image_tag 'mail_new.gif', :plugin => "community_engine" %>  E-mail to friends</a>
+		
+	<script>
+		function showSendTo_friend(){
+			if ($('send_to_friend')){
+				new Lightbox.base('send_to_friend');				
+			} else {
+				<%= remote_function(:url => { :action => "send_to_friend", :params => {:user_id => @user.id, :id => @post.id} },
+				:success => "new Insertion.Top($('bd'), request.responseText)",
+				:complete => "new Lightbox.base('send_to_friend'); return false;Element.toggle('send_to_friend');"			
+				) %>	
+			}			
+		}
+	</script>
+	<br />
+	<a href="#" onclick="window.print(); return false;" title="Print this story" ><%= image_tag 'print.gif', :plugin => "community_engine" %>  Print</a>	
+	</small>
+	<br />
+  <style type="text/css" media="screen">
+    span.stbuttontext {
+      font-size: .8em;
+    }
+  </style>
+  <script type="text/javascript" src="http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358"></script>
+	
+</div>

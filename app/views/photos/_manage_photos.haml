@@ -1,0 +1,14 @@
+= render :partial => 'show_image_list', :locals => { :photos => photos }
+
+#image_list_pages.clear
+  = pagination_links
+
+%script{:type => 'text/javascript'}
+  :plain
+    $('image_list_pages').select('a').invoke('observe', 'click', remote_paginate )
+    function remote_paginate(event){
+      $('dynamic_images_list').update("Loading images...<br /><img src='/plugin_assets/community_engine/images/spinner.gif'>");
+      element = Event.element(event);
+      new Ajax.Request(element.href, {asynchronous:true, evalScripts:true, method:'get'});
+      Event.stop(event);
+    }

@@ -1,0 +1,10 @@
+<div class="crumbs">
+  <%= link_to "Forums", forum_home_path %> <span class="arrow">&rarr;</span>
+</div>
+
+<h1><%= _('New Forum') %></h1>
+
+<% form_for :forum, :url => forums_path do |f| -%>
+<%= render :partial => "form", :object => f %>
+<%= submit_tag _('Create'), :or => link_to(_('Cancel'), forums_path) %>
+<% end -%>

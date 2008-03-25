@@ -1,0 +1,22 @@
+<div class="profile">
+	<div class="yui-b">
+		<%= render :partial => 'users/profile_details' %>
+	</div>
+
+	<div id="yui-main">
+		<div class="yui-b">
+			<div class="yui-gd section" id="friends">
+				<h2><%= @friend_count %> Accepted Friendships <%= link_to "(#{@pending_friendships_count} pending)", pending_user_friendships_path(@user) if  (@pending_friendships_count > 0) %></h2>
+
+
+				<div style="margin:1em;">
+					<span class="right"><%= pagination_info_for @pages %></span>				
+					<%= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1 %>			
+				</div>
+
+				<%= render :partial => "shared/friendship", :collection => @friendships %>
+			</div>
+		</div>
+	</div>
+	<br class="clear" />
+</div>

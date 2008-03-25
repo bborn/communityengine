@@ -1,0 +1,44 @@
+<style type="text/css">
+	div#doc {
+		margin-top:10em;
+		border-top:5px solid #efefef;
+	}
+</style>
+<div class="col_full">
+	
+	<div class="banner_message rounded" style="background:#EAF7CE; margin-right:4px">
+		<div class="yui-gc">
+			<div class="yui-u first">
+				<h1>Make Your Home a Better Place.</h1>
+				<h2><%= AppConfig.community_name %> is invitation-only for the next few weeks. Please check back...</h2>
+			</div>
+			<div class="centered yui-u">
+				<h2><a href="#" onclick="new Lightbox.base('login'); return false;">Have a login?</a></h2><br />
+				<h2><a href="mailto:<%= AppConfig.support_email %>">Want one?</a></h2>
+
+			</div>
+		</div>
+	</div>
+	
+	<div id="login" style="display:none;">
+		<% form_tag sessions_path do -%>
+			<p><label for="username">Username:</label><br/>
+			<%= text_field_tag 'login', nil, :size => 35 %></p>
+
+			<p><label for="password">Password:</label><br/>
+			<%= password_field_tag 'password', nil, :size => 35 %></p>
+
+			<p><label for="remember_me">Remember me:</label>
+			<%= check_box_tag 'remember_me' %></p>
+
+			<p><%= submit_tag 'Log in' %></p>
+		<% end -%>
+	</div>
+	
+</div>
+
+<script type="text/javascript">
+	//<![CDATA[
+ 	 Rico.Corner.round('.rounded');
+	// ]]>
+</script>

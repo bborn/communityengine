@@ -1,0 +1,10 @@
+<h1>Editing invitation</h1>
+
+<% form_for(:invitation, :url => user_invitation_path(@invitation), :html => { :method => :put }) do |f| %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', user_invitation_path(@invitation) %> |
+<%= link_to 'Back', user_invitations_path %>

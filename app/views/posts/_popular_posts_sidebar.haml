@@ -1,0 +1,8 @@
+%h2 What's Hot
+%ul
+  -posts.each do |post|
+    %li
+      =link_to "#{truncate(post.title, 75)} <small class='quiet'>(#{pluralize post.view_count, 'view'})</small>", user_post_path(post.user, post)
+=link_to 'read more &raquo;', popular_path, :class => 'right small'        
+.clear
+%br

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+community_tour:
+  id: 1
+  created_at: 2006-10-10 14:13:10
+  url: MyString
+  title: Community Tour
+  description: Sneak a peak at a modern take on the traditional log cabin
+  updated_at: 2006-10-10 14:13:10
+  content_type: image/jpg
+  filename: test.jpg
+  size: 1
+  width: 1
+  height: 1

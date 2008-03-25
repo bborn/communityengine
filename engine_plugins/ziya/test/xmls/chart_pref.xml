@@ -1,0 +1,15 @@
+<chart_pref 
+	rotation_x='90' 
+	bear_color='00ff00' 
+	rotation_y='-90' 
+	point_size='5' 
+	point_shape='square' 
+	type='body' 
+	grid='linear' 
+	trend_thickness='10' 
+	fill_shape='true' 
+	trend_alpha='50' 
+	line_thickness='10' 
+	reverse='true' 
+	line_alpha='100' 
+	bull_color='ff0000'/>

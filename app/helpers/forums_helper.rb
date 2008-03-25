@@ -1,0 +1,19 @@
+module ForumsHelper
+  
+  # used to know if a topic has changed since we read it last
+  def recent_topic_activity(topic)
+    return false if not logged_in?
+    return false unless last_active || session[:topics]
+    
+    return topic.replied_at > (last_active || session[:topics][topic.id])
+  end 
+  
+  # used to know if a forum has changed since we read it last
+  def recent_forum_activity(forum)
+    return false unless logged_in? && forum.topics.first
+    return false unless last_active || session[:forums]
+     
+    return forum.recent_topics.first.replied_at > (last_active || session[:forums][forum.id])
+  end
+  
+end

@@ -1,0 +1,59 @@
+<%= render :partial => 'about_nav' %>
+
+<div id="yui-main">
+	<div class="yui-b col_723">
+		<% rounded do %>
+			<a href="#whatis">What is it?</a> | <a href="#whoare">Who are we?</a> | <a href="#press">What people say about us</a> | <a href="#mediaimages">Images for media</a> | <a href="#contact">Contact Us</a>
+			<br><br>
+			
+			<h3 id="whatis">What is <%= AppConfig.community_name %>?</h3>
+			<p>
+      <%= AppConfig.community_name %> is a Web community.
+
+			<h3 id="whoare">Who's Behind This?</h3>
+			<h4>Ralph Rapson</h4>
+			<p>
+				I am the first founder of this thing.
+			</p>
+
+			<h4>Elmira Vennison</h4>
+			<p>
+				I am the second founder of this thing.
+			</p>
+			
+			<h3 id="press">What are they saying about us?</h3>
+			<p>
+				Thing one.
+			</p>
+			<p>
+				Thing two.
+			</p>
+
+
+			<h3 id="mediaimages">Images For Media</h3>
+
+			<h4><%= AppConfig.community_name %> Logo</h4>
+			<p>
+				Put an image here.
+			</p>
+
+			<h4><%= AppConfig.community_name %> Button</h4>
+			<p>
+				Put a button here
+			</p>
+
+			<h4><%= AppConfig.community_name %> Screenshot</h4>
+			<p>
+				Put a screenshot here
+			</p>
+			
+			<h3 id="contact">Contact Us</h3>
+			<p>
+				Need help with something on <%= AppConfig.community_name %>? <a href="mailto:<%= COMMUNITY_SUPPORT_EMAIL %>"><%= COMMUNITY_SUPPORT_EMAIL %></a>
+			</p>
+		<% end %>
+
+
+	</div>
+</div>
+

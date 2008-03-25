@@ -1,0 +1,46 @@
+<div class="yui-b col_236 recent">
+	<% rounded do %>
+		<%= render :partial => 'welcome_steps' %>
+	<% end %>
+</div>
+
+<div id="yui-main">
+	<div class="yui-b col_723 user">
+
+		<% rounded do %>
+			<h2 class="super">Step Three: Get Your Own Unique Look</h2>
+			<p>Everyone's <%= AppConfig.community_name %> profile is unique. Here's where you can customize your profile.</p>
+
+
+			<%= form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true %>
+
+				<div>
+					<%= text_area :user, :stylesheet, :size => "103x10" %>
+				</div>
+				<p><%= submit_tag 'Save Your Stylesheet' %> or, <%= link_to "skip this for now", welcome_complete_user_path(@user) %></p>
+			<%= end_form_tag %>				
+
+			<div class="line"></div>
+			
+			<h3>Need some help?</h3>
+			<p>Cut and paste one of styles into the field above to get started:</p>
+			<div>
+				<%= image_tag 'templates/black_pink/thumb.png', :plugin => "community_engine", :class => "polaroid right" %>				
+				<%= text_area_tag 'black_pink', COMMUNITY_EXAMPLE_STYLES[:black_pink], :size => "65x10", :class => 'select_all' %>
+			</div>
+
+
+		<% end %>
+	</div>
+</div>
+
+<script type="text/javascript">
+	//<![CDATA[
+		$$('textarea.select_all').each(function(textarea){
+			textarea.onclick = function(e){
+				e.target.focus()
+				e.target.select()				
+			}
+		});
+	//]]>
+</script>

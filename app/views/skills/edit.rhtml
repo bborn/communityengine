@@ -1,0 +1,13 @@
+<h1>Editing skill</h1>
+
+<% form_for(:skill, :url => skill_path(@skill), :html => { :method => :put }) do |f| %>
+<p>Name: 
+  <%= f.text_field :name %>
+</p>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', skill_path(@skill) %> |
+<%= link_to 'Back', skills_path %>

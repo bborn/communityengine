@@ -1,0 +1,2 @@
+module SkillsHelper
+end

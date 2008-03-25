@@ -1,0 +1,1 @@
+page['clipping_image_list'].update render(:partial => 'images', :locals => {:images => @images})

@@ -1,0 +1,25 @@
+Logged in:
+=link_to current_user.login, dashboard_user_path(current_user), :id => 'user-menu'
+#user-menu-tip
+  %ul
+    -if current_user.admin?
+      %li=link_to 'Admin dashboard', admin_dashboard_path
+    %li= link_to "Edit profile", edit_user_path(current_user) 
+    %li= link_to "Edit account", edit_account_user_path(current_user)          
+    %li= link_to "View profile", user_path(current_user)                  
+  %hr
+  %ul
+    %li=link_to 'Blog', user_posts_path(current_user)
+    %li=link_to 'Photos', user_photos_path(current_user)
+    %li=link_to 'Clippings', user_clippings_path(current_user)
+    %li=link_to 'Friends', accepted_user_friendships_path(current_user)        
+
+%script{:type => "text/javascript"}
+  :plain
+    new Tip('user-menu', $('user-menu-tip'), {
+      hook:{target: 'bottomRight', tip: 'topRight'},
+      hideOn: false, 
+      hideAfter: 1.5,  
+      className: 'silver',
+      offset: {y:2, x:12}
+      });

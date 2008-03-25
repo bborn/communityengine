@@ -1,0 +1,14 @@
+Hey <%= @user.login %>!
+
+<%= @author.login %> has replied to a thread you are monitoring! Use this link to see:
+
+<%= @url %> 
+
+Thanks,
+The <%= AppConfig.community_name %> team
+
+---------------------------------------------------------------------------------
+If you don't want to receive e-mails like this one from <%= AppConfig.community_name %>, you can change 
+your e-mail preferences here:
+
+<%= APP_URL %>/<%= @user.login_slug %>;edit_account

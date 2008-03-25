@@ -1,0 +1,174 @@
+Contributors:
+  Tom Fakes (tom@craz8.com) - Initial implementation, plugin implementation, x-sendfile work
+  Scott Laird				- Ideas for the timed expiry and programmable fragment_key features
+
+=== Action Cache Upgrade
+
+This is a drop in replacement for the Rails Action Cache.  When this plugin is
+installed, the new behavior will take effect without any further configuration.
+
+All documentation for the Rails Action Cache is still relevant.  Sweepers still work, all the
+fragment stores are supported.
+
+See my blog at http://blog.craz8.com to find some interesting uses of the extended behavior
+provided by this plugin
+
+=== Major Change!
+
+This version uses a different cache key generation mechanism.  Instead of setting 
+ActionController::Caching::Actions::ActionCacheFilter.fragment_key, the cache code calls out to
+the action_fragment_key method on the current controller.  A default version of this method is
+supplied that emulates the Rails built in Action Cache.  If you haven't set the fragment_key
+in your code, then nothing changes.  If you have set the fragment_key, then you will need
+to move that code to the application controller for your code to continue working. 
+
+=== Features
+
+1. Store cache entries as YAML streams so the Response headers from the original
+   response can be returned with cache hits
+
+2. Add a 'last-modified' header to the response to get the client to use a 
+   get-if-modified request
+
+3. If the client has the response we have cached, don't send it again, send a 
+   '304 Not Modified' response to reduce data on the wire
+
+4. Fix a bug in the original Rails code where responses other than '200 OK' are cached
+   (since the headers aren't cached in the original, all the clients would get
+   is an empty '200 OK' response from subsequent requests)
+
+5. Allow clients to provide their own implementation of the cache key for the actions, e.g.
+
+	- application.rb
+	
+	  # Cache different pages for Admin and Users
+      def action_fragment_key(options)
+        url_for(options).split('://').last + "/#{admin? : 'admin' : 'user'}"
+      end
+      
+   The options hash can be used to pass parameters in to override the current controller, and is
+   used by the cache expiry code to expire an action from a sweeper or a different controller than
+   the one the action is cached for.
+    
+6. Allow an action to specify a Time To Live for the cached item.  Set 'response.time_to_live' to
+   the number of seconds before this cached item will be expired.  If not set, the default setting
+   of 'never' will be used and the item will only be expired by using the regular action cache 
+   expiry mechanism.
+   
+     def my_action
+       @response.time_to_live = 10.minutes
+       ...
+     end
+
+7.  If the ENABLE_X_SENDFILE environment variable is set, or the HTTP_ENABLE_X_SENDFILE request 
+    header is set, and the fragment cache is set to the FileStore, then the Action Cache code 
+    will not return the response body, but will set the X-Sendfile header in the response to 
+    the filename of the cache entry that contains the body.
+     
+   Be sure your web server is has the X-Sendfile feature enabled, otherwise you'll just get
+   empty responses!
+     
+   Check out the lighttpd documentation for how to use the X-Sendfile feature: http://lighttpd.net/
+   
+   To enable this, the ENABLE_X_SENDFILE environment variable must be set, *and* the FileStore fragment
+   cache must be used.
+   
+   lighttpd.conf:
+   	
+	fastcgi.server = ( ".fcgi" =>
+  		( "app" =>
+    		( 	"min-procs" => 1, 
+      			"max-procs" => 1,
+				"allow-x-send-file" => "enable",
+      			"socket"    => "/tmp/app.fcgi.socket",
+      			"bin-path"  => "/path/to/app/public/dispatch.fcgi",
+      			"bin-environment" => ( "RAILS_ENV" => "development", "ENABLE_X_SENDFILE" => "true" )
+    		)
+  		)
+	)
+
+
+   environment.rb:
+     ActionController::Base.fragment_cache_store = :file_store, "/path/to/cache/directory"
+   
+   Note: The cache directory can be anywhere on your server that your web server user has read and write 
+   access to.  This should *not* be in the Rails /public directory.		
+
+8. Control whether caching occurs for an action at runtime instead of load time.  
+   
+   To control caching, add a method *cache_action?(action_name)* to your controller.  If this 
+   method returns true, then the action cache will work as before.  If false, then caching will 
+   not occur for this request.
+   
+   e.g.
+   	
+   	 class ApplicationController < ActionController::Base
+   	 	...
+   	 	
+   	 	def cache_action?(action_name)
+   	 	  !admin?
+   	 	end
+   
+   		...
+     end
+	
+	Note: The action must still be marked for caching by adding *caches_action :action* to the controller
+
+9. If the ENABLE_X_ACCEL_REDIRECT request header is set, and the fragment cache is set to
+   the FileStore, then the Action Cache code will not return the response body, but will set
+   the X-Accel-Redirect header in the response to the filename of the cache entry that contains the 
+   body.
+
+   The nginx configuration must contain a 'location' section labeled 'cache', that points to the location
+   you have configured for your Rails fragment cache, default is RAILS_ROOT/tmp/cache.  e.g:
+   
+     location /cache/ {
+        internal;
+        root   /path/to/rails/app/current/tmp;
+     }
+
+   To enable this, the ENABLE_X_SENDFILE environment variable must be set, *and* the FileStore fragment
+   cache must be used.
+
+   nginx.conf:
+    location /cache/ {
+      internal;
+      root   /path/to/rails/app/current/tmp;
+    }
+    
+    location / {
+      proxy_set_header  X-Real-IP  $remote_addr;
+      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_set_header "ENABLE_X_ACCEL_REDIRECT" "true";
+	   ...
+	}      
+   
+   environment.rb:
+     ActionController::Base.fragment_cache_store = :file_store, "/path/to/cache/directory"
+   
+   Note: The cache directory can be anywhere on your server that your web server user has read and write 
+   access to.  This should *not* be in the Rails /public directory.		
+
+10. A new method 'expire_all_actions' will clear out the entire action cache contents.
+
+11. expire_action will now work with the custom generated action cache keys, so your cache
+    expiry calls and sweepers will work correctly.
+    
+    The expire_action call implemented here will actually use the Regexp fragment expiry call,
+    causing all matching cache items to be cleared.  For those of you using REST, and providing 
+    HTML, JS and XML for the same action, all three will be expired when you expire one of them 
+    with code like:
+    
+    	# Expires all formats of the action
+    	expire_action :controller => 'foo', :action => 'bar'
+	   
+=== Performance
+
+If a client requests an action whose output hasn't changed since their last request, the returning of
+a 304 response instead of the full response greatly reduces the load on the server.
+
+In my informal testing, with the X-Sendfile enabled, I was able to get about 20% more requests out of my
+rails application, based on the requests-per-second displayed in the rails log.  This doesn't mean the 
+request is faster, but that the work of delivering the content is offloaded to the web server from the
+Rails app.

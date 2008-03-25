@@ -1,0 +1,57 @@
+<% form_tag update_account_user_url(@user), :method => 'put', :multipart =>true do -%>
+
+<div class="profile">
+	<div class="yui-gf">
+		<div class="yui-u first">		
+			<h3 class="black">You're editing your account.</h3>
+			<h4><%= link_to "&raquo; Edit your user profile?", edit_user_path(@user) %></h4>			
+		</div>
+		<div class="yui-u">
+			<%= submit_tag 'Save Changes' %>				
+		</div>
+	</div>
+
+	<%= error_messages_for :user %>
+	<div class="yui-b">
+		<div>
+			<h2>Username</h2>
+			<%= text_field :user, :login, :size => "28" %>
+		</div>		
+		<div>
+			<h2>E-mail Address</h2>
+			<%= text_field :user, :email, :size => "28" %>
+		</div>		
+		<div>
+			<h2>Password</h2>
+			<%= password_field :user, :password, :size => "28" %>
+			<h2>Confirm Password</h2>
+			<%= password_field :user, :password_confirmation, :size => "28" %>
+		</div>
+	</div>
+	
+	<div id="yui-main">
+		<div class="yui-b">
+			<div>
+				<h2>E-mail Notification</h2>
+				<p><%= check_box :user, :notify_friend_requests %> Notify me when <%= AppConfig.community_name %> members request friendship.</p>
+				<p><%= check_box :user, :notify_comments %> Notify me when <%= AppConfig.community_name %> members comment on my profile, blog, or photos.</p>
+				<p><%= check_box :user, :notify_community_news %> Send me occasional news and updates from the <%= AppConfig.community_name %> Team.</p>
+			</div>
+
+			<div>
+				<h2>Profile Privacy</h2>
+				<p><%= check_box :user, :profile_public %> Make my profile public <br />
+					<small>When checked, your profile will be visible to <strong>anyone</strong>.
+					<br />
+					<small>When unchecked, your profile will only be visible to <strong>people who are logged in to <%= AppConfig.community_name %></strong>.
+				</p>
+			</div>
+
+
+		</div>
+	</div>
+
+	<br class="clear" />
+</div>
+
+<% end -%>

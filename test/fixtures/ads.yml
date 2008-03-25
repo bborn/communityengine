@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+hgtv:
+  id: 1
+  name: hgtv
+  html: Come watch our show!
+  frequency: 1
+  created_at: 2007-04-22 16:54:48
+  updated_at: 2007-04-22 16:54:48
+  start_date: 2007-04-22 16:54:48
+  end_date: 2007-04-22 16:54:48
+  location: homepage_s1

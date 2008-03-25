@@ -1,0 +1,27 @@
+div.community {
+	font:11px helvetica, arial, sans-serif;
+}
+div.community a {
+	text-decoration:none;
+	color:#1EA2C1;	
+}
+div.community img {
+	vertical-align:bottom;
+}
+div.community_widget {
+	border:1px solid #ccc;
+	padding:5px;
+	width:165px;
+	height:200px;
+	overflow:hidden;
+	margin-bottom:5px;
+	text-align:center;
+}
+div.community_widget img.slideshow_image {
+	width:150px;
+	border:1px solid #cccccc;
+	padding:0px;
+}
+div.community_widget h1 {
+	font-size:16px;
+}

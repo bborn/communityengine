@@ -1,0 +1,12 @@
+.posts
+  .post{:id => "post_#{post.id}"}
+    = link_to image_tag( (post.image_for_excerpt), {:style=>"width:200px"} ), user_post_path(post.user, post)
+    %p
+      %strong= link_to post.title, user_post_path(post.user, post)
+      %br
+      %small.quiet= link_to "By #{post.user.login}", user_path(post.user)
+      %br
+      = truncate_words(post.post, 7, '...' )
+      = link_to( '<small>&raquo;MORE</small>', user_post_path(post.user, post))
+
+    =render :partial => 'posts/meta', :locals => {:post => post}

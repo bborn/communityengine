@@ -1,0 +1,19 @@
+<div class="col_full">
+	<% rounded do %>
+		<h2 class="impact">Get Started: Invite some friends! <%= 'Invite some customers!' if @user.vendor? %></h2>
+		<p>The more people you invite, the better <%= AppConfig.community_name %> becomes.</p>
+		<p>People who sign up using your invitation will automatically be added as your friends.</p>
+
+		<% form_for(:invitation, :url => user_invitations_path(:user_id => @user.id) ) do |f| %>
+			<p><label for="email_addresses">Enter e-mail addresses (comma-separated)</label><br/>
+			<%= f.text_area :email_addresses , :size => "83x5"%></p>
+			<p><label for="message">Write a message</label><br/>
+			<%= f.text_area :message, :size => "83x5", :value => "#{AppConfig.community_name} is great, check it out, you'll love it! #{}" %></p>
+			  <p>
+			    <%= submit_tag "Send Invitations!" %> 
+				<br /><%= link_to "&raquo; Skip this and go to your profile", user_path(@user) %>.
+			  </p>
+		<% end %>
+
+	<% end %>
+</div>

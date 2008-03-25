@@ -1,0 +1,28 @@
+<% rounded(:class => 'sidebar_section') do %>
+	<h2 class="super search">Search</h2>
+	<%= link_to( "&raquo; Back to all users", users_path) if params['login'] || params['tag_list'] %>
+	<% form_tag users_path, :method => :get do -%>	
+		<p>
+			User login: <br />
+			<%= text_field_tag 'login', @search['login'] %>
+		</p>
+		<p>
+			<%= render :partial => 'shared/location_chooser', :locals => {:selected_country => @search['country_id'].to_i, :selected_state => @search['state_id'].to_i, :selected_metro_area => @search['metro_area_id'].to_i, :states => @states, :metro_areas => @metro_areas} %>
+		</p>
+		<input type="submit" value="Search Users" />
+	<% end -%>
+<% end %>
+
+<% rounded(:class => "sidebar_section") do %>
+	<h2 class="super location">Metro Areas</h2>
+	<% city_cloud @metro_areas_for_cloud, %w(nube1 nube2 nube3 nube4 nube5) do |city, css_class| %>
+		<%= link_to city.name, users_path(:metro_area_id => city.id), :class => css_class %> - 
+	<% end %>							
+<% end %>
+
+<% if current_user %>
+	<% rounded(:class => "sidebar_section") do %>
+		<h2 class="impact email">Share the love</h2>
+		<%= link_to "&raquo; Invite a friend to join #{AppConfig.community_name}!", invite_user_path(current_user) %>
+	<% end %>
+<% end %>

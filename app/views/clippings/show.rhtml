@@ -1,0 +1,63 @@
+<div class="profile">
+	<div class="yui-b">
+		<%= render :partial => 'shared/small_profile', :locals => {:user => @user} %>
+		
+		<% if @previous || @next %>
+			<div class="section photo_nav">
+				<%= link_to "<img src='#{@previous.image_uri}' /><br />&laquo; Prev ", user_clipping_path(@user, @previous), :class => 'left' if @previous %>
+				<%= link_to "<img src='#{@next.image_uri}' /><br />Next &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next %>
+				<br class="clear" />
+			</div>
+		<% end %>
+
+		<% unless @related.empty? %>
+			<h2>Related Clippings (all members)</h2>
+			<div class="centered">
+			<% @related.each do |clipping| %>
+				<%= link_to image_tag(clipping.image_uri, :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping) %>
+			<% end %>			
+			</div>		
+		<% end %>
+		
+	</div>
+	<div id="yui-main">
+		<div class="yui-b">
+
+			<div class="section">
+				<h2><%= link_to "#{@user.login}'s clippings", user_clippings_path(@user) %> &raquo; <%= @clipping.created_at.strftime("%B %d, %Y") %></h2>
+				<% if @is_current_user %>
+					<%= link_to 'Delete', user_clipping_path(@user, @clipping), :confirm => 'Are you sure?', :method => :delete %> | 
+					<%= link_to 'Edit', edit_user_clipping_path(@user, @clipping) %><br />
+				<% end %>
+				
+				<p class="centered">
+					<a href="<%=h @clipping.url %>">
+						<img src="<%=h @clipping.image_uri %>" class="polaroid clipping" alt"<%=h @clipping.description %>"/>
+					</a>
+				</p>
+				<h3>From:</h3>
+			  	<p><a href="<%=h @clipping.url %>" title="<%=h @clipping.description %>"><%=h truncate(@clipping.url, 95) %></a></p>
+
+				<h3>Description:</h3>
+			  	<p><%=h @clipping.description %></p>
+			
+				<h3>Tags</h3>
+				<p><%= @clipping.tags.collect{|t| link_to h(t.name), user_clippings_url(:user_id => @user, :tag_name => t.name), {:class => 'tag'} }.join(" ") %></p>
+		
+				<div class="yui-gf comments section" id="comments">
+					<h2>Clipping Comments</h2>
+					<%= render :partial => 'shared/comment_form', :locals => {:commentable => @clipping} %>
+					<div class="line" id="comment_separator"></div>
+					<%= render :partial => 'comments/comment', :collection => @clipping.comments %>
+					<a id="newest_comment"></a>
+					<%= more_comments_links(@clipping) %>
+				</div>			
+			</div>
+		</div>
+	</div>
+	<br class="clear" />
+</div>
+
+
+<%= resize_img('related_clipping', 150, 150) %>
+<%= resize_img('clipping', 450, 450) %>

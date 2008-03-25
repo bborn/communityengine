@@ -1,0 +1,5 @@
+<chart_transition 
+	type='drop' 
+	delay='1.0' 
+	duration='0.5' 
+	order='category'/>

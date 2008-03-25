@@ -1,0 +1,7 @@
+author: Tom Fakes
+summary: A drop-in replacement for the Rails Action Cache.  Fixes some inconsistencies and adds some extra control. Use X-Sendfile or X-Accel-Redirect to send responses
+homepage: http://blog.craz8.com
+plugin: http://craz8.com/svn/trunk/plugins/action_cache
+license: MIT
+version: 0.1.4
+rails_version: 1.0+

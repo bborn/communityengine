@@ -1,0 +1,35 @@
+.clear
+.poll{:id => "poll_ui_#{poll.id}"}
+  - has_voted = logged_in? && poll.voted?(current_user)
+
+  %table.poll
+    %thead
+      %tr
+        %th{:colspan => 2}
+          .right="Total votes: #{poll.votes.size}"
+          = poll.question
+    -poll.choices.each do |choice|
+      %tr
+        -if @is_current_user || has_voted
+          %td.bars
+            .bar-container
+              .bar{:style => "width:#{choice.votes_percentage}%"}
+                ="#{choice.votes_percentage}%"
+        %td
+          - if logged_in? && !has_voted
+            = link_to_remote "Vote", { :url => votes_path(:choice_id => choice), :method => :post, :loading => "$$('table.poll').invoke('addClassName', 'loading')"}, {:title => 'Vote', :class => 'vote'} 
+          - elsif !logged_in?
+            = link_to "Vote", new_vote_path(:post_id => poll.post.id), {:title => 'Log in to vote', :class => 'vote'}
+          = choice.description
+    -if !has_voted
+      %tr
+        %td{:colspan => 2}
+          %small.quiet You must vote to see the results
+    -elsif logged_in?
+      %tr
+        %td{:colspan => 2}
+          %small.quiet You have already voted
+      
+
+.clear
+%br

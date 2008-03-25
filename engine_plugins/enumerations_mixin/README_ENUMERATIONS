@@ -1,0 +1,163 @@
+Enumerations Mixin
+Copyright (c) 2005 Trevor Squires
+Released under the MIT License.  See the LICENSE file for more details.
+
+What is this?:
+
+The enumerations mixin allows you to treat instances of your
+ActiveRecord models as though they were an enumeration of values.
+
+At it's most basic level, it allows you to say things along the lines of:
+
+booking = Booking.new(:status => BookingStatus[:provisional])
+booking.update_attribute(:status, BookingStatus[:confirmed])
+
+Booking.find :first, 
+						 :conditions => ['status_id = ?', BookingStatus[:provisional].id]
+
+BookingStatus.all.collect {|status|, [status.name, status.id]}
+
+See "How to use it" below for more information.
+
+Package Contents:
+
+This package adds two mixins and a helper to Rails' ActiveRecord:
+
+acts_as_enumerated provides capabilities to treat your model and
+its records as an enumeration. At a minimum, the database table for
+an acts_as_enumerated must contain an 'id' column and a 'name'
+column.  All instances for the acts_as_enumerated model are cached
+in memory.
+
+has_enumerated adds methods to your ActiveRecord model for setting
+and retrieving enumerated values using an associated acts_as_enumerated
+model.
+
+There is also an ActiveRecord::VirtualEnumerations helper module
+to create 'virtual' acts_as_enumerated models which helps to avoid
+cluttering up your models directory with acts_as_enumerated classes.
+
+How to use it:
+
+* acts_as_enumerated
+
+class BookingStatus < ActiveRecord::Base
+acts_as_enumerated  :conditions => 'optional_sql_conditions', 
+                    :order => 'optional_sql_orderby',
+                    :on_lookup_failure => :optional_class_method
+end
+
+With that, your BookingStatus class will have the following methods defined:
+
+* BookingStatus[arg] : lookup the BookingStatus instance for arg.
+The arg value can be a 'string' or a :symbol, in which case the
+lookup will be against the BookingStatus.name field.  Alternatively
+arg can be a Fixnum, in which case the lookup will be against the
+BookingStatus.id field.
+
+The :on_lookup_failure option specifies the name of a class method
+to invoke when the [] method is unable to locate a BookingStatus
+record for arg.  The defeault is the built-in :enforce_strict_literals
+which causes an exception to be raised when no record is found and
+the arg is a Fixnum or Symbol, otherwise it returns nil.  There are
+also built-ins for :enforce_strict (raise and exception regardless
+of the type for arg) and :enforce_none which just returns nil.
+
+The whole point of the :on_lookup_failure option is that I'm pretty
+opinionated that a) if the value can't be looked-up for a :symbol
+that I've passed, it's probably a typo so I want a *big* hint that
+something is wrong and b) it's likely that my opinion isn't shared
+by everyone so it should be configurable.
+
+* BookingStatus.all : returns an array of all BookingStatus records
+that match the :conditions specified in acts_as_enumerated, in the
+order specified by :order.
+
+NOTE: acts_as_enumerated records are considered immutable.  By
+default you cannot create/alter/destroy instances because they are
+cached in memory.  Because of Rails' process-based model it is not
+safe to allow updating acts_as_enumerated records as the caches
+will get out of sync.
+
+However, one instance where updating the models *should* be allowed
+is if you are using ActiveRecord Migrations.
+
+Using the above example you would do the following:
+
+BookingStatus.enumeration_model_updates_permitted = true
+BookingStatus.create(:name => 'newname')
+
+* has_enumerated
+
+First of all, note that you *could* specify the relationship
+to an acts_as_enumerated class using the belongs_to association.
+However, has_enumerated is preferable because you aren't really
+associated to the enumerated value, you are *aggregating* it.
+As such, the has_enumerated macro behaves more like an aggregation
+than an association.
+
+class Booking < ActiveRecord::Base
+has_enumerated  :status, :class_name => 'BookingStatus',
+                :foreign_key => 'status_id', 
+                :on_lookup_failure => :optional_instance_method
+end
+
+By default, the foreign key is interpreted to be the name of your
+has_enumerated field (in this case 'status') plus '_id'.  Additionally,
+the default value for :class_name is the camel-ized version of the
+name for your has_enumerated field.  :on_lookup_failure is explained
+below.
+
+With that, your Booking class will have the following methods defined:
+
+* status : returns the BookingStatus with an id that matches the
+value in the Booking.status_id.
+
+* status= : sets the value for Booking.status_id using the id of
+the BookingStatus instance passed as an argument.  As a short-hand,
+you can also pass it the 'name' of a BookingStatus instance, either
+as a 'string' or :symbol.
+
+I.e. mybooking.status = :confirmed or mybooking.update_attribute(:status,
+:confirmed)
+
+The :on_lookup_failure option in has_enumerated is there because
+(again) I'm opinionated about what should happen.  By default, if
+booking.status_id contains an id that isn't a valid BookingStatus.id
+I just want booking.status to return nil rather than throw an
+exception.  This ensures I can edit my Booking instances without
+having to put rescue blocks around all my booking.status calls.
+However, if I call booking.status = :bogus I want noisy hints about
+the bug.
+
+Of course, you may not agree with that in which case you can specify
+an *instance* method to be called in the case of a lookup failure.
+The method signature is as follows:
+
+your_lookup_handler(operation, name, name_foreign_key, 
+										acts_enumerated_class_name, lookup_value)
+
+The 'operation' arg will be either :read or :write.  In the case
+of :read you are expected to return something or raise an exception,
+while in the case of a :write you don't have to return anything.
+
+Note that there's enough information in the method signature that
+you can specify one method to handle all lookup failures for all
+has_enumerated fields if you happen to have more than one defined
+in your model.
+
+* ActiveRecord::VirtualEnumerations
+
+For the most part, your acts_as_enumerated classes will do nothing
+more than just act as enumerated.  
+
+In that case there isn't much point cluttering up your models
+directory with those class files.  You can use
+ActiveRecord::VirtualEnumerations to reduce that clutter.
+
+Copy virtual_enumerations_sample.rb to
+RAILS_ROOT/config/virtual_enumerations.rb and configure it accordingly.
+
+See virtual_enumerations_sample.rb in this directory for a full
+description.
+

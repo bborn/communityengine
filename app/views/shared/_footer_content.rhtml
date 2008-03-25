@@ -1,0 +1,33 @@
+<div class="col first">
+	<h2 class="clippings">Clippings</h2>				
+	<ul>
+	<% @recent_clippings.each do |clipping| %>
+			<a href="<%=h user_clipping_url(clipping.user, clipping) %>">
+				<img src="<%=h clipping.image_uri %>" class="polaroid clipping"/>
+			</a>				
+	<% end %>
+	</ul>
+</div>
+<div class="col">
+	<h2 class="comments">Comments</h2>		
+	<ul class="links">
+	<% @recent_comments.each do |comment| %>
+		<li><span class="lower-gray"><%= comment.user.login %> says:</span><br/>"<%= truncate_words(comment.comment) %>" <%= link_to "&raquo; More", comment.generate_commentable_url %>
+		</li>
+	<% end %>
+	</ul>		
+</div>
+<div class="col">
+	<h2 class="photos">Photos</h2>				
+	<ul>
+	<% @recent_photos.each do |photo| %>
+			<%= link_to image_tag(photo.public_filename(:thumb), {:class => 'clipping polaroid'}), user_photo_path(photo.owner, photo) %>
+	<% end %>
+	</ul>
+</div>
+<br class="clear" />
+<br />
+<h2 class="tags">Popular Tags</h2>
+<% tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class| %>
+	<%= link_to name, tag_path(name), :class => css_class %>
+<% end %>

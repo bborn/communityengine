@@ -1,0 +1,207 @@
+ZiYa Plugin
+================
+
+Contributors:
+  Fernand Galiana (fernand.galiana@gmail.com) - Conception and Initial implementation
+  Delynn Berry ( delynn@gmail.com) - Conception and implementation
+         
+
+=== Plugin Description
+
+ZiYa allows you to easily display graphs in your rails application by leveraging
+SWF Charts (http://www.maani.us/xml_charts/index.php). This plugin bundles version 4.5
+of the flash library. Incorporating flash graphs in your app relieves the server by
+allowing for delegating graph rendering to the client side. Using this plugin, you will
+be able to easily create great looking charts for your application. You will also be able
+to use the charts has a navigation scheme by embedding various link in the chart components
+thus bring to the table an ideal scheme for reporting and dashboard like applications. Your
+managers will love you for it !!
+
+	Checkout the demo: http://ziya.liquidrail.com
+	Video            : http://www.youtube.com/watch?v=axIMmMHdXzo
+	Documentation    : http://ziya.liquidrail.com/rdoc
+	Forum            : http://groups.google.com/group/ziya-plugin
+
+A Sample charting rails application can be found here: 
+
+  svn co svn://rubyforge.org/var/svn/liquidrail/plugins/samples/charting
+
+Just add mongrel ;-)
+
+=== Plugin Releases
+
+	0.001 - Initial Drop
+	0.002 - 
+	 1) Fix - issue with running on Edge
+	 2) Fix - issue with passing multiple params in refresh url
+	0.003 -
+	 1) Fix - XML rendering removed trailing <to_s/> on to_s method
+	 2) Added Mixed Charts ( See sample and rdocs )
+	 3) Deprecated gen_chart in favor of ziya_chart flash object tag generator
+	 4) Changed flash object generation to remove embed tag.    
+	 5) Added support for transparent background via ziya_chart
+	 6) Converted charting sample to rails 1.2
+	 7) Renamed 3D charts xxx_3D_chart to xxx_threed_chart  
+	0.004 -
+	 1) Added "---" for proper YAML class declaration
+	 2) Added to_xml method. Now you should be able to have render :xml => chart.to_xml
+	 3) Minor styles cleanup
+  0.005 -
+   1) Added wmode parameter support on ziya_chart helper.
+      Valid values are window/opaque/transparent.   
+  0.006 -
+   1) Added chart stylesheets for 3D charts to the themes default and commando.
+   2) Renamed Pie3D to PieThreed for consistency
+  0.007 -
+   1) Added option :swf_path on ZiyaHelper to specify xml/swf root directory path
+  0.008 -
+   1) Added logic to not automatically prepend _chart for theme style file name if the 
+      chart class name already ends with Chart.
+ 
+=== Features
+
+1. Allows you to style your charts just like you would an html page using css styles
+   philosophy. Each chart can be associated with a YAML file that allows you to specify
+   preferences based on SWF Charts properties. Chart style sheet reside under 
+   public/charts/themes. By default all styling resides under the 'default' directory.
+   Each chart type may have an associated YAML file. You can either inherit the default
+   styles or define your own by specifying an id when you create your graph. The styles 
+   will cascade thru your graph class hierarchy and override default preferences as you
+   would in a style sheet.
+
+   NOTE: XML/SWF charts are free of charge unless you need to use special features such
+   as embedded links. The package cost $45 per domain and is well worth the investment.
+
+2. We are leveraging ERB within the YAML file to provide access to the chart state. State
+   can be passed in via the options hash when the graph is generated.
+   You can also define your own methods in helpers/ZiyaHelpers. You can access these
+   helper methods in your style file just like you would in a rails template.
+
+3. Theme support. You can change the appearance and behavior of any charts by introducing
+   new themes under the public/charts/themes directory.
+
+NOTE: Not all XML/SWF charts features are currently supported in this initial version of the
+      plugin. We have support for bar, stacked bars, columns, stacked columns, pie and 
+      polar charts. We will be adding the remaining charts shortly. 
+      
+=== Steps
+
+1. Download and install the plugin. In you rails application issue the following command
+
+   > ruby script/plugin install svn://rubyforge.org/var/svn/liquidrail/plugins/ziya/trunk
+
+2. In your controller
+
+   require 'ziya' # <--- Pull in ZiYa
+
+   class BleeController < ApplicationController
+     include Ziya # <---- Include ZiYa Charts
+
+	   def refresh_my_graph
+	     graph  = Ziya::Charts::Bar.new( license, title, chart_id )
+	     graph.add( :axis_category_text, [ "Dog", "Cat", "Rat"] )
+	     graph.add( :series, "Series A", [10, -20, 30] )          
+	     render :xml => graph.to_xml  
+	   end
+   end
+
+   The code above will create a bar chart and generate the necessary xml to pass to the client
+   for rendering. The chart constructor can take the xml/swf charts license, a chart
+   name and a chart id used to lookup the chart YAML style-sheet. If no chart_id is specified
+   the YAML file named after the chart class name will be used. So in this case YAML styles 
+   will be loaded as follows:
+
+   base_chart.yml
+     bar_chart.yml	
+	     chart_id.yml
+
+   Preferences will be overridden by the outermost YAML file.
+
+   Sorry no idiot proof validation as of yet, so pay attention to these...
+
+   The add call can have the following options:
+
+   :axis_category_text Specifies an array of value that will be displayed on the 
+   x or y axis depending on the type of chart.
+
+   Example: chart.add( :axis_category_text, ['Dog', 'Cat'] )
+
+   :series Specifies an array representing the data points to draw the chart from.
+   The next argument is the series name to will be displayed in the chart legends. Next
+   is an array of data points. Optionally you can override the default chart labels by 
+   specifying an array of label values. You can add multiple :series tags for a given chart.
+
+   Example: chart.add( :series, "Series A", [10, 60, 90], ['Temp lo', 'Temp Avg', 'Temp Hi'] )
+
+   :axis_value_text This option allows you to override the x/y axis ticks depending on the chart
+   type. This should be an array of strings that will label one of the chart axis.
+
+   :user_data You can pass user defined params to the chart stylesheet using this argument.
+   You will be able to access these values from the chart style sheets via @options hash
+   which allows you to provide more dynamic styling based on some given state.
+
+   Example: graph.add( :user_data, :fred, "Fred" )
+
+   Then in you chart style sheet YAML file you can access :fred 
+
+   <%=comp series_color %>
+     <% if @options[:fred] == "Fred" %>
+        colors: ffffff,000000
+     <% else %>
+        colors: ff00ff,aabbcc
+     <% end %>
+
+   This gives you access to infinite possibilities to change the look and feel of any
+   charts based on certain state.
+
+   Additionally you can define methods in a file called helpers/ziya_helper.rb as follows:
+
+   module ZiyaHelpers
+     def red
+       "ff0000"
+     end
+   end
+
+   Then in you style file you can access the helper method as follows:
+
+   <%=comp series_color %>
+     colors: <%=red%>,000000
+   
+3. For convenience we have defined a Ziya::Helper that you can use in the view layer
+   the define your chart element.
+
+   In your view template you would specify the following:
+                           
+	 <%= ziya_chart( url_for( :controller => 'blee', :action => 'refresh_my_graph' ), 
+	                 :id => 'my_chart', :bgcolor => "transparent", :width => 400, :height => 250 ) %>	
+
+4. The chart styles sheet YAML file follows the various properties that can be
+   set on a particular chart. Please refer to the XML/SWF charts documentation.
+   
+   For example, say you have a bar chart and want to override the default bar colors.
+   You will need to perform the following steps:
+
+   a. Specify an chart_id in the chart ctor:
+       my_bar_chart = Ziya::Charts::Bar.new( license, nil, "my_bar" )
+
+   b. Create a my_bar.yml in the themes directory as follows:
+
+      <%=chart :bar_chart %> 
+         <%=comp :series_color %>
+           colors: ff0000,00ff00
+   
+      Save and refresh your browser and you should now see your new colors...
+
+5. Alternatively you can also specify various themes that will define your charts look and feel.
+
+   You can create a new themes directory under your public/chart/themes directory. Add the various
+   YAML chart styles into that directory. To access your new theme you will need to add the following
+   line to your controller:
+
+   class BleeController < ApplicationController
+     ziya_theme 'my_theme'
+     ...
+   end
+
+6. That's yet. Happy Charting !!
+   For feature requests or questions please post on the google group forum...

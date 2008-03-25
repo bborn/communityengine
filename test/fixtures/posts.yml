@@ -1,0 +1,172 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+funny_post:
+  id: 1
+  user_id: 1
+  title: This is really good stuff
+  raw_post: This is really good stuff, seriously man
+  post: This is really good stuff, seriously man
+  category_id: 1
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+not_funny_post:
+  id: 2
+  user_id: 1
+  title: This is really boring stuff
+  raw_post: This is really boring stuff, seriously man
+  post: This is really boring stuff, seriously man
+  category_id: 2
+  created_at: <%= 4.days.ago.to_s :db %>
+  updated_at: <%= 3.days.ago.to_s :db %>
+apt_post:
+  id: 3
+  user_id: 2
+  title: A rip off
+  raw_post: Mission... Helping people to make their apartments better places to live.  What We Believe A calm, healthy, beautiful home is a necessary foundation for happiness and success in the world.   Creating this home doesn't require large amounts of money or space. It requires inspiration, connection to resources and motivation to do something about it.
+  post: Mission... Helping people to make their apartments better places to live.  What We Believe A calm, healthy, beautiful home is a necessary foundation for happiness and success in the world.   Creating this home doesn't require large amounts of money or space. It requires inspiration, connection to resources and motivation to do something about it.
+  category_id: 1
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+apt2_post:
+  id: 4
+  user_id: 2
+  title: So long long long
+  raw_post: There’s a book called The Luck Factor, in which researcher Richard Wiseman describes studying people who considered themselves lucky, to see if they had any special powers along the lines of ESP. It turns out that they don’t. But he did discover that people who expect luck have a more powerful ability to notice opportunities in their environment. Optimistic people’s field of perception is literally greater. And the best part is he discovered that when you train people to expect luck, their field of perception increases accordingly. I think part of the mystery of affirmations has to do with the fact that it improves your ability to notice an opportunity. And when you do, it seems like a lucky coincidence. In my case, about half of my seemingly miraculous results with affirmations could be traced back to my noticing something important.
+  post: There’s a book called The Luck Factor, in which researcher Richard Wiseman describes studying people who considered themselves lucky, to see if they had any special powers along the lines of ESP. It turns out that they don’t. But he did discover that people who expect luck have a more powerful ability to notice opportunities in their environment. Optimistic people’s field of perception is literally greater. And the best part is he discovered that when you train people to expect luck, their field of perception increases accordingly. I think part of the mystery of affirmations has to do with the fact that it improves your ability to notice an opportunity. And when you do, it seems like a lucky coincidence. In my case, about half of my seemingly miraculous results with affirmations could be traced back to my noticing something important.
+  category_id: 1
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+apt3_post:
+  id: 5
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+hello_post:
+  id: 6
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+howdy_post:
+  id: 7
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+ahuhu_post:
+  id: 8
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+hawaii_post:
+  id: 9
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu1_post:
+  id: 10
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu2_post:
+  id: 11
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu3_post:
+  id: 12
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu4_post:
+  id: 13
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu5_post:
+  id: 14
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu6_post:
+  id: 15
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu7_post:
+  id: 16
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu8_post:
+  id: 17
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu9_post:
+  id: 18
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+oahu10_post:
+  id: 19
+  user_id: 2
+  title: Here is my cat
+  raw_post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  post: At this point, allow me to correct a mistake I made the first time that I described my experience with affirmations. If you only hear the objective facts, it sounds as if I believe in some sort of voodoo or magic. That’s not the case. While I do think there is something wonderful and inexplicable about affirmations, I have no reason to conclude it is any more than a pleasant hallucination. But if it is a hallucination, it’s a totally cool one. When I have flying dreams, I know they aren’t real, but it doesn’t stop me from enjoying the hell out of them. And so it might be the same with affirmations. Affirmations might be nothing more than a wonderful illusion that you can control your own luck.
+  category_id: 2
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>

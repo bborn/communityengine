@@ -1,0 +1,24 @@
+community_name: "Community"
+community_tagline: "CommunityEngine Rocks!"
+community_description:  "The Best Place for People Who Love Communities"
+support_email:  "support@community.com"
+meta_description: 'A description of your community for use in META tags.'
+meta_keywords: 'keywords for use in META tags'
+
+# The label you use for 'staff' writers (featured writer, staff, pro, etc.)
+featured_writer_label: 'Featured Writer'
+
+photo:
+  resize_to: "465>"
+  #size in megabytes
+  max_size: 3  
+  thumbs: {thumb: "100x100!", medium: "290x320!", large: "664>"}
+  missing_thumb: '/plugin_assets/community_engine/images/icon_missing_thumb.png'
+  missing_medium: "/plugin_assets/community_engine/images/icon_missing_medium.png"
+feature:
+  thumbs: {thumb: [45,45], large: [635,150]}
+  use_thumbs: false
+  dimensions: [150, 635]
+sections_enabled: ['photos', 'posts', 'clippings', 'contests', 'categories', 'events']
+show_advertising: true
+closed_beta_mode: false

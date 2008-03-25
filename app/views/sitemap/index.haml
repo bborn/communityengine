@@ -1,0 +1,20 @@
+.col_full.sitemap
+  -rounded do 
+    %h2= "#{AppConfig.community_name} Sitemap"
+    
+    .yui-g
+      .yui-g.first
+        %h3 Categories
+        %ul
+          - @categories.each do |c|
+            %li= link_to c.name, category_path(c)      
+      .yui-g
+        %h3 Pages
+        %ul
+          %li=link_to 'Home', '/'
+          %li= link_to 'Users', users_path
+          %li= link_to 'About', about_path
+          %li= link_to 'FAQ', faq_path
+          %li=link_to 'Log in', '/login'
+          
+

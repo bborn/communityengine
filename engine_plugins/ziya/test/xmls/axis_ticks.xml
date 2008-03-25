@@ -1,0 +1,9 @@
+<axis_ticks 
+	minor_thickness='2' 
+	minor_color='ff00aa' 
+	value_ticks='true' 
+	minor_count='1' 
+	category_ticks='true' 
+	major_thickness='1' 
+	major_color='00ff00'/>
+/>

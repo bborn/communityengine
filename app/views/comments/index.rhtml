@@ -1,0 +1,28 @@
+<div class="profile">
+	<div class="yui-b">
+		<%= render :partial => 'users/profile_details' %>
+	</div>
+
+	<div id="yui-main">
+		<div class="yui-b">
+
+			<div class="yui-gf comments section" id="comments">
+				<h2><%= Inflector.underscore(@commentable.class).capitalize %> Comments - <%= link_to @title, @comments.first.generate_commentable_url(false) %></h2>
+				<%= render :partial => 'shared/comment_form', :locals => {:commentable => @commentable} %>
+
+				<div style="margin:1em;" class="clear">
+					<span class="right"><%= pagination_info_for @pages %></span>				
+					<%= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1 %>			
+				</div>
+
+				<div class="line" id="comment_separator"></div>
+				<a id="newest_comment" />
+				<%= render :partial => 'comments/comment', :collection => @comments %>
+			</div>
+
+		</div>
+	</div>
+
+	<br class="clear" />
+</div>
+

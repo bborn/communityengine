@@ -1,0 +1,12 @@
+<h1>Editing friendship</h1>
+
+<% form_for(:friendship, :url => user_friendship_path(@user, @friendship), :html => {:method => :put}) do |f| -%>
+	<p><label for="status">status</label><br/>
+	<%= f.collection_select :friendship_status_id, FriendshipStatus.find(:all), :id, :name %></p>
+
+	<p><%= submit_tag 'Save' %></p>
+<% end -%>
+
+
+<%= link_to 'Show', user_friendship_path(@user, @friendship) %> |
+<%= link_to 'Back', accepted_user_friendships_path(@user) %>

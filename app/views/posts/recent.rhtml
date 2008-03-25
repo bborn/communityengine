@@ -1,0 +1,18 @@
+<% @section = 'posts' %>
+
+<div class="col_full">
+	<% rounded(:class => "blog") do %>
+		<h2 class="super">Recent Posts <small>(looking for <%= link_to "popular", popular_path %>?)</small></h2>
+		<div class="padded">			
+				<% @posts.each do |post| %>
+					<%= render :partial => "shared/blog_excerpt", :locals => {:post => post} %>
+				<% end %>
+				<% if @pages.length > 1 %>
+					<div style="margin:1em;">
+						<%= link_to "&laquo; Earlier posts", { :page => @pages.current.next } if @pages.current.next %>								
+						<%= link_to " | Later posts &raquo; ", { :page => @pages.current.previous } if @pages.current.previous %>								
+					</div>
+				<% end %>
+		</div>
+	<% end %>
+</div>

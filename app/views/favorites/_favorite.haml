@@ -1,0 +1,5 @@
+- case favorite.favoritable.class.to_s.tableize
+  - when 'clippings'
+    = render :partial => "clippings/clipping", :locals => {:clipping => favorite.favoritable}
+  - when 'posts'
+    = render :partial => "posts/favorited_post", :locals => {:post => favorite.favoritable}    

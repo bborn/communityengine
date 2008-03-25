@@ -1,0 +1,35 @@
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
+
+<div class="yui-b col_236">
+	<% rounded do %>
+
+	<% end %>
+</div>
+
+<div id="yui-main">
+	<div class="yui-b col_723">
+
+		<% rounded do %>
+			<h2 class="impact">Invite Your Friends To Join!</h2>
+			<p>The more people you invite, the better <%= AppConfig.community_name %> becomes.</p>
+			<p>People who sign up using your invitation will automatically be added as your friends on <%= AppConfig.community_name %>.</p>
+
+			<% form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ) ) do |f| %>
+				<p><label for="email_addresses">Enter e-mail addresses (comma-separated)</label><br/>
+        <a href="#" onclick="showPlaxoABChooser('invitation_email_addresses', '/application/plaxo'); return false;">
+          <img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" />
+        </a>
+				<br/>
+				<%= f.text_area :email_addresses , :rows => "5", :style => 'width:100%' %></p>
+				<p><label for="message">Write a message</label><br/>
+				<%= f.text_area :message, :rows => "5", :style => 'width:100%' %></p>
+				  <p>
+				    <%= submit_tag "Send Invitations!" %> or <%= link_to "cancel", user_path(@user) %>
+				  </p>
+			<% end %>
+
+		<% end %>
+	</div>
+</div>

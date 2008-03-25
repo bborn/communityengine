@@ -1,0 +1,9 @@
+<%= chart :bar %>
+  <%=component :chart_border %>
+    left_thickness:   2
+    
+  <%=component :chart_grid_h %>
+    thickness: 1
+  
+  <%=component :chart_grid_v %>
+    thickness: 5    

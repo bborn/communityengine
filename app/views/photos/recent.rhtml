@@ -1,0 +1,8 @@
+<h1>Recent Photos</h1>
+
+<%= pagination_links %>
+<ul>
+	<% @photos.each do |photo| %>
+		<li><%= image_tag( photo.public_filename(:thumb) ) %></li>		
+	<% end %>
+</ul>

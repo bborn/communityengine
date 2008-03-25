@@ -1,0 +1,65 @@
+<%= chart :base %> 
+  <%=component :axis_category %>
+    size:   10
+    color:  61332b
+    bold:   true
+    alpha:  100
+  
+  <%=component :axis_value %>
+    color:       a79d91
+    skip:        0
+    alpha:       100
+    size:        10
+        
+  <%=component :chart_rect %>
+    positive_color: f8af68      
+    positive_alpha: 40
+    negative_color: f88868
+    negative_alpha: 40
+
+  <%=component :legend_rect %>
+    fill_color: f8af68
+    fill_alpha: 40
+          
+  <%=component :axis_ticks %>
+    major_color: 54544c
+    minor_color: a19d91
+    value_ticks: true
+    
+  <%=component :chart_border %>
+    left_thickness:   2
+    bottom_thickness: 1
+    top_thickness:    1
+    right_thickness:  1 
+  
+  <%=component :chart_grid_h %>
+    thickness: 1
+    color:     000000
+    alpha:     7
+  
+  <%=component :chart_grid_v %>
+    thickness: 3
+    color:     000000
+    alpha:     7
+  
+  <%=component :chart_transition %>
+    type:     none
+    order:    category  
+    duration: 0.2
+  
+  <%=component :chart_value %>
+    position: right
+    color:    F5F0BE
+    size:     9
+    alpha:    100
+  
+  <%=component :legend_label %>
+    color:    000000
+    size:     10
+    
+  <%=component :legend_transition %>
+    color: 00ff00  
+    type:  none  
+      
+  <%=component :series_color %>
+    colors: 5f5a38,f8af68,4e6b49,e99e57

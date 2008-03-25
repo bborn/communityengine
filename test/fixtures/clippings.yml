@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+google:
+  id: 1
+  url: http://www.google.com
+  user_id: 1
+  image_url: http://www.google.com/intl/en/images/logo.gif
+  description: This is google's logo
+  created_at: <%= 1.days.ago.to_s :db %>
+yahoo_related_to_google:
+  id: 2
+  user_id: 1
+  url: http://www.yahoo.com
+  image_url: http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif
+  description: This is yahoo's logo
+  created_at: <%= 2.days.ago.to_s :db %>

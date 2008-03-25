@@ -1,0 +1,10 @@
+<div class="yui-u first">
+	<%= link_to image_tag( activity.image_uri, :class => "clipping polaroid"),  user_clipping_path(activity.user, activity)%>
+</div>
+<div class="yui-u">
+	<span class="gray">New Clipping</span>
+	<%= "<br />" + link_to( truncate(activity.description, 15), user_clipping_path(activity.user, activity)) + "<br />" if activity.description %>
+	<%= link_to image_tag('user_tiny.png', :plugin => "community_engine") + " #{truncate(activity.user.login, 15)}", user_path(activity.user), :class => "gray" %>
+	<p class="description"><%= activity.description %>  &nbsp;&nbsp;<%= link_to "&raquo; More", user_clipping_path(activity.user, activity) %></p>
+</div>
+<br class="clear" /><br />

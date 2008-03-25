@@ -1,0 +1,121 @@
+<% @meta = { :description => "#{@user.login}'s DIY projects, interior design ideas and favorites.", 
+	:keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}, diy, design, interior-design" } -%>
+
+<% @section = 'my_profile' if @user.eql?(current_user) %>
+
+<% if @is_current_user and @user.vendor? and (@user.offerings.empty? or @user.description.nil? ) %>
+	<p>
+	&raquo; Hey, you're a <%= AppConfig.community_name %> Pro! You should <%= link_to "update your profile", edit_user_path(@user) %>! Add your skills, contact info and Web site.
+	</p>
+<% end %>
+
+<div class="profile">
+	<div class="yui-b">
+		<%= render :partial => 'profile_details' %>
+		<% if @user.description %>
+			<div id="about_me" class="section">
+				<h2>About Me</h2>
+				<p><%= @user.description %></p>
+			</div>
+		<% end %>
+		
+		<div class="yui-g section" id="friends">
+			<h2>My Friends <%= link_to( "(#{@friend_count})", accepted_user_friendships_path(@user)) if @friend_count > 5 %></h2>
+			<%= link_to "&raquo; Invite a friend to #{AppConfig.community_name}", invite_user_path(@user) if @is_current_user %><br/>
+			<%= link_to "&raquo; View all my friend requests (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user %>
+			<div class="line"></div>
+			<%= render :partial => "shared/user", :collection => @accepted_friendships %>
+
+			<%= "<p>"+link_to( "More.", accepted_user_friendships_path(@user), {:class => 'btn_blue right'}) + "</p>" if @accepted_friendships.size > 4 %>
+		</div>				
+
+		<% unless @users_comments.empty? %>
+			<div class="yui-g section" id="photo_comments">
+				<h2>My recent comments</h2>
+				<% @users_comments.each do |comment| %>
+					<% commentable_url = comment.generate_commentable_url %>
+					<%= link_to(image_tag( comment.recipient.avatar_user_photo_url(:thumb), :class => "polaroid left", :style => "margin-right:.5em;" ), commentable_url) %>
+				
+					"<%= truncate_words(comment.comment, 10) %>"<br />
+					<% if comment.recipient.eql?(comment.commentable) %>
+						<strong>To</strong>: <%= link_to comment.recipient.login, commentable_url %> <br />
+					<% else %>
+						<strong>To</strong>: <%= link_to comment.recipient.login, user_path(comment.recipient) %> <br />
+						<strong>On</strong>: <%= link_to comment.commentable_name, commentable_url %> (<%= comment.commentable_type %>)
+					<% end %>
+					<br class="clear" /><br />
+				<% end %>
+			</div>
+		<% end %>
+
+						
+		<% unless @photo_comments.empty? %>
+			<div class="yui-g section" id="photo_comments">
+				<h2>Photo Comments</h2>
+				<% @photo_comments.each do |comment| %>
+					<%= link_to(image_tag( comment.commentable.public_filename(:thumb), :class => "polaroid left", :style => "margin-right:.5em;" ), user_photo_path(@user, comment.commentable)) %>
+					<strong><%= comment.user.login %> says:</strong> <br />
+					<%= truncate_words(comment.comment, 10) %><br />
+					<%= link_to "&raquo; View comment", user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}" %>
+					<br class="clear" /><br />
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+
+	<div id="yui-main">
+		<div class="yui-b">
+
+			<% if @photos.empty? and @recent_posts.empty? %>
+				<h1 class="gray"><%= @user.login %> doesn't have much here yet. Stay tuned.</h1><br />
+			<% end %>
+			
+			<% unless @photos.empty? %>
+				<div id="photos" class="section">
+					<h2>Photos</h2>
+					<% @photos.each do |photo| %>
+						<%= link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo) %>
+					<% end %>
+					<br /><%= link_to "&raquo; View all my photos", user_photos_path(@user) %> <%= (" | " + link_to("Add a photo", new_user_photo_path(@user)) ) if @is_current_user %>
+				</div>
+			<% end %>			
+			
+			<% unless @recent_posts.empty? %>
+				<div id="posts" class="section">
+					<h2>Recent Posts</h2>
+					<%= link_to "&raquo; View my blog", user_posts_path(@user) %><br /><br />
+					<%= render :partial => 'posts/post', :collection => @recent_posts %>
+				</div>
+			<% end %>
+						
+			<% unless @clippings.empty? %>
+				<div id="clippings" class="section">
+					<h2>My Clippings</h2>
+					<% @clippings.each do |clipping| %>
+						<a href="<%=h user_clipping_url(@user, clipping) %>">
+							<img src="<%=h clipping.image_uri %>" class="polaroid clipping"/>
+						</a>
+					<% end %>
+					<br />				
+					<%= link_to "View all my clippings", user_clippings_path(@user) %>
+				</div>
+			<% end %>
+
+			
+			<div class="yui-gf comments section" id="comments">
+				<h2>Profile Comments</h2>
+				<%= render :partial => 'shared/comment_form', :locals => {:commentable => @user} %>
+				<div class="line" id="comment_separator"></div>
+				<a id="newest_comment"></a>
+				<%= render :partial => 'comments/comment', :collection => @comments %>
+				<%= more_comments_links(@user) %>
+								
+			</div>
+			
+		</div>
+    </div>
+			
+    <br class="clear" />
+</div>
+
+<%= resize_img('clipping', 100, 100) %>

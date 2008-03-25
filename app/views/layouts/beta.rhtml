@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>
+		<%= AppConfig.community_name %> | <%= AppConfig.community_tagline %>
+	</title>
+    <%= stylesheet_link_tag 'reset' %>
+    <%= stylesheet_link_tag 'fonts' %>
+    <%= stylesheet_link_tag 'grids' %>
+    <%= stylesheet_link_tag 'screen' %>
+    <%= stylesheet_link_tag 'lightbox' %>
+
+	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_tag "rounder" %>	
+	<%= javascript_include_tag "lightbox" %>		
+</head>
+	<body>
+		<div id="doc" class="yui-t2">
+			
+			<div id="hd" style="background:none">
+				<a href="/" title="<%= AppConfig.community_name %> Home" id="community-logo"><%= AppConfig.community_name %> - <%= AppConfig.community_tagline %></a>	
+	   	  		<%= render :partial => "shared/messages" %>
+		   </div> <!-- header --> 
+		
+		   <div id="bd">
+				<%= @content_for_layout %>		   							
+		   </div> <!-- body --> 
+		
+		   <div id="ft">
+		   </div> <!-- footer --> 
+		</div>
+
+
+	</body>
+</html>

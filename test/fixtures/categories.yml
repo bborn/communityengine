@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+how_to:
+  id: 1
+  name: How To
+inspiration:
+  id: 2
+  name: Inspiration
+questions:
+  id: 3
+  name: Questions
+talk:
+  id: 4
+  name: Talk
+news:
+  id: 5
+  name: News

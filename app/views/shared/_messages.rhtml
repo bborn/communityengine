@@ -1,0 +1,18 @@
+<% if flash[:info] %>
+ 	<div class="flash_message info">
+		<span><%= h(flash[:info]) %></span>
+		<small><a href="#" onclick="$$('div.flash_message')[0].hide();return false">Close this message</a></small>	
+	</div>
+<% end %>
+<% if flash[:notice] %>
+ 	<div class="flash_message notice">
+		<span><%= h(flash[:notice]) %></span>
+		<small><a href="#" onclick="$$('div.flash_message')[0].hide();return false">Close this message</a></small>		
+	</div>
+<% end %>
+<% if flash[:error] %>
+ 	<div class="flash_message error">
+		<span><%= h(flash[:error]) %></span>
+		<small><a href="#" onclick="$$('div.flash_message')[0].hide();return false">Close this message</a></small>		
+	</div>
+<% end %>
