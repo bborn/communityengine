@@ -33,7 +33,7 @@ module ApplicationConfiguration
   end
   default_app_config = YAML.load_file(File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine', 'engine_config', 'application.yml'))
   
-  config_hash = default_app_config.reverse_merge!(users_app_config||{})
+  config_hash = (users_app_config||{}).reverse_merge!(default_app_config)
 
   ::AppConfig = OpenStruct.new config_hash
 end
