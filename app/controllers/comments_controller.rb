@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
   def index
     @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])
 
-    unless logged_in? || @commentable.owner.profile_public?
+    unless logged_in? || @commentable && @commentable.owner.profile_public?
       flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it."
       redirect_to :controller => 'sessions', :action => 'new' and return
     end
@@ -55,7 +55,7 @@ class CommentsController < ApplicationController
     respond_to do |format|        
       format.html {
         flash[:notice] = "Sorry, we couldn't find any comments for that #{Inflector.constantize(Inflector.camelize(params[:commentable_type]))}"
-        redirect_to :controller => 'application', :action => 'site_index'         
+        redirect_to :controller => 'application', :action => 'site_index' and return      
       }
       format.rss {
         @rss_title = "#{AppConfig.community_name}: #{Inflector.underscore(@commentable.class).capitalize} Comments - #{@title}"

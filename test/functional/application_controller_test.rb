@@ -11,6 +11,7 @@ class ApplicationControllerTest < Test::Unit::TestCase
     @controller = ApplicationController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    
   end
   
   def test_should_get_index

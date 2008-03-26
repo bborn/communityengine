@@ -1,5 +1,7 @@
 class Favorite < ActiveRecord::Base
   # acts_as_taggable  
+  
+  acts_as_activity :user
   belongs_to :favoritable, :polymorphic => true
   belongs_to :user
   

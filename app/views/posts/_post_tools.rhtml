@@ -8,7 +8,8 @@
 			} else {
 				<%= remote_function(:url => { :action => "send_to_friend", :params => {:user_id => @user.id, :id => @post.id} },
 				:success => "new Insertion.Top($('bd'), request.responseText)",
-				:complete => "new Lightbox.base('send_to_friend'); return false;Element.toggle('send_to_friend');"			
+				:complete => "new Lightbox.base('send_to_friend'); return false;Element.toggle('send_to_friend');",
+				:method => 'post'
 				) %>	
 			}			
 		}

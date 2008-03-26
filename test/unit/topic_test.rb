@@ -101,4 +101,12 @@ class TopicTest < Test::Unit::TestCase
     end
   end
   
+  def test_topic_creator_should_monitor_automatically
+    t = forums(:rails).topics.build(:title => 'foo')
+    t.user = users(:aaron)
+    t.save
+    
+    assert users(:aaron).monitoring_topic?(t)
+  end
+  
 end

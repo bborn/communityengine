@@ -4,15 +4,14 @@
 
 
 <div id="send_to_friend" style="display:none;">
-	<%= form_remote_tag( 
+	<% form_remote_tag( 
 		{ 
 		:loading => "$('send_to_friend_spinner').show();", 	
 		:url => send_to_friend_user_post_path(:user_id => params[:user_id], :id => params[:id]), 
 		:complete => "$('send_to_friend_spinner').hide();", 	
 		500 => "$$('div#send_to_friend div.errors')[0].innerHTML = request.responseText; return false;",
 		:success => "alert('Messages sent!'); Element.toggle('send_to_friend'); Lightbox.hideAll(); return false;"
-		} )
-	%>
+		} ) do -%>
 	  <div class="errors"></div>	
 	  <h3>Send this story to friends</h3>
 	  <p>
@@ -31,5 +30,5 @@
 	    <%= submit_tag "Send" %>
 		<%= image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'send_to_friend_spinner'	%>
 	  </p>
-	<%= end_form_tag %>
+	<% end -%>
 </div>

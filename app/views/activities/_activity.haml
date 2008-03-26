@@ -16,9 +16,20 @@
           =" uploaded a photo: "
           %br
           = link_to image_tag(activity.item.public_filename(:thumb), :width => '50px'), user_photo_path(activity.item.user, activity.item)
+        - when 'Topic'
+          =" started a topic: "
+          -topic = activity.item
+          = link_to truncate_words(topic.title), forum_topic_path(topic.forum, topic)
+        - when 'SbPost'
+          =" added to a forum topic: "
+          - topic = activity.item.topic
+          = link_to truncate_words(activity.item.body), forum_topic_path(topic.forum, topic)
         - when 'Comment'
           =" left a comment: "
           = link_to truncate_words(activity.item.comment), activity.item.generate_commentable_url
+        - when 'Favorite'
+          =" favorited"
+          = link_to " a #{activity.item.favoritable.class.to_s.humanize.downcase}", user_favorite_path(activity.item.user, activity.item)
         - when 'Clipping'
           =" added a clipping: "
           %br

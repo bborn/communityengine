@@ -1,7 +1,9 @@
 - if activity.item
   - case activity.item_type
-    - when 'Post'
+    - when 'Post', 'SbPost', 'Topic'
       = image_tag 'icons/post.png', :plugin => 'community_engine'
+    - when 'Favorite'
+      = image_tag 'icons/heart.png', :plugin => 'community_engine'
     - when 'Photo'
       = image_tag 'icons/photo.png', :plugin => 'community_engine'
     - when 'Comment'

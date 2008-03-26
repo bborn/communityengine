@@ -1,4 +1,6 @@
 class Topic < ActiveRecord::Base
+  acts_as_activity :user
+  
   acts_as_taggable
   belongs_to :forum, :counter_cache => true
   belongs_to :user
@@ -16,6 +18,7 @@ class Topic < ActiveRecord::Base
   validates_presence_of :forum, :user, :title
   before_create :set_default_replied_at_and_sticky
   after_save    :set_post_topic_id
+  after_create  :create_monitorship_for_owner
 
   attr_accessible :title
   # to help with the create form
@@ -61,5 +64,10 @@ class Topic < ActiveRecord::Base
 
     def set_post_topic_id
       SbPost.update_all ['forum_id = ?', forum_id], ['topic_id = ?', id]
+    end
+    
+    def create_monitorship_for_owner
+      monitorship = Monitorship.find_or_initialize_by_user_id_and_topic_id(user.id, self.id)
+      monitorship.update_attribute :active, true      
     end
 end

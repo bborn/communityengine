@@ -99,7 +99,7 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
      } do |user|
   user.resources :friendships, :member => { :accept => :put, :deny => :put }, :collection => { :accepted => :get, :pending => :get, :denied => :get }
   user.resources :photos, :member => {:create_multiple => [:post, :get]}, :collection => {:slideshow => :get}
-  user.resources :posts, :member => {:contest => :get, :send_to_friend => :post, :update_views => :put}
+  user.resources :posts, :member => {:contest => :get, :send_to_friend => :post, :update_views => :any}
   user.resources :clippings
   user.resources :invitations
   user.resources :offerings, :collection => {:replace => :put}
