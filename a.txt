@@ -1,2 +1,0 @@
-This is just a file I'm using to play with git. I change it a lot and check it in.
-Does the TM Git bundle work with submodules?
