@@ -28,10 +28,10 @@ module ApplicationConfiguration
   require 'ostruct'
   require 'yaml'  
   if File.exists?( File.join(RAILS_ROOT, 'config', 'application.yml') )
-    file = File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine', 'engine_config', 'application.yml')
+    file = File.join(RAILS_ROOT, 'config', 'application.yml')
     users_app_config = YAML.load_file file
   end
-  default_app_config = YAML.load_file(File.join(RAILS_ROOT, 'config', 'application.yml'))
+  default_app_config = YAML.load_file(File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine', 'engine_config', 'application.yml'))
   
   config_hash = default_app_config.reverse_merge!(users_app_config||{})
 
