@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class PostsController < BaseController
   include Viewable
   uses_tiny_mce(:options => DEFAULT_MCE_OPTONS, :only => [:new, :edit, :update, :create ])
   uses_tiny_mce(:options => SIMPLE_MCE_OPTIONS, :only => [:show])

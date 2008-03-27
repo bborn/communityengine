@@ -1,5 +1,5 @@
 # This controller handles the login/logout function of the site.  
-class SessionsController < ApplicationController
+class SessionsController < BaseController
   if AppConfig.closed_beta_mode
     skip_before_filter :beta_login_required
   end    

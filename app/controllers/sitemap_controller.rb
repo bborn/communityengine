@@ -1,4 +1,4 @@
-class SitemapController < ApplicationController
+class SitemapController < BaseController
   layout false
   caches_action :index  
   def cache_action?(action_name)

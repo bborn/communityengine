@@ -1,4 +1,4 @@
-class OfferingsController < ApplicationController
+class OfferingsController < BaseController
   before_filter :find_user, :only => [:replace]
   before_filter :login_required
   before_filter :require_current_user, :only => [:replace, :destroy, :edit, :update]

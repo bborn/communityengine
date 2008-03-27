@@ -1,4 +1,4 @@
-class FriendshipsController < ApplicationController
+class FriendshipsController < BaseController
   before_filter :login_required, :except => [:accepted, :index]
   before_filter :find_user, :only => [:accepted, :pending, :denied]
   before_filter :require_current_user, :only => [:accept, :deny, :pending, :destroy]

@@ -1,4 +1,4 @@
-class StatisticsController < ApplicationController
+class StatisticsController < BaseController
   include Ziya
   before_filter :login_required
   before_filter :admin_required

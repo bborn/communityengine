@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationController
+class FavoritesController < BaseController
   before_filter :login_required, :only => [:destroy]
   before_filter :find_user, :only => [:show, :index]
 

@@ -131,7 +131,7 @@ module ApplicationHelper
 	
 		title = app_base
 		case @controller.controller_name
-			when 'application'
+			when 'base'
 				case @controller.action_name
 					when 'popular'
 						title = 'Popular posts &raquo; ' + app_base + tagline
@@ -246,7 +246,7 @@ module ApplicationHelper
 
   def show_footer_content?
     return true if (
-      current_page?(:controller => 'application', :action => 'site_index') || 
+      current_page?(:controller => 'base', :action => 'site_index') || 
       current_page?(:controller => 'posts', :action => 'show')  ||
       current_page?(:controller => 'categories', :action => 'show')  ||    
       current_page?(:controller => 'users', :action => 'show')

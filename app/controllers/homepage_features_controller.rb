@@ -1,4 +1,4 @@
-class HomepageFeaturesController < ApplicationController
+class HomepageFeaturesController < BaseController
   uses_tiny_mce(:options => DEFAULT_MCE_OPTONS, :only => [:new, :edit ])
 
   before_filter :login_required

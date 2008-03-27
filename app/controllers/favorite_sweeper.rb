@@ -18,7 +18,7 @@ class FavoriteSweeper < ActionController::Caching::Sweeper
       
       if Post.find_recent(:limit => 16).include?(record.favoritable)
         # Expire the home page
-        expire_action :controller => 'application', :action => 'site_index'
+        expire_action :controller => 'base', :action => 'site_index'
 
         # Expire the category page for this post
         expire_action :controller => 'categories', :action => 'show', :id => record.favoritable.category

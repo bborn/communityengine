@@ -1,4 +1,4 @@
-class InvitationsController < ApplicationController
+class InvitationsController < BaseController
   before_filter :require_current_user, :only => [:create, :edit, :update, :destroy]
   # GET /invitations
   # GET /invitations.xml

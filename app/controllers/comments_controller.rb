@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class CommentsController < BaseController
   before_filter :login_required, :except => [:index]
   uses_tiny_mce(:options => SIMPLE_MCE_OPTIONS, :only => [:index])
 
@@ -55,7 +55,7 @@ class CommentsController < ApplicationController
     respond_to do |format|        
       format.html {
         flash[:notice] = "Sorry, we couldn't find any comments for that #{Inflector.constantize(Inflector.camelize(params[:commentable_type]))}"
-        redirect_to :controller => 'application', :action => 'site_index' and return      
+        redirect_to :controller => 'base', :action => 'site_index' and return      
       }
       format.rss {
         @rss_title = "#{AppConfig.community_name}: #{Inflector.underscore(@commentable.class).capitalize} Comments - #{@title}"

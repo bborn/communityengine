@@ -1,4 +1,4 @@
-class TagsController < ApplicationController
+class TagsController < BaseController
 
   def auto_complete_for_tag_name
     @tags = Tag.find_list(params[:id] || params[:tag_list])

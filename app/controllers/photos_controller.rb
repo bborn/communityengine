@@ -1,7 +1,7 @@
 require 'pp'
 require 'mime/types'
 
-class PhotosController < ApplicationController
+class PhotosController < BaseController
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage_photos]
   before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]

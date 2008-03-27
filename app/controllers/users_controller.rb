@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < BaseController
   if AppConfig.closed_beta_mode
     skip_before_filter :beta_login_required, :only => [:new, :create, :activate]
     before_filter :require_invitation, :only => [:new, :create]

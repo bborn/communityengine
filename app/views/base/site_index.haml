@@ -1,14 +1,14 @@
 -@meta = { :description => AppConfig.meta_description, :keywords => AppConfig.meta_keywords }
 
 -if !logged_in?
-  =render :partial => 'application/homepage_banner_message'
+  =render :partial => 'base/homepage_banner_message'
   %br/
 
 -if @active_contest
   =render :partial => 'contests/banner'
 
 .yui-b.col_236
-  =render :partial => 'application/homepage_nav'
+  =render :partial => 'base/homepage_nav'
 
   - if AppConfig.show_advertising
     .centered#featured_ads
@@ -42,7 +42,7 @@
 
 #yui-main
   .yui-b.col_723
-    =render :partial => '/application/homepage_features'
+    =render :partial => '/base/homepage_features'
 
     %br.clear
     -rounded(:class => 'green_gradient blog' ) do 
@@ -68,4 +68,4 @@
       Loading recent content...
 
 %script{:type=>"text/javascript"}
-  ="Event.observe(window, 'load', function(){	#{remote_function(:update => "footer_content", :url => { :controller => 'application', :action => 'footer_content' })} });"
+  ="Event.observe(window, 'load', function(){	#{remote_function(:update => "footer_content", :url => { :controller => 'base', :action => 'footer_content' })} });"

@@ -1,4 +1,4 @@
-class TopicsController < ApplicationController
+class TopicsController < BaseController
   before_filter :find_forum_and_topic, :except => :index
   before_filter :login_required, :except => [:index, :show]
   before_filter :update_last_seen_at, :only => :show
@@ -22,7 +22,7 @@ class TopicsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        # see notes in application.rb on how this works
+        # see notes in base_controller.rb on how this works
         update_last_seen_at
         # keep track of when we last viewed this topic for activity indicators
         (session[:topics] ||= {})[@topic.id] = Time.now.utc if logged_in?

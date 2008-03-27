@@ -17,8 +17,8 @@ forum_home '/forums', :controller => 'forums', :action => 'index'
 
 connect 'sitemap.xml', :controller => "sitemap", :action => "index", :format => 'xml'
 connect 'sitemap', :controller => "sitemap", :action => "index"
-connect '', :controller => "application", :action => "site_index"
-connect '/application/:action', :controller => 'application'
+connect '', :controller => "base", :action => "site_index"
+connect '/application/:action', :controller => 'base'
 
 # admin routes
 admin_dashboard '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
@@ -43,13 +43,13 @@ popular '/popular', :controller => 'posts', :action => 'popular'
 popular_rss '/popular.rss', :controller => 'posts', :action => 'popular', :format => 'rss'
 recent '/recent', :controller => 'posts', :action => 'recent'
 recent_rss '/recent.rss', :controller => 'posts', :action => 'recent', :format => 'rss'
-rss_redirect '/rss', :controller => 'application', :action => 'rss_site_index'
-rss '/site_index.rss', :controller => 'application', :action => 'site_index', :format => 'rss'
+rss_redirect '/rss', :controller => 'base', :action => 'rss_site_index'
+rss '/site_index.rss', :controller => 'base', :action => 'site_index', :format => 'rss'
 
-about '/about', :controller => 'application', :action => 'about'
-advertise '/advertise', :controller => 'application', :action => 'advertise'
-faq '/faq', :controller => 'application', :action => 'faq'
-css_help '/css_help', :controller => 'application', :action => 'css_help'  
+about '/about', :controller => 'base', :action => 'about'
+advertise '/advertise', :controller => 'base', :action => 'advertise'
+faq '/faq', :controller => 'base', :action => 'faq'
+css_help '/css_help', :controller => 'base', :action => 'css_help'  
 
 edit_account_from_email '/account/edit', :controller => 'users', :action => 'edit_account'
 
@@ -108,6 +108,6 @@ end
 resources :votes
 
 # Deprecated routes
-deprecated_popular_rss '/popular_rss', :controller => 'application', :action => 'popular', :format => 'rss'    
+deprecated_popular_rss '/popular_rss', :controller => 'base', :action => 'popular', :format => 'rss'    
 deprecated_category_rss '/categories/:id;rss', :controller => 'categories', :action => 'show', :format => 'rss'  
 deprecated_posts_rss '/:user_id/posts;rss', :controller => 'posts', :action => 'index', :format => 'rss'

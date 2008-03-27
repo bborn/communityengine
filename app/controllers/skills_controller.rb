@@ -1,4 +1,4 @@
-class SkillsController < ApplicationController
+class SkillsController < BaseController
   before_filter :login_required, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :admin_required, :only => [:new, :create, :edit, :update, :destroy]
 

@@ -1,4 +1,4 @@
-class VotesController < ApplicationController
+class VotesController < BaseController
   before_filter :find_choice, :only => [:create]
   before_filter :login_required
   

@@ -1,4 +1,4 @@
-class ContestsController < ApplicationController
+class ContestsController < BaseController
   before_filter :login_required, :except => [:show]
   before_filter :admin_required, :except => [:show]
 

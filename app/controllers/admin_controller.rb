@@ -1,4 +1,4 @@
-class AdminController < ApplicationController
+class AdminController < BaseController
   before_filter :admin_required
   
   def users

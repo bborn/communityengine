@@ -8,7 +8,7 @@ class VoteSweeper < ActionController::Caching::Sweeper
   private
   def expire_cache_for(record)
     # Expire the home page
-    expire_action(:controller => 'application', :action => 'site_index')
+    expire_action(:controller => 'base', :action => 'site_index')
        
     # Expire the show post page
     expire_page(:controller => 'posts', :action => 'show', :id => record.id)

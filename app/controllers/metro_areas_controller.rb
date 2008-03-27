@@ -1,4 +1,4 @@
-class MetroAreasController < ApplicationController
+class MetroAreasController < BaseController
   before_filter :login_required
   before_filter :admin_required
 

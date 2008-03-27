@@ -1,4 +1,4 @@
-class ModeratorsController < ApplicationController
+class ModeratorsController < BaseController
   before_filter :login_required
   
   def create

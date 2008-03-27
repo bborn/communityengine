@@ -1,4 +1,4 @@
-class SbPostsController < ApplicationController
+class SbPostsController < BaseController
   before_filter :find_post,      :except => [:index, :monitored, :search, :create, :new]
   before_filter :login_required, :except => [:index, :search, :show, :monitored]
   uses_tiny_mce(:options => DEFAULT_MCE_OPTONS, :only => [:edit, :update])  

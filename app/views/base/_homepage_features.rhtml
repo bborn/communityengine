@@ -2,7 +2,7 @@
   <div id="homepage_features">
     <div class="scroller">
     	<div class="content">
-    		<%= render :partial => '/application/homepage_feature', :locals => {:homepage_feature => @homepage_features.first} unless @homepage_features.empty? %>
+    		<%= render :partial => '/base/homepage_feature', :locals => {:homepage_feature => @homepage_features.first} unless @homepage_features.empty? %>
     	</div>	
     </div>	
 
@@ -37,7 +37,7 @@
   	Event.observe(window, 'load', function(){	
   		<%= remote_function( 
   			:complete => "load_features_callback(request.responseText);",
-  			:url => { :controller => 'application', :action => 'homepage_features' }) %>		
+  			:url => { :controller => 'base', :action => 'homepage_features' }) %>		
   	});
 
     var Rules = {
