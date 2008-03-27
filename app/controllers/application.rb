@@ -118,7 +118,6 @@ class ApplicationController < ActionController::Base
     @recent_clippings = Clipping.find_recent(:limit => 10)
     @recent_photos = Photo.find_recent(:limit => 10)
     @recent_comments = Comment.find_recent(:limit => 13)
-    @recent_questions = Post.find(:all, :conditions => ["category_id = ?", Category.get(:questions).id], :order => 'created_at DESC', :limit => 10)    
     @popular_tags = popular_tags(30, ' count DESC')
   end
 
@@ -133,8 +132,7 @@ class ApplicationController < ActionController::Base
     @featured_posts = Post.find_featured
     
     @topics = Topic.find(:all, :limit => 5, :order => "replied_at DESC")
-    @question_count = Category.get_recent_count(:questions)
-    @how_to_count = Category.get_recent_count(:how_to)
+
     @active_contest = Contest.get_active
     @popular_posts = Post.find_popular({:limit => 10})    
     @popular_polls = Poll.find_popular(:limit => 8)
