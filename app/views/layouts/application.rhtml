@@ -61,6 +61,7 @@
 						<% Category.find(:all).each do |c| %>
 							<%= topnav_tab (c.nav_text || c.name), {:url => category_path(c), :section => c.name} %>
 						<% end %>
+						<%= topnav_tab "Forums", { :url => forums_path, :section => 'forums' } %>
 						<%= topnav_tab "Popular", { :url => popular_path, :section => 'popular' } %>
 						<%= topnav_tab "People", { :url => users_path, :section => 'users' } %>
 						<% if current_user %>
@@ -84,7 +85,7 @@
 		   <div id="ft">
 				<div class="rounded" id="footer">
 					<div class="padded">
-				   		<a href="/" title="<%= AppConfig.community_name %> Home" style="float:left; margin-right:1em"><%= image_tag 'logo_small.png', :plugin => "community_engine" %>&trade;</a>
+				   		<a href="/" title="<%= AppConfig.community_name %> Home" style="float:left; margin-right:1em"><%= image_tag 'logo_small.png', :plugin => "community_engine" %></a>
 						<a href="/" title="<%= AppConfig.community_name %> Home">Home</a> | 
 						<% unless current_user %> 
 							<%= link_to "Log in", new_session_path %> | 
@@ -93,13 +94,11 @@
 						<% end %>
 						<a href="/about" title="What is <%= AppConfig.community_name %>?">About</a> | 
 						<a href="/faq" title="Frequent Asked Questions">FAQ</a> | 
-						<a href="/advertise" title="Learn about advertising on <%= AppConfig.community_name %>">Advertise</a> | 
-						<a href="/terms.html" title="<%= AppConfig.community_name %> Terms of Service">Terms of sevice</a>
 						<% if @rss_title && @rss_url  %>
 							| <%= link_to image_tag('green_feed.gif', :plugin => "community_engine") + ' RSS', @rss_url, {:title => @rss_title} %>
 						<% end %>
 
-						<br /><strong><%= AppConfig.community_tagline %></strong>&trade;
+						<br /><strong><%= AppConfig.community_tagline %></strong>
 					</div>
 				</div>
 		   </div> <!-- footer --> 

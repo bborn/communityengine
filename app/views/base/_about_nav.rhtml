@@ -9,10 +9,11 @@
 			<li>
 				<a href="/about">About <%= AppConfig.community_name %></a>
 			</li>
-			<li>
-				<a href="/advertise">Advertise</a>
-			</li>
-
+			<% if AppConfig.show_advertising %>
+  			<li>
+  				<a href="/advertise">Advertise</a>
+  			</li>
+      <% end %>
 		</ul>
 		
 	<% end %>

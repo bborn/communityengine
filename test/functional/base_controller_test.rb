@@ -42,4 +42,10 @@ class BaseControllerTest < Test::Unit::TestCase
     assert @controller.get_additional_homepage_data
   end
   
+  def test_should_get_about
+    get :about
+    assert_response :success
+    
+  end
+  
 end
