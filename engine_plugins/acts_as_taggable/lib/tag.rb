@@ -33,7 +33,7 @@ class Tag < ActiveRecord::Base
 
   def related_tags(options = {})
     taggable_ids = self.taggings.find(:all, :limit => 10).collect{|t| t.taggable_id }
-    return [] if taggable_ids.empty?
+    return [] if taggable_ids.blank?
     
     sql = "SELECT tags.id, tags.name, count(*) AS count FROM tags  
       LEFT OUTER JOIN taggings 
