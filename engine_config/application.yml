@@ -20,5 +20,5 @@ feature:
   use_thumbs: false
   dimensions: [150, 635]
 sections_enabled: ['photos', 'posts', 'clippings', 'contests', 'categories', 'events']
-show_advertising: true
+show_advertising: false
 closed_beta_mode: false

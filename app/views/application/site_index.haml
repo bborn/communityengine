@@ -10,11 +10,12 @@
 .yui-b.col_236
   =render :partial => 'application/homepage_nav'
 
-  .centered#featured_ads
-    %small.gray
-      Advertisements | 
-      %a{:href=>"/advertise",:target=>"_blank",:title=>"Advertise with us"} Advertise with us
-  %br.clear
+  - if AppConfig.show_advertising
+    .centered#featured_ads
+      %small.gray
+        Advertisements | 
+        %a{:href=>"/advertise",:target=>"_blank",:title=>"Advertise with us"} Advertise with us
+    %br.clear
   
   .rounded.blue_sidebar
     .padded

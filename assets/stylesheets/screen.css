@@ -72,20 +72,10 @@ div.banner_message {
 	div.banner_message div.yui-gc {
 		padding-left:3em;
 	}
-	div.banner_message div.home_icon {
-		background:#F4D3DD;
-		}
-		div.banner_message div.home_icon h1 {
-			background:url(../images/home_icon.png) no-repeat;		
-			margin-left:-1.2em;
-			padding-left:1.2em;
-			_background-image:none;
-			_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop src='/images/home_icon.png');			
-			}
-		div.banner_message h2 a {
-			color:#D5325D;
-			font-weight:bold;		
-		}
+	div.banner_message h2 a {
+		color:#D5325D;
+		font-weight:bold;		
+	}
 div.recent a {
 	font-style:normal;
 	}
