@@ -5,7 +5,7 @@
   <td class="c2">
     <%= link_to h(post.title), user_post_path(post.user, post), :class => "entry-title", :rel => "bookmark", :target => '_blank' %>
   </td>
-  <td class="ca inv stat"><%= post.comments_count %></td>
+  <td class="ca inv stat"><%= post.comments.count %></td>
   <td class="ca inv stat"><%= number_with_delimiter(post.view_count) %></td>
   <td class="lp">
     by <span class="author"><strong class="fn"><%= h(post.user.display_name) %></strong></span>
