@@ -23,7 +23,7 @@ ol {
 	}
 p { padding:.5em; }
 a { 
-	color:#1EA2C1;
+	color:#8A2C2C;
 	font-weight:normal;
 	text-decoration:none; 
 	}
@@ -42,7 +42,7 @@ span.lower-gray {
 
 /* BODY */
 body { 
-	background:#ffffff url(../images/body_bg.png) repeat-x;
+	background:#e3e3e3 url(../images/body_bg.png) repeat-x;
 	color:#3F3F3F;
 	margin:0; 
 	padding:0;
@@ -60,6 +60,8 @@ div#custom-doc {
 div.banner_message {
 	background:#EAF7CE;
 	color:#3F3F3F;
+	padding-top: 5px;
+	padding-bottom: 10px;	
 	}
 	div.banner_message h1 {
 		font-size:2em;
