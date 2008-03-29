@@ -176,7 +176,7 @@ module ApplicationHelper
         if @skill and @skill.name
           title = 'Find an expert in ' + @skill.name + ' &raquo; ' + app_base + tagline
         else
-          title = 'Find home-improvement experts &raquo; ' + app_base + tagline            
+          title = 'Find experts &raquo; ' + app_base + tagline            
         end
       when 'sessions'
         title = 'Login &raquo; ' + app_base + tagline            

@@ -50,8 +50,8 @@
 	<div class="yui-b col_723">
 		<% rounded do %>
 				<ul class="buttons right">
-					<li><%= link_to "Recent.", category_path(@category), {:class => (params[:popular] ? 'btn_gray' : 'btn_blue')} %><li>
-					<li><%= link_to "Popular.", category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'btn_blue' : 'btn_gray')}%></li>
+					<li><%= link_to "Recent", category_path(@category), {:class => (params[:popular] ? '' : 'active')} %><li>
+					<li><%= link_to "Popular", category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}%></li>
 				</ul>
 				<h2 class="super generic <%= @category.slug %>"><%= @category.name %> <%= params[:popular] ? " (Popular) " : "" %></h2>
 		

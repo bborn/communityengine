@@ -1,7 +1,5 @@
-<% rounded(:class => 'blue_gradient user' ) do %>
-	<div class="gradient">
-		<h2 class="super"><%= link_to "Find an expert", skills_path %></h2>
-	</div>
+<% rounded(:class => 'user' ) do %>
+	<h2 class="super"><%= link_to "Find an expert", skills_path %></h2>
 	Get help from someone who knows.
 	<ul>
 	<% Skill.find(:all, :order => "name").each do |skill| %>

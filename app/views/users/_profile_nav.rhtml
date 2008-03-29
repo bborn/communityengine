@@ -1,4 +1,4 @@
-<div class="top_buttons">
+<div class="top_buttons profile_nav">
 	<div class="yui-gf padded">
 		<div class="yui-u first">		
 			<h3>Welcome <%= link_to @user.login, dashboard_user_path(@user) %>!</h3>
@@ -8,7 +8,7 @@
 			
 		</div>
 		<div class="yui-u">
-			<ul class="btn_green">
+			<ul>
 				<li><%= link_to "New Post", new_user_post_path(@user) %></li>
 				<li><%= link_to "Add a Photo", new_user_photo_path(@user) %></li>
 				<li><%= link_to "My Clippings", user_clippings_path(@user) %></li>
