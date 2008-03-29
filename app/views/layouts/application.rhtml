@@ -32,7 +32,7 @@
 								<a href="/login" title="Log in to your <%= AppConfig.community_name %> account">Log in</a> or 
 								<a href="/signup" title="Sign up for a <%= AppConfig.community_name %> account">Sign up</a>
 							<% else %>
-								Logged in: <%= current_user.login %> | 
+								Logged in: <%= link_to current_user.login, dashboard_user_path(current_user) %> | 
 								<% if !session[:admin_id].nil? %>
 									(<%= link_to "return to the admin", return_admin_user_path(session[:admin_id]) %>) 
 								<% end %>
@@ -83,9 +83,8 @@
 		   </div> <!-- body --> 
 		
 		   <div id="ft">
-				<div class="rounded" id="footer">
+				<div id="footer">
 					<div class="padded">
-				   		<a href="/" title="<%= AppConfig.community_name %> Home" style="float:left; margin-right:1em"><%= image_tag 'logo_small.png', :plugin => "community_engine" %></a>
 						<a href="/" title="<%= AppConfig.community_name %> Home">Home</a> | 
 						<% unless current_user %> 
 							<%= link_to "Log in", new_session_path %> | 
@@ -95,7 +94,7 @@
 						<a href="/about" title="What is <%= AppConfig.community_name %>?">About</a> | 
 						<a href="/faq" title="Frequent Asked Questions">FAQ</a> | 
 						<% if @rss_title && @rss_url  %>
-							| <%= link_to image_tag('green_feed.gif', :plugin => "community_engine") + ' RSS', @rss_url, {:title => @rss_title} %>
+							| <%= link_to image_tag('feed.png', :plugin => "community_engine") + ' RSS', @rss_url, {:title => @rss_title} %>
 						<% end %>
 
 						<br /><strong><%= AppConfig.community_tagline %></strong>

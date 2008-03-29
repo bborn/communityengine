@@ -1,7 +1,7 @@
-<div class="top_buttons rounded" style="background:#F1F6D7">
+<div class="top_buttons">
 	<div class="yui-gf padded">
 		<div class="yui-u first">		
-			<h3>Welcome <%= link_to @user.login, user_path(@user) %>!</h3>
+			<h3>Welcome <%= link_to @user.login, dashboard_user_path(@user) %>!</h3>
 			<span>Share the love, <%= link_to "invite a friend", invite_user_path(@user)%></span><br/>
 			<a href="#" id="show_tips" onclick="Effect.BlindDown($('user_tips'), {duration:0.3}); $(this).toggle(); $('hide_tips').toggle(); return false">Show Tips &raquo;</a>
 			<a href="#" id="hide_tips" style="display:none" onclick="Effect.BlindUp($('user_tips'), {duration:0.1}); $(this).toggle(); $('show_tips').toggle(); return false">&laquo; Hide Tips</a>

@@ -56,7 +56,7 @@
 			<p class="centered">
 				<script type="text/javascript">
 					function getCookie(){
-						return "_session_id=" + Cookie.get("_session_id");
+						return "_session_id=" + Cookie.get("<%= ActionController::Base.session.first[:session_key] %>");
 					}
 					function getAppHost(){
 						return '<%= APP_URL %>';

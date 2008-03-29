@@ -27,7 +27,10 @@ a {
 	font-weight:normal;
 	text-decoration:none; 
 	}
-a:hover { text-decoration:underline; }
+a:hover { 
+	text-decoration:underline; 
+	color: #608068;
+	}
 img { vertical-align:middle; }
 .gray {	color:#828282;}
 span.gray {
@@ -52,14 +55,12 @@ body {
 
 div#custom-doc {	
 	background:#ffffff;
-	border-bottom:5px solid #efefef; 
-	border-left:5px solid #efefef;
-	border-right:5px solid #efefef;	
+	border-left:4px solid #efefef;
+	border-right:4px solid #efefef;	
 	padding:1em;	
 	}
 div.banner_message {
-	background:#EAF7CE;
-	color:#3F3F3F;
+	background:#E1DAFD;
 	padding-top: 5px;
 	padding-bottom: 10px;	
 	}
@@ -75,7 +76,6 @@ div.banner_message {
 		padding-left:3em;
 	}
 	div.banner_message h2 a {
-		color:#D5325D;
 		font-weight:bold;		
 	}
 div.recent a {
@@ -187,28 +187,17 @@ div#send_to_friend {
 	}
 div.post { 
 	background:#ffffff; 
-	padding: 0 2em 0 2em;
 	overflow: hidden;	
-	width:90%;
 	}
 	div.post h1 a {
-		border-bottom:1px dashed;
-		font-weight:bold;
 		text-decoration:none;		
 		}
-		div.post h2 a { 
-				border-bottom:1px dashed;
-				font-weight:bold;
-				letter-spacing:0.5px;
-				text-decoration:none;
-			}
+	div.post h2 a { 
+		font-size: 1.5em;
+		letter-spacing:0.5px;
+		text-decoration:none;
+		}
 		div.post h2 a:visited {	color: #828282;}
-		div.post h2 a:visited:after {
-			color: #828282;
-			content: "\00A0\221A";
-			font-size: 60%;
-			font-weight: normal;
-}
 	div.post p {line-height:1.3em;}
 	div.post img {
 		margin: 5px 10px 5px 0px;
@@ -216,7 +205,11 @@ div.post {
 		}
 div.post #post_tools small img {
 	margin:0;
-	}					
+	}		
+div.post .meta {
+	padding: 2px 2px 4px 2px;
+	font-size: .9em;
+	}				
 div#posts ul {
 	list-style:none;
 	margin:0;
@@ -242,7 +235,7 @@ div.section {
 	background:#ffffff;		
 	padding-bottom:1em;
 	}
-div.top_buttons { background:#F1F6D7; }
+div.top_buttons { background:#E1DAFD; }
 div#user_tips {
 	border:1px solid #cccccc;
 	border-top: none;
@@ -323,7 +316,7 @@ div.user_list_row {
 	div.user_list_row h3 {
 		}	
 div.active_users, div.blue_sidebar {
-	background:#E7F7FA;
+	background:#E1DAFD;
 	}
 		div.active_users div.padded img.polaroid, div.blue_sidebar div.padded img.polaroid {
 			margin-right:5px;
@@ -368,7 +361,7 @@ div#ft {
 	margin-top:1em;
 }
 
-div#footer {background:#F1F6D7}
+div#footer {	background:#E1DAFD; }
 	div#footer a { 
 		color:#666666;
 		font-weight:bold;
@@ -616,9 +609,7 @@ ul.sidebar_nav {
 		margin-bottom:2px;
 		}
 		ul.sidebar_nav li a {
-			color:#666666;
 			display:block;
-			height:31px;
 			font-size:1.2em;
 			font-weight:normal;
 			text-decoration:none;
@@ -629,7 +620,6 @@ ul.sidebar_nav {
 				padding-bottom:.3em;
 				vertical-align:middle;		
 				}
-		ul.sidebar_nav li:hover a { color:#1EA2C1; }
 		ul.sidebar_nav li a.questions, ul.sidebar_nav li a.pen {
 			}
 		ul.sidebar_nav li a.howto {
@@ -727,7 +717,6 @@ ul#nav {
 		margin-left: 2px;
 		}
 		ul#nav a {
-			background:#ffffff url(../images/nav/nav_bg_left.gif) no-repeat bottom left;
 			cursor: pointer;
 			float: left;
 			padding: 0 0 0 3px;
@@ -736,7 +725,6 @@ ul#nav {
 			white-space: nowrap;
 			}
 			ul#nav a span {
-				background:#ffffff url(../images/nav/nav_bg_right.gif) no-repeat bottom right;
 				color:#999999;
 				cursor: pointer;
 				display: block;
@@ -752,16 +740,14 @@ ul#nav {
 			background-position: top left;
 			text-decoration: none;
 			}
-			ul#nav a:hover span {color:#1EA2C1;}
+			ul#nav a:hover span {color:#8A2C2C;}
 		ul#nav li.current a {
-			background:#ffffff url(../images/nav/nav_selected_left.gif) top left;				
-			color:#ffffff;
+			color:#608068;
 			}			
 			ul#nav li.current a span {
-				background:#ffffff url(../images/nav/nav_selected_right.gif) top right;	
-				color:#ffffff;
+				color:#608068;
 				}
-		ul#nav li.current a:hover span {color:#ffffff;}
+		ul#nav li.current a:hover span {color:#8A2C2C;}
 		ul#nav a:hover span { background-position: right top;}	
 
 ul.sidebar_posts {
@@ -841,6 +827,7 @@ div#tag_list a.selected {
 /* MESSAGES	*/
 .flash_message {
 	padding:1em;
+	margin-top:1em;
 	}
 	.flash_message ul {
 		list-style:disc;
@@ -883,20 +870,19 @@ div.fieldWithErrors input {
 	
 /*	PAGINATION	*/
 div.pagination a {
-	border:1px solid #7DA807;
-	color:#7DA807;
+	border:1px solid #828282;
 	margin-right:.3em;
 	padding:.4em;	
 	}
 	div.pagination a:hover {
-		background:#7DA807;
+		background:#828282;
 		border:1px solid #7DA807;
 		color:#ffffff;
 		margin-right:.3em;
 		padding:.4em;	
 		}
 div.pagination a.active {
-		background:#1EA2C1;
+		background:#828282;
 		border:none;
 		color:#ffffff;		
 	}

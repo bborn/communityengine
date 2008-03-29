@@ -31,13 +31,17 @@
       -unless @user.comments.empty?
         %li="You have left #{@user.posts.count} comments."
       -unless @user.accepted_friendships.empty?
-        %li="#{@user.accepted_friendships.count} people are friends with you." 
+        %li="You have #{pluralize @user.accepted_friendships.count, 'friend'}." 
       
 
     
   #yui-main
     .yui-b
       %h2= random_greeting(@user)
+      
+      -if @user.pending_friendships.any?
+        %p=link_to "You have pending friendship requests.", pending_user_friendships_path(@user)
+      
       
       -if @network_activity.empty? && @recommended_posts.empty?
         %p

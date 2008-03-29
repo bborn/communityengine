@@ -43,25 +43,21 @@
 #yui-main
   .yui-b.col_723
     =render :partial => '/base/homepage_features'
-
-    %br.clear
-    -rounded(:class => 'green_gradient blog' ) do 
-      .gradient
-        = link_to "Archive.", recent_url, :class => "btn_green right"
-        %h2.super 
-          Recent Posts (looking for 
-          = link_to "most popular", popular_url
-          ?)
+    -rounded(:class => 'col_723' ) do 
+      %h2.super 
+        Recent Posts 
+        %small
+          = "(#{link_to "see popular", popular_url})"
 
       .padded
         -@posts.each do |post|
           = render :partial => "shared/blog_excerpt", :locals => {:post => post}
-        = link_to "Archive.", recent_url, :class => "btn_green right"
+        = link_to "Archive", recent_url, :class => "right"
 
 %br.clear
 
 %h2.impact What's Fresh?
-.footer_content.rounded
+.footer_content
   .padded#footer_content
     %span
       =image_tag 'spinner.gif', :plugin => "community_engine"
