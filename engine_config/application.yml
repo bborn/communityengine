@@ -9,12 +9,18 @@ meta_keywords: 'keywords for use in META tags'
 featured_writer_label: 'Featured Writer'
 
 photo:
-  resize_to: "465>"
-  #size in megabytes
-  max_size: 3  
-  thumbs: {thumb: "100x100!", medium: "290x320!", large: "664>"}
   missing_thumb: '/plugin_assets/community_engine/images/icon_missing_thumb.png'
   missing_medium: "/plugin_assets/community_engine/images/icon_missing_medium.png"
+  attachment_fu_options:
+    resize_to: "465>"
+    min_size: 1    
+    #size in megabytes
+    max_size: 3
+    thumbnails: {thumb: "100x100!", medium: "290x320!", large: "664>"}
+    #options - 's3', 'file_system', 'db_system' - see attachment_fu for details
+    storage: 'file_system'
+    content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
+      
 feature:
   thumbs: {thumb: [45,45], large: [635,150]}
   use_thumbs: false
@@ -22,3 +28,4 @@ feature:
 sections_enabled: ['photos', 'posts', 'clippings', 'contests', 'categories', 'events']
 show_advertising: false
 closed_beta_mode: false
+

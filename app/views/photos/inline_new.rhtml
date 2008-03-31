@@ -37,7 +37,7 @@
 			<% form_for(:photo, :url => user_photos_path({:user_id => @user, :inline => true}), :html => {:multipart =>true} ) do |f| %>
 
 				<p><%= f.file_field :uploaded_data, :size=> '20' %>
-				<br /><small><%= (AppConfig.photo['max_size']/1.megabyte) || '1' %> megabyte upload limit</small>					
+				<br /><small><%= (AppConfig.photo['attachment_fu_options']['max_size']/1024) %> megabyte upload limit</small>					
 				</p>
 
 				<p>

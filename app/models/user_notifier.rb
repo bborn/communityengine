@@ -3,7 +3,7 @@ class UserNotifier < ActionMailer::Base
   include ActionController::UrlWriter
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::SanitizeHelper  
-  include ApplicationHelper
+  include BaseHelper
   
   def signup_invitation(email, user, message)
     setup_sender_info

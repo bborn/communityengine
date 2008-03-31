@@ -1,12 +1,10 @@
 class Photo < ActiveRecord::Base
   acts_as_commentable
+
+  attachment_fu_options = AppConfig.photo['attachment_fu_options']
+  attachment_fu_options = attachment_fu_options.symbolize_keys.merge({:storage => attachment_fu_options['storage'].to_sym, :max_size => attachment_fu_options['max_size'].to_i.megabytes })
   
-  has_attachment  :storage => :s3, 
-    :min_size         => 1,
-    :max_size         => AppConfig.photo['max_size'].megabytes,
-    :resize_to        => AppConfig.photo['resize_to'],
-    :content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png'], 
-    :thumbnails => AppConfig.photo['thumbs']
+  has_attachment attachment_fu_options
 
   acts_as_taggable
 

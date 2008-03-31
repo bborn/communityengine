@@ -3,11 +3,9 @@ COMMUNITY ENGINE
 Requirements:
   - RAILS VERSION 2.0.2 
   - The engines plugin (http://rails-engines.org/news/2007/12/11/engines-2-0-ish/)
-  - An S3 account (for uploading photos)
   - ImageMagick 
   - Several gems:
     rmagick
-    aws-s3
     hpricot
     mime-types    
     htmlentities
@@ -28,21 +26,20 @@ GETTING COMMUNITY ENGINE RUNNING
     # http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
 
 4. Create your database and modify your config/database.yml appropriately.
-5. Delete your application.rb and application_helper.rb
-6. Delete public/index.html (if you haven't already)
-7. Modify your environment.rb and environment files as indicated below
-8. Modify your routes.rb as indicated below
-9. Add amazon_s3.yml (required) to root config directory (examples are in /sample_files). You'll need an S3 account for photo uploading.
-10. Generate community engine migrations: 
+5. Delete public/index.html (if you haven't already)
+6. Modify your environment.rb and environment files as indicated below.
+7. Modify your routes.rb as indicated below.
+8. Generate community engine migrations: 
     script/generate plugin_migration
-11. rake db:migrate
-12. Run tests (if you want): 
+9. rake db:migrate
+10. Run tests (if you want): 
     rake test
     rake community_engine:test
-13. Start your server and check out your site! 
+11. Start your server and check out your site! 
     mongrel_rails start
     or
     ./script/server
+
 
 
 ## Modifying your environment.rb and environment files ##
@@ -77,12 +74,19 @@ Adding this after any of your own existing routes:
 map.from_plugin :community_engine  
 
 
-## CONFIGURATION ##
-Create an application.yml file in RAILS_ROOT/config (OPTIONAL)
+## CONFIGURATION (OPTIONAL) ##
+To override the default configuration, create an application.yml file in RAILS_ROOT/config 
 ===============================================================
 The application configuration defined in this file overrides the one defined in /community_engine/engine_config/application.yml
-This is where you can change commonly used config variables, like AppConfig.community_name, etc.
-This YAML file will get converted into an OpenStruct, giving you things like AppConfig.whatever_variable_you_like
+This is where you can change commonly used configuration variables, like AppConfig.community_name, etc.
+This YAML file will get converted into an OpenStruct, giving you things like AppConfig.community_name, AppConfig.support_email, etc.
+
+## PHOTO UPLOADING  ##
+By default CommunityEngine uses the filesystem to store photos.
+To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called
+amazon_s3.yml to the application's root config directory (examples are in /community_engine/sample_files). 
+You'll need to change your configuration in you application.yml to tell CommunityEngine to use s3 as the photo backend.
+You'll need an S3 account for S3 photo uploading.    
 
 
 ## Create an s3.yml file in RAILS_ROOT/config (OPTIONAL) ##
@@ -93,8 +97,7 @@ in RAILS_ROOT/config/s3.yml. (Sample in engine_config/s3.yml)
 
 ## Other notes ##
 ===============================================================
-If you have an existing application.rb, nothing will work unless you modify it to 
-include the methods in community_engine's application.rb (your application.rb takes precedence)
-
 To customize your application, just create views to override those in community_engine/app/views. 
-For example, you could create RAILS_ROOT/app/views/layouts/application.haml and have that include your own stylesheets, etc.
+For example, you could create RAILS_ROOT/app/views/layouts/application.html.haml and have that include your own stylesheets, etc.
+
+You can also override CommunityEngine's controllers by creating identically-named controllers in your applications app/controllers directory.
