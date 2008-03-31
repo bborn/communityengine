@@ -83,9 +83,9 @@
           <span class="edit">
             <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
             <%= link_to_remote(_('Edit post'), 
-                  {:url => edit_sb_post_path(:forum_id => @forum, :topic_id => @topic, :id => post), :method => :get,
+                  {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get,
                    :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, 
-                  {:href => edit_sb_post_path(:forum_id => @forum, :topic_id => @topic, :id => post, :page => params[:page]), :class => "utility"}) %>            
+                  {:class => "utility"}) %>            
           </span>
           <% if admin? && !post.user.admin? %>        
             <div class="<%= "make-moderator-#{post.user_id}" %>">

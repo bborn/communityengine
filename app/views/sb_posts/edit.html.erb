@@ -8,6 +8,6 @@
 <%= error_messages_for :topic %>
 <% form_for :post, :html => { :method => :put }, 
      :url  => sb_post_path(:forum_id => params[:forum_id], :id => params[:topic_id], :id => @post, :page => params[:page]) do |f| -%>
-<p id="post_body"><%= f.text_area :body %></p>
+<%= f.text_area :body %>
 <%= submit_tag _('Save') %> or <%= link_to _('cancel'), forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :page => params[:page]) %>
 <% end -%>

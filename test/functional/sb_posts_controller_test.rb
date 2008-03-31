@@ -93,6 +93,12 @@ class SbPostsControllerTest < Test::Unit::TestCase
     end
   end
 
+  def test_edit_js
+    login_as :sam
+    get :edit, :forum_id => forums(:comics).id, :topic_id => topics(:galactus).id, :id => sb_posts(:silver_surfer).id, :format => 'js'
+    assert_response :success
+  end
+
   def test_can_edit_own_post
     login_as :sam
     put :update, :forum_id => forums(:comics).id, :topic_id => topics(:galactus).id, :id => sb_posts(:silver_surfer).id, :post => {}
