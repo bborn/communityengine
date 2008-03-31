@@ -1,9 +1,5 @@
 class HomepageFeature < ActiveRecord::Base  
-  has_attachment  :storage => :s3, 
-    :min_size         => 1,
-    :max_size         => 1.megabytes,
-    :content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png'],
-    :thumbnails => AppConfig.feature['thumbs']
+  has_attachment prepare_options_for_attachment_fu(AppConfig.feature['attachment_fu_options'])
 
   validates_presence_of
   validates_presence_of :content_type

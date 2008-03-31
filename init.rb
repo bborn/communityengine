@@ -1,3 +1,4 @@
+require 'community_engine'
 require 's3_cache_control'
 
 Module.class_eval do

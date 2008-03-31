@@ -4,6 +4,9 @@ community_description:  "The Best Place for People Who Love Communities"
 support_email:  "support@community.com"
 meta_description: 'A description of your community for use in META tags.'
 meta_keywords: 'keywords for use in META tags'
+sections_enabled: ['photos', 'posts', 'clippings', 'contests', 'categories', 'events']
+show_advertising: false
+closed_beta_mode: false
 
 # The label you use for 'staff' writers (featured writer, staff, pro, etc.)
 featured_writer_label: 'Featured Writer'
@@ -22,10 +25,21 @@ photo:
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
       
 feature:
-  thumbs: {thumb: [45,45], large: [635,150]}
   use_thumbs: false
   dimensions: [150, 635]
-sections_enabled: ['photos', 'posts', 'clippings', 'contests', 'categories', 'events']
-show_advertising: false
-closed_beta_mode: false
-
+  attachment_fu_options:
+    resize_to: "465>"
+    min_size: 1    
+    max_size: 1
+    thumbnails: {thumb: '45x45!', large: '635x150!'}    
+    storage: 'file_system'
+    content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
+        
+clipping:
+  attachment_fu_options:
+    resize_to: "465>"
+    min_size: 1    
+    max_size: 3
+    thumbnails: {thumb: "100x100!", medium_square: "200x200!", medium: "200>"}
+    storage: 'file_system'
+    content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']

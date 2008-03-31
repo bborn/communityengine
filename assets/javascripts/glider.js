@@ -70,9 +70,11 @@ Object.extend(Object.extend(Glider.prototype, Abstract.prototype), {
       var nextIndex = (this.sections.length - 1 == currentIndex) ? 0 : currentIndex + 1;      
     } else var nextIndex = 1;
 
-    this.moveTo(this.sections[nextIndex], this.scroller, { 
-      duration: this.options.duration
-    });
+		if(this.sections.length > 1){
+	    this.moveTo(this.sections[nextIndex], this.scroller, { 
+	      duration: this.options.duration
+	    });			
+		}
   },
 	
   previous: function(){
