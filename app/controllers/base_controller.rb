@@ -3,7 +3,6 @@ require 'open-uri'
 require 'pp'
 
 class BaseController < ApplicationController
-  helper :advertising
   include AuthenticatedSystem
   before_filter :login_from_cookie  
   
