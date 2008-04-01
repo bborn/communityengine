@@ -1,7 +1,7 @@
 <% @meta = { :description => "#{@user.login}'s DIY projects, interior design ideas and favorites.", 
 	:keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}, diy, design, interior-design" } -%>
 
-<% @section = 'my_profile' if @user.eql?(current_user) %>
+<% @section = @user.eql?(current_user) ? 'my_profile' : 'users'  %>
 
 <% if @is_current_user and @user.vendor? and (@user.offerings.empty? or @user.description.nil? ) %>
 	<p>
