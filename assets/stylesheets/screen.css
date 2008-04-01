@@ -341,7 +341,7 @@ div#hd {
 	div#hd div#header_strip {
     position: absolute;
     top: 130px;
-    width: 100%;
+    width: 950px;
     height: 5px;
     background: transparent url(../images/trans_white_line.png);		
 		}

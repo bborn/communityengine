@@ -7,7 +7,7 @@ class PostTest < Test::Unit::TestCase
     posts = Post.find_recent(:limit => 3)
     assert_equal posts.size, 3
     posts = Post.find_recent
-    assert_equal posts.size, 5
+    assert_equal posts.size, 4
   end
 
   def test_should_find_popular
@@ -19,7 +19,7 @@ class PostTest < Test::Unit::TestCase
   
   def test_should_display_name
     post = posts(:funny_post)
-    assert_equal post.display_title, "HOW TO: This is really good stuff"
+    assert_equal post.display_title, "HOW TO: Building communities is all about love."
   end
   
   def test_should_find_previous_post
