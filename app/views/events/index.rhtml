@@ -1,6 +1,6 @@
 <% @section = 'events' %>
 
-<div class="yui-b col_236">
+<div class="yui-b sidebar">
 	<% if @is_admin_user %>
 		<% rounded(:class => 'sidebar_section') do %>
   		<ul class="sidebar_nav">
@@ -18,7 +18,7 @@
 </div>
 
 <div id="yui-main">
-	<div class="yui-b col_723">
+	<div class="yui-b main_column">
 		<% rounded do %>
 				<div style="margin:1em;">
 					<%= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1 %>			

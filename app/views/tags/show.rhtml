@@ -1,4 +1,4 @@
-<div class="yui-b col_236">
+<div class="yui-b sidebar">
 
 	<% rounded do %>
 		<div class="yui-u">
@@ -17,7 +17,7 @@
 </div>
 
 <div id="yui-main">
-	<div class="yui-b col_723">
+	<div class="yui-b main_column">
 		<% rounded(:class => "show_tag") do %>
 			<h2>
 				<%= params[:type] ? h(params[:type]+'s') : 'Items' %> tagged: <%= link_to h(@tag.name), tag_path(@tag.name) %>

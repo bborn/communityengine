@@ -1,4 +1,4 @@
-<div class="yui-b col_236">
+<div class="yui-b sidebar">
 	<% rounded do %>
 		<h2 class="impact info">What are "Tags"?</h2>
 		<p><strong>Tags are one-word descriptors</strong> users assign to blog posts, pictures, and clippings on <%= AppConfig.community_name %>.</p>
@@ -17,7 +17,7 @@
 </div>
 
 <div id="yui-main">
-	<div class="yui-b col_723">
+	<div class="yui-b main_column">
 		<% rounded do %>
 			<h2 class="super tags">Browse Content By Tags</h2>
 			<% tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class| %>

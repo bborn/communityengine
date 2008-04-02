@@ -1,6 +1,6 @@
 <% @section = 'events' %>
 
-<div class="yui-b col_236">
+<div class="yui-b sidebar">
 	<% if @is_admin_user %>
 		<% rounded do %>
 			<%= link_to "New event", new_event_path %>
@@ -13,7 +13,7 @@
 </div>
 
 <div id="yui-main">
-	<div class="yui-b col_723">
+	<div class="yui-b main_column">
 		<% rounded(:class => "event") do %>
 
 				<h2><%= @event.name %></h2>

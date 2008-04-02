@@ -1,9 +1,9 @@
 <% @section = 'popular' %>
 
-<div class="yui-b col_236">
+<div class="yui-b sidebar">
 	<% rounded do %>
 		<% if current_user %>
-			Get popular.
+      Get popular.
 			<ul class="sidebar_nav">
 				<li><%= link_to "Write a blog post!", new_user_post_path({:user_id => current_user}), {:class => 'pencil'} %></li>
 			</ul>
@@ -38,7 +38,7 @@
 </div>
 
 <div id="yui-main">
-	<div class="yui-b col_723">
+	<div class="yui-b main_column">
 		<% rounded do %>
 			<h2 class="super popular">What's Popular <small>(looking for <%= link_to "recent", recent_path %>?)</small></h2>
 			<div class="padded">			

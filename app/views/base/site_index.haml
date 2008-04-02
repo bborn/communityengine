@@ -7,7 +7,7 @@
 -if @active_contest
   =render :partial => 'contests/banner'
 
-.yui-b.col_236
+.yui-b.sidebar
   =render :partial => 'base/homepage_nav'
 
   - if AppConfig.show_advertising
@@ -41,9 +41,9 @@
   %br
 
 #yui-main
-  .yui-b.col_723
+  .yui-b.main_column
     =render :partial => '/base/homepage_features'
-    -rounded(:class => 'col_723' ) do 
+    -rounded(:class => 'main_column' ) do 
       %h2.super 
         Recent Posts 
         %small

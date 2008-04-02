@@ -25,7 +25,7 @@ photo:
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
       
 feature:
-  use_thumbs: false
+  use_thumbs: true
   dimensions: [150, 635]
   attachment_fu_options:
     resize_to: "465>"

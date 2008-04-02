@@ -1,11 +1,11 @@
 <% @section = (params[:metro_area_id] ? 'metro_area' : 'users') %>
 
-<div class="yui-b col_236">
+<div class="yui-b sidebar">
 	<%= render :partial => 'users/search_options' %>	
 </div>
 
 <div id="yui-main">
-	<div class="yui-b col_723">
+	<div class="yui-b main_column">
 		<% rounded(:class => "user") do %>
 				<h2 class="super users"><%= AppConfig.community_name %> Members</h2>
 				<div style="margin:1em;">

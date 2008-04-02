@@ -1,16 +1,17 @@
 <% @section = 'forums' %>
 
 <% if admin? %>
-<h6><%= _('Admin') %></h6>
-<p><%= link_to _('Create New Forum'), new_forum_path, :class => "utility" %></p>
+<div class='right'>
+  <h4><%= _('Admin') %></h6>
+  <p><%= link_to _('Create New Forum'), new_forum_path, :class => "utility" %></p>
+</div>
 <% end %>
 
-<h1 style="margin-top:0;"><%= _('Forums') %></h1>
+<h1><%= _('Forums') %></h1>
 <p class="subtitle">
-<%= feed_icon_tag _("Recent Posts"), formatted_all_sb_posts_path(:format => 'rss') %>
-<%= number_with_delimiter(Topic.count) %> <%= _('topics') %>, <%= number_with_delimiter(SbPost.count) %> <%= _('posts') %>, 
-<%= number_with_delimiter(User.count(:conditions => "sb_posts_count>0")) %> <%= _('voices') %>
-  
+  <%= feed_icon_tag _("Recent Posts"), formatted_all_sb_posts_path(:format => 'rss') %>
+  <%= number_with_delimiter(Topic.count) %> <%= _('topics') %>, <%= number_with_delimiter(SbPost.count) %> <%= _('posts') %>, 
+  <%= number_with_delimiter(User.count(:conditions => "sb_posts_count>0")) %> <%= _('voices') %>  
 </p>
 
 <table border="0" cellspacing="0" cellpadding="0" class="wide forums">
@@ -47,11 +48,6 @@
     <td class="c3">
       <%= link_to _('Edit'), edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin? %>
     </td>
-<!--
-    <td class="ca inv"><%= number_with_delimiter(forum.topics_count) %></td>
-    <td class="ca inv"><%= number_with_delimiter(forum.sb_posts_count) %></td>
--->
-
     <td class="inv lp">
       <% if forum.sb_posts.last %>
         <%= time_ago_in_words(forum.sb_posts.last.created_at) %><br />

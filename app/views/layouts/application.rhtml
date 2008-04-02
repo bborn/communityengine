@@ -93,7 +93,7 @@
 							<a href="/logout" title="Log out of your <%= AppConfig.community_name %> account">Log out</a> | 
 						<% end %>
 						<a href="/about" title="What is <%= AppConfig.community_name %>?">About</a> | 
-						<a href="/faq" title="Frequent Asked Questions">FAQ</a> | 
+						<a href="/faq" title="Frequent Asked Questions">FAQ</a>
 						<% if @rss_title && @rss_url  %>
 							| <%= link_to image_tag('feed.png', :plugin => "community_engine") + ' RSS', @rss_url, {:title => @rss_title} %>
 						<% end %>

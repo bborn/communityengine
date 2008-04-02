@@ -19,7 +19,7 @@
   <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> <span class="arrow">&rarr;</span>
 </div>
 
-<h1 id="topic-title" style="margin-top:0.5em;margin-bottom:1em;"<%= %( onmouseover="$('topic_mod').show();" onmouseout="$('topic_mod').hide();") if logged_in? %>>
+<h1 id="topic-title" <%= %( onmouseover="$('topic_mod').show();" onmouseout="$('topic_mod').hide();") if logged_in? %>>
   <%= h @topic.title %>
   <% if @topic.locked? %>
     <span><%= _('(locked)') %></span>
@@ -41,8 +41,8 @@
   <%= ", Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t.name), :class => 'tag') }.join(" ")}" unless @topic.tags.empty? %>
 </p>
 
-<%= _('Voices') %>:
 <ul class="flat talking">
+  <li class='label'><%= _('Voices') %>:</li>
   <% @voices.each do | user | %>
     <li><%= link_to h(user.display_name), user_path(user) %></li>
   <% end %>
@@ -133,20 +133,7 @@
               <%= f.text_area :body, :style => "width: 99%" %>
             </td>
             <td style="vertical-align:top;">
-              <!-- <h5><%= _('Formatting Help') %></h5>
 
-              <ul class="help">
-                <li><%#= _('*bold*') %>
-                &nbsp; &nbsp; &nbsp;
-                <%#= _('_italics_') %>
-                &nbsp; &nbsp; &nbsp;<br />
-                <%#= _('bq. <span>(quotes)</span>') %></li>
-                <li>"IBM":http://www.ibm.com</li>
-                <li><%#= _('* or # <span>(lists)</span>') %></li>
-                <li>
-                  <%#= _('!http://example.com/image.jpg! <span>(image)</span>') %>
-                </li>
-              </ul> -->
               <%= submit_tag _("Save Reply") %><span class="button_or">or <%= link_to_function _('cancel'), "$('reply').hide()" %></span>
 
             </td>

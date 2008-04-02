@@ -4,10 +4,9 @@
 <div class="crumbs">
 <%= link_to _('Forums'), forum_home_path %> <span class="arrow">&rarr;</span>
 </div>
-<h1 style="margin-top:0.5em;margin-bottom: 1em">
+<h1>
   <%= h @forum.name %>
 </h1>
-
 <p class="subtitle">
   <%= feed_icon_tag @forum.name, formatted_forum_sb_posts_path(@forum, :rss) %> 
   <%= pluralize @forum.topics_count, _('topic') %>, <%= pluralize @forum.sb_posts_count, _('post') %>
@@ -29,7 +28,7 @@
 
 <% if @topic_pages.page_count > 1 -%>
   <% if logged_in? %>
-    <p style="float:right; margin-right:2em;"><%= link_to 'New topic', new_forum_topic_path(@forum), :class => "utility" %></p>
+    <p class='right'><%= link_to 'New topic', new_forum_topic_path(@forum), :class => "utility" %></p>
   <% end %>
   <p class="pages"><%= pagination_links @topic_pages, :window_size => 10 %></p>
 <% end -%>

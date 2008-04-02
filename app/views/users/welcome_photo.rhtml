@@ -1,4 +1,4 @@
-<div class="yui-b col_236">
+<div class="yui-b sidebar">
 	<% rounded do %>
 	<h2 class="impact">Get Started: Upload a profile photo</h2>
 	<p>Your profile photo represents you on <%= AppConfig.community_name %>. You can change it later.</p>
@@ -8,7 +8,7 @@
 </div>
 
 <div id="yui-main">
-	<div class="yui-b col_723">
+	<div class="yui-b main_column">
 		<% rounded do %>
 
 			<% form_tag( user_path(:welcome => 'about'), :method => 'put', :multipart =>true) do -%>
