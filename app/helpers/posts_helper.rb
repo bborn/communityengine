@@ -1,8 +1,7 @@
 module PostsHelper
 
   def post_with_ad_in_content(post)
-    # string = Ad.display(:post_content, logged_in?)      
-    string = "test ad"
+    string = Ad.display(:post_content, logged_in?)      
 
     doc = Hpricot(post.post)
     paragraphs = doc.search("p")
