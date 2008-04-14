@@ -45,7 +45,7 @@ GETTING COMMUNITY ENGINE RUNNING
         ... Your stuff here ...
       end
       # Include your application configuration below
-      require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/community_engine.rb"
+      require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
 
 7. Modify each environment file (development.rb, test.rb, and production.rb) as indicated below:
 
