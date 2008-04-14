@@ -9,6 +9,7 @@ Requirements:
     hpricot
     mime-types    
     htmlentities
+    rake 0.8.1
 
 GETTING COMMUNITY ENGINE RUNNING
 ==================================================================
@@ -16,23 +17,55 @@ GETTING COMMUNITY ENGINE RUNNING
 2. Install the engines plugin (http://rails-engines.org/news/2007/12/11/engines-2-0-ish/)
 3. Put community engine plugin into plugins directory (use one of the following methods):
 
-    Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community_engine
     # If you're not using git, and just want to add the source files.
+    Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community_engine
 
+    # Using git, make a shallow clone of the community_engine repository
     git clone --depth 1 git@github.com:bborn/communityengine.git vendor/plugins/community_engine
-    # This will make a shallow clone of the community_engine repository
-    
+
     # If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule: 
     # http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
 
-4. Create your database and modify your config/database.yml appropriately.
+4. Create your MySQL database (SQLite isn't supported) and modify your config/database.yml appropriately.
 5. Delete public/index.html (if you haven't already)
-6. Modify your environment.rb and environment files as indicated below.
-7. Modify your routes.rb as indicated below.
-8. Generate community engine migrations: 
+6. Modify your environment.rb as indicated below:
+
+      ## environment.rb should look something like this:
+      ===============================================================
+      RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
+      require File.join(File.dirname(__FILE__), 'boot')
+      require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
+
+      Rails::Initializer.run do |config|
+        #resource_hacks required here to ensure routes like /:login_slug work
+        #if removed, defaults to /users/:login_slug
+        config.plugins = [:engines, :community_engine, :resource_hacks, :white_list, :all]
+        config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
+  
+        ... Your stuff here ...
+      end
+      # Include your application configuration below
+      require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/community_engine.rb"
+
+7. Modify each environment file (development.rb, test.rb, and production.rb) as indicated below:
+
+      # development.rb, production.rb, and test.rb should include something like:
+      ===============================================================
+      APP_URL = "http://localhost:3000" (or whatever your URL will be in production)
+
+8. Modify your routes.rb as indicated below:
+
+      # Add this after any of your own existing routes: 
+      ===============================================================
+      map.from_plugin :community_engine
+
+9. Generate the community engine migrations: 
     script/generate plugin_migration
-9. rake db:migrate
-10. Run tests (if you want): 
+    
+10. rake db:migrate
+    NOTE: you must use a MySQL db, not compatible Rail's default SQLite
+    
+10. Run tests (remember, you must run "rake test" before you can run the community_engine tests): 
     rake test
     rake community_engine:test
 11. Start your server and check out your site! 
@@ -42,44 +75,14 @@ GETTING COMMUNITY ENGINE RUNNING
 
 
 
-## Modifying your environment.rb and environment files ##
-environment.rb should look something like this:
-===============================================================
-RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
-require File.join(File.dirname(__FILE__), 'boot')
-require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
-
-Rails::Initializer.run do |config|
-  #resource_hacks required here to ensure routes like /:login_slug work
-  #if removed, defaults to /users/:login_slug
-  config.plugins = [:engines, :community_engine, :resource_hacks, :white_list, :all]
-  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
-  
-  ... Your stuff here ...
-  
-end
-# Include your application configuration below
-require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/community_engine.rb"
-
-
-## Modifying each environment file ##
-development.rb, production.rb, and test.rb should include something like:
-===============================================================
-APP_URL = "http://localhost:3000" (or whatever your URL will be in production)
-
-
-## Modifying your routes.rb ##
-Adding this after any of your own existing routes: 
-===============================================================
-map.from_plugin :community_engine  
-
-
-## CONFIGURATION (OPTIONAL) ##
+## OPTIONAL CONFIGURATION ##
 To override the default configuration, create an application.yml file in RAILS_ROOT/config 
 ===============================================================
 The application configuration defined in this file overrides the one defined in /community_engine/engine_config/application.yml
 This is where you can change commonly used configuration variables, like AppConfig.community_name, etc.
 This YAML file will get converted into an OpenStruct, giving you things like AppConfig.community_name, AppConfig.support_email, etc.
+
+
 
 ## PHOTO UPLOADING  ##
 By default CommunityEngine uses the filesystem to store photos.
