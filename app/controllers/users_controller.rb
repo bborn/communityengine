@@ -299,8 +299,7 @@ class UsersController < BaseController
         metro_areas = MetroArea.find_all_by_country_id(params[:country_id], :order => "name")
         render :partial => 'shared/location_chooser', :locals => {:states => [], :metro_areas => metro_areas, :selected_country => params[:country_id].to_i, :selected_state => nil, :selected_metro_area => nil }
       end
-    end
-      
+    end      
   end
   
   def toggle_featured
