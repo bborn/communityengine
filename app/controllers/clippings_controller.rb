@@ -10,7 +10,8 @@ class ClippingsController < BaseController
     if params[:tag_name]    
       cond.append ['tags.name = ?', params[:tag_name]]
     end
-    cond.append ['created_at > ?', 2.weeks.ago]
+  
+    cond.append ['created_at > ?', 4.weeks.ago] unless params[:recent]
     order = (params[:recent] ? "created_at DESC" : "clippings.favorited_count DESC")
     
     

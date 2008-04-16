@@ -75,6 +75,10 @@ class Comment < ActiveRecord::Base
     find(:all, :conditions => "created_at > '#{14.days.ago.to_s :db}'", :order => "created_at DESC", :limit => options[:limit])
   end
   
+  def can_be_deleted_by(person)
+    person && (person.admin? || person.eql?(user) || person.eql?(recipient) )
+  end
+  
   
   protected
   def whitelist_attributes

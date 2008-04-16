@@ -106,7 +106,7 @@ class CommentsController < BaseController
 
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.user.eql?(current_user) or current_user.admin?
+    if @comment.can_be_deleted_by(current_user)
       @comment.destroy
       flash.now[:notice] = "The comment was deleted."
     else

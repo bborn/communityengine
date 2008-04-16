@@ -44,10 +44,10 @@ class TagsController < BaseController
           @posts, @photos, @users = [], [], []          
         end
     else
-      @posts = Post.find_tagged_with(@tag.name, :limit => 5)
-      @photos = Photo.find_tagged_with(@tag.name, :limit => 10)
-      @users = User.find_tagged_with(@tag.name, :limit => 10).uniq
-      @clippings = Clipping.find_tagged_with(@tag.name, :limit => 10)
+      @posts = Post.find_tagged_with(@tag.name, :limit => 5, :order => 'created_at DESC')
+      @photos = Photo.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC')
+      @users = User.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC').uniq
+      @clippings = Clipping.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC')
     end
   end
 

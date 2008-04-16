@@ -3,6 +3,8 @@ require 'md5'
 # Methods added to this helper will be available to all templates in the application.
 module BaseHelper
 
+
+
   def forum_page?
     %w(forums topics sb_posts).include?(@controller.controller_name)
   end
