@@ -2,9 +2,8 @@
 
 #main.column.span-9
   .right
-    = link_to "Popular", site_clippings_path, :class => (params[:recent] ? '' : 'active')
-    |
-    = link_to "Recent", site_clippings_path(:recent => 'DESC'), :class => (params[:recent] ? 'active' : '')
+    = link_to "Popular", site_clippings_path, :class => (params[:recent] ? 'button' : 'active button')
+    = link_to "Recent", site_clippings_path(:recent => 'DESC'), :class => (params[:recent] ? 'active button' : 'button')
     
   %h2
     Clippings
