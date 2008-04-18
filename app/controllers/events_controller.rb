@@ -1,5 +1,5 @@
 class EventsController < BaseController
-  uses_tiny_mce(:options => DEFAULT_MCE_OPTONS, :only => [:new, :edit, :create, :update ])
+  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit, :create, :update ])
 
   before_filter :admin_required, :except => [:index, :show]
 

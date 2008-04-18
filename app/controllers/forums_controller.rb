@@ -2,7 +2,7 @@ class ForumsController < BaseController
   before_filter :login_required, :except => [:index, :show]
   before_filter :find_or_initialize_forum
   helper :application
-  uses_tiny_mce :options => DEFAULT_MCE_OPTONS
+  uses_tiny_mce :options => AppConfig.default_mce_options
   
   def index
     @forums = Forum.find(:all, :order => "position")

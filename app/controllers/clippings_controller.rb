@@ -2,7 +2,7 @@ class ClippingsController < BaseController
   before_filter :login_required, :only => [:new, :edit, :update, :create, :destroy, :new_clipping]
   before_filter :find_user, :only => [:new, :edit, :index, :show]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
-  uses_tiny_mce(:options => DEFAULT_MCE_OPTONS, :only => [:show,:new_clipping])
+  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:show,:new_clipping])
 
   
   def site_index

@@ -11,10 +11,10 @@
 		</p>
 	<% end %>
 	
-	<% if @user.avatar_user_photo_url %>
+	<% if @user.avatar_photo_url %>
 		Your profile photo:<br />
 		<%= @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : '' %>			
-		<%= image_tag( @user.avatar_user_photo_url(:medium), :class => "polaroid", :style=>"width:250px" ) %>
+		<%= image_tag( @user.avatar_photo_url(:medium), :class => "polaroid", :style=>"width:250px" ) %>
 	<% end %>
 </div>
 

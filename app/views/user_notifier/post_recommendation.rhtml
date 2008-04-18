@@ -76,7 +76,7 @@
 			<% if @post.first_image_in_body %>
 				<img src="<%= APP_URL + @post.first_image_in_body  %>" />
 			<% else %>
-				<img src="<%= APP_URL + '/images/' + @post.user.avatar_user_photo_url(:thumb) %>" />
+				<img src="<%= APP_URL + '/images/' + @post.user.avatar_photo_url(:thumb) %>" />
 			<% end %>
 		</a>
 		<%= @description %>

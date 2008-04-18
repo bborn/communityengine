@@ -14,12 +14,12 @@
 	<% if @user.avatar %>
 		<%= @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : '' %>
 		<%= @user.featured_writer ? "<div class='right_corner'><div class='featured_writer'></div></div>" : '' %>		
-		<%= image_tag( @user.avatar_user_photo_url(:medium), :class => "polaroid" ) %>
+		<%= image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" ) %>
 	<% elsif @is_current_user %>
-		<%= image_tag( @user.avatar_user_photo_url(:medium), :class => "polaroid" ) %>
+		<%= image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" ) %>
 		No profile photo? <%= link_to "Click here to upload one!", edit_user_path(@user) %>
 	<% else %>
-		<%= image_tag( @user.avatar_user_photo_url(:medium), :class => "polaroid" ) %>
+		<%= image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" ) %>
 	<% end %>
 	<% if current_user and current_user.can_request_friendship_with(@user) %>
 		<%= add_friend_link(@user) %>

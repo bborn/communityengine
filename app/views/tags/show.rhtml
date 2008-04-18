@@ -64,7 +64,7 @@
 					<%= link_to "&raquo; All users tagged #{@tag.name}", tag_path(:id => @tag.name, :type => 'User') %>										
 					<br />
 					<% @users.each do |user| %>	
-						<%= link_to image_tag(user.avatar_user_photo_url(:thumb), :class => "polaroid"), user_path(user), :title => user.login %>
+						<%= link_to image_tag(user.avatar_photo_url(:thumb), :class => "polaroid"), user_path(user), :title => user.login %>
 					<% end %>
 				</div>
 			<% end %>	

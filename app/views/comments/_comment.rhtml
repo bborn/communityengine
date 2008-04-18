@@ -1,6 +1,6 @@
 <div id="comment_<%= comment.id %>">
 	<div class="yui-u first centered">
-		<%= link_to image_tag(comment.user.avatar_user_photo_url(:thumb), :class => "polaroid"), user_path(comment.user) %>
+		<%= link_to image_tag(comment.user.avatar_photo_url(:thumb), :class => "polaroid"), user_path(comment.user) %>
 		<%= ("<br />" + link_to_remote( "Delete this", {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), 
 				:method => :delete,
 				500 => 'alert(\'Sorry, there was a server error\'); return false', 

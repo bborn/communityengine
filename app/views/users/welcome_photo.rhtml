@@ -13,7 +13,7 @@
 
 			<% form_tag( user_path(:welcome => 'about'), :method => 'put', :multipart =>true) do -%>
 				<p>
-					<%= image_tag( @user.avatar_user_photo_url(:medium), :class => "polaroid right" ) %>
+					<%= image_tag( @user.avatar_photo_url(:medium), :class => "polaroid right" ) %>
 					<br />Choose a photo to upload:
 					<br /><%= file_field :avatar, :uploaded_data, :size => "20" %>
 					<% if @user.vendor? %>

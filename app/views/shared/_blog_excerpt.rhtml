@@ -24,7 +24,7 @@
   			| <%= link_to pluralize( post.comments.size, 'comment'), user_post_path(post.user, post)+'#comments' %>
   			| Viewed <%= pluralize post.view_count, 'time' %>			 
 			</div>
-			<%= link_to image_tag( (post.first_image_in_body || post.user.avatar_user_photo_url(:thumb)), {:class => "polaroid left", :style=>"width:100px"} ), user_post_path(post.user, post) %>
+			<%= link_to image_tag( (post.first_image_in_body || post.user.avatar_photo_url(:thumb)), {:class => "polaroid left", :style=>"width:100px"} ), user_post_path(post.user, post) %>
 			<p>
 				<%= truncate_words(post.post, 35, '...' ) %>
         <%= render :partial => 'polls/excerpt', :locals => {:poll => post.poll} if post.poll %>				

@@ -34,7 +34,7 @@
 				<h2>My recent comments</h2>
 				<% @users_comments.each do |comment| %>
 					<% commentable_url = comment.generate_commentable_url %>
-					<%= link_to(image_tag( comment.recipient.avatar_user_photo_url(:thumb), :class => "polaroid left", :style => "margin-right:.5em;" ), commentable_url) %>
+					<%= link_to(image_tag( comment.recipient.avatar_photo_url(:thumb), :class => "polaroid left", :style => "margin-right:.5em;" ), commentable_url) %>
 				
 					"<%= truncate_words(comment.comment, 10) %>"<br />
 					<% if comment.recipient.eql?(comment.commentable) %>

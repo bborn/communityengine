@@ -7,7 +7,7 @@ class PhotosController < BaseController
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
   before_filter :require_fake_session, :only => [:create_multiple]
   skip_before_filter :login_required, :only => [:create_multiple]
-  uses_tiny_mce(:options => SIMPLE_MCE_OPTIONS, :only => [:show])
+  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
   
   def recent
     @pages, @photos = paginate :photo, :order => "created_at DESC", :conditions => ["parent_id IS NULL"]

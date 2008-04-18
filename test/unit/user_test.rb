@@ -111,8 +111,8 @@ class UserTest < Test::Unit::TestCase
   end
   
   def test_should_call_avatar_photo
-    assert_equal users(:quentin).avatar_user_photo_url, AppConfig.photo['missing_medium']
-    assert_equal users(:quentin).avatar_user_photo_url(:thumb), AppConfig.photo['missing_thumb']
+    assert_equal users(:quentin).avatar_photo_url, AppConfig.photo['missing_medium']
+    assert_equal users(:quentin).avatar_photo_url(:thumb), AppConfig.photo['missing_thumb']
   end
   
   def test_should_get_active_users

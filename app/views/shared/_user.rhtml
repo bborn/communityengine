@@ -3,7 +3,7 @@
 	<div class="yui-u">
 		<div class="yui-gd user_list_row">
 			<div class="yui-u first centered">
-				<%= link_to image_tag( user.avatar_user_photo_url(:thumb), :class => "polaroid" ), user_path(user) %>
+				<%= link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user) %>
 			</div>
 			<div class="yui-u">			
 				<h3><%= link_to user.login, user_path(user) %></h3>
@@ -26,7 +26,7 @@
 <% elsif ('full') .eql?(format) %>
 	<div class="yui-gb user_list_row <%= user.vendor ? 'community_pro' : '' %> <%= user.featured_writer ? 'featured_writer' : '' %>">
 		<div class="yui-u first centered">
-			&nbsp;<%= link_to image_tag( user.avatar_user_photo_url(:thumb), :class => "polaroid" ), user_path(user) %>
+			&nbsp;<%= link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user) %>
 		</div>
 		<div class="yui-u">
 			<h3><%= link_to user.login, user_path(user) %></h3>			
@@ -56,7 +56,7 @@
 	</div>			
 <% else %>
 	<div class="yui-u first centered">
-		<%= link_to image_tag( user.avatar_user_photo_url(:thumb), :class => "polaroid" ), user_path(user) %>
+		<%= link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user) %>
 	</div>
 	<div class="yui-u">
 		<h3><%= link_to user.login, user_path(user) %></h3>

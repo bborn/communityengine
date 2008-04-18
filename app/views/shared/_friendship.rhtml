@@ -1,6 +1,6 @@
 <% user = friendship.friend %>
 <div class="yui-u first centered">
-	<%= image_tag( user.avatar_user_photo_url(:thumb), :class => "polaroid" ) %>
+	<%= image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ) %>
 </div>
 <div class="yui-u">
 	<h3><%= link_to user.login, user_path(user) %></h3>

@@ -2,7 +2,7 @@ class ContestsController < BaseController
   before_filter :login_required, :except => [:show]
   before_filter :admin_required, :except => [:show]
 
-  uses_tiny_mce(:options => DEFAULT_MCE_OPTONS, :only => [:new, :edit ])
+  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit ])
   # GET /contests
   # GET /contests.xml
   def index

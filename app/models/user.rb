@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
     self.posts.find(:all, :conditions => ["created_at > ? and created_at < ?", DateTime.now.to_time.at_beginning_of_month.months_ago(1), DateTime.now.to_time.at_beginning_of_month])
   end
   
-  def avatar_user_photo_url(size = nil)
+  def avatar_photo_url(size = nil)
     if avatar
       avatar.public_filename(size)
     else

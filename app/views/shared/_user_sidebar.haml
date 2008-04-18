@@ -1,6 +1,6 @@
 .padded
   .right
-    = link_to image_tag( user.avatar_user_photo_url(:thumb), :class => "polaroid", :width => '50px' ), user_path(user)
+    = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid", :width => '50px' ), user_path(user)
 
   %h3= link_to "#{truncate(user.login, 15)}", user_path(user), :class => "quiet"
   -if user.description

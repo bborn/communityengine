@@ -1,7 +1,7 @@
 class SbPostsController < BaseController
   before_filter :find_post,      :except => [:index, :monitored, :search, :create, :new]
   before_filter :login_required, :except => [:index, :search, :show, :monitored]
-  uses_tiny_mce(:options => DEFAULT_MCE_OPTONS, :only => [:edit, :update])  
+  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:edit, :update])  
 
   @@query_options = { :per_page => 25, :select => 'sb_posts.*, topics.title as topic_title, forums.name as forum_name', :joins => 'inner join topics on sb_posts.topic_id = topics.id inner join forums on topics.forum_id = forums.id', :order => 'sb_posts.created_at desc' }
 

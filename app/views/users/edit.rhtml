@@ -16,7 +16,7 @@
 		<div class="section" id='profile_details'>
 			<h2>Profile Photo</h2>
 			<%= @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : '' %>
-			<%= image_tag( @user.avatar_user_photo_url(:medium), :class => "polaroid" ) %>
+			<%= image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" ) %>
 			<br />
 			Choose a photo for your profile: <br />
 			<%= file_field :avatar, :uploaded_data, :size => "24" %>

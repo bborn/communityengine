@@ -289,7 +289,7 @@ module BaseHelper
   end
 
   def avatar_for(user, size=32)
-    image_tag user.avatar_user_photo_url(:medium), :size => "#{size}x#{size}", :class => 'photo'
+    image_tag user.avatar_photo_url(:medium), :size => "#{size}x#{size}", :class => 'photo'
   end
 
   def feed_icon_tag(title, url)

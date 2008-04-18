@@ -1,6 +1,6 @@
 class CommentsController < BaseController
   before_filter :login_required, :except => [:index]
-  uses_tiny_mce(:options => SIMPLE_MCE_OPTIONS, :only => [:index])
+  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:index])
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
 
