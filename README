@@ -112,3 +112,7 @@ You can also override CommunityEngine's controllers by creating identically-name
 
 # Todo
 Latest version of Engines plugin doesn't work.
+
+# Tips
+1. I get errors running rake! (wrong number of arguments (3 for 1)
+  - update to the latest version of rake
