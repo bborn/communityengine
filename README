@@ -107,3 +107,8 @@ To customize your application, just create views to override those in community_
 For example, you could create RAILS_ROOT/app/views/layouts/application.html.haml and have that include your own stylesheets, etc.
 
 You can also override CommunityEngine's controllers by creating identically-named controllers in your applications app/controllers directory.
+
+
+
+# Todo
+Latest version of Engines plugin doesn't work.
