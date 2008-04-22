@@ -35,6 +35,10 @@ class Friendship < ActiveRecord::Base
   def generate_url
     pending_user_friendships_url(self.friend)    
   end
+
+  def denied?
+    friendship_status.eql?(FriendshipStatus[:denied])
+  end
   
   def pending?
     friendship_status.eql?(FriendshipStatus[:pending])

@@ -4,7 +4,7 @@ class UserTest < Test::Unit::TestCase
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead.
   # Then, you can remove it from this and the functional test.
   include AuthenticatedTestHelper
-  fixtures :users, :states, :metro_areas
+  fixtures :users, :states, :metro_areas, :friendships
 
   def test_should_create_user
     assert_difference User, :count do
@@ -158,7 +158,13 @@ class UserTest < Test::Unit::TestCase
     assert users(:quentin).has_reached_daily_friend_request_limit?
   end
   
-
+  def test_get_network_activity
+    u = users(:quentin)
+    f = friendships(:aaron_receive_quentin_pending)
+    f.update_attributes(:friendship_status => FriendshipStatus[:accepted]) && f.reverse.update_attributes(:friendship_status => FriendshipStatus[:accepted])
+    assert !u.network_activity.empty?
+  end
+  
   protected
     def create_user(options = {})
       User.create({ :login => 'quire', 

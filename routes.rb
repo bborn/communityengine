@@ -101,6 +101,7 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :photos, :member => {:create_multiple => [:post, :get]}, :collection => {:slideshow => :get}
   user.resources :posts, :member => {:contest => :get, :send_to_friend => :any, :update_views => :any}
   user.resources :clippings
+  user.resources :activities, :collection => {:network => :get}
   user.resources :invitations
   user.resources :offerings, :collection => {:replace => :put}
   user.resources :favorites, :name_prefix => 'user_'

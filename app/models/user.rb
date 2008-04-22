@@ -337,12 +337,15 @@ class User < ActiveRecord::Base
     return cond, search, metro_areas, states
   end
 
-  def network_activity(since = 1.week.ago)
+  def network_activity(page = {}, since = 1.week.ago)
     ids = self.friends_ids
     return [] if ids.empty?
+    
+    page.reverse_merge :size => 10, :current => 1
     Activity.find(:all, :conditions => ['user_id in (?) AND created_at > ?', ids, since], 
       :order => 'created_at DESC',
-      :limit => 10)
+      :page => page)
+      
   end
   
   def friends_ids
