@@ -1,0 +1,13 @@
+.profile.dashboard
+  #main.column.span-9.first  
+    -unless @activities.empty?
+      %h3 Activity from your network
+      %table{:width => "100%"}
+        =render :partial => "activities/activity", :collection => @activities
+      .pagination= paginating_links @activities, :link_to_current_page => true
+    -else
+      You have no network activity yet. 
+      = link_to "Add some friends to get started!", users_path
+
+  #sidebar.column.span-5.last
+    =render :partial => 'users/dashboard_nav'

@@ -200,7 +200,7 @@ module BaseHelper
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
           500 => "alert('Sorry, there was an error requesting friendship')",
 					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
-					:method => :post }, {:class => "add_friend"}
+					:method => :post }, {:class => "add_friend button"}
 		html +=	"<span style='display:none;' class='spinner'>"
 		html += image_tag 'spinner.gif', :plugin => "community_engine"
 		html += " Requesting friendship...</span></p>"
@@ -327,6 +327,16 @@ module BaseHelper
       when 1440..2160     then '1 day ago' # 1 day to 1.5 days
       when 2160..2880     then "#{(distance_in_minutes.to_f / 1440.0).round} days ago" # 1.5 days to 2 days
       else from_time.strftime("%b %e, %Y  %l:%M%p").gsub(/([AP]M)/) { |x| x.downcase }
+    end
+  end
+
+  def time_ago_in_words_or_date(date)
+    if date.to_date.eql?(Time.now.to_date)
+      display = date.strftime("%l:%M%p").downcase
+    elsif date.to_date.eql?(Time.now.to_date - 1)
+      display = "Yesterday"
+    else
+      display = date.strftime("%B %d")
     end
   end
 
