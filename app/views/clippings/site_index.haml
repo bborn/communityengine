@@ -1,13 +1,11 @@
 -@section = 'clippings'
 
 #main.column.span-9
-  .right
-    = link_to "Popular", site_clippings_path, :class => (params[:recent] ? 'button' : 'active button')
-    = link_to "Recent", site_clippings_path(:recent => 'DESC'), :class => (params[:recent] ? 'active button' : 'button')
     
   %h2
+    = params[:recent] ? "Recent " : "Popular "
     Clippings
-    = params[:popular] ? " (Popular) " : ""
+
 
   .clippings_grid
     - @clippings.in_groups_of(2) do |group|
