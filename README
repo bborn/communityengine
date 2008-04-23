@@ -40,8 +40,7 @@ GETTING COMMUNITY ENGINE RUNNING
 
       Rails::Initializer.run do |config|
         #resource_hacks required here to ensure routes like /:login_slug work
-        #if removed, defaults to /users/:login_slug
-        config.plugins = [:engines, :community_engine, :resource_hacks, :white_list, :all]
+        config.plugins = [:engines, :community_engine, :white_list, :all]
         config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
   
         ... Your stuff here ...
