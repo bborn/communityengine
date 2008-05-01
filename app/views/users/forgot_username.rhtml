@@ -18,11 +18,11 @@
 
 		<% rounded(:class => 'user' ) do %>
 			<h2 class="super">Forgot your username?</h2>
-			<%= start_form_tag %>
+			<% form_tag do %>
 				<p><label for="login">Enter your email address</label><br/>
 				<%= text_field_tag 'email' %></p>
 				<p><%= submit_tag 'Send me my username' %></p>
-			<%= end_form_tag %>
+			<% end %>
 	
 		<% end %>
 
