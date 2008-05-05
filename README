@@ -1,5 +1,7 @@
 COMMUNITY ENGINE
 ================
+Information at: www.missingmethod.com/community_engine
+
 Requirements:
   - RAILS VERSION 2.0.2 
   - The engines plugin (http://rails-engines.org/news/2007/12/11/engines-2-0-ish/)
@@ -40,8 +42,7 @@ GETTING COMMUNITY ENGINE RUNNING
 
       Rails::Initializer.run do |config|
         #resource_hacks required here to ensure routes like /:login_slug work
-        #if removed, defaults to /users/:login_slug
-        config.plugins = [:engines, :community_engine, :resource_hacks, :white_list, :all]
+        config.plugins = [:engines, :community_engine, :white_list, :all]
         config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
   
         ... Your stuff here ...

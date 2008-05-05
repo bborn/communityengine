@@ -15,7 +15,8 @@ end
 namespace :community_engine do   
   desc 'Move the community engine assets to application public directory'
   task :mirror_public_assets => :environment do
-    Rails.plugins[:community_engine].mirror_public_assets    
+    # actually, no need to do anything here, the mere act of running rake mirrors the plugin assets for everything
+    # Engines::Assets.mirror_files_for(Rails.plugins[:community_engine])
   end
   
   desc 'Test the community_engine plugin.'
