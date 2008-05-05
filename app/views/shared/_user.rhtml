@@ -31,7 +31,7 @@
 		<div class="yui-u">
 			<h3><%= link_to user.login, user_path(user) %></h3>			
 			<%= "from #{user.location}<br/>" if user.metro_area %>
-			joined <%= time_ago_in_words user.created_at %> ago
+			joined <%= time_ago_in_words user.created_at %>
 			<% unless user.offerings.empty? %>
 				<br/><%= user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ') %>
 			<% end %>
