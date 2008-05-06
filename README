@@ -4,7 +4,7 @@ Information at: www.missingmethod.com/community_engine
 
 Requirements:
   - RAILS VERSION 2.0.2 
-  - The engines plugin (http://rails-engines.org/news/2007/12/11/engines-2-0-ish/)
+  - The engines plugin for Rails 2.0: http://svn.rails-engines.org/engines/branches/rb_2.0/
   - ImageMagick 
   - Several gems:
     rmagick
@@ -17,7 +17,7 @@ GETTING COMMUNITY ENGINE RUNNING
 ==================================================================
 1. From the command line:
     $ rails site_name (create a rails app if you don't have one already)
-2. Install the engines plugin (http://rails-engines.org/news/2007/12/11/engines-2-0-ish/)
+2. Install the engines plugin svn export http://svn.rails-engines.org/engines/branches/rb_2.0/ vendor/plugins/engines
 3. Put community engine plugin into plugins directory (use one of the following methods):
 
     # If you're not using git, and just want to add the source files:
@@ -68,11 +68,15 @@ GETTING COMMUNITY ENGINE RUNNING
 10. From the command line:
     $ rake db:migrate
     # NOTE: you must use a MySQL db, not compatible with Rail's default SQLite
+11. You may need to change these lines in application.rb (uncomment the :secret part, because you're not using cookie sessions):
+    # See ActionController::RequestForgeryProtection for details
+    # Uncomment the :secret if you're not using the cookie session store
+    protect_from_forgery # :secret => 'c1fdccfc9ebef1965bcf4e15aa5e6a34'
     
-10. Run tests (remember, you must run "rake test" before you can run the community_engine tests): 
+12. Run tests (remember, you must run "rake test" before you can run the community_engine tests): 
     $ rake test
     $ rake community_engine:test
-11. Start your server and check out your site! 
+13. Start your server and check out your site! 
     $ mongrel_rails start
     or
     $ ./script/server
