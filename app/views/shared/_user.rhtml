@@ -7,7 +7,7 @@
 			</div>
 			<div class="yui-u">			
 				<h3><%= link_to user.login, user_path(user) %></h3>
-				<span class="green">joined <%= time_ago_in_words user.created_at %> ago</span>				
+				<span class="green">joined <%= time_ago_in_words user.created_at %></span>				
 				<ul>
 					<li>
 						<%= link_to "photos", user_photos_path(user) %>
@@ -31,7 +31,7 @@
 		<div class="yui-u">
 			<h3><%= link_to user.login, user_path(user) %></h3>			
 			<%= "from #{user.location}<br/>" if user.metro_area %>
-			joined <%= time_ago_in_words user.created_at %> ago
+			joined <%= time_ago_in_words user.created_at %>
 			<% unless user.offerings.empty? %>
 				<br/><%= user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ') %>
 			<% end %>
@@ -60,7 +60,7 @@
 	</div>
 	<div class="yui-u">
 		<h3><%= link_to user.login, user_path(user) %></h3>
-		<span class="green">joined <%= time_ago_in_words user.created_at %> ago</span>				
+		<span class="green">joined <%= time_ago_in_words user.created_at %></span>				
 	</div>
 	<br class="clear" />
 <% end %>
