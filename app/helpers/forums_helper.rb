@@ -16,4 +16,16 @@ module ForumsHelper
     return forum.recent_topics.first.replied_at > (last_active || session[:forums][forum.id])
   end
   
+  def icon_and_color_and_post_for(topic)
+    icon = "comment"
+    color = ""
+    post = ''
+    if topic.locked?
+      icon = "lock" 
+      post = ", this topic is locked."
+      color = "darkgrey"
+    end  
+    [icon, color, post  ]
+  end
+  
 end
