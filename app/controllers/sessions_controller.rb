@@ -2,7 +2,11 @@
 class SessionsController < BaseController
   if AppConfig.closed_beta_mode
     skip_before_filter :beta_login_required
-  end    
+  end  
+  
+  def index
+    redirect_to :action => "new"
+  end  
   
   # render new.rhtml
   def new
