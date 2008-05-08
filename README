@@ -11,6 +11,7 @@ Requirements:
     hpricot
     mime-types    
     htmlentities
+    redcloth
     rake 0.8.1
 
 GETTING COMMUNITY ENGINE RUNNING
