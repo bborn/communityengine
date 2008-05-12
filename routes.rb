@@ -64,8 +64,7 @@ create_photo 'create_photo.js', :controller => 'photos', :action => 'create', :f
 resources :sessions
 resources :statistics, :collection => {:activities => :get, :activities_chart => :get}
 resources :tags, :member_path => '/tags/:id'
-#wtf?
-#, :collection => {:show => :get}
+search_tags '/search/tags', :controller => 'tags', :action => 'show'
 
 resources :categories
 resources :skills

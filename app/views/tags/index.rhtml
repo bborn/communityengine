@@ -5,7 +5,7 @@
 		<p><strong>Bigger font size = more popular tag</strong>.</p>
 		<p>For more information on Tags, check out the <%= link_to "FAQ", faq_url %> page</p>
 		
-		<form action="/tags/show" method="get">
+		<form action="/search/tags/" method="get">
 			Tag: <%= text_field_tag 'id', params[:id], :autocomplete => "off" %>
 			<div class="auto_complete" id="id_auto_complete"></div>	
 
