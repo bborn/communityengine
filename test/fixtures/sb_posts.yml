@@ -3,6 +3,7 @@ pdi:
   topic_id: 1
   user_id: 2
   body: P D I pdi
+  body_html: P D I pdi
   created_at: <%= 4.days.ago.to_s :db %>
   updated_at: <%= 4.days.ago.to_s :db %>
   forum_id: 1
@@ -11,6 +12,7 @@ pdi_reply:
   user_id: 11
   topic_id: 1
   body: what? pdi
+  body_html: pdi
   created_at: <%= 3.days.ago.to_s :db %>
   updated_at: <%= 3.days.ago.to_s :db %>
   forum_id: 1
@@ -19,6 +21,7 @@ pdi_rebuttal:
   user_id: 2
   topic_id: 1
   body: you heard me pdi
+  body_html: you heard me pdi
   created_at: <%= 2.days.ago.to_s :db %>
   updated_at: <%= 2.days.ago.to_s :db %>
   forum_id: 1
@@ -27,6 +30,7 @@ ponies:
   topic_id: 4
   user_id: 11
   body: ponies
+  body_html: ponies
   created_at: <%= 47.hours.ago.to_s :db %>
   updated_at: <%= 47.hours.ago.to_s :db %>
   forum_id: 1
@@ -35,6 +39,7 @@ sticky:
   topic_id: 5
   user_id: 11
   body: sticky critical security fix
+  body_html: sticky critical security fix
   created_at: <%= 123.hours.ago.to_s :db %>
   updated_at: <%= 123.hours.ago.to_s :db %>
   forum_id: 1
@@ -43,6 +48,7 @@ galactus:
   topic_id: 6
   user_id: 2
   body: galactus gah-lac-tus
+  body_html: galactus gah-lac-tus
   created_at: <%= 2.hours.ago.to_s :db %>
   updated_at: <%= 2.hours.ago.to_s :db %>
   forum_id: 2
@@ -51,6 +57,7 @@ silver_surfer:
   topic_id: 6
   user_id: 11
   body: galactus oh no!
+  body_html: galactus oh no!
   created_at: <%= 1.2.hours.ago.to_s :db %>
   updated_at: <%= 1.2.hours.ago.to_s :db %>
   forum_id: 2
@@ -59,6 +66,7 @@ shield:
   topic_id: 7
   user_id: 11
   body: agent of SHEILD
+  body_html: agent of SHEILD
   created_at: <%= 1.hour.ago.to_s :db %>
   updated_at: <%= 1.hour.ago.to_s :db %>
   forum_id: 2
@@ -67,6 +75,7 @@ shield_reply:
   topic_id: 7
   user_id: 2
   body: Blah Blah
+  body_html: Blah Blah
   created_at: <%= 15.minutes.ago.to_s :db %>
   updated_at: <%= 15.minutes.ago.to_s :db %>
   forum_id: 2
@@ -75,6 +84,7 @@ il8n:
   topic_id: 8
   user_id: 2
   body: il8n in rails?
+  body_html: il8n in rails?
   created_at: <%= 4.minutes.ago.to_s :db %>
   updated_at: <%= 2.minutes.ago.to_s :db %>
   forum_id: 1
