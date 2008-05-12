@@ -11,6 +11,7 @@ Requirements:
     hpricot
     mime-types    
     htmlentities
+    redcloth
     rake 0.8.1
 
 GETTING COMMUNITY ENGINE RUNNING
@@ -76,7 +77,7 @@ GETTING COMMUNITY ENGINE RUNNING
 11. You may need to change these lines in application.rb (uncomment the :secret part, because you're not using cookie sessions):
     # See ActionController::RequestForgeryProtection for details
     # Uncomment the :secret if you're not using the cookie session store
-    protect_from_forgery # :secret => 'c1fdccfc9ebef1965bcf4e15aa5e6a34'
+    protect_from_forgery # :secret => 'your_secret_string'
     
 12. Run tests (remember, you must run "rake test" before you can run the community_engine tests): 
     $ rake test
