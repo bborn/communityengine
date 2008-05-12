@@ -59,9 +59,13 @@ GETTING COMMUNITY ENGINE RUNNING
 
 8. Modify your routes.rb as indicated below:
 
-      # Add this after any of your own existing routes: 
+      # Add this after any of your own existing routes, but before the default rails routes: 
       ===============================================================
       map.from_plugin :community_engine
+      # Install the default routes as the lowest priority.
+      map.connect ':controller/:action/:id'
+      map.connect ':controller/:action/:id.:format'
+      
 
 9. Generate the community engine migrations: 
     $ script/generate plugin_migration
