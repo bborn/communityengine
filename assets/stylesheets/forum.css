@@ -123,7 +123,7 @@ ul.talking li span {
 ul.flat li {
 	display:block;
 	float: left;
-	background:url(../images/small_circle.gif) no-repeat 5px 6px;
+	background:url(/plugin_assets/community_engine/images/small_circle.gif) no-repeat 5px 6px;
 	padding-left:15px;
 	}
 	ul.flat li.label {
@@ -273,7 +273,7 @@ label {
 /* random */
 
 .photo {
-	background:#aaa url(../images/clearbits/smile.gif) no-repeat 8px 8px;
+	background:#aaa url(/plugin_assets/community_engine/images/clearbits/smile.gif) no-repeat 8px 8px;
 }
 
 .smallutils {
@@ -523,7 +523,7 @@ p.online {margin-bottom:0;}
 
 img.icon {
 	background:#696;
-	background-image: url(../images/clearbits/bg_rounded.gif);
+	background-image: url(/plugin_assets/community_engine/images/clearbits/bg_rounded.gif);
 	background-repeat: no-repeat;
 	vertical-align: bottom;
 	}
@@ -540,7 +540,7 @@ img.green { background-color:#0c0;}
 /* reply */
 
 div.editbox {
-	background:url(../images/reply_background.png);
+	background:url(/plugin_assets/community_engine/images/reply_background.png);
 	border:2px solid #333;
 	border-width:2px 0;
 	position:fixed;
