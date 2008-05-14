@@ -20,10 +20,10 @@ namespace :community_engine do
   end
   
   desc 'Test the community_engine plugin.'
-  Rake::TestTask.new(:test) do |t|
+  Rake::TestTask.new(:test) do |t|         
     t.libs << 'lib'
     t.pattern = 'vendor/plugins/community_engine/test/**/*_test.rb'
-    t.verbose = true
+    t.verbose = true    
   end
   Rake::Task['community_engine:test'].comment = "Run the community_engine plugin tests."
   

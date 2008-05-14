@@ -1,3 +1,6 @@
+CommunityEngine.check_for_pending_migrations
+
+
 ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:database_manager => SqlSessionStore)
 SqlSessionStore.session_class = MysqlSession
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update :line_grapher => '%Y%m%dT%H:%M:%S'
@@ -18,7 +21,6 @@ WhiteListHelper.attributes['object'] = %w(classid codebase width height align id
 WhiteListHelper.attributes['param']  = %w(name value type)
 WhiteListHelper.attributes['embed']  = %w(src quality salign scale bgcolor align menu pluginspage type width height wmode flashvars)
 WhiteListHelper.attributes['iframe'] = %w(src frameborder width height)
-
 
 AppConfig.default_mce_options = {
   :theme => 'advanced',
@@ -45,8 +47,6 @@ AppConfig.default_mce_options = {
   :extended_valid_elements => "img[class|src|flashvars|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|obj|param|embed|scale|wmode|salign|style],embed[src|quality|scale|salign|wmode|bgcolor|width|height|name|align|type|pluginspage|flashvars],object[align<bottom?left?middle?right?top|archive|border|class|classid|codebase|codetype|data|declare|dir<ltr?rtl|height|hspace|id|lang|name|style|tabindex|title|type|usemap|vspace|width]"  
   }
   
-
-
 AppConfig.simple_mce_options = {
   :theme => 'advanced',
   :browsers => %w{msie gecko safari},
