@@ -53,17 +53,18 @@ class Photo < ActiveRecord::Base
     photo = find_tagged_with(photo.tags.collect{|t| t.name }, merged_options)
   end
   
-  def self.set_cache_control
-    photos = Photo.find(:all)
-    photos.each do |photo|
-      begin
-        s3_object = AWS::S3::S3Object.find(photo.full_filename, "#{AppConfig.community_name.downcase}_uploads_#{RAILS_ENV}")
-        s3_object.save(:access => :public_read) unless s3_object.cache_control && s3_object.expires
-      rescue Exception => e
-        logger.error("Unable to update photo with key " +
-          "#{photo.full_filename}: #{e}")
-      end
-    end
-  end
+  # Used to set cache expiry on S3 photos. Not really needed anymore.
+  # def self.set_cache_control
+  #   photos = Photo.find(:all)
+  #   photos.each do |photo|
+  #     begin
+  #       s3_object = AWS::S3::S3Object.find(photo.full_filename, "#{AppConfig.community_name.downcase}_uploads_#{RAILS_ENV}")
+  #       s3_object.save(:access => :public_read) unless s3_object.cache_control && s3_object.expires
+  #     rescue Exception => e
+  #       logger.error("Unable to update photo with key " +
+  #         "#{photo.full_filename}: #{e}")
+  #     end
+  #   end
+  # end
 
 end

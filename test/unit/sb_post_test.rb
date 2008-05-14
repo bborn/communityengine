@@ -97,6 +97,11 @@ class SbPostTest < Test::Unit::TestCase
     p = create_post topic, :body => 'bar'
     assert !user.monitoring_topic?(topic)    
   end
+  
+  def test_to_xml
+    #not really testing the output cause it's just calling Rails' to_xml
+    assert sb_posts(:shield_reply).to_xml
+  end
 
   protected
     def create_post(topic, options = {})

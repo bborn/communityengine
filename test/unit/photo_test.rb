@@ -22,7 +22,6 @@ class PhotoTest < Test::Unit::TestCase
   def test_should_find_next_photo
     next_photo = photos(:another_pic).next_photo
     assert_equal next_photo, photos(:library_pic)
-  end
-  
+  end  
   
 end
