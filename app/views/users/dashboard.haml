@@ -13,10 +13,11 @@
           %li=link_to 'Clippings', user_clippings_path(@user)
           %li=link_to 'Friends', accepted_user_friendships_path(@user)
       .yui-u
-        Edit my:
+        Manage my:
         %ul
           %li=link_to 'Profile', edit_user_path(@user)
           %li=link_to 'Account settings', edit_account_user_path(@user)
+          %li=link_to 'Blog posts', manage_user_posts_path(@user)          
     
     %h3 Stats
     %ul
