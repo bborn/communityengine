@@ -9,10 +9,11 @@
       %li=link_to 'Friends', accepted_user_friendships_path(@user)
 .column.span-3.last    
   .padded
-    Edit my:
+    Manage my:
     %ul
       %li=link_to 'Profile', edit_user_path(@user)
       %li=link_to 'Account settings', edit_account_user_path(@user)
+      %li=link_to 'Blog posts', manage_user_posts_path(@user)                
       -if current_user.admin?
         %li=link_to 'Admin dashboard', admin_dashboard_path
 

@@ -47,7 +47,9 @@
           %small (optional)
           #poll-ui{:style => 'display:none'}=render :partial => 'polls/new'
 
-          
+        %p
+          Save post as: 
+          = f.select(:published_as, [['Published', 'live'], ['Draft', 'draft']])
         %p
           = submit_tag "Save"
           or
