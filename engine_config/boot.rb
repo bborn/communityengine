@@ -6,8 +6,6 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update :line_grap
 Mime::Type.register "text/javascript", :widget
 Mime::Type.register "text/javascript", :js
 Mime::Type.register "application/pdf", :pdf
-ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update :line_grapher => '%Y%m%dT%H:%M:%S'
-
  
 COMMUNITY_EXAMPLE_STYLES = {}
 Dir.glob(File.join(RAILS_ROOT, 'test', 'fixtures', 'files', 'styles', '*.{txt}')).collect{|filename| 

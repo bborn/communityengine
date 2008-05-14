@@ -8,11 +8,14 @@ class PostsController < BaseController
   def cache_action?(action_name)
     !logged_in? && controller_name.eql?('posts')
   end  
-         
-                  
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create]
-  before_filter :find_user, :only => [:new, :edit, :index, :show, :update_view]
-  before_filter :require_current_user, :only => [:create, :edit, :update, :destroy]
+                           
+  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage]
+  before_filter :find_user, :only => [:new, :edit, :index, :show, :update_view, :manage]
+  before_filter :require_current_user, :only => [:create, :edit, :update, :destroy, :manage]
+
+  def manage
+    @posts = @user.posts.find_without_published_as(:all, :page => {:current => params[:page], :size => 10}, :order => 'created_at DESC')
+  end
 
   def index
     @user = User.find(params[:user_id])            

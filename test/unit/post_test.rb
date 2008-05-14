@@ -3,6 +3,18 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PostTest < Test::Unit::TestCase
   fixtures :posts, :users, :comments
 
+  def test_should_find_including_unpublished
+    post = posts(:funny_post)
+    post.save_as_draft
+    assert Post.find_without_published_as(:all).include?(post)
+  end
+  
+  def test_default_find_should_not_find_drafts
+    post = posts(:funny_post)
+    post.save_as_draft
+    assert !Post.find(:all).include?(post)    
+  end
+  
   def test_should_find_recent
     posts = Post.find_recent(:limit => 3)
     assert_equal posts.size, 3

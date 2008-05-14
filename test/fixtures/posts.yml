@@ -8,6 +8,7 @@ funny_post:
   category_id: 1
   created_at: <%= 5.days.ago.to_s :db %>
   updated_at: <%= 4.days.ago.to_s :db %>
+  published_as: live
 not_funny_post:
   id: 2
   user_id: 1
@@ -17,6 +18,7 @@ not_funny_post:
   category_id: 2
   created_at: <%= 4.days.ago.to_s :db %>
   updated_at: <%= 3.days.ago.to_s :db %>
+  published_as: live  
 apt_post:
   id: 3
   user_id: 2
@@ -26,6 +28,7 @@ apt_post:
   category_id: 1
   created_at: <%= 5.days.ago.to_s :db %>
   updated_at: <%= 4.days.ago.to_s :db %>
+  published_as: live  
 apt2_post:
   id: 4
   user_id: 2
@@ -35,3 +38,4 @@ apt2_post:
   category_id: 1
   created_at: <%= 5.days.ago.to_s :db %>
   updated_at: <%= 4.days.ago.to_s :db %>
+  published_as: live  
