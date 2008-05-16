@@ -102,6 +102,13 @@ class SbPostTest < Test::Unit::TestCase
     #not really testing the output cause it's just calling Rails' to_xml
     assert sb_posts(:shield_reply).to_xml
   end
+  
+  def test_should_be_deleted_when_user_destroyed
+    post = sb_posts(:shield_reply)
+    id = post.id
+    post.user.destroy
+    assert !SbPost.exists?(id)
+  end
 
   protected
     def create_post(topic, options = {})

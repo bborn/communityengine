@@ -104,9 +104,16 @@ class TopicTest < Test::Unit::TestCase
   def test_topic_creator_should_monitor_automatically
     t = forums(:rails).topics.build(:title => 'foo')
     t.user = users(:aaron)
-    t.save
-    
+    t.save  
     assert users(:aaron).monitoring_topic?(t)
   end
+  
+  def test_should_be_deleted_when_user_destroyed
+    topic = topics(:ponies)
+    id = topic.id
+    topic.user.destroy
+    assert !Topic.exists?(id)
+  end
+
   
 end
