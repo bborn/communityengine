@@ -1,7 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
-
+require 'hpricot'
+    
 class PostTest < Test::Unit::TestCase
   fixtures :posts, :users, :comments
+
+  def setup
+    Favorite.destroy_all
+  end
 
   def test_should_find_including_unpublished
     post = posts(:funny_post)
@@ -90,6 +95,14 @@ class PostTest < Test::Unit::TestCase
     assert_equal posts(:funny_post).poll.choices.last.description, 'Bar'
   end
   
+  def test_update_poll_with_no_choices_should_delete_poll
+    assert posts(:funny_post).create_poll({:question => 'Who can have a great time?'}, ['I can', 'You can', 'No one can'])
+
+    assert_difference Poll, :count, -1 do
+      assert posts(:funny_post).update_poll({:question => 'Who can have a terrible time?'}, [])
+    end
+  end  
+  
   def test_should_find_most_commented
     assert_equal posts(:funny_post).id, Post.find_most_commented.first.id
     assert_equal posts(:apt_post).id, Post.find_most_commented.last.id        
@@ -99,4 +112,19 @@ class PostTest < Test::Unit::TestCase
     assert Post.find_recent(:limit => 30)
   end
   
+  def test_image_for_excerpt_for_post_with_no_image_returns_avatar_url
+    assert_equal posts(:funny_post).user.avatar_photo_url(:medium), posts(:funny_post).image_for_excerpt
+  end
+  
+  def test_has_been_favorited_by_user
+    post  = posts(:funny_post)
+    assert !post.has_been_favorited_by(users(:quentin))
+
+    favorite = Favorite.new(:ip_address => '1.1.1.1', :favoritable => post )
+    favorite.user = users(:quentin)
+    favorite.save
+    
+    assert post.has_been_favorited_by(users(:quentin))    
+  end
+    
 end

@@ -89,9 +89,8 @@ class Post < ActiveRecord::Base
   end
   
   ## transform the text and title into valid html
-  ## force absolute urls
   def transform_post
-   self.raw_post  = force_relative_urls(self.raw_post)
+   # self.raw_post  = force_relative_urls(self.raw_post)
    self.post  = white_list(self.raw_post)
    self.title = white_list(self.title)
   end
@@ -158,28 +157,5 @@ class Post < ActiveRecord::Base
     f = Favorite.find_by_user_or_ip_address(self, user, remote_ip)
     return f
   end  
-    
-  private
-  def force_relative_urls(string)
-    begin
-      doc = Hpricot(string)
-      (doc/"img").each do |img|
-        img.attributes['src'] = fix_url(img.attributes['src'])
-      end
-      return doc.to_html
-    rescue
-      return string
-    end
-  end
-  
-  def fix_url(url)
-    begin
-      uri = URI.parse(url)
-      uri = uri.relative? ? File.join(APP_URL, uri.to_s) : uri.to_s
-      uri
-    rescue
-      url
-    end
-  end
-  
+      
 end

@@ -58,10 +58,14 @@ class FavoriteTest < Test::Unit::TestCase
     assert Favorite.find_by_user_or_ip_address(clippings(:google), nil, '127.0.0.1')    
   end
 
-  def test_should_find_by_user
+  def test_should_find_by_user_or_ip
     Favorite.create!(:favoritable => clippings(:google), :ip_address => '127.0.0.1', :user => users(:quentin))
     assert Favorite.find_by_user_or_ip_address(clippings(:google), users(:quentin))    
   end
 
+  def test_should_find_favorites_by_user
+    favorite = Favorite.create!(:favoritable => clippings(:google), :ip_address => '127.0.0.1', :user => users(:quentin))
+    assert Favorite.find_favorites_by_user(users(:quentin)).include?(favorite)
+  end
 
 end
