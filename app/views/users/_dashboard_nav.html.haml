@@ -1,15 +1,15 @@
-.column.span-2
-  .padded
-    View my:
+.yui-g.box
+  .yui-u.first
+    %h3 View my:
     %ul
       %li=link_to 'Profile', user_path(@user)  
       %li=link_to 'Blog', user_posts_path(@user)
       %li=link_to 'Photos', user_photos_path(@user)
       %li=link_to 'Clippings', user_clippings_path(@user)
       %li=link_to 'Friends', accepted_user_friendships_path(@user)
-.column.span-3.last    
-  .padded
-    Manage my:
+
+  .yui-u
+    %h3 Manage my:
     %ul
       %li=link_to 'Profile', edit_user_path(@user)
       %li=link_to 'Account settings', edit_account_user_path(@user)
@@ -17,19 +17,18 @@
       -if current_user.admin?
         %li=link_to 'Admin dashboard', admin_dashboard_path
 
-.clear
-.padded
+.box.alt
   %h3 Stats
-%ul
-  %li="Last logged in: #{@user.last_login_at && @user.last_login_at.strftime("%m/%d/%y")}"
-  %li= @user.created_at.strftime("Member since: %m/%d/%y")
-  -unless @user.posts.empty?
-    %li="#{@user.posts.count} blog posts."
-  -unless @user.photos.empty?
-    %li="#{@user.photos.count} photos."
-  -unless @user.clippings.empty?
-    %li="#{@user.clippings.count} clippings."
-  -unless @user.comments.empty?
-    %li="#{@user.posts.count} comments."
-  -unless @user.accepted_friendships.empty?
-    %li="#{@user.accepted_friendships.count} friends"
+  %ul
+    %li="Last logged in: #{@user.last_login_at && @user.last_login_at.strftime("%m/%d/%y")}"
+    %li= @user.created_at.strftime("Member since: %m/%d/%y")
+    -unless @user.posts.empty?
+      %li="#{@user.posts.count} blog posts."
+    -unless @user.photos.empty?
+      %li="#{@user.photos.count} photos."
+    -unless @user.clippings.empty?
+      %li="#{@user.clippings.count} clippings."
+    -unless @user.comments.empty?
+      %li="#{@user.posts.count} comments."
+    -unless @user.accepted_friendships.empty?
+      %li="#{@user.accepted_friendships.count} friends"

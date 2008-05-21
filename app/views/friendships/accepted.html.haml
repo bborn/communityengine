@@ -1,0 +1,16 @@
+.yui-b= render :partial => 'users/profile_user_info_sidebar'
+
+#yui-main
+  .yui-b
+    #friends.box
+      %h3
+        = @friend_count
+        Accepted Friendships
+        = link_to "(#{@pending_friendships_count} pending)", pending_user_friendships_path(@user) if  (@pending_friendships_count > 0)
+      .pagination
+        %span.right= pagination_info_for @pages
+        = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+      
+      .clear
+      .user_list= render :partial => "friendships/friendship", :collection => @friendships
+

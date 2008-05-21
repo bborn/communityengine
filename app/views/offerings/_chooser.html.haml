@@ -1,0 +1,47 @@
+- @user_skills = @user.offerings.collect{|o| o.skill}
+- @skills = Skill.find(:all) - @user_skills
+
+.yui-g.box
+  %h3 My Skills
+  .yui-u.first
+    %ul#skills.sortable
+      - @skills.each do |s|
+      %li{:id => "skill_#{ s.id }"}
+        = s.name
+      - end
+      %br.clear
+  .yui-u
+    %ul#users_skills.sortable
+      = render :partial => 'skill', :collection => @user.offerings.collect{ |o| o.skill }
+    %label
+      %em
+        Drag and drop up to three skills into the gray area above.
+
+  %script{"type"=>"text/javascript"}
+    \//
+    Sortable.create('skills',{tag:'li',dropOnEmpty: true,
+    containment: ['skills', 'users_skills'], hoverclass : "sortable_hover", constraint: false, overlap:'horizontal'
+    }
+    );
+    
+    offerings = Sortable.create('users_skills',{
+    onUpdate: function(){
+    limitListTo(3);
+    ="new Ajax.Request('#{ replace_user_offerings_path(@user) }',"
+    {parameters:Sortable.serialize('users_skills'),
+    asynchronous:true, evalScripts:true, method:'put'}
+    );
+    },
+    tag:'li',dropOnEmpty: true, containment: ['skills', 'users_skills'], constraint: false,
+    hoverclass : "sortable_hover"
+    }
+    );
+    
+    function limitListTo(i){
+    items = Sortable.findElements($('users_skills'), {tag:'li'});
+    if (items && (items.length > i)){
+    last_item = items[ items.length - 1 ]
+    $('skills').appendChild(last_item)
+    }
+    }
+    \//

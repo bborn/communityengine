@@ -1,0 +1,40 @@
+#hd
+  %h1
+    %a{:href=>"/", :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
+
+  - if logged_in?
+    = render :partial => 'shared/user_menu'
+  - else
+    %h2
+      Welcome, 
+      =link_to "Log in", login_path
+      or
+      =link_to "Sign up", signup_path
+    
+  #NavBar
+    %ul
+      - Category.find(:all).each do |c|
+        = topnav_tab c.name, {:url => category_path(c), :section => c.name}
+      = topnav_tab "Forums", { :url => forums_path, :section => 'forums' }
+      = topnav_tab "Popular", { :url => popular_path, :section => 'popular' }
+      = topnav_tab "People", { :url => users_path, :section => 'users' }
+      - if current_user 
+        = topnav_tab "My Profile", { :url => user_path(current_user), :section => 'my_profile'}   
+      
+    / SiteSearch Google 
+    %form{:method=>"get", :action=>"http://www.google.com/custom", :target=>"_top"}
+      %input{ :type=>"hidden", :name=>"domains", :value=>"#{APP_URL}"}
+      %label{ :for=>"search",  :style=>"display: none"}
+        = "Search #{AppConfig.community_name}"
+      %input{ :type=>"text",:name=>"q", :size=>"17", :maxlength=>"255", :id=>"search"}
+      %input{ :type=>"hidden", :name=>"sitesearch", :value=>"#{APP_URL}", :id=>"ss1"}
+      %input{ :type=>"hidden", :name=>"client", :value=>"pub-9113954708528841"}
+      %input{ :type=>"hidden", :name=>"forid", :value=>"1"}
+      %input{ :type=>"hidden", :name=>"channel", :value=>"1842224655"}
+      %input{ :type=>"hidden", :name=>"ie", :value=>"ISO-8859-1"}
+      %input{ :type=>"hidden", :name=>"oe", :value=>"ISO-8859-1"}
+      %input{ :type=>"hidden", :name=>"cof", :value=>"GALT:#008000;GL:1;DIV:#FFFFFF;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0066CC;LC:0066CC;T:000000;GFNT:0000FF;GIMP:0000FF;LH:50;LW:90;S:http://#{APP_URL};FORID:1"}
+      %input{ :type=>"hidden", :name=>"hl", :value=>"en"}
+      
+  / NavBar 
+/ header

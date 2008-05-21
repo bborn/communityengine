@@ -1,0 +1,58 @@
+.yui-b.sidebar
+  .yui-u
+    .box.alt.first_alt
+      %h3
+        = params[:type] ? h(params[:type]+'s') : 'Items'
+        tagged:
+        = link_to h(@tag.name), tag_path(@tag.name)
+      - unless @pages.blank?
+        .pagination
+          = pagination_info_for @pages
+          = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+
+
+    .box
+      %h3.tags Related Tags
+      %ul
+        - tag_cloud @related_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
+          - css_class = css_class + (name.eql?(params[:id]) ? " selected": "")
+          %li= link_to h(name), tag_path(name), :class => css_class
+      
+      %h6.all= link_to "All tags", tags_path
+
+#yui-main
+  .yui-b.box
+
+    - if @posts.any?
+      #posts
+        %h3 Posts
+        %ul.list.page
+          - @posts.each do |post|
+            %li
+              = link_to( truncate(post.display_title, 75), user_post_path(post.user, post), :title => "by #{post.user.login}" )
+              %p.post_excerpt= truncate_words(post.post, 35, '...' )
+        %h6.all= link_to "All posts tagged #{@tag.name}", tag_path(:id => @tag.name, :type => 'Post')              
+
+    - if @photos.any?
+      %br.clear
+      %h3 Photos
+      - @photos.each do |photo|
+        = link_to image_tag(photo.public_filename(:thumb), :title => "#{photo.description} (uploaded by #{photo.user.login})", :class => "polaroid"), user_photo_path(photo.user, photo)
+      %h6.all= link_to "All photos tagged #{@tag.name}", tag_path(:id => @tag.name, :type => 'Photo')
+      
+      
+    - if @users.any?
+      .user
+        %h3 Users
+        - @users.each do |user|
+          = link_to image_tag(user.avatar_photo_url(:thumb), :class => "polaroid"), user_path(user), :title => user.login
+        %h6.all= link_to "All users tagged #{@tag.name}", tag_path(:id => @tag.name, :type => 'User')
+
+
+    - unless @clippings.empty?
+      .blog
+        %h3 Clippings
+        - @clippings.each do |clipping|
+          %a{"href"=>"#{h user_clipping_url(clipping.user, clipping) }"}
+            %img.polaroid.clipping{"src"=>"#{h clipping.image_uri}", "style"=>"width:108px"}
+        %h6.all= link_to "All clippings tagged #{@tag.name}", tag_path(:id => @tag.name, :type => 'Clipping')

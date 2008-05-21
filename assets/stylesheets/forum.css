@@ -67,7 +67,7 @@ p.subtitle {
 	}
 p.subtitle img { vertical-align: bottom; }
 
-h1 span { font-size:0.8em; color:#999; font-weight:normal; padding-left: 1em;}
+/*h1 span { font-size:0.8em; color:#999; font-weight:normal; padding-left: 1em;}
 
 h2 {
 	font-size:1.0em; }
@@ -86,7 +86,7 @@ h3  {
   font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
 }
 
-h6 { margin-bottom:0; }
+h6 { margin-bottom:0; }*/
 
 pre.explain {
 	background:#e7e7e7;
@@ -296,12 +296,10 @@ table.noborder td {
 	}
 
 table.nopad td {
-  padding-left:0;
-	}
+  padding-left:0;}
 
 table.wide {	
-	width:97%; 
-	}
+	width:100%; }
 table.wide tr th {
 	background:#333;
 	color:white;

@@ -1,0 +1,31 @@
+.yui-b
+  = render :partial => 'shared/admin_nav' if current_user.admin?
+
+#yui-main
+  .yui-b
+    .box
+      %h3 Contests
+      = link_to 'New contest', new_contest_path
+
+      %table{:width=>"100%"}
+        %tr
+          %th Date
+          %th Title
+          %th Description
+          %th begin
+          %th end
+          %th Actions
+
+        - for contest in @contests
+          %tr
+            %td=h contest.created_at.strftime("%m/%d/%y")
+            %td=h contest.title
+            %td=h truncate(contest.post, 250)
+            %td=h contest.begin.strftime("%m/%d/%y")
+            %td=h contest.end.strftime("%m/%d/%y")
+            %td
+              = link_to 'Show', contest_path(contest)
+              %br
+              = link_to 'Edit', edit_contest_path(contest)
+              %br
+              = link_to 'Destroy', contest_path(contest), :confirm => 'Are you sure?', :method => :delete

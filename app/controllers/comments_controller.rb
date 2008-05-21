@@ -92,7 +92,7 @@ class CommentsController < BaseController
         flash.now[:notice] = 'Comment was successfully created.'        
         format.html { redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id], :user_id => @comment.recipient.id }
         format.js {
-          render :partial => 'comments/comment', :locals => {:comment => @comment, :highlighted => true}
+          render :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}
         }
       else
         flash.now[:error] = "Your comment couldn't be saved. #{@comment.errors.full_messages.join(", ")}"

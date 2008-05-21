@@ -1,0 +1,16 @@
+=render :partial => 'base/homepage_banner_message'
+
+#login
+  - form_tag sessions_path, :class => "MainForm" do
+    %label{"for"=>"username"} Username:
+    = text_field_tag 'login', nil, :size => 35
+
+    %label{"for"=>"password"} Password:
+    = password_field_tag 'password', nil, :size => 35
+
+    %fieldset
+      %label{"for"=>"remember_me"} 
+        Remember me:
+        = check_box_tag 'remember_me'
+    
+    %p= submit_tag 'Log in'

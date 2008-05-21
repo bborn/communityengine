@@ -1,0 +1,20 @@
+.yui-b
+  = render :partial => 'posts/author_profile', :locals => {:user => @user}
+
+#yui-main
+  .yui-b#comments.box.hfeed.comments
+    %h3
+      = Inflector.underscore(@commentable.class).capitalize
+      Comments -
+      = link_to @title, @comments.first.generate_commentable_url(false)
+
+    %a#newest_comment
+      = render :partial => 'comments/comment', :collection => @comments
+
+    .pagination
+      = pagination_info_for @pages
+      = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+
+    %h3 Add Your Comment!
+    %p= render :partial => 'comments/comment_form', :locals => {:commentable => @commentable}  
+      

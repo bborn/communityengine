@@ -1,0 +1,23 @@
+.box
+  %h3 Showing Ad
+  %p
+    %b Name:
+    = h @ad.name
+  %p
+    %b Html:
+    = @ad.html
+  %p
+    %b Frequency:
+    = h @ad.frequency
+  %p
+    %strong Published?
+    = @ad.published?
+  %p
+    %b Run:
+    = h @ad.time_constrained? ? "#{@ad.start_date.to_formatted_s(:long)} - #{@ad.end_date.to_formatted_s(:long)}" : 'n/a'
+  %p
+    %b Location:
+    = h @ad.location
+  = link_to 'Edit', edit_ad_path(@ad)
+  |
+  = link_to 'Back', ads_path

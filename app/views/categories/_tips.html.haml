@@ -1,0 +1,9 @@
+- if category 
+  %h3= category.name
+  %p= category.tips
+- else 
+  %h3 We need you
+  %p
+    %em Every single person
+    has something to say, something to give, something that will help someone else.  Join in!
+%p= "Need some help?  Check out our #{link_to "FAQ section", faq_url}."

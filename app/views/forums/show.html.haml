@@ -1,84 +1,83 @@
 - @section = 'forums'
 - @page_title = @forum.name
 
-.crumbs
+.box.alt.first_alt
   = link_to _('Forums'), forum_home_path
   %span.arrow
     &rarr;
+  = h @forum.name   
 
-%h1= h @forum.name 
+.box
+  %p.subtitle
+    = feed_icon_tag @forum.name, formatted_forum_sb_posts_path(@forum, :rss)
+    = pluralize @forum.topics_count, _('topic') 
+    , 
+    = pluralize @forum.sb_posts_count, _('post')
 
-%p.subtitle
-  = feed_icon_tag @forum.name, formatted_forum_sb_posts_path(@forum, :rss)
-  = pluralize @forum.topics_count, _('topic') 
-  , 
-  = pluralize @forum.sb_posts_count, _('post')
-
-- unless @forum.description.blank?
-  = @forum.description_html
+  - unless @forum.description.blank?
+    = @forum.description_html
   
-- if @forum.moderators.any?
-  = "#{_('Moderators')}:"
-  %ul.flat
-    - @forum.moderators.each do |user|
-      %li= link_to user.display_name, user_path(user)
+  - if @forum.moderators.any?
+    = "#{_('Moderators')}:"
+    %ul.flat
+      - @forum.moderators.each do |user|
+        %li= link_to user.display_name, user_path(user)
     
-%br.clear
-%br
+  %br.clear
 
-- if @topic_pages.page_count > 1
+  - if @topic_pages.page_count > 1
+    - if logged_in?
+      %h6.all= link_to 'Post a New topic', new_forum_topic_path(@forum)
+  
+    .pagination
+      = pagination_links @topic_pages, :window_size => 10
+
+  - unless @topics.empty?
+    %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
+      %tr
+        %th.la{:colspan=>"2"}= _('Topic')
+        %th{:width=>"1%"}= _('Posts')
+        %th{:width=>"1%"}= _('Views') 
+        %th.la= _('Last post')
+        
+      - for topic in @topics
+        %tr
+          %td.c1{:style=>"padding:5px; width:16px;"}
+            - icon, color, post = icon_and_color_and_post_for topic
+
+            - if recent_topic_activity(topic)
+              = image_tag "clearbits/#{icon}.gif", :class => "icon green", :title => "Recent activity#{post}", :plugin => "community_engine"
+            - else
+              = image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => "No recent activity#{post}", :plugin => "community_engine"
+          %td.c2
+            = "Sticky: <strong>" if topic.sticky?
+            = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
+            = "</strong>" if topic.sticky?
+            - if topic.paged? 
+              %small= link_to 'last', forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page)
+          %td.ca.inv.stat= topic.sb_posts_count-1
+          %td.ca.inv.stat= number_with_delimiter(topic.views)
+          %td.lp
+            %abbr.updated{:title=>"#{topic.replied_at.xmlschema}"}= time_ago_in_words(topic.replied_at)
+            by
+            %span.author
+              %strong.fn= h(topic.replied_by_user.display_name)
+            %span= link_to 'view', forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
+  
+  - if @topic_pages.page_count > 1
+    %p.pages= pagination_links @topic_pages, :window_size => 10
+
   - if logged_in?
-    %p.right
-      = link_to 'New topic', new_forum_topic_path(@forum), :class => "utility"
-  
-  %p.pages= pagination_links @topic_pages, :window_size => 10
+    %h6.all= link_to _('Post a New topic'), new_forum_topic_path(@forum)
+  - else
+    %h6.all= link_to _('Log in to create a new topic'), new_forum_topic_path(@forum)
 
-- unless @topics.empty?
-  %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
-    %tr
-      %th.la{:colspan=>"2"}= _('Topic')
-      %th{:width=>"1%"}= _('Posts')
-      %th{:width=>"1%"}= _('Views') 
-      %th.la= _('Last post')
-    - for topic in @topics
-      %tr.hentry
-        %td.c1{:style=>"padding:5px; width:16px;"}
-          - icon, color, post = icon_and_color_and_post_for topic
-
-          - if recent_topic_activity(topic)
-            = image_tag "clearbits/#{icon}.gif", :class => "icon green", :title => "Recent activity#{post}", :plugin => "community_engine"
-          - else
-            = image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => "No recent activity#{post}", :plugin => "community_engine"
-        %td.c2
-          = "Sticky: <strong>" if topic.sticky?
-          = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
-          = "</strong>" if topic.sticky?
-          - if topic.paged? 
-            %small= link_to 'last', forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page)
-        %td.ca.inv.stat= topic.sb_posts_count-1
-        %td.ca.inv.stat= number_with_delimiter(topic.views)
-        %td.lp
-          %abbr.updated{:title=>"#{topic.replied_at.xmlschema}"}= time_ago_in_words(topic.replied_at)
-          by
-          %span.author
-            %strong.fn= h(topic.replied_by_user.display_name)
-          %span= link_to 'view', forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
-  
-- if @topic_pages.page_count > 1
-  %p.pages= pagination_links @topic_pages, :window_size => 10
-
-
-- if logged_in?
-  %p= link_to _('New topic'), new_forum_topic_path(@forum), :class => "utility"
-- else
-  %p= link_to _('Log in to create a new topic'), new_forum_topic_path(@forum), :class => "utility"
-
-- if @topics.size < 10
-  %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
-    %tr
-      %th.la{:colspan=>"2"}= _('This forum is still getting started... here are some blog posts to get you thinking ... ')
-      %th{:width=>"1%"}= _('Comments')
-      %th{:width=>"1%"}= _('Views')
-      %th.la= _('Author')
-    - Post.find_tagged_with(@forum.tag_list, :limit => 10).each do |post|
-      = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}
+  - if @topics.size < 10
+    %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
+      %tr
+        %th.la{:colspan=>"2"}= _('This forum is still getting started... here are some blog posts to get you thinking ... ')
+        %th{:width=>"1%"}= _('Comments')
+        %th{:width=>"1%"}= _('Views')
+        %th.la= _('Author')
+      - Post.find_tagged_with(@forum.tag_list, :limit => 10).each do |post|
+        = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}

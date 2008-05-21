@@ -1,0 +1,13 @@
+.yui-b.sidebar
+  =render :partial => 'shared/login_sidebar'
+  
+#yui-main
+  .yui-b.main_column
+    .box
+      %h3 Forgot your username?
+
+      - form_tag '/forgot_username', :class => 'MainForm' do
+        %label{"for"=>"email"} Enter your email address:
+        = text_field_tag 'login', nil, :size => 35
+        %p
+          = submit_tag 'Send me my username'

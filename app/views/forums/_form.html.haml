@@ -1,0 +1,19 @@
+
+#forum_name
+  %table.noborder.nopad.wide{"cellspacing"=>"0","border"=>"0", "cellpadding"=>"0"}
+    %td
+      %label= _('Title')
+      = form.text_field :name, :class => "primary"
+
+    %td{"style"=>"text-align:right"}
+      %label= _('Position')
+      = form.text_field :position, :size => 5
+
+      %label Tags:
+      = text_field_tag 'tag_list', @forum.tags.collect{|t| t.name}.join(" "), {:autocomplete => "off", :size => 35}
+      #tag_list_auto_complete.auto_complete
+      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
+
+#forum_descripion
+  %label= _('Description')
+  = form.text_area :description, :rows => 7

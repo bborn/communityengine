@@ -214,6 +214,15 @@ class PostsController < BaseController
       }
     end    
   end  
+  
+  def category_tips_update
+    return unless request.xhr?
+    @category = Category.find(params[:post_category_id] )
+    render :partial => "/categories/tips", :locals => {:category => @category}    
+  rescue ActiveRecord::RecordNotFound
+    render :partial => "/categories/tips", :locals => {:category => nil}    
+  end
+  
 
   
 end

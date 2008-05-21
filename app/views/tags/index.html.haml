@@ -1,0 +1,28 @@
+.yui-b
+  .box
+    %h3 What are "Tags"?
+    %p
+      %strong= "Tags are one-word descriptors users assign to blog posts, pictures, and clippings on #{AppConfig.community_name}."
+    %p
+      %strong Bigger font size = more popular tag.
+    %p
+      For more information on Tags, check out the
+      = link_to "FAQ", faq_url
+      page.
+      
+  .box.alt
+    %h3 Search
+    %form.MainForm{"action"=>"/search/tags/", "method"=>"get"}
+      %label Tag name:
+      = text_field_tag 'id', params[:id], :autocomplete => "off"
+      #id_auto_complete.auto_complete{"class"=>"auto_complete", "id"=>"id_auto_complete"}
+      = auto_complete_field 'id', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
+      %p
+        %input{"type"=>"submit", "value"=>"go"}
+
+
+#yui-main
+  .yui-b.box
+    %h3 Browse Content By Tags
+    - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
+      = link_to name, tag_url(name), :class => css_class

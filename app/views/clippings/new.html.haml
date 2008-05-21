@@ -1,0 +1,28 @@
+.yui-b
+  .box
+    %h3 Help
+    %p Clippings are a way to save images you like from around the Web.
+
+#yui-main
+  .yui-b
+    .box
+      %h3 New clipping
+      %img{"src"=>"#{h @clipping.image_uri}"}
+      - form_for(:clipping, :url => user_clippings_path(@user), :html => { :class => "MainForm" }) do |f|
+        %label URL
+        = f.text_field :url
+
+        %label Image URL
+        = f.text_field :image_url
+        
+        %label Description
+        = f.text_field :description
+
+        %label Tags:
+        = text_field_tag 'tag_list', @clipping.tags.collect{|t| t.name}.join(" ")
+
+        %p
+          = submit_tag "Create"
+
+          or
+          = link_to 'cancel, and go back to my clippings', user_clippings_path(@user)

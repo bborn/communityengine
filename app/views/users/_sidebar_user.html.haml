@@ -1,0 +1,8 @@
+%dl.vcard
+  %dt.photo
+    = link_to image_tag(user.avatar_photo_url(:thumb), :alt => "#{user.login}", :width => '50', :height => '50'), user_path(user)
+  %dd.fn
+    =link_to user.login, user_path(user), :class => 'url'
+  %dd
+    - if user.description
+      %p= truncate_words( user.description, 10, '...')

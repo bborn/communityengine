@@ -1,0 +1,19 @@
+.box
+
+  %h3 Showing Metro Area Details
+  
+  %p
+    %b
+      Country:
+    = h @metro_area.country.name
+  %p
+    %b
+      State:
+    = @metro_area.state.name if @metro_area.state
+  %p
+    %b
+      Name:
+    = @metro_area.name
+  = link_to 'Edit', edit_metro_area_path(@metro_area)
+  |
+  = link_to 'Back', metro_areas_path

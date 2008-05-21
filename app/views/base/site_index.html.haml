@@ -1,0 +1,36 @@
+-unless logged_in?
+  =render :partial => 'base/homepage_banner_message'
+
+#yui-main
+  .yui-b
+    .box.hfeed
+      %h3 Recent Posts
+      = render :partial => 'posts/post', :collection => @posts
+
+.yui-b  
+  .box
+    %h3= "Explore #{AppConfig.community_name}"
+    %ul.list.checks
+      - Category.find(:all).each do |c|
+        %li= link_to c.name, category_path(c)
+      %li= link_to "What's Popular", popular_url, {:class => 'popular'}
+      %li= link_to "Find an Expert", skills_path, {:class => 'users'}
+
+  .box.alt
+    %h3
+      What's Hot?
+    %ul.list.page
+      -@popular_posts.each do |post|
+        =render :partial => 'posts/sidebar_post', :locals => {:post => post}
+    %h6.all
+      %a{:href=>"/popular"} SEE ALL
+
+  .box.alt
+    %h3= AppConfig.featured_writer_label.pluralize
+    -@featured_writers.each do |user|
+      =render :partial => "users/sidebar_user", :locals => {:user => user}
+
+  .box.alt
+    %h3 Active Users
+    -@active_users.each do |user|    
+      =render :partial => "users/sidebar_user", :locals => {:user => user}      

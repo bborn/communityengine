@@ -1,0 +1,8 @@
+.box
+  %h3= _('Edit Forum')
+  
+  %p= link_to _('Delete this forum'), forum_path(@forum), :method => :delete, :class => "utility", :confirm => _("Are you sure?")
+  - form_for :forum, :url  => forum_path(@forum), :html => { :class => "MainForm", :method => :put } do |f|
+    = render :partial => "form", :object => f
+    %p= submit_tag _('Save Forum'), :or => link_to(_('Cancel'), forums_path)
+

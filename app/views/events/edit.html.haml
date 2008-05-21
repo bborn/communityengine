@@ -1,0 +1,24 @@
+.box
+  %h3 Edit Event
+  = error_messages_for :event
+  - form_for(:event, :url => event_path(@event), :html => {:method => :put, :class => "MainForm"} ) do |f|
+    %label Name
+    = f.text_field :name
+    
+    %label Description
+    = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
+    
+    %label Start Time
+    = datetime_select(:event, :start_time)
+    
+    %label End Time
+    = datetime_select(:event, :end_time)
+    
+    %label Location
+    = f.text_field :location
+    - #= render :partial => 'shared/location_chooser', :locals => {:selected_country => nil, :selected_state => nil, :selected_metro_area => @event.metro_area_id, :states => [], :metro_areas => MetroArea.find(:all)}
+    - #= render :partial => 'shared/location_chooser', :locals => {:selected_metro_area => @event.metro_area_id, }
+    %p
+      = submit_tag "Save"
+
+  = link_to 'Back', events_path

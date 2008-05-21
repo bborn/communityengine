@@ -1,0 +1,51 @@
+!!!
+%html
+%head
+  %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
+  %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
+
+  %title= page_title
+  -if @meta
+    -@meta.each do |key|
+      %meta{:name=>key[0], :content=>key[1]}
+  
+  = render :partial => "shared/scripts_and_styles"
+  - if @rss_title && @rss_url
+    = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
+    
+  %body
+    #doc2.yui-t6
+      = render :partial => "shared/header"
+            
+      #bd
+        = render :partial => "shared/messages"
+                  
+        = @content_for_layout
+                            
+      #ft
+        -if show_footer_content?    
+          .yui-gc#footer_content
+            = image_tag 'spinner.gif', :plugin => 'community_engine'
+            Loading recent content...        
+
+          %script{:type=>"text/javascript"}
+            = remote_function(:update => "footer_content", :url => { :controller => 'base', :action => 'footer_content' })
+
+      #CommunityFooter
+        %ul
+          %li
+            %a{:href=>"/", :title=>"#{AppConfig.community_name} Home"} Home
+          - if !logged_in?
+            %li
+              = link_to "Log in", login_path 
+          - else
+            %li
+              %a{:href=>"/logout", :title=>"Log out of your #{AppConfig.community_name} account"} Log out
+          %li
+            %a{:href=>"/about", :title=>"What is #{AppConfig.community_name}?"} About
+          %li
+            %a{:href=>"/faq", :title=>"Frequent Asked Questions"} FAQ
+          - if @rss_title && @rss_url
+            %li#rss= link_to 'RSS', @rss_url, {:title => @rss_title}
+
+        %p= AppConfig.community_tagline

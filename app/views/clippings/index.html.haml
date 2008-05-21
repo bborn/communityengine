@@ -1,0 +1,40 @@
+.yui-b
+  =render :partial => 'posts/author_profile', :locals => {:user => @user}
+
+  - if @is_current_user
+    .box.alt
+      %h3 Help!
+      %p Clippings let you to save cool images from around the Web.
+      %p
+        Drag the '
+        = AppConfig.community_name
+        It!' bookmarklet (below) to your browser's toolbar.
+      %p
+        When you see an image you like on the Web, click the bookmarklet to save it to
+        = AppConfig.community_name
+        \.
+    #clipping_tools.box.alt
+      %h3 Bookmarklet
+      %p Drag this to your bookmarks toolbar:
+      %p= link_to "#{AppConfig.community_name} It!", clippings_link, :style=>"border:1px solid #ccc; background:#efefef; padding: 5px;", :title=>"#{AppConfig.community_name} Scrapbook"
+
+#yui-main
+  .yui-b
+    #clippings.box.hfeed
+      %h3
+        = link_to "#{@user.login}'s clippings", user_clippings_path(@user)
+      - if @clippings.any?
+        .pagination
+          = pagination_info_for @pages
+          = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+        - @clippings.each do |clipping|
+          %a{"href"=>"#{user_clipping_url(@user, clipping) }"}
+            %img.polaroid.clipping{"class"=>"polaroid clipping", "src"=>"#{h clipping.image_uri(:thumb) }"}/
+      - else
+        %p= @is_current_user ? 'You have no clippings. Use the bookmarklet on the right to add some.' : 'No clippings yet.'
+
+    .box.alt#tag_list
+      %h3 Tags
+      - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
+        - css_class = css_class + (name.eql?(params[:tag_name]) ? " selected": "")
+        = link_to name, user_clippings_path(:user_id => @user, :tag_name => name), :class => css_class

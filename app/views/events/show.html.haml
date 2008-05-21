@@ -1,0 +1,21 @@
+- @section = 'events'
+
+.yui-b
+  .box.alt.first_alt
+    - if @is_admin_user
+      = link_to "New event", new_event_path
+    = link_to "See all events", events_path
+
+#yui-main
+  .yui-b.box
+    %h3= @event.name
+    - if @event.user.eql?(current_user)
+      = link_to "Edit this event", edit_event_path(@event)
+      |
+      = link_to("Delete this event", event_path(@event), {:method => :delete, :confirm => 'Permanently delete this event?'})
+      %br
+
+    %strong= h @event.time_and_date
+    %br
+    %strong= h @event.location
+    %p= @event.description

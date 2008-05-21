@@ -93,11 +93,6 @@ class FriendshipsController < BaseController
     end
   end
   
-  # GET /friendships/1;edit
-  def edit
-    @user = User.find(params[:user_id])
-    @friendship = @user.friendships_not_initiated_by_me.find(params[:id])    
-  end
 
   # POST /friendships
   # POST /friendships.xml

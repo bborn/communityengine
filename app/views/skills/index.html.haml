@@ -1,0 +1,26 @@
+.yui-b
+  = render :partial => "skills/sidebar_menu"
+  
+  - unless logged_in?
+    .box.alt
+      = "Want to list your services on #{AppConfig.community_name}?"
+      = link_to 'Sign Up', '/signup?user[vendor]=true'
+
+  -if @active_users.any?
+    .box.alt
+      %h3 Top Pros
+      - @active_users.each do |user|
+        = render :partial => "users/sidebar_user", :locals => {:user => user}
+
+#yui-main
+  .yui-b.box
+    %h3= "#{AppConfig.community_name} Pros"
+
+    .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+
+    %br.clear
+
+    = render :partial => "users/user", :collection => @users, :locals => {:format => 'full' }
+    
+    %br.clear
+    .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1

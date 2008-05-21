@@ -1,0 +1,55 @@
+.yui-b
+  .box
+    %h3 Tips
+    %p Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.
+    %p Use tags to organize your photos. Separate tags with commas.
+
+  .box.alt= link_to "&raquo; Back to my photos", user_photos_path(@user)
+
+#yui-main
+  #single_upload.yui-b.box
+    %h3 New photo
+
+    = error_messages_for :photo
+    %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
+      Want to upload multiple files at once?
+
+    - form_for(:photo, :url => user_photos_path, :html => {:multipart =>true, :class => "MainForm"} ) do |f|
+      = f.file_field :uploaded_data
+      %label
+        %em
+          = (AppConfig.photo['attachment_fu_options']['max_size'])
+          megabyte upload limit
+      %label Tags:
+      = text_field_tag 'tag_list', @photo.tags.collect{|t| t.name}.join(" "), {:autocomplete => "off", :size => 35}
+
+      #tag_list_auto_complete.auto_complete
+      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
+
+      %label Name:
+      = f.text_field :name, :size => 35
+
+      %label Description:
+      = f.text_area :description, :size => "58x5"
+
+      %p
+        = submit_tag "Create"
+        or
+        = link_to 'cancel and go back to my photos', user_photos_path(@user)
+
+  #multiple_upload.yui-b.box{"style"=>"display:none;"}
+    %h3 New Photos &raquo; Multiple Uploader
+
+    %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
+      Just uploading one photo?
+
+    %p.centered
+      %script{"type"=>"text/javascript"}
+        function getCookie(){
+        ="return \"_session_id=\" + Cookie.get(\"#{ActionController::Base.session.first[:session_key]}\");"
+        }
+        function getAppHost(){
+        ="return '#{APP_URL}';"
+        }
+        
+        AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0','width','500','height','300','src','/plugin_assets/community_engine/images/swf/upload','quality','high','pluginspage','http://www.macromedia.com/go/getflashplayer','movie','/plugin_assets/community_engine/images/swf/upload' ); //end AC code

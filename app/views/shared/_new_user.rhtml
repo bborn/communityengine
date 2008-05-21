@@ -1,8 +1,0 @@
-<%= link_to image_tag( user.avatar_photo_url(:thumb), {:class => "polaroid left"} ), user_path(user) %>
-<h3><%= link_to "#{truncate(user.login, 15)}", user_path(user) %></h3>
-
-<% if user.description %>
-	<p><%= truncate_words( user.description, 7, '...') %></p>
-<% end %>
-<%= "From: " + link_to( user.location, users_path(:metro_area_id => user.metro_area_id, :state_id => user.state_id, :country_id => user.country_id ) ) if user.metro_area %>	
-<br class="clear" /><br />

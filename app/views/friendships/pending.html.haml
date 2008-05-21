@@ -1,0 +1,7 @@
+.yui-b= render :partial => 'users/profile_user_info_sidebar'
+
+#yui-main
+  .yui-b
+    #friends.box
+      %h3 Pending Friendships
+      .user_list= render :partial => "friendships/friendship", :collection => @friendships

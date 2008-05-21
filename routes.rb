@@ -17,7 +17,13 @@ forum_home '/forums', :controller => 'forums', :action => 'index'
 
 connect 'sitemap.xml', :controller => "sitemap", :action => "index", :format => 'xml'
 connect 'sitemap', :controller => "sitemap", :action => "index"
-connect '', :controller => "base", :action => "site_index"
+
+if AppConfig.closed_beta_mode
+  connect '', :controller => "base", :action => "teaser"
+  home 'home', :controller => "base", :action => "site_index"
+else
+  home '', :controller => "base", :action => "site_index"
+end
 connect '/application/:action', :controller => 'base'
 
 # admin routes

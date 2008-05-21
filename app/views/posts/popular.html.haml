@@ -1,0 +1,29 @@
+- @section = 'popular'
+
+.yui-b
+  .box
+    - if logged_in?
+      %h3= "Get popular."
+      %ul.list.checks
+        %li=link_to "Write a blog post!", new_user_post_path({:user_id => current_user})
+    - else
+      %h3= "Want to be popular?"
+      %ul.list.checks
+        %li
+          %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"} Sign up for an account.
+          %br
+            %small
+              Have an account? 
+              %a{:href=>"/login", :title=>"Log in to your #{AppConfig.community_name} account"} &raquo;Login
+
+  .box.alt
+    %h3= "This month's Best"
+    %ul.list.page    
+      - @monthly_popular_posts.each do |post|
+        =render :partial => 'posts/sidebar_post', :locals => {:post => post}
+
+#yui-main
+  .yui-b
+    .box.hfeed
+      %h3 What's Popular
+      = render :partial => 'posts/post', :collection => @posts

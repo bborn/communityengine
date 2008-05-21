@@ -1,0 +1,50 @@
+.yui-b
+  .box
+    %h3
+      Why Sign up?
+    %ul.list.checks
+      %li Some reason to sign up
+      %li Some reason to sign up      
+
+  .box.alt
+    %h3 Tips
+    %p
+      After signing up,
+      %strong
+        you'll receive an e-mail confirmation message.
+    %p
+      %strong
+        Click the activation link in the e-mail
+      to log in.
+    %p= link_to "Already have an account?", "/login"
+
+#yui-main
+  .yui-b
+    .box
+      %h3 Sign up!
+      = error_messages_for :user
+      - form_for :user, :url => users_path, :html => {:class => 'MainForm'} do |f|
+        %label{"for"=>"login"} 
+          Username
+          %em (Required: Your username must not contain numerals, spaces or special characters.)
+        = f.text_field :login
+
+        %label{"for"=>"email"}
+          E-mail address
+          %em (Required: We will send a confirmation e-mail to the address you enter.)
+        = f.text_field :email
+
+        %label{"for"=>"birthdate"}
+          Birthday:
+          %em (Required: you must be at least 13 years old to sign up.)
+        = date_select :user, :birthday, {:start_year => 1926, :end_year => Time.now.year - 13}
+
+        %label{"for"=>"password"}
+          Type your password:
+        = f.password_field :password
+        %label{"for"=>"password_confirmation"}
+          Re-type your password to confirm:
+        = f.password_field :password_confirmation
+        = hidden_field_tag :inviter_id, params[:inviter_id]
+        = hidden_field_tag :inviter_code, params[:inviter_code]
+        %p= submit_tag 'Sign up'

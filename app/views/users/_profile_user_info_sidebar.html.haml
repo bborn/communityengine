@@ -1,0 +1,43 @@
+- if current_user && current_user.admin?
+  .box.first_alt.alt
+    %h3
+      Admin Controls
+    = link_to( "&raquo; Assume this user's ID", assume_user_path(@user) )
+    %br/
+    = link_to( "&raquo; Delete this user", user_path(@user), {:method => :delete, :confirm => 'Are you sure you want to permanently delete this user?'} )
+    %br/
+    = link_to( "&raquo; Toggle #{AppConfig.featured_writer_label}", toggle_featured_user_path(@user), {:method => :put} )
+
+#profile_details.box
+  %h3
+    = link_to @user.login, user_path(@user)
+    = " <small>(#{AppConfig.featured_writer_label})</small>" if @user.featured_writer?
+
+  .centered
+    - if @user.avatar
+      = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
+      = @user.featured_writer ? "<div class='right_corner'><div class='featured_writer'></div></div>" : ''
+      = image_tag( @user.avatar_photo_url(:medium))
+    - elsif @is_current_user
+      = image_tag( @user.avatar_photo_url(:medium))
+      %br
+      No profile photo?
+      = link_to "Click here to upload one!", edit_user_path(@user)
+    - else
+      = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+
+  - if current_user and current_user.can_request_friendship_with(@user)
+    = add_friend_link(@user)
+
+  %br/
+  %h3 My Details
+  %ul
+    %li
+      = @user.created_at.strftime("Member since: %m/%d/%y")
+    %li= "Profile views: #{@user.view_count}"
+    - if @user.offerings.any?
+      %li= "My skills: #{@user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')}"
+    - if @user.tags.any?
+      %li= "My tags: #{@user.tags.collect{|t| link_to t.name, tag_url(t.name) }.join(", ")}"
+    - if @user.metro_area
+      %li= link_to( @user.full_location, users_path(:metro_area_id => @user.metro_area_id, :state_id => @user.state_id, :country_id => @user.country_id ) ) 

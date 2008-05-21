@@ -1,0 +1,16 @@
+.box
+  %h3 Editing Metro Area
+
+  = error_messages_for :metro_area
+  - form_for(:metro_area, :url => metro_area_path(@metro_area), :html => { :method => :put, :class => 'MainForm' }) do |f|
+    %label Country:
+    = f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name
+    %label State:
+    = f.collection_select :state_id, State.find(:all), :id, :name, :include_blank => true
+    %label Name:
+    = f.text_field :name
+
+    %p
+      = submit_tag "Update"
+
+    = link_to 'Back', metro_areas_path

@@ -1,0 +1,21 @@
+.box.alt.first_alt
+  = link_to( "&raquo; Back to all users", users_path) if params['login'] || params['tag_list']
+  - form_tag users_path, :method => :get , :class => 'MainForm' do
+    %label User login:
+    = text_field_tag 'login', @search['login']
+    %p
+      = render :partial => 'shared/location_chooser', :locals => {:selected_country => @search['country_id'].to_i, :selected_state => @search['state_id'].to_i, :selected_metro_area => @search['metro_area_id'].to_i, :states => @states, :metro_areas => @metro_areas}
+
+    %p 
+      %input{"type"=>"submit", "value"=>"Search Users"}
+
+
+.box.alt
+  %h3 Metro Areas
+  - city_cloud @metro_areas_for_cloud, %w(nube1 nube2 nube3 nube4 nube5) do |city, css_class|
+    = link_to city.name, users_path(:metro_area_id => city.id), :class => css_class
+
+- if current_user
+  .box.alt
+    %h3 Share the love
+    = link_to "&raquo; Invite a friend to join #{AppConfig.community_name}!", invite_user_path(current_user)

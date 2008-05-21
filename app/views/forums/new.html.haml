@@ -1,0 +1,6 @@
+.box
+  %h3= _('New Forum')
+  - form_for :forum, :url => forums_path, :html => {:class => "MainForm"} do |f|
+    = render :partial => "form", :object => f
+    %p= submit_tag _('Create'), :or => link_to(_('Cancel'), forums_path)
+

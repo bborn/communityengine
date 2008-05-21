@@ -1,0 +1,7 @@
+.box.alt.first_alt
+  %h3= link_to "Find an expert", skills_path
+  Get help from someone who knows.  
+
+  %ul.list.checks
+    - Skill.find(:all, :order => "name").each do |skill|
+      %li= link_to skill.name, skill_path(skill)

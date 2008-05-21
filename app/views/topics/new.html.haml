@@ -1,0 +1,18 @@
+.box.alt.first_alt
+  = link_to _('Forums'), forum_home_path
+  %span.arrow &rarr;
+  = link_to h(@forum.name), forum_path(@forum)
+  %span.arrow &rarr; New Topic
+
+.box
+  %h3#new_topic= _('New Topic')
+  %p.subtitle
+    = _('by')
+    = current_user.display_name
+    
+  = error_messages_for :topic
+  - form_for :topic, :url  => forum_topics_path(@forum), :html => {:class => "MainForm"} do |f|
+    = render :partial => "form", :object => f
+    %p= submit_tag _('Post Topic'), :or => link_to(_('Cancel'), forum_path(@forum))
+
+  = javascript_tag "$('topic_title').focus();"

@@ -1,0 +1,37 @@
+.yui-b.sidebar
+  = render :partial => 'shared/admin_nav'
+
+#yui-main
+  .yui-b.box
+    %h3
+      = AppConfig.community_name
+      Members
+    - form_tag '/admin/users', :class => 'MainForm' do
+      %label User login:
+      = text_field_tag 'login', params['login']
+      %label User e-mail:
+      = text_field_tag 'email', params['email']
+      %p
+        %input{"type"=>"submit", "value"=>"Search Users"}
+
+    .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+
+    %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
+      %tr
+        %th Login
+        %th E-mail
+        %th Status
+        %th Actions
+      - @users.each do |user|
+        %tr
+          %td
+            = link_to h(user.login), user_path(user)
+          %td
+            = h user.email
+          %td
+            = user.active? ? 'active' : 'inactive'
+          %td
+            = link_to( "Assume ID", assume_user_path(user) )
+            = (" | " + link_to("Activate", :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
+
+      .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1

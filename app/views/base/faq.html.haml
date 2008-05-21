@@ -1,0 +1,24 @@
+= render :partial => 'about_nav'
+
+#yui-main
+  .yui-b
+    .box
+      %h3 Frequently Asked Questions:
+
+      %h4#what_is_it
+        What Is
+        = AppConfig.community_name
+      %p 
+        Explain what it is
+
+      %h4#tags What Are "Tags"?
+      %p Tags are one-word descriptors that you can assign to your blogs, pictures, and clippings.
+      %p Tags are a keywords you choose to help organize your stuff on this site. You can assign as many tags as you like and rename or delete them later.
+
+      %h4#images_and_flash How do I embed images and flash using the rich text editor?
+      %p 
+        You can add images or flash media to your profile and your blog posts by using the image 
+        %img{:src=>"/plugin_assets/community_engine/javascripts/tiny_mce/themes/advanced/images/image.gif"}
+        and media 
+        %img{:src=>"/plugin_assets/community_engine/javascripts/tiny_mce/plugins/media/images/media.gif"}
+        buttons on the rich text editor.

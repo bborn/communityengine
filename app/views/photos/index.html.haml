@@ -1,0 +1,29 @@
+.yui-b
+  = render :partial => 'posts/author_profile', :locals => {:user => @user}
+
+#yui-main
+  .yui-b
+    .yui-gd
+      #tag_list.yui-u.box.first
+        %h3 Tags
+        %ul.tags        
+        - @tags.each do |tag|
+          %li
+            - if (tag.name.eql?(params[:tag_name]) )
+              = link_to tag.name, user_photos_path(@user), :class => "selected"
+            - else
+              = link_to tag.name, user_photos_path(:user_id => @user, :tag_name => tag.name)    
+    
+      #photos.yui-u.box
+        %h3= link_to "#{@user.login}'s photos", user_photos_path(@user)
+        = link_to( 'New photo.', new_user_photo_path(@user), {:class => 'right'})  if @is_current_user
+
+        .clear
+        - @photos.each do |photo|
+          = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
+          
+        .pagination
+          = pagination_info_for @pages
+          = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+
+        

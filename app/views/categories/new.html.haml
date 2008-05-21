@@ -1,0 +1,9 @@
+.box
+  %h3 New category
+
+  - form_for(:category, :url => categories_path, :html => {:class => "MainForm"}) do |f|
+    %label Name
+    = f.text_field :name
+    %p= submit_tag "Create"
+
+  = link_to 'Back', categories_path 

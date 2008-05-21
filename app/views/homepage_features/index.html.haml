@@ -1,0 +1,30 @@
+.yui-b
+  = render :partial => 'shared/admin_nav'
+  
+#yui-main
+  .yui-b
+    .box
+      %h3 Homepage Features
+      = link_to 'New Homepage Feature', new_homepage_feature_path 
+
+      %table{:width=>"100%"}
+        %tr
+          %th Date
+          %th Title
+          %th Description
+          %th Image
+          %th Actions
+
+        - for homepage_feature in @homepage_features
+          %tr
+            %td=h homepage_feature.created_at.strftime("%m/%d/%y")
+            %td
+              %a{:href=>"#{h homepage_feature.url}"}=h homepage_feature.title
+            %td=h truncate(homepage_feature.description, 250)
+            %td= image_tag homepage_feature.public_filename(:thumb)
+            %td
+              = link_to 'Show', homepage_feature_path(homepage_feature)
+              %br
+              = link_to 'Edit', edit_homepage_feature_path(homepage_feature)
+              %br
+              = link_to 'Destroy', homepage_feature_path(homepage_feature), :confirm => 'Are you sure?', :method => :delete

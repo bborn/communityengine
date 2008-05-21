@@ -1,0 +1,51 @@
+.yui-b
+  =render :partial => 'posts/author_profile', :locals => {:user => @user}
+
+  - if @previous || @next
+    .box.alt
+      = link_to "<img src='#{@previous.image_uri}' /><br />&laquo; Prev ", user_clipping_path(@user, @previous), :class => 'left' if @previous
+      = link_to "<img src='#{@next.image_uri}' /><br />Next &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next
+
+  - if @related.any?
+    .box.alt
+    %h3 Related Clippings (all members)
+    .centered
+      - @related.each do |clipping|
+        = link_to image_tag(clipping.image_uri, :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
+
+#yui-main
+  .yui-b
+    .box.hfeed  
+      %h3= "#{link_to "#{@user.login}'s clippings", user_clippings_path(@user)}: #{@clipping.created_at.strftime("%B %d, %Y")}"
+      .hentry.main
+        - if @is_current_user
+          = link_to 'Delete', user_clipping_path(@user, @clipping), :confirm => 'Are you sure?', :method => :delete
+          |
+          = link_to 'Edit', edit_user_clipping_path(@user, @clipping)
+
+        %p.centered
+          %a{"href"=>"#{h @clipping.url }"}
+            %img{:src=>"#{h @clipping.image_uri}", :class=>"clipping", :alt=> "#{h @clipping.description}"}
+
+        %p
+          From:    
+          %a{"href"=>"#{h @clipping.url }", "title"=>"#{h @clipping.description }"}
+            = h truncate(@clipping.url, 95)
+
+        %p
+          Description:
+          =h @clipping.description
+  
+        %p
+          Tags:
+        %ul.tags
+          - @clipping.tags.each do |t|
+            %li=link_to( t.name, tag_url(t.name), :rel => 'tag')
+
+    #comments.box.hfeed.comments
+      %h3 Clipping Comments
+      %h2 Add Your Comment!
+      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
+      %a#newest_comment
+      = render :partial => 'comments/comment', :collection => @clipping.comments
+      %span#more_comments_links= more_comments_links(@post)

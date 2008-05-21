@@ -1,0 +1,65 @@
+.yui-b
+  .box#category_tips
+    -if @post.contest
+      = render :partial => "contest"
+    -elsif @post.category
+      = render :partial => "/categories/tips", :locals => {:category => @post.category}
+    - else 
+      = render :partial => "/categories/tips", :locals => {:category => nil}
+
+  .box.alt
+    %a.button.positive{:href => '#', :onclick => "tinyMCE.execCommand('mceCurblyAdvImage');return false;"} Upload an image for your post
+    
+#yui-main
+  .yui-b
+    .box
+      %h3
+        = "New #{@post.category ? Inflector.singularize(@post.category.name) : 'post'}"
+
+      = error_messages_for :post
+      - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm"}) do |f|			
+        - unless @post.category || @post.contest 
+          %label
+            Category:
+          %select{:id=>"post_category_id", :name=>"post[category_id]"}
+            -for category in Category.find(:all)
+              %option{:value=>"#{category.id}", :selected => category.eql?(Category.get(:talk)) }= h(category.name)
+        -else
+          = f.hidden_field :category_id
+          = f.hidden_field :contest_id
+
+        %label
+          Title 
+          %em (required)
+        = f.text_field :title
+
+        %label
+          Body Text 
+          %em (required)
+        = f.text_area :raw_post, :style => "width:100%;"
+
+        %label
+          Tags 
+          %em (optional keywords describing this post, separated by commas)
+        = text_field_tag 'tag_list', @post.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off", :size => 35}
+        .auto_complete#tag_list_auto_complete
+          = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
+        
+        %label
+          %a{:href=> "#", :onclick => "$('poll-ui').toggle(); return false;"}
+            = "#{image_tag 'icons/poll.png', :plugin => 'community_engine' } Add a poll"
+          %em (optional)
+        #poll-ui{:style => 'display:none'}=render :partial => 'polls/new'
+
+        %label
+          Save post as: 
+        = f.select(:published_as, [['Published', 'live'], ['Draft', 'draft']])
+        
+        %p
+          = submit_tag "Save"
+        %p
+          or 
+          = link_to 'cancel and go back to my posts', user_posts_path(@user)
+
+  = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}
+

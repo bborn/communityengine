@@ -1,0 +1,28 @@
+.yui-b
+  .box.alt.first_alt
+    %h3 Get Started: Upload a profile photo
+    %p
+      Your profile photo represents you on
+      = AppConfig.community_name
+      \. You can change it later.
+    = link_to "&raquo; Skip this step", welcome_about_user_path(@user)
+    %br/
+    = link_to "&raquo; Go to your profile", user_path(@user)
+
+#yui-main
+  .yui-b
+    .box
+      - form_tag( user_path(:welcome => 'about'), :method => 'put', :multipart =>true, :class => "MainForm") do
+        %h3 Profile Photo
+        %p.centered
+          = image_tag( @user.avatar_photo_url(:medium), :class => "right" )
+        %label
+          Choose a photo to upload:
+          %em          
+            - if @user.vendor?
+              You may want to use your company logo, or a photo of one of your products. 
+            Photos should be 300x300 pixels.
+        = file_field :avatar, :uploaded_data, :size => "20"
+
+        %p
+          = submit_tag 'Upload, and continue to step two'

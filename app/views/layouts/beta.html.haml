@@ -1,0 +1,30 @@
+!!!
+%html
+%head
+  %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
+  %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
+
+  %title
+    = AppConfig.community_name
+    |
+    = AppConfig.community_tagline
+  
+  = render :partial => "shared/scripts_and_styles"
+    
+  %body
+    #doc2.yui-t6
+      #hd
+        %h1
+          %a{:href=>"/", :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
+
+        #NavBar
+          %ul
+            
+      #bd
+        = render :partial => "shared/messages"
+                  
+        = @content_for_layout
+                            
+      #ft
+      #CommunityFooter
+        %p= AppConfig.community_tagline

@@ -1,0 +1,32 @@
+-@section = 'clippings'
+
+#yui-main
+  .yui-b    
+    .box
+      %h3
+        = params[:recent] ? "Recent " : "Popular "
+        Clippings
+
+      .clippings_grid
+        - @clippings.in_groups_of(2) do |group|
+          .row  
+            - group.compact.each do |clipping|
+              =render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+            .clear
+      
+      =pagination_links
+      .clear
+      %br
+          
+.yui-b  
+  .box
+    %h3 &nbsp;
+    
+    Clippings are visual bookmarks. Use clippings to keep track of images you like from around the web. 
+    -if logged_in?
+      =link_to 'Go to your clippings page to get started.', user_clippings_path(current_user)
+    -else
+      To get started with clippings, first 
+      =link_to 'create an account.', signup_path
+  .box.alt
+    =link_to "View #{params[:recent] ? 'Popular' : 'Recent'} Clippings", site_clippings_path(:recent => !params[:recent])

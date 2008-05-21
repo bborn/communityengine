@@ -19,8 +19,7 @@ class SkillsController < BaseController
       :include => [:posts, :offerings],
       :limit => 5,
       :conditions => ["users.updated_at > ? AND vendor = ?", 5.days.ago, true],
-      :order => "users.view_count DESC"
-      )
+      :order => "users.view_count DESC")
 
     respond_to do |format|
       format.html # index.rhtml
@@ -37,8 +36,7 @@ class SkillsController < BaseController
       :include => [:posts, :offerings],
       :limit => 5,
       :conditions => ["offerings.skill_id = ? AND users.updated_at > ? AND vendor = ?", @skill.id, 5.days.ago, true],
-      :order => "users.view_count DESC"
-      )
+      :order => "users.view_count DESC")
     
     respond_to do |format|
       format.html # show.rhtml

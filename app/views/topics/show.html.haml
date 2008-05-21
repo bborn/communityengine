@@ -1,0 +1,139 @@
+- @section = 'forums'
+- @page_title = @topic.title
+- @monitoring = logged_in? && !Monitorship.count(:all, :conditions => ['user_id = ? and topic_id = ? and active = ?', current_user.id, @topic.id, true]).zero?
+
+%script{:type => 'text/javascript'}
+  function monitor_click(){
+  if (this.checked) {
+  = remote_function :url => forum_topic_monitorship_path(@forum, @topic)
+  } else {
+  = remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete
+  }}
+
+
+.box.alt.first_alt
+  - if logged_in?
+    - form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
+      #monitor_topic
+        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click()"}
+        %label#monitor_label{"for"=>"monitor_checkbox"}
+          Watch
+          = "ing" if @monitoring
+          = _('topic')
+        = hidden_field_tag '_method', 'delete' if @monitoring
+        = submit_tag :Set, :id => 'monitor_submit'
+        
+  = link_to "Forums", forum_home_path
+  %span.arrow &rarr;
+  = link_to h(@topic.forum.name), forum_path(@topic.forum)
+  %span.arrow &rarr;
+  = h @topic.title
+  
+    
+    
+.box.forum
+  %h3#topic-title
+    = h @topic.title
+    - if @topic.locked?
+      %span= _('(locked)')
+    - if logged_in?
+      %span#topic_mod{"style"=>"display:none;"}
+        - if @topic.editable_by?(current_user)
+          = link_to(_('edit'), edit_forum_topic_path(@forum, @topic), :class => "utility")
+          |
+          = link_to(_('delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => _('Delete this topic forever?'))
+      %script{:type => "text/javascript"}
+        $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
+        $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
+
+  %p.subtitle
+    = feed_icon_tag @topic.title, formatted_forum_topic_path(@forum, @topic, :rss)
+    = "#{pluralize @topic.sb_posts.count, 'post'}, #{pluralize @topic.voices, 'voice'}"
+    = ", Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t.name), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
+  
+  %ul.flat.talking
+    %li.label= "#{_('Voices')}:"
+    - @voices.each do |user|
+      %li= link_to h(user.display_name), user_path(user)
+
+  - if @post_pages.page_count > 1
+    .pagination= pagination_links @post_pages, :window_size => 10
+
+  %a{"name"=>"#{@posts.first.dom_id}", "id"=>"#{@posts.first.dom_id}"} &nbsp;
+  %br.clear
+  %br
+  %table.posts.wide{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0"}
+    - for post in @posts do
+      - unless post.eql?(@posts.first)
+        %tr.spacer
+          %td{"colspan"=>"2"}
+            %a{"name"=>"#{post.dom_id}", "id"=>"#{post.dom_id}"} &nbsp;
+          
+      %tr.post{"id"=>"posts-#{post.dom_id}-row"}
+        %td.author.vcard{:width => "15%"}
+          .date
+            %a{"href"=>"##{post.dom_id}", "rel"=>"bookmark"}
+              %abbr.updated{"title"=>"#{post.created_at.xmlschema}"}= time_ago_in_words(post.created_at)
+
+          = avatar_for post.user
+          %span.fn
+            = link_to truncate(h(post.user.display_name), 15), user_path(post.user), :class => (post.user == @posts.first.user ? "admin" : nil)
+
+          %span.posts= pluralize post.user.sb_posts_count, 'post'
+          - if logged_in? && post.editable_by?(current_user)
+            %p
+              %span.edit
+                = ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif"
+                = link_to_remote(_('Edit post'), {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, {:class => "utility"})
+              - if admin? && !post.user.admin?
+                %div{"class"=>"make-moderator-#{post.user_id}"}
+                  = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
+
+        %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
+          - #= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()", :plugin => "community_engine" if logged_in?
+          = post.body_html
+
+  - if @post_pages.page_count > 1
+    .pagination= pagination_links @post_pages, :window_size => 10
+
+  - if logged_in?
+    #edit
+    - if @topic.locked?
+      %p
+        = image_tag "clearbits/lock.gif", :class => "icon grey", :title => "Topic locked", :plugin => "community_engine"
+        %label= _('This topic is locked.')
+    - else
+      %p
+        = link_to_function _('Reply to topic'), "ReplyForm.init()", :class => "utility"
+      #reply.editbox
+        .container
+          = content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply]
+
+          - form_for :post, :url => sb_posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page) do |f|
+            %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
+              %tr
+                %td{"rowspan"=>"2", "width"=>"70%"}
+                  = f.text_area :body, :style => "width: 99%"
+                %td{"style"=>"vertical-align:top;"}
+                  = submit_tag _("Save Reply")
+                  %span.button_or= "or #{link_to_function _('cancel'), "$('reply').hide()"}"
+              %tr
+                %td{"style"=>"vertical-align: bottom; padding-bottom:15px;"}
+
+    = javascript_tag "$('reply').hide();"
+  - else
+    %p= link_to _('Log in to reply to this topic'), new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
+
+.box.alt
+  = link_to _("Forums"), forum_home_path
+  %span.arrow &rarr;
+  = link_to h(@topic.forum.name), forum_path(@topic.forum)
+  %span.arrow &rarr;
+  = h @topic.title
+  
+%script{"type"=>"text/javascript", "charset"=>"utf-8"}
+  Event.observe(window, 'load', function(){
+  if(document.location.href.include('#reply-form')){
+  ReplyForm.init();
+  }
+  })

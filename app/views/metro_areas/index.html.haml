@@ -1,0 +1,29 @@
+.yui-b
+  = render :partial => 'shared/admin_nav'
+
+#yui-main
+  .yui-b
+    .box
+      %h3 Metro Areas
+
+      = pagination_info_for @pages
+      = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+
+      %table{:width=>"100%"}
+        %tr
+          %th Name
+          %th State
+          %th Country
+          %th Actions
+
+        - for metro_area in @metro_areas
+          %tr
+            %td= metro_area.name 
+            %td= metro_area.state.name if metro_area.state 
+            %td= metro_area.country.name 
+            %td
+              = link_to 'Edit', edit_metro_area_path(metro_area) 
+              |
+              = link_to 'Destroy', metro_area_path(metro_area), :confirm => 'Are you sure?', :method => :delete
+      
+      = link_to 'New Metro Area', new_metro_area_path

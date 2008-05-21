@@ -1,0 +1,14 @@
+- user = friendship.friend
+
+.yui-gf.row
+  .yui-u.first.centered= image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" )
+  .yui-g
+    .yui-u.first
+      %h2= link_to user.login, user_path(user)
+      = "from #{user.location}<br/>" if user.metro_area      
+      = friendship.friendship_status.name
+      \: 
+      requested 
+      = time_ago_in_words friendship.created_at
+
+    .yui-u= friendship_control_links(friendship) if @is_current_user

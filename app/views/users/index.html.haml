@@ -1,0 +1,18 @@
+- @section = (params[:metro_area_id] ? 'metro_area' : 'users')
+
+.yui-b
+  = render :partial => 'users/search_options'
+
+#yui-main
+  .yui-b
+    .box.user_list
+      %h3= "#{AppConfig.community_name} Members"
+
+      .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+  
+      %br.clear
+  
+      = render :partial => "users/user", :collection => @users
+      
+      %br.clear
+      .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1

@@ -1,0 +1,26 @@
+.yui-b
+  = render :partial => 'shared/admin_nav'
+
+#yui-main
+  .yui-b.box
+    %h3 Ads
+    %table{"width"=>"100%"}
+      %tr
+        %th Name
+        %th Frequency
+        %th Published?
+        %th Run
+        %th Location
+      - for ad in @ads
+        %tr
+          %td= link_to h(ad.name), ad_path(ad)
+          %td= h ad.frequency
+          %td= h ad.published?
+          %td= h ad.time_constrained? ? "#{ad.start_date.to_formatted_s(:short)}-#{ad.end_date.to_formatted_s(:short)}" : "n/a"
+          %td= h ad.location
+          %td= link_to 'Show', ad_path(ad)
+          %td= link_to 'Edit', edit_ad_path(ad)
+          %td= link_to 'Destroy', ad_path(ad), :confirm => 'Are you sure?', :method => :delete
+            
+    %br
+    = link_to 'New ad', new_ad_path

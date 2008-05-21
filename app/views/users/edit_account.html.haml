@@ -1,0 +1,59 @@
+- form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
+  .box.alt.first_alt
+    %h3 You're editing your account.
+    = link_to "Edit your user profile?", edit_user_path(@user)
+
+  = error_messages_for :user
+
+  .yui-b.box
+    %h3 Username
+    = text_field :user, :login, :size => "28"
+
+    %h3 E-mail Address
+    = text_field :user, :email, :size => "28"
+
+    %h3 Password
+    = password_field :user, :password, :size => "28"
+
+    %label Confirm Password
+    = password_field :user, :password_confirmation, :size => "28"
+
+  #yui-main
+    .yui-b.box
+      %h3 E-mail Notification
+
+      %fieldset
+        %label 
+          = check_box :user, :notify_friend_requests        
+          Notify me when
+          = AppConfig.community_name
+          members request friendship.
+
+        %label
+          = check_box :user, :notify_comments         
+          Notify me when
+          = AppConfig.community_name
+          members comment on my profile, blog, or photos.
+
+
+        %label
+          = check_box :user, :notify_community_news
+          Send me occasional news and updates from the
+          = AppConfig.community_name
+          Team.
+
+      %h3 Profile Privacy
+
+      %fieldset
+        %label
+          = check_box :user, :profile_public
+          Make my profile public
+          %br
+          %em
+            When checked, your profile will be visible to anyone.
+          %br
+          %em
+            When unchecked, your profile will only be visible to people who are logged in to
+            = "#{AppConfig.community_name}."
+      %p= submit_tag 'Save Changes'  
+            

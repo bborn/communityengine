@@ -1,0 +1,24 @@
+.box
+  %h3
+    Get Started: Invite some friends!
+    = 'Invite some customers!' if @user.vendor?
+  %p
+    The more people you invite, the better
+    = AppConfig.community_name
+    becomes.
+  %p People who sign up using your invitation will automatically be added as your friends.
+    
+  - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id), :html => {:class => "MainForm"} ) do |f|
+    %label{"for"=>"email_addresses"} 
+      Enter e-mail addresses 
+      %em (comma-separated)
+      \:
+    = f.text_area :email_addresses , :size => "83x5"
+
+    %label{"for"=>"message"} Write a message:
+    = f.text_area :message, :size => "83x5", :value => "#{AppConfig.community_name} is great, check it out, you'll love it! #{}"
+
+    %p
+      = submit_tag "Send Invitations!"
+      %br/
+      = link_to "&raquo; Skip this and go to your profile", user_path(@user)

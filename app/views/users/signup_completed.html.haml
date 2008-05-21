@@ -1,0 +1,14 @@
+.box
+  %h3 Go check your e-mail!
+  %ul.list.checks
+    %li
+      We just sent an e-mail to
+      %strong
+        = @user.email
+      that will let you activate your account. </li
+      %li
+        Look for a message from
+        = AppConfig.community_name
+        (check your junk mail folder too, just in case).
+      %li
+        See you back here in a short while...

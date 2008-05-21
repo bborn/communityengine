@@ -1,0 +1,28 @@
+.yui-b
+  = render :partial => 'shared/admin_nav'
+
+#yui-main
+  .yui-b
+    .box
+      %h3 Categories
+
+      %table{:width=>"100%"}
+        %tr 
+          %th Name
+          %th # Posts	
+          %th Actions
+
+        - for category in @categories
+          %tr
+            %td= category.name
+            %td= category.posts.size	
+            %td
+              = link_to 'Show', category_path(category)
+              | 
+              = link_to 'Edit', edit_category_path(category)
+              |
+              = link_to 'Destroy', category_path(category), :confirm => 'Are you sure?', :method => :delete
+
+      %br
+
+      = link_to 'New category', new_category_path

@@ -1,0 +1,19 @@
+.yui-b
+  = render :partial => "skills/sidebar_menu"
+
+  - if @active_users.any?
+    .box.alt
+      %h3 Top Pros
+      - @active_users.each do |user|
+        = render :partial => "users/sidebar_user", :locals => {:user => user}
+
+
+#yui-main
+  .yui-b.box
+    %h3
+      = AppConfig.community_name
+      Pros Skilled in
+      = @skill.name
+    = content_tag :h2, "Sorry, we don't have any pros in this skill category yet." if @skill.users.empty?
+
+    = render :partial => "users/user", :collection => @skill.users

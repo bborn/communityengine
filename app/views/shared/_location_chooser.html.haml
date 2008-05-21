@@ -1,0 +1,10 @@
+%span#location_chooser
+  Country:
+  %br
+  = select_tag(:country_id, '<option></option>'+options_from_collection_for_select(Country.find_countries_with_metros, "id", "name", selected_country), {:style => "width:100px"})
+  = "<br />State: <br />" + select_tag(:state_id, '<option></option>'+options_from_collection_for_select(State.find(:all), "id", "name", (selected_state rescue nil)), {:style => "width:100px", :disabled => states.empty? } )
+  = image_tag 'spinner.gif', :plugin => 'community_engine', :style => 'display:none;'
+  = "<br />Metro Area: <br />" + select_tag(:metro_area_id, options_from_collection_for_select(metro_areas, "id", "name", (selected_metro_area rescue nil)), {:style => "width:100px", :disabled => metro_areas.empty? } )
+  = image_tag 'spinner.gif', :plugin => 'community_engine', :style => 'display:none;'
+= observe_field  "state_id", {:url => {:controller => 'users', :action => 'metro_area_update'}, :with => "state_id", :loading => "$$('span#location_chooser img')[0].show();", 500 => "alert('Sorry, there was an error.'); return false", :update => "location_chooser"}
+= observe_field  "country_id", {:url => {:controller => 'users', :action => 'metro_area_update'}, :with => "country_id", :loading => "$$('span#location_chooser img')[0].show();", 500 => "alert('Sorry, there was an error.'); return false", :update => "location_chooser"}

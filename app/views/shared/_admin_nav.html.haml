@@ -1,0 +1,16 @@
+.box
+  %h3 Admin
+
+  %ul.list.checks
+    %li= link_to "Features", homepage_features_path
+    - if feature_enabled?('categories')
+      %li= link_to "Categories", categories_path
+    - if feature_enabled?('contests')
+      %li= link_to "Contests", contests_path
+    %li= link_to "Metro areas", metro_areas_path
+    - if feature_enabled?('skills')
+      %li= link_to "Skills", new_skill_path 
+    - if feature_enabled?('events')
+      %li= link_to "Events", events_path
+    %li= link_to "Statistics", statistics_path
+    %li= link_to "Ads", ads_path 

@@ -1,0 +1,78 @@
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/util.js"}
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
+- @section = (@post.category && @post.category.name)
+
+#yui-main
+  .yui-b
+    .box.hfeed
+      %h3= "#{@user.login}'s Blog"
+      .hentry.main
+        %h4.entry-title= link_to @post.title, user_post_path(@user, @post), :rel => 'bookmark'
+        .vcard.author
+          %ul
+            %li.update
+              %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
+                %abbr.published{"title"=>"#{@post.created_at}"}= @post.created_at.strftime("%B %d, %Y")
+            %li.view= "views (#{@post.view_count})"
+            %li.comments= link_to "comments (#{@post.comments.size})", user_post_path(@user, @post)+'#comments'      
+            %li.addfriend
+              %a{"href"=>"#"} Add as friend
+            %li.print
+              %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>"Print this story"} Print
+            %li.email
+              %a{:href=>"#", :onclick=>"showSendTo_friend(); return false;", :title=>"E-mail this story to friends"} E-mail to friends
+            %li.share
+              %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358"}
+              
+          %script{:type => 'text/javascript'}
+            :plain
+              function showSendTo_friend(){
+                if ($('send_to_friend')){
+                  new Lightbox.base('send_to_friend');				                
+                } else {
+            = remote_function(:url => { :action => "send_to_friend", :params => {:user_id => @user.id, :id => @post.id} }, :success => "new Insertion.Top($('bd'), request.responseText)", :complete => "new Lightbox.base('send_to_friend'); return false;Element.toggle('send_to_friend');", :method => 'post')                 
+            :plain
+              }}
+              
+        / vcard
+        .entry-content
+          = @post.post
+          = render :partial => 'polls/poll_ui', :locals => {:poll => @post.polls.first} unless @post.polls.empty?
+          - unless @post.tags.empty?
+            %ul.tags
+              - @post.tags.each do |t|
+                %li=link_to( t.name, tag_url(t.name), :rel => 'tag')
+        / entry-content
+      / ends hentry
+    #comments.box.hfeed.comments
+      %h3 Post Comments
+      %h2 Add Your Comment!
+      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @post}
+      %a#newest_comment
+      = render :partial => 'comments/comment', :collection => @comments
+      %span#more_comments_links= more_comments_links(@post)
+    / ends box
+  / yui-b
+/ ends yui-main
+
+.yui-b
+  =render :partial => 'author_profile', :locals => {:user => @user}
+
+  - unless @related.empty?
+    .box.alt
+      %h3 Related Posts
+      %ul.list.page
+        - @related.each do |post|
+          %li=link_to truncate(post.title, 75), user_post_path(post.user, post)      
+
+  - unless @popular_posts.empty?
+    .box.alt
+      %h3 Popular Posts
+      %ul.list.page
+        - @popular_posts.each do |post|
+          %li=link_to truncate(post.title, 75), user_post_path(post.user, post)      
+/ sidebar
+
+%script{:type=>"text/javascript", :charset=>"utf-8"}
+  = remote_function :url => {:controller => 'posts', :action => 'update_views', :user_id => @post.user, :id => @post}, :method => :put

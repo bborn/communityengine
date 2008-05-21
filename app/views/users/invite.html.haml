@@ -1,0 +1,35 @@
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/util.js"}/
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}/
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}/
+
+.yui-b
+  .box.alt.first_alt
+    %h3 Spread the word
+    %p
+      The more people you invite, the better
+      = AppConfig.community_name
+      becomes.
+    %p
+      People who sign up using your invitation will automatically be added as your friends on
+      = AppConfig.community_name
+      \.
+
+#yui-main
+  .yui-b
+    .box
+      %h3 Invite Your Friends To Join!
+      - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "MainForm"} ) do |f|
+        .right
+          %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/application/plaxo'); return false;"}
+            %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>"Add from my address book"}/
+        %label{"for"=>"email_addresses"} 
+          Enter e-mail addresses 
+          %em (comma-separated)
+        = f.text_area :email_addresses , :rows => "5"
+        %label{"for"=>"message"} Write a message
+        = f.text_area :message, :rows => "5"
+
+        %p
+          = submit_tag "Send Invitations!"
+          or
+          = link_to "cancel", user_path(@user)

@@ -1,0 +1,77 @@
+- form_tag user_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
+  .box.alt.first_alt
+    %h3 You're editing your profile.
+    = link_to "&raquo; Edit your account settings instead?", edit_account_user_path(@user)
+  
+  = error_messages_for :user
+
+  %p= submit_tag 'Save Changes'  
+  .yui-b
+    #profile_details.box
+      %h3 Profile Photo
+      = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
+      = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+      %label
+        Choose a photo for your profile:
+      = file_field :avatar, :uploaded_data, :size => "20"
+      
+      %h3 Location
+      = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
+
+      %label
+        ZIP/Postal code:
+      = text_field :user, :zip, :style=>"width:90px"
+
+      %h3 Birthday & Gender
+      %fieldset
+        %legend
+          Gender
+        %label
+          = radio_button :user, :gender, User::MALE
+          Male
+        %label
+          = radio_button :user, :gender, User::FEMALE
+          Female
+
+      %label
+        Birthday:
+      = date_select :user, :birthday, {:start_year => 1926, :end_year => Time.now.year - 1}
+      
+  #yui-main
+    .yui-b
+      .box
+        %h3 About Me
+        = text_area :user, :description, :class => "rich_text_editor", :style => "width:100%"
+        
+      .box.alt
+        Tips: 
+        = render :partial => 'shared/bio_help'
+        Feel free to embed images or videos (
+        %a{"href"=>"faq#images_and_flash", "target"=>"new"} How do I do that?
+        )
+
+      = render :partial => 'offerings/chooser' if @user.vendor?
+      
+      .box
+        %h3 Tags
+        #user_tags
+          = text_field_tag 'tag_list', @user.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off"}
+          #tag_list_auto_complete.auto_complete
+          = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
+          %label
+            %em
+              You could tag yourself
+              - if @user.vendor?
+                "custom, friendly, local"
+              - else
+                = AppConfig.meta_keywords.split(",")[0..3].join(", ")
+              %br
+              Tags are comma-separated keywords that describe you.
+              %br
+              You can browse all content and users on
+              = AppConfig.community_name
+              by looking at the
+              = link_to "tags page", tags_path
+
+      %p
+        = submit_tag 'Save Changes'

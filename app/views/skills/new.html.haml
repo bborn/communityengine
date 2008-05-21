@@ -1,0 +1,9 @@
+.box
+  %h3 New Skill
+  - form_for(:skill, :url => skills_path, :html => {:class => "MainForm" }) do |f|
+    %label Name:
+    = f.text_field :name
+
+    %p= submit_tag "Create"
+
+  = link_to 'Back', skills_path

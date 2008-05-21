@@ -1,0 +1,30 @@
+.hentry
+  %h4.entry-title{:id=>"post_#{ post.id}"}
+    = link_to post.title, user_post_path(post.user, post), :rel => 'bookmark'
+
+  .vcard.author
+    %h5
+      %a{:href=>"#{user_post_path(post.user, post)}", :class=>"photo", :rel=>"bookmark"}
+        =image_tag((post.first_image_in_body || post.user.avatar_photo_url(:thumb)), :alt=>"", :width=>"50", :height=>"50")
+
+    %ul
+      %li.fn=link_to post.user.login, user_path(post.user)
+      %li.update
+        %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark"}
+          %abbr.published{:title=>"#{post.created_at}"}= post.created_at.strftime("%B %d, %Y")
+      %li.view
+        views
+        = "(#{post.view_count})"
+      %li.comments
+        = link_to "comments (#{post.comments.size})", user_post_path(post.user, post)+'#comments'      
+      %li.addfriend
+        %a{:href=>"#"} Add as friend
+
+  .entry-content
+    = truncate_words(post.post, 75, '...' )
+    
+    = render :partial => 'polls/excerpt', :locals => {:poll => post.poll} if post.poll
+    
+
+    %h6 
+      =link_to 'read more', user_post_path(post.user, post), :rel=> 'bookmark'

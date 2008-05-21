@@ -1,0 +1,68 @@
+.yui-b
+  .box.alt.first_alt
+    %h3
+      Get Started: Tell us about yourself
+    = render :partial => 'shared/bio_help'
+    %p
+      Remember, you can always change this later.
+    %p
+      = link_to "&raquo; Skip this step", welcome_invite_user_path(@user)
+      %br
+      = link_to "&raquo; Go to your profile", user_path(@user)
+
+  - if @user.avatar_photo_url
+    .box.alt
+      %h3 Your profile photo:
+      .centered
+        = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
+        = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid", :style=>"width:250px" )
+
+#yui-main
+  .yui-b.box
+    - form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "MainForm" do
+      %h3 About You
+      = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
+      
+      %h3 Gender
+      %fieldset
+        %label
+          = radio_button :user, :gender, User::MALE
+          Male
+        %label
+          = radio_button :user, :gender, User::FEMALE
+          Female
+          
+      - if @user.vendor?
+        %p= render :partial => 'offerings/chooser'
+      
+      %h3 More about you
+      .yui-g
+        .yui-u.first
+          .box.alt
+            %h3
+              Choose your location
+            %br
+            Postal code:
+            %br
+            = text_field :user, :zip, :size => 10
+            %br
+            %br
+            = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
+        .yui-u
+          .box.alt
+            %h3 Tag yourself
+            = text_field_tag 'tag_list', @user.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off"}
+            #tag_list_auto_complete.auto_complete/
+            = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
+            %br
+            %small
+              Comma-separated keywords that describe you.
+              %br
+              You could tag yourself
+              - if @user.vendor?
+                "custom, friendly, local"
+              - else
+                = AppConfig.meta_keywords.split(",")[0..3].join(', ')
+
+
+        %p= submit_tag 'Save, and continue to step three'

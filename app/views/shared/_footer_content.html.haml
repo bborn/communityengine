@@ -1,0 +1,11 @@
+.yui-u.first
+  .box.fresh
+    %h3 What's fresh
+    - @recent_activity.each do |activity|
+      =render :partial => "activities/activity", :locals => {:activity => activity }
+
+.yui-u
+  .box
+    %h3 Tags
+    - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
+      = link_to name, tag_path(name), :class => css_class

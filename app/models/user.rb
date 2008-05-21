@@ -344,8 +344,15 @@ class User < ActiveRecord::Base
     Activity.find(:all, 
       :conditions => ['user_id in (?) AND created_at > ?', ids, since], 
       :order => 'created_at DESC',
-      :page => page)
-      
+      :page => page)      
+  end
+  
+  def self.recent_activity(page = {})
+    page.reverse_merge :size => 10, :current => 1
+    
+    Activity.find(:all, 
+      :order => 'created_at DESC',
+      :page => page)      
   end
   
   def friends_ids

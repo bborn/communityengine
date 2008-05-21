@@ -1,0 +1,27 @@
+.yui-b
+  = render :partial => 'author_profile', :locals => {:user => @user}
+
+  - unless @popular_posts.empty?
+    #posts.box.alt
+      %h3 Popular Posts
+      %ul.list.page
+        - @popular_posts.each do |post|
+          %li= link_to truncate(post.title, 75), user_post_path(@user, post)
+
+#yui-main
+  .yui-b
+    .box.posts.hfeed
+      %h3
+        = link_to "#{@user.login}'s blog", user_posts_path(@user)
+        = @category ? "&raquo; " + link_to(@category.name.upcase, users_posts_in_category_path(@user, @category.name)) : ''
+
+      = link_to( 'New post.', new_user_post_path(@user), {:class => "right"})  if @is_current_user
+      %br
+
+      = render :partial => 'post', :collection => @posts
+
+      - if @pages.length > 1
+        .pagination
+          = link_to "&laquo; Earlier posts", { :page => @pages.current.next } if @pages.current.next
+          = link_to " | Later posts &raquo; ", { :page => @pages.current.previous } if @pages.current.previous
+

@@ -1,0 +1,38 @@
+%dl{:class => (activity.item_type && activity.item_type.humanize.downcase) }
+  %dt
+    =time_ago_in_words_or_date(activity.created_at)
+  %dd
+    =link_to activity.user.login.capitalize, user_path(activity.user.login_slug)  
+    - if activity.item
+      - case activity.item_type
+        - when 'Post'
+          =" wrote a post: "
+          = link_to activity.item.title, user_post_path(activity.item.user, activity.item)
+        - when 'Photo'
+          =" uploaded a photo: "
+          = link_to image_tag(activity.item.public_filename(:thumb), :width => '50px'), user_photo_path(activity.item.user, activity.item)
+        - when 'Topic'
+          =" started a topic: "
+          -topic = activity.item
+          = link_to truncate_words(topic.title), forum_topic_path(topic.forum, topic)
+        - when 'SbPost'
+          =" added to a forum topic: "
+          - topic = activity.item.topic
+          = link_to truncate_words(activity.item.body), forum_topic_path(topic.forum, topic)
+        - when 'Comment'
+          =" left a comment: "
+          = link_to truncate_words(activity.item.comment), activity.item.generate_commentable_url
+        - when 'Favorite'
+          =" favorited"
+          = link_to " a #{activity.item.favoritable.class.to_s.humanize.downcase}", user_favorite_path(activity.item.user, activity.item)
+        - when 'Clipping'
+          =" added a clipping: "
+          = link_to image_tag( activity.item.image_uri(:thumb), :width => '50px'), user_clipping_path(activity.item.user, activity.item)        
+    - else
+      - case activity.action
+        - when 'updated_profile'
+          updated their profile
+        - when 'logged_in'
+          logged into the site
+        - else
+          = " #{activity.action.sub("_", " ") }"

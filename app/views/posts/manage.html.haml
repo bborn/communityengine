@@ -1,31 +1,29 @@
-.profile    
+.yui-b.sidebar
 
-  .yui-b.sidebar
+#yui-main
+  .yui-b
+    .box
+      %h3 Manage Posts
 
-  #yui-main
-    .yui-b.main_column
-      .section
-        %h2 Manage Posts
+      -if @posts.page_count > 1
+        .pagination= paginating_links @posts, :link_to_current_page => true
 
-        -if @posts.page_count > 1
-          .pagination= paginating_links @posts, :link_to_current_page => true
-
-        %table{:border => 0, :width => '100%'}
-          %thead
-            %tr
-              %th Date
-              %th Title
-              %th Category
-              %th Tags
-              %th Comments
-              %th Status
-          %tbody
-            - @posts.each do |post|
-              %tr            
-                %td
-                  %abbr{:title=>"#{post.created_at}"}= post.created_at.strftime("%Y/%m/%d")
-                %td= link_to post.title, edit_user_post_path(post.user, post)
-                %td= post.category.name
-                %td= post.tags.any? ? post.tag_list : 'No tags'
-                %td= post.comments.count
-                %td= post.is_live? ? link_to('published', user_post_path(post.user, post)) : 'draft'
+      %table{:border => 0, :width => '100%'}
+        %thead
+          %tr
+            %th Date
+            %th Title
+            %th Category
+            %th Tags
+            %th Comments
+            %th Status
+        %tbody
+          - @posts.each do |post|
+            %tr            
+              %td
+                %abbr{:title=>"#{post.created_at}"}= post.created_at.strftime("%Y/%m/%d")
+              %td= link_to post.title, edit_user_post_path(post.user, post)
+              %td= post.category.name
+              %td= post.tags.any? ? post.tag_list : 'No tags'
+              %td= post.comments.count
+              %td= post.is_live? ? link_to('published', user_post_path(post.user, post)) : 'draft'

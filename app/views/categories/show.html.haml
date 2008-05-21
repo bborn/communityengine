@@ -1,0 +1,42 @@
+- @meta = { :description => "#{@category.name} posts, DIY projects and photos.",:keywords => "#{@category.name}, diy, design, interior-design, do it yourself"}
+- @section = @category.name
+
+.yui-b
+  .box
+    - if logged_in?
+      %h3= "Have something to contribute?"
+      %ul.list.checks
+        %li= link_to @category.display_new_post_text, new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
+    - else
+      %h3= "Want to post in this cagegory?"
+      %ul.list.checks
+        %li
+          %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"} Sign up for an account.
+          %br
+            %small
+              Have an account? 
+              %a{:href=>"/login", :title=>"Log in to your #{AppConfig.community_name} account"} &raquo;Login
+
+  .box.alt
+    %h3 Top Writers
+    - @active_users.each do |user|
+      = render :partial => "users/sidebar_user", :locals => {:user => user} 
+      
+  .box.alt
+    %h3= "Popular #{@category.name}"
+    %ul.list.page    
+      - @popular_posts.each do |post|
+        =render :partial => 'posts/sidebar_post', :locals => {:post => post}
+
+
+#yui-main
+  .yui-b
+    .box.hfeed
+      %h3      
+        ="#{@category.name} #{params[:popular] ? " (Popular) " : ""}"
+      %ul
+        %li= link_to "Recent", category_path(@category), {:class => (params[:popular] ? '' : 'active')}
+        %li= link_to "Popular", category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
+      = render :partial => 'posts/post', :collection => @posts
+      = pagination_info_for @pages
+      = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1

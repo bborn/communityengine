@@ -1,0 +1,107 @@
+- @meta = { :description => "#{@user.login}'s DIY projects, interior design ideas and favorites.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}, diy, design, interior-design" }
+- @section = @user.eql?(current_user) ? 'my_profile' : 'users'
+
+- if @is_current_user and @user.vendor? and (@user.offerings.empty? or @user.description.nil? )
+  %p
+    ? Hey, you're a
+    = AppConfig.community_name
+    Pro! You should
+    = link_to "update your profile", edit_user_path(@user)
+    \! Add your skills, contact info and Web site.
+
+
+.yui-b
+  .box
+    = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
+
+  - if @user.description
+    #about_me.box.alt
+      %h3
+        About Me
+      %p
+        = @user.description
+
+  #friends.box.alt
+    %h3
+      My Friends    
+      = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
+    = link_to "&raquo; Invite a friend to #{AppConfig.community_name}", invite_user_path(@user) if @is_current_user      
+    %br
+    = link_to "&raquo; View all my friend requests (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
+    %br
+    %br    
+    - @accepted_friendships.each do |user|
+      =render :partial => "users/sidebar_user", :locals => {:user => user}
+    -if @accepted_friendships.size > 4
+      %h6.all
+        =link_to 'See All', accepted_user_friendships_path(@user)   
+
+  - unless @users_comments.empty?
+    #photo_comments.yui-g.box.alt
+      %h3 My recent comments    
+      - @users_comments.each do |comment|
+        - commentable_url = comment.generate_commentable_url
+        %dl.vcard
+          %dt.photo
+            = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url
+          %dd.fn
+            - if comment.recipient.eql?(comment.commentable)
+              %strong= "To: #{link_to comment.recipient.login, commentable_url}"
+            - else
+              %strong= "To :#{link_to comment.recipient.login, user_path(comment.recipient)}"
+              %br
+              %strong=" On: #{link_to comment.commentable_name, commentable_url} (#{comment.commentable_type})"
+          %dd
+            %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
+                        
+  - unless @photo_comments.empty?
+    #photo_comments.yui-g.box.alt
+      %h3 Photo Comments
+      - @photo_comments.each do |comment|
+        %dl.vcard
+          %dt.photo
+            = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))        
+          %dd.fn= "#{comment.user.login} says:"
+          %dd
+            = truncate_words(comment.comment, 10)
+            %br
+            = link_to "&raquo; View comment", user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
+
+#yui-main
+  .yui-b
+    - if @photos.empty? and @recent_posts.empty?
+      %h1.gray= "#{@user.login} doesn't have much here yet. Stay tuned."
+      %br
+      
+    - unless @photos.empty?
+      #photos.box
+        %h3 Photos
+        - @photos.each do |photo|
+          = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
+        %br
+        = link_to "&raquo; View all my photos", user_photos_path(@user)
+        = " | #{link_to("Add a photo", new_user_photo_path(@user))}" if @is_current_user
+
+    - unless @recent_posts.empty?
+      #posts.box
+        %h3 Recent Blog Posts
+        = link_to "&raquo; View my blog", user_posts_path(@user)
+        %br
+        = render :partial => 'posts/post', :collection => @recent_posts
+
+    - unless @clippings.empty?
+      #clippings.box
+        %h3 Clippings
+        - @clippings.each do |clipping|
+          %a{"href"=>"#{h user_clipping_url(@user, clipping)}"}
+            %img.clipping{"src"=>"#{h clipping.image_uri(:thumb)}", :width => '100', :height => '100'}
+        %br
+        = link_to "View all my clippings", user_clippings_path(@user)
+
+    #comments.box.hfeed.comments
+      %h3 Profile Comments
+      %h2 Add Your Comment!
+      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @user}
+      %a#newest_comment
+      = render :partial => 'comments/comment', :collection => @comments
+      %span#more_comments_links= more_comments_links(@user)

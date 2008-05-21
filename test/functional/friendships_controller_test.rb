@@ -65,12 +65,6 @@ class FriendshipsControllerTest < Test::Unit::TestCase
     get :show, :id => friendships(:quentin_init_aaron_pending).id, :user_id => users(:quentin)
     assert_response :success
   end
-
-  def test_should_get_edit
-    login_as :aaron
-    get :edit, :id => friendships(:aaron_receive_quentin_pending).id, :user_id => users(:aaron)
-    assert_response :success
-  end
     
   def test_should_accept_friendship
     login_as :aaron
