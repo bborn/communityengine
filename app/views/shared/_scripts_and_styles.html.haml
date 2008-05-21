@@ -31,4 +31,4 @@
   = stylesheet_link_tag 'forum', :plugin => 'community_engine'
   - unless @feed_icons.blank?
     - @feed_icons.each do |feed|
-      = auto_discovery_link_tag :rss, feed[:url], :title => "Subscribe to '#{feed[:title]}'", :plugin => "community_engine"
+      = auto_discovery_link_tag :rss, feed[:url], :title => "Subscribe to '#{feed[:title]}'"
