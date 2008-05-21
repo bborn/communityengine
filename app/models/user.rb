@@ -50,9 +50,9 @@ class User < ActiveRecord::Base
   #forums
   has_many :moderatorships, :dependent => :destroy
   has_many :forums, :through => :moderatorships, :order => 'forums.name'
-  has_many :sb_posts
-  has_many :topics
-  has_many :monitorships
+  has_many :sb_posts, :dependent => :destroy
+  has_many :topics, :dependent => :destroy
+  has_many :monitorships, :dependent => :destroy
   has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
 
   belongs_to :avatar, :class_name => "Photo", :foreign_key => "avatar_id"

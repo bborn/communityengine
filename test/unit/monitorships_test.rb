@@ -27,4 +27,12 @@ class MonitorshipsTest < Test::Unit::TestCase
   def test_should_not_find_any_monitored_topics
     assert_equal [], users(:joe).monitored_topics
   end
+  
+  def test_should_be_deleted_when_user_destroyed
+    m = monitorships(:aaron_pdi)
+    id = m.id
+    m.user.destroy
+    assert !Monitorship.exists?(id)
+  end  
+  
 end
