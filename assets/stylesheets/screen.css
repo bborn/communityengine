@@ -77,6 +77,10 @@ div.auto_complete {
 	float:left;}
 .centered {
 	text-align:center; }
+img.polaroid {
+	padding:5px;
+	border: 1px solid #A2A19B;
+	}
 
 
 /* =============================================== */
@@ -332,6 +336,9 @@ padding:0 0 3px 0;
 .hentry .vcard ul li.print{background-image: url(/plugin_assets/community_engine/images/icons/printer.png) }
 .hentry .vcard ul li.email{background-image: url(/plugin_assets/community_engine/images/icons/user_go.png) }
 .hentry .vcard ul li.share{background-image: url(/plugin_assets/community_engine/images/icons/group_go.png) }
+.hentry .vcard ul li.tags{background-image: url(/plugin_assets/community_engine/images/icons/tag_blue.png) }
+.hentry .vcard ul li.skills{background-image: url(/plugin_assets/community_engine/images/icons/wrench.png) }
+.hentry .vcard ul li.geo{background-image: url(/plugin_assets/community_engine/images/icons/world.png) }
 
 .entry-content h6{
 border-bottom: 1px dotted #a2a19b;
@@ -347,6 +354,7 @@ text-transform: uppercase;
 text-decoration: none;
 background: transparent url(/plugin_assets/community_engine/images/icons/add.png) no-repeat left center;
 padding-left: 20px;
+padding: 2px 2px 2px 20px;
 }
 
 .entry-content h6 a:hover{text-decoration: underline;}
@@ -584,13 +592,13 @@ padding: 3px 0;
 
 .fresh dt{
 float: left;
-width: 13.8461em; /* about 180px */
-*width:  13.5em; /* for IE */
+width: 10.8461em; /* about 180px - 3em */
+*width:  10.5em; /* for IE */
 }
 
 .fresh dd{
-margin-left:  15.3846em; /* about 200px */
-*margin-left:  15em; /* about 200px */
+margin-left:  12.3846em; /* about 200px - 3em*/
+*margin-left:  12em; /* about 200px */
 }
 
 .fresh dt {
@@ -775,3 +783,16 @@ div.user_list .row {
 	}
 	div.user_list .row h3 {
 		}
+		
+		
+/*PHOTOS & CLIPPINGS*/
+#photos img.polaroid, #clippings img.polaroid {
+	margin: 0 12px 15px 0;
+	}
+	
+/*USER PROFILE SIDEBAR*/
+#profile_details div.vcard{
+	width: 100%;}
+	#profile_details .vcard ul{
+		margin-left: 0px;}
+

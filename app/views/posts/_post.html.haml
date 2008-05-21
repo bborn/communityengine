@@ -25,6 +25,4 @@
     
     = render :partial => 'polls/excerpt', :locals => {:poll => post.poll} if post.poll
     
-
-    %h6 
-      =link_to 'read more', user_post_path(post.user, post), :rel=> 'bookmark'
+    %h6=link_to 'read more', user_post_path(post.user, post), :rel=> 'bookmark'

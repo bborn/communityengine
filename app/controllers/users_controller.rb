@@ -63,7 +63,7 @@ class UsersController < BaseController
 
     @recent_posts = @user.posts.find(:all, :limit => 2, :order => "created_at DESC")
     @clippings = @user.clippings.find(:all, :limit => 5)
-    @photos = @user.photos.find(:all, :limit => 4)
+    @photos = @user.photos.find(:all, :limit => 5)
     @comment = Comment.new(params[:comment])
     update_view_count(@user) unless current_user && current_user.eql?(@user)
   end

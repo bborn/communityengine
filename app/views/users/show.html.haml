@@ -1,5 +1,7 @@
 - @meta = { :description => "#{@user.login}'s DIY projects, interior design ideas and favorites.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}, diy, design, interior-design" }
 - @section = @user.eql?(current_user) ? 'my_profile' : 'users'
+- @sidebar_left = true
+
 
 - if @is_current_user and @user.vendor? and (@user.offerings.empty? or @user.description.nil? )
   %p
@@ -15,11 +17,10 @@
     = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
 
   - if @user.description
-    #about_me.box.alt
+    #about_me.box
       %h3
         About Me
-      %p
-        = @user.description
+      %p= @user.description
 
   #friends.box.alt
     %h3
@@ -70,33 +71,31 @@
 #yui-main
   .yui-b
     - if @photos.empty? and @recent_posts.empty?
-      %h1.gray= "#{@user.login} doesn't have much here yet. Stay tuned."
-      %br
+      .box.alt.first_alt
+        %h3= "#{@user.login} doesn't have much here yet. Stay tuned."
       
     - unless @photos.empty?
       #photos.box
         %h3 Photos
         - @photos.each do |photo|
           = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
-        %br
-        = link_to "&raquo; View all my photos", user_photos_path(@user)
-        = " | #{link_to("Add a photo", new_user_photo_path(@user))}" if @is_current_user
+
+        %h6.all.right= link_to "View all my photos", user_photos_path(@user)
+        = "#{link_to("Add a photo", new_user_photo_path(@user))}" if @is_current_user
 
     - unless @recent_posts.empty?
       #posts.box
         %h3 Recent Blog Posts
-        = link_to "&raquo; View my blog", user_posts_path(@user)
-        %br
         = render :partial => 'posts/post', :collection => @recent_posts
+        %h6.right.all= link_to "View my blog", user_posts_path(@user)        
 
     - unless @clippings.empty?
       #clippings.box
         %h3 Clippings
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(@user, clipping)}"}
-            %img.clipping{"src"=>"#{h clipping.image_uri(:thumb)}", :width => '100', :height => '100'}
-        %br
-        = link_to "View all my clippings", user_clippings_path(@user)
+            %img.clipping.polaroid{"src"=>"#{h clipping.image_uri(:thumb)}", :width => '100', :height => '100'}
+        %h6.all.right= link_to "View all my clippings", user_clippings_path(@user)
 
     #comments.box.hfeed.comments
       %h3 Profile Comments
