@@ -43,7 +43,7 @@
       %h3= random_greeting(@user)
     
       -if @user.pending_friendships.any?
-        %p=link_to "#{image_tag 'icons/friend.png', :plugin => 'community_engine'} You have pending friendship requests.", pending_user_friendships_path(@user)
+        %p=link_to "#{image_tag 'icons/user_add.png', :plugin => 'community_engine'} You have pending friendship requests.", pending_user_friendships_path(@user)
     
     
       -if @network_activity.empty? && @recommended_posts.empty?

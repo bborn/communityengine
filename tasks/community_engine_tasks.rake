@@ -15,6 +15,7 @@ namespace :db do
 end
 
 namespace :community_engine do   
+    
   desc 'Move the community engine assets to application public directory'
   task :mirror_public_assets => :environment do
     # actually, no need to do anything here, the mere act of running rake mirrors the plugin assets for everything
@@ -71,10 +72,7 @@ namespace :community_engine do
     task :clobber_rcov do |t|
       rm_r OUTPUT_DIR, :force => true
     end
-    
   end
-  
-  
 
   namespace :db do
     namespace :fixtures do

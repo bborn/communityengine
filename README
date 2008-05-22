@@ -13,6 +13,7 @@ Requirements:
     htmlentities
     redcloth
     rake 0.8.1
+    mysql
 
 GETTING COMMUNITY ENGINE RUNNING
 ==================================================================

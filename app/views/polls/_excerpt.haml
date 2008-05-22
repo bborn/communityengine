@@ -1,5 +1,4 @@
 .poll_excerpt
-  %h4.question
-    = poll.question
-    = link_to "Vote Now!", new_vote_path(:post_id => poll.post.id), {:title => 'Log in to vote', :class => 'vote'}
-  
+  =image_tag 'icons/poll.png', :plugin => 'community_engine'
+  = poll.question
+  = link_to "Vote Now!", new_vote_path(:post_id => poll.post.id), {:title => 'Log in to vote', :class => 'vote'}
