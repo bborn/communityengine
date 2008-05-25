@@ -11,7 +11,7 @@ Requirements:
     hpricot
     mime-types    
     htmlentities
-    redcloth
+    RedCloth
     rake 0.8.1
     mysql
 
