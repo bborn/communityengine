@@ -1,6 +1,6 @@
 class CategoriesController < BaseController
   before_filter :login_required, :except => [:show, :most_viewed, :rss]
-  before_filter :admin_required, :only => [:new, :edit, :update, :create, :destroy]
+  before_filter :admin_required, :only => [:new, :edit, :update, :create, :destroy, :index]
   
   # GET /categories
   # GET /categories.xml
