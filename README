@@ -7,13 +7,13 @@ Requirements:
   - The engines plugin for Rails 2.0: http://svn.rails-engines.org/engines/branches/rb_2.0/
   - ImageMagick 
   - Several gems:
-    rmagick
-    hpricot
-    mime-types    
-    htmlentities
-    RedCloth
-    rake 0.8.1
-    mysql
+      rmagick
+      hpricot
+      mime-types    
+      htmlentities
+      RedCloth
+      rake 0.8.1
+      haml
 
 GETTING COMMUNITY ENGINE RUNNING
 ==================================================================

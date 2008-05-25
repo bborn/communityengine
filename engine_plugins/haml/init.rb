@@ -1,7 +1,8 @@
-require 'haml'
-require 'haml/template'
-require 'sass'
-require 'sass/plugin'
+require 'rubygems'
+begin
+  require File.join(File.dirname(__FILE__), 'lib', 'haml') # From here
+rescue LoadError
+  require 'haml' # From gem
+end
 
-ActionView::Base.register_template_handler('haml', Haml::Template)
-Sass::Plugin.update_stylesheets
+Haml.init_rails(binding)
