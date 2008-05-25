@@ -127,3 +127,4 @@ You can also override CommunityEngine's controllers by creating identically-name
 # Todo
 Latest version of Engines plugin doesn't work (unless you're on EdgeRails)
 
+# Bug tracking is via Lighthouse: http://communityengine.lighthouseapp.com/projects/11808/home
