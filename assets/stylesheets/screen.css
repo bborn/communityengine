@@ -783,6 +783,12 @@ div.user_list .row {
 	}
 	div.user_list .row h3 {
 		}
+div.user_list div.vcard {
+	width: 100%;}
+	div.user_list div.vcard ul {
+	margin-left: 0;
+	font-size: 85%;
+	}
 		
 		
 /*PHOTOS & CLIPPINGS*/
@@ -796,3 +802,16 @@ div.user_list .row {
 	#profile_details .vcard ul{
 		margin-left: 0px;}
 
+/* CATEGORY PAGES */
+.box h3 ul.subnav {
+	display:inline;
+	font-size: .7em;
+	font-weight:normal;
+	text-transform:none;
+	margin:0 0 0 10px;
+	}
+	ul.subnav li {
+		display:inline;}
+		ul.subnav li a.active {
+			color:#000;
+			text-decoration:none;}

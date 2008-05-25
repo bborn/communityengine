@@ -1,28 +1,30 @@
-.yui-gf.row{"class"=>"#{user.vendor ? 'community_pro' : ''} #{user.featured_writer ? 'featured_writer' : ''}"}
-  .yui-u.first.centered
-    = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
+.hentry.yui-gf.row{"class"=>"#{user.vendor ? 'community_pro' : ''} #{user.featured_writer ? 'featured_writer' : ''}"}
+  .vcard.author
+    .yui-u.first.centered
+      = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
+    .yui-g
+      .yui-u.first
+        %h2= link_to user.login, user_path(user)
+      
+        %ul
+          - if user.metro_area        
+            %li.geo= "from #{user.location}<br/>" 
+          %li.update
+            %abbr.published{:title=>"#{user.created_at}"}
+              ="joined #{time_ago_in_words user.created_at}"
+          - if user.offerings.any?
+            %li.skills= user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')
+          - if current_user and current_user.can_request_friendship_with(user)
+            %li.addfriend= add_friend_link(user)
 
-  .yui-g
-    .yui-u.first
-      %h2= link_to user.login, user_path(user)
-      = "from #{user.location}<br/>" if user.metro_area
-      joined
-      = time_ago_in_words user.created_at
-      - if user.offerings.any?
-        %br
-        = user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')
+        = "<p>" + user.tags[0...6].collect{|t| link_to( t.name, tag_url(t.name), :class => "tag") }.join(" ") + "</p>" unless user.tags.empty?
 
-      - if current_user and current_user.can_request_friendship_with(user)
-        = add_friend_link(user)
+      .yui-u{"style"=>"overflow:hidden"}
+        - if @search && @search['description']
+          = truncate_words_with_highlight user.description, @search['description']
+        - else
+          = truncate_words user.description, 18, '...'
 
-      = "<p>" + user.tags[0...6].collect{|t| link_to( t.name, tag_url(t.name), :class => "tag") }.join(" ") + "</p>" unless user.tags.empty?
-
-    .yui-u{"style"=>"overflow:hidden"}
-      - if @search && @search['description']
-        = truncate_words_with_highlight user.description, @search['description']
-      - else
-        = truncate_words user.description, 18, '...'
-
-      - if current_user && current_user.admin?
-        %br
-        = link_to( "Assume ID", assume_user_path(user) )
+        - if current_user && current_user.admin?
+          %br
+          = link_to( "Assume ID", assume_user_path(user) )

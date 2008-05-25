@@ -18,7 +18,7 @@ class FriendshipsController < BaseController
   
   def deny
     @user = User.find(params[:user_id])    
-    @friendship = @user.friendships_not_initiated_by_me.find(params[:id])
+    @friendship = @user.friendships.find(params[:id])
  
     respond_to do |format|
       if @friendship.update_attributes(:friendship_status => FriendshipStatus[:denied]) && @friendship.reverse.update_attributes(:friendship_status => FriendshipStatus[:denied])
