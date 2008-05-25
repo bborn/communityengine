@@ -33,7 +33,7 @@ GETTING COMMUNITY ENGINE RUNNING
     # If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule: 
     # http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
 
-4. Create your MySQL database (SQLite isn't supported) and modify your config/database.yml appropriately.
+4. Create your database and modify your config/database.yml appropriately.
 5. Delete public/index.html (if you haven't already)
 6. Modify your environment.rb as indicated below:
 
@@ -74,7 +74,7 @@ GETTING COMMUNITY ENGINE RUNNING
     
 10. From the command line:
     $ rake db:migrate
-    # NOTE! You must use a MySQL db, CommunityEngine is not compatible with Rail's default SQLite
+
 11. You may need to change these lines in application.rb (uncomment the :secret part, because you're not using cookie sessions):
     # See ActionController::RequestForgeryProtection for details
     # Uncomment the :secret if you're not using the cookie session store
