@@ -75,7 +75,7 @@ GETTING COMMUNITY ENGINE RUNNING
 10. From the command line:
     $ rake db:migrate
 
-11. You may need to change these lines in application.rb (uncomment the :secret part, because you're not using cookie sessions):
+11. You may need to change these lines in application.rb (if you're not using cookie sessions):
     # See ActionController::RequestForgeryProtection for details
     # Uncomment the :secret if you're not using the cookie session store
     protect_from_forgery # :secret => 'your_secret_string'
