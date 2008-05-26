@@ -20,7 +20,8 @@
     .box.hfeed
       %h3 
         Recent Posts
-        %small= "(looking for #{link_to "popular", popular_path}?)"
+        %ul.subnav
+          %li= "(looking for #{link_to "popular", popular_path}?)"
 
       = render :partial => 'posts/post', :collection => @posts      
       

@@ -25,5 +25,8 @@
 #yui-main
   .yui-b
     .box.hfeed
-      %h3 What's Popular
+      %h3 
+        What's Popular
+        %ul.subnav
+          %li= "(looking for #{link_to "recent", recent_path}?)"        
       = render :partial => 'posts/post', :collection => @posts

@@ -33,10 +33,11 @@
   .yui-b
     .box.hfeed
       %h3      
-        ="#{@category.name} #{params[:popular] ? " (Popular) " : ""}"
-      %ul
-        %li= link_to "Recent", category_path(@category), {:class => (params[:popular] ? '' : 'active')}
-        %li= link_to "Popular", category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
+        =@category.name
+        %ul.subnav
+          %li= link_to "Recent", category_path(@category), {:class => (params[:popular] ? '' : 'active')}
+          %li= link_to "Popular", category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
+
       = render :partial => 'posts/post', :collection => @posts
       = pagination_info_for @pages
       = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1

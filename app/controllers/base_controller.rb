@@ -37,7 +37,7 @@ class BaseController < ApplicationController
   def site_index    
     @posts = Post.find_recent(:limit => 16)
 
-    @rss_title = "Curbly Recent Posts"
+    @rss_title = "#{AppConfig.community_name} Recent Posts"
     @rss_url = rss_url
     respond_to do |format|     
       format.html { get_additional_homepage_data }
