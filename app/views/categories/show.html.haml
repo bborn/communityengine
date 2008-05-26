@@ -8,7 +8,7 @@
       %ul.list.checks
         %li= link_to @category.display_new_post_text, new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
     - else
-      %h3= "Want to post in this cagegory?"
+      %h3= "Want to post in this category?"
       %ul.list.checks
         %li
           %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"} Sign up for an account.
