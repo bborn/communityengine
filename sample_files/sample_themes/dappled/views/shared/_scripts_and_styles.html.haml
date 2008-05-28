@@ -1,0 +1,36 @@
+
+= javascript_include_tag "prototype", :plugin => "community_engine"
+= javascript_include_tag "effects", :plugin => "community_engine"	
+= javascript_include_tag "event-selectors", :plugin => "community_engine" 		
+= javascript_include_tag "glider", :plugin => "community_engine" 				
+= javascript_include_tag "controls", :plugin => "community_engine" unless current_page?({:controller => 'application', :action => 'index'})
+
+= javascript_include_tag "dragdrop", :plugin => "community_engine" if @controller.controller_name.eql?('users') && %w(welcome_about edit update).include?(@controller.action_name)
+
+= javascript_include_tag "application", :plugin => "community_engine"		
+= javascript_include_tag "rounder", :plugin => "community_engine"
+= javascript_include_tag "AC_RunActiveContent", :plugin => "community_engine" if current_page?(:controller => 'photos', :action => 'new') or current_page?(:controller => 'statistics', :action => 'index')		
+
+= stylesheet_link_tag 'http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css'
+= stylesheet_link_tag 'screen', :plugin => :community_engine
+
+= stylesheet_link_tag 'theme/screen'
+
+
+- if current_page?({:controller => 'posts', :action => 'show' })
+  = javascript_include_tag 'lightbox', :plugin => "community_engine"
+  = stylesheet_link_tag 'lightbox', :plugin => "community_engine"	
+  
+= javascript_include_tag "prototip-min", :plugin => "community_engine"
+= stylesheet_link_tag 'prototip', :media => 'screen', :plugin => "community_engine"
+	
+
+= javascript_include_tiny_mce_if_used
+= tiny_mce if using_tiny_mce?
+
+- if forum_page?
+  = javascript_include_tag 'lowpro', 'forum', :plugin => 'community_engine'  
+  = stylesheet_link_tag 'forum', :plugin => 'community_engine'
+  - unless @feed_icons.blank?
+    - @feed_icons.each do |feed|
+      = auto_discovery_link_tag :rss, feed[:url], :title => "Subscribe to '#{feed[:title]}'"

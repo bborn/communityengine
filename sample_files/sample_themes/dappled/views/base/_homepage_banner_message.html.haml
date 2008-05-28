@@ -1,0 +1,20 @@
+#welcome
+  .yui-gc
+    .yui-u.first
+      .box
+        %h2 
+          Welcome to 
+          =AppConfig.community_name
+        %p
+          This is a place where my friends gather to get inspired, share ideas plans, and discuss their favorite topics.
+        %p
+          Want to learn more? 
+          ="Check out our #{link_to 'about page', about_path}, or read our #{link_to 'FAQs', faq_path}."
+            
+    .yui-u
+      .box
+        %h2 
+          See how it works
+        %p Create your account.
+        %h4 
+          =link_to "Sign up", signup_path

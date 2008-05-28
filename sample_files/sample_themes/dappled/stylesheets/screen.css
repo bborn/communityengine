@@ -1,0 +1,57 @@
+body {
+  background: url(/images/theme/bg_body.png) repeat-x; }
+  body #doc2 #bd {
+    background: #fff;
+    padding: 10px; }
+  body #doc2 #ft {
+    padding-left: 10px;
+    padding-right: 10px; }
+
+#CommunityFooter {
+  background: #fff;
+  padding: 10px; }
+
+#hd {
+  background: url(/images/theme/header.jpg) no-repeat top left;
+  padding: 0 10px 0 10px;
+  border-top: 4px solid #000; }
+	#hd h1 {
+		background-color:#000;
+		-moz-opacity: 0.8;
+		opacity:.80;
+		filter: alpha(opacity=80);		
+		}
+  #hd h1 a {
+    display: block;
+		color:#fff;
+    height: 37px;
+		padding: 0 10px 0 10px;
+    outline: none; 		
+		}
+  #hd h2 {
+    color: #fff; 
+		background-color:#000;
+		-moz-opacity: 0.8;
+		opacity:.80;
+		filter: alpha(opacity=80);				
+		padding: 10px;
+		}
+    #hd h2 a {
+      color: #B59F6D; 
+			}
+
+#NavBar {
+  background: #aba8a3 url(/plugin_assets/community_engine/images/bg_navbar.gif) repeat-x 0 0;
+  height: 47px;
+  margin-top: 90px;
+  margin-left: -10px;
+  margin-right: -10px; }
+
+#welcome .box {
+  height: 145px;
+  background: #F1E6B9;
+  border-top: 1px solid #1C3A16;
+  border-bottom: 1px solid #1C3A16; }
+
+.box h3 {
+  border-bottom: 1px solid #1C3A16; }
