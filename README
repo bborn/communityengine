@@ -111,9 +111,28 @@ Finally, you'll need an S3 account for S3 photo uploading.
 CommunityEngine includes the s3.rake tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in RAILS_ROOT/config/s3.yml. (Sample in sample_files/s3.yml)
 
 
+## THEMES ##
+(still working on this)
+To create a theme:
+1. Add a 'themes' directory in RAILS_ROOT with the following structure:
+-RAILS_ROOT
+  -themes
+    -your_theme_name
+      -views
+      -images
+      -stylesheets
+      -javascripts
+      
+2. Add 'theme: your_theme_name' to your application.yml (you'll have to restart your server after doing this)
+3. Customize your theme. For example: you can create a /RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml to override the default one, and pull in your theme's styleshees.
+To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
+
+= stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
+
+
 ## Other notes ##
 ===============================================================
-To customize your application, just create views to override those in community_engine/app/views. 
+Any views you create in your app directory will override those in community_engine/app/views. 
 For example, you could create RAILS_ROOT/app/views/layouts/application.html.haml and have that include your own stylesheets, etc.
 
 You can also override CommunityEngine's controllers by creating identically-named controllers in your applications app/controllers directory.

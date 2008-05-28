@@ -1,3 +1,10 @@
+#testing theme support
+
+if AppConfig.theme
+  theme_view_path = "#{RAILS_ROOT}/themes/#{AppConfig.theme}/views"
+  ActionController::Base.view_paths = ActionController::Base.view_paths.dup.unshift(theme_view_path)
+end
+
 CommunityEngine.check_for_pending_migrations
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update :line_grapher => '%Y%m%dT%H:%M:%S'

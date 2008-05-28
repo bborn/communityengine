@@ -113,6 +113,12 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
 end
 resources :votes
 
+with_options(:controller => 'theme', :filename => /.*/, :conditions => {:method => :get}) do |theme|
+  theme.connect 'stylesheets/theme/:filename', :action => 'stylesheets'
+  theme.connect 'javascripts/theme/:filename', :action => 'javascript'
+  theme.connect 'images/theme/:filename',      :action => 'images'
+end
+
 # Deprecated routes
 deprecated_popular_rss '/popular_rss', :controller => 'base', :action => 'popular', :format => 'rss'    
 deprecated_category_rss '/categories/:id;rss', :controller => 'categories', :action => 'show', :format => 'rss'  
