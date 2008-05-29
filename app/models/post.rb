@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
   def self.find_related_to(post, options = {})
     merged_options = options.merge({:limit => 8, 
         :order => 'published_at DESC', 
-        :sql => " AND posts.id != '#{post.id}' GROUP BY posts.id"})
+        :sql => " AND posts.id != '#{post.id}' AND published_as = 'live' GROUP BY posts.id"})
     posts = find_tagged_with(post.tags.collect{|t| t.name }, merged_options)
   end
 
