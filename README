@@ -9,7 +9,6 @@ Requirements:
   - Several gems:
       rmagick
       hpricot
-      mime-types    
       htmlentities
       RedCloth
       rake 0.8.1

@@ -1,12 +1,13 @@
 require 'pp'
-require 'mime/types'
 
 class PhotosController < BaseController
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage_photos]
   before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
-  before_filter :require_fake_session, :only => [:create_multiple]
-  skip_before_filter :login_required, :only => [:create_multiple]
+
+  before_filter :require_fake_session, :only => [:swfupload]
+  skip_before_filter :login_required, :only => [:swfupload]
+  
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
   
   def recent
@@ -136,34 +137,17 @@ class PhotosController < BaseController
     end
   end
   
-  def create_multiple 
-    begin
-      # capture incoming file params from flash
-      unless data = params[:Filedata] and name = params[:Filename]
-        render :nothing => true, :status => 500 and return      
-      end
+  def swfupload
+    # swfupload action set in routes.rb
+    @photo = Photo.new :uploaded_data => params[:Filedata]
+    @photo.user_id = @user
+    @photo.save!
     
-      content_type = MIME::Types.of(name).first.content_type
-    
-      @photo = Photo.new
-      return if data.nil? || data.size == 0 
-      @photo.content_type    = content_type.strip
-      @photo.filename        = name.strip
-      @photo.temp_data       = data.read
-      # @user should be set in the before filter
-      @photo.user_id = @user
-      if @photo.save!
-        #start the garbage collector
-        GC.start        
-        @photo.tag_with(params[:tag_list] || '')       
-        render :nothing => true, :status => 200 and return
-      else
-        render :nothing => true, :status => 500 and return
-      end    
-    rescue
-      raise
-    end
-  end
+    # This returns the thumbnail url for handlers.js to use to display the thumbnail
+    render :text => @photo.public_filename(:thumb)
+  rescue 
+    render :text => "Error: #{$!}", :status => 500
+  end  
   
   # PUT /photos/1
   # PUT /photos/1.xml
@@ -206,9 +190,6 @@ class PhotosController < BaseController
   protected
   def require_fake_session
     begin
-      if RAILS_ENV.eql?('development') and params[:development]
-        return @user = User.find(:first).id
-      end
       fake_session = SqlSessionStore.session_class.find_session(params[:_session_id])
       @user = Marshal.load(Base64.decode64(fake_session.data))[:user]
       return @user

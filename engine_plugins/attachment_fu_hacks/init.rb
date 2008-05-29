@@ -1,0 +1,1 @@
+require 'attachment_fu_hacks'
