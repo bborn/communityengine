@@ -1,6 +1,6 @@
 %dl{:class => (activity.item_type && activity.item_type.humanize.downcase) }
   %dt
-    =time_ago_in_words_or_date(activity.created_at)
+    =time_ago_in_words_or_date(activity.published_at || activity.created_at)
   %dd
     =link_to activity.user.login.capitalize, user_path(activity.user.login_slug)  
     - if activity.item

@@ -61,7 +61,7 @@ class UsersController < BaseController
     
     @users_comments = Comment.find_comments_by_user(@user, :limit => 5)
 
-    @recent_posts = @user.posts.find(:all, :limit => 2, :order => "created_at DESC")
+    @recent_posts = @user.posts.find(:all, :limit => 2, :order => "published_at DESC")
     @clippings = @user.clippings.find(:all, :limit => 5)
     @photos = @user.photos.find(:all, :limit => 5)
     @comment = Comment.new(params[:comment])
@@ -316,7 +316,7 @@ class UsersController < BaseController
       @month = Time.today    
     end
     @posts = @user.posts.find(:all, 
-      :conditions => ['? <= created_at AND created_at <= ?', @month.beginning_of_month, (@month.end_of_month + 1.day)])    
+      :conditions => ['? <= published_at AND published_at <= ?', @month.beginning_of_month, (@month.end_of_month + 1.day)])    
     
     @estimated_payment = @posts.sum do |p| 
       p.category.eql?(Category.get(:how_to)) ? 10 : 5

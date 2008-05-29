@@ -21,7 +21,7 @@ class CategoriesController < BaseController
     
     cond = Caboose::EZ::Condition.new
     cond.category_id  == @category.id
-    order = (params[:popular] ? "view_count #{params[:popular]}": "created_at DESC")
+    order = (params[:popular] ? "view_count #{params[:popular]}": "published_at DESC")
     @pages, @posts = paginate :posts, :order => order, :conditions => cond.to_sql, :include => :tags
     
     @popular_posts = @category.posts.find(:all, :limit => 10, :order => "view_count DESC")
@@ -33,7 +33,7 @@ class CategoriesController < BaseController
     @active_users = User.find(:all,
       :include => :posts,
       :limit => 5,
-      :conditions => ["posts.category_id = ? AND posts.created_at > ?", @category.id, 14.days.ago],
+      :conditions => ["posts.category_id = ? AND posts.published_at > ?", @category.id, 14.days.ago],
       :order => "users.view_count DESC"
       )
     
@@ -41,7 +41,7 @@ class CategoriesController < BaseController
       format.html # show.rhtml
       format.rss {
         render_rss_feed_for(@posts, {:feed => {:title => "#{AppConfig.community_name}: #{@category.name} posts", :link => category_url(@category)},
-          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :created_at} })        
+          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :published_at} })        
       }
     end
   end 

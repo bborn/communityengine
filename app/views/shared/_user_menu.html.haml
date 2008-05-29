@@ -8,7 +8,7 @@
     %li= link_to "View profile", user_path(current_user)                  
   %hr
   %ul
-    %li=link_to 'Blog', user_posts_path(current_user)
+    %li=link_to 'Blog', manage_user_posts_path(current_user)
     %li=link_to 'Photos', user_photos_path(current_user)
     %li=link_to 'Clippings', user_clippings_path(current_user)
     %li=link_to 'Friends', accepted_user_friendships_path(current_user)        

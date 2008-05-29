@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
 
   acts_as_commentable
   acts_as_taggable
-  acts_as_activity :user
+  acts_as_activity :user, :if => Proc.new{|r| r.is_live?}
   acts_as_publishable :live, :draft
 
   belongs_to :user
@@ -18,17 +18,18 @@ class Post < ActiveRecord::Base
   validates_presence_of :raw_post
   validates_presence_of :title
   validates_presence_of :user
+  validates_presence_of :published_at, :if => Proc.new{|r| r.is_live? }
 
   before_save :transform_post
+  before_validation :set_published_at
   attr_accessor :invalid_emails
-
+  
   def self.find_related_to(post, options = {})
     merged_options = options.merge({:limit => 8, 
-        :order => 'created_at DESC', 
+        :order => 'published_at DESC', 
         :sql => " AND posts.id != '#{post.id}' GROUP BY posts.id"})
     posts = find_tagged_with(post.tags.collect{|t| t.name }, merged_options)
   end
-
 
   def to_param
     id.to_s << "-" << (title ? title.gsub(/[^a-z1-9]+/i, '-') : '' )
@@ -39,23 +40,23 @@ class Post < ActiveRecord::Base
   end
   
   def self.find_recent(options = {:limit => 5})
-    find(:all, :order => "created_at desc", :limit => options[:limit])
+    find(:all, :order => "published_at desc", :limit => options[:limit])
   end
   
   def self.find_popular(options = {} )
     options.reverse_merge! :limit => 5, :since => 7.days
-    find(:all, :conditions => "created_at > '#{options[:since].ago.to_s :db}'", :order => "view_count desc", :limit => options[:limit])
+    find(:all, :conditions => "published_at > '#{options[:since].ago.to_s :db}'", :order => "view_count desc", :limit => options[:limit])
   end
 
   def self.find_featured(options = {:limit => 10})
-    find(:all, :order => "posts.created_at desc", :conditions => ["users.featured_writer = ?", true], :limit => options[:limit], :include => :user)    
+    find(:all, :order => "posts.published_at desc", :conditions => ["users.featured_writer = ?", true], :limit => options[:limit], :include => :user)    
   end
 
   def self.find_most_commented(limit = 10, since = 7.days.ago)
     Post.find(:all, 
       :select => 'posts.*, count(*) as comments_count',
       :joins => "LEFT JOIN comments ON comments.commentable_id = posts.id",
-      :conditions => ['comments.commentable_type = ? AND posts.created_at > ?', 'Post', since],
+      :conditions => ['comments.commentable_type = ? AND posts.published_at > ?', 'Post', since],
       :group => 'comments.commentable_id',
       :order => 'comments_count DESC',
       :limit => limit
@@ -71,10 +72,10 @@ class Post < ActiveRecord::Base
   end
   
   def previous_post
-    self.user.posts.find(:first, :conditions => ['created_at < ?', created_at], :order => 'created_at DESC')
+    self.user.posts.find(:first, :conditions => ['published_at < ? and published_as = ?', published_at, 'live'], :order => 'published_at DESC')
   end
   def next_post
-    self.user.posts.find(:first, :conditions => ['created_at > ?', created_at], :order => 'created_at ASC')
+    self.user.posts.find(:first, :conditions => ['published_at > ? and published_as = ?', published_at, 'live'], :order => 'published_at ASC')
   end
   
   def first_image_in_body(size = nil, options = {})
@@ -93,6 +94,12 @@ class Post < ActiveRecord::Base
    # self.raw_post  = force_relative_urls(self.raw_post)
    self.post  = white_list(self.raw_post)
    self.title = white_list(self.title)
+  end
+  
+  def set_published_at
+    if self.is_live? && !self.published_at
+      self.published_at = Time.now
+    end
   end
   
   def owner
@@ -157,5 +164,9 @@ class Post < ActiveRecord::Base
     f = Favorite.find_by_user_or_ip_address(self, user, remote_ip)
     return f
   end  
+      
+  def published_at_display(format = "%Y/%m/%d")
+    is_live? ? published_at.strftime(format) : 'Draft'
+  end
       
 end

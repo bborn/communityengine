@@ -25,7 +25,7 @@ class StatisticsController < BaseController
     @featured_writers = User.find_featured
 
     @posts = Post.find(:all, 
-      :conditions => ['? <= posts.created_at AND posts.created_at <= ? AND users.featured_writer = ?', Time.now.beginning_of_month, (Time.now.end_of_month + 1.day), true], :include => :user)        
+      :conditions => ['? <= posts.published_at AND posts.published_at <= ? AND users.featured_writer = ?', Time.now.beginning_of_month, (Time.now.end_of_month + 1.day), true], :include => :user)        
     @estimated_payment = @posts.sum do |p| 
       p.category.eql?(Category.get(:how_to)) ? 10 : 5
     end
@@ -39,7 +39,7 @@ class StatisticsController < BaseController
     chart = Ziya::Charts::Line.new
     @logins = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'logged_in', range.days.ago ] )
     @comments = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'comment', range.days.ago ] )    
-    @posts = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'post', range.days.ago ] )        
+    @posts = Activity.count(:group => "date(published_at)", :conditions => ["action = ? AND published_at > ?", 'post', range.days.ago ] )        
     @photos = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'photo', range.days.ago ] )            
     @clippings = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'clipping', range.days.ago ] )            
 

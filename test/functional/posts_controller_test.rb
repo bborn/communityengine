@@ -61,6 +61,13 @@ class PostsControllerTest < Test::Unit::TestCase
     assert_response :success
   end
 
+  def test_should_show_draft_post
+    posts(:funny_post).save_as_draft
+    get :show, :id => posts(:funny_post).id, :user_id => users(:quentin).id
+    assert_response :success
+  end
+
+
   def test_should_not_show_post_for_private_user
     get :show, :id => posts(:funny_post).id, :user_id => users(:privateuser).id
     assert_response :redirect
@@ -92,7 +99,7 @@ class PostsControllerTest < Test::Unit::TestCase
     assert_difference Post, :count, -1 do
       delete :destroy, :id => posts(:funny_post), :user_id => users(:quentin).id
     end
-    assert_redirected_to user_posts_path(:user_id => users(:quentin) )
+    assert_redirected_to manage_user_posts_path(:user_id => users(:quentin) )
   end
   
   def test_should_not_destroy_post

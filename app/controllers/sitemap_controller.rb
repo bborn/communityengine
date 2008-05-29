@@ -7,7 +7,7 @@ class SitemapController < BaseController
 
   def index
     @users = User.find(:all, :select => 'id, login, updated_at, login_slug', :conditions => "activated_at IS NOT NULL")
-    @posts = Post.find(:all, :select => 'id, title, created_at')
+    @posts = Post.find(:all, :select => 'id, title, published_at')
   
     @categories = Category.find(:all)
   

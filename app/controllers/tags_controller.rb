@@ -31,7 +31,7 @@ class TagsController < BaseController
 
       case params[:type]
         when 'Post'
-          @pages, @posts = paginate :posts, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 20
+          @pages, @posts = paginate :posts, :order => "published_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 20
           @photos, @users, @clippings = [], [], []
         when 'Photo'
           @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 30
@@ -44,7 +44,7 @@ class TagsController < BaseController
           @posts, @photos, @users = [], [], []          
         end
     else
-      @posts = Post.find_tagged_with(@tag.name, :limit => 5, :order => 'created_at DESC')
+      @posts = Post.find_tagged_with(@tag.name, :limit => 5, :order => 'published_at DESC')
       @photos = Photo.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC')
       @users = User.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC').uniq
       @clippings = Clipping.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC')

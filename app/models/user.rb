@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login_slug
   validates_date :birthday, :before => 13.years.ago.to_date  
 
-  has_many :posts, :order => "created_at desc", :dependent => :destroy
+  has_many :posts, :order => "published_at desc", :dependent => :destroy
   has_many :photos, :order => "created_at desc", :dependent => :destroy
   has_many :invitations, :dependent => :destroy
   has_many :offerings, :dependent => :destroy
@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
 
   def self.find_active(options = {:limit => 10})
     commented_on = Comment.find(:all, :limit => 3, :include => :recipient, :conditions => "users.avatar_id is not null and users.featured_writer = 0", :order => "comments.created_at desc").collect{ |c| c.recipient }.uniq
-    posters = Post.find(:all, :limit => 3, :include => :user, :conditions => "users.avatar_id is not null and users.featured_writer = 0" ,:order => "posts.created_at desc").collect{ |p| p.user }.uniq
+    posters = Post.find(:all, :limit => 3, :include => :user, :conditions => "users.avatar_id is not null and users.featured_writer = 0" ,:order => "posts.published_at DESC").collect{ |p| p.user }.uniq
     full = commented_on | posters
     full.sort{ |a,b| b.updated_at <=> a.updated_at }[0..options[:limit]]
   end
@@ -133,12 +133,11 @@ class User < ActiveRecord::Base
   end
   
   def this_months_posts
-    self.posts.find(:all, :conditions => ["created_at > ?", DateTime.now.to_time.at_beginning_of_month])
-    
+    self.posts.find(:all, :conditions => ["published_at > ?", DateTime.now.to_time.at_beginning_of_month])
   end
   
   def last_months_posts
-    self.posts.find(:all, :conditions => ["created_at > ? and created_at < ?", DateTime.now.to_time.at_beginning_of_month.months_ago(1), DateTime.now.to_time.at_beginning_of_month])
+    self.posts.find(:all, :conditions => ["published_at > ? and published_at < ?", DateTime.now.to_time.at_beginning_of_month.months_ago(1), DateTime.now.to_time.at_beginning_of_month])
   end
   
   def avatar_photo_url(size = nil)
@@ -363,8 +362,8 @@ class User < ActiveRecord::Base
   def recommended_posts(since = 1.week.ago)
     return [] if tags.empty?
     rec_posts = Post.find_tagged_with(tags.map(&:name), 
-      :conditions => ['posts.user_id != ? AND created_at > ?', self.id, since ],
-      :order => 'created_at DESC',      
+      :conditions => ['posts.user_id != ? AND published_at > ?', self.id, since ],
+      :order => 'published_at DESC',      
       :limit => 10
       )
 

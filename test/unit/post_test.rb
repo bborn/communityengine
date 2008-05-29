@@ -51,11 +51,19 @@ class PostTest < Test::Unit::TestCase
   
   def test_should_track_post_activity
     assert_difference Activity, :count, 1 do
-      post = Post.new(:title => 'testing activity tracking', :raw_post => 'will this work?')
+      post = Post.new(:title => 'testing activity tracking', :raw_post => 'will this work?', :published_as => 'live')
       post.user = users(:quentin)
       post.save!
     end
   end
+  
+  def test_should_not_track_draft_post_activity
+    assert_no_difference Activity, :count do
+      post = Post.new(:title => 'testing activity tracking', :raw_post => 'will this work?', :published_as => 'draft')
+      post.user = users(:quentin)
+      post.save!
+    end
+  end  
   
   # def test_link_for_rss
   #   assert_equal posts(:funny_post).link_for_rss, "http://localhost:3000/quentin/posts/1-This-is-really-good-stuff"
@@ -126,5 +134,37 @@ class PostTest < Test::Unit::TestCase
     
     assert post.has_been_favorited_by(users(:quentin))    
   end
+  
+  def test_should_set_published_at_date_when_first_published
+    post = users(:quentin).posts.new(:raw_post => 'Blog post message', :title => 'Title')
+    assert !post.published_at
+    post.save!
     
+    post.published_as = 'live'
+    post.save
+    assert post.published_at
+  end
+  
+  def test_should_not_set_published_at_if_republishing
+    post = users(:quentin).posts.create!(:raw_post => 'Blog post message', :title => 'Title')
+    post.save_as_live #publish
+    published_at = post.published_at
+    
+    post.save_as_draft #unpublish
+    post.save_as_live #publish again
+    assert_equal post.published_at, published_at
+  end
+  
+  def test_should_show_published_at_display
+    post = posts(:funny_post)
+    assert_equal post.published_at_display, post.published_at.strftime("%Y/%m/%d")
+  end
+
+  def test_should_show_published_at_display_for_draft
+    post = posts(:funny_post)
+    post.save_as_draft
+    assert_equal post.published_at_display, 'Draft'
+  end
+
+      
 end

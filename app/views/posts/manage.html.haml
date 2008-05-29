@@ -1,9 +1,15 @@
 .yui-b.sidebar
+  %ul.checks
+    %li=link_to 'View my blog', user_posts_path(current_user)
+    %li=link_to 'View my profile', user_path(current_user)    
 
 #yui-main
   .yui-b
     .box
-      %h3 Manage Posts
+      %h3 
+        Manage Posts
+      %p Posts saved with 'draft' status won't appear in your blog until you publish them.
+      
 
       -if @posts.page_count > 1
         .pagination= paginating_links @posts, :link_to_current_page => true
@@ -11,7 +17,8 @@
       %table{:border => 0, :width => '100%'}
         %thead
           %tr
-            %th Date
+            %th Date Created
+            %th Date Published            
             %th Title
             %th Category
             %th Tags
@@ -22,6 +29,8 @@
             %tr            
               %td
                 %abbr{:title=>"#{post.created_at}"}= post.created_at.strftime("%Y/%m/%d")
+              %td
+                %abbr{:title=>"#{post.published_at}"}= post.published_at_display
               %td= link_to post.title, edit_user_post_path(post.user, post)
               %td= post.category.name
               %td= post.tags.any? ? post.tag_list : 'No tags'

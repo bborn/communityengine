@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  has_many :posts, :order => "created_at desc"
+  has_many :posts, :order => "published_at desc"
 
   def to_param
     id.to_s << "-" << (name ? name.gsub(/[^a-z1-9]+/i, '-') : '' )
@@ -30,7 +30,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.get_recent_count(type)
-    get(type).posts.find(:all, :conditions => "created_at > '#{7.days.ago.to_s :db}'").size rescue 0
+    get(type).posts.find(:all, :conditions => "published_at > '#{7.days.ago.to_s :db}'").size rescue 0
   end
   
   def display_new_post_text

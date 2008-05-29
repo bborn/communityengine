@@ -1,5 +1,5 @@
 class Contest < ActiveRecord::Base
-  has_many :posts, :order => "created_at desc"
+  has_many :posts, :order => "published_at desc"
   before_save :transform_post
 
   validates_presence_of :begin, :end, :title, :banner_title, :banner_subtitle

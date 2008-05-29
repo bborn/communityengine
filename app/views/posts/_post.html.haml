@@ -11,7 +11,7 @@
       %li.fn=link_to post.user.login, user_path(post.user)
       %li.update
         %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark"}
-          %abbr.published{:title=>"#{post.created_at}"}= post.created_at.strftime("%B %d, %Y")
+          %abbr.published{:title=>"#{post.published_at}"}= post.published_at_display("%B %d, %Y")
       %li.view
         views
         = "(#{post.view_count})"

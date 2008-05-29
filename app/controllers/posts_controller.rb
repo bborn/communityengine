@@ -14,7 +14,7 @@ class PostsController < BaseController
   before_filter :require_current_user, :only => [:create, :edit, :update, :destroy, :manage]
 
   def manage
-    @posts = @user.posts.find_without_published_as(:all, :page => {:current => params[:page], :size => 10}, :order => 'created_at DESC')
+    @posts = @user.posts.find_without_published_as(:all, :page => {:current => params[:page], :size => 10}, :order => 'published_at DESC')
   end
 
   def index
@@ -25,7 +25,7 @@ class PostsController < BaseController
     if @category
       cond.append ['category_id = ?', @category.id]
     end
-    @pages, @posts = paginate :posts, :order => "created_at DESC", :conditions => cond.to_sql, :per_page => 20
+    @pages, @posts = paginate :posts, :order => "published_at DESC", :conditions => cond.to_sql, :per_page => 20
     @is_current_user = @user.eql?(current_user)
 
     @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")
@@ -41,13 +41,13 @@ class PostsController < BaseController
              :item => {:title => :title,
                        :description => :post,
                        :link => :link_for_rss,
-                       :pub_date => :created_at} })        
+                       :pub_date => :published_at} })        
       }
     end
   end
   
   def popular
-    @posts = Post.find(:all, :conditions => "created_at > '#{1.days.ago.to_s :db}'", :order => "view_count DESC")
+    @posts = Post.find(:all, :conditions => "published_at > '#{1.days.ago.to_s :db}'", :order => "view_count DESC")
   end
     
   # GET /posts/1
@@ -108,7 +108,13 @@ class PostsController < BaseController
         
         @post.tag_with(params[:tag_list] || '') 
         flash[:notice] = @post.category ? "Your '#{Inflector.singularize(@post.category.name)}' post was successfully created." : "Your post was successfully created."
-        format.html { redirect_to @post.category ? category_path(@post.category) : user_path(@user) }
+        format.html { 
+          if @post.is_live?
+            redirect_to @post.category ? category_path(@post.category) : user_post_path(@user, @post) 
+          else
+            redirect_to manage_user_posts_path(@user)
+          end
+        }
       else
         format.html { render :action => "new" }
       end
@@ -143,7 +149,7 @@ class PostsController < BaseController
     respond_to do |format|
       format.html { 
         flash[:notice] = "Your post was deleted."
-        redirect_to user_posts_url(@user)   
+        redirect_to manage_user_posts_url(@user)   
         }
     end
   end
@@ -176,14 +182,14 @@ class PostsController < BaseController
       format.html # index.rhtml
       format.rss {
         render_rss_feed_for(@posts, { :feed => {:title => @rss_title, :link => popular_url},
-          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :created_at} 
+          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :published_at} 
           })        
       }
     end
   end
   
   def recent
-    @pages, @posts = paginate :posts, :order => "created_at DESC"
+    @pages, @posts = paginate :posts, :order => "published_at DESC"
 
     @recent_clippings = Clipping.find_recent(:limit => 15)
     @recent_photos = Photo.find_recent(:limit => 10)
@@ -194,14 +200,14 @@ class PostsController < BaseController
       format.html 
       format.rss {
         render_rss_feed_for(@posts, { :feed => {:title => @rss_title, :link => recent_url},
-          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :created_at} 
+          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :published_at} 
           })        
       }
     end    
   end
   
   def featured
-    @pages, @posts = paginate :posts, :order => "posts.created_at DESC", :conditions => ["users.featured_writer = ?", true], :include => :user
+    @pages, @posts = paginate :posts, :order => "posts.published_at DESC", :conditions => ["users.featured_writer = ?", true], :include => :user
     @featured_writers = User.find_featured    
         
     @rss_title = "#{AppConfig.community_name} Featured Posts"
@@ -210,7 +216,7 @@ class PostsController < BaseController
       format.html 
       format.rss {
         render_rss_feed_for(@posts, { :feed => {:title => @rss_title, :link => recent_url},
-          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :created_at} 
+          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :published_at} 
           })        
       }
     end    
