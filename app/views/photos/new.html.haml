@@ -42,12 +42,13 @@
 
     %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
       Just uploading one photo?
-
+    
+    - session_key = (ActionController::Base.session.first[:session_key] || '_session_id').to_sym
     %p.centered
       %script{:type=>'text/javascript'}
         var uploader;
         window.onload = function (){
-        ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:_session_id => session.session_id)}');"
+        ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, session_key => session.session_id)}');"
         };
         
       %div{:style=>"margin: 0px 10px;"}

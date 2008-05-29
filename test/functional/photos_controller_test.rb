@@ -26,8 +26,6 @@ class PhotosControllerTest < Test::Unit::TestCase
     assert assigns(:photos)
   end
 
-
-
   def test_should_not_get_index_for_private_user
     get :index, :user_id => users(:privateuser).id
     assert_response :redirect

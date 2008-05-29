@@ -1,12 +1,11 @@
 require 'pp'
 
 class PhotosController < BaseController
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage_photos]
-  before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow]
-  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
+  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage_photos, :swfupload]
+  before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow, :swfupload]
+  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
 
-  before_filter :require_fake_session, :only => [:swfupload]
-  skip_before_filter :login_required, :only => [:swfupload]
+  session :cookie_only => false, :only => :swfupload  
   
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
   
@@ -137,7 +136,7 @@ class PhotosController < BaseController
     end
   end
   
-  def swfupload
+  def swfupload  
     # swfupload action set in routes.rb
     @photo = Photo.new :uploaded_data => params[:Filedata]
     @photo.user_id = @user
@@ -185,18 +184,22 @@ class PhotosController < BaseController
     @xml_file = formatted_user_photos_url( {:user_id => @user, :format => :xml}.merge(:tag_name => params[:tag_name]) )
     render :action => 'slideshow'
   end
-  
-  
-  protected
-  def require_fake_session
-    begin
-      fake_session = SqlSessionStore.session_class.find_session(params[:_session_id])
-      @user = Marshal.load(Base64.decode64(fake_session.data))[:user]
-      return @user
-    rescue
-      render :nothing => true, :status => 500 and return false
-    end    
-  end
+    
+  # protected
+  # def require_fake_session
+  #   raise session[:user].inspect
+  #   fake_session = ActionController::Base.session
+  #   @user = Marshal.load(Base64.decode64(fake_session.data))[:user]
+  #   raise @user.inspect
+  # 
+  #   begin
+  #     fake_session = ActionController::Base.session_store.find_session(params[:_session_id])
+  #     @user = Marshal.load(Base64.decode64(fake_session.data))[:user]
+  #     return @user
+  #   rescue
+  #     render :nothing => true, :status => 500 and return false
+  #   end    
+  # end
   
   
 end
