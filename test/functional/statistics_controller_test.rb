@@ -24,4 +24,12 @@ class StatisticsControllerTest < Test::Unit::TestCase
     get :index
     assert_redirected_to login_url
   end
+  
+  def test_should_get_activities_chart
+    login_as :admin
+    get :activities_chart
+    assert_response :success
+  end
+  
+  
 end
