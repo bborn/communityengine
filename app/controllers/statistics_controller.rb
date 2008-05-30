@@ -11,10 +11,6 @@ class StatisticsController < BaseController
     @active_users_count = Activity.find(:all, :group => "user_id", :conditions => ["created_at > ?", 1.month.ago]).size
 
     @active_users = User.find_by_activity({:since => 1.month.ago})
-
-    sql = "SELECT AVG(DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(birthday, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(birthday, '00-%m-%d'))) as avg_age
-      FROM users WHERE birthday IS NOT NULL;"
-    @average_age = ActiveRecord::Base.connection.select_all(sql)
     
     @percent_reporting_zip = (User.count(:all, :conditions => "zip IS NOT NULL") / @total_users.to_f)*100
     

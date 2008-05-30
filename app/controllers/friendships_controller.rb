@@ -75,7 +75,7 @@ class FriendshipsController < BaseController
   
   def pending
     @user = User.find(params[:user_id])    
-    @friendships = @user.friendships.find(:all, :conditions => ["initiator = 0 and friendship_status_id = ?", FriendshipStatus[:pending].id])
+    @friendships = @user.friendships.find(:all, :conditions => ["initiator = ? AND friendship_status_id = ?", false, FriendshipStatus[:pending].id])
     
     respond_to do |format|
       format.html # index.rhtml

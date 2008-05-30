@@ -38,8 +38,6 @@
 				<% end %>				
 			</ul>
 
-			<h2>Average reported age: <%= @average_age.first['avg_age'] %></h2>
-
 			<h2>% Reporting ZIP: <%= number_to_percentage @percent_reporting_zip, :precision => 1 %></h2>
 
 			<h2>Male: <%= number_to_percentage @percent_male %>, Female: <%= number_to_percentage @percent_female %></h2>	

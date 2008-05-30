@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   #friends
   has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
   has_many :accepted_friendships, :class_name => "Friendship", :conditions => ['friendship_status_id = ?', 2]
-  has_many :pending_friendships, :class_name => "Friendship", :conditions => ['initiator = 0 and friendship_status_id = ?', 1]
+  has_many :pending_friendships, :class_name => "Friendship", :conditions => ['initiator = ? AND friendship_status_id = ?', false, 1]
   has_many :friendships_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', true], :dependent => :destroy
   has_many :friendships_not_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', false], :dependent => :destroy
   has_many :occurances_as_friend, :class_name => "Friendship", :foreign_key => "friend_id", :dependent => :destroy
