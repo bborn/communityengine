@@ -1,7 +1,9 @@
 .yui-b.sidebar
-  %ul.checks
-    %li=link_to 'View my blog', user_posts_path(current_user)
-    %li=link_to 'View my profile', user_path(current_user)    
+  .box
+    %h3 Links
+    %ul.checks
+      %li=link_to 'View my blog', user_posts_path(current_user)
+      %li=link_to 'New post', new_user_post_path(current_user)    
 
 #yui-main
   .yui-b

@@ -65,6 +65,17 @@ class PostTest < Test::Unit::TestCase
     end
   end  
   
+  def test_should_delete_post_activity
+    post = Post.new(:title => 'testing activity tracking', :raw_post => 'will this work?', :published_as => 'live')
+    post.user = users(:quentin)
+    post.save!
+
+    assert_difference Activity, :count, -1 do
+      post.destroy
+    end
+  end
+  
+  
   # def test_link_for_rss
   #   assert_equal posts(:funny_post).link_for_rss, "http://localhost:3000/quentin/posts/1-This-is-really-good-stuff"
   # end

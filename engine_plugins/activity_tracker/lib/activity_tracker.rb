@@ -26,6 +26,7 @@ module ActivityTracker # :nodoc:
           end
         end
 
+        has_many :activities, :as => :item, :dependent => :destroy
         class_inheritable_accessor :activity_options
         include InstanceMethods
       end      
