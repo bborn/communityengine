@@ -16,8 +16,8 @@
                 %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display("%B %d, %Y")
             %li.view= "views (#{@post.view_count})"
             %li.comments= link_to "comments (#{@post.comments.size})", user_post_path(@user, @post)+'#comments'      
-            %li.addfriend
-              %a{"href"=>"#"} Add as friend
+            - if current_user and current_user.can_request_friendship_with(@post.user)
+              %li.addfriend= add_friend_link(@post.user)
             %li.print
               %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>"Print this story"} Print
             %li.email
