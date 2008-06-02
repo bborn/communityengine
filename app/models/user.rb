@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   MALE    = 'M'
   FEMALE  = 'F'
 
-  attr_protected :admin
+  attr_protected :admin, :featured
   before_save :encrypt_password, :whitelist_attributes
   before_create :make_activation_code
   after_create :update_last_login

@@ -139,7 +139,7 @@ class PhotosController < BaseController
   def swfupload  
     # swfupload action set in routes.rb
     @photo = Photo.new :uploaded_data => params[:Filedata]
-    @photo.user_id = @user
+    @photo.user = current_user
     @photo.save!
     
     # This returns the thumbnail url for handlers.js to use to display the thumbnail
