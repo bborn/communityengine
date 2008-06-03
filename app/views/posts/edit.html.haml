@@ -32,7 +32,10 @@
         %label Save post as:
         = f.select(:published_as, [['Published', 'live'], ['Draft', 'draft']])
         %p
-          = submit_tag "Update"
-        %p=link_to 'Delete?', user_post_path(current_user, @post), :method => :delete, :confirm => "Are you sure you want to delete this post?"
+          = submit_tag "Update" 
+          or
+          =link_to "cancel", user_post_path(current_user, @post)
+        %p
+          =link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} Delete this post?", user_post_path(current_user, @post), :method => :delete, :confirm => "Are you sure you want to delete this post?"
 
   = observe_field  "post_category_id", {:url => {:action => 'category_tips_update'}, :with => "post_category_id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}
