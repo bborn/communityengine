@@ -13,7 +13,6 @@
     
   #NavBar
     %ul
-      = topnav_tab "Tools", { :url => forums_path, :section => 'tools' }    
       - Category.find(:all).each do |c|
         = topnav_tab c.name, {:url => category_path(c), :section => c.name}
       = topnav_tab "Discussions", { :url => forums_path, :section => 'forums' }
