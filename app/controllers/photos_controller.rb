@@ -5,6 +5,8 @@ class PhotosController < BaseController
   before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow, :swfupload]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
 
+  skip_before_filter :verify_authenticity_token, :only => :create #because the TinyMCE image uploader can't provide the auth token
+  
   session :cookie_only => false, :only => :swfupload  
   
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
