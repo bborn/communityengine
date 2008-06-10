@@ -5,7 +5,7 @@ require 'offerings_controller'
 class OfferingsController; def rescue_action(e) raise e end; end
 
 class OfferingsControllerTest < Test::Unit::TestCase
-  fixtures :offerings, :skills, :users
+  fixtures :offerings, :skills, :users, :roles
 
   def setup
     @controller = OfferingsController.new

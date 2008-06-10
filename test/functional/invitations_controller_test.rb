@@ -5,7 +5,7 @@ require 'invitations_controller'
 class InvitationsController; def rescue_action(e) raise e end; end
 
 class InvitationsControllerTest < Test::Unit::TestCase
-  fixtures :invitations, :users
+  fixtures :invitations, :users, :roles
 
   def setup
     @controller = InvitationsController.new

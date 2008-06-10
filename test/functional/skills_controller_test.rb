@@ -5,7 +5,7 @@ require 'skills_controller'
 class SkillsController; def rescue_action(e) raise e end; end
 
 class SkillsControllerTest < Test::Unit::TestCase
-  fixtures :skills, :users
+  fixtures :skills, :users, :roles
 
   def setup
     @controller = SkillsController.new

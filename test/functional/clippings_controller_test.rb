@@ -5,7 +5,7 @@ require 'clippings_controller'
 class ClippingsController; def rescue_action(e) raise e end; end
 
 class ClippingsControllerTest < Test::Unit::TestCase
-  fixtures :clippings, :users
+  fixtures :clippings, :users, :roles
 
   def setup
     @controller = ClippingsController.new

@@ -6,7 +6,7 @@ class FriendshipsController; def rescue_action(e) raise e end; end
 
 class FriendshipsControllerTest < Test::Unit::TestCase
   include UsersHelper
-  fixtures :friendships, :friendship_statuses, :users
+  fixtures :friendships, :friendship_statuses, :users, :roles
 
 
   def setup

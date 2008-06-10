@@ -5,7 +5,7 @@ require 'categories_controller'
 class CategoriesController; def rescue_action(e) raise e end; end
 
 class CategoriesControllerTest < Test::Unit::TestCase
-  fixtures :categories, :users
+  fixtures :categories, :users, :roles
 
   def setup
     @controller = CategoriesController.new

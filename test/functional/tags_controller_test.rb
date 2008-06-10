@@ -5,7 +5,7 @@ require 'tags_controller'
 class TagsController; def rescue_action(e) raise e end; end
 
 class TagsControllerTest < Test::Unit::TestCase
-  fixtures :tags, :taggings, :photos
+  fixtures :tags, :taggings, :photos, :roles
 
   def setup
     @controller = TagsController.new

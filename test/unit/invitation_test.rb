@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class InvitationTest < Test::Unit::TestCase
-  fixtures :invitations, :users
+  fixtures :invitations, :users, :roles
 
   def test_email_addresses_validation
     addresses = "valid@example.com, valid_2@example.com, invalid.invalid.com"

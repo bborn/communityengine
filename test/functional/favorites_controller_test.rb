@@ -5,7 +5,7 @@ require 'favorites_controller'
 class FavoritesController; def rescue_action(e) raise e end; end
 
 class FavoritesControllerTest < Test::Unit::TestCase
-  fixtures :clippings, :users
+  fixtures :clippings, :users, :roles
 
   def setup
     @controller = FavoritesController.new

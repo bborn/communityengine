@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   MALE    = 'M'
   FEMALE  = 'F'
 
-  attr_protected :admin, :featured
+  attr_protected :admin, :featured, :role_id
+  
   before_save :encrypt_password, :whitelist_attributes
   before_create :make_activation_code
   after_create :update_last_login
@@ -38,6 +39,8 @@ class User < ActiveRecord::Base
   has_many :photos, :order => "created_at desc", :dependent => :destroy
   has_many :invitations, :dependent => :destroy
   has_many :offerings, :dependent => :destroy
+
+  has_enumerated :role  
 
   #friends
   has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
@@ -377,6 +380,17 @@ class User < ActiveRecord::Base
   def display_name
     login
   end
+  
+  def admin?
+    role && role.eql?(Role[:admin])
+  end
+  def moderator?
+    role && role.eql?(Role[:moderator])
+  end
+  def member?
+    role && role.eql?(Role[:member])
+  end
+  
 
 
   #from savage beast

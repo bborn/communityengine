@@ -11,7 +11,7 @@ class PostsController < BaseController
                            
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage]
   before_filter :find_user, :only => [:new, :edit, :index, :show, :update_view, :manage]
-  before_filter :require_current_user, :only => [:create, :edit, :update, :destroy, :manage]
+  before_filter :require_ownership_or_moderator, :only => [:create, :edit, :update, :destroy, :manage]
 
   def manage
     @posts = @user.posts.find_without_published_as(:all, :page => {:current => params[:page], :size => 10}, :order => 'published_at DESC')
@@ -230,6 +230,12 @@ class PostsController < BaseController
     render :partial => "/categories/tips", :locals => {:category => nil}    
   end
   
-
+  def require_ownership_or_moderator
+    @user ||= User.find(params[:user_id] || params[:id] )
+    unless admin? || moderator? || (@user && (@user.eql?(current_user)))
+      redirect_to :controller => 'sessions', :action => 'new' and return false
+    end
+    return @user
+  end
   
 end

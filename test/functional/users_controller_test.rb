@@ -9,7 +9,7 @@ class UsersControllerTest < Test::Unit::TestCase
   # Then, you can remove it from this and the units test.
   include AuthenticatedTestHelper
 
-  fixtures :users, :tags, :states, :metro_areas, :countries, :skills, :friendship_statuses, :friendships, :categories
+  fixtures :users, :roles, :tags, :states, :metro_areas, :countries, :skills, :friendship_statuses, :friendships, :categories
 
   def setup
     @controller = UsersController.new
@@ -37,6 +37,23 @@ class UsersControllerTest < Test::Unit::TestCase
     get :edit_account
     assert_response :success
   end  
+
+  def test_should_toggle_moderator
+    login_as :admin
+    assert !users(:quentin).moderator?
+    put :toggle_moderator, :id => users(:quentin)
+    assert users(:quentin).reload.moderator?
+    put :toggle_moderator, :id => users(:quentin)
+    assert !users(:quentin).reload.moderator?
+  end
+
+  def test_should_not_toggle_featured_writer_if_not_admin
+    login_as :quentin
+    put :toggle_moderator, :id => users(:quentin)
+    assert_redirected_to :login_url
+    assert !users(:quentin).reload.moderator?
+  end
+
 
   def test_should_toggle_featured_writer
     login_as :admin

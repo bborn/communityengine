@@ -7,7 +7,7 @@ class UserNotifierTest < Test::Unit::TestCase
 
   include ActionMailer::Quoting
 
-  fixtures :users, :friendships, :comments, :posts, :sb_posts, :topics, :forums
+  fixtures :users, :friendships, :comments, :posts, :sb_posts, :topics, :forums, :roles
 
   def setup
     ActionMailer::Base.delivery_method = :test

@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'hpricot'
     
 class PostTest < Test::Unit::TestCase
-  fixtures :posts, :users, :comments
+  fixtures :posts, :users, :comments, :roles
 
   def setup
     Favorite.destroy_all

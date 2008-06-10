@@ -5,7 +5,7 @@ require 'ads_controller'
 class AdsController; def rescue_action(e) raise e end; end
 
 class AdsControllerTest < Test::Unit::TestCase
-  fixtures :ads, :users, :categories
+  fixtures :ads, :users, :categories, :roles
 
   def setup
     @controller = AdsController.new

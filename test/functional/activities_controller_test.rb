@@ -5,7 +5,7 @@ require 'activities_controller'
 class ActivitiesController; def rescue_action(e) raise e end; end
 
 class ActivitiesControllerTest < Test::Unit::TestCase
-  fixtures :users, :categories, :posts, :comments
+  fixtures :users, :categories, :posts, :comments, :roles
 
   def setup
     @controller = ActivitiesController.new

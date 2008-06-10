@@ -62,6 +62,10 @@ module AuthenticatedSystem
      logged_in? && current_user.admin?
     end
     
+    def moderator?
+     logged_in? && current_user.moderator?      
+    end
+    
 
     # Filter method to enforce a login requirement.
     #
@@ -128,7 +132,7 @@ module AuthenticatedSystem
     # Inclusion hook to make #current_user and #logged_in?
     # available as ActionView helper methods.
     def self.included(base)
-      base.send :helper_method, :current_user, :logged_in?, :admin?
+      base.send :helper_method, :current_user, :logged_in?, :admin?, :moderator?
     end
 
     # When called with before_filter :login_from_cookie will check for an :auth_token

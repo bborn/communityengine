@@ -7,7 +7,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 # class BaseController < ApplicationController; def rescue_action(e) raise e end; end
 
 class BaseControllerTest < Test::Unit::TestCase
-  fixtures :clippings, :users, :photos, :homepage_features, :taggings, :tags, :posts, :categories
+  fixtures :clippings, :users, :photos, :homepage_features, :taggings, :tags, :posts, :categories, :roles
 
   def setup
     @controller = BaseController.new

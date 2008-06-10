@@ -110,6 +110,13 @@ Finally, you'll need an S3 account for S3 photo uploading.
 CommunityEngine includes the s3.rake tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in RAILS_ROOT/config/s3.yml. (Sample in sample_files/s3.yml)
 
 
+## ROLES ##
+CommunityEngine Users have a Role (by default, it's admin, moderator, or member)
+To set a user as an admin, you must manually change his role_id through the database.
+Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar.)
+Admins and moderators can edit and delete other users posts.
+
+
 ## THEMES ##
 To create a theme:
 1. Add a 'themes' directory in RAILS_ROOT with the following structure:

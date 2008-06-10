@@ -5,7 +5,7 @@ require 'contests_controller'
 class ContestsController; def rescue_action(e) raise e end; end
 
 class ContestsControllerTest < Test::Unit::TestCase
-  fixtures :contests, :users
+  fixtures :contests, :users, :roles
 
   def setup
     @controller = ContestsController.new

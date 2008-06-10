@@ -5,7 +5,7 @@ require 'homepage_features_controller'
 class HomepageFeaturesController; def rescue_action(e) raise e end; end
 
 class HomepageFeaturesControllerTest < Test::Unit::TestCase
-  fixtures :homepage_features, :users
+  fixtures :homepage_features, :users, :roles
 
   def setup
     @controller = HomepageFeaturesController.new

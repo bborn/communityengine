@@ -5,7 +5,7 @@ require 'posts_controller'
 class PostsController; def rescue_action(e) raise e end; end
 
 class PostsControllerTest < Test::Unit::TestCase
-  fixtures :posts, :users, :categories, :contests
+  fixtures :posts, :users, :categories, :contests, :roles
 
   def setup
     @controller = PostsController.new

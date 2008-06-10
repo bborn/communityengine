@@ -5,7 +5,7 @@ require 'metro_areas_controller'
 class MetroAreasController; def rescue_action(e) raise e end; end
 
 class MetroAreasControllerTest < Test::Unit::TestCase
-  fixtures :metro_areas, :users, :countries
+  fixtures :metro_areas, :users, :countries, :roles
 
   def setup
     @controller = MetroAreasController.new

@@ -5,7 +5,7 @@ require 'statistics_controller'
 class StatisticsController; def rescue_action(e) raise e end; end
 
 class StatisticsControllerTest < Test::Unit::TestCase
-  fixtures :users
+  fixtures :users, :roles
   
   def setup
     @controller = StatisticsController.new

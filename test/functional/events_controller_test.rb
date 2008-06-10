@@ -5,7 +5,7 @@ require 'events_controller'
 class EventsController; def rescue_action(e) raise e end; end
 
 class EventsControllerTest < Test::Unit::TestCase
-  fixtures :users, :events, :states
+  fixtures :users, :events, :states, :roles
 
   def setup
     @controller = EventsController.new

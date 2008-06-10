@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class FavoriteTest < Test::Unit::TestCase
-  fixtures :clippings, :users
+  fixtures :clippings, :users, :roles
   
   def setup
     Favorite.destroy_all

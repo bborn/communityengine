@@ -17,8 +17,8 @@
       #monitor_topic
         %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click()"}
         %label#monitor_label{"for"=>"monitor_checkbox"}
-          Watch
-          = "ing" if @monitoring
+          
+          = "Watch#{@monitoring ? 'ing' : ''}"
           = _('topic')
         = hidden_field_tag '_method', 'delete' if @monitoring
         = submit_tag :Set, :id => 'monitor_submit'

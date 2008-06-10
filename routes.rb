@@ -85,6 +85,7 @@ resources :contests, :member => { :latest => :get }
 resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :member => { 
     :dashboard => :get,
     :assume => :get,
+    :toggle_moderator => :put,
     :toggle_featured => :put,
     :change_profile_photo => :put,
     :return_admin => :get, 

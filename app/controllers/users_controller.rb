@@ -22,7 +22,7 @@ class UsersController < BaseController
   before_filter :require_current_user, :only => [:edit, :update, :update_account,
                                                 :edit_pro_details, :update_pro_details,
                                                 :welcome_photo, :welcome_about, :welcome_invite]
-  before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured]
+  before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator]
   before_filter :admin_or_current_user_required, :only => [:statistics]  
 
   def activate
@@ -78,6 +78,7 @@ class UsersController < BaseController
 
   def create
     @user = User.new(params[:user])
+    @user.role = Role[:member]
     @user.save!
     create_friendship_with_inviter(@user, params)
     flash[:notice] = "Thanks for signing up! You should receive an e-mail confirmation shortly at #{@user.email}"
@@ -307,6 +308,14 @@ class UsersController < BaseController
     @user.toggle!(:featured_writer)
     redirect_to user_path(@user)
   end
+
+  def toggle_moderator
+    @user = User.find(params[:id])
+    @user.role = @user.moderator? ? Role[:member] : Role[:moderator]
+    @user.save!
+    redirect_to user_path(@user)
+  end
+
   
   def statistics
     if params[:date]

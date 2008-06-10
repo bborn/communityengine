@@ -5,7 +5,7 @@ require 'votes_controller'
 class VotesController; def rescue_action(e) raise e end; end
 
 class VotesControllerTest < Test::Unit::TestCase
-  fixtures :users, :posts
+  fixtures :users, :posts, :roles
 
   def setup
     @controller = VotesController.new

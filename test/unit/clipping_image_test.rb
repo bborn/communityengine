@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClippingImageTest < Test::Unit::TestCase
-  fixtures :clippings, :users  
+  fixtures :clippings, :users, :roles
   
   def teardown
     Asset.destroy_all
