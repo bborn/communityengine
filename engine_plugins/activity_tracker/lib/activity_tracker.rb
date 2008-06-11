@@ -21,7 +21,7 @@ module ActivityTracker # :nodoc:
     def acts_as_activity(actor, options = {})
       unless included_modules.include? InstanceMethods
         after_create do |record|
-          unless options[:if] and not evaluate_condition(options[:if], record)
+          unless options[:if].kind_of?(Proc) and not options[:if].call(record)
             record.create_activity_from_self 
           end
         end
