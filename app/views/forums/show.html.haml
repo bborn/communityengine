@@ -73,11 +73,13 @@
     %h6.all= link_to _('Log in to create a new topic'), new_forum_topic_path(@forum)
 
   - if @topics.size < 10
-    %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
-      %tr
-        %th.la{:colspan=>"2"}= _('This forum is still getting started... here are some blog posts to get you thinking ... ')
-        %th{:width=>"1%"}= _('Comments')
-        %th{:width=>"1%"}= _('Views')
-        %th.la= _('Author')
-      - Post.find_tagged_with(@forum.tag_list, :limit => 10).each do |post|
-        = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}
+    - @related = Post.find_tagged_with(@forum.tag_list, :limit => 10)
+    - unless @related.empty?
+      %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
+        %tr
+          %th.la{:colspan=>"2"}= _('This forum is still getting started... here are some blog posts to get you thinking ... ')
+          %th{:width=>"1%"}= _('Comments')
+          %th{:width=>"1%"}= _('Views')
+          %th.la= _('Author')
+          -@related.each do |post|
+            = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}
