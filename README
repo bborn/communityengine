@@ -153,7 +153,7 @@ You can also override CommunityEngine's controllers by creating identically-name
 
 
 # Todo
-- Track down "<RangeError ... is a recycled object>" warnings on tests (anyone know where that's coming from?)
+- Track down "<RangeError ... is recycled object>" warnings on tests (anyone know where that's coming from?)
 
 
 # Bug tracking is via Lighthouse: http://communityengine.lighthouseapp.com
