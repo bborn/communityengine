@@ -3,8 +3,8 @@ COMMUNITY ENGINE
 Information at: www.missingmethod.com/community_engine
 
 Requirements:
-  - RAILS VERSION 2.0.2 
-  - The engines plugin for Rails 2.0: http://svn.rails-engines.org/engines/branches/rb_2.0/
+  - RAILS VERSION 2.1
+  - The engines plugin for Rails 2.1: http://railsengines.org/news/2008/06/01/engines-2-1-0-release/
   - ImageMagick 
   - Several gems:
       rmagick
@@ -19,7 +19,7 @@ GETTING COMMUNITY ENGINE RUNNING
 1. From the command line:
     $ rails site_name (create a rails app if you don't have one already)
 2. Install the engines plugin:
-    $ svn export http://svn.rails-engines.org/engines/branches/rb_2.0/ vendor/plugins/engines
+    $ script/plugin install git://github.com/lazyatom/engines.git
 3. Put community engine plugin into plugins directory (use one of the following methods):
 
     # If you're not using git, and just want to add the source files:
@@ -38,7 +38,7 @@ GETTING COMMUNITY ENGINE RUNNING
 
       ## environment.rb should look something like this:
       ===============================================================
-      RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
+      RAILS_GEM_VERSION = '2.1' unless defined? RAILS_GEM_VERSION
       require File.join(File.dirname(__FILE__), 'boot')
       require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
@@ -146,10 +146,13 @@ You can also override CommunityEngine's controllers by creating identically-name
 # Gotchas
 1. I get errors running rake! Error: (wrong number of arguments (3 for 1)
   - make sure you have the latest version of rake
+2. I get test errors after upgrading to Rails 2.1
+  - make sure you have upgraded to the Engines 2.1 plugin, and modified your environment.rb to use Rails 2.1.
 
 
 # Todo
-Latest version of Engines plugin doesn't work (unless you're on EdgeRails)
+- Track down "<RangeError ... is a recycled object>" warnings on tests (anyone know where that's coming from?)
 
-# Bug tracking is via Lighthouse: http://communityengine.lighthouseapp.com/projects/11808/home
+
+# Bug tracking is via Lighthouse: http://communityengine.lighthouseapp.com
 #
