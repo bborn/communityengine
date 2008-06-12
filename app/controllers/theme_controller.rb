@@ -1,5 +1,5 @@
 class ThemeController < BaseController
-#  caches_page :stylesheets, :javascript, :images
+  # caches_page :stylesheets, :javascript, :images
   session :off
 
   def stylesheets
@@ -30,6 +30,13 @@ class ThemeController < BaseController
     src = "#{RAILS_ROOT}/themes/#{AppConfig.theme}" + "/#{type}/#{file}"
     return (render :text => "Not Found", :status => 404) unless File.exists? src
 
+    if perform_caching
+      dst = "#{page_cache_directory}/#{type}/theme/#{file}"
+      FileUtils.makedirs(File.dirname(dst))
+      FileUtils.cp(src, "#{dst}.#{$$}")
+      FileUtils.ln("#{dst}.#{$$}", dst) rescue nil
+      FileUtils.rm("#{dst}.#{$$}", :force => true)
+    end
     send_file(src, :type => mime, :disposition => 'inline', :stream => true)
   end
 

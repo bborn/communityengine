@@ -132,6 +132,8 @@ To create a theme:
 3. Customize your theme. For example: you can create a /RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml to override the default one, and pull in your theme's styleshees.
 To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
 
+Note: when running in production mode, theme assets (images, js, and stylesheets) are automatically copied to you public directory (avoiding a Rails request on each image load). 
+
 = stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
 
 
