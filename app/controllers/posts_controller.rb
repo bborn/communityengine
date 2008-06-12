@@ -4,8 +4,8 @@ class PostsController < BaseController
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
          
   cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]
-  caches_action :show  
-  def cache_action?(action_name)
+  caches_action :show, :if => Proc.new{|c| c.cache_action? }
+  def cache_action?
     !logged_in? && controller_name.eql?('posts')
   end  
                            

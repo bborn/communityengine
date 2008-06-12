@@ -1,9 +1,6 @@
 class SitemapController < BaseController
   layout false
-  caches_action :index  
-  def cache_action?(action_name)
-    true
-  end  
+  caches_action :index
 
   def index
     @users = User.find(:all, :select => 'id, login, updated_at, login_slug', :conditions => "activated_at IS NOT NULL")

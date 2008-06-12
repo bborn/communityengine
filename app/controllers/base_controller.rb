@@ -6,16 +6,10 @@ class BaseController < ApplicationController
   include AuthenticatedSystem
   before_filter :login_from_cookie  
   
-  caches_action :site_index, :footer_content
-  
-  def cache_action?(action_name)
-    !logged_in? && controller_name.eql?('base') && params[:format].blank?
-  end
-  def action_fragment_key(options)  
-    url = url_for(options).split('://').last
-    url = (url =~ /^.*\/$/) ? "#{url}index" : url
-    url
-  end    
+  caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
+  def cache_action?
+    !logged_in? && controller_name.eql?('base') && params[:format].blank? 
+  end  
   
   if AppConfig.closed_beta_mode
     before_filter :beta_login_required, :except => [:teaser]
