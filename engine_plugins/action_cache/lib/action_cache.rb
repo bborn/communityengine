@@ -186,12 +186,12 @@ module ActionController
         end
         
         def cache_this_request?(controller)
-          @actions.include?(controller.action_name.intern) && cache_request?(controller) &&
+          @actions && @actions.include?(controller.action_name.intern) && cache_request?(controller) &&
             !controller.rendered_action_cache && controller.response.headers['Status'] == '200 OK'
         end
 
         def cached_entry(controller)
-          if @actions.include?(controller.action_name.intern) && 
+          if @actions && @actions.include?(controller.action_name.intern) && 
             cache_request?(controller) && 
             (cache = controller.read_fragment(meta_name(controller)))
             return YAML.load(cache)
