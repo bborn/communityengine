@@ -27,7 +27,7 @@ GETTING COMMUNITY ENGINE RUNNING
     # and unpack it into /vendor/plugins/community_engine
 
     # Using git, make a shallow clone of the community_engine repository:
-    $ git clone --depth 1 git@github.com:bborn/communityengine.git vendor/plugins/community_engine
+    $ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
 
     # If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule: 
     # http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
