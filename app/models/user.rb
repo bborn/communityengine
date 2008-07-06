@@ -350,7 +350,7 @@ class User < ActiveRecord::Base
   end
   
   def self.recent_activity(page = {})
-    page.reverse_merge :size => 10, :current => 1
+    page.reverse_merge! :size => 10, :current => 1
     
     Activity.find(:all, 
       :order => 'created_at DESC',
