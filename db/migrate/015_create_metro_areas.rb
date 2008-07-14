@@ -3,6 +3,7 @@ class CreateMetroAreas < ActiveRecord::Migration
     create_table :metro_areas do |t|
       t.column :name, :string
       t.column :state_id, :integer
+      t.column :country_id, :integer
     end
     add_column "users", "metro_area_id", :integer
   end
