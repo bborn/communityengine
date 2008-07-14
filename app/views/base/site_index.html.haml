@@ -4,12 +4,12 @@
 #yui-main
   .yui-b
     .box.hfeed
-      %h3 Recent Posts
+      %h3=:recent_posts.l
       = render :partial => 'posts/post', :collection => @posts
 
 .yui-b  
   .box
-    %h3= "Explore #{AppConfig.community_name}"
+    %h3= :explore_site.l_with_args :site => AppConfig.community_name
     %ul.list.checks
       - Category.find(:all).each do |c|
         %li= link_to c.name, category_path(c)
@@ -17,8 +17,7 @@
       %li= link_to "Find an Expert", skills_path, {:class => 'users'}
 
   .box.alt
-    %h3
-      What's Hot?
+    %h3=:what_is_hot.l
     %ul.list.page
       -@popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
@@ -26,7 +25,7 @@
       %a{:href=>"/popular"} SEE ALL
 
   .box.alt
-    %h3= AppConfig.featured_writer_label.pluralize
+    %h3=:featured_writers.l
     -@featured_writers.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
 
