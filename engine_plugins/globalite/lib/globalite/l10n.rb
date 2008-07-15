@@ -1,6 +1,8 @@
 module Globalite 
 
   module L10n
+    @@show_localization_keys_for_debugging = false
+    attr_accessor :show_localization_keys_for_debugging    
     
     @@default_language = :en
     attr_reader :default_language

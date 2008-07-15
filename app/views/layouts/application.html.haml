@@ -26,7 +26,7 @@
         -if show_footer_content?    
           .yui-gc#footer_content
             = image_tag 'spinner.gif', :plugin => 'community_engine'
-            =:loading_recent_content.l       
+            ="Loading recent content...".l       
 
           %script{:type=>"text/javascript"}
             = remote_function(:update => "footer_content", :url => { :controller => 'base', :action => 'footer_content' })
@@ -34,18 +34,23 @@
       #CommunityFooter
         %ul
           %li
-            %a{:href=>"/", :title=>"#{AppConfig.community_name} Home"}=:home.l
+            %a{:href=>"/", :title=>"#{AppConfig.community_name} Home"}= "Home".l
           - if !logged_in?
             %li
-              = link_to :log_in.l , login_path 
+              = link_to "Log In".l , login_path 
           - else
             %li
-              %a{:href=>"/logout", :title=>"Log out of your #{AppConfig.community_name} account"}=:log_out.l
+              %a{:href=>"/logout", :title=>"Log out of your #{AppConfig.community_name} account"}
+                ="Log Out".l
           %li
-            %a{:href=>"/about", :title=>"What is #{AppConfig.community_name}?"}=:about.l
+            %a{:href=>"/about", :title=>"What is #{AppConfig.community_name}?"}
+              ="About".l
           %li
-            %a{:href=>"/faq", :title=>"Frequent Asked Questions"}=:faq.l
+            %a{:href=>"/faq", :title=>"Frequent Asked Questions"}
+              ="FAQ".l
+              
           - if @rss_title && @rss_url
-            %li#rss= link_to :rss.l, @rss_url, {:title => @rss_title}
+            %li#rss= link_to "RSS".l, @rss_url, {:title => @rss_title}
 
-        %p=:community_tagline.l
+        %p
+          = :community_tagline.l

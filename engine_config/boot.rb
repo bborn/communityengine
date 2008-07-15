@@ -9,3 +9,6 @@ if AppConfig.theme
   theme_view_path = "#{RAILS_ROOT}/themes/#{AppConfig.theme}/views"
   ActionController::Base.view_paths = ActionController::Base.view_paths.dup.unshift(theme_view_path)
 end
+
+
+Globalite.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
