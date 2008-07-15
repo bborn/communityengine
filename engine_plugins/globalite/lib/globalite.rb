@@ -3,7 +3,6 @@ require 'rails/core_ext'
 require 'globalite/l10n'
 require 'globalite/locale'
 Symbol.send :include, SymbolExtension
-String.send :include, StringExtension
 
 module Globalite
   extend L10n
