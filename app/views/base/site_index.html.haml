@@ -30,6 +30,6 @@
       =render :partial => "users/sidebar_user", :locals => {:user => user}
 
   .box.alt
-    %h3 Active Users
+    %h3=:active_users.l
     -@active_users.each do |user|    
       =render :partial => "users/sidebar_user", :locals => {:user => user}      

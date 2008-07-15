@@ -2,18 +2,13 @@
   .yui-gc
     .yui-u.first
       .box
-        %h2 
-          Get started with
-          %a{:href=>"/"}= AppConfig.community_name
-          today!
-        %p
-          CommunityEngine is the best way to go from zero to hero in no time.
+        %h2=:get_started_banner.l_with_args :site=>AppConfig.community_name
+        %p=:get_started_text_1.l
         %h4
-          %a{:href=>"http://www.missingmethod.com/projects/community_engine"} Download it now and get started
+          %a{:href=>"http://www.missingmethod.com/projects/community_engine"}=:get_started_text_2.l
     .yui-u
       .box
-        %h2 
-          See how it works
-        %p Create your account.
+        %h2=:see_how_it_works.l 
+        %p=:create_your_account.l
         %h4 
-          =link_to "Sign up", signup_path
+          =link_to :sign_up.l, signup_path
