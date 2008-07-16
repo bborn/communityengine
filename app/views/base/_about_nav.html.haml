@@ -1,20 +1,18 @@
 .yui-b
   .box
-    %h3="About #{AppConfig.community_name}"
+    %h3=:about_site.l_with_args(community => AppConfig.community_name)
 	
     %ul.list.checks
       %li
-        %a{:href=>"/faq"} Frequently Asked Questions
+        %a{:href=>"/faq"}="Frequently Asked Questions"
       %li 
         %a{:href=>"/about"}
-          About
-          = AppConfig.community_name
+          :about_site.l_with_args(community => AppConfig.community_name)
       %li 
-        %a{:href=>"/advertise"} 
-          Advertise
+        %a{:href=>"/advertise"}="Advertise".
             		
   .box.alt
-    %h3 Need to contact us?
+    %h3="Need to contact us?".l
     %p
       Don't wait! It's
       %a{:href=>"mailto:#{AppConfig.support_email}"}= AppConfig.support_email

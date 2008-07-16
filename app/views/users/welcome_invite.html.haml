@@ -1,24 +1,22 @@
 .box
   %h3
-    Get Started: Invite some friends!
-    = 'Invite some customers!' if @user.vendor?
+    ="Get Started: Invite some friends!".l
+    = 'Invite some customers!'.l if @user.vendor?
   %p
-    The more people you invite, the better
-    = AppConfig.community_name
-    becomes.
-  %p People who sign up using your invitation will automatically be added as your friends.
+    =:invite_message.l_with_args(:site=> AppConfig.community_name)
+  %p="People who sign up using your invitation will automatically be added as your friends.".l
     
   - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id), :html => {:class => "MainForm"} ) do |f|
     %label{"for"=>"email_addresses"} 
-      Enter e-mail addresses 
+      ="Enter e-mail addresses".l
       %em (comma-separated)
       \:
     = f.text_area :email_addresses , :size => "83x5"
 
-    %label{"for"=>"message"} Write a message:
+    %label{"for"=>"message"}="Write a message:".l
     = f.text_area :message, :size => "83x5", :value => "#{AppConfig.community_name} is great, check it out, you'll love it! #{}"
 
     %p
-      = submit_tag "Send Invitations!"
+      = submit_tag "Send Invitations!".l
       %br/
-      = link_to "&raquo; Skip this and go to your profile", user_path(@user)
+      = link_to "&raquo; "+ "Skip this and go to your profile".l, user_path(@user)

@@ -1,18 +1,18 @@
 .yui-b
   .box.alt.first_alt
     %h3
-      Get Started: Tell us about yourself
+      ="Get Started: Tell us about yourself".l
     = render :partial => 'shared/bio_help'
     %p
-      Remember, you can always change this later.
+      ="Remember, you can always change this later.".l
     %p
-      = link_to "&raquo; Skip this step", welcome_invite_user_path(@user)
+      = link_to "&raquo; "+  "Skip this step".l, welcome_invite_user_path(@user)
       %br
-      = link_to "&raquo; Go to your profile", user_path(@user)
+      = link_to "&raquo; " + "Go to your profile".l, user_path(@user)
 
   - if @user.avatar_photo_url
     .box.alt
-      %h3 Your profile photo:
+      %h3="Your profile photo:".l
       .centered
         = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
         = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid", :style=>"width:250px" )
@@ -20,29 +20,29 @@
 #yui-main
   .yui-b.box
     - form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "MainForm" do
-      %h3 About You
+      %h3="About You".l
       = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
       
-      %h3 Gender
+      %h3="Gender".l
       %fieldset
         %label
           = radio_button :user, :gender, User::MALE
-          Male
+          ="Male".l
         %label
           = radio_button :user, :gender, User::FEMALE
-          Female
+          ="Female".l
           
       - if @user.vendor?
         %p= render :partial => 'offerings/chooser'
       
-      %h3 More about you
+      %h3="More about you".l
       .yui-g
         .yui-u.first
           .box.alt
             %h3
-              Choose your location
+              ="Choose your location".l
             %br
-            Postal code:
+            ="Postal code:".l
             %br
             = text_field :user, :zip, :size => 10
             %br
@@ -56,13 +56,13 @@
             = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
             %br
             %small
-              Comma-separated keywords that describe you.
+              ="Comma-separated keywords that describe you.".l
               %br
-              You could tag yourself
+              ="You could tag yourself".l
               - if @user.vendor?
-                "custom, friendly, local"
+                ="custom, friendly, local".l
               - else
                 = AppConfig.meta_keywords.split(",")[0..3].join(', ')
 
 
-        %p= submit_tag 'Save, and continue to step three'
+        %p= submit_tag 'Save, and continue to step three'.l

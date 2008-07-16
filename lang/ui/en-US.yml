@@ -1,3 +1,12 @@
 community_tagline: CommunityEngine Rocks!
 explore_site: Explore {site}
+about_site: About {site}
 get_started_banner: Get started with <a href="/">{site}</a> today!
+popular_catgory: Popular {name}
+dashboard_friends.l_with_args: Once you start adding friends, you'll be able to track their activity on {community} here
+all_posts_tagged: All posts tagged {tag_name}
+all_users_tagged: All users tagged {tag_name}
+all_photos_tagged: All photos tagged {tag_name}
+all_clippings_tagged: All clippings tagged {tag_name}
+photo_message: Your profile photo represents you on {site}. You can change it later.
+invite_message: The more people you invite the better {site} becomes.
