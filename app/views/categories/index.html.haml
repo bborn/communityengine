@@ -4,25 +4,27 @@
 #yui-main
   .yui-b
     .box
-      %h3 Categories
+      %h3="Categories".l
 
       %table{:width=>"100%"}
         %tr 
-          %th Name
-          %th # Posts	
-          %th Actions
+          %th="Name".l
+          %th 
+            \# 
+            ="Posts	".l
+          %th="Actions".l
 
         - for category in @categories
           %tr
             %td= category.name
             %td= category.posts.size	
             %td
-              = link_to 'Show', category_path(category)
+              = link_to 'Show'.l, category_path(category)
               | 
-              = link_to 'Edit', edit_category_path(category)
+              = link_to 'Edit'.l, edit_category_path(category)
               |
-              = link_to 'Destroy', category_path(category), :confirm => 'Are you sure?', :method => :delete
+              = link_to 'Destroy'.l, category_path(category), :confirm => 'Are you sure?'.l, :method => :delete
 
       %br
 
-      = link_to 'New category', new_category_path
+      = link_to 'New category'.l, new_category_path

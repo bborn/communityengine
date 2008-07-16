@@ -8,7 +8,7 @@ module StringExtension
     
     if Globalite.show_localization_keys_for_debugging
       # wrap in a span to show the localization key
-      return "<span localization_key='#{sym}'>#{sym.localize(self, *args)}</span>"
+      return "<span class='localized' localization_key='#{sym}'>#{sym.localize(self, *args)}</span>"
     else
       sym.localize(self, *args)
     end

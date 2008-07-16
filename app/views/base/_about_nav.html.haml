@@ -1,23 +1,16 @@
 .yui-b
   .box
-    %h3
-      ="About".l
-      =" #{AppConfig.community_name}"
-	
+    %h3=:about_site.l_with_args(:community => AppConfig.community_name)
     %ul.list.checks
       %li
         %a{:href=>"/faq"}= "Frequently Asked Questions".l
       %li 
-        %a{:href=>"/about"}
-          ="About".l
-          =" #{AppConfig.community_name}"
+        %a{:href=>"/about"}= :about_site.l_with_args(:community => AppConfig.community_name)
       %li 
         %a{:href=>"/advertise"} 
           ="Advertise".l
-            		
   .box.alt
-    %h3
-      ="Need to contact us?".l
+    %h3="Need to contact us?".l
     %p
       ="Don't wait! It's".l
       %a{:href=>"mailto:#{AppConfig.support_email}"}= AppConfig.support_email

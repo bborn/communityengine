@@ -8,7 +8,7 @@
 
   - if @related.any?
     .box.alt
-    %h3 Related Clippings (all members)
+    %h3="Related Clippings (all members)".l
     .centered
       - @related.each do |clipping|
         = link_to image_tag(clipping.image_uri, :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
@@ -33,18 +33,18 @@
             = h truncate(@clipping.url, 95)
 
         %p
-          Description:
+          ="Description:".l
           =h @clipping.description
   
         %p
-          Tags:
+          ="Tags:".l
         %ul.tags
           - @clipping.tags.each do |t|
             %li=link_to( t.name, tag_url(t.name), :rel => 'tag')
 
     #comments.box.hfeed.comments
-      %h3 Clipping Comments
-      %h2 Add Your Comment!
+      %h3="Clipping Comments".l
+      %h2="Add Your Comment!".l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @clipping.comments

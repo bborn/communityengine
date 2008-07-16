@@ -3,7 +3,7 @@
     %label Month:
     = select_month(@month)
     = select_year(@month, :start_year => 1.years.ago.year, :end_year => 1.years.from_now.year)
-    %p= submit_tag "Go"
+    %p= submit_tag "Go".l
 
     - if current_user.admin?
       %p= link_to "&laquo; Back to all statistics", statistics_path
@@ -18,7 +18,7 @@
             %th
               = "#{category.name}:"
               = "#{posts.size} posts"
-            %th Comments
+            %th=Comments.l
             %th{"width"=>"7%"} Views
         %tbody
           - posts.each do |post|
