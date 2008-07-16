@@ -10,3 +10,4 @@ all_photos_tagged: All photos tagged {tag_name}
 all_clippings_tagged: All clippings tagged {tag_name}
 photo_message: Your profile photo represents you on {site}. You can change it later.
 invite_message: The more people you invite the better {site} becomes.
+write_new_post: Write a '{category}' post

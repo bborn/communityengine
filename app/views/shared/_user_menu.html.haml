@@ -1,4 +1,6 @@
-%h2="Logged in: #{link_to current_user.login, dashboard_user_path(current_user), :id => 'user-menu'}"
+%h2
+  ="Logged in:".l
+  = link_to current_user.login, dashboard_user_path(current_user), :id => 'user-menu'
 #user-menu-tip
   %ul
     -if current_user.admin?

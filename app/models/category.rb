@@ -34,7 +34,7 @@ class Category < ActiveRecord::Base
   end
   
   def display_new_post_text
-    new_post_text || "Write a '#{self.name}' post"
+    new_post_text
   end
   
 end
