@@ -8,15 +8,10 @@ module LocalizedApplication
     @current_path = request.env['PATH_INFO']
     @request_method = request.env['REQUEST_METHOD']
 
-    # Try to get the locale from the parameters, from the session, and then from the navigator
-    if params[:user_locale]
-        logger.debug "[globalite] #{params[:user_locale][:code]} locale passed"
-        Locale.code = params[:user_locale][:code] 
-        # Store the locale in the session
-        session[:locale] = Locale.code
-    elsif session[:locale]
-        logger.debug "[globalite] loading locale: #{session[:locale]} from session"
-        Locale.code = session[:locale]
+    puts(AppConfig.community_locale)
+    if AppConfig.community_locale
+        logger.debug "[globalite] loading locale: #{AppConfig.community_locale} from config"
+        Locale.code = AppConfig.community_locale
     else
         Locale.code = get_valid_lang_from_accept_header
         logger.debug "[globalite] found a valid http header locale: #{Locale.code}"
