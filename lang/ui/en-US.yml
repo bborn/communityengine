@@ -1,3 +1,7 @@
 community_tagline: CommunityEngine Rocks!
 explore_site: Explore {site}
 get_started_banner: Get started with <a href="/">{site}</a> today!
+search_users: Search Users
+update: Update
+create: Create
+log_in: Log In

@@ -8,7 +8,6 @@ module LocalizedApplication
     @current_path = request.env['PATH_INFO']
     @request_method = request.env['REQUEST_METHOD']
 
-    puts(AppConfig.community_locale)
     if AppConfig.community_locale
         logger.debug "[globalite] loading locale: #{AppConfig.community_locale} from config"
         Locale.code = AppConfig.community_locale
