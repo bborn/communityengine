@@ -6,7 +6,7 @@
 #yui-main
   .yui-b
     .box.hfeed
-      %h3=:users_blog.ll_with_args :user=>  @user.login
+      %h3=:users_blog._ :user=>  @user.login
       .hentry.main
         %h4.entry-title= link_to @post.title, user_post_path(@user, @post), :rel => 'bookmark'
         .vcard.author

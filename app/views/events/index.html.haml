@@ -19,7 +19,7 @@
         - if event.user.eql?(current_user)
           = link_to "Edit this event".l, edit_event_path(event)
           |
-          = link_to("Delete this event".l, event_path(event), {:method => :delete, :confirm => 'Permanently delete this event?'.l})
+          = link_to("Delete this event".l, event_path(event), {:method => :delete, :confirm => 'Permanently delete this event?._})
         %strong= h event.time_and_date
         %br
         %strong= h event.location

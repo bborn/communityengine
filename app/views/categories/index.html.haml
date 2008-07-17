@@ -19,12 +19,12 @@
             %td= category.name
             %td= category.posts.size	
             %td
-              = link_to 'Show'.l, category_path(category)
+              = link_to 'Show._, category_path(category)
               | 
-              = link_to 'Edit'.l, edit_category_path(category)
+              = link_to 'Edit._, edit_category_path(category)
               |
-              = link_to 'Destroy'.l, category_path(category), :confirm => 'Are you sure?'.l, :method => :delete
+              = link_to 'Destroy._, category_path(category), :confirm => 'Are you sure?._, :method => :delete
 
       %br
 
-      = link_to 'New category'.l, new_category_path
+      = link_to 'New category._, new_category_path

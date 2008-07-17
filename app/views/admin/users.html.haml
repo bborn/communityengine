@@ -30,7 +30,7 @@
           %td
             = h user.email
           %td
-            = user.active? ? 'active'.l : 'inactive'.l
+            = user.active? ? 'active._ : 'inactive._
           %td
             = link_to( "Assume ID".l , assume_user_path(user) )
             = (" | " + link_to("Activate".l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?

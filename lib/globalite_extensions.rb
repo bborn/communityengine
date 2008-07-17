@@ -14,6 +14,7 @@ module StringExtension
     end
   end
   alias :l :localize
+  alias :_ :localize
 end
 
 
@@ -28,26 +29,24 @@ end
 
 module SymbolExtensionCustom
   def extended_localize(*args)
-    
-    if Globalite.show_localization_keys_for_debugging
-      # wrap in a span to show the localization key
-      return "<span class='localized' localization_key='#{self.to_s}'>#{self.localize(*args)}</span>"
+    if args.first.is_a? Hash
+      if Globalite.show_localization_keys_for_debugging
+        # wrap in a span to show the localization key
+        return "<span class='localized' localization_key='#{self.to_s}'>#{self.localize_with_args(*args)}</span>"
+      else
+        self.localize_with_args(*args)
+      end
     else
-      self.localize(*args)
-    end
+      if Globalite.show_localization_keys_for_debugging
+        # wrap in a span to show the localization key
+        return "<span class='localized' localization_key='#{self.to_s}'>#{self.localize(*args)}</span>"
+      else
+        self.localize(*args)
+      end
+    end    
   end
-  alias :ll :extended_localize
+  alias :_ :extended_localize
   
-  def extended_localize_wth_args(*args)
-    
-    if Globalite.show_localization_keys_for_debugging
-      # wrap in a span to show the localization key
-      return "<span class='localized' localization_key='#{self.to_s}'>#{self.localize_with_args(*args)}</span>"
-    else
-      self.localize_with_args(*args)
-    end
-  end
-  alias :ll_with_args :extended_localize_wth_args  
 end
 
 Symbol.send :include, SymbolExtensionCustom

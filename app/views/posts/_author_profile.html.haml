@@ -13,8 +13,8 @@
       =user.created_at.strftime("Member since: %m/%d/%y")
     %dd.post
       - if user.posts.count == 1
-        = link_to :singular_posts.ll_with_args(:count => user.posts.count), user_posts_path(user)    
+        = link_to :singular_posts._(:count => user.posts.count), user_posts_path(user)    
       - else
-        = link_to :plural_posts.ll_with_args(:count => user.posts.count), user_posts_path(user)         
+        = link_to :plural_posts._(:count => user.posts.count), user_posts_path(user)         
     %dd.rss
-      =link_to 'RSS feed'.l, formatted_user_posts_path(user, 'rss')    
+      =link_to 'RSS feed._, formatted_user_posts_path(user, 'rss')    

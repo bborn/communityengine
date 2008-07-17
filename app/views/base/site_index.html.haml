@@ -5,12 +5,12 @@
   .yui-b
     .box.hfeed
       %h3
-        ="Recent Posts".l
+        ="Recent Posts"._
       = render :partial => 'posts/post', :collection => @posts
 
 .yui-b  
   .box
-    %h3= :explore_site.ll_with_args :site => AppConfig.community_name
+    %h3= :explore_site._ :site => AppConfig.community_name
     %ul.list.checks
       - Category.find(:all).each do |c|
         %li= link_to c.name, category_path(c)

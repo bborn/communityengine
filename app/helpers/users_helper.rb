@@ -14,7 +14,7 @@ module UsersHelper
     :greeting_8,
     :greeting_9,
     :greeting_10]
-    return greetings.sort_by {rand}.first().ll_with_args (:user => user.login)
+    return greetings.sort_by {rand}.first()._ (:user => user.login)
   end
   
 end

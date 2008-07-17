@@ -35,7 +35,7 @@
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
       %h6.all
-        =link_to 'See All'.l, accepted_user_friendships_path(@user)   
+        =link_to 'See All._, accepted_user_friendships_path(@user)   
 
   - unless @users_comments.empty?
     #photo_comments.yui-g.box.alt
@@ -72,7 +72,7 @@
   .yui-b
     - if @photos.empty? and @recent_posts.empty?
       .box.alt.first_alt
-        %h3= :small_profile.ll_with_args :user => @user.login
+        %h3= :small_profile._ :user => @user.login
       
     - unless @photos.empty?
       #photos.box
