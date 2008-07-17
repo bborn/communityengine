@@ -33,5 +33,5 @@ users_blog: "{user}'s Blog"
 users_photos: "{user}'s Photos" 
 new_post_for_category: New {category}
 show_category: "{category}"
-singlar_posts: "{count} post"
+singular_posts: "{count} post"
 plural_posts: "{count} posts"
