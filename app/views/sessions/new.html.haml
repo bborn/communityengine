@@ -5,16 +5,15 @@
   .yui-b.main_column
     .box
       %h3
-        Log in to
-        = AppConfig.community_name
+        =:log_in_to_site.ll_with_args(:site => AppConfig.community_name)
       - form_tag sessions_path, :class => 'MainForm' do
-        %label{"for"=>"username"} Username:
+        %label{"for"=>"username"}="Username:".l
         = text_field_tag 'login', nil, :size => 35
-        %label{"for"=>"password"} Password:
+        %label{"for"=>"password"}="Password:".l
         = password_field_tag 'password', nil, :size => 35
         %fieldset
-          %label{"for"=>"remember_me"} 
-            Remember me
+          %label{"for"=>"remember_me"}
+            ="Remember me".l
             = check_box_tag 'remember_me'
         %p
-          = submit_tag 'Log in'
+          = submit_tag 'Log in'.l

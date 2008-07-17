@@ -10,26 +10,26 @@
 #yui-main
   .yui-b
     .box
-      %h3 Editing post
+      %h3="Editing post".l
 
       = error_messages_for :post
       - form_for(:post, :url => user_post_path(@user, @post), :html => { :method => :put, :class =>'MainForm' }) do |f|
         %label 
-          Title 
+          ="Title".l
           %em (required)
         = f.text_field :title
         %label Category:
         = f.collection_select(:category_id, Category.find(:all), :id, :name, {}, {})
         %label
-          Body Text 
+          ="Body Text ".l
           %em (required)          
         = f.text_area :raw_post, :size => "86x15"
         %label
-          Tags:
+          ="Tags:".l
         = text_field_tag 'tag_list', @post.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off", :size => 35}
         #tag_list_auto_complete.auto_complete
         = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
-        %label Save post as:
+        %label="Save post as:".l
         = f.select(:published_as, [['Published', 'live'], ['Draft', 'draft']])
         %p
           = submit_tag "Update" 

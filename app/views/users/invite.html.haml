@@ -4,7 +4,7 @@
 
 .yui-b
   .box.alt.first_alt
-    %h3 Spread the word
+    %h3="Spread the word".l
     %p
       The more people you invite, the better
       = AppConfig.community_name
@@ -17,7 +17,7 @@
 #yui-main
   .yui-b
     .box
-      %h3 Invite Your Friends To Join!
+      %h3="Invite Your Friends To Join!".l
       - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "MainForm"} ) do |f|
         .right
           %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/application/plaxo'); return false;"}

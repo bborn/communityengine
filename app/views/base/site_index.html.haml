@@ -10,7 +10,7 @@
 
 .yui-b  
   .box
-    %h3= :explore_site.l_with_args :site => AppConfig.community_name
+    %h3= :explore_site.ll_with_args :site => AppConfig.community_name
     %ul.list.checks
       - Category.find(:all).each do |c|
         %li= link_to c.name, category_path(c)

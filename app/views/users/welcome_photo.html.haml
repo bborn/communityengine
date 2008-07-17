@@ -2,7 +2,7 @@
   .box.alt.first_alt
     %h3="Get Started: Upload a profile photo".l
     %p
-      =:photo_message.l_with_args :site=>AppConfig.community_name
+      =:photo_message.ll_with_args :site=>AppConfig.community_name
     = link_to "&raquo; " + "Skip this step".l, welcome_about_user_path(@user)
     %br/
     = link_to "&raquo; " + "Go to your profile".l, user_path(@user)
