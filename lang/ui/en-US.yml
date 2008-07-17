@@ -6,8 +6,9 @@ search_users: Search Users
 update: Update
 create: Create
 log_in: Log In
+log_in_to_site: Log in to {site}
 popular_catgory: Popular {name}
-dashboard_friends.l_with_args: "Once you start adding friends, you'll be able to track their activity on {community} here"
+dashboard_friends: "Once you start adding friends, you'll be able to track their activity on {site} here"
 all_posts_tagged: All posts tagged {tag_name}
 all_users_tagged: All users tagged {tag_name}
 all_photos_tagged: All photos tagged {tag_name}
@@ -15,4 +16,22 @@ all_clippings_tagged: All clippings tagged {tag_name}
 photo_message: Your profile photo represents you on {site}. You can change it later.
 invite_message: The more people you invite the better {site} becomes.
 write_new_post: Write a '{category}' post
-
+welcome_message: Welcome! {login_link} or {signup_link}
+greeting_1: Hello {user}
+greeting_2: Hola {user}
+greeting_3: Hi {user}
+greeting_4: Yo {user}
+greeting_5: Welcome Back {user}
+greeting_6: Greetings {user}
+greeting_7: Wassup {user}
+greeting_8: Aloha {user}
+greeting_9: Halloo {user}
+greting_10: Whats up {user}
+site_members: "{site} members"
+small_profile: "{user} doesn't have much here yet. Stay tuned."
+users_blog: "{user}'s Blog"
+users_photos: "{user}'s Photos" 
+new_post_for_category: New {category}
+show_category: "{category}"
+singlar_posts: "{count} post"
+plural_posts: "{count} posts"

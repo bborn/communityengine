@@ -3,9 +3,9 @@
 .yui-b
   .box
     - if logged_in?
-      %h3= "Get popular."
+      %h3= "Get popular.".l
       %ul.list.checks
-        %li=link_to "Write a blog post!", new_user_post_path({:user_id => current_user})
+        %li=link_to "Write a blog post!".l, new_user_post_path({:user_id => current_user})
     - else
       %h3= "Want to be popular?"
       %ul.list.checks

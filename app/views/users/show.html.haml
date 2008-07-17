@@ -8,7 +8,7 @@
     ? Hey, you're a
     = AppConfig.community_name
     Pro! You should
-    = link_to "update your profile", edit_user_path(@user)
+    = link_to "update your profile".l, edit_user_path(@user)
     \! Add your skills, contact info and Web site.
 
 
@@ -19,12 +19,12 @@
   - if @user.description
     #about_me.box
       %h3
-        About Me
+        ="About Me".l
       %p= @user.description
 
   #friends.box.alt
     %h3
-      My Friends    
+      ="My Friends".l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
     = link_to "&raquo; Invite a friend to #{AppConfig.community_name}", invite_user_path(@user) if @is_current_user      
     %br
@@ -35,11 +35,11 @@
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
       %h6.all
-        =link_to 'See All', accepted_user_friendships_path(@user)   
+        =link_to 'See All'.l, accepted_user_friendships_path(@user)   
 
   - unless @users_comments.empty?
     #photo_comments.yui-g.box.alt
-      %h3 My recent comments    
+      %h3="My recent comments".l
       - @users_comments.each do |comment|
         - commentable_url = comment.generate_commentable_url
         %dl.vcard
@@ -57,7 +57,7 @@
                         
   - unless @photo_comments.empty?
     #photo_comments.yui-g.box.alt
-      %h3 Photo Comments
+      %h3="Photo Comments".l
       - @photo_comments.each do |comment|
         %dl.vcard
           %dt.photo
@@ -72,34 +72,34 @@
   .yui-b
     - if @photos.empty? and @recent_posts.empty?
       .box.alt.first_alt
-        %h3= "#{@user.login} doesn't have much here yet. Stay tuned."
+        %h3= :small_profile.ll_with_args :user => @user.login
       
     - unless @photos.empty?
       #photos.box
-        %h3 Photos
+        %h3="Photos".l
         - @photos.each do |photo|
           = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
 
-        %h6.all.right= link_to "View all my photos", user_photos_path(@user)
-        = "#{link_to("Add a photo", new_user_photo_path(@user))}" if @is_current_user
+        %h6.all.right= link_to "View all my photos".l, user_photos_path(@user)
+        = "#{link_to("Add a photo".l, new_user_photo_path(@user))}" if @is_current_user
 
     - unless @recent_posts.empty?
       #posts.box
-        %h3 Recent Blog Posts
+        %h3="Recent Blog Posts".l
         = render :partial => 'posts/post', :collection => @recent_posts
-        %h6.right.all= link_to "View my blog", user_posts_path(@user)        
+        %h6.right.all= link_to "View my blog".l, user_posts_path(@user)        
 
     - unless @clippings.empty?
       #clippings.box
-        %h3 Clippings
+        %h3="Clippings".l
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(@user, clipping)}"}
             %img.clipping.polaroid{"src"=>"#{h clipping.image_uri(:thumb)}", :width => '100', :height => '100'}
-        %h6.all.right= link_to "View all my clippings", user_clippings_path(@user)
+        %h6.all.right= link_to "View all my clippings".l, user_clippings_path(@user)
 
     #comments.box.hfeed.comments
-      %h3 Profile Comments
-      %h2 Add Your Comment!
+      %h3="Profile Comments".l
+      %h2="Add Your Comment!".l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @user}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments

@@ -1,17 +1,20 @@
 .box
-  %h3 Author
+  %h3="Author".l
   %dl.vcard
     %dt.photo
       = link_to image_tag( user.avatar_photo_url(:thumb), "height"=>"50", "alt"=>"#{user.login}", "width"=>"50" ), user_path(user), :title => "#{user.login}'s profile"
     %dd.fn
       = link_to user.login, user_path(user), :class => 'url'
-      = " <small>(#{AppConfig.featured_writer_label})</small>" if user.featured_writer?        
+      = " <small>(" + "Featured Writer".l + ")</small>" if user.featured_writer?        
     %dd
     - if user.description
       = truncate_words( user.description, 12, '...')
     %dd.member
       =user.created_at.strftime("Member since: %m/%d/%y")
     %dd.post
-      = link_to "#{pluralize user.posts.count, 'posts'}", user_posts_path(user)    
+      - if user.posts.count == 1
+        = link_to :singluar_posts.ll_with_args(:count => user.posts.count), user_posts_path(user)    
+      - else
+        = link_to :plural_posts.ll_with_args(:count => user.posts.count), user_posts_path(user)         
     %dd.rss
-      =link_to 'RSS feed', formatted_user_posts_path(user, 'rss')    
+      =link_to 'RSS feed'.l, formatted_user_posts_path(user, 'rss')    

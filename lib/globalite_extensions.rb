@@ -36,7 +36,7 @@ module SymbolExtensionCustom
       self.localize(*args)
     end
   end
-  alias :l :extended_localize
+  alias :ll :extended_localize
   
   def extended_localize_wth_args(*args)
     
@@ -47,7 +47,7 @@ module SymbolExtensionCustom
       self.localize_with_args(*args)
     end
   end
-  alias :l_with_args :extended_localize_wth_args  
+  alias :ll_with_args :extended_localize_wth_args  
 end
 
 Symbol.send :include, SymbolExtensionCustom

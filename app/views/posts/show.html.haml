@@ -6,7 +6,7 @@
 #yui-main
   .yui-b
     .box.hfeed
-      %h3= "#{@user.login}'s Blog"
+      %h3=:users_blog.ll_with_args :user=>  @user.login
       .hentry.main
         %h4.entry-title= link_to @post.title, user_post_path(@user, @post), :rel => 'bookmark'
         .vcard.author
@@ -65,14 +65,14 @@
 
   - unless @related.empty?
     .box.alt
-      %h3 Related Posts
+      %h3="Related Posts".l
       %ul.list.page
         - @related.each do |post|
           %li=link_to truncate(post.title, 75), user_post_path(post.user, post)      
 
   - unless @popular_posts.empty?
     .box.alt
-      %h3 Popular Posts
+      %h3="Popular Posts".l
       %ul.list.page
         - @popular_posts.each do |post|
           %li=link_to truncate(post.title, 75), user_post_path(post.user, post)      
