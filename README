@@ -138,9 +138,19 @@ Note: when running in production mode, theme assets (images, js, and stylesheets
 
 
 ## LOCALIZATION ##
+Localization is done via an extended version of Globalite (http://code.google.com/p/globalite/). 
+Strings and Symbols respond to the .l method that allows for a look up of the symbol (or a symbolized version of the string) into a strings file which is stored in yaml. 
+For complex strings with substitutions, Symbols respond to the .l_with_args method which takes in a hash.
+
+To customize the language, or add a new language create a new yaml file in RAILS_ROOT/lang/ui.
+The name of the file should be LANG-LOCALE.yml (e.g. en-US.yml or es-PR)
+The language only file (es.yml) will support all locales.
+
 To wrap all localized strings in a <span> that shows their localization key, put this in your environment.rb (don't forget to take it out in production!):
 
     Globalite.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
+  
+Note, this will effect the look and feel of buttons. You can highlight what is localized by using the span.localized style (look in screen.css)
 
 
 
