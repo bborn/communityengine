@@ -28,7 +28,7 @@
       %a{:href=>"/popular"}= "SEE ALL".l
 
   .box.alt
-    %h3= "Featured Writers".l
+    %h3= "Featured Writers".l :staff_writers
     -@featured_writers.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
 

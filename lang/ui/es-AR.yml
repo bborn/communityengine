@@ -1,0 +1,52 @@
+community_tagline: CommunityEngine es genial!
+explore_site: Explorar {site}
+about_site: Acerca de {site}
+get_started_banner: Comience con <a href="/">{site}</a> hoy!
+search_users: Búsqueda de usuarios
+update: Actualizar
+create: Crear
+log_in: Iniciar sesión
+sign_up: Registrarse
+log_in_to_site: Acceda a {site}
+popular_catgory: "{name} populares"
+dashboard_friends: "Una vez que comienza a añadir amigos, podra seguir sus actividades en {site} aquí"
+all_posts_tagged: Todos las entradas marcadas {tag_name}
+all_users_tagged: Todos los usuarios marcados {tag_name}
+all_photos_tagged: Todas las fotos marcadas {tag_name}
+all_clippings_tagged: Todos los clippings marcados {tag_name}
+photo_message: Su foto de perfil lo representa en {site}. La puede cambiar mas tarde.
+invite_message: Cuantas mas personas invite a {site}, mejor.
+write_new_post: Escriba una entrada de '{category}'
+welcome_message: Bienvenido! {login_link} o {signup_link}
+greeting_1: Hello {user}
+greeting_2: Hola {user}
+greeting_3: Hi {user}
+greeting_4: Yo {user}
+greeting_5: Welcome, {user}!
+greeting_6: Greetings {user}
+greeting_7: Wassup {user}?
+greeting_8: Aloha {user}
+greeting_9: Halloo {user}
+greting_10: Whats up {user}?
+site_members: "Miembros de {site}"
+small_profile: "{user} no tiene mucho aquí todavía. Estén atentos."
+users_blog: "El blog de {user}"
+users_photos: "Las fotos de {user}" 
+new_post_for_category: Nueva entrada en {category}
+show_category: "{category}"
+singular_posts: "{count} entrada"
+plural_posts: "{count} entradas"
+homepage_banner_download_msg: Descargar ahora y empezar
+create_your_account: Crée su cuenta
+homepage_banner_msg: CommunityEngine es la mejor manera de ir de cero a héroe rapidísimo
+recent_posts: Entradas recientes
+homepage_banner_signup_prompt: Ver cómo funciona
+
+whats_hot: Lo más popular
+staff_writers: Personal de Escritores
+active_users: Usuarios activos
+whats_fresh: Que hay de nuevo?
+tags: Etiquetas
+
+home: Inicio
+about: Acerca
