@@ -3,7 +3,7 @@
     ="Get Started: Invite some friends!".l
     = 'Invite some customers!'.l if @user.vendor?
   %p
-    =:invite_message.ll_with_args(:site=> AppConfig.community_name)
+    =:invite_message.l(:site=> AppConfig.community_name)
   %p="People who sign up using your invitation will automatically be added as your friends.".l
     
   - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id), :html => {:class => "MainForm"} ) do |f|

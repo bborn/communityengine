@@ -1,11 +1,11 @@
 .yui-b
   .box
-    %h3=:about_site.ll_with_args(:site => AppConfig.community_name)
+    %h3=:about_site.l(:site => AppConfig.community_name)
     %ul.list.checks
       %li
         %a{:href=>"/faq"}= "Frequently Asked Questions".l
       %li 
-        %a{:href=>"/about"}=:about_site.ll_with_args(:site => AppConfig.community_name)
+        %a{:href=>"/about"}=:about_site.l(:site => AppConfig.community_name)
       %li 
         %a{:href=>"/advertise"} 
           ="Advertise".l

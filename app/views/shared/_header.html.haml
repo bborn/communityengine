@@ -6,7 +6,7 @@
     = render :partial => 'shared/user_menu'
   - else
     %h2
-      =:welcome_message.ll_with_args(:login_link => (link_to "Log in".l, login_path), :signup_link => (link_to "Sign up".l, signup_path))
+      =:welcome_message.l(:login_link => (link_to "Log in".l, login_path), :signup_link => (link_to "Sign up".l, signup_path))
     
   #NavBar
     %ul

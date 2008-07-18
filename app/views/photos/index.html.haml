@@ -15,7 +15,7 @@
               = link_to tag.name, user_photos_path(:user_id => @user, :tag_name => tag.name)    
     
       #photos.yui-u.box
-        %h3= link_to :users_photos.ll_with_args(:user=>@user.login), user_photos_path(@user)
+        %h3= link_to :users_photos.l(:user=>@user.login), user_photos_path(@user)
         = link_to( 'New photo.'.l, new_user_photo_path(@user), {:class => 'right'})  if @is_current_user
 
         .clear

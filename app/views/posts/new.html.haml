@@ -14,7 +14,7 @@
   .yui-b
     .box
       %h3
-        =:new_post_for_category.ll_with_args :category => @post.category ? Inflector.singularize(@post.category.name) : 'post'
+        =:new_post_for_category.l :category => @post.category ? Inflector.singularize(@post.category.name) : 'post'
 
       = error_messages_for :post
       - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm"}) do |f|			
