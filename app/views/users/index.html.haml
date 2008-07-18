@@ -6,7 +6,7 @@
 #yui-main
   .yui-b
     .box.user_list
-      %h3=:site_members._ :site => AppConfig.community_name
+      %h3=:site_members.ll_with_args :site => AppConfig.community_name
 
       .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
   

@@ -2,8 +2,8 @@
   .box
     %h3="Links".l
     %ul.checks
-      %li=link_to 'View my blog._, user_posts_path(current_user)
-      %li=link_to 'New post._, new_user_post_path(current_user)    
+      %li=link_to 'View my blog'.l, user_posts_path(current_user)
+      %li=link_to 'New post'.l, new_user_post_path(current_user)    
 
 #yui-main
   .yui-b
@@ -35,6 +35,6 @@
                 %abbr{:title=>"#{post.published_at}"}= post.published_at_display
               %td= link_to post.title, edit_user_post_path(post.user, post)
               %td= post.category.name
-              %td= post.tags.any? ? post.tag_list : 'No tags._
+              %td= post.tags.any? ? post.tag_list : 'No tags'.l
               %td= post.comments.count
-              %td= post.is_live? ? link_to('published._, user_post_path(post.user, post)) : 'draft._
+              %td= post.is_live? ? link_to('published'.l, user_post_path(post.user, post)) : 'draft'.l

@@ -31,14 +31,14 @@
             %li
               = link_to( truncate(post.display_title, 75), user_post_path(post.user, post), :title => "by #{post.user.login}" )
               %p.post_excerpt= truncate_words(post.post, 35, '...' )
-        %h6.all= link_to :all_posts_tagged._(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'Post')              
+        %h6.all= link_to :all_posts_tagged.ll_with_args(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'Post')              
 
     - if @photos.any?
       %br.clear
       %h3="Photos".l
       - @photos.each do |photo|
         = link_to image_tag(photo.public_filename(:thumb), :title => "#{photo.description} (uploaded by #{photo.user.login})", :class => "polaroid"), user_photo_path(photo.user, photo)
-      %h6.all= link_to :all_photos_tagged._(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'Photo')
+      %h6.all= link_to :all_photos_tagged.ll_with_args(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'Photo')
       
       
     - if @users.any?
@@ -46,7 +46,7 @@
         %h3="Users".l
         - @users.each do |user|
           = link_to image_tag(user.avatar_photo_url(:thumb), :class => "polaroid"), user_path(user), :title => user.login
-        %h6.all= link_to :all_users_tagged._(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'User')
+        %h6.all= link_to :all_users_tagged.ll_with_args(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'User')
 
 
     - unless @clippings.empty?
@@ -55,4 +55,4 @@
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(clipping.user, clipping) }"}
             %img.polaroid.clipping{"src"=>"#{h clipping.image_uri}", "style"=>"width:108px"}
-        %h6.all= link_to :all_clippngs_tagged._(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'Clipping')
+        %h6.all= link_to :all_clippngs_tagged.ll_with_args(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'Clipping')

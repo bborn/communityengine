@@ -7,17 +7,17 @@
       .yui-u.first
         ="View my:".l
         %ul
-          %li=link_to 'Profile._, user_path(@user)  
-          %li=link_to 'Blog._, user_posts_path(@user)
-          %li=link_to 'Photos._, user_photos_path(@user)
-          %li=link_to 'Clippings._, user_clippings_path(@user)
-          %li=link_to 'Friends._, accepted_user_friendships_path(@user)
+          %li=link_to 'Profile'.l, user_path(@user)  
+          %li=link_to 'Blog'.l, user_posts_path(@user)
+          %li=link_to 'Photos'.l, user_photos_path(@user)
+          %li=link_to 'Clippings'.l, user_clippings_path(@user)
+          %li=link_to 'Friends'.l, accepted_user_friendships_path(@user)
       .yui-u
         ="Manage my:".l
         %ul
-          %li=link_to 'Profile._, edit_user_path(@user)
-          %li=link_to 'Account settings._, edit_account_user_path(@user)
-          %li=link_to 'Blog posts._, manage_user_posts_path(@user)          
+          %li=link_to 'Profile'.l, edit_user_path(@user)
+          %li=link_to 'Account settings'.l, edit_account_user_path(@user)
+          %li=link_to 'Blog posts'.l, manage_user_posts_path(@user)          
   
   .box.alt
     %h3="Stats".l
@@ -50,13 +50,13 @@
         %p
           ="This is your dashboard. ".l
           %br
-          =:dashboard_friends._ :site => AppConfig.community_name
+          =:dashboard_friends.ll_with_args :site => AppConfig.community_name
           
         %p
           ="To start adding friends, you can".l
-          =link_to 'browse all members._, users_path
+          =link_to 'browse all members'.l, users_path
         %p
-          =link_to 'Update your profile and tag yourself._, edit_user_path(current_user)
+          =link_to 'Update your profile and tag yourself'.l, edit_user_path(current_user)
           ="to start getting recommended content on your dashboard.".l
 
     

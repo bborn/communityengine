@@ -14,7 +14,7 @@
   .yui-b
     .box
       %h3
-        =:new_post_for_category._ :category => @post.category ? Inflector.singularize(@post.category.name) : 'post'
+        =:new_post_for_category.ll_with_args :category => @post.category ? Inflector.singularize(@post.category.name) : 'post'
 
       = error_messages_for :post
       - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm"}) do |f|			
@@ -59,7 +59,7 @@
           = submit_tag "Save".l
         %p
           or 
-          = link_to 'cancel and go back to my posts._, user_posts_path(@user)
+          = link_to 'cancel and go back to my posts'.l, user_posts_path(@user)
 
   = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}
 
