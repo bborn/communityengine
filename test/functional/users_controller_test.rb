@@ -87,6 +87,11 @@ class UsersControllerTest < Test::Unit::TestCase
     assert_response :success
 
   end
+  
+  def test_should_get_new
+    get :new
+    assert_response :success
+  end
 
   def test_should_allow_signup
     assert_difference User, :count do

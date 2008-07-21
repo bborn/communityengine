@@ -33,7 +33,7 @@ class UsersController < BaseController
       flash[:notice] = "Thanks for activating your account!".l 
       return
     end
-    flash[:error] = :account_activation_error.l_with_args (:email => AppConfig.support_email) 
+    flash[:error] = :account_activation_error.l_with_args(:email => AppConfig.support_email) 
     redirect_to signup_path     
   end
 

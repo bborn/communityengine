@@ -33,7 +33,7 @@
         %label{"for"=>"birthdate"}
           ="Birthday:".l
           %em="(Required: you must be at least 13 years old to sign up.)".l
-        = date_select :user, :birthday, {:start_year => 1926, :end_year => Time.now.year - 13}
+        = date_select :user, :birthday, {:start_year => 1926, :end_year => (Time.now.year - 13)}
 
         %label{"for"=>"password"}
           ="Type your password:".l

@@ -27,6 +27,8 @@ module Globalite
 end
  
 module SymbolExtensionCustom
+  DEBUG_EXEMPT = [:date_helper_order, :number_helper_order, :countries_list, :date_helper_month_names, :date_helper_abbr_month_names]
+  
   def localize_with_debugging(*args)
     if args.first.is_a? Hash
       localized_sym = self.localize_with_args(*args)
@@ -34,10 +36,12 @@ module SymbolExtensionCustom
       localized_sym = self.localize(*args)
     end
     
-    if Globalite.show_localization_keys_for_debugging    
-      return "<span class='localized' localization_key='#{self.to_s}'>#{localized_sym}</span>"
-    else
+    if !Globalite.show_localization_keys_for_debugging 
       localized_sym
+    elsif DEBUG_EXEMPT.include?(self)
+      localized_sym
+    else
+      return "<span class='localized' localization_key='#{self.to_s}'>#{localized_sym}</span>"
     end
   end
   alias_method :l, :localize_with_debugging

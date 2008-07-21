@@ -95,7 +95,7 @@ class CommentsController < BaseController
           render :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}
         }
       else
-        flash.now[:error] = :comment_save_error.l_with_args(error => @comment.errors.full_messages.join(", "))
+        flash.now[:error] = :comment_save_error.l_with_args(:error => @comment.errors.full_messages.join(", "))
         format.html { redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id] }
         format.js{
           render :inline => flash[:error], :status => 500
