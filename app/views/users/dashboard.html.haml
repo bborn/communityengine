@@ -48,16 +48,16 @@
     
       -if @network_activity.empty? && @recommended_posts.empty?
         %p
-          ="This is your dashboard. ".l
+          ="This is your dashboard.".l
           %br
           =:dashboard_friends.l :site => AppConfig.community_name
           
         %p
-          ="To start adding friends, you can".l
+          ="To start adding friends, you can".l :to_start_adding_friends
           =link_to 'browse all members'.l, users_path
         %p
-          =link_to 'Update your profile and tag yourself'.l, edit_user_path(current_user)
-          ="to start getting recommended content on your dashboard.".l
+          =link_to 'Update your profile and tag yourself'.l(:update_profile_and_tag_yourself), edit_user_path(current_user)
+          ="to start getting recommended content on your dashboard.".l(:to_get_recommended_content_on_your_dashboard)
 
     
       -unless @network_activity.empty?

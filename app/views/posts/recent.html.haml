@@ -2,11 +2,11 @@
 .yui-b
   .box
     - if logged_in?
-      %h3= "Get popular."
+      %h3= "Get popular.".l
       %ul.list.checks
-        %li=link_to "Write a blog post!", new_user_post_path({:user_id => current_user})
+        %li=link_to "Write a blog post!".l, new_user_post_path({:user_id => current_user})
     - else
-      %h3= "Want to be popular?"
+      %h3= "Want to be popular?".l
       %ul.list.checks
         %li
           %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"} Sign up for an account.
@@ -18,9 +18,10 @@
 #yui-main
   .yui-b
     .box.hfeed
-      %h3=recent_posts.l
+      %h3
+        =:recent_posts.l
         %ul.subnav
-          %li= "(looking for #{link_to "popular", popular_path}?)"
+          %li= "(looking for {link}?)".l :looking_for_most_x, :link => link_to("popular".l, popular_path)
 
       = render :partial => 'posts/post', :collection => @posts      
       
