@@ -109,7 +109,7 @@ class PhotosController < BaseController
         @photo.tag_with(params[:tag_list] || '') 
         #start the garbage collector
         GC.start        
-        flash[:notice] = 'Photo was successfully created.'
+        flash[:notice] = 'Photo was successfully created.'.l
         
         format.html { 
           render :action => 'inline_new', :layout => false and return if params[:inline]

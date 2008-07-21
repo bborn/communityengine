@@ -13,7 +13,7 @@ class CommentsController < BaseController
     @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])
 
     unless logged_in? || @commentable && @commentable.owner.profile_public?
-      flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it."
+      flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it.".l
       redirect_to :controller => 'sessions', :action => 'new' and return
     end
 
@@ -54,7 +54,7 @@ class CommentsController < BaseController
     
     respond_to do |format|        
       format.html {
-        flash[:notice] = "Sorry, we couldn't find any comments for that #{Inflector.constantize(Inflector.camelize(params[:commentable_type]))}"
+        flash[:notice] = :no_comments_found.l_with_args(type => Inflector.constantize(Inflector.camelize(params[:commentable_type])))
         redirect_to :controller => 'base', :action => 'site_index' and return      
       }
       format.rss {
@@ -89,13 +89,13 @@ class CommentsController < BaseController
         UserNotifier.deliver_comment_notice(@comment) if should_receive_notification(@comment)
         deliver_comment_notice_to_previous_commenters(@comment)        
                 
-        flash.now[:notice] = 'Comment was successfully created.'        
+        flash.now[:notice] = 'Comment was successfully created.'.l        
         format.html { redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id], :user_id => @comment.recipient.id }
         format.js {
           render :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}
         }
       else
-        flash.now[:error] = "Your comment couldn't be saved. #{@comment.errors.full_messages.join(", ")}"
+        flash.now[:error] = :comment_save_error.l_with_args(error => @comment.errors.full_messages.join(", "))
         format.html { redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id] }
         format.js{
           render :inline => flash[:error], :status => 500
@@ -108,9 +108,9 @@ class CommentsController < BaseController
     @comment = Comment.find(params[:id])
     if @comment.can_be_deleted_by(current_user)
       @comment.destroy
-      flash.now[:notice] = "The comment was deleted."
+      flash.now[:notice] = "The comment was deleted.".l
     else
-      flash.now[:error] = "Comment could not be deleted."
+      flash.now[:error] = "Comment could not be deleted.".l
     end
     respond_to do |format|
       format.html { redirect_to users_url }

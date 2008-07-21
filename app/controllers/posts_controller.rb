@@ -107,7 +107,7 @@ class PostsController < BaseController
         @post.create_poll(params[:poll], params[:choices]) if params[:poll]
         
         @post.tag_with(params[:tag_list] || '') 
-        flash[:notice] = @post.category ? "Your '#{Inflector.singularize(@post.category.name)}' post was successfully created." : "Your post was successfully created."
+        flash[:notice] = @post.category ? :post_created_for_category.l_with_args(category => Inflector.singularize(@post.category.name)) : "Your post was successfully created.".l
         format.html { 
           if @post.is_live?
             redirect_to @post.category ? category_path(@post.category) : user_post_path(@user, @post) 
@@ -148,7 +148,7 @@ class PostsController < BaseController
     
     respond_to do |format|
       format.html { 
-        flash[:notice] = "Your post was deleted."
+        flash[:notice] = "Your post was deleted.".l
         redirect_to manage_user_posts_url(@user)   
         }
     end

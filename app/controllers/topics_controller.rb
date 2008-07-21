@@ -89,7 +89,7 @@ class TopicsController < BaseController
   
   def destroy
     @topic.destroy
-    flash[:notice] = "Topic '#{CGI::escapeHTML @topic.title}' was deleted."
+    flash[:notice] = :topic_deleted.l_with_args(:topic => CGI::escapeHTML(@topic.title)) 
     respond_to do |format|
       format.html { redirect_to forum_path(@forum) }
       format.xml  { head 200 }
