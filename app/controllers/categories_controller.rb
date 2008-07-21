@@ -63,7 +63,7 @@ class CategoriesController < BaseController
     
     respond_to do |format|
       if @category.save
-        flash[:notice] = 'Category was successfully created.'
+        flash[:notice] = 'Category was successfully created.'.l
         
         format.html { redirect_to category_url(@category) }
         format.xml do

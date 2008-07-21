@@ -41,7 +41,7 @@ class AdsController < BaseController
 
     respond_to do |format|
       if @ad.save
-        flash[:notice] = 'Ad was successfully created.'
+        flash[:notice] = 'Ad was successfully created.'.l
         format.html { redirect_to ad_url(@ad) }
         format.xml  { head :created, :location => ad_url(@ad) }
       else
@@ -58,7 +58,7 @@ class AdsController < BaseController
 
     respond_to do |format|
       if @ad.update_attributes(params[:ad])
-        flash[:notice] = 'Ad was successfully updated.'
+        flash[:notice] = 'Ad was successfully updated.'.l
         format.html { redirect_to ad_url(@ad) }
         format.xml  { head :ok }
       else

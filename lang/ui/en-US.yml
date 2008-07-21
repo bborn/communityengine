@@ -35,3 +35,13 @@ new_post_for_category: New {category}
 show_category: "{category}"
 singular_posts: "{count} post"
 plural_posts: "{count} posts"
+no_comments_found: Sorry, we couldn't find any comments for that {type}
+comment_save_error: Your comment couldn't be saved. #{errors}
+account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
+email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {email}
+walkthrough_complete: You've completed the {site} walk-through. Now you can continue exploring!
+topic_deleted: Topic '{topic}' was deleted.
+tag_does_not_exist: The tag {tag} does not exist.
+sb_post_was_deleted: Post '{title}' was deleted.
+post_created_for_category: Your '{category}' post was successfully created.
+friendship_requested: Requested friendship with {friend}.

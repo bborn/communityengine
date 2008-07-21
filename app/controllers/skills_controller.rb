@@ -61,7 +61,7 @@ class SkillsController < BaseController
     
     respond_to do |format|
       if @skill.save
-        flash[:notice] = 'Skill was successfully created.'
+        flash[:notice] = 'Skill was successfully created.'.l
         
         format.html { redirect_to skill_url(@skill) }
         format.xml do

@@ -30,10 +30,10 @@ class UsersController < BaseController
     if @user and @user.activate
       self.current_user = @user
       redirect_to welcome_photo_user_path(@user)
-      flash[:notice] = "Thanks for activating your account!" 
+      flash[:notice] = "Thanks for activating your account!".l 
       return
     end
-    flash[:error] = "Account activation failed. Your account may already be active. Try logging in or e-mail #{AppConfig.support_email} for help."
+    flash[:error] = :account_activation_error.l_with_args(:email => AppConfig.support_email) 
     redirect_to signup_path     
   end
 
@@ -81,7 +81,7 @@ class UsersController < BaseController
     @user.role = Role[:member]
     @user.save!
     create_friendship_with_inviter(@user, params)
-    flash[:notice] = "Thanks for signing up! You should receive an e-mail confirmation shortly at #{@user.email}"
+    flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
     redirect_to signup_completed_user_path(@user)
   rescue ActiveRecord::RecordInvalid
     render :action => 'new'
@@ -119,7 +119,7 @@ class UsersController < BaseController
       @user.track_activity(:updated_profile)
       
       @user.tag_with(params[:tag_list] || '')     
-      flash[:notice] = "Your changes were saved."
+      flash[:notice] = "Your changes were saved.".l
       unless params[:welcome] 
         redirect_to user_path(@user)
       else
@@ -133,9 +133,9 @@ class UsersController < BaseController
   def destroy
     unless @user.admin?
       @user.destroy
-      flash[:notice] = "The user was deleted."
+      flash[:notice] = "The user was deleted.".l
     else
-      flash[:error] = "You can't delete that user."
+      flash[:error] = "You can't delete that user.".l
     end
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -147,7 +147,7 @@ class UsersController < BaseController
     @photo = Photo.find(params[:photo_id])
     @user.avatar = @photo
     if @user.save!
-      flash[:notice] = "Your changes were saved."
+      flash[:notice] = "Your changes were saved.".l
       redirect_to user_photo_path(@user, @photo)
     end
   rescue ActiveRecord::RecordInvalid
@@ -166,7 +166,7 @@ class UsersController < BaseController
     @user.attributes = params[:user]
 
     if @user.save!
-      flash[:notice] = "Your changes were saved."
+      flash[:notice] = "Your changes were saved.".l
       redirect_to user_path(@user)
     end
   rescue ActiveRecord::RecordInvalid
@@ -186,7 +186,7 @@ class UsersController < BaseController
     if @user.save!
       respond_to do |format|
         format.html { 
-          flash[:notice] = "Your changes were saved."
+          flash[:notice] = "Your changes were saved.".l
           redirect_to edit_pro_details_user_path(@user)   
         }
         format.js {
@@ -235,7 +235,7 @@ class UsersController < BaseController
   end
   
   def welcome_complete
-    flash[:notice] = "You've completed the #{AppConfig.community_name} walk-through. Now you can continue exploring!"
+    flash[:notice] = :walkthrough_complete.l_with_args(:site => AppConfig.community_name) 
     redirect_to user_path
   end
   
@@ -247,10 +247,10 @@ class UsersController < BaseController
         UserNotifier.deliver_reset_password(@user)
         @user.save
         redirect_to login_url
-        flash[:info] = "Your password has been reset and emailed to you."
+        flash[:info] = "Your password has been reset and emailed to you.".l
       end
     else
-      flash[:error] = "Sorry. We don't recognize that email address."
+      flash[:error] = "Sorry. We don't recognize that email address.".l
     end 
   end
 
@@ -262,10 +262,10 @@ class UsersController < BaseController
         UserNotifier.deliver_forgot_username(@user)
         @user.save
         redirect_to login_url
-        flash[:info] = "Your username was emailed to you."
+        flash[:info] = "Your username was emailed to you.".l
       end
     else
-      flash[:error] = "Sorry. We don't recognize that email address."
+      flash[:error] = "Sorry. We don't recognize that email address.".l
     end 
   end
 
