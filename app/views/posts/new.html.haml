@@ -40,7 +40,7 @@
 
         %label
           Tags 
-          %em (optional keywords describing this post, separated by commas)
+          %em="(optional keywords describing this post, separated by spaces)".l :tag_tips          
         = text_field_tag 'tag_list', @post.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off", :size => 35}
         .auto_complete#tag_list_auto_complete
           = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }

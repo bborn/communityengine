@@ -110,7 +110,7 @@
               
               %label 
                 Tags 
-                %em (optional keywords describing this post, separated by commas)
+                %em="(optional keywords describing this post, separated by spaces)".l :tag_tips                
                 \:
 
               = text_field_tag 'tag_list', @post.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off", :size => 35, :id => 'post_tag_list'}
