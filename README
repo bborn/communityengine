@@ -137,6 +137,29 @@ Note: when running in production mode, theme assets (images, js, and stylesheets
 = stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
 
 
+## LOCALIZATION ##
+Localization is done via an extended version of Globalite (http://code.google.com/p/globalite/). 
+Strings and Symbols respond to the .l method that allows for a look up of the symbol (or a symbolized version of the string) into a strings file which is stored in yaml. 
+For complex strings with substitutions, Symbols respond to the .l method with a hash passed as an argument, for example: 
+
+  :welcome.l :name => current_user.name
+  
+And in your language file you'd have:
+
+  welcome: "Welcome {name}"
+
+To customize the language, or add a new language create a new yaml file in RAILS_ROOT/lang/ui.
+The name of the file should be LANG-LOCALE.yml (e.g. en-US.yml or es-PR)
+The language only file (es.yml) will support all locales.
+
+To wrap all localized strings in a <span> that shows their localization key, put this in your environment.rb (don't forget to take it out in production!):
+
+    Globalite.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
+  
+Note, this will effect the look and feel of buttons. You can highlight what is localized by using the span.localized style (look in screen.css)
+
+
+
 ## Other notes ##
 ===============================================================
 Any views you create in your app directory will override those in community_engine/app/views. 
@@ -150,6 +173,12 @@ You can also override CommunityEngine's controllers by creating identically-name
   - make sure you have the latest version of rake
 2. I get test errors after upgrading to Rails 2.1
   - make sure you have upgraded to the Engines 2.1 plugin, and modified your environment.rb to use Rails 2.1.
+
+
+# Contributors - Thanks! :)
+
+Bryan Kearney - localization
+
 
 
 # Todo

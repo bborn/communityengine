@@ -23,10 +23,10 @@ class SessionsController < BaseController
       end
 
       redirect_back_or_default(dashboard_user_path(current_user))
-      flash[:notice] = "Thanks! You're now logged in."
+      flash[:notice] = "Thanks! You're now logged in.".l
       current_user.track_activity(:logged_in)
     else
-      flash[:notice] = "Uh oh. We couldn't log you in with the username and password you entered. Try again?"      
+      flash[:notice] = "Uh oh. We couldn't log you in with the username and password you entered. Try again?".l
       redirect_to teaser_path and return if AppConfig.closed_beta_mode        
       render :action => 'new'
     end
@@ -36,7 +36,7 @@ class SessionsController < BaseController
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
     reset_session
-    flash[:notice] = "You've been logged out. Hope you come back soon!"
+    flash[:notice] = "You've been logged out. Hope you come back soon!".l
     redirect_to new_session_path
   end
 

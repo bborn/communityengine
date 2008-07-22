@@ -47,7 +47,7 @@ class SbPostsController < BaseController
     if @topic.locked?
       respond_to do |format|
         format.html do
-          flash[:notice] = 'This topic is locked.'
+          flash[:notice] = 'This topic is locked.'.l
           redirect_to(forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id]))
         end
         format.xml do
@@ -67,7 +67,7 @@ class SbPostsController < BaseController
       format.xml { head :created, :location => formatted_sb_user_post_url(:forum_id => params[:forum_id], :topic_id => params[:topic_id], :id => @post, :format => :xml) }
     end
   rescue ActiveRecord::RecordInvalid
-    flash[:bad_reply] = 'Please post something at least...'
+    flash[:bad_reply] = 'Please post something at least...'.l
     respond_to do |format|
       format.html do
         redirect_to forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => 'reply-form', :page => params[:page] || '1')
@@ -87,7 +87,7 @@ class SbPostsController < BaseController
     @post.attributes = params[:post]
     @post.save!
   rescue ActiveRecord::RecordInvalid
-    flash[:bad_reply] = 'An error occurred'
+    flash[:bad_reply] = 'An error occurred'.l
   ensure
     respond_to do |format|
       format.html do
@@ -100,7 +100,7 @@ class SbPostsController < BaseController
 
   def destroy
     @post.destroy
-    flash[:notice] = "Post: '#{CGI::escapeHTML @post.topic.title}' was deleted."
+    flash[:notice] = :sb_post_was_deleted.l_with_args(:title => CGI::escapeHTML(@post.topic.title))
     # check for posts_count == 1 because its cached and counting the currently deleted post
     @post.topic.destroy and redirect_to forum_path(params[:forum_id]) if @post.topic.sb_posts_count == 1
     respond_to do |format|

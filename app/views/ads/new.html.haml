@@ -1,40 +1,40 @@
 .box
-  %h3 New ad
+  %h3="New Ad".l
   = error_messages_for :ad
   - form_for(:ad, :url => ads_path, :html => {:class => "MainForm" }) do |f|
-    %label Name
+    %label="Name".l
     = f.text_field :name
 
-    %label Html
+    %label="Html".l
     = f.text_area :html, :size => '80x10'
 
-    %label Frequency
+    %label="Frequency".l
     = f.select :frequency, Ad.frequencies_for_select
 
-    %label Audience
+    %label="Audience".l
     = f.select :audience, Ad.audiences_for_select
 
     %fieldset{"for"=>"ad_published"}
       = f.check_box :published
-      %label Published?      
+      %label="Published?".l
 
     %fieldset{"for"=>"ad_time_constrained"}
       = f.check_box :time_constrained
-      %label Time constrained?      
+      %label="Time constrained?".l
 
     #time_constraints{"style"=>"display:#{ @ad.time_constrained? ? 'block' : 'none'}"}
-      %label Start date
+      %label="Start date".l
       = f.datetime_select :start_date
-      %label End date
+      %label="End date".l
       = f.datetime_select :end_date
 
     %script{"type"=>"text/javascript", "charset"=>"utf-8"}
       Event.observe("ad_time_constrained", "click", function(){$('time_constraints').toggle()})
 
-    %label Location
+    %label="Location".l
     = f.text_field :location
 
     %p
-      = submit_tag "Create"
+      = submit_tag :create.l
 
-  = link_to 'Back', ads_path
+  = link_to 'Back'.l, ads_path

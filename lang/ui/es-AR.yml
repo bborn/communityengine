@@ -1,0 +1,112 @@
+community_tagline: CommunityEngine es genial!
+explore_site: Explorar {site}
+about_site: Acerca de {site}
+get_started_banner: Comience con <a href="/">{site}</a> hoy!
+search_users: Búsqueda de usuarios
+update: Actualizar
+create: Crear
+log_in: Iniciar sesión
+log_out: Cerrar sesión
+sign_up: Registrarse
+logged_in: "Sesión:"
+log_in_to_site: Acceda a {site}
+popular_catgory: "Popular en {name}"
+dashboard_friends: "Una vez que comienza a añadir amigos, podra seguir sus actividades en {site} aquí."
+all_posts_tagged: Todos las entradas marcadas {tag_name}
+all_users_tagged: Todos los usuarios marcados {tag_name}
+all_photos_tagged: Todas las fotos marcadas {tag_name}
+all_clippings_tagged: Todos los clippings marcados {tag_name}
+photo_message: Su foto de perfil lo representa en {site}. La puede cambiar mas tarde.
+invite_message: Cuantas mas personas invite a {site}, mejor.
+write_new_post: Escriba una entrada de '{category}'
+welcome_message: Bienvenido! {login_link} o {signup_link}
+greeting_1: Hello {user}
+greeting_2: Hola {user}
+greeting_3: Hi {user}
+greeting_4: Yo {user}
+greeting_5: Welcome, {user}!
+greeting_6: Greetings {user}
+greeting_7: Wassup {user}?
+greeting_8: Aloha {user}
+greeting_9: Halloo {user}
+greeting_10: Whats up {user}?
+site_members: "Miembros de {site}"
+small_profile: "{user} no tiene mucho aquí todavía. Estén atentos."
+users_blog: "El blog de {user}"
+users_photos: "Las fotos de {user}" 
+new_post_for_category: Nueva entrada en {category}
+show_category: "{category}"
+singular_posts: "{count} entrada"
+plural_posts: "{count} entradas"
+homepage_banner_download_msg: Descargar ahora y empezar
+create_your_account: Crée su cuenta
+homepage_banner_msg: CommunityEngine es la mejor manera de ir de cero a héroe rapidísimo
+recent_posts: Entradas recientes
+homepage_banner_signup_prompt: Ver cómo funciona
+
+whats_hot: Lo más popular
+staff_writers: Personal de Escritores
+active_users: Usuarios activos
+whats_fresh: Que hay de nuevo?
+tags: Etiquetas
+
+home: Inicio
+about: Acerca
+
+no_comments_found: Lo sentimos, pero no se pudo encontrar ningún comentario para ese {type} 
+comment_save_error: Su comentario no se ha podido guardar. #{errors}
+account_activation_error: Activación de cuenta fracaso. Tal vez ya esté activa. Trate de iniciar una sesión o mande un e-mail a {email} para obtener ayuda.
+email_signup_thanks: "Gracias por registrarse! Debe recibir un e-mail de confirmación en breve: {email}"
+walkthrough_complete: Ha completado el tour de {site}. Ahora puede seguir explorando!
+topic_deleted: El Tema '{topic}' fue suprimido.
+tag_does_not_exist: La etiqueta {tag} no existe.
+sb_post_was_deleted: La entrada '{title}' fue suprimida.
+post_created_for_category: Su entrada en '{category}' fue creada.
+friendship_requested: Pidió a la amistad con {friend}.
+
+#navigation
+my_profile: Mi perfil
+people: Gente
+popular: Popular
+forums: Conversación
+
+#dashboard navigation menu
+view_my: "Ver mi:"
+profile: Perfil
+photos: Fotos
+clippings: Recortes
+friends: Amigos
+manage_my: "Gestionar mi:"
+account_settings: Configuración de cuenta
+blog_posts: Entradas de blog
+
+#dashboard
+this_is_your_dashboard: Este es su tablero de instrumentos.
+to_start_adding_friends: Para agregar amigos,
+browse_all_members: navegar por todos los miembros.
+update_profile_and_tag_yourself: Actualice su perfil
+to_get_recommended_content_on_your_dashboard: para recibir contenidos recomendados en su tablero de instrumentos.
+
+
+#activity messages
+wrote_a_post: escribio una entrada
+uploaded_a_photo: publicó una foto
+started_a_topic: publicó un tema
+added_to_a_forum_topic: añadió a un tema
+left_a_comment: dejó un comentario
+favorited: marcó como favorito
+added_a_clipping: añadió un recorte
+updated_their_profile: puso al día su perfil
+logged_into_the_site: inicio una sesión
+
+#general
+recent: receiente
+popular: popular
+top_writers: más activos escritores
+
+
+#popular posts
+what_is_popular: Lo más popular
+looking_for_most_x: Buscando lo mas {link}?
+get_popular: Sea popular!
+write_a_blog_post: Escriba una entrada!

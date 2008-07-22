@@ -2,25 +2,25 @@
 
 .yui-b
   .box
-    %h3 Dashboard
+    %h3="Dashboard".l
     .yui-g
       .yui-u.first
-        View my:
+        ="View my:".l
         %ul
-          %li=link_to 'Profile', user_path(@user)  
-          %li=link_to 'Blog', user_posts_path(@user)
-          %li=link_to 'Photos', user_photos_path(@user)
-          %li=link_to 'Clippings', user_clippings_path(@user)
-          %li=link_to 'Friends', accepted_user_friendships_path(@user)
+          %li=link_to 'Profile'.l, user_path(@user)  
+          %li=link_to 'Blog'.l, user_posts_path(@user)
+          %li=link_to 'Photos'.l, user_photos_path(@user)
+          %li=link_to 'Clippings'.l, user_clippings_path(@user)
+          %li=link_to 'Friends'.l, accepted_user_friendships_path(@user)
       .yui-u
-        Manage my:
+        ="Manage my:".l
         %ul
-          %li=link_to 'Profile', edit_user_path(@user)
-          %li=link_to 'Account settings', edit_account_user_path(@user)
-          %li=link_to 'Blog posts', manage_user_posts_path(@user)          
+          %li=link_to 'Profile'.l, edit_user_path(@user)
+          %li=link_to 'Account settings'.l, edit_account_user_path(@user)
+          %li=link_to 'Blog posts'.l, manage_user_posts_path(@user)          
   
   .box.alt
-    %h3 Stats
+    %h3="Stats".l
     %ul
       %li="You last logged in on #{@user.last_login_at && @user.last_login_at.strftime("%m/%d/%y")}"
       %li= @user.created_at.strftime("Member since: %m/%d/%y")
@@ -48,26 +48,25 @@
     
       -if @network_activity.empty? && @recommended_posts.empty?
         %p
-          This is your dashboard. 
+          ="This is your dashboard.".l
           %br
-          Once you start adding friends, you'll be able to track their activity on 
-          =AppConfig.community_name
-          here.
+          =:dashboard_friends.l :site => AppConfig.community_name
+          
         %p
-          To start adding friends, you can 
-          =link_to 'browse all members', users_path
+          ="To start adding friends, you can".l :to_start_adding_friends
+          =link_to 'browse all members'.l, users_path
         %p
-          =link_to 'Update your profile and tag yourself', edit_user_path(current_user)
-          to start getting recommended content on your dashboard.
+          =link_to 'Update your profile and tag yourself'.l(:update_profile_and_tag_yourself), edit_user_path(current_user)
+          ="to start getting recommended content on your dashboard.".l(:to_get_recommended_content_on_your_dashboard)
 
     
       -unless @network_activity.empty?
-        %h2 Activity from your network
+        %h2="Activity from your network".l
         .box.fresh
           =render :partial => "activities/activity", :collection => @network_activity
 
       -unless @recommended_posts.empty?
-        %h3 Recommended Posts
+        %h3="Recommended Posts".l
         #posts
           %ul
             -@recommended_posts.each do |post|

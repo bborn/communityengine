@@ -20,7 +20,10 @@ class CategoryTest < Test::Unit::TestCase
   end
   
   def test_should_display_new_post_text
-    assert_equal "Write a 'Questions' post", Category.get(:questions).display_new_post_text
+    c = Category.get(:questions)
+    c.new_post_text = "Ask a question"
+    c.save!
+    assert_equal "Ask a question", Category.get(:questions).display_new_post_text
   end
 
 

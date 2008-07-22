@@ -1,16 +1,16 @@
 .yui-b.sidebar
   .box
-    %h3 Links
+    %h3="Links".l
     %ul.checks
-      %li=link_to 'View my blog', user_posts_path(current_user)
-      %li=link_to 'New post', new_user_post_path(current_user)    
+      %li=link_to 'View my blog'.l, user_posts_path(current_user)
+      %li=link_to 'New post'.l, new_user_post_path(current_user)    
 
 #yui-main
   .yui-b
     .box
       %h3 
-        Manage Posts
-      %p Posts saved with 'draft' status won't appear in your blog until you publish them.
+        ="Manage Posts".l
+      %p="Posts saved with 'draft' status won't appear in your blog until you publish them.".l
       
 
       -if @posts.page_count > 1
@@ -19,13 +19,13 @@
       %table{:border => 0, :width => '100%'}
         %thead
           %tr
-            %th Date Created
-            %th Date Published            
-            %th Title
-            %th Category
-            %th Tags
-            %th Comments
-            %th Status
+            %th="Date Created".l
+            %th="Date Published".l            
+            %th="Title".l
+            %th="Category".l
+            %th="Tags".l
+            %th="Comments".l
+            %th="Status".l
         %tbody
           - @posts.each do |post|
             %tr            
@@ -35,6 +35,6 @@
                 %abbr{:title=>"#{post.published_at}"}= post.published_at_display
               %td= link_to post.title, edit_user_post_path(post.user, post)
               %td= post.category.name
-              %td= post.tags.any? ? post.tag_list : 'No tags'
+              %td= post.tags.any? ? post.tag_list : 'No tags'.l
               %td= post.comments.count
-              %td= post.is_live? ? link_to('published', user_post_path(post.user, post)) : 'draft'
+              %td= post.is_live? ? link_to('published'.l, user_post_path(post.user, post)) : 'draft'.l

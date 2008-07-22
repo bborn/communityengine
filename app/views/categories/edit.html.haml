@@ -3,24 +3,24 @@
 
 #yui-main
   .yui-b.box
-    %h3 Editing category
+    %h3="Editing category".l
     - form_for(:category, :url => category_path(@category), :html => { :method => :put, :class => "MainForm" }) do |f|
 
-      %label Name:
+      %label="Name:".l
       = f.text_field :name
 
-      %label Posting tips:
+      %label="Posting tips:".l
       = f.text_area :tips, :rows => 3
 
-      %label New Post text:
+      %label="New Post text:".l
       = f.text_field :new_post_text
 
-      %label Navigation menu text:
+      %label="Navigation menu text:".l
       = f.text_field :nav_text
 
       %p
-        = submit_tag "Update"
+        = submit_tag "Update".l
 
-    = link_to 'Show', category_path(@category)
+    = link_to 'Show'.l, category_path(@category)
     |
-    = link_to 'Back', categories_path
+    = link_to 'Back'.l, categories_path

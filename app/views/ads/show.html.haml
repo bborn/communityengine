@@ -1,23 +1,34 @@
 .box
-  %h3 Showing Ad
+  %h3="Showing Ad".l
   %p
-    %b Name:
+    %b
+      ="Name".l
+      \:
     = h @ad.name
   %p
-    %b Html:
+    %b
+      ="Html".l
+      \:
     = @ad.html
   %p
-    %b Frequency:
+    %b
+      ="Frequency".l
+      \:
     = h @ad.frequency
   %p
-    %strong Published?
+    %strong="Published?".l
     = @ad.published?
   %p
-    %b Run:
+    %b 
+      ="Run".l
+      \:
     = h @ad.time_constrained? ? "#{@ad.start_date.to_formatted_s(:long)} - #{@ad.end_date.to_formatted_s(:long)}" : 'n/a'
   %p
-    %b Location:
+    %b 
+      ="Location".l
+      \:
     = h @ad.location
-  = link_to 'Edit', edit_ad_path(@ad)
+
+  = link_to 'Edit'.l, edit_ad_path(@ad)
   |
-  = link_to 'Back', ads_path
+  = link_to 'Back'.l, ads_path

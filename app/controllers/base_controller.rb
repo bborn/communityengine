@@ -4,6 +4,8 @@ require 'pp'
 
 class BaseController < ApplicationController
   include AuthenticatedSystem
+  include LocalizedApplication
+  around_filter :set_locale  
   before_filter :login_from_cookie  
   skip_before_filter :verify_authenticity_token, :only => :footer_content
     
@@ -75,12 +77,12 @@ class BaseController < ApplicationController
     if @user = User.find(params[:user_id] || params[:id])
       @is_current_user = (@user && @user.eql?(current_user))
       unless logged_in? || @user.profile_public?
-        flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it."
+        flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it.".l
         redirect_to :controller => 'sessions', :action => 'new'        
       end
       return @user
     else
-      flash.now[:error] = "Please log in."
+      flash.now[:error] = "Please log in.".l
       redirect_to :controller => 'sessions', :action => 'new'
       return false
     end

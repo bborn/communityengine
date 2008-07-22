@@ -4,11 +4,11 @@
 #yui-main
   .yui-b.box
     -unless @activities.empty?
-      %h3 Activity from your network
+      %h3="Activity from your network".l
       %table{:width => "100%"}
         =render :partial => "activities/activity", :collection => @activities
       -if @activities.page_count > 1
         .pagination= paginating_links @activities, :link_to_current_page => true
     -else
-      You have no network activity yet. 
-      = link_to "Add some friends to get started!", users_path
+      ="You have no network activity yet.".l 
+      = link_to "Add some friends to get started!".l, users_path

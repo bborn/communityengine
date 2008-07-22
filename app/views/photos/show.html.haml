@@ -9,7 +9,7 @@
 
     - if @related.any?
       .box.alt
-        %h3 Related Photos (all members)
+        %h3="Related Photos (all members)".l
         .centered
           - @related.each do |photo|
             = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo), {:title => "#{h(photo.description)} from #{photo.user.login}"}
@@ -34,8 +34,8 @@
         %p= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t.name), :class => 'tag') }.join(" ")
 
       #comments.box.hfeed.comments
-        %h3 Photo Comments
-        %h2 Add Your Comment!
+        %h3="Photo Comments".l
+        %h2="Add Your Comment!".l
         %p= render :partial => 'comments/comment_form', :locals => {:commentable => @photo}
         %a#newest_comment
         = render :partial => 'comments/comment', :collection => @photo.comments

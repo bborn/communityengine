@@ -6,20 +6,17 @@
     = render :partial => 'shared/user_menu'
   - else
     %h2
-      Welcome, 
-      =link_to "Log in", login_path
-      or
-      =link_to "Sign up", signup_path
+      =:welcome_message.l(:login_link => (link_to "Log in".l, login_path), :signup_link => (link_to "Sign up".l, signup_path))
     
   #NavBar
     %ul
       - Category.find(:all).each do |c|
         = topnav_tab c.name, {:url => category_path(c), :section => c.name}
-      = topnav_tab "Forums", { :url => forums_path, :section => 'forums' }
-      = topnav_tab "Popular", { :url => popular_path, :section => 'popular' }
-      = topnav_tab "People", { :url => users_path, :section => 'users' }
+      = topnav_tab "Forums".l, { :url => forums_path, :section => 'forums' }
+      = topnav_tab "Popular".l, { :url => popular_path, :section => 'popular' }
+      = topnav_tab "People".l, { :url => users_path, :section => 'users' }
       - if current_user 
-        = topnav_tab "My Profile", { :url => user_path(current_user), :section => 'my_profile'}   
+        = topnav_tab "My Profile".l, { :url => user_path(current_user), :section => 'my_profile'}   
       
     / SiteSearch Google 
     %form{:method=>"get", :action=>"http://www.google.com/custom", :target=>"_top"}

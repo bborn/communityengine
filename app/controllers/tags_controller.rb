@@ -21,7 +21,7 @@ class TagsController < BaseController
   def show
     @tag = Tag.find_by_name(params[:id])
     if @tag.nil? 
-      flash[:notice] = "The tag #{params[:id]} does not exist."
+      flash[:notice] = :tag_does_not_exists.l_with_args(:tag => params[:id]) 
       redirect_to :action => :index and return
     end
     @related_tags = @tag.related_tags

@@ -4,26 +4,26 @@
 .yui-b
   .box
     - if logged_in?
-      %h3= "Have something to contribute?"
+      %h3="Have something to contribute?".l
       %ul.list.checks
-        %li= link_to @category.display_new_post_text, new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
+        %li= link_to @category.display_new_post_text() || :write_new_post.l(:category=>@category.name), new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
     - else
-      %h3= "Want to post in this category?"
+      %h3="Want to post in this category?".l
       %ul.list.checks
         %li
-          %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"} Sign up for an account.
+          %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"}="Sign up for an account.".l
           %br
             %small
-              Have an account? 
-              %a{:href=>"/login", :title=>"Log in to your #{AppConfig.community_name} account"} &raquo;Login
+              ="Have an account? ".l
+              %a{:href=>"/login", :title=>"Log in to your #{AppConfig.community_name} account"}="&raquo; " + "Login".l
 
   .box.alt
-    %h3 Top Writers
+    %h3="Top Writers".l
     - @active_users.each do |user|
       = render :partial => "users/sidebar_user", :locals => {:user => user} 
       
   .box.alt
-    %h3= "Popular #{@category.name}"
+    %h3=:popular_catgory.l(:name => @category.name)
     %ul.list.page    
       - @popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
@@ -33,10 +33,10 @@
   .yui-b
     .box.hfeed
       %h3      
-        =@category.name
+        =:show_category.l :category => @category.name
         %ul.subnav
-          %li= link_to "Recent", category_path(@category), {:class => (params[:popular] ? '' : 'active')}
-          %li= link_to "Popular", category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
+          %li= link_to "Recent".l, category_path(@category), {:class => (params[:popular] ? '' : 'active')}
+          %li= link_to "Popular".l, category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
 
       = render :partial => 'posts/post', :collection => @posts
       = pagination_info_for @pages
