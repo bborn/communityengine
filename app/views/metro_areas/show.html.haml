@@ -4,15 +4,18 @@
   
   %p
     %b
-      ="Country:".l
+      ="Country".l
+      \:
     = h @metro_area.country.name
   %p
     %b
-      ="State:".l
+      ="State".l
+      \:
     = @metro_area.state.name if @metro_area.state
   %p
     %b
-      ="Name:".l
+      ="Name".l
+      \:
     = @metro_area.name
   = link_to 'Edit'.l, edit_metro_area_path(@metro_area)
   |

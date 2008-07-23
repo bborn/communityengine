@@ -34,7 +34,8 @@
           ="Female".l
 
       %label
-        ="Birthday:".l
+        ="Birthday".l
+        \:
       = date_select :user, :birthday, {:start_year => 1926, :end_year => Time.now.year - 1}
       
   #yui-main

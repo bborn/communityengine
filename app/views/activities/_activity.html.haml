@@ -23,7 +23,7 @@
           ="left a comment:".l
           = link_to truncate_words(activity.item.comment), activity.item.generate_commentable_url
         - when 'Favorite'
-          =" favorited".l
+          ="favorited".l
           = link_to " a #{activity.item.favoritable.class.to_s.humanize.downcase}", user_favorite_path(activity.item.user, activity.item)
         - when 'Clipping'
           ="added a clipping:".l

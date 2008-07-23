@@ -37,7 +37,7 @@
             %a{:href=>"/", :title=>"#{AppConfig.community_name} Home"}= "Home".l
           - if !logged_in?
             %li
-              = link_to "Log In".l , login_path 
+              = link_to :log_in.l , login_path 
           - else
             %li
               %a{:href=>"/logout", :title=>"Log out of your #{AppConfig.community_name} account"}

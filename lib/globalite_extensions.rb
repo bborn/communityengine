@@ -3,7 +3,7 @@ module StringExtension
     if args.first.is_a? Symbol
       sym = args.shift
     else
-      sym = underscore.tr(' ', '_').gsub(/[^a-z1-9_]+/i, '').to_sym
+      sym = underscore.tr(' ', '_').gsub(/[^a-z0-9_]+/i, '').to_sym
     end
     
     if Globalite.show_localization_keys_for_debugging

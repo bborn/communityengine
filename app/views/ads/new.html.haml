@@ -16,11 +16,15 @@
 
     %fieldset{"for"=>"ad_published"}
       = f.check_box :published
-      %label="Published?".l
+      %label
+        ="Published".l
+        \?
 
     %fieldset{"for"=>"ad_time_constrained"}
       = f.check_box :time_constrained
-      %label="Time constrained?".l
+      %label
+        ="Time constrained".l
+        \?
 
     #time_constraints{"style"=>"display:#{ @ad.time_constrained? ? 'block' : 'none'}"}
       %label="Start date".l

@@ -55,4 +55,4 @@
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(clipping.user, clipping) }"}
             %img.polaroid.clipping{"src"=>"#{h clipping.image_uri}", "style"=>"width:108px"}
-        %h6.all= link_to :all_clippngs_tagged.l(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'Clipping')
+        %h6.all= link_to :all_clippings_tagged.l(:tag_name => @tag.name), tag_path(:id => @tag.name, :type => 'Clipping')

@@ -33,11 +33,13 @@
             = h truncate(@clipping.url, 95)
 
         %p
-          ="Description:".l
+          ="Description".l
+          \:
           =h @clipping.description
   
         %p
-          ="Tags:".l
+          ="Tags".l
+          \:
         %ul.tags
           - @clipping.tags.each do |t|
             %li=link_to( t.name, tag_url(t.name), :rel => 'tag')
