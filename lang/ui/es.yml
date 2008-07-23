@@ -1,6 +1,6 @@
-#en: about_site: ""
+#en: about: About
+about: Acerca de
+#en: about_me: About Me
+about_me: Acerca de mi
+#en: about_site: About {site}
 about_site: Acerca de {site}
-#en: account_activation_error: ""
-account_activation_error: Error de activacion de cuenta
-#en: all_clippings_tagged: ""
-all_clippings_tagged: Todos los recortes can la etiqueta
