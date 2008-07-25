@@ -85,6 +85,8 @@
           .yui-u.box
             %h3 Create a post
             - form_for(:post, :url => user_posts_path(current_user), :html => {:class => "MainForm"}) do |f|
+              = hidden_field_tag 'post[published_as]', 'live'
+
               - unless @post.category || @post.contest
                 %label 
                   ="Category".l

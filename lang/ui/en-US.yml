@@ -1,6 +1,6 @@
 cancel: Cancel
 #en: about_site: About {site}
-about_site: About {site}
+about_site: "About {site}"
 #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
 account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
 #en: all_clippings_tagged: All clippings tagged {tag_name}

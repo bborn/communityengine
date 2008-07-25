@@ -50,7 +50,7 @@ class Post < ActiveRecord::Base
   end
   
   def self.find_recent(options = {:limit => 5})
-    find(:all, :order => "published_at desc", :limit => options[:limit])
+    find(:all, :order => "published_at desc", :limit => options[:limit], :include => :user)
   end
   
   def self.find_popular(options = {} )
