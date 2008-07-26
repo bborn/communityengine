@@ -12,16 +12,10 @@ Module.class_eval do
   end
 end
 
-begin
-  require 'gettext/rails'
-  GetText.locale = "nl" # Change this to your preference language
-  #puts "GetText found!"
-rescue MissingSourceFile, LoadError
-  #puts "GetText not found.  Using English."
-  class ActionView::Base
-    def _(s)
-      s
-    end
+class ActionView::Base
+  def _(s)
+    # just call the globalite localize method on the string
+    s.localize
   end
 end
 
