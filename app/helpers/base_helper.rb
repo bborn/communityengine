@@ -214,9 +214,9 @@ module BaseHelper
     "<li class='#{classes.join(' ')}'>" + link_to( "<span>"+name+"</span>", options.delete(:url), options) + "</li>"
   end
 
-  def format_post_totals(posts)
-    "#{posts.size} posts, How to: #{posts.select{ |p| p.category.eql?(Category.get(:how_to))}.size}, Non How To: #{posts.select{ |p| !p.category.eql?(Category.get(:how_to))}.size}"
-  end
+  # def format_post_totals(posts)
+  #   "#{posts.size} posts, How to: #{posts.select{ |p| p.category.eql?(Category.get(:how_to))}.size}, Non How To: #{posts.select{ |p| !p.category.eql?(Category.get(:how_to))}.size}"
+  # end
   
   def more_comments_links(commentable)
     html = link_to "&raquo; All comments", comments_url(commentable.class.to_s, commentable.to_param)

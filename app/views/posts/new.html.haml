@@ -24,7 +24,7 @@
             \:
           %select{:id=>"post_category_id", :name=>"post[category_id]"}
             -for category in Category.find(:all)
-              %option{:value=>"#{category.id}", :selected => category.eql?(Category.get(:talk)) }= h(category.name)
+              %option{:value=>"#{category.id}"}= h(category.name)
         -else
           = f.hidden_field :category_id
           = f.hidden_field :contest_id

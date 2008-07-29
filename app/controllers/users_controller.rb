@@ -328,7 +328,7 @@ class UsersController < BaseController
       :conditions => ['? <= published_at AND published_at <= ?', @month.beginning_of_month, (@month.end_of_month + 1.day)])    
     
     @estimated_payment = @posts.sum do |p| 
-      p.category.eql?(Category.get(:how_to)) ? 10 : 5
+      7
     end
   end  
   
