@@ -134,12 +134,42 @@ comments: Comentarios
 community_tagline: CommunityEngine es genial!
 #en: contest_was_successfully_created: Contest was successfully created.
 contest_was_successfully_created: Concurso se ha creado correctamente.
+#en: contests: Contests
+contests: Concursos
+#en: country: Country
+country: Pais
 #en: create: Create
 create: Crear
+#en: create_an_account: Create an account
+create_an_account: Crea una cuenta
 #en: create_your_account: Create Your Account
 create_your_account: "Cr\xC3\xA9e su cuenta"
+#en: custom_friendly_local: custom, friendly, local
+custom_friendly_local: adaptable, amigable, localizable
+#en: dashboard: Dashboard
+dashboard: Tablero de instrumentos
 #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {site} here
 dashboard_friends: "Una vez que comienza a a\xC3\xB1adir amigos, podra seguir sus actividades en {site} aqu\xC3\xAD."
+#en: date_created: Date Created
+date_created: "Fecha de creaci\xC3\xB3n"
+#en: date_published: Date Published
+date_published: "Fecha de publicaci\xC3\xB3n"
+#en: delete_this_event: Delete this event
+delete_this_event: Borrar este evento
+#en: description: Description
+description: "Descripci\xC3\xB3n"
+#en: destroy: Destroy
+destroy: Suprimir
+#en: dont_have_an_account: Don't have an account?
+dont_have_an_account: No tiene una cuenta?
+#en: dont_wait_its: Don't wait! It's
+dont_wait_its: No espere! Es
+#en: draft: draft
+draft: borrador
+#en: e_mail: E-mail
+e_mail: E-mail
+#en: e_mail_address: E-mail address
+e_mail_address: "direcci\xC3\xB3n de E-mail"
 #en: edit: Edit
 edit: Editar
 #en: edit_account: Edit account
@@ -156,20 +186,76 @@ editing_category: "Editando categor\xC3\xADa"
 editing_post: Editando entrada
 #en: email_signup_thanks: "Gracias por registrarse! Debe recibir un e-mail de confirmaci\xC3\xB3n en breve: {email}"
 email_signup_thanks: "Gracias por registrarse! Debe recibir un e-mail de confirmaci\xC3\xB3n en breve: {email}"
+#en: end_date: End date
+end_date: "Fecha de finalizaci\xC3\xB3n"
+#en: enter_e_mail_addresses: Enter e-mail addresses
+enter_e_mail_addresses: Ingrese direcciones de e-mail
+#en: enter_your_email_address: "Enter your email address:"
+enter_your_email_address: "Ingrese su direcci\xC3\xB3n de e-mail"
+#en: event_was_successfully_created: Event was successfully created.
+event_was_successfully_created: Evento creado exitosamente.
+#en: events: Events
+events: Eventos
 #en: explore_site: Explore {site}
 explore_site: Explorar {site}
+#en: faq: FAQ
+faq: FAQ
 #en: favorited: favorited
 favorited: marcado como favorito
+#en: featured_writer: Featured Writer
+featured_writer: Escritor principal
+#en: features: Features
+features: "Caracter\xC3\xADsticas"
+#en: female: Female
+female: Mujer
+#en: find_an_expert: Find an Expert
+find_an_expert: Encuentre un experto
+#en: forgot_your_passowrd: Forgot your passowrd?
+forgot_your_passowrd: "\xC2\xBFOlvid\xC3\xB3 su contrase\xC3\xB1a?"
+#en: forgot_your_password: Forgot your password?
+forgot_your_password: "\xC2\xBFOlvid\xC3\xB3 su contrase\xC3\xB1a?"
+#en: forgot_your_username: Forgot your username?
+forgot_your_username: "\xC2\xBFOlvid\xC3\xB3 su nombre de usuario?"
 #en: forums: Forums
 forums: "Conversaci\xC3\xB3n"
+#en: frequency: Frequency
+frequency: Frecuencia
+#en: frequent_asked_questions: Frequent Asked Questions
+frequent_asked_questions: "Preguntas hechas con frecuencia "
+#en: frequently_asked_questions: Frequently Asked Questions
+frequently_asked_questions: "Preguntas hechas con frecuencia "
 #en: friends: Friends
 friends: Amigos
+#en: friendship_could_not_be_created: Friendship could not be created
+friendship_could_not_be_created: La amistad no pudo ser creada
+#en: friendship_request_detail: Friendship request detail
+friendship_request_detail: Detalle de solicitud de amigo
 #en: friendship_requested: Requested friendship with {friend}.
 friendship_requested: "Pidi\xC3\xB3 a la amistad con {friend}."
+#en: gender: Gender
+gender: Sexo
 #en: get_popular: Get popular.
 get_popular: Sea popular!
 #en: get_started_banner: Get started with <a href="/">{site}</a> today!
 get_started_banner: Comience con <a href="/">{site}</a> hoy!
+#en: get_started_invite_some_friends: "Get Started: Invite some friends!"
+get_started_invite_some_friends: "Comience ahora: \xC2\xA1Invite a sus amigos!"
+#en: get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
+get_started_tell_us_about_yourself: "Comience ahora: Contanos de vos"
+#en: get_started_upload_a_profile_photo: "Get Started: Upload a profile photo"
+get_started_upload_a_profile_photo: "Comience ahora: Sub\xC3\xAD una foto al perfil"
+#en: go: Go
+go: Ir
+#en: go_check_your_e_mail: Go check your e-mail!
+go_check_your_e_mail: "Revis\xC3\xA1 tu e-mail"
+#en: go_to_your_profile: Go to your profile
+go_to_your_profile: Ir a tu perfil
+#en: have_an_account_: "Have an account? "
+have_an_account_: "\xC2\xBFTen\xC3\xA9s una cuenta?"
+#en: have_something_to_contribute: Have something to contribute?
+have_something_to_contribute: "\xC2\xBFTen\xC3\xA9s algo para contribuir?"
+#en: help: Help
+help: Ayuda
 #en: home: Home
 home: Inicio
 #en: homepage_banner_download_msg: Download it now and get started
@@ -178,12 +264,32 @@ homepage_banner_download_msg: Descargar ahora y empezar
 homepage_banner_msg: "CommunityEngine es la mejor manera de ir de cero a h\xC3\xA9roe rapid\xC3\xADsimo"
 #en: homepage_banner_signup_prompt: See how it works
 homepage_banner_signup_prompt: "Ver c\xC3\xB3mo funciona"
+#en: homepage_feature_was_successfully_created: Homepage Feature was successfully created.
+homepage_feature_was_successfully_created: "La caracter\xC3\xADstica del homepage fue creada con \xC3\xA9xito."
+#en: html: Html
+html: Html
+#en: inactive: inactive
+inactive: inactivo
+#en: invitation_was_successfully_created: Invitation was successfully created.
+invitation_was_successfully_created: "Invitaci\xC3\xB3n creada satisfactoriamente."
 #en: invite_message: The more people you invite the better {site} becomes.
 invite_message: Cuantas mas personas invite a {site}, mejor.
+#en: invite_some_customers: Invite some customers!
+invite_some_customers: "\xC2\xA1Invit\xC3\xA1 algunos clientes!"
+#en: invite_your_friends_to_join: Invite Your Friends To Join!
+invite_your_friends_to_join: "\xC2\xA1Invit\xC3\xA1 a tus amigos para que se unan!"
 #en: left_a_comment: "left a comment:"
 left_a_comment: "dej\xC3\xB3 un comentario"
+#en: links: Links
+links: Links
+#en: loading_recent_content: Loading recent content...
+loading_recent_content: Cargando contenido reciente...
+#en: location: Location
+location: "Localizaci\xC3\xB3n"
 #en: log_in: Log In
 log_in: "Iniciar sesi\xC3\xB3n"
+#en: log_in_to_leave_a_comment: Log in to leave a comment
+log_in_to_leave_a_comment: "Inici\xC3\xA1 sesi\xC3\xB3n para dejar un comentario"
 #en: log_in_to_site: Log in to {site}
 log_in_to_site: Acceda a {site}
 #en: log_out: Log Out
@@ -192,62 +298,240 @@ log_out: "Cerrar sesi\xC3\xB3n"
 logged_in: "Sesi\xC3\xB3n:"
 #en: logged_into_the_site: logged into the site
 logged_into_the_site: "inicio una sesi\xC3\xB3n"
+#en: login: Login
+login: "Iniciar sesi\xC3\xB3n"
 #en: looking_for_most_x: (looking for {link}?)
 looking_for_most_x: Buscando lo mas {link}?
+#en: male: Male
+male: Hombre
 #en: manage_my: "Manage my:"
 manage_my: "Gestionar mi:"
+#en: manage_posts: Manage Posts
+manage_posts: Administrar posts
+#en: members: Members
+members: Miembros
+#en: more_about_you: More about you
+more_about_you: "M\xC3\xA1s acerca tuyo"
+#en: my_friends: My Friends
+my_friends: Mis amigos
 #en: my_profile: My Profile
 my_profile: Mi perfil
+#en: my_recent_comments: My recent comments
+my_recent_comments: Mis comentarios recientes
+#en: name: Name
+name: Nombre
+#en: navigation_menu_text: Navigation menu text
+navigation_menu_text: "Texto de navegaci\xC3\xB3n del menu"
+#en: need_to_contact_us: Need to contact us?
+need_to_contact_us: "\xC2\xBFNecesit\xC3\xA1s contactarnos?"
+#en: new_ad: New Ad
+new_ad: Nuevo aviso
+#en: new_category: New category
+new_category: "Nueva categor\xC3\xADa"
+#en: new_photo: New photo.
+new_photo: Nueva foto
+#en: new_post: New post
+new_post: Nuevo post
 #en: new_post_for_category: New {category}
 new_post_for_category: Nueva entrada en {category}
+#en: new_post_text: New Post text
+new_post_text: Nuevo post
 #en: no_comments_found: "Lo sentimos, pero no se pudo encontrar ning\xC3\xBAn comentario para ese {type}"
 no_comments_found: "Lo sentimos, pero no se pudo encontrar ning\xC3\xBAn comentario para ese {type}"
+#en: no_tags: No tags
+no_tags: Sin tags
+#en: offering_was_successfully_created: Offering was successfully created.
+offering_was_successfully_created: Oferta creada satisfactoriamente.
+#en: optional: (optional)
+optional: (opcional)
+#en: optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
+optional_keywords_describing_this_post_separated_by_commas: (palabras opcionales que describen este post, separadas por comas)
+#en: password: Password
+password: "Contrase\xC3\xB1a"
 #en: people: People
 people: Gente
+#en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends.
+people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: "Las personas que se suscriban usando tu invitaci\xC3\xB3n ser\xC3\xA1n agregadas automaticamente como tus amigos."
+#en: permanently_delete_this_event: Permanently delete this event?
+permanently_delete_this_event: "\xC2\xBFBorrar este evento?"
+#en: photo_comments: Photo Comments
+photo_comments: Comentarios de la foto
 #en: photo_message: Your profile photo represents you on {site}. You can change it later.
 photo_message: Su foto de perfil lo representa en {site}. La puede cambiar mas tarde.
+#en: photo_was_successfully_created: Photo was successfully created.
+photo_was_successfully_created: Foto creada satisfactoriamente.
 #en: photos: Photos
 photos: Fotos
+#en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
+photos_should_be_x_pixels: La foto debe ser de 300x300 pixels.
+#en: please_log_in: Please log in.
+please_log_in: "Por favor inicie sesi\xC3\xB3n,"
+#en: please_post_something_at_least: Please post something at least...
+please_post_something_at_least: Por favor postee algo al menos...
 #en: plural_posts: "{count} posts"
 plural_posts: "{count} entradas"
 #en: popular: Popular
 popular: popular
 #en: popular_catgory: Popular {name}
 popular_catgory: Popular en {name}
+#en: popular_posts: Popular Posts
+popular_posts: Posts populares
+#en: post_an_event: Post an event
+post_an_event: Postea un evento
 #en: post_created_for_category: Your '{category}' post was successfully created.
 post_created_for_category: Su entrada en '{category}' fue creada.
+#en: postal_code: "Postal code:"
+postal_code: "C\xC3\xB3digo postal"
+#en: posting_tips: Posting tips
+posting_tips: Tips de posteo
+#en: posts: Posts
+posts: Posts
+#en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
+posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Los posts guardados como borrador no aparecer\xC3\xA1n en el blog hasta que los publiques."
 #en: profile: Profile
 profile: Perfil
+#en: profile_comments: Profile Comments
+profile_comments: Comentarios del perfil
+#en: profile_photo: Profile Photo
+profile_photo: Foto del perfil
+#en: published: Published
+published: Publicado
+#en: re_type_your_password_to_confirm: "Re-type your password to confirm:"
+re_type_your_password_to_confirm: "Retipee si contrase\xC3\xB1a para confirmar:"
 #en: recent: Recent
 recent: receiente
+#en: recent_blog_posts: Recent Blog Posts
+recent_blog_posts: "Posts m\xC3\xA1s recientes"
 #en: recent_posts: Recent Posts
 recent_posts: Entradas recientes
+#en: recommended_posts: Recommended Posts
+recommended_posts: Posts recomendados
+#en: related_clippings_all_members: Related Clippings (all members)
+related_clippings_all_members: Recortes relacionados (todos los miembros)
+#en: related_photos_all_members: Related Photos (all members)
+related_photos_all_members: Fotos relacionadas (todos los miembros)
+#en: related_posts: Related Posts
+related_posts: Posts relacionados
+#en: related_tags: Related Tags
+related_tags: Tags relacionados
+#en: remember_me: Remember me
+remember_me: Recordarme
+#en: remember_you_can_always_change_this_later: Remember, you can always change this later.
+remember_you_can_always_change_this_later: "Acordate, siempre pod\xC3\xA9s cambiar esto despu\xC3\xA9s."
+#en: required: (required)
+required: (requerido)
+#en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
+required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Requerido: te vamos a mandar un mail de confirmaci\xC3\xB3n a la direcci\xC3\xB3n que ingreses.)"
+#en: required_you_must_be_at_least__years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
+required_you_must_be_at_least__years_old_to_sign_up: "(Requerido: ten\xC3\xA9s que tener al menos 13 a\xC3\xB1o para suscribirte,)"
+#en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
+required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Requerido: tu nombre de usuario no debe contener numerales, espacios o caracteres especiales.)"
+#en: reset_my_password: Reset my password
+reset_my_password: "Reiniciar mi contrase\xC3\xB1a"
+#en: rss: RSS
+rss: RSS
+#en: rss_feed: RSS feed
+rss_feed: RSS feed
+#en: run: Run
+run: Ejecutar
+#en: save: Save
+save: Guardar
+#en: save_and_continue_to_step_three: Save, and continue to step three
+save_and_continue_to_step_three: Guardar y continuar con el paso tres
+#en: save_changes: Save Changes
+save_changes: Guardar cambios
+#en: save_post_as: "Save post as:"
+save_post_as: "Guardar post como:"
 #en: sb_post_was_deleted: Post '{title}' was deleted.
 sb_post_was_deleted: La entrada '{title}' fue suprimida.
 #en: search_users: Search Users
 search_users: "B\xC3\xBAsqueda de usuarios"
+#en: see_all: SEE ALL
+see_all: VER TODO
+#en: send_invitations: Send Invitations!
+send_invitations: "\xC2\xA1Enviar invitaciones!"
+#en: send_me_my_username: Send me my username
+send_me_my_username: Enviame mi nombre de usuario
+#en: service_could_not_be_deleted: Service could not be deleted.
+service_could_not_be_deleted: El servicio no pudo ser borrado.
+#en: show: Show
+show: Mostrar
 #en: show_category: "{category}"
 show_category: "{category}"
+#en: showing_ad: Showing Ad
+showing_ad: Mostrando aviso
 #en: sign_up: Sign Up!
 sign_up: Registrarse
+#en: sign_up_for_an_account: Sign up for an account.
+sign_up_for_an_account: Suscribase para obtener una cuenta.
 #en: singular_posts: "{count} post"
 singular_posts: "{count} entrada"
 #en: site_members: "{site} members"
 site_members: Miembros de {site}
+#en: skill_was_successfully_created: Skill was successfully created.
+skill_was_successfully_created: Habilidad creada satisfactoriamente.
+#en: skills: Skills
+skills: Habilidades
+#en: skip_this_and_go_to_your_profile: Skip this and go to your profile
+skip_this_and_go_to_your_profile: Saltear esto e ir a tu perfil
+#en: skip_this_step: Skip this step
+skip_this_step: Saltear este paso
 #en: small_profile: "{user} doesn't have much here yet. Stay tuned."
 small_profile: "{user} no tiene mucho aqu\xC3\xAD todav\xC3\xADa. Est\xC3\xA9n atentos."
+#en: sorry_there_was_an_error: Sorry, there was an error.
+sorry_there_was_an_error: Disculpe, ha ocurrido un error.
+#en: sorry_we_dont_recognize_that_email_address: Sorry. We don't recognize that email address.
+sorry_we_dont_recognize_that_email_address: "Disculpe, no reconocemos la direcci\xC3\xB3n de email."
+#en: spread_the_word: Spread the word
+spread_the_word: Separar la palabra
 #en: staff_writers: Featured Writers
 staff_writers: Personal de Escritores
+#en: start_date: Start date
+start_date: Fecha  de comienzo
 #en: started_a_topic: "started a topic:"
 started_a_topic: "public\xC3\xB3 un tema"
+#en: state: State
+state: Provincia
+#en: statistics: Statistics
+statistics: "Estad\xC3\xADsticas"
 #en: stats: Stats
 stats: "estad\xC3\xADsticas"
+#en: status: Status
+status: Estado
+#en: tag_does_not_exists: __localization_missing__
+tag_does_not_exists: __localization_missing__
 #en: tags: Tags
 tags: Etiquetas
+#en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
+tags_are_comma_separated_keywords_that_describe_you: Los tags son una lista de palabras separadas por coma que te describen
+#en: thanks_for_activating_your_account: Thanks for activating your account!
+thanks_for_activating_your_account: "\xC2\xA1Gracias por activar su cuenta!"
 #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
 thanks_youre_now_logged_in: "Gracias! Ahora est\xC3\xA1 conectado."
+#en: the_comment_was_deleted: The comment was deleted.
+the_comment_was_deleted: El comentario fue borrado.
+#en: the_friendship_was_accepted: The friendship was accepted.
+the_friendship_was_accepted: La solicitud de amistad fue aceptada.
+#en: the_friendship_was_denied: The friendship was denied.
+the_friendship_was_denied: La solicitud de amistad fue rechazada.
+#en: the_service_was_deleted: The service was deleted.
+the_service_was_deleted: El servicio fue borrado.
+#en: the_user_was_activated: The user was activated
+the_user_was_activated: El usuario fue activado.
+#en: the_user_was_deleted: The user was deleted.
+the_user_was_deleted: El usuario fue borrado.
 #en: this_is_your_dashboard: This is your dashboard.
 this_is_your_dashboard: Este es su tablero de instrumentos.
+#en: this_topic_is_locked: This topic is locked.
+this_topic_is_locked: "Este tema est\xC3\xA1 bloqueado."
+#en: this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
+this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: "Este perfil de usuario no es p\xC3\xBAblico. Necesitas crear una cuenta e iniciar sesi\xC3\xB3n para poder accederlo."
+#en: time_constrained: Time constrained
+time_constrained: "Restricci\xC3\xB3n de tiempo"
+#en: tips: "Tips:"
+tips: "Tips:"
+#en: title: Title
+title: "T\xC3\xADtulo"
 #en: to_get_recommended_content_on_your_dashboard: to start getting recommended content on your dashboard.
 to_get_recommended_content_on_your_dashboard: para empezar a recibir contenidos recomendados en su tablero de instrumentos.
 #en: to_start_adding_friends: To start adding friends, you can
@@ -256,6 +540,10 @@ to_start_adding_friends: Para agregar amigos,
 top_writers: "m\xC3\xA1s activos escritores"
 #en: topic_deleted: Topic '{topic}' was deleted.
 topic_deleted: El Tema '{topic}' fue suprimido.
+#en: type_your_password: "Type your password:"
+type_your_password: "Ingres\xC3\xA1 tu contrase\xC3\xB1a:"
+#en: uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: Uh oh. We couldn't log you in with the username and password you entered. Try again?
+uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: "No pudimos iniciar sesi\xC3\xB3n con el usuario y la contrase\xC3\xB1a que ingresaste. \xC2\xBFIntentamos de nuevo?"
 #en: update: Update
 update: Actualizar
 #en: update_profile_and_tag_yourself: Update your profile and tag yourself
@@ -264,16 +552,42 @@ update_profile_and_tag_yourself: Actualice su perfil y su etiqueta
 update_your_profile: actualice su perfil
 #en: updated_their_profile: updated their profile
 updated_their_profile: "puso al d\xC3\xADa su perfil"
+#en: upload_an_image_for_your_post: Upload an image for your post
+upload_an_image_for_your_post: "Sub\xC3\xAD una imagen para tu post"
+#en: upload_and_continue_to_step_two: Upload, and continue to step two
+upload_and_continue_to_step_two: Subir y continuar con el paso 2
 #en: uploaded_a_photo: "uploaded a photo:"
 uploaded_a_photo: "public\xC3\xB3 una foto"
+#en: user_e_mail: "User e-mail:"
+user_e_mail: "E-mail del usuario:"
+#en: user_login: "User login:"
+user_login: "Nombre de usuario:"
+#en: username: Username
+username: Nombre de usuario
+#en: users: Users
+users: Usuarios
 #en: users_blog: "{user}'s Blog"
 users_blog: El blog de {user}
 #en: users_photos: "{user}'s Photos"
 users_photos: Las fotos de {user}
+#en: view_all_my_clippings: View all my clippings
+view_all_my_clippings: Ver todos mis recortes
+#en: view_all_my_photos: View all my photos
+view_all_my_photos: Ver todas mis fotos
 #en: view_my: "View my:"
 view_my: "Ver mi:"
+#en: view_my_blog: View my blog
+view_my_blog: Ver mi blog
+#en: view_profile: View profile
+view_profile: Ver perfil
 #en: walkthrough_complete: You've completed the {site} walk-through. Now you can continue exploring!
 walkthrough_complete: Ha completado el tour de {site}. Ahora puede seguir explorando!
+#en: want_to_be_popular: Want to be popular?
+want_to_be_popular: "\xC2\xBFQuer\xC3\xA9s ser popular?"
+#en: want_to_post_in_this_category: Want to post in this category?
+want_to_post_in_this_category: "\xC2\xBFQuer\xC3\xA9s postear en esta categor\xC3\xADa?"
+#en: we_need_you: We need you
+we_need_you: Te necesitamos
 #en: welcome_message: Welcome! {login_link} or {signup_link}
 welcome_message: Bienvenido! {login_link} o {signup_link}
 #en: what_is_popular: What's Popular
@@ -282,11 +596,45 @@ what_is_popular: "Lo m\xC3\xA1s popular"
 whats_fresh: Que hay de nuevo?
 #en: whats_hot: What's Hot
 whats_hot: "Lo m\xC3\xA1s popular"
+#en: whats_popular: What's Popular
+whats_popular: Populares
+#en: why_sign_up: Why Sign up?
+why_sign_up: "\xC2\xBFPorque suscribirse?"
 #en: write_a_blog_post: Write a blog post!
 write_a_blog_post: Escriba una entrada!
+#en: write_a_message: "Write a message:"
+write_a_message: "Escrib\xC3\xAD un mensaje:"
 #en: write_new_post: Write a '{category}' post
 write_new_post: Escriba una entrada de '{category}'
 #en: wrote_a_post: "wrote a post:"
 wrote_a_post: escribio una entrada
+#en: you_can_browse_all_content_and_users_on: You can browse all content and users on
+you_can_browse_all_content_and_users_on: "Pod\xC3\xA9s ver todo el contenido y usuarios en"
+#en: you_cant_delete_that_user: You can't delete that user.
+you_cant_delete_that_user: "No pod\xC3\xA9s borrar ese usuario."
+#en: you_could_tag_yourself: You could tag yourself
+you_could_tag_yourself: "Pod\xC3\xA9s taguearte a vos mismo"
+#en: you_have_no_network_activity_yet: You have no network activity yet.
+you_have_no_network_activity_yet: "No ten\xC3\xA9s actividad en la red todav\xC3\xADa."
+#en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
+you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "Quiz\xC3\xA1s quieras usar el logo de tu compa\xC3\xB1ia o una foto de tus productos"
+#en: your_about_text_goes_here: Your About Text Goes Here
+your_about_text_goes_here: "Tu texto de \"Acerca\" va ac\xC3\xA1"
+#en: your_changes_were_saved: Your changes were saved.
+your_changes_were_saved: Tus cambios fueron guardados.
+#en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
+your_password_has_been_reset_and_emailed_to_you: "Tu contrase\xC3\xB1a fue reseteada y mandada por email."
+#en: your_post_was_deleted: Your post was deleted.
+your_post_was_deleted: Tu post fue borrado.
+#en: your_post_was_successfully_created: Your post was successfully created.
+your_post_was_successfully_created: Tu post fue creado satisfactoriamente.
+#en: your_profile_photo: "Your profile photo:"
+your_profile_photo: "Foto de tu perfil:"
+#en: your_username_was_emailed_to_you: Your username was emailed to you.
+your_username_was_emailed_to_you: Su nombre de usuario le fue enviado por email.
 #en: youre_editing_your_profile: You're editing your profile.
 youre_editing_your_profile: "Est\xC3\xA1 editando su perfil."
+#en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
+youve_been_logged_out_hope_you_come_back_soon: "Ha cerrado sesi\xC3\xB3n. Lo esperamos de vuelta pronto!"
+#en: zippostal_code: "ZIP/Postal code:"
+zippostal_code: "C\xC3\xB3digo postal"
