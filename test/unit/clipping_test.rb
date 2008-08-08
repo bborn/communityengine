@@ -36,8 +36,13 @@ class ClippingTest < Test::Unit::TestCase
   
   def test_should_get_clipping_image
     assert_difference Asset, :count, 4 do
-      c = Clipping.new(:user => users(:quentin), :url => 'http://example.com', :image_url => 'http://www.google.com/intl/en_ALL/images/logo.gif')
-      c.save!
+      c = Clipping.create!(:user => users(:quentin), :url => 'http://example.com', :image_url => 'http://www.google.com/intl/en_ALL/images/logo.gif')
+    end
+  end
+  
+  def test_should_require_valid_image_url
+    assert_no_difference Clipping, :count do
+      c = Clipping.create(:user => users(:quentin), :url => 'http://example.com', :image_url => 'hijack!')    
     end
   end
   

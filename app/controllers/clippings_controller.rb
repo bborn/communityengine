@@ -166,6 +166,7 @@ class ClippingsController < BaseController
     @clipping = Clipping.find(params[:id])
     
     respond_to do |format|
+      @clipping.save!
       if @clipping.update_attributes(params[:clipping])
         @clipping.tag_with(params[:tag_list] || '')     
         format.html { redirect_to user_clipping_url(@user, @clipping) }

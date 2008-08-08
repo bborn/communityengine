@@ -15,9 +15,9 @@ class CommentTest < Test::Unit::TestCase
     assert !comment.can_be_deleted_by(users(:florian))
   end
 
-  # def test_should_generate_commetable_url
-  #   assert_equal "http://localhost:3000/quentin/posts/1-This-is-really-good-stuff#comment_1", comments(:quentins_comment_on_his_own_post).generate_commentable_url
-  # end
+  def test_should_generate_commetable_url
+    assert_equal "http://localhost:3000/quentin/posts/1-Building-communities-is-all-about-love-#comment_1", comments(:quentins_comment_on_his_own_post).generate_commentable_url
+  end
 
 end
   

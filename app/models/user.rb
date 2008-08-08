@@ -406,6 +406,10 @@ class User < ActiveRecord::Base
     # query && ['LOWER(display_name) LIKE :q OR LOWER(login) LIKE :q', {:q => "%#{query}%"}]
     query
   end
+  
+  def commentable_url(comment)
+    user_url(comment.recipient)    
+  end
 
 
   protected
