@@ -115,6 +115,8 @@ CommunityEngine Users have a Role (by default, it's admin, moderator, or member)
 To set a user as an admin, you must manually change his role_id through the database.
 Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar.)
 Admins and moderators can edit and delete other users posts.
+There is a rake task to make an existing user into an admin: rake community_engine:make_admin email=user@foo.com 
+(Pass in the e-mail of the user you'd like to make an admin)
 
 
 ## THEMES ##
