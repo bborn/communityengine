@@ -37,4 +37,4 @@
               %td= post.category.name
               %td= post.tags.any? ? post.tag_list : 'No tags'.l
               %td= post.comments.count
-              %td= post.is_live? ? link_to(:published.l, user_post_path(post.user, post)) : 'draft'.l
+              %td= post.is_live? ? link_to('published'.l, user_post_path(post.user, post)) : 'draft'.l
