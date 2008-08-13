@@ -1,3 +1,4 @@
+#en cancel: Cancel
 cancel: Cancel
 #en: about_site: About {site}
 about_site: "About {site}"
@@ -75,3 +76,5 @@ walkthrough_complete: You've completed the {site} walk-through. Now you can cont
 welcome_message: Welcome! {login_link} or {signup_link}
 #en: write_new_post: Write a '{category}' post
 write_new_post: Write a '{category}' post
+#en: tag_does_not_exists: The tag {tag} does not exist
+tag_does_not_exists: The tag {tag} does not exist

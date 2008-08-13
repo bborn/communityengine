@@ -10,6 +10,8 @@ all_photos_tagged: All photos tagged {tag_name}
 all_posts_tagged: All posts tagged {tag_name}
 #en: all_users_tagged: All users tagged {tag_name}
 all_users_tagged: All users tagged {tag_name}
+#en: cancel: Cancel
+cancel: Cancel
 #en: comment_save_error: Your comment couldn't be saved.
 comment_save_error: Your comment couldn't be saved.
 #en: community_tagline: CommunityEngine Rocks!

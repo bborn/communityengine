@@ -88,7 +88,7 @@ body_text: Texto
 browse_all_members: navegar por todos los miembros.
 #en: by_looking_at_the: by looking at the
 by_looking_at_the: mirando al
-#en: cancel: __localization_missing__
+#en: cancel: Cancel
 cancel: Cancelar
 #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
 cancel_and_go_back_to_my_posts: cancelar y regresar a mis entradas
@@ -310,6 +310,12 @@ manage_my: "Gestionar mi:"
 manage_posts: Administrar posts
 #en: members: Members
 members: Miembros
+#en: metro_area: "Metro Area:"
+metro_area: Localidad
+#en: metro_area_was_successfully_created: MetroArea was successfully created.
+metro_area_was_successfully_created: Localidad creada satisfactoriamente.
+#en: metro_areas: Metro areas
+metro_areas: Localidades
 #en: more_about_you: More about you
 more_about_you: "M\xC3\xA1s acerca tuyo"
 #en: my_friends: My Friends
@@ -460,6 +466,8 @@ show: Mostrar
 show_category: "{category}"
 #en: showing_ad: Showing Ad
 showing_ad: Mostrando aviso
+#en: showing_metro_area_details: Showing Metro Area Details
+showing_metro_area_details: Mostrando detalles de la localidad
 #en: sign_up: Sign Up!
 sign_up: Registrarse
 #en: sign_up_for_an_account: Sign up for an account.
@@ -499,7 +507,7 @@ stats: "estad\xC3\xADsticas"
 #en: status: Status
 status: Estado
 #en: tag_does_not_exists: __localization_missing__
-tag_does_not_exists: __localization_missing__
+tag_does_not_exists: Etiquetta no existe
 #en: tags: Tags
 tags: Etiquetas
 #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
