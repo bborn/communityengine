@@ -13,6 +13,7 @@ Requirements:
       RedCloth
       rake 0.8.1
       haml
+      aws-s3 (if using s3 for photos)
 
 GETTING COMMUNITY ENGINE RUNNING
 ==================================================================
