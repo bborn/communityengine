@@ -2,7 +2,7 @@
   %h3 New category
 
   - form_for(:category, :url => categories_path, :html => {:class => "MainForm"}) do |f|
-    %label= :name.l
+    %label= "Name".l
     = f.text_field :name
     %p= submit_tag :create.l
 

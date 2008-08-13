@@ -29,10 +29,14 @@ friendship_requested: Requested friendship with {friend}.
 get_started_banner: Get started with <a href="/">{site}</a> today!
 #en: invite_message: The more people you invite the better {site} becomes.
 invite_message: The more people you invite the better {site} becomes.
+#en: invite_a_friend: Invite a friend to {site}
+invite_a_friend: Invite a friend to {site}
 #en: log_in: Log In
 log_in: Log In
 #en: log_in_to_site: Log in to {site}
 log_in_to_site: Log in to {site}
+#en looking_for_most_x: Looking for {link}
+looking_for_most_x: Looking for {link}?
 #en: new_post_for_category: New {category}
 new_post_for_category: New {category}
 #en: no_comments_found: Sorry, we couldn't find any comments for that {type}
