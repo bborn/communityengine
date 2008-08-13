@@ -10,9 +10,9 @@
             = comment.created_at.strftime("%B %d, %Y")
       %li.addfriend
         %a{"href"=>"#"}
-          Add as friend
+          ="Add as friend".l
       -if ( comment.can_be_deleted_by(current_user) )
-        %li.delete=link_to_remote("Delete", {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )
+        %li.delete=link_to_remote("Delete".l, {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )
         
   / vcard
   .entry-content= comment.comment

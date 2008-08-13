@@ -506,7 +506,7 @@ statistics: "Estad\xC3\xADsticas"
 stats: "estad\xC3\xADsticas"
 #en: status: Status
 status: Estado
-#en: tag_does_not_exists: __localization_missing__
+#en: tag_does_not_exists: The tag {tag} does not exist
 tag_does_not_exists: Etiquetta no existe
 #en: tags: Tags
 tags: Etiquetas

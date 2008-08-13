@@ -1,14 +1,14 @@
 - if current_user && current_user.admin?
   .box.first_alt.alt
     %h3
-      Admin Controls
+      ="Admin Controls".l
     = link_to( "&raquo; #{"Assume this user's ID".l}", assume_user_path(@user) )
     %br/
     = link_to( "&raquo; #{'Delete this user'.l}", user_path(@user), {:method => :delete, :confirm => 'Are you sure you want to permanently delete this user?'.l} )
     %br/
     = link_to( "&raquo; #{'Toggle'.l} #{AppConfig.featured_writer_label}", toggle_featured_user_path(@user), {:method => :put} )
     %br/
-    = link_to( "&raquo; #{'Assign role'.l}: #{@user.moderator? ? 'member' : 'moderator'}", toggle_moderator_user_path(@user), {:method => :put} )
+    = link_to( "&raquo; #{'Assign role'.l}: #{@user.moderator? ? 'member'.l : 'moderator'.l}", toggle_moderator_user_path(@user), {:method => :put} )
 
 #profile_details.box.hentry
   %h3

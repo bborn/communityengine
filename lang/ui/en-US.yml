@@ -4,7 +4,7 @@ cancel: Cancel
 about_site: "About {site}"
 #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
 account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
-#en: all_clippings_tagged: All clippings tagged {tag_name}
+#en: all_clippings_tagged: "All clippings tagged {tag_name}"
 all_clippings_tagged: All clippings tagged {tag_name}
 #en: all_photos_tagged: All photos tagged {tag_name}
 all_photos_tagged: All photos tagged {tag_name}
@@ -12,8 +12,10 @@ all_photos_tagged: All photos tagged {tag_name}
 all_posts_tagged: All posts tagged {tag_name}
 #en: all_users_tagged: All users tagged {tag_name}
 all_users_tagged: All users tagged {tag_name}
+#en: comments_count: "{count} pluralize{{count}, comment}"
+comments_count: "{count} pluralize{{count}, comment}"
 #en: comment_save_error: Your comment couldn't be saved.
-comment_save_error: Your comment couldn't be saved.
+comment_save_error: "Your comment couldn't be saved."
 #en: community_tagline: CommunityEngine Rocks!
 community_tagline: CommunityEngine Rocks!
 #en: create: Create
@@ -42,6 +44,12 @@ looking_for_most_x: Looking for {link}?
 new_post_for_category: New {category}
 #en: no_comments_found: Sorry, we couldn't find any comments for that {type}
 no_comments_found: Sorry, we couldn't find any comments for that {type}
+#en: notify_of_friend_requests: "Notify me when {site} members request friendship.".l 
+notify_of_friend_requests: "Notify me when {site} members request friendship."
+#en: notify_of_comments: "Notify me when {site} members comment on my profile, blog, or photos."
+notify_of_comments: "Notify me when {site} members comment on my profile, blog, or photos."
+#en: notify_email_updates: "Send me occasional news and updates from the {site} Team."
+notify_email_updates: "Send me occasional news and updates from the {site} Team."
 #en: photo_message: Your profile photo represents you on {site}. You can change it later.
 photo_message: Your profile photo represents you on {site}. You can change it later.
 #en: plural_posts: "{count} posts"

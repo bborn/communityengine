@@ -1,59 +1,53 @@
 - form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
   .box.alt.first_alt
-    %h3 You're editing your account.
+    %h3="You're editing your account.".l
     = link_to "Edit your user profile?", edit_user_path(@user)
 
   = error_messages_for :user
 
   .yui-b.box
-    %h3 Username
+    %h3="Username".l
     = text_field :user, :login, :size => "28"
 
-    %h3 E-mail Address
+    %h3="E-mail Address".l
     = text_field :user, :email, :size => "28"
 
-    %h3 Password
+    %h3="Password".l
     = password_field :user, :password, :size => "28"
 
-    %label Confirm Password
+    %label="Confirm Password".l
     = password_field :user, :password_confirmation, :size => "28"
 
   #yui-main
     .yui-b.box
-      %h3 E-mail Notification
+      %h3="E-mail Notification".l
 
       %fieldset
         %label 
           = check_box :user, :notify_friend_requests        
-          Notify me when
-          = AppConfig.community_name
-          members request friendship.
-
+          =:notify_of_friend_requests.l :site => AppConfig.community_name
+          
         %label
           = check_box :user, :notify_comments         
-          Notify me when
-          = AppConfig.community_name
-          members comment on my profile, blog, or photos.
-
-
+          = :notify_of_comments.l :site => AppConfig.community_name
+          
         %label
           = check_box :user, :notify_community_news
-          Send me occasional news and updates from the
-          = AppConfig.community_name
-          Team.
+          =:notify_email_updates.l :site => AppConfig.community_name
+          
 
-      %h3 Profile Privacy
+      %h3="Profile Privacy".l
 
       %fieldset
         %label
           = check_box :user, :profile_public
-          Make my profile public
+          ="Make my profile public".l
           %br
           %em
-            When checked, your profile will be visible to anyone.
+            ="When checked, your profile will be visible to anyone.".l
           %br
           %em
-            When unchecked, your profile will only be visible to people who are logged in to
+            ="When unchecked, your profile will only be visible to people who are logged in to".l
             = "#{AppConfig.community_name}."
-      %p= submit_tag 'Save Changes'  
+      %p= submit_tag 'Save Changes'.l  
             

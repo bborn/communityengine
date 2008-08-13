@@ -1,7 +1,7 @@
 - form_tag user_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
   .box.alt.first_alt
     %h3="You're editing your profile.".l
-    = link_to "&raquo; Edit your account settings instead?", edit_account_user_path(@user)
+    = link_to "&raquo; " + "Edit your account settings instead?".l, edit_account_user_path(@user)
   
   = error_messages_for :user
 
@@ -45,7 +45,7 @@
         = text_area :user, :description, :class => "rich_text_editor", :style => "width:100%"
         
       .box.alt
-        ="Tips:".l
+        ="Tips".l + ":"
         = render :partial => 'shared/bio_help'
         Feel free to embed images or videos (
         %a{"href"=>"faq#images_and_flash", "target"=>"new"} How do I do that?

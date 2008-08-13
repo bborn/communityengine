@@ -75,9 +75,9 @@ module BaseHelper
   
 
   def pagination_info_for(paginator, options = {})
-    options = {:prefix => "Showing", :connector => '-', :suffix => ""}.merge(options)
+    options = {:prefix => "Showing".l, :connector => '-', :suffix => ""}.merge(options)
     window = paginator.current.first_item().to_s + options[:connector] + paginator.current.last_item().to_s
-    options[:prefix] + " <strong>#{window}</strong> of #{paginator.item_count} " + options[:suffix]
+    options[:prefix] + " <strong>#{window}</strong> " + "of".l + " #{paginator.item_count} " + options[:suffix]
   end
 
   def pagination_links_for(paginator, options = {}, html_options = {:single_class_name => "single", :grouped_class_name => "grouped", :active_class_name => "active"} )
@@ -219,9 +219,9 @@ module BaseHelper
   # end
   
   def more_comments_links(commentable)
-    html = link_to "&raquo; All comments", comments_url(commentable.class.to_s, commentable.to_param)
+    html = link_to "&raquo; " + "All comments".l, comments_url(commentable.class.to_s, commentable.to_param)
     html += "<br />"
-		html += link_to "&raquo; Comments RSS", formatted_comments_url(commentable.class.to_s, commentable.to_param, :rss)
+		html += link_to "&raquo; " + "Comments RSS".l, formatted_comments_url(commentable.class.to_s, commentable.to_param, :rss)
 		html
   end
   
@@ -334,7 +334,7 @@ module BaseHelper
     if date.to_date.eql?(Time.now.to_date)
       display = date.strftime("%l:%M%p").downcase
     elsif date.to_date.eql?(Time.now.to_date - 1)
-      display = "Yesterday"
+      display = "Yesterday".l
     else
       display = date.strftime("%B %d")
     end
