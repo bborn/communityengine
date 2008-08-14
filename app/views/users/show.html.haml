@@ -51,7 +51,7 @@
             - else
               %strong= "To".l+": #{link_to comment.recipient.login, user_path(comment.recipient)}"
               %br
-              %strong=" On".l+": #{link_to comment.commentable_name, commentable_url} (#{comment.commentable_type})"
+              %strong= "On".l+": #{link_to comment.commentable_name, commentable_url} (#{comment.commentable_type})"
           %dd
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
                         
