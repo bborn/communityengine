@@ -132,7 +132,7 @@ class User < ActiveRecord::Base
   end  
     
   def self.find_featured
-    self.find(:all, :conditions => "featured_writer = 1")
+    self.find(:all, :conditions => ["featured_writer = ?", 1])
   end
   
   def this_months_posts

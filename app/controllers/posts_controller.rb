@@ -46,9 +46,6 @@ class PostsController < BaseController
     end
   end
   
-  def popular
-    @posts = Post.find(:all, :conditions => "published_at > '#{1.days.ago.to_s :db}'", :order => "view_count DESC")
-  end
     
   # GET /posts/1
   # GET /posts/1.xml
@@ -207,7 +204,7 @@ class PostsController < BaseController
   end
   
   def featured
-    @pages, @posts = paginate :posts, :order => "posts.published_at DESC", :conditions => ["users.featured_writer = ?", true], :include => :user
+    @pages, @posts = paginate :posts, :order => "posts.published_at DESC", :conditions => ["users.featured_writer = ?", 1], :include => :user
     @featured_writers = User.find_featured    
         
     @rss_title = "#{AppConfig.community_name} Featured Posts"

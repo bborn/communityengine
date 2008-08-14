@@ -3,14 +3,14 @@
 .yui-b
 
   .box.alt.first_alt
-    %h3 Featured Writers
+    %h3=:staff_writers.l
     - @featured_writers.each do |user|
       = render :partial => "users/sidebar_user", :locals => {:user => user}
 
 #yui-main
   .yui-b
     .box.hfeed
-      %h3 Featured Posts
+      %h3="Featured Posts".l
 
       .pagination
         =pagination_links
