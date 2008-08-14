@@ -1,14 +1,14 @@
 - if current_user && current_user.admin?
   .box.first_alt.alt
     %h3
-      Admin Controls
-    = link_to( "&raquo; Assume this user's ID", assume_user_path(@user) )
+      ="Admin Controls".l
+    = link_to( "&raquo; #{"Assume this user's ID".l}", assume_user_path(@user) )
     %br/
-    = link_to( "&raquo; Delete this user", user_path(@user), {:method => :delete, :confirm => 'Are you sure you want to permanently delete this user?'} )
+    = link_to( "&raquo; #{'Delete this user'.l}", user_path(@user), {:method => :delete, :confirm => 'Are you sure you want to permanently delete this user?'.l} )
     %br/
-    = link_to( "&raquo; Toggle #{AppConfig.featured_writer_label}", toggle_featured_user_path(@user), {:method => :put} )
+    = link_to( "&raquo; #{'Toggle'.l} #{AppConfig.featured_writer_label}", toggle_featured_user_path(@user), {:method => :put} )
     %br/
-    = link_to( "&raquo; Assign role: #{@user.moderator? ? 'member' : 'moderator'}", toggle_moderator_user_path(@user), {:method => :put} )
+    = link_to( "&raquo; #{'Assign role'.l}: #{@user.moderator? ? 'member'.l : 'moderator'.l}", toggle_moderator_user_path(@user), {:method => :put} )
 
 #profile_details.box.hentry
   %h3
@@ -24,26 +24,26 @@
       = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid")
       %br
       No profile photo?
-      = link_to "Click here to upload one!", edit_user_path(@user)
+      = link_to "Click here to upload one!".l, edit_user_path(@user)
     - else
       = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
 
   - if current_user and current_user.can_request_friendship_with(@user)
     = add_friend_link(@user)
 
-  %h3 My Details
+  %h3="My Details".l
   .vcard.author
     %ul
       %li.update
         %a{:href=>"#{user_path(@user)}", :rel=>"bookmark"}
           %abbr.published{:title=>"#{@user.created_at}"}
-            = @user.created_at.strftime("Member since: %m/%d/%y")          
+            = "Member since".l + @user.created_at.strftime(": %m/%d/%y")          
       %li.view
-        profile views
+        ="profile views".l
         = "(#{@user.view_count})"
       - if @user.offerings.any?
-        %li.skills= "My skills: #{@user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')}"
+        %li.skills= "My skills".l+": #{@user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')}"
       - if @user.tags.any?
-        %li.tags= "My tags: #{@user.tags.collect{|t| link_to t.name, tag_url(t.name) }.join(", ")}"
+        %li.tags= "My tags".l+": #{@user.tags.collect{|t| link_to t.name, tag_url(t.name) }.join(", ")}"
       - if @user.metro_area
         %li.geo= link_to( @user.full_location, users_path(:metro_area_id => @user.metro_area_id, :state_id => @user.state_id, :country_id => @user.country_id ) ) 

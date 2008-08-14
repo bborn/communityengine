@@ -23,7 +23,7 @@ class StatisticsController < BaseController
     @posts = Post.find(:all, 
       :conditions => ['? <= posts.published_at AND posts.published_at <= ? AND users.featured_writer = ?', Time.now.beginning_of_month, (Time.now.end_of_month + 1.day), true], :include => :user)        
     @estimated_payment = @posts.sum do |p| 
-      p.category.eql?(Category.get(:how_to)) ? 10 : 5
+      7
     end
 
     

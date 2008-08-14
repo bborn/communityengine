@@ -145,7 +145,7 @@ class ClippingsController < BaseController
     respond_to do |format|
       if @clipping.save!
         @clipping.tag_with(params[:tag_list] || '')     
-        flash[:notice] = 'Clipping was successfully created.'
+        flash[:notice] = 'Clipping was successfully created.'.l
         format.html { 
           unless params[:user_id]
             redirect_to_url(@clipping.url) rescue redirect_to user_clipping_url(@user, @clipping) 
@@ -166,6 +166,7 @@ class ClippingsController < BaseController
     @clipping = Clipping.find(params[:id])
     
     respond_to do |format|
+      @clipping.save!
       if @clipping.update_attributes(params[:clipping])
         @clipping.tag_with(params[:tag_list] || '')     
         format.html { redirect_to user_clipping_url(@user, @clipping) }

@@ -19,7 +19,7 @@
         %label#monitor_label{"for"=>"monitor_checkbox"}
           
           = "Watch#{@monitoring ? 'ing' : ''}"
-          = _('topic')
+          = 'topic'.l
         = hidden_field_tag '_method', 'delete' if @monitoring
         = submit_tag :Set, :id => 'monitor_submit'
         
@@ -35,13 +35,13 @@
   %h3#topic-title
     = h @topic.title
     - if @topic.locked?
-      %span= _('(locked)')
+      %span= '(locked)'.l
     - if logged_in?
       %span#topic_mod{"style"=>"display:none;"}
         - if @topic.editable_by?(current_user)
-          = link_to(_('edit'), edit_forum_topic_path(@forum, @topic), :class => "utility")
+          = link_to('edit'.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
           |
-          = link_to(_('delete'), forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => _('Delete this topic forever?'))
+          = link_to('delete'.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => 'Delete this topic forever?'.l)
       %script{:type => "text/javascript"}
         $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
         $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
@@ -52,7 +52,7 @@
     = ", Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t.name), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
   
   %ul.flat.talking
-    %li.label= "#{_('Voices')}:"
+    %li.label= "#{'Voices'.l}:"
     - @voices.each do |user|
       %li= link_to h(user.display_name), user_path(user)
 
@@ -84,7 +84,7 @@
             %p
               %span.edit
                 = ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif"
-                = link_to_remote(_('Edit post'), {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, {:class => "utility"})
+                = link_to_remote('Edit post'.l, {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, {:class => "utility"})
               - if admin? && !post.user.admin?
                 %div{"class"=>"make-moderator-#{post.user_id}"}
                   = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
@@ -101,10 +101,10 @@
     - if @topic.locked?
       %p
         = image_tag "clearbits/lock.gif", :class => "icon grey", :title => "Topic locked", :plugin => "community_engine"
-        %label= _('This topic is locked.')
+        %label= 'This topic is locked.'.l
     - else
       %p
-        = link_to_function _('Reply to topic'), "ReplyForm.init()", :class => "utility"
+        = link_to_function 'Reply to topic'.l, "ReplyForm.init()", :class => "utility"
       #reply.editbox
         .container
           = content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply]
@@ -116,13 +116,13 @@
                   = f.text_area :body, :style => "width: 99%"
                 %td{"style"=>"vertical-align:top;"}
                   = submit_tag _("Save Reply")
-                  %span.button_or= "or #{link_to_function _('cancel'), "$('reply').hide()"}"
+                  %span.button_or= "or #{link_to_function 'cancel'.l, "$('reply').hide()"}"
               %tr
                 %td{"style"=>"vertical-align: bottom; padding-bottom:15px;"}
 
     = javascript_tag "$('reply').hide();"
   - else
-    %p= link_to _('Log in to reply to this topic'), new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
+    %p= link_to 'Log in to reply to this topic'.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
 
 .box.alt
   = link_to _("Forums"), forum_home_path

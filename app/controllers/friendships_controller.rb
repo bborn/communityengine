@@ -22,7 +22,7 @@ class FriendshipsController < BaseController
  
     respond_to do |format|
       if @friendship.update_attributes(:friendship_status => FriendshipStatus[:denied]) && @friendship.reverse.update_attributes(:friendship_status => FriendshipStatus[:denied])
-        flash[:notice] = "The friendship was denied."
+        flash[:notice] = "The friendship was denied.".l
         format.html { redirect_to denied_user_friendships_path(@user) }
       else
         format.html { render :action => "edit" }
@@ -36,7 +36,7 @@ class FriendshipsController < BaseController
  
     respond_to do |format|
       if @friendship.update_attributes(:friendship_status => FriendshipStatus[:accepted]) && @friendship.reverse.update_attributes(:friendship_status => FriendshipStatus[:accepted])
-        flash[:notice] = "The friendship was accepted."
+        flash[:notice] = "The friendship was accepted.".l
         format.html { 
           redirect_to accepted_user_friendships_path(@user) 
         }
@@ -108,12 +108,12 @@ class FriendshipsController < BaseController
       if @friendship.save && reverse_friendship.save
         UserNotifier.deliver_friendship_request(@friendship) if @friendship.friend.notify_friend_requests?
         format.html {
-          flash[:notice] = "Requested friendship with #{@friendship.friend.login}."
+          flash[:notice] = :friendship_requested.l_with_args(:friend => @friendship.friend.login) 
           redirect_to accepted_user_friendships_path(@user)
         }
         format.js { render( :inline => "Requested friendship with #{@friendship.friend.login}." ) }        
       else
-        flash.now[:error] = 'Friendship could not be created'
+        flash.now[:error] = 'Friendship could not be created'.l
         @users = User.find(:all)
         format.html { redirect_to user_friendships_path(@user) }
         format.js { render( :inline => "Friendship request failed." ) }                

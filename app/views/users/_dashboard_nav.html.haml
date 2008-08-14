@@ -2,20 +2,20 @@
   .yui-u.first
     %h3 View my:
     %ul
-      %li=link_to 'Profile', user_path(@user)  
-      %li=link_to 'Blog', user_posts_path(@user)
-      %li=link_to 'Photos', user_photos_path(@user)
-      %li=link_to 'Clippings', user_clippings_path(@user)
-      %li=link_to 'Friends', accepted_user_friendships_path(@user)
+      %li=link_to 'Profile'.l, user_path(@user)  
+      %li=link_to 'Blog'.l, user_posts_path(@user)
+      %li=link_to 'Photos'.l, user_photos_path(@user)
+      %li=link_to 'Clippings'.l, user_clippings_path(@user)
+      %li=link_to 'Friends'.l, accepted_user_friendships_path(@user)
 
   .yui-u
     %h3 Manage my:
     %ul
-      %li=link_to 'Profile', edit_user_path(@user)
-      %li=link_to 'Account settings', edit_account_user_path(@user)
-      %li=link_to 'Blog posts', manage_user_posts_path(@user)                
+      %li=link_to 'Profile'.l, edit_user_path(@user)
+      %li=link_to 'Account settings'.l, edit_account_user_path(@user)
+      %li=link_to 'Blog posts'.l, manage_user_posts_path(@user)                
       -if current_user.admin?
-        %li=link_to 'Admin dashboard', admin_dashboard_path
+        %li=link_to 'Admin dashboard'.l, admin_dashboard_path
 
 .box.alt
   %h3 Stats

@@ -10,11 +10,11 @@
       </td>
       <td style="vertical-align:top;">
 
-        <%= link_to(_('delete post'), sb_post_path(:forum_id => @post.topic.forum, :topic_id => @post.topic, :id => @post, :page => params[:page]), 
+        <%= link_to('delete post'.l, sb_post_path(:forum_id => @post.topic.forum, :topic_id => @post.topic, :id => @post, :page => params[:page]), 
               :class => "utility", :method => :delete, :confirm => "Delete this post?  Are you sure?") %>  
 
         <%= ajax_spinner_for "editbox", "spinner_black.gif" %>
-        <%= submit_tag _('Save Changes'), :or => link_to_function(_('cancel'), "EditForm.cancel()") %>
+        <%= submit_tag 'Save Changes'.l, :or => link_to_function('cancel'.l, "EditForm.cancel()") %>
 
       </td>
     </tr>

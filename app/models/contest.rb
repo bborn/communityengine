@@ -11,7 +11,7 @@ class Contest < ActiveRecord::Base
   end
   
   def self.get_active
-    Contest.find(:first, :conditions => "begin < '#{Time.now.to_s :db}' and end > '#{Time.now.to_s :db}'", :order => 'created_at desc')
+    Contest.find(:first, :conditions => ["begin < ? AND end > ?", Time.now, Time.now], :order => 'created_at desc')
   end
   
   def active?

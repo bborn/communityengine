@@ -16,7 +16,7 @@
         views
         = "(#{post.view_count})"
       %li.comments
-        = link_to "comments (#{post.comments.size})", user_post_path(post.user, post)+'#comments'      
+        = link_to "Comments".l+" (#{post.comments.count})", user_post_path(post.user, post)+'#comments'      
       - if current_user and current_user.can_request_friendship_with(post.user)
         %li.addfriend= add_friend_link(post.user)
 

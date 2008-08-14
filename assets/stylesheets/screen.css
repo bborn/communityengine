@@ -39,7 +39,10 @@ alt blue dark #94beff
 /*  14. USER LIST                                         */
 /*========================================================*/
 
-
+span.localized {
+  font-style: italic;
+  color: red;
+}
 /* =============================================== */
 /* 1. UNIVERSAL THINGS                             */
 /* =============================================== */
@@ -916,9 +919,6 @@ div.progressBar div.background {
     margin: 0 0 0; }
 
 
-.poll_excerpt {
-  padding-left: 20px;
-  background: url(/images/icons/poll.png) no-repeat left; }
 table.poll {
   width: 100%;
   margin-bottom: 3em; }

@@ -5,7 +5,7 @@ class PhotosController < BaseController
   before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow, :swfupload]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
 
-  skip_before_filter :verify_authenticity_token, :only => :create #because the TinyMCE image uploader can't provide the auth token
+  skip_before_filter :verify_authenticity_token, :only => [:create, :swfupload] #because the TinyMCE image uploader can't provide the auth token
   
   session :cookie_only => false, :only => :swfupload  
   
@@ -109,7 +109,7 @@ class PhotosController < BaseController
         @photo.tag_with(params[:tag_list] || '') 
         #start the garbage collector
         GC.start        
-        flash[:notice] = 'Photo was successfully created.'
+        flash[:notice] = 'Photo was successfully created.'.l
         
         format.html { 
           render :action => 'inline_new', :layout => false and return if params[:inline]
@@ -185,23 +185,6 @@ class PhotosController < BaseController
   def slideshow
     @xml_file = formatted_user_photos_url( {:user_id => @user, :format => :xml}.merge(:tag_name => params[:tag_name]) )
     render :action => 'slideshow'
-  end
-    
-  # protected
-  # def require_fake_session
-  #   raise session[:user].inspect
-  #   fake_session = ActionController::Base.session
-  #   @user = Marshal.load(Base64.decode64(fake_session.data))[:user]
-  #   raise @user.inspect
-  # 
-  #   begin
-  #     fake_session = ActionController::Base.session_store.find_session(params[:_session_id])
-  #     @user = Marshal.load(Base64.decode64(fake_session.data))[:user]
-  #     return @user
-  #   rescue
-  #     render :nothing => true, :status => 500 and return false
-  #   end    
-  # end
-  
+  end  
   
 end

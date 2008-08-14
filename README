@@ -13,6 +13,7 @@ Requirements:
       RedCloth
       rake 0.8.1
       haml
+      aws-s3 (if using s3 for photos)
 
 GETTING COMMUNITY ENGINE RUNNING
 ==================================================================
@@ -27,7 +28,7 @@ GETTING COMMUNITY ENGINE RUNNING
     # and unpack it into /vendor/plugins/community_engine
 
     # Using git, make a shallow clone of the community_engine repository:
-    $ git clone --depth 1 git@github.com:bborn/communityengine.git vendor/plugins/community_engine
+    $ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
 
     # If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule: 
     # http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
@@ -115,6 +116,8 @@ CommunityEngine Users have a Role (by default, it's admin, moderator, or member)
 To set a user as an admin, you must manually change his role_id through the database.
 Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar.)
 Admins and moderators can edit and delete other users posts.
+There is a rake task to make an existing user into an admin: rake community_engine:make_admin email=user@foo.com 
+(Pass in the e-mail of the user you'd like to make an admin)
 
 
 ## THEMES ##
@@ -132,7 +135,32 @@ To create a theme:
 3. Customize your theme. For example: you can create a /RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml to override the default one, and pull in your theme's styleshees.
 To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
 
+Note: when running in production mode, theme assets (images, js, and stylesheets) are automatically copied to you public directory (avoiding a Rails request on each image load). 
+
 = stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
+
+
+## LOCALIZATION ##
+Localization is done via an extended version of Globalite (http://code.google.com/p/globalite/). 
+Strings and Symbols respond to the .l method that allows for a look up of the symbol (or a symbolized version of the string) into a strings file which is stored in yaml. 
+For complex strings with substitutions, Symbols respond to the .l method with a hash passed as an argument, for example: 
+
+  :welcome.l :name => current_user.name
+  
+And in your language file you'd have:
+
+  welcome: "Welcome {name}"
+
+To customize the language, or add a new language create a new yaml file in RAILS_ROOT/lang/ui.
+The name of the file should be LANG-LOCALE.yml (e.g. en-US.yml or es-PR)
+The language only file (es.yml) will support all locales.
+
+To wrap all localized strings in a <span> that shows their localization key, put this in your environment.rb (don't forget to take it out in production!):
+
+    Globalite.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
+  
+Note, this will effect the look and feel of buttons. You can highlight what is localized by using the span.localized style (look in screen.css)
+
 
 
 ## Other notes ##
@@ -150,8 +178,14 @@ You can also override CommunityEngine's controllers by creating identically-name
   - make sure you have upgraded to the Engines 2.1 plugin, and modified your environment.rb to use Rails 2.1.
 
 
+# Contributors - Thanks! :)
+
+Bryan Kearney - localization
+
+
+
 # Todo
-- Track down "<RangeError ... is a recycled object>" warnings on tests (anyone know where that's coming from?)
+- Track down "<RangeError ... is recycled object>" warnings on tests (anyone know where that's coming from?)
 
 
 # Bug tracking is via Lighthouse: http://communityengine.lighthouseapp.com

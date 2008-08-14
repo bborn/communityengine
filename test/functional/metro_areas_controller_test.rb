@@ -35,11 +35,11 @@ class MetroAreasControllerTest < Test::Unit::TestCase
     assert_redirected_to metro_area_path(assigns(:metro_area))
   end
 
-  def test_should_create_metro_area_without_country
+  def test_should_not_create_metro_area_without_country
     login_as :admin
     assert_no_difference MetroArea, :count do
       post :create, :metro_area => {:name => "Dusseldorf" } 
-      assert assigns(:metro_area).errors.on(:country)
+      assert assigns(:metro_area).errors.on(:country_id)
       assert_response :success
     end
   end

@@ -10,7 +10,8 @@ CommunityEngine.SwfUpload = Class.create({
 		  file_queue_error_handler : this.fileQueueError.bind(this),
 		  file_dialog_complete_handler : this.fileDialogComplete.bind(this),
 			file_dialog_start_handler: this.fileDialogStart.bind(this),
-		  upload_progress_handler : this.uploadProgress,
+			upload_start_handler:   this.uploadStart.bind(this),
+		  upload_progress_handler : this.uploadProgress.bind(this),
 		  upload_error_handler : this.uploadError.bind(this),
 		  upload_success_handler : this.uploadSuccess.bind(this),
 		  upload_complete_handler : this.uploadComplete.bind(this),
@@ -61,18 +62,24 @@ CommunityEngine.SwfUpload = Class.create({
 		} catch (ex) { this.swfu.debug(ex); }
 	},
 	
+	uploadStart: function(fileObj){
+		var progress = new FileProgress(fileObj,  this.swfu.customSettings.upload_target);		
+		progress.SetStatus("Uploading...");
+		progress.ToggleCancel(true, this.swfu, fileObj.id);			
+	},
+	
 	uploadProgress: function(fileObj, bytesLoaded) {
 		try {
 			var percent = Math.ceil((bytesLoaded / fileObj.size) * 100)
-			var progress = new FileProgress(fileObj,  this.customSettings.upload_target);
+			var progress = new FileProgress(fileObj,  this.swfu.customSettings.upload_target);
 			progress.SetProgress(percent);
 			if (percent === 100) {
 				progress.SetStatus("Creating thumbnail...");
 				progress.ToggleCancel(false);
-				progress.ToggleCancel(true, this, fileObj.id);
+				progress.ToggleCancel(true, this.swfu, fileObj.id);
 			} else {
 				progress.SetStatus("Uploading...");
-				progress.ToggleCancel(true, this, fileObj.id);
+				progress.ToggleCancel(true, this.swfu, fileObj.id);
 			}
 		} catch (ex) { this.debug(ex); }
 	},
@@ -98,7 +105,7 @@ CommunityEngine.SwfUpload = Class.create({
 			} else if(this.swfu.getStats().files_queued > 0) {
 				this.swfu.startUpload();
 			} else {
-				var progress = new FileProgress(fileObj,  this.customSettings.upload_target);
+				var progress = new FileProgress(fileObj,  this.swfu.customSettings.upload_target);
 				progress.SetComplete();
 				progress.SetStatus("All images received.");
 			}
@@ -168,7 +175,7 @@ function FileProgress(fileObj, target_id) {
 		FadeIn(this.fileProgressWrapper, 0);
 
 	} else {
-		this.fileProgressElement = this.fileProgressWrapper.firstChild;
+		this.fileProgressElement = this.fileProgressWrapper.down('div');
 		this.fileProgressElement.childNodes[1].firstChild.nodeValue = fileObj.name;
 	}
 

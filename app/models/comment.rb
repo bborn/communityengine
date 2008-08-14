@@ -56,12 +56,11 @@ class Comment < ActiveRecord::Base
   end
   
   def generate_commentable_url(comment_anchor = true)
-    type = Inflector.underscore(self.commentable_type)
     url = ''
-    if (type.eql?('user'))
-      url = user_url(self.recipient)
+    if commentable.respond_to?(:commentable_url)
+      url = commentable.commentable_url(self)
     else
-      url = instance_eval("user_#{type}_url(:user_id => self.recipient, :id => self.commentable)")
+      url = polymorphic_url([self.recipient, self.commentable])
     end
     url += "#comment_#{self.id}" if comment_anchor
     url

@@ -2,46 +2,46 @@
 
 -if admin?
   .box.alt.first_alt
-    %h3= _('Admin')
-    %p= link_to _('Create New Forum'), new_forum_path, :class => "utility"
+    %h3= 'Admin'.l
+    %p= link_to 'Create New Forum'.l, new_forum_path, :class => "utility"
 
 .box
-  %h3= _('Forums')
+  %h3= 'Forums'.l
   %p.subtitle
-    = feed_icon_tag _("Recent Posts"), formatted_all_sb_posts_path(:format => 'rss')
+    = feed_icon_tag "Recent Posts".l, formatted_all_sb_posts_path(:format => 'rss')
     = number_with_delimiter(Topic.count) 
-    = "#{_('topics')},"
+    = "#{'topics'.l},"
     = number_with_delimiter(SbPost.count)
-    = "#{_('posts')},"
+    = "#{'posts'.l},"
     = number_with_delimiter(User.count(:conditions => "sb_posts_count>0"))
-    = _('voices') 
+    = 'voices'.l
 
   %table{:border=>"0", :cellspacing=>"0", :cellpadding=>"0", :class=>"wide forums"}
     %tr
-      %th{:width=>"70%", :colspan=>"3"}= _('Forum')
-      %th{:width=>"30%", :colspan=>"1"}= _('Last Post')
+      %th{:width=>"70%", :colspan=>"3"}= 'Forum'.l
+      %th{:width=>"30%", :colspan=>"1"}= 'Last Post'.l
 
     -for forum in @forums do
       %tr
         %td.vat.c1  
           - if recent_forum_activity(forum)
-            = image_tag "clearbits/comment.gif", :class => "icon green", :title => _('Recent activity'), :plugin => "community_engine"
+            = image_tag "clearbits/comment.gif", :class => "icon green", :title => 'Recent activity'.l, :plugin => "community_engine"
           - else
-            = image_tag "clearbits/comment.gif", :class => "icon grey", :title => _('No recent activity'), :plugin => "community_engine"
+            = image_tag "clearbits/comment.gif", :class => "icon grey", :title => 'No recent activity'.l, :plugin => "community_engine"
         %td.c2.vat
           = link_to h(forum.name), forum_path(forum), :class => "title"
           .posts
             - unless forum.topics_count.zero?
               = number_with_delimiter(forum.topics_count)
-              = _('topics')
+              = 'topics'.l
               ,
               = number_with_delimiter(forum.sb_posts_count)
-              = _('posts')
+              = 'posts'.l
 
           %p.desc= forum.description_html
 
         %td.c3
-          = link_to _('Edit'), edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin?
+          = link_to 'Edit'.l, edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin?
 
         %td.inv.lp
           - if forum.sb_posts.last
@@ -51,10 +51,10 @@
             %strong= h(forum.sb_posts.last.user.display_name)
             %span
               (
-              = link_to 'view', forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
+              = link_to 'view'.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
               )
 
-  %p= link_to _('Recent posts'), all_sb_posts_path
+  %p= link_to 'Recent posts'.l, all_sb_posts_path
 
 
   - online_users = User.currently_online 
@@ -62,6 +62,6 @@
     .stats
       .users
         - unless online_users.empty? 
-          = _('Users online:')
+          = 'Users online'.l + ':'
           = online_users.map { |u| link_to "<strong>#{h u.display_name}</strong>", user_path(u) } * ", " 
           %br

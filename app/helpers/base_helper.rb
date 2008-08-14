@@ -75,9 +75,9 @@ module BaseHelper
   
 
   def pagination_info_for(paginator, options = {})
-    options = {:prefix => "Showing", :connector => '-', :suffix => ""}.merge(options)
+    options = {:prefix => "Showing".l, :connector => '-', :suffix => ""}.merge(options)
     window = paginator.current.first_item().to_s + options[:connector] + paginator.current.last_item().to_s
-    options[:prefix] + " <strong>#{window}</strong> of #{paginator.item_count} " + options[:suffix]
+    options[:prefix] + " <strong>#{window}</strong> " + "of".l + " #{paginator.item_count} " + options[:suffix]
   end
 
   def pagination_links_for(paginator, options = {}, html_options = {:single_class_name => "single", :grouped_class_name => "grouped", :active_class_name => "active"} )
@@ -194,16 +194,16 @@ module BaseHelper
 
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
-    html += link_to_remote "Request friendship!",
+    html += link_to_remote "Request friendship!".l,
 				{:update => "friend_request_#{user.id}",
 					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
-          500 => "alert('Sorry, there was an error requesting friendship')",
+          500 => "alert('"+'Sorry, there was an error requesting friendship'.l+"')",
 					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
 					:method => :post }, {:class => "add_friend button"}
 		html +=	"<span style='display:none;' class='spinner'>"
 		html += image_tag 'spinner.gif', :plugin => "community_engine"
-		html += " Requesting friendship...</span></span>"
+		html += "Requesting friendship".l+" ...</span></span>"
 		html
   end
 
@@ -214,14 +214,14 @@ module BaseHelper
     "<li class='#{classes.join(' ')}'>" + link_to( "<span>"+name+"</span>", options.delete(:url), options) + "</li>"
   end
 
-  def format_post_totals(posts)
-    "#{posts.size} posts, How to: #{posts.select{ |p| p.category.eql?(Category.get(:how_to))}.size}, Non How To: #{posts.select{ |p| !p.category.eql?(Category.get(:how_to))}.size}"
-  end
+  # def format_post_totals(posts)
+  #   "#{posts.size} posts, How to: #{posts.select{ |p| p.category.eql?(Category.get(:how_to))}.size}, Non How To: #{posts.select{ |p| !p.category.eql?(Category.get(:how_to))}.size}"
+  # end
   
   def more_comments_links(commentable)
-    html = link_to "&raquo; All comments", comments_url(commentable.class.to_s, commentable.to_param)
+    html = link_to "&raquo; " + "All comments".l, comments_url(commentable.class.to_s, commentable.to_param)
     html += "<br />"
-		html += link_to "&raquo; Comments RSS", formatted_comments_url(commentable.class.to_s, commentable.to_param, :rss)
+		html += link_to "&raquo; " + "Comments RSS".l, formatted_comments_url(commentable.class.to_s, commentable.to_param, :rss)
 		html
   end
   
@@ -334,7 +334,7 @@ module BaseHelper
     if date.to_date.eql?(Time.now.to_date)
       display = date.strftime("%l:%M%p").downcase
     elsif date.to_date.eql?(Time.now.to_date - 1)
-      display = "Yesterday"
+      display = "Yesterday".l
     else
       display = date.strftime("%B %d")
     end

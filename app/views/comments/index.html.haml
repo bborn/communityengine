@@ -5,7 +5,7 @@
   .yui-b#comments.box.hfeed.comments
     %h3
       = Inflector.underscore(@commentable.class).capitalize
-      Comments -
+      ="Comments".l + " -"
       = link_to @title, @comments.first.generate_commentable_url(false)
 
     %a#newest_comment
@@ -15,6 +15,6 @@
       = pagination_info_for @pages
       = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
 
-    %h3 Add Your Comment!
+    %h3="Add Your Comment!".l
     %p= render :partial => 'comments/comment_form', :locals => {:commentable => @commentable}  
       

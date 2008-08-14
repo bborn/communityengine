@@ -350,7 +350,7 @@ class User < ActiveRecord::Base
   end
   
   def self.recent_activity(page = {})
-    page.reverse_merge :size => 10, :current => 1
+    page.reverse_merge! :size => 10, :current => 1
     
     Activity.find(:all, 
       :order => 'created_at DESC',
@@ -405,6 +405,10 @@ class User < ActiveRecord::Base
   def self.build_search_conditions(query)
     # query && ['LOWER(display_name) LIKE :q OR LOWER(login) LIKE :q', {:q => "%#{query}%"}]
     query
+  end
+  
+  def commentable_url(comment)
+    user_url(comment.recipient)    
   end
 
 

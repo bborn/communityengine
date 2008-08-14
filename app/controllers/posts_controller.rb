@@ -4,8 +4,8 @@ class PostsController < BaseController
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
          
   cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]
-  caches_action :show  
-  def cache_action?(action_name)
+  caches_action :show, :if => Proc.new{|c| c.cache_action? }
+  def cache_action?
     !logged_in? && controller_name.eql?('posts')
   end  
                            
@@ -61,7 +61,7 @@ class PostsController < BaseController
     @is_current_user = @user.eql?(current_user)
     @comment = Comment.new(params[:comment])
 
-    @comments = @post.comments.find(:all, :limit => 20, :order => 'created_at DESC')
+    @comments = @post.comments.find(:all, :limit => 20, :order => 'created_at DESC', :include => :user)
 
     @previous = @post.previous_post
     @next = @post.next_post    
@@ -107,7 +107,7 @@ class PostsController < BaseController
         @post.create_poll(params[:poll], params[:choices]) if params[:poll]
         
         @post.tag_with(params[:tag_list] || '') 
-        flash[:notice] = @post.category ? "Your '#{Inflector.singularize(@post.category.name)}' post was successfully created." : "Your post was successfully created."
+        flash[:notice] = @post.category ? :post_created_for_category.l_with_args(:category => Inflector.singularize(@post.category.name)) : "Your post was successfully created.".l
         format.html { 
           if @post.is_live?
             redirect_to @post.category ? category_path(@post.category) : user_post_path(@user, @post) 
@@ -148,7 +148,7 @@ class PostsController < BaseController
     
     respond_to do |format|
       format.html { 
-        flash[:notice] = "Your post was deleted."
+        flash[:notice] = "Your post was deleted.".l
         redirect_to manage_user_posts_url(@user)   
         }
     end

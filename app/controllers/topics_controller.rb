@@ -5,10 +5,11 @@ class TopicsController < BaseController
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:show, :new])
 
   def index
+    @forum = Forum.find(params[:forum_id])    
     respond_to do |format|
       format.html { redirect_to forum_path(params[:forum_id]) }
       format.xml do
-        @topics = Topic.find_all_by_forum_id(params[:forum_id], :order => 'sticky desc, replied_at desc', :limit => 25)
+        @topics = @forum.topics.find(:all, :order => 'sticky desc, replied_at desc', :limit => 25)
         render :xml => @topics.to_xml
       end
     end
@@ -28,7 +29,9 @@ class TopicsController < BaseController
         (session[:topics] ||= {})[@topic.id] = Time.now.utc if logged_in?
         # authors of topics don't get counted towards total hits
         @topic.hit! unless logged_in? and @topic.user == current_user
-        @post_pages, @posts = paginate(:sb_posts, :per_page => 25, :order => 'sb_posts.created_at', :include => :user, :conditions => ['sb_posts.topic_id = ?', params[:id]])
+
+        @post_pages, @posts = paginate(:sb_posts, :per_page => 25, :order => 'sb_posts.created_at', :include => :user, :conditions => ['sb_posts.topic_id = ?', @topic.id])
+        
         @voices = @posts.map(&:user) ; @voices.uniq!
         @post   = SbPost.new
       end
@@ -86,7 +89,7 @@ class TopicsController < BaseController
   
   def destroy
     @topic.destroy
-    flash[:notice] = "Topic '#{CGI::escapeHTML @topic.title}' was deleted."
+    flash[:notice] = :topic_deleted.l_with_args(:topic => CGI::escapeHTML(@topic.title)) 
     respond_to do |format|
       format.html { redirect_to forum_path(@forum) }
       format.xml  { head 200 }

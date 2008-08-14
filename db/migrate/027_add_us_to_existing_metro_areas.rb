@@ -1,13 +1,9 @@
 class AddUsToExistingMetroAreas < ActiveRecord::Migration
   def self.up
-    MetroArea.find(:all).each do |m|
-      m.update_attribute(:country, Country.get(:us))
-    end
+    MetroArea.update_all(:country_id => Country.get(:us))
   end
 
   def self.down
-    MetroArea.find(:all).each do |m|
-      m.update_attribute(:country, nil)
-    end
+    MetroArea.update_all(:country_id => nil)
   end
 end

@@ -1,5 +1,6 @@
 class TagsController < BaseController
-
+  skip_before_filter :verify_authenticity_token, :only => 'auto_complete_for_tag_name'
+    
   def auto_complete_for_tag_name
     @tags = Tag.find_list(params[:id] || params[:tag_list])
     render :inline => "<%= auto_complete_result(@tags, 'name') %>"
@@ -20,7 +21,7 @@ class TagsController < BaseController
   def show
     @tag = Tag.find_by_name(params[:id])
     if @tag.nil? 
-      flash[:notice] = "The tag #{params[:id]} does not exist."
+      flash[:notice] = :tag_does_not_exists.l_with_args(:tag => params[:id]) 
       redirect_to :action => :index and return
     end
     @related_tags = @tag.related_tags

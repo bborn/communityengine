@@ -4,7 +4,7 @@ class MetroArea < ActiveRecord::Base
   belongs_to :country
 
   #validates_presence_of :state, :if => Proc.new { |user| user.country.eql?(Country.get(:us)) }
-  validates_presence_of :country
+  validates_presence_of :country_id
   validates_presence_of :name
 
 end

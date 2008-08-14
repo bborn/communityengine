@@ -19,7 +19,8 @@ class Tag < ActiveRecord::Base
     # delete any blank tag names
     tag_names = tag_names.delete_if { |t| t.empty? }
     
-    # replace slashes, periods, and semi-colons with dashes
+    # replace slashes, periods, question marks, and semi-colons with dashes
+    tag_names = tag_names.map {|t| t.gsub(/[\?]/, '-')}
     tag_names = tag_names.map {|t| t.gsub(/[\/]/, '-')}
     tag_names = tag_names.map {|t| t.gsub(/[\.]/, '-')}
     tag_names = tag_names.map {|t| t.gsub(/[\;]/, '-')}    
