@@ -16,7 +16,7 @@ class CommentTest < Test::Unit::TestCase
   end
 
   def test_should_generate_commetable_url
-    assert_equal "http://#{APP_URL}/quentin/posts/1-Building-communities-is-all-about-love-#comment_1", comments(:quentins_comment_on_his_own_post).generate_commentable_url
+    assert_equal "#{APP_URL}/quentin/posts/1-Building-communities-is-all-about-love-#comment_1", comments(:quentins_comment_on_his_own_post).generate_commentable_url
   end
 
 end
