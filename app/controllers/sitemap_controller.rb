@@ -4,7 +4,7 @@ class SitemapController < BaseController
 
   def index
     @users = User.find(:all, :select => 'id, login, updated_at, login_slug', :conditions => "activated_at IS NOT NULL")
-    @posts = Post.find(:all, :select => 'id, title, published_at')
+    @posts = Post.find(:all, :select => 'id, user_id, title, published_at', :include => :user)
   
     @categories = Category.find(:all)
   
@@ -12,7 +12,7 @@ class SitemapController < BaseController
       format.html {
         render :layout => 'application'
       }
-      format.xml
+      format.xml 
     end
   end
   

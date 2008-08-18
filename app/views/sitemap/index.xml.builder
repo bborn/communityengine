@@ -18,7 +18,7 @@ xml.urlset "xmlns" => "http://www.google.com/schemas/sitemap/0.84" do
 
   @posts.each do |post|
     xml.url do
-      xml.loc         url_for(:only_path => false, :controller => 'posts', :action => 'show', :id => post)
+      xml.loc         user_post_url(post.user, post)
       xml.lastmod     w3c_date(post.published_at)
       xml.changefreq  "daily"
       xml.priority    0.6
