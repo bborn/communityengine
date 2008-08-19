@@ -14,7 +14,9 @@ class PostsController < BaseController
   before_filter :require_ownership_or_moderator, :only => [:create, :edit, :update, :destroy, :manage]
 
   def manage
-    @posts = @user.posts.find_without_published_as(:all, :page => {:current => params[:page], :size => 10}, :order => 'published_at DESC')
+    @posts = @user.posts.find_without_published_as(:all, 
+      :page => {:current => params[:page], :size => 10}, 
+      :order => 'created_at DESC')
   end
 
   def index
