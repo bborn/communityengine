@@ -27,8 +27,9 @@
       
       - if @pages.length > 1
         .pagination
-          = link_to "&laquo; Earlier posts", { :page => @pages.current.next } if @pages.current.next
-          = link_to " | Later posts &raquo; ", { :page => @pages.current.previous } if @pages.current.previous
+          = link_to "&laquo; Earlier posts".l(:earlier_posts), { :page => @pages.current.next } if @pages.current.next
+          =" | "
+          = link_to "Later posts &raquo; ".l(:later_posts), { :page => @pages.current.previous } if @pages.current.previous
 
           - @section = 'popular'
       
