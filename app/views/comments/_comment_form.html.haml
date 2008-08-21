@@ -1,4 +1,4 @@
-- if current_user
+- if current_user || AppConfig.allow_anonymous_commenting
   %script{"type"=>"text/javascript"}
     function scrollToNewestComment(){
     loc = document.location.toString();
@@ -11,10 +11,28 @@
     document.location.href = loc;
     }
   .errors
-  - form_remote_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(Inflector.underscore(commentable.class), commentable.id ), 500 => "$$('div#comments div.errors')[0].innerHTML = request.responseText; return false;", :success => "new Insertion.#{commentable.class.to_s.eql?('User') ? 'After': 'After' }('newest_comment', request.responseText); tinyMCE.activeEditor.setContent(\'\'); scrollToNewestComment();", :complete => "$('comment_spinner').hide();", :html => {:class => "MainForm"}) do |f|
+  - form_remote_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(Inflector.underscore(commentable.class), commentable.id ), 500 => "$$('div#comments div.errors')[0].update(request.responseText);new Effect.Highlight($$('div#comments div.errors')[0]); return false;", :success => "new Insertion.#{commentable.class.to_s.eql?('User') ? 'After': 'After' }('newest_comment', request.responseText); tinyMCE.activeEditor.setContent(\'\'); scrollToNewestComment();", :complete => "$('comment_spinner').hide(); if($('dynamic_recaptcha')){Recaptcha.create('#{AppConfig.recaptcha_pub_key}', $('dynamic_recaptcha') )}", :html => {:class => "MainForm"}) do |f|
     %label
       %em="(2000 character limit)".l :comment_character_limit
     = text_area :comment, :comment, {:size => "86x5", :class => "rich_text_editor"}
+    
+    -unless logged_in?
+      .right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
+      
+      %label{"for"=>"comment[author_name"}
+        ="Name:".l
+        %em="(#{'Optional'.l})"
+      = f.text_field :author_name, :size => 35
+      %label{"for"=>"comment[author_email"}
+        ="#{'E-mail'.l}:"
+        %em="(#{"Required; won't be shown on site".l})"
+      = f.text_field :author_email, :size => 35        
+      %label{"for"=>"comment[author_email"}
+        ="Web site (include http://):".l
+        %em="(#{'Optional'.l})"
+      = f.text_field :author_url, :size => 35        
+
+    
     %p
       = submit_tag "Add Comment".l
       = image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner'

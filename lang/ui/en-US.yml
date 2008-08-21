@@ -17,7 +17,7 @@ all_users_tagged: All users tagged {tag_name}
 #en: comments_count: "{count} pluralize{{count}, comment}"
 comments_count: "{count} pluralize{{count}, comment}"
 #en: comment_save_error: Your comment couldn't be saved.
-comment_save_error: "Your comment couldn't be saved."
+comment_save_error: "Your comment couldn't be saved. {error}"
 #en: community_tagline: CommunityEngine Rocks!
 community_tagline: CommunityEngine Rocks!
 #en: create: Create

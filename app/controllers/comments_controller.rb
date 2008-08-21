@@ -1,5 +1,9 @@
 class CommentsController < BaseController
   before_filter :login_required, :except => [:index]
+  if AppConfig.allow_anonymous_commenting
+    skip_before_filter :login_required, :only => [:create]
+  end
+  
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:index])
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
@@ -81,13 +85,15 @@ class CommentsController < BaseController
     @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])
     @comment = Comment.new(params[:comment])
     @comment.recipient = @commentable.owner
-    @comment.user_id = current_user.id
+    
+    @comment.user_id = current_user.id if current_user
+    @comment.author_ip = request.remote_ip #save the ip address for everyone, just because
     
     respond_to do |format|
-      if @comment.save
+      if verify_recaptcha(@comment) && @comment.save
         @commentable.add_comment @comment
-        UserNotifier.deliver_comment_notice(@comment) if should_receive_notification(@comment)
-        deliver_comment_notice_to_previous_commenters(@comment)        
+        UserNotifier.deliver_comment_notice(@comment) if @comment.should_notify_recipient?
+        @comment.notify_previous_commenters
                 
         flash.now[:notice] = 'Comment was successfully created.'.l        
         format.html { redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id], :user_id => @comment.recipient.id }
@@ -95,7 +101,7 @@ class CommentsController < BaseController
           render :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}
         }
       else
-        flash.now[:error] = :comment_save_error.l_with_args(:error => @comment.errors.full_messages.join(", "))
+        flash.now[:error] = :comment_save_error.l_with_args(:error => @comment.errors.full_messages.to_sentence)
         format.html { redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id] }
         format.js{
           render :inline => flash[:error], :status => 500
@@ -121,18 +127,5 @@ class CommentsController < BaseController
     end    
   end
   
-  protected
-  
-  def deliver_comment_notice_to_previous_commenters(comment)
-    comment.previous_commenters_to_notify.each do |user|
-        UserNotifier.deliver_follow_up_comment_notice(user, comment)
-    end
-  end  
-  
-  def should_receive_notification(comment)
-    return false if comment.recipient.eql?(@comment.user)
-    return false unless comment.recipient.notify_comments?
-    true
-  end
 
 end

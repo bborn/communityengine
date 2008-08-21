@@ -28,7 +28,7 @@ class UserNotifier < ActionMailer::Base
   def comment_notice(comment)
     @recipients  = "#{comment.recipient.email}"
     setup_sender_info
-    @subject     = "#{comment.user.login} has something to say to you on #{AppConfig.community_name}!"
+    @subject     = "#{comment.username} has something to say to you on #{AppConfig.community_name}!"
     @sent_on     = Time.now
     @body[:url]  = comment.generate_commentable_url
     @body[:user] = comment.recipient
@@ -39,7 +39,7 @@ class UserNotifier < ActionMailer::Base
   def follow_up_comment_notice(user, comment)
     @recipients  = "#{user.email}"
     setup_sender_info
-    @subject     = "#{comment.user.login} has commented on a #{comment.commentable_type} that you also commented on. [#{AppConfig.community_name}]"
+    @subject     = "#{comment.username} has commented on a #{comment.commentable_type} that you also commented on. [#{AppConfig.community_name}]"
     @sent_on     = Time.now
     @body[:url]  = comment.generate_commentable_url
     @body[:user] = user

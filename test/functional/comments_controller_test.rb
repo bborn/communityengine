@@ -76,6 +76,15 @@ class CommentsControllerTest < Test::Unit::TestCase
     end
     assert_response :redirect    
   end
+
+  def test_should_create_post_comment_anonymously
+    AppConfig.allow_anonymous_commenting = true
+    assert_difference Comment, :count, 1 do
+      create_post_comment(:comment => {:author_email => 'foor@bar.com'})      
+    end
+    assert_response :redirect    
+  end
+
   
   def test_should_destroy_post_comment
     login_as :quentin
