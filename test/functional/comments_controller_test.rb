@@ -12,7 +12,7 @@ class CommentsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
-
+  
   def test_should_create_user_comment_with_notification
     login_as :aaron
     assert_difference Comment, :count, 1 do
@@ -76,15 +76,6 @@ class CommentsControllerTest < Test::Unit::TestCase
     end
     assert_response :redirect    
   end
-
-  def test_should_create_post_comment_anonymously
-    AppConfig.allow_anonymous_commenting = true
-    assert_difference Comment, :count, 1 do
-      create_post_comment(:comment => {:author_email => 'foor@bar.com'})      
-    end
-    assert_response :redirect    
-  end
-
   
   def test_should_destroy_post_comment
     login_as :quentin

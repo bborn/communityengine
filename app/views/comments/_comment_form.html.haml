@@ -1,4 +1,4 @@
-- if current_user || AppConfig.allow_anonymous_commenting
+- if logged_in? || AppConfig.allow_anonymous_commenting
   %script{"type"=>"text/javascript"}
     function scrollToNewestComment(){
     loc = document.location.toString();
@@ -17,6 +17,7 @@
     = text_area :comment, :comment, {:size => "86x5", :class => "rich_text_editor"}
     
     -unless logged_in?
+      
       .right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
       
       %label{"for"=>"comment[author_name"}
