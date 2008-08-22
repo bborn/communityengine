@@ -90,7 +90,7 @@ class CommentsController < BaseController
     @comment.author_ip = request.remote_ip #save the ip address for everyone, just because
     
     respond_to do |format|
-      if verify_recaptcha(@comment) && @comment.save
+      if (logged_in? || verify_recaptcha(@comment)) && @comment.save
         @commentable.add_comment @comment
         UserNotifier.deliver_comment_notice(@comment) if @comment.should_notify_recipient?
         @comment.notify_previous_commenters
