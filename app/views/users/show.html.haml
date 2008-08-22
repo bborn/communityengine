@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@user.login}'s DIY projects, interior design ideas and favorites.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}, diy, design, interior-design" }
+- @meta = { :description => "#{@user.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}" }
 - @section = @user.eql?(current_user) ? 'my_profile' : 'users'
 - @sidebar_left = true
 

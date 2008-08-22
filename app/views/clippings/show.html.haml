@@ -1,3 +1,5 @@
+- @meta = { :description => "#{@clipping.description}.",:keywords => "#{@clipping.tags.join(', ') if @clipping.tags}"}
+
 .yui-b
   =render :partial => 'posts/author_profile', :locals => {:user => @user}
 
