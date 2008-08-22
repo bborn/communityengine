@@ -3,8 +3,8 @@
 
   - if @previous || @next
     .box.alt
-      = link_to "<img src='#{@previous.image_uri}' /><br />&laquo; Prev ", user_clipping_path(@user, @previous), :class => 'left' if @previous
-      = link_to "<img src='#{@next.image_uri}' /><br />Next &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next
+      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; Prev ", user_clipping_path(@user, @previous), :class => 'left' if @previous
+      = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />Next &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next
 
   - if @related.any?
     .box.alt
