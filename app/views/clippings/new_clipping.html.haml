@@ -40,7 +40,10 @@
       #bd
         .yui-g
           .yui-u.first.box
-            %h3 Create a clipping
+            %h3 
+              Create a clipping 
+            %p
+              %small Click on an image below to clip it.
             %ul#clipping_image_list
               = image_tag 'spinner.gif', :plugin => "community_engine"
               Loading images
@@ -120,6 +123,11 @@
               = text_field_tag 'tag_list', @post.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off", :size => 35, :id => 'post_tag_list'}
               #post_tag_list_auto_complete.auto_complete
               = auto_complete_field 'post_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' '], :update=> 'post_tag_list_auto_complete' }
+
+              %label
+                ="Save post as:".l
+              = f.select(:published_as, [['Published', 'live'], ['Draft', 'draft']])
+
 
               %p= submit_tag "Save"
 
