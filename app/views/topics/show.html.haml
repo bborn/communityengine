@@ -4,8 +4,8 @@
 - @monitoring = logged_in? && current_user.monitoring_topic?(@topic)
 
 %script{:type => 'text/javascript'}
-  function monitor_click(){
-  if (this.checked) {
+  function monitor_click(checkbox){
+  if (checkbox.checked) {
   = remote_function :url => forum_topic_monitorship_path(@forum, @topic)
   } else {
   = remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete
@@ -16,7 +16,7 @@
   - if logged_in?
     - form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
       #monitor_topic
-        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click()"}
+        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
         %label#monitor_label{"for"=>"monitor_checkbox"}
           
           = "Watch#{@monitoring ? 'ing' : ''}"
