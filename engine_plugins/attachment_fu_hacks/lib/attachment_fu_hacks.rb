@@ -34,6 +34,9 @@ Technoweenie::AttachmentFu::InstanceMethods.module_eval do
       # Finally, replace all non alphanumeric, underscore or periods with underscore
       name.gsub! /[^\w\.\-]/, '_'
     
+      # Replace underscores followed by a period with a period
+      name.gsub!(/\_\./, '.')
+
       # Remove multiple underscores
       name.gsub!(/\_+/, '_')
   
