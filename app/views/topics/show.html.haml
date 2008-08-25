@@ -22,7 +22,7 @@
           = "Watch#{@monitoring ? 'ing' : ''}"
           = 'topic'.l
         = hidden_field_tag '_method', 'delete' if @monitoring
-        = submit_tag :Set, :id => 'monitor_submit'
+        = submit_tag :Set, :id => 'monitor_submit', :style => "display:none"
         
   = link_to "Forums", forum_home_path
   %span.arrow &rarr;
