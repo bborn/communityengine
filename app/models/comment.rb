@@ -20,6 +20,9 @@ class Comment < ActiveRecord::Base
 
   acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user
 
+  # named_scopes
+  named_scope :recent, :order => 'created_at DESC'
+
   def self.find_photo_comments_for(user)
     Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC')
   end

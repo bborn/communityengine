@@ -20,7 +20,11 @@ class Photo < ActiveRecord::Base
   attr_protected :user_id
   
   #Named scopes
-  named_scope :recent, :order => "created_at DESC", :conditions => ["created_at > ? AND parent_id IS NULL", 7.days.ago.to_s(:db)]
+  named_scope :recent, :order => "created_at DESC", :conditions => ["parent_id IS NULL"]
+  named_scope :new_this_week, :order => "created_at DESC", :conditions => ["created_at > ? AND parent_id IS NULL", 7.days.ago.to_s(:db)]
+  named_scope :tagged_with, lambda {|tag_name|
+    {:conditions => ["tags.name = ?", tag_name], :include => :tags}
+  }
 
   def display_name
     self.name ? self.name : self.created_at.strftime("created on: %m/%d/%y")
@@ -46,7 +50,7 @@ class Photo < ActiveRecord::Base
   end
 
   def self.find_recent(options = {:limit => 3})
-    self.recent.find(:all, :limit => options[:limit])
+    self.new_this_week.find(:all, :limit => options[:limit])
   end
   
   def self.find_related_to(photo, options = {})

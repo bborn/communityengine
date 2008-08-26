@@ -3,29 +3,33 @@ class SbPostsController < BaseController
   before_filter :login_required, :except => [:index, :search, :show, :monitored]
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:edit, :update])  
 
-  @@query_options = { :per_page => 25, :select => 'sb_posts.*, topics.title as topic_title, forums.name as forum_name', :joins => 'inner join topics on sb_posts.topic_id = topics.id inner join forums on topics.forum_id = forums.id', :order => 'sb_posts.created_at desc' }
 
   def index
     conditions = []
     [:user_id, :forum_id].each { |attr| conditions << SbPost.send(:sanitize_sql, ["sb_posts.#{attr} = ?", params[attr]]) if params[attr] }
     conditions = conditions.any? ? conditions.collect { |c| "(#{c})" }.join(' AND ') : nil
-    @post_pages, @posts = paginate(:sb_posts, @@query_options.merge(:conditions => conditions))
+
+    @posts = SbPost.with_query_options.find :all, :conditions => conditions, :page => {:current => params[:page]}
+    
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
     render_posts_or_xml
   end
 
   def search
     conditions = params[:q].blank? ? nil : SbPost.send(:sanitize_sql, ['LOWER(sb_posts.body) LIKE ?', "%#{params[:q]}%"])
-    @post_pages, @posts = paginate(:sb_posts, @@query_options.merge(:conditions => conditions))
+    
+    @posts = SbPost.with_query_options.find :all, :conditions => conditions, :page => {:current => params[:page]}
+
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
     render_posts_or_xml :index
   end
 
   def monitored
-    @user = User.find params[:user_id]
-    options = @@query_options.merge(:conditions => ['monitorships.user_id = ? and sb_posts.user_id != ?', params[:user_id], @user.id])
-    options[:joins] += ' inner join monitorships on monitorships.topic_id = topics.id'
-    @post_pages, @posts = paginate(:sb_posts, options)
+    @user = User.find params[:user_id]    
+    @posts = SbPost.with_query_options.find(:all, 
+      :joins => ' INNER JOIN monitorships ON monitorships.topic_id = topics.id', 
+      :conditions  => ['monitorships.user_id = ? AND sb_posts.user_id != ?', params[:user_id], @user.id],
+      :page => {:current => params[:page]})
     render_posts_or_xml
   end
 

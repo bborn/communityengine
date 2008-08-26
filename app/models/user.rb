@@ -72,6 +72,18 @@ class User < ActiveRecord::Base
   after_save    :recount_metro_area_users
   after_destroy :recount_metro_area_users
   
+  
+  #named scopes
+  named_scope :recent, :order => 'users.created_at DESC'
+  named_scope :featured, :conditions => ["users.featured_writer = ?", 1]
+  named_scope :active, :conditions => ["users.activated_at IS NOT NULL"]  
+  named_scope :vendors, :conditions => ["users.vendor = ?", 1]
+  named_scope :tagged_with, lambda {|tag_name|
+    {:conditions => ["tags.name = ?", tag_name], :include => :tags}
+  }
+  
+  
+  
   def moderator_of?(forum)
     moderatorships.count(:all, :conditions => ['forum_id = ?', (forum.is_a?(Forum) ? forum.id : forum)]) == 1
   end
@@ -132,7 +144,7 @@ class User < ActiveRecord::Base
   end  
     
   def self.find_featured
-    self.find(:all, :conditions => ["featured_writer = ?", 1])
+    self.featured
   end
   
   def this_months_posts
@@ -317,15 +329,15 @@ class User < ActiveRecord::Base
     states = search['state_id'].blank? ? [] : State.find(:all)    
     
     cond = Caboose::EZ::Condition.new
-    cond.append ['activated_at is not null ']
-    if search['country_id']  
-      cond.append ['country_id = ?', search['country_id']]
+    cond.append ['activated_at IS NOT NULL ']
+    if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
+      cond.append ['country_id = ?', search['country_id'].to_s]
     end
-    if search['state_id']
-      cond.append ['state_id = ?', search['state_id']]
+    if search['state_id'] && !search['metro_area_id']
+      cond.append ['state_id = ?', search['state_id'].to_s]
     end
     if search['metro_area_id']
-      cond.append ['metro_area_id = ?', search['metro_area_id']]
+      cond.append ['metro_area_id = ?', search['metro_area_id'].to_s]
     end
     if search['login']    
       cond.login =~ "%#{search['login']}%"

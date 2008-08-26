@@ -13,6 +13,9 @@ class Friendship < ActiveRecord::Base
   validates_presence_of   :user
   validates_presence_of   :friend
   validates_uniqueness_of :friend_id, :scope => :user_id
+  
+  # named scopes
+  named_scope :accepted, :conditions => ["friendship_status_id = ?", FriendshipStatus[:accepted].id]
 
   validates_each :user_id do |record, attr, value|
     record.errors.add attr, 'can not be same as friend' if record.user_id.eql?(record.friend_id)

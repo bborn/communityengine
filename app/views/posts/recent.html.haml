@@ -25,11 +25,4 @@
 
       = render :partial => 'posts/post', :collection => @posts      
       
-      - if @pages.length > 1
-        .pagination
-          = link_to "&laquo; Earlier posts".l(:earlier_posts), { :page => @pages.current.next } if @pages.current.next
-          =" | "
-          = link_to "Later posts &raquo; ".l(:later_posts), { :page => @pages.current.previous } if @pages.current.previous
-
-          - @section = 'popular'
-      
+      .pagination=paginating_links @posts if @posts.page_count > 1

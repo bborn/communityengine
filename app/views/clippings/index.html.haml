@@ -24,9 +24,9 @@
       %h3
         = link_to "#{@user.login}'s clippings", user_clippings_path(@user)
       - if @clippings.any?
-        .pagination
-          = pagination_info_for @pages
-          = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+        -if @clippings.page_count > 1      
+          .pagination=paginating_links @clippings
+          
         - @clippings.each do |clipping|
           %a{"href"=>"#{user_clipping_url(@user, clipping) }"}
             %img.polaroid.clipping{"class"=>"polaroid clipping", "src"=>"#{h clipping.image_uri(:thumb) }"}/

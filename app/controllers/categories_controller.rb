@@ -22,7 +22,9 @@ class CategoriesController < BaseController
     cond = Caboose::EZ::Condition.new
     cond.category_id  == @category.id
     order = (params[:popular] ? "view_count #{params[:popular]}": "published_at DESC")
-    @pages, @posts = paginate :posts, :order => order, :conditions => cond.to_sql, :include => :tags
+
+    @posts = Post.find :all, :page => {:current => params[:page]}, :order => order, :conditions => cond.to_sql, :include => :tags
+    
     
     @popular_posts = @category.posts.find(:all, :limit => 10, :order => "view_count DESC")
     @popular_polls = Poll.find_popular_in_category(@category)

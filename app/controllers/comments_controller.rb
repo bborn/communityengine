@@ -22,13 +22,8 @@ class CommentsController < BaseController
     end
 
     if @commentable
-      @comments_count = @commentable.comments.count
-      @pages = Paginator.new self, @comments_count, 10, (params[:page] || 1)
-      @comments = @commentable.comments.find(:all,
-          :limit  =>  @pages.items_per_page,
-          :offset =>  @pages.current.offset,
-          :order => 'created_at DESC'
-        )
+      @comments_count = @commentable.comments.count        
+      @comments = Comment.recent.find(:all, :page => {:size => 10, :current => params[:page], :count => @comments_count})
                 
       unless @comments.empty?        
         @title = @comments.first.commentable_name

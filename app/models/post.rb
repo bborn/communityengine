@@ -36,10 +36,13 @@ class Post < ActiveRecord::Base
   
   #Named scopes
   named_scope :by_featured_writers, :conditions => ["users.featured_writer = ?", 1], :include => :user
-  named_scope :recent, :order => 'published_at DESC'
-  named_scope :popular, :order => 'view_count DESC'
+  named_scope :recent, :order => 'posts.published_at DESC'
+  named_scope :popular, :order => 'posts.view_count DESC'
   named_scope :since, lambda { |days|
-    {:conditions => "published_at > '#{days.ago.to_s :db}'" }
+    {:conditions => "posts.published_at > '#{days.ago.to_s :db}'" }
+  }
+  named_scope :tagged_with, lambda {|tag_name|
+    {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
   
   def self.find_related_to(post, options = {})

@@ -13,14 +13,12 @@
         = render :partial => "users/sidebar_user", :locals => {:user => user}
 
 #yui-main
-  .yui-b.box
+  .yui-b.box.user_list
     %h3= "#{AppConfig.community_name} Pros"
 
-    .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
-
-    %br.clear
+    .pagination= paginating_links @users if @users.page_count > 1
 
     = render :partial => "users/user", :collection => @users, :locals => {:format => 'full' }
     
     %br.clear
-    .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+    .pagination= paginating_links @users if @users.page_count > 1

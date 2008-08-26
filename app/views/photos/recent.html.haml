@@ -1,0 +1,8 @@
+.box
+  %h3="Recent Photos".l
+
+  .pagination= paginating_links @photos if @photos.page_count > 1
+
+  %ul
+    - @photos.each do |photo|
+      %li= image_tag photo.public_filename(:thumb) 

@@ -24,11 +24,12 @@ class PostsController < BaseController
     @user = User.find(params[:user_id])            
     @category = Category.find_by_name(params[:category_name]) if params[:category_name]
     cond = Caboose::EZ::Condition.new
-    cond.user_id == @user.id
     if @category
       cond.append ['category_id = ?', @category.id]
     end
-    @pages, @posts = paginate :posts, :order => "published_at DESC", :conditions => cond.to_sql, :per_page => 20
+
+    @posts = @user.posts.recent.find :all, :conditions => cond.to_sql, :page => {:size => 1, :current => params[:page]}
+    
     @is_current_user = @user.eql?(current_user)
 
     @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")
@@ -189,7 +190,7 @@ class PostsController < BaseController
   end
   
   def recent
-    @pages, @posts = paginate :posts, :order => "published_at DESC"
+    @posts = Post.recent.find :all, :page => {:current => params[:page], :size => 20}
 
     @recent_clippings = Clipping.find_recent(:limit => 15)
     @recent_photos = Photo.find_recent(:limit => 10)
@@ -207,8 +208,8 @@ class PostsController < BaseController
   end
   
   def featured
-    @pages, @posts = paginate :posts, :order => "posts.published_at DESC", :conditions => ["users.featured_writer = ?", 1], :include => :user
-    @featured_writers = User.find_featured    
+    @posts = Post.by_featured_writers.recent.find(:all, :page => {:current => params[:page]})
+    @featured_writers = User.featured
         
     @rss_title = "#{AppConfig.community_name} Featured Posts"
     @rss_url = featured_rss_url
