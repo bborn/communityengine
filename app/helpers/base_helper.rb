@@ -72,38 +72,6 @@ module BaseHelper
       yield c, classes[(c.users.size.to_i - min) / divisor]
     }
   end
-  
-
-  def pagination_info_for(paginator, options = {})
-    options = {:prefix => "Showing".l, :connector => '-', :suffix => ""}.merge(options)
-    window = paginator.current.first_item().to_s + options[:connector] + paginator.current.last_item().to_s
-    options[:prefix] + " <strong>#{window}</strong> " + "of".l + " #{paginator.item_count} " + options[:suffix]
-  end
-
-  def pagination_links_for(paginator, options = {}, html_options = {:single_class_name => "single", :grouped_class_name => "grouped", :active_class_name => "active"} )
-    options = {:first_overflow_text => "first", :last_overflow_text => "last", :single_char_limit => 2, :grouped_char_limit => 6 }.merge(options)
-    html = "<div class='pagination #{options[:class] ? options[:class] : ''}'>"
-    our_params = (options[:params] || params).clone
-    
-    pagination_links_each(paginator, options) do |n|
-      name = n.to_s
-      if paginator.current_page.offset - paginator.current_page.window.pages.size > n && paginator[n].first?
-        name = options[:first_overflow_text]
-      end
-      if paginator.current_page.offset + 2 + paginator.current_page.window.pages.size < n && paginator[n].last?
-        name = options[:last_overflow_text]
-      end
-      classname = (name.size > options[:single_char_limit]) ? html_options[:grouped_class_name] : ""
-      if paginator.current_page == paginator[n]
-        classname += " " << html_options[:active_class_name]
-      end
-      
-      html << link_to(name, our_params.merge({ :page => n }), { :class => classname })              
-    end
-    html << "</div>"
-    html
-  end
-
 
   def truncate_words(text, length = 30, end_string = '...')
     return if text.blank?
@@ -261,18 +229,25 @@ module BaseHelper
     "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{APP_URL}/new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
   end
   
-  def pagination_links(pages = nil, options = {})
-    html = ""
-    paginator = (@pages || pages)
-    if paginator
-      html += "<span class='right'>#{pagination_info_for(paginator)}</span>"
-      if paginator.length > 1
-        html += pagination_links_for( paginator, {:link_to_current_page => true} )
-      end
-			html += '<br class="clear" /><br />'
+  def paginating_links(paginator, options = {}, html_options = {})
+    name = options[:name] || PaginatingFind::Helpers::DEFAULT_OPTIONS[:name]
+    params = (options[:params] || PaginatingFind::Helpers::DEFAULT_OPTIONS[:params]).clone
+
+    links = paginating_links_each(paginator, options) do |n|
+      params[name] = n
+      link_to(n, params, html_options.merge(:class => (paginator.page.eql?(n) ? 'active' : '')))
     end
-    html
+
+    puts content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info')
+    puts links    
+  end  
+  
+  def pagination_info_for(paginator, options = {})
+    options = {:prefix => "Showing".l, :connector => '-', :suffix => ""}.merge(options)
+    window = paginator.first_item.to_s + options[:connector] + paginator.last_item.to_s
+    options[:prefix] + " <strong>#{window}</strong> " + "of".l + " #{paginator.size} " + options[:suffix]
   end
+  
   
   def last_active
     session[:last_active] ||= Time.now.utc

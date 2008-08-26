@@ -57,6 +57,7 @@
     - @voices.each do |user|
       %li= link_to h(user.display_name), user_path(user)
 
+  %h6.all.right= link_to_function 'Reply to topic'.l, "ReplyForm.init()", :class => "utility"
   - if @posts.page_count > 1
     .pagination.clear= paginating_links @posts
 
@@ -91,11 +92,12 @@
                   = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
 
         %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
-          - #= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()", :plugin => "community_engine" if logged_in?
+          = link_to_function image_tag('/clearbits/comment.gif', :class => 'icon reply', :plugin => 'community_engine'), "$('reply').toggle()" if logged_in?
           = post.body_html
 
+
   - if @posts.page_count > 1
-    .pagination.clear= paginating_links @posts
+    .pagination= paginating_links @posts
 
   - if logged_in?
     #edit
@@ -104,8 +106,7 @@
         = image_tag "clearbits/lock.gif", :class => "icon grey", :title => "Topic locked", :plugin => "community_engine"
         %label= 'This topic is locked.'.l
     - else
-      %p
-        = link_to_function 'Reply to topic'.l, "ReplyForm.init()", :class => "utility"
+      %h6.all.right= link_to_function 'Reply to topic'.l, "ReplyForm.init()", :class => "utility"
       #reply.editbox
         .container
           = content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply]

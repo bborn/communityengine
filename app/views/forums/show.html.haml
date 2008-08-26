@@ -28,7 +28,7 @@
 
   - if @topics.page_count > 1
     - if logged_in?
-      %h6.all= link_to 'Post a New topic', new_forum_topic_path(@forum)
+      %h6.all.right= link_to 'Post a New topic', new_forum_topic_path(@forum)
   
     .pagination= paginating_links @topics
 
@@ -68,9 +68,9 @@
     .pagination= paginating_links @topics  
 
   - if logged_in?
-    %h6.all= link_to 'Post a New topic'.l, new_forum_topic_path(@forum)
+    %h6.all.right= link_to 'Post a New topic'.l, new_forum_topic_path(@forum)
   - else
-    %h6.all= link_to 'Log in to create a new topic'.l, new_forum_topic_path(@forum)
+    %h6.all.right= link_to 'Log in to create a new topic'.l, new_forum_topic_path(@forum)
 
   - if @topics.size < 10
     - @related = Post.find_tagged_with(@forum.tag_list, :limit => 10)

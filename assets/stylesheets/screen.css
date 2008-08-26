@@ -725,15 +725,22 @@ ul#users_skills {
 
 
 /*	PAGINATION	*/
+div.pagination {
+	margin: 10px;
+	clear:both;
+	}
+	div.pagination div.pagination_info {
+		float:right;
+		}
 div.pagination a {
-	margin-right:.3em;
-	padding:.4em;	
+	margin-right:0.3em;
+	padding:0.4em;	
 	}
 	div.pagination a:hover {
 		background:#828282;
 		color:#ffffff;
-		margin-right:.3em;
-		padding:.4em;	
+		margin-right:0.3em;
+		padding:0.4em;	
 		}
 div.pagination a.active {
 		background:#828282;

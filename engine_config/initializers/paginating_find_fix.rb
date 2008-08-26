@@ -6,3 +6,5 @@ class PagingEnumerator
   end
 
 end
+
+PaginatingFind::Helpers::DEFAULT_OPTIONS[:link_to_current_page] = true
