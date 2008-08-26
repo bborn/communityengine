@@ -4,8 +4,8 @@ class Tag < ActiveRecord::Base
   def self.parse(list)
     tag_names = []
 
-    # first, pull out the quoted tags
-    list.gsub!(/\"(.*?)\"\s*/ ) { tag_names << $1; "" }
+    # first, pull out the quoted tags (single and double-quoted)
+    list.gsub!(/[\"\'](.*?)[\"\']\s*/ ) { tag_names << $1; "" }
 
     # then, replace all commas with a space
     list.gsub!(/,/, " ")

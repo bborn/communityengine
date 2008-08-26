@@ -56,7 +56,7 @@
       .box
         %h3 Tags
         #user_tags
-          = text_field_tag 'tag_list', @user.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off"}
+          = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
           #tag_list_auto_complete.auto_complete
           = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
           
