@@ -76,8 +76,8 @@ class PostsController < BaseController
   
   def update_views
     @post = Post.find(params[:id])
-    update_view_count(@post)
-    render :nothing => true
+    updated = update_view_count(@post)
+    render :text => updated ? 'updated' : 'duplicate'
   end
   
   def preview
