@@ -101,6 +101,11 @@ class Comment < ActiveRecord::Base
     end    
   end
   
+  def send_notifications
+    UserNotifier.deliver_comment_notice(self) if should_notify_recipient?
+    self.notify_previous_commenters    
+  end
+  
   protected
   def whitelist_attributes
     self.comment = white_list(self.comment)

@@ -1,4 +1,5 @@
 class CommentsController < BaseController
+  helper :comments
   before_filter :login_required, :except => [:index]
   if AppConfig.allow_anonymous_commenting
     skip_before_filter :login_required, :only => [:create]
@@ -27,9 +28,6 @@ class CommentsController < BaseController
                 
       unless @comments.empty?        
         @title = @comments.first.commentable_name
-        @rss_title = "#{AppConfig.community_name}: Comments - #{@title}"
-        @rss_url = formatted_comments_path(Inflector.underscore(@commentable.class),@commentable.id, :rss)
-
         respond_to do |format|        
           format.html {
             @user = @comments.first.recipient        
@@ -37,37 +35,19 @@ class CommentsController < BaseController
           }
           format.rss {
             @rss_title = "#{AppConfig.community_name}: #{Inflector.underscore(@commentable.class).capitalize} Comments - #{@title}"
-            @rss_url = comments_url(Inflector.underscore(@commentable.class), @commentable.to_param)
-            render_rss_feed_for(@comments,
-               { :feed => {:title => @title},
-                 :item => {:title => :title_for_rss,
-                           :description => :comment,
-                           :link => :generate_commentable_url,
-                           :pub_date => :created_at} }) and return
-            
+            @rss_url = formatted_comments_path(Inflector.underscore(@commentable.class),@commentable.id, :rss)            
+            render_comments_rss_feed_for(@comments, @title) and return
           }
         end
       end
     end
-    
-    
+
     respond_to do |format|        
       format.html {
         flash[:notice] = :no_comments_found.l_with_args(type => Inflector.constantize(Inflector.camelize(params[:commentable_type])))
         redirect_to :controller => 'base', :action => 'site_index' and return      
       }
-      format.rss {
-        @rss_title = "#{AppConfig.community_name}: #{Inflector.underscore(@commentable.class).capitalize} Comments - #{@title}"
-        @rss_url = comments_url(Inflector.underscore(@commentable.class), @commentable.to_param)
-        render_rss_feed_for(@comments,
-           { :feed => {:title => @title},
-             :item => {:title => :title_for_rss,
-                       :description => :comment,
-                       :link => :generate_commentable_url,
-                       :pub_date => :created_at} }) and return
-      
-      }
-    end
+    end      
   end
 
   def new
@@ -87,17 +67,20 @@ class CommentsController < BaseController
     respond_to do |format|
       if (logged_in? || verify_recaptcha(@comment)) && @comment.save
         @commentable.add_comment @comment
-        UserNotifier.deliver_comment_notice(@comment) if @comment.should_notify_recipient?
-        @comment.notify_previous_commenters
+        @comment.send_notifications
                 
         flash.now[:notice] = 'Comment was successfully created.'.l        
-        format.html { redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id], :user_id => @comment.recipient.id }
+        format.html { 
+          redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id], :user_id => @comment.recipient.id 
+        }
         format.js {
           render :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}
         }
       else
         flash.now[:error] = :comment_save_error.l_with_args(:error => @comment.errors.full_messages.to_sentence)
-        format.html { redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id] }
+        format.html { 
+          redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id] 
+        }
         format.js{
           render :inline => flash[:error], :status => 500
         }
@@ -107,8 +90,7 @@ class CommentsController < BaseController
 
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.can_be_deleted_by(current_user)
-      @comment.destroy
+    if @comment.can_be_deleted_by(current_user) && @comment.destroy
       flash.now[:notice] = "The comment was deleted.".l
     else
       flash.now[:error] = "Comment could not be deleted.".l
@@ -120,6 +102,19 @@ class CommentsController < BaseController
         render :nothing => true if flash[:notice]
       }
     end    
+  end
+  
+  
+  private
+  def render_comments_rss_feed_for(comments, title)
+    render_rss_feed_for(comments,
+      { :feed => {:title => title},
+        :item => { :title => :title_for_rss,
+                   :description => :comment,
+                   :link => :generate_commentable_url,
+                   :pub_date => :created_at
+                   } 
+      })
   end
   
 
