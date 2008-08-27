@@ -1,0 +1,218 @@
+# this template requires variables: application, repository, public_hostname, db_user, db_pass
+# mongrel has some replacements for restart and spinner:
+require 'mongrel_cluster/recipes'
+
+# =============================================================================
+# REQUIRED VARIABLES - SET THESE
+# =============================================================================
+# You must always specify the application and repository for every recipe. The
+# repository must be the URL of the repository you want this recipe to
+# correspond to. The deploy_to path must be the path on each machine that will
+# form the root of the application path.
+
+set :application, "<%= application %>"
+
+default_run_options[:pty] = true
+set :scm, "git"
+set :git_enable_submodules, 1
+set :user, "root"
+
+set :branch, "master"
+set :deploy_via, :remote_cache
+
+set :repository, "<%= repository %>"
+
+role :web, "<%= public_hostname %>"
+role :app, "<%= public_hostname %>"
+role :db,  "<%= public_hostname %>", :primary => true
+
+set :deploy_to, "/mnt/apps/#{application}"
+
+# your web server's address, i.e. http://sample.com/
+set :server_name, "<%= public_hostname %>"
+
+set :crontab_email, 'root@localhost'
+
+# mongrel configuration:
+set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
+set :mongrel_servers, 3
+set :mongrel_start_port, 8000
+
+#db configuration
+set :database, "mysql"
+set :database_host, "localhost"
+set :database_username, "<%= db_user %>"
+set :database_password, "<%= db_pass %>"
+
+set :web_server, 'nginx'
+
+# =============================================================================
+# OVERRIDE TASKS
+# =============================================================================
+desc "Restart the web server"
+task :restart_web, :roles => [:web] do
+  sudo "/etc/init.d/#{web_server} restart"
+end
+
+namespace :deploy do
+  
+  desc "Run the full tests on the deployed app." 
+  task :run_tests do
+   run "cd #{release_path} && rake db:migrate RAILS_ENV=development" 
+   run "cd #{release_path} && rake db:test:prepare" 
+   run "cd #{release_path} && rake" 
+   run "cd #{release_path} && rake community_engine:test"    
+  end
+
+  desc "Run pre-symlink tasks" 
+  task :before_symlink do  
+    # run_tests
+  end
+  
+  desc "Tasks to execute after code update"
+  task :after_update_code, :roles => [:app, :db] do  
+    # relink shared deployment database configuration
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+
+    # relink mongrel cluster configuration
+    run "ln -nfs #{shared_path}/config/mongrel_cluster.yml #{release_path}/config/mongrel_cluster.yml"
+
+    # relink shared tmp dir (for session and cache data)
+    sudo "rm -rf #{release_path}/tmp"  # technically shouldn't be in git
+    run "ln -nfs #{shared_path}/tmp #{release_path}/tmp"
+
+  end  
+  
+  desc "Tasks to execute before initial setup"
+  task :before_setup do
+    sudo "mkdir -p #{apps_dir}/"
+    sudo "chown -R #{user} #{apps_dir}/"
+    
+    sudo "mkdir -p /etc/mongrel_cluster"
+  end
+
+  desc "Setup nginx configuration"
+  task :nginx_configuration_setup do
+    nginx_configuration = ERB.new(File.read("#{File.dirname(__FILE__)}/config_templates/nginx.erb"), nil, '>').result(binding)
+
+    put nginx_configuration, "#{shared_path}/config/#{application}_nginx.conf"
+    sudo "ln -nfs #{shared_path}/config/#{application}_nginx.conf /etc/rails/#{application}.conf"    
+  end
+
+  desc "Setup mongrel Configuration"
+  task :mongrel_configuration_setup do
+    mongrel_configuration = ERB.new(File.read("#{File.dirname(__FILE__)}/config_templates/mongrel.erb"), nil, '>').result(binding)    
+
+    put mongrel_configuration, "#{shared_path}/config/mongrel_cluster.yml"
+    sudo "ln -nfs #{shared_path}/config/mongrel_cluster.yml /etc/mongrel_cluster/#{application}.yml"
+  end
+
+  desc "Setup Database Configuration"
+  task :database_configuration_setup do
+    database_configuration = ERB.new(File.read("#{File.dirname(__FILE__)}/config_templates/database.erb"), nil, '>').result(binding)    
+
+    put database_configuration, "#{shared_path}/config/database.yml"
+  end
+
+  
+  desc "Setup crontab Configuration"
+  task :crontab_configuration_setup do
+
+    # setup crontab file
+    crontab_file = <<-EOF
+  # WARNING: this file has been automatically setup by the Capistrano script
+  #  Please make changes there and rerun setup, not here, as they will be overwritten....
+  #
+  # Global variables
+  SHELL=/bin/bash
+  PATH=/sbin:/bin:/usr/sbin:/usr/bin
+  MAILTO=#{crontab_email}
+  HOME=/
+
+  # check scripts in cron.hourly, cron.daily, cron.weekly and cron.monthly
+  # minute hour dom month dow    user    cmd
+  01 * * * * root run-parts /etc/cron.hourly
+  02 4 * * * root run-parts /etc/cron.daily
+  22 4 * * 0 root run-parts /etc/cron.weekly
+  42 4 1 * * root run-parts /etc/cron.monthly
+  EOF
+
+    put crontab_file, "#{shared_path}/system/crontab"
+
+    # deploy it by copying over one that exists
+    sudo "cp #{shared_path}/system/crontab /etc/crontab"
+  end  
+  
+  desc  "Setup app specific cron file"
+  task :app_cron_configuration_setup do
+    cron_file = <<-EOF
+  #clear sessions
+  cd #{deploy_to}/current && /usr/bin/rake db:sessions:clear RAILS_ENV=production
+  
+  #clear cache
+  cd #{deploy_to}/current && /usr/bin/rake tmp:cache:clear RAILS_ENV=production
+  
+  #backup the database to s3
+  #cd #{deploy_to}/current/ && /usr/bin/rake s3:backup:db RAILS_ENV=production
+  #cd #{deploy_to}/current/ && /usr/bin/rake s3:manage:clean_up  
+  EOF
+
+    put cron_file, "#{shared_path}/system/#{application}.cron"
+
+    # deploy it by copying over one that exists
+    sudo "cp #{shared_path}/system/#{application}.cron /etc/cron.daily/#{application}.cron"
+    sudo "chown -R #{user} /etc/cron.daily/#{application}.cron"    
+  end  
+  
+  task :god_configuration_setup do
+    god_file = ERB.new(File.read("#{File.dirname(__FILE__)}/config_templates/god.erb"), nil, '>').result(binding)    
+    puts god_file
+    # put god_file, "#{shared_path}/system/#{application}.god"
+  end  
+  
+  desc "Tasks to execute after initial setup"
+  task :after_setup do  
+    # make shared config dir to hold these config files
+    run "mkdir -p #{shared_path}/config"
+
+    # make a shared tmp dir for sessions
+    run "mkdir -p #{shared_path}/tmp"
+    run "mkdir -p #{shared_path}/tmp/cache"
+    run "mkdir -p #{shared_path}/tmp/sessions"
+    run "mkdir -p #{shared_path}/tmp/sockets"
+    run "mkdir -p #{shared_path}/tmp/pids"
+
+    # create any other shared dirs
+    run "mkdir -p #{shared_path}/uploads"
+    run "mkdir -p #{shared_path}/photos"
+    run "mkdir -p #{shared_path}/homepage_features"        
+    run "mkdir -p #{shared_path}/assets"            
+
+    mongrel_configuration_setup
+    database_configuration_setup
+    crontab_configuration_setup
+    app_cron_configuration_setup        
+    god_configuration_setup          
+  end
+  
+  namespace :deployment do
+    # =============================================================================
+    # WARNING: SEMI-DESTRUCTIVE 
+    # =============================================================================
+    desc "Setup mysql databases and permissions"
+    task :mysql_setup, :roles => [:db] do 
+      mysql_setup_file = render :template => <<-EOF
+    CREATE DATABASE #{application}_development;
+    CREATE DATABASE #{application}_test;
+    CREATE DATABASE #{application}_production;
+    GRANT ALL PRIVILEGES ON #{application}_development.* TO '#{database_username}'@'localhost' IDENTIFIED BY '#{database_password}';
+    GRANT ALL PRIVILEGES ON #{application}_test.* TO '#{database_username}'@'localhost' IDENTIFIED BY '#{database_password}';
+    GRANT ALL PRIVILEGES ON #{application}_production.* TO '#{database_username}'@'localhost' IDENTIFIED BY '#{database_password}';
+    FLUSH PRIVILEGES;
+    EOF
+      put mysql_setup_file, "#{deploy_to}/#{shared_dir}/system/mysql_setup_file.sql"
+      run "mysql -u root < #{deploy_to}/#{shared_dir}/system/mysql_setup_file.sql"
+    end
+  end  
+
+end

@@ -1,24 +1,28 @@
 namespace :community_engine do   
-  
-  namespace :deployment do
-    # =============================================================================
-    # MANUAL SETUP TASKS (WARNING: SEMI-DESTRUCTIVE TASKS)
-    # =============================================================================
-    desc "Setup mysql databases and permissions"
-    task :mysql_setup, :roles => [:db] do 
-      mysql_setup_file = render :template => <<-EOF
-    CREATE DATABASE #{application}_development;
-    CREATE DATABASE #{application}_test;
-    CREATE DATABASE #{application}_production;
-    GRANT ALL PRIVILEGES ON #{application}_development.* TO '#{database_username}'@'localhost' IDENTIFIED BY '#{database_password}';
-    GRANT ALL PRIVILEGES ON #{application}_test.* TO '#{database_username}'@'localhost' IDENTIFIED BY '#{database_password}';
-    GRANT ALL PRIVILEGES ON #{application}_production.* TO '#{database_username}'@'localhost' IDENTIFIED BY '#{database_password}';
-    FLUSH PRIVILEGES;
-    EOF
-      put mysql_setup_file, "#{deploy_to}/#{shared_dir}/system/mysql_setup_file.sql"
-      run "mysql -u root < #{deploy_to}/#{shared_dir}/system/mysql_setup_file.sql"
-    end
+    
+  desc "Generate deploy.rb"
+  task :generate_deploy_script => :environment do
+    require 'erb'
+    require 'yaml'
+        
+    public_hostname = ENV["hostname"]                
+    application = ENV["application"]
+    repository = ENV["repo"]
+    db_user = ENV["db_user"]    
+    db_pass = ENV["db_pass"]        
+    
+    abort('Missing variables') unless application && repository && db_user && db_pass && public_hostname
+    
+    deploy_templates_dir = "#{File.dirname(__FILE__)}/../sample_files/deployment_templates"
+    deploy_file = ERB.new(File.read("#{deploy_templates_dir}/deploy.erb"), nil, '>').result(binding)    
 
+    File.open("#{RAILS_ROOT}/config/deploy.rb", 'w+') {|f| 
+      f.write(deploy_file) 
+    }
+    
+    `cp -r #{deploy_templates_dir}/* '#{RAILS_ROOT}/config/config_templates'`
+    `rm #{RAILS_ROOT}/config/config_templates/deploy.erb`
   end
+  
 
 end
