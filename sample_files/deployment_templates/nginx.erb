@@ -15,7 +15,7 @@ server {
             listen   80;
             server_name <%= server_name %>;
 
-            root   /mnt/apps/railsapp/public/;
+            root   <%= deploy_to %>/current/public/;
             index  index.html;
 				    client_max_body_size 50M;
 
