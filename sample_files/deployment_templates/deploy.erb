@@ -89,6 +89,12 @@ namespace :deploy do
     sudo "chown -R #{user} #{apps_dir}/"
     
     sudo "mkdir -p /etc/mongrel_cluster"
+    
+    sudo "mkdir -p #{apps_dir}/releases"
+    sudo "chown -R #{user} #{apps_dir}/releases""
+    
+    sudo "mkdir -p /etc/mongrel_cluster"
+    sudo "mkdir -p /etc/rails"    
   end
 
   desc "Setup nginx configuration"
