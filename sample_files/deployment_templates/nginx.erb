@@ -13,13 +13,7 @@ upstream <%= application %> {
 
 server {
             listen   80;
-            server_name  <%= server_name %>;
-            rewrite ^/(.*) http://www.<%= server_name %> permanent;
-           }
-
-server {
-            listen   80;
-            server_name www.<%= server_name %>;
+            server_name <%= server_name %>;
 
             root   /mnt/apps/railsapp/public/;
             index  index.html;
