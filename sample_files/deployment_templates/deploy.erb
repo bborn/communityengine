@@ -85,13 +85,13 @@ namespace :deploy do
   
   desc "Tasks to execute before initial setup"
   task :before_setup do
-    sudo "mkdir -p #{apps_dir}/"
-    sudo "chown -R #{user} #{apps_dir}/"
+    sudo "mkdir -p #{deploy_to}/"
+    sudo "chown -R #{user} #{deploy_to}/"
     
     sudo "mkdir -p /etc/mongrel_cluster"
     
-    sudo "mkdir -p #{apps_dir}/releases"
-    sudo "chown -R #{user} #{apps_dir}/releases"
+    sudo "mkdir -p #{deploy_to}/releases"
+    sudo "chown -R #{user} #{deploy_to}/releases"
     
     sudo "mkdir -p /etc/mongrel_cluster"
     sudo "mkdir -p /etc/rails"    
