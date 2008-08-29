@@ -14,7 +14,7 @@ class PostsController < BaseController
   before_filter :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage]
   before_filter :require_ownership_or_moderator, :only => [:create, :edit, :update, :destroy, :manage]
 
-  skip_before_filter :verify_authenticity_token, :only => [:update_views] #called from ajax on cached pages 
+  skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages 
   
   def manage
     @posts = @user.posts.find_without_published_as(:all, 
