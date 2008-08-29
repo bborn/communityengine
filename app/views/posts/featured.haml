@@ -3,7 +3,7 @@
 .yui-b
 
   .box.alt.first_alt
-    %h3=:staff_writers.l
+    %h3= AppConfig.featured_writer_label.pluralize
     - @featured_writers.each do |user|
       = render :partial => "users/sidebar_user", :locals => {:user => user}
 
@@ -12,8 +12,7 @@
     .box.hfeed
       %h3="Featured Posts".l
 
-      .pagination
-        =pagination_links
+      .pagination=paginating_links @posts if @posts.page_count > 1
 
       = render :partial => 'posts/post', :collection => @posts
   

@@ -27,28 +27,25 @@ class TagsController < BaseController
     @related_tags = @tag.related_tags
     
     if params[:type]
-      cond = Caboose::EZ::Condition.new
-      cond.append ['tags.name = ?', @tag.name]
-
       case params[:type]
         when 'Post'
-          @pages, @posts = paginate :posts, :order => "published_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 20
+          @pages = @photos = Post.recent.tagged_with(@tag.name).find(:all, :page => {:size => 20, :current => params[:page]})
           @photos, @users, @clippings = [], [], []
         when 'Photo'
-          @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 30
+          @pages = @photos = Photo.recent.tagged_with(@tag.name).find(:all, :page => {:size => 30, :current => params[:page]})
           @posts, @users, @clippings = [], [], []          
         when 'User'
-          @pages, @users = paginate :users, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 30
+          @pages = @users = User.recent.tagged_with(@tag.name).find(:all, :page => {:size => 30, :current => params[:page]})
           @posts, @photos, @clippings = [], [], []
         when 'Clipping'
-          @pages, @clippings = paginate :clippings, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 30      
+          @pages = @clippings = Clipping.recent.find(:all, :page => {:size => 1, :current => params[:page]})
           @posts, @photos, @users = [], [], []          
         end
     else
-      @posts = Post.find_tagged_with(@tag.name, :limit => 5, :order => 'published_at DESC', :sql => " AND published_as = 'live'")
-      @photos = Photo.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC')
-      @users = User.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC').uniq
-      @clippings = Clipping.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC')
+      @posts = Post.recent.tagged_with(@tag.name).find(:all, :limit => 5)
+      @photos = Photo.recent.tagged_with(@tag.name).find(:all, :limit => 10)
+      @users = User.recent.tagged_with(@tag.name).find(:all, :limit => 10).uniq
+      @clippings = Clipping.recent.tagged_with(@tag.name).find(:all, :limit => 10)
     end
   end
 

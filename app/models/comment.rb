@@ -20,6 +20,9 @@ class Comment < ActiveRecord::Base
 
   acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user
 
+  # named_scopes
+  named_scope :recent, :order => 'created_at DESC'
+
   def self.find_photo_comments_for(user)
     Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC')
   end
@@ -96,6 +99,11 @@ class Comment < ActiveRecord::Base
     previous_commenters_to_notify.each do |commenter|
       UserNotifier.deliver_follow_up_comment_notice(commenter, self)
     end    
+  end
+  
+  def send_notifications
+    UserNotifier.deliver_comment_notice(self) if should_notify_recipient?
+    self.notify_previous_commenters    
   end
   
   protected

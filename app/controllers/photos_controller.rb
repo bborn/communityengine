@@ -12,7 +12,7 @@ class PhotosController < BaseController
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
   
   def recent
-    @pages, @photos = paginate :photo, :order => "created_at DESC", :conditions => ["parent_id IS NULL"]
+    @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
   end
   
   # GET /photos
@@ -26,7 +26,7 @@ class PhotosController < BaseController
       cond.append ['tags.name = ?', params[:tag_name]]
     end
 
-    @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags
+    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page]})
 
     @tags = Photo.tags_count :user_id => @user.id, :limit => 20
 
@@ -58,7 +58,7 @@ class PhotosController < BaseController
       end
   
       @selected = params[:photo_id]
-      @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 10
+      @photos = Photo.recent.find :all, :conditions => cond.to_sql, :include => :tags, :page => {:size => 10, :current => params[:page]}
 
     end
     respond_to do |format|

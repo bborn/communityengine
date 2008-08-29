@@ -5,9 +5,9 @@
 </div>
 
 <div id="yui-main">
-	<div class="yui-b main_column">
+	<div class="yui-b main_column box">
 		<% rounded do %>
-			<h1>Statistics</h1>
+			<h3>Statistics</h3>
 
 <%= ziya_chart( activities_chart_statistics_url(:range => params[:range]), {:bgcolor => '#ffffff', :width => 600, :height => 400, :id => "Activities", :swf_path => "/plugin_assets/community_engine/charts/"} )%>
 

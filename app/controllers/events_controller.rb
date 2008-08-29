@@ -9,7 +9,7 @@ class EventsController < BaseController
 
   def index
     @is_admin_user = (current_user && current_user.admin?)
-    @pages, @events = paginate :events, :order => "start_time DESC"
+    @events = Event.upcoming.find(:all, :page => {:current => params[:page]})
   end
 
   def new

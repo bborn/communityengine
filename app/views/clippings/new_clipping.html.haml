@@ -64,7 +64,7 @@
                 = f.text_field :image_url
 
                 %label="Tags".l
-                = text_field_tag 'tag_list', @clipping.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off",:id => 'clipping_tag_list'}
+                = text_field_tag 'tag_list', @clipping.tag_list, {:autocomplete => "off",:id => 'clipping_tag_list'}
 
                 #clipping_tag_list_auto_complete.auto_complete
                 = auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' '], :update => 'clipping_tag_list_auto_complete' }
@@ -120,7 +120,7 @@
                 %em="("+"optional keywords describing this post, separated by spaces".l+")"
                 \:
 
-              = text_field_tag 'tag_list', @post.tags.collect{|t| t.name}.join(", "), {:autocomplete => "off", :size => 35, :id => 'post_tag_list'}
+              = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35, :id => 'post_tag_list'}
               #post_tag_list_auto_complete.auto_complete
               = auto_complete_field 'post_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' '], :update=> 'post_tag_list_auto_complete' }
 

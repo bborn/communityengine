@@ -1,5 +1,5 @@
 #Forum routes go first
-resources :forums, :topics, :sb_posts, :monitorship
+resources :forums, :sb_posts, :monitorship
 resources :sb_posts, :name_prefix => 'all_', :collection => { :search => :get, :monitored => :get }
 
 %w(forum).each do |attr|
@@ -14,6 +14,8 @@ resources :forums do |forum|
   end
 end
 forum_home '/forums', :controller => 'forums', :action => 'index'
+resources :topics
+
 
 connect 'sitemap.xml', :controller => "sitemap", :action => "index", :format => 'xml'
 connect 'sitemap', :controller => "sitemap", :action => "index"
@@ -58,8 +60,6 @@ faq '/faq', :controller => 'base', :action => 'faq'
 css_help '/css_help', :controller => 'base', :action => 'css_help'  
 
 edit_account_from_email '/account/edit', :controller => 'users', :action => 'edit_account'
-
-users_posts_in_category '/users/:user_id/posts/category/:category_name', :controller => 'posts', :action => 'index', :category_name => :category_name
 
 friendships_xml '/friendships.xml', :controller => 'friendships', :action => 'index', :format => 'xml'
 friendships '/friendships', :controller => 'friendships', :action => 'index'
@@ -113,6 +113,8 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :favorites, :name_prefix => 'user_'
 end
 resources :votes
+
+users_posts_in_category '/users/:user_id/posts/category/:category_name', :controller => 'posts', :action => 'index', :category_name => :category_name
 
 with_options(:controller => 'theme', :filename => /.*/, :conditions => {:method => :get}) do |theme|
   theme.connect 'stylesheets/theme/:filename', :action => 'stylesheets'

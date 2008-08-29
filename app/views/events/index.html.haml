@@ -12,7 +12,8 @@
 #yui-main
   .yui-b
     .box
-      .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+    
+      .pagination=paginating_links @events if @events.page_count > 1      
 
       - @events.each do |event|
         %h3= event.name
@@ -25,4 +26,4 @@
         %strong= h event.location
         %p= event.description
 
-      .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+      .pagination=paginating_links @events if @events.page_count > 1      

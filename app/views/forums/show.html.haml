@@ -26,12 +26,11 @@
     
   %br.clear
 
-  - if @topic_pages.page_count > 1
+  - if @topics.page_count > 1
     - if logged_in?
-      %h6.all= link_to 'Post a New topic', new_forum_topic_path(@forum)
+      %h6.all.right= link_to 'Post a New topic', new_forum_topic_path(@forum)
   
-    .pagination
-      = pagination_links @topic_pages, :window_size => 10
+    .pagination= paginating_links @topics
 
   - unless @topics.empty?
     %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
@@ -65,13 +64,13 @@
               %strong.fn= h(topic.replied_by_user.display_name)
             %span= link_to 'view', forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
   
-  - if @topic_pages.page_count > 1
-    %p.pages= pagination_links @topic_pages, :window_size => 10
+  - if @topics.page_count > 1
+    .pagination= paginating_links @topics  
 
   - if logged_in?
-    %h6.all= link_to 'Post a New topic'.l, new_forum_topic_path(@forum)
+    %h6.all.right= link_to 'Post a New topic'.l, new_forum_topic_path(@forum)
   - else
-    %h6.all= link_to 'Log in to create a new topic'.l, new_forum_topic_path(@forum)
+    %h6.all.right= link_to 'Log in to create a new topic'.l, new_forum_topic_path(@forum)
 
   - if @topics.size < 10
     - @related = Post.find_tagged_with(@forum.tag_list, :limit => 10)

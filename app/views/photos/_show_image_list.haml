@@ -12,7 +12,7 @@
           %a{:href=>'#', :onclick=>"select_thumb(this);return false;"}
             Large
           %br
-          %a{:href=>'#', :onclick=>"$(this).up('li').removeClassName('selected');return false;", :style => 'float:right; font-size: .4em;'}
+          %a{:href=>'#', :onclick=>"$(this).up('li').removeClassName('selected');return false;", :style => 'float:right; font-size: 10px;'}
             cancel
         %a{:href=>'#', :onclick=>"select_image(this);return false;"}
           = image_tag( p.public_filename(:thumb), :alt => p.display_name )

@@ -8,13 +8,15 @@
         Clippings
 
       .clippings_grid
-        - @clippings.in_groups_of(2) do |group|
+
+        - @clippings.to_a.in_groups_of(2) do |group|
           .row  
             - group.compact.each do |clipping|
               =render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
             .clear
       
-      =pagination_links
+      -if @clippings.page_count > 1      
+        .pagination=paginating_links @clippings
       .clear
       %br
           

@@ -10,16 +10,16 @@
 <h1><%= @page_title %></h1>
 <p class="subtitle">
   <%= feed_icon_tag @page_title, formatted_monitored_all_sb_posts_path(:user_id => @user, :format => 'rss') %>
-  <%= pluralize(@post_pages.item_count,"post") %> <%= 'found'.l %>
+  <%= pluralize(@posts.size,"post") %> <%= 'found'.l %>
 </p>
 
-<% if @post_pages.page_count > 1 -%>
-<p class="pages"><%= 'Pages:'.l %> <strong><%= pagination_links @post_pages, :window_size => 10, :params => params %></strong></p>
+<% if @posts.page_count > 1 -%>
+<div class="pagination"><%= 'Pages:'.l %> <strong><%= paginating_links @posts %></strong></div>
 <% end -%>
 
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
 <% for post in @posts do %>
-<% unless post == @posts.first %>
+<% unless post == @posts.to_a.first %>
 <tr class="spacer">
   <td colspan="2">&nbsp;</td>
 </tr>
@@ -37,7 +37,7 @@
     </div>
 
     <%= avatar_for post.user %>
-    <span class="fn"><%= link_to truncate(h(post.user.display_name), 15), user_path(post.user), :class => (post.user == @posts.first.user ? "admin" : nil) %></span>
+    <span class="fn"><%= link_to truncate(h(post.user.display_name), 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil) %></span>
     <span class="posts"><%= pluralize post.user.sb_posts_count, 'post' %></span>
   </td>
   <td class="body entry-content">
@@ -50,10 +50,10 @@
 <% end %>
 </table>
 
-<% if @post_pages and @post_pages.current.next %>
-<p style="float:right;"><%= link_to 'Next page'.l, { :page => @post_pages.current.next }.merge(params.reject{|k,v| k=="page"})  %></p>
+<% if @posts and @posts.next_page %>
+<p style="float:right;"><%= link_to 'Next page'.l, { :page => @posts.next_page }.merge(params.reject{|k,v| k=="page"})  %></p>
 <% end %>
 
-<% if @post_pages.page_count > 1 -%>
-<p class="pages"><%= 'Pages:'.l %> <strong><%= pagination_links @post_pages, :window_size => 10, :params => params %></strong></p>
+<% if @posts.page_count > 1 -%>
+<div class="pagination"><%= 'Pages:'.l %> <strong><%= paginating_links @posts %></strong></div>
 <% end -%>

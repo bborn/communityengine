@@ -15,11 +15,12 @@ class ClippingsController < BaseController
     order = (params[:recent] ? "created_at DESC" : "clippings.favorited_count DESC")
     
     
-    @pages, @clippings = paginate(:clippings, 
+    @clippings = Clipping.find(:all,
+      :page => {:size => 30, :current => params[:page]},
       :order => order, 
       :conditions => cond.to_sql, 
-      :include => :tags, 
-      :per_page => 30)
+      :include => :tags
+      )
     
     @rss_title = "#{AppConfig.community_name}: #{params[:popular] ? 'Popular' : 'Recent'} Clippings"
     @rss_url = rss_site_clippings_path
@@ -49,7 +50,11 @@ class ClippingsController < BaseController
       cond.append ['tags.name = ?', params[:tag_name]]
     end
 
-    @pages, @clippings = paginate :clippings, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags
+    @clippings = Clipping.find(:all,
+      :page => {:size => 30, :current => params[:page]}, 
+      :order => "created_at DESC", 
+      :conditions => cond.to_sql, 
+      :include => :tags )
 
     @tags = Clipping.tags_count :user_id => @user.id, :limit => 20
     @clippings_data = @clippings.collect {|c| [c.id, c.image_url, c.description, c.url ]  }            
