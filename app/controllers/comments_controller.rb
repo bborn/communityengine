@@ -1,7 +1,9 @@
 class CommentsController < BaseController
   helper :comments
   before_filter :login_required, :except => [:index]
+
   if AppConfig.allow_anonymous_commenting
+    skip_before_filter :verify_authenticity_token, :only => [:create]   #because the auth token might be cached anyway
     skip_before_filter :login_required, :only => [:create]
   end
   
