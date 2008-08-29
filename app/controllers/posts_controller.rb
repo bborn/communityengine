@@ -30,7 +30,7 @@ class PostsController < BaseController
       cond.append ['category_id = ?', @category.id]
     end
 
-    @posts = @user.posts.recent.find :all, :conditions => cond.to_sql, :page => {:size => 1, :current => params[:page]}
+    @posts = @user.posts.recent.find :all, :conditions => cond.to_sql, :page => {:size => 10, :current => params[:page]}
     
     @is_current_user = @user.eql?(current_user)
 
