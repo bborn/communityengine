@@ -51,7 +51,7 @@ class FriendshipsController < BaseController
     @friendships = @user.friendships.find(:all, :conditions => ["friendship_status_id = ?", FriendshipStatus[:denied].id])
     
     respond_to do |format|
-      format.html # index.rhtml
+      format.html
     end
   end
 
@@ -60,16 +60,11 @@ class FriendshipsController < BaseController
     @user = User.find(params[:user_id])    
     @friend_count = @user.accepted_friendships.count
     @pending_friendships_count = @user.pending_friendships.count
-    
-    @pages = Paginator.new self, @friend_count, 20, params[:page]
-    @friendships = @user.friendships.find(:all, 
-        :conditions => ["friendship_status_id = ?", FriendshipStatus[:accepted].id],
-        :limit  =>  @pages.items_per_page,
-        :offset =>  @pages.current.offset        
-      )
+          
+    @friendships = @user.friendships.accepted.find :all, :page => {:size => 12, :current => params[:page], :count => @friend_count}
     
     respond_to do |format|
-      format.html # index.rhtml
+      format.html
     end
   end
   
@@ -78,24 +73,20 @@ class FriendshipsController < BaseController
     @friendships = @user.friendships.find(:all, :conditions => ["initiator = ? AND friendship_status_id = ?", false, FriendshipStatus[:pending].id])
     
     respond_to do |format|
-      format.html # index.rhtml
+      format.html
     end
   end
   
-  # GET /friendships/1
-  # GET /friendships/1.xml
   def show
     @friendship = Friendship.find(params[:id])
     @user = @friendship.user
     
     respond_to do |format|
-      format.html # show.rhtml
+      format.html
     end
   end
   
 
-  # POST /friendships
-  # POST /friendships.xml
   def create
     @user = User.find(params[:user_id])
     @friendship = Friendship.new(:user_id => params[:user_id], :friend_id => params[:friend_id], :initiator => true )
@@ -121,8 +112,6 @@ class FriendshipsController < BaseController
     end
   end
     
-  # DELETE /friendships/1
-  # DELETE /friendships/1.xml
   def destroy
     @user = User.find(params[:user_id])    
     @friendship = Friendship.find(params[:id])

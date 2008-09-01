@@ -7,12 +7,8 @@ class SkillsController < BaseController
   def index
     @skills = Skill.find(:all)
 
-    cond = Caboose::EZ::Condition.new
-    cond.append ['activated_at is not null ']
-    cond.vendor == true
+    @users = User.recent.vendors.find :all, :include => :tags, :page => {:current => params[:page]}
     
-    @pages, @users = paginate :users, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags
-
     @tags = User.tags_count :limit => 10
 
     @active_users = User.find(:all,

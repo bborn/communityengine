@@ -63,7 +63,7 @@ array_skip_last_comma: 'true'
 
 date_helper_month_names:
   - # Leave that line
-  - # Leave that line
+    - # Leave that line
   - Enero
   - Febrero
   - Marzo

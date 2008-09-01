@@ -33,8 +33,10 @@
                 %abbr{:title=>"#{post.created_at}"}= post.created_at.strftime("%Y/%m/%d")
               %td
                 %abbr{:title=>"#{post.published_at}"}= post.published_at_display
-              %td= link_to post.title, edit_user_post_path(post.user, post)
-              %td= post.category.name
+              %td
+                = link_to post.title, edit_user_post_path(post.user, post)
+                = link_to("(#{'Preview'.l})", user_post_path(post.user, post), :target => '_blank') unless post.is_live?
+              %td= post.category ? post.category.name : 'Uncategorized'.l
               %td= post.tags.any? ? post.tag_list : 'No tags'.l
               %td= post.comments.count
               %td= post.is_live? ? link_to('published'.l, user_post_path(post.user, post)) : 'draft'.l

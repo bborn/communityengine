@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@category.name} posts, DIY projects and photos.",:keywords => "#{@category.name}, diy, design, interior-design, do it yourself"}
+- @meta = { :description => "#{@category.name} posts.",:keywords => "#{@category.name}"}
 - @section = @category.name
 
 .yui-b
@@ -38,6 +38,6 @@
           %li= link_to "Recent".l, category_path(@category), {:class => (params[:popular] ? '' : 'active')}
           %li= link_to "Popular".l, category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
 
-      = render :partial => 'posts/post', :collection => @posts
-      = pagination_info_for @pages
-      = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+      = render :partial => 'posts/post', :collection => @posts      
+      - if @posts.page_count > 1
+        .pagination= paginating_links @posts, :link_to_current_page => true

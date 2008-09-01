@@ -16,7 +16,7 @@
         = f.text_field :description
 
         %label Tags:
-        = text_field_tag 'tag_list', @clipping.tags.collect{|t| t.name}.join(" ")
+        = text_field_tag 'tag_list', @clipping.tag_list
 
         %p
           = submit_tag "Save"

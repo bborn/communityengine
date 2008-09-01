@@ -159,7 +159,7 @@ To wrap all localized strings in a <span> that shows their localization key, put
 
     Globalite.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
   
-Note, this will effect the look and feel of buttons. You can highlight what is localized by using the span.localized style (look in screen.css)
+Note, this will affect the look and feel of buttons. You can highlight what is localized by using the span.localized style (look in screen.css)
 
 
 
@@ -181,7 +181,9 @@ You can also override CommunityEngine's controllers by creating identically-name
 # Contributors - Thanks! :)
 
 Bryan Kearney - localization
-
+Alex Nesbitt - forgot password bugs
+Alejandro Raiczyk - Spanish localization
+Fritz Thielemann - German localization
 
 
 # Todo

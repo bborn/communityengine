@@ -9,7 +9,7 @@ var Lightbox = {
 	/* hideAll - closes all open lightbox windows */
 	hideAll: function(){
 		lboxes = document.getElementsByClassName('lbox')
-		lboxes.each(function(box){
+		$A(lboxes).each(function(box){
 				Element.hide(box)
 			}
 		)

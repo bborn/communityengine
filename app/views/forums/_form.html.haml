@@ -10,7 +10,7 @@
       = form.text_field :position, :size => 5
 
       %label Tags:
-      = text_field_tag 'tag_list', @forum.tags.collect{|t| t.name}.join(" "), {:autocomplete => "off", :size => 35}
+      = text_field_tag 'tag_list', @forum.tag_list, {:autocomplete => "off", :size => 35}
       #tag_list_auto_complete.auto_complete
       = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
 

@@ -13,6 +13,13 @@ class UserTest < Test::Unit::TestCase
     end
   end
   
+  def test_should_trim_whitespace
+    user = users(:quentin)
+    user.login = 'quentin    '
+    user.save!
+    assert_equal user.login, 'quentin'
+  end
+
   def test_should_not_reject_spaces
     user = User.new(:login => 'foo bar')
     user.valid?

@@ -1,7 +1,7 @@
 require 'pp'
 
 class PhotosController < BaseController
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage_photos, :swfupload]
+  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :swfupload]
   before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow, :swfupload]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
 
@@ -12,7 +12,7 @@ class PhotosController < BaseController
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
   
   def recent
-    @pages, @photos = paginate :photo, :order => "created_at DESC", :conditions => ["parent_id IS NULL"]
+    @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
   end
   
   # GET /photos
@@ -26,7 +26,7 @@ class PhotosController < BaseController
       cond.append ['tags.name = ?', params[:tag_name]]
     end
 
-    @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags
+    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page]})
 
     @tags = Photo.tags_count :user_id => @user.id, :limit => 20
 
@@ -49,15 +49,18 @@ class PhotosController < BaseController
   end
   
   def manage_photos
-    @user = current_user
-    cond = Caboose::EZ::Condition.new
-    cond.user_id == @user.id
-    if params[:tag_name]    
-      cond.append ['tags.name = ?', params[:tag_name]]
+    if logged_in?
+      @user = current_user
+      cond = Caboose::EZ::Condition.new
+      cond.user_id == @user.id
+      if params[:tag_name]    
+        cond.append ['tags.name = ?', params[:tag_name]]
+      end
+  
+      @selected = params[:photo_id]
+      @photos = Photo.recent.find :all, :conditions => cond.to_sql, :include => :tags, :page => {:size => 10, :current => params[:page]}
+
     end
-    
-    @selected = params[:photo_id]
-    @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 10
     respond_to do |format|
       format.js
     end

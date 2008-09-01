@@ -12,7 +12,7 @@ class CommentsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
-
+  
   def test_should_create_user_comment_with_notification
     login_as :aaron
     assert_difference Comment, :count, 1 do

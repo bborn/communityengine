@@ -1,6 +1,6 @@
 .yui-b.sidebar
   =render :partial => 'shared/login_sidebar'
-  
+
 #yui-main
   .yui-b.main_column
     .box
@@ -8,6 +8,6 @@
 
       - form_tag '/forgot_username', :class => 'MainForm' do
         %label{"for"=>"email"}="Enter your email address:".l
-        = text_field_tag 'login', nil, :size => 35
+        = text_field_tag 'email', nil, :size => 35
         %p
           = submit_tag 'Send me my username'.l

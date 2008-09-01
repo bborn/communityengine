@@ -15,6 +15,10 @@ class SbPost < ActiveRecord::Base
   after_create :monitor_topic   
   after_create :notify_monitoring_users
   
+  
+  named_scope :with_query_options, :select => 'sb_posts.*, topics.title as topic_title, forums.name as forum_name', :joins => 'inner join topics on sb_posts.topic_id = topics.id inner join forums on topics.forum_id = forums.id', :order => 'sb_posts.created_at desc'
+  named_scope :recent, :order => 'sb_posts.created_at'
+  
   def monitor_topic
     monitorship = Monitorship.find_or_initialize_by_user_id_and_topic_id(user.id, topic.id)
     if monitorship.new_record?

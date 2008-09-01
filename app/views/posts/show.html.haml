@@ -2,6 +2,7 @@
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
 - @section = (@post.category && @post.category.name)
+- @meta = { :description => "#{@post.title}", :keywords => "#{@post.tags.join(", ") unless @post.tags.nil?}" }
 
 #yui-main
   .yui-b
