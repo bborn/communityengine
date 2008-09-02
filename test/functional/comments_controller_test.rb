@@ -134,7 +134,7 @@ class CommentsControllerTest < Test::Unit::TestCase
   
   def test_should_show_comments_index_rss_if_logged_in
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:aaron).to_param, :_format => :rss
+    get :index, :commentable_type => 'user', :commentable_id => users(:aaron).to_param, :format => 'rss'
     assert !assigns(:comments).empty?
     assert_response :success
   end
