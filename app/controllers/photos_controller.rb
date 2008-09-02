@@ -28,7 +28,7 @@ class PhotosController < BaseController
 
     @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page]})
 
-    @tags = Photo.tags_count :user_id => @user.id, :limit => 20
+    @tags = Photo.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
 
     @rss_title = "#{AppConfig.community_name}: #{@user.login}'s photos"
     @rss_url = formatted_user_photos_path(@user,:rss)
@@ -106,10 +106,10 @@ class PhotosController < BaseController
 
     @photo = Photo.new(params[:photo])
     @photo.user = @user
+    @photo.tag_list = params[:tag_list] || ''
 
     respond_to do |format|
       if @photo.save
-        @photo.tag_with(params[:tag_list] || '') 
         #start the garbage collector
         GC.start        
         flash[:notice] = 'Photo was successfully created.'.l
@@ -158,7 +158,7 @@ class PhotosController < BaseController
   def update
     @photo = Photo.find(params[:id])
     @user = @photo.user
-    @photo.tag_with(params[:tag_list] || '') 
+    @photo.tag_list = params[:tag_list] || ''
     
     respond_to do |format|
       if @photo.update_attributes(params[:photo])

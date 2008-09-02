@@ -27,9 +27,11 @@ class Clipping < ActiveRecord::Base
     
   def self.find_related_to(clipping, options = {})
     merged_options = options.merge({:limit => 8, 
-        :order => 'created_at DESC', 
-        :sql => " AND clippings.id != '#{clipping.id}' GROUP BY clippings.id"})
-    clippings = find_tagged_with(clipping.tags.collect{|t| t.name }, merged_options)
+        :order => 'created_at DESC',
+        :conditions => [ 'clippings.id != ?', clipping.id ]
+    })
+
+    find_tagged_with(clipping.tags.collect{|t| t.name }, merged_options).uniq
   end
 
   def self.find_recent(options = {:limit => 5})

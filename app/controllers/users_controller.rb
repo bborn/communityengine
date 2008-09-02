@@ -46,7 +46,7 @@ class UsersController < BaseController
       :page => {:current => params[:page], :size => 20}
       )
     
-    @tags = User.tags_count :limit => 10
+    @tags = User.tag_counts :limit => 10
     
     setup_metro_areas_for_cloud
   end
@@ -121,10 +121,11 @@ class UsersController < BaseController
       @user.avatar = @avatar
     end
     
+    @user.tag_list = params[:tag_list] || ''
+
     if @user.save!
       @user.track_activity(:updated_profile)
       
-      @user.tag_with(params[:tag_list] || '')     
       flash[:notice] = "Your changes were saved.".l
       unless params[:welcome] 
         redirect_to user_path(@user)

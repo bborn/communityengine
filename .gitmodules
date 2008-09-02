@@ -1,0 +1,3 @@
+[submodule "engine_plugins/acts_as_taggable_on_steroids"]
+	path = engine_plugins/acts_as_taggable_on_steroids
+	url = git://github.com/mattetti/acts_as_taggable_on_steroids.git

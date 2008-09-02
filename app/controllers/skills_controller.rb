@@ -9,7 +9,7 @@ class SkillsController < BaseController
 
     @users = User.recent.vendors.find :all, :include => :tags, :page => {:current => params[:page]}
     
-    @tags = User.tags_count :limit => 10
+    @tags = User.tag_counts :limit => 10
 
     @active_users = User.find(:all,
       :include => [:posts, :offerings],

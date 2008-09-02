@@ -19,33 +19,39 @@ class TagsController < BaseController
   end
   
   def show
-    @tag = Tag.find_by_name(params[:id])
-    if @tag.nil? 
-      flash[:notice] = :tag_does_not_exists.l_with_args(:tag => params[:id]) 
+    tag_names = params[:id]
+    @tags = Tag.find( :all, :conditions => [ 'name IN (?)', TagList.from(tag_names) ] )
+    RAILS_DEFAULT_LOGGER.debug @tags.inspect
+    if @tags.nil? || @tags.empty?
+      flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_names)
       redirect_to :action => :index and return
     end
-    @related_tags = @tag.related_tags
-    
+    @related_tags = @tags.collect { |tag| tag.related_tags }.flatten.uniq
+    @tags_raw = @tags.collect { |t| t.name } .join(' ')
+    RAILS_DEFAULT_LOGGER.debug @tags_raw.inspect
+
     if params[:type]
       case params[:type]
         when 'Post'
-          @pages = @photos = Post.recent.tagged_with(@tag.name).find(:all, :page => {:size => 20, :current => params[:page]})
+          @pages = @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 20, :current => params[:page]})
           @photos, @users, @clippings = [], [], []
         when 'Photo'
-          @pages = @photos = Photo.recent.tagged_with(@tag.name).find(:all, :page => {:size => 30, :current => params[:page]})
-          @posts, @users, @clippings = [], [], []          
+          @pages = @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
+          @posts, @users, @clippings = [], [], []
         when 'User'
-          @pages = @users = User.recent.tagged_with(@tag.name).find(:all, :page => {:size => 30, :current => params[:page]})
+          @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
           @posts, @photos, @clippings = [], [], []
         when 'Clipping'
-          @pages = @clippings = Clipping.recent.find(:all, :page => {:size => 1, :current => params[:page]})
-          @posts, @photos, @users = [], [], []          
-        end
+          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 1, :current => params[:page]})
+          @posts, @photos, @users = [], [], []
+      else
+        @clippings, @posts, @photos, @users = [], [], [], []
+      end
     else
-      @posts = Post.recent.tagged_with(@tag.name).find(:all, :limit => 5)
-      @photos = Photo.recent.tagged_with(@tag.name).find(:all, :limit => 10)
-      @users = User.recent.tagged_with(@tag.name).find(:all, :limit => 10).uniq
-      @clippings = Clipping.recent.tagged_with(@tag.name).find(:all, :limit => 10)
+      @posts = Post.recent.tagged_with(tag_names).find(:all, :limit => 5)
+      @photos = Photo.recent.tagged_with(tag_names).find(:all, :limit => 10)
+      @users = User.recent.tagged_with(tag_names).find(:all, :limit => 10).uniq
+      @clippings = Clipping.recent.tagged_with(tag_names).find(:all, :limit => 10)
     end
   end
 

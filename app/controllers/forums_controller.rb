@@ -34,8 +34,8 @@ class ForumsController < BaseController
   
   def create
     @forum.attributes = params[:forum]
+    @forum.tag_list = params[:tag_list] || ''
     @forum.save!
-    @forum.tag_with(params[:tag_list] || '')     
     respond_to do |format|
       format.html { redirect_to forums_path }
       format.xml  { head :created, :location => formatted_forum_url(:id => @forum, :format => :xml) }
@@ -44,8 +44,8 @@ class ForumsController < BaseController
 
   def update
     @forum.attributes = params[:forum]
+    @forum.tag_list = params[:tag_list] || ''
     @forum.save!
-    @forum.tag_with(params[:tag_list] || '')         
     respond_to do |format|
       format.html { redirect_to forums_path }
       format.xml  { head 200 }

@@ -39,8 +39,11 @@ class ForumsControllerTest < Test::Unit::TestCase
   
   def test_should_create_forum
     login_as :admin
-    assert_difference Forum, :count do
-      post :create, :forum => { :name => 'yeah' }
+    assert_difference Forum, :count, 1 do
+      post :create, :forum => { :name => 'yeah' }, :tag_list => 'tag1 tag2'
+
+      forum = Forum.find_by_name('yeah')
+      assert_equal ['tag1', 'tag2'], forum.tag_list
     end
     
     assert_redirected_to forums_path
@@ -81,8 +84,10 @@ class ForumsControllerTest < Test::Unit::TestCase
   
   def test_should_update_forum
     login_as :admin
-    put :update, :id => 1, :forum => { }
+    put :update, :id => 1, :forum => { }, :tag_list => 'tagX tagY'
     assert_redirected_to forums_path
+
+    assert_equal ['tagX', 'tagY'], Forum.find(1).tag_list
   end
 
   # def test_should_update_forum_with_xml
