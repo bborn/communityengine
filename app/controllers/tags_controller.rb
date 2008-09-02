@@ -27,7 +27,7 @@ class TagsController < BaseController
       redirect_to :action => :index and return
     end
     @related_tags = @tags.collect { |tag| tag.related_tags }.flatten.uniq
-    @tags_raw = @tags.collect { |t| t.name } .join(' ')
+    @tags_raw = @tags.collect { |t| t.name } .join('+')
     RAILS_DEFAULT_LOGGER.debug @tags_raw.inspect
 
     if params[:type]
@@ -48,10 +48,10 @@ class TagsController < BaseController
         @clippings, @posts, @photos, @users = [], [], [], []
       end
     else
-      @posts = Post.recent.tagged_with(tag_names).find(:all, :limit => 5)
-      @photos = Photo.recent.tagged_with(tag_names).find(:all, :limit => 10)
-      @users = User.recent.tagged_with(tag_names).find(:all, :limit => 10).uniq
-      @clippings = Clipping.recent.tagged_with(tag_names).find(:all, :limit => 10)
+      @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :limit => 5)
+      @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
+      @users = User.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
+      @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
     end
   end
 
