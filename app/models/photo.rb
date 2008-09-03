@@ -56,8 +56,9 @@ class Photo < ActiveRecord::Base
   def self.find_related_to(photo, options = {})
     merged_options = options.merge({:limit => 8, 
         :order => 'created_at DESC', 
-        :sql => " AND photos.id != '#{photo.id}' GROUP BY photos.id"})
-    photo = find_tagged_with(photo.tags.collect{|t| t.name }, merged_options)
+        :conditions => ['photos.id != ?', photo.id]
+    })
+    photo = find_tagged_with(photo.tags.collect{|t| t.name }, merged_options).uniq
   end
 
 end

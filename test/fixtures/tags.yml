@@ -5,3 +5,7 @@ general:
 misc:
   id: 2
   name: Misc
+
+extra:
+  id: 3
+  name: Extra

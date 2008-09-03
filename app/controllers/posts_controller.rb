@@ -105,11 +105,11 @@ class PostsController < BaseController
     @user = User.find(params[:user_id])
     @post = Post.new(params[:post])
     @post.user = @user
+    @post.tag_list = params[:tag_list] || ''
     respond_to do |format|
       if @post.save
         @post.create_poll(params[:poll], params[:choices]) if params[:poll]
         
-        @post.tag_with(params[:tag_list] || '') 
         flash[:notice] = @post.category ? :post_created_for_category.l_with_args(:category => Inflector.singularize(@post.category.name)) : "Your post was successfully created.".l
         format.html { 
           if @post.is_live?
@@ -129,7 +129,7 @@ class PostsController < BaseController
   def update
     @post = Post.find(params[:id])
     @user = @post.user
-    @post.tag_with(params[:tag_list] || '') 
+    @post.tag_list = params[:tag_list] || ''
     
     respond_to do |format|
       if @post.update_attributes(params[:post])

@@ -16,7 +16,7 @@ class ClippingTest < Test::Unit::TestCase
   def test_should_find_related_clippings
     google_clip = clippings(:google)
     related = Clipping.find_related_to(google_clip)
-    assert !related.empty?
+    assert_equal [ clippings(:yahoo_related_to_google) ], related
   end
 
   def test_should_find_recent
@@ -36,7 +36,8 @@ class ClippingTest < Test::Unit::TestCase
   
   def test_should_get_clipping_image
     assert_difference Asset, :count, 4 do
-      c = Clipping.create!(:user => users(:quentin), :url => 'http://example.com', :image_url => 'http://www.google.com/intl/en_ALL/images/logo.gif')
+      c = Clipping.create(:user => users(:quentin), :url => 'http://example.com', :image_url => 'http://www.google.com/intl/en_ALL/images/logo.gif')
+      c.save!
     end
   end
   

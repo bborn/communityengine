@@ -54,12 +54,18 @@ class PhotosControllerTest < Test::Unit::TestCase
   def test_should_create_photo
     login_as :quentin
     assert_difference Photo, :count, 1 do
-      post :create, :photo => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') }, :user_id => users(:quentin).id
-      assert_equal assigns(:photo).user, users(:quentin)
+      post :create,
+        :photo => { :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') },
+        :user_id => users(:quentin).id,
+        :tag_list => 'tag1 tag2'
+
+      photo = Photo.find(assigns(:photo).id)
+      assert_equal users(:quentin), photo.user
+      assert_equal ['tag1', 'tag2'], photo.tag_list
     end
   end
 
-  def test_should_create_photo
+  def test_should_create_photo_routing
     assert_recognizes({:controller => 'photos', :action => 'create', :format => 'js'}, '/create_photo.js')
   end
 
@@ -104,9 +110,17 @@ class PhotosControllerTest < Test::Unit::TestCase
   
   def test_should_update_photo
     login_as :quentin
-    put :update, :id => photos(:library_pic).id, :user_id => users(:quentin).id, :photo => { :name => "changed_name" }
+    put :update,
+      :id => photos(:library_pic).id,
+      :user_id => users(:quentin).id,
+      :photo => { :name => "changed_name" },
+      :tag_list => 'tagX tagY'
+
     assert_redirected_to user_photo_path(users(:quentin), assigns(:photo))
-    assert_equal assigns(:photo).name, "changed_name"
+
+    photo = Photo.find(assigns(:photo).id)
+    assert_equal "changed_name", photo.name
+    assert_equal ['tagX', 'tagY'], photo.tag_list
   end
 
   def test_should_fail_to_update_photo

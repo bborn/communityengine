@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PhotoTest < Test::Unit::TestCase
-  fixtures :photos
+  fixtures :photos, :tags, :taggings
 
   # Replace this with your real tests.
   def test_should_find_related_photos
