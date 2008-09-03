@@ -17,5 +17,5 @@ class Tag < ActiveRecord::Base
 
     Tag.find_by_sql(sql)
   end
-
+  
 end
