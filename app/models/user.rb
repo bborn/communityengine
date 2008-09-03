@@ -97,10 +97,6 @@ class User < ActiveRecord::Base
     super
   end
 
-  def password_required?
-    true
-  end  
-  
   def recount_metro_area_users
     return unless self.metro_area
     ma = self.metro_area

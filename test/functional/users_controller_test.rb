@@ -363,6 +363,13 @@ class UsersControllerTest < Test::Unit::TestCase
     assert_response :success
   end
 
+  def test_should_show_user_statistics
+    login_as :admin
+    get :statistics, :id => users(:quentin).id
+    assert_response :success
+  end
+
+
   
   protected
     def create_user(options = {})
