@@ -238,8 +238,7 @@ module BaseHelper
       link_to(n, params, html_options.merge(:class => (paginator.page.eql?(n) ? 'active' : '')))
     end
 
-    puts content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info')
-    puts links    
+    content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + links    
   end  
   
   def pagination_info_for(paginator, options = {})
