@@ -1,4 +1,4 @@
-<h1>Listing invitations</h1>
+<h3>Listing invitations</h3>
 
 <table>
   <tr>
@@ -6,9 +6,10 @@
   
 <% for invitation in @invitations %>
   <tr>
-    <td><%= link_to 'Show'.l, user_invitation_path(invitation) %></td>
-    <td><%= link_to 'Edit'.l, edit_user_invitation_path(invitation) %></td>
-    <td><%= link_to 'Destroy'.l, user_invitation_path(invitation), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= invitation.email_addresses %></td>
+    <td><%= link_to 'Show'.l, user_invitation_path(current_user, invitation) %></td>
+    <td><%= link_to 'Edit'.l, edit_user_invitation_path(current_user, invitation) %></td>
+    <td><%= link_to 'Destroy'.l, user_invitation_path(current_user, invitation), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
