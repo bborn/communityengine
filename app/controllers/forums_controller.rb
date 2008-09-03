@@ -19,7 +19,7 @@ class ForumsController < BaseController
         (session[:forums] ||= {})[@forum.id] = Time.now.utc if logged_in?
 
         @topics = @forum.topics.find(:all, 
-          :page => {:size => 2, :current => params[:page]}, 
+          :page => {:size => 20, :current => params[:page]}, 
           :include => :replied_by_user, 
           :order => 'sticky DESC, replied_at DESC')
       end
