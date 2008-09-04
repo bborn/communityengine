@@ -88,26 +88,3 @@ welcome_message: Welcome! {login_link} or {signup_link}
 write_new_post: Write a '{category}' post
 #en: tag_does_not_exists: The tag {tag} does not exist
 tag_does_not_exists: The tag {tag} does not exist
-
-#clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
-clippings_let_you_to_save_cool_images_from_around_the_web: "Clippings let you to save cool images from around the Web."
-#help: Help!
-help: "Help"
-#drag_the_bookmarklet: Drag the {site} bookmarklet (below) to your browser's toolbar.
-drag_the_bookmarklet: "Drag the '{site}' bookmarklet (below) to your browser's toolbar."
-#when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {site}.
-when_you_see_an_image_you_like_on_the_web: "When you see an image you like on the Web, click the bookmarklet to save it to {site}."
-#Bookmarklet: Bookmarklet
-Bookmarklet: "Bookmarklet"
-#drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar:
-drag_this_to_your_bookmarks_toolbar: "Drag this to your bookmarks toolbar:"
-#user_clippings: {user}'s clippings
-user_clippings: "{user}'s clippings"
-#you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
-you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: "You have no clippings. Use the bookmarklet on the right to add some."
-#no_clippings_yet: No clippings yet
-no_clippings_yet: "No clippings yet"
-#next: Next
-next: "Next"
-#prev: Prev
-prev: "Prev"

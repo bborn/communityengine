@@ -210,8 +210,6 @@ features: "Caracter\xC3\xADsticas"
 female: Mujer
 #en: find_an_expert: Find an Expert
 find_an_expert: Encuentre un experto
-#en: forgot_your_passowrd: Forgot your passowrd?
-forgot_your_passowrd: "\xC2\xBFOlvid\xC3\xB3 su contrase\xC3\xB1a?"
 #en: forgot_your_password: Forgot your password?
 forgot_your_password: "\xC2\xBFOlvid\xC3\xB3 su contrase\xC3\xB1a?"
 #en: forgot_your_username: Forgot your username?
@@ -646,27 +644,3 @@ youre_editing_your_profile: "Est\xC3\xA1 editando su perfil."
 youve_been_logged_out_hope_you_come_back_soon: "Ha cerrado sesi\xC3\xB3n. Lo esperamos de vuelta pronto!"
 #en: zippostal_code: "ZIP/Postal code:"
 zippostal_code: "C\xC3\xB3digo postal"
-
-
-#clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
-clippings_let_you_to_save_cool_images_from_around_the_web: "Los recortes te permiten guardar las imagenes que te gusten de la Web."
-#help: Help!
-help: "\xC2\xA1Ayuda!"
-#drag_the_bookmarklet: Drag the ' socialsnow.com It!' bookmarklet (below) to your browser's toolbar.
-drag_the_bookmarklet: "Arrastra el bookmarklet (link) ::{site}:: que se encuentra a continuaci\xC3\xB3n a la barra de marcadores de tu navegador."
-#when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to socialsnow.com .
-when_you_see_an_image_you_like_on_the_web: "Cuando veas una im\xC3\xA1gen que te guste en la Web, has clic en el bookmarklet para guardarlo en {site}"
-#Bookmarklet: Bookmarklet
-Bookmarklet: "Bookmarklet"
-#drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar:
-drag_this_to_your_bookmarks_toolbar: "Arrastra esto a la barra de marcadores:"
-#user_clippings: diablito's clippings
-user_clippings: "Recortes de {user}"
-#you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
-you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: "No tienes ning\xC3\xBAn recorte. Utiliza el bookmarklet de la derecha para agregar algunos"
-#no_clippings_yet:
-no_clippings_yet: "Sin recortes a\xC3\xBAn"
-#next: Next
-next: "Siguiente"
-#prev: Prev
-prev: "Anterior"
