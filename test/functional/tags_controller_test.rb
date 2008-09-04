@@ -1,8 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'tags_controller'
-
-# Re-raise errors caught by the controller.
-class TagsController; def rescue_action(e) raise e end; end
 
 class TagsControllerTest < Test::Unit::TestCase
   fixtures :tags, :taggings, :photos, :roles, :posts
