@@ -297,17 +297,23 @@ class UsersController < BaseController
 
   def metro_area_update
     return unless request.xhr?
-    if params[:state_id]
-      metro_areas = MetroArea.find_all_by_state_id(params[:state_id], :order => "name")
-      render :partial => 'shared/location_chooser', :locals => {:states => State.find(:all), :metro_areas => metro_areas, :selected_country => Country.get(:us).id, :selected_state => params[:state_id].to_i, :selected_metro_area => nil }
+    
+    country = Country.find(params[:country_id]) unless params[:country_id].blank?
+    state   = State.find(params[:state_id]) unless params[:state_id].blank?
+    states  = country ? country.states : []
+    
+    if states.any?
+      metro_areas = state ? state.metro_areas.all(:order => "name") : []
     else
-      if params[:country_id].to_i.eql?(Country.get(:us).id)
-        render :partial => 'shared/location_chooser', :locals => {:states => State.find(:all), :metro_areas => [], :selected_country => params[:country_id].to_i, :selected_state => params[:state_id].to_i, :selected_metro_area => nil }
-      else
-        metro_areas = MetroArea.find_all_by_country_id(params[:country_id], :order => "name")
-        render :partial => 'shared/location_chooser', :locals => {:states => [], :metro_areas => metro_areas, :selected_country => params[:country_id].to_i, :selected_state => nil, :selected_metro_area => nil }
-      end
-    end      
+      metro_areas = country ? country.metro_areas : []
+    end
+
+    render :partial => 'shared/location_chooser', :locals => {
+      :states => states, 
+      :metro_areas => metro_areas, 
+      :selected_country => params[:country_id].to_i, 
+      :selected_state => params[:state_id].to_i, 
+      :selected_metro_area => nil }
   end
   
   def toggle_featured
@@ -348,13 +354,16 @@ class UsersController < BaseController
   end  
   
   def setup_locations_for(user)
-    metro_areas = []
-    if user.state
-      metro_areas = @user.state.metro_areas
-    elsif user.country
-      metro_areas = user.country.metro_areas
+    metro_areas = states = []
+    
+    if user.country
+      states = user.country.states
     end
-    states = user.country.eql?(Country.get(:us)) ? State.find(:all) : []    
+    
+    if user.state
+      metro_areas = user.state.metro_areas.all(:order => "name");
+    end
+    
     return metro_areas, states
   end
 
