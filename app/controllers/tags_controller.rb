@@ -40,7 +40,7 @@ class TagsController < BaseController
           @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
           @posts, @photos, @clippings = [], [], []
         when 'Clipping'
-          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 1, :current => params[:page]})
+          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 10, :current => params[:page]})
           @posts, @photos, @users = [], [], []
       else
         @clippings, @posts, @photos, @users = [], [], [], []
