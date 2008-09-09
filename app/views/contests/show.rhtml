@@ -18,7 +18,7 @@
 	<% if @contest.active? %>
 		<h3 class="centered">			
 		<% if current_user %>
-			<%= link_to "Click here to enter this contest!", new_user_post_path({:user_id => current_user, 'post[contest_id]' => @contest.id, 'post[category_id]' => (Category.get(:talk).id rescue Category.find(:first).id ) }) %>
+			<%= link_to "Click here to enter this contest!", new_user_post_path({:user_id => current_user, 'post[contest_id]' => @contest.id, 'post[category_id]' => Category.find(:first).id }) %>
 		<% else %>		
 			<%= link_to "Click here to sign up for an account and enter", signup_path %>
 		<% end %>

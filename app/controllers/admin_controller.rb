@@ -10,7 +10,7 @@ class AdminController < BaseController
       cond.email =~ "%#{params['email']}%"
     end        
     
-    @pages, @users = paginate :users, :per_page => 100, :order => "created_at DESC", :conditions => cond.to_sql
+    @users = User.recent.find(:all, :page => {:current => params[:page], :size => 100}, :conditions => cond.to_sql)      
   end
   
   def activate_user

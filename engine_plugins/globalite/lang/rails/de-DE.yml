@@ -1,6 +1,6 @@
 locale_name: Deutsch (Deutschland)
 # ActiveRecord::Errors.default_error_messages
-error_message_inclusion: ist nicht in Liste gültiger Optionen enthalten.
+error_message_inclusion: ist nicht in der Liste gültiger Optionen enthalten.
 error_message_exclusion: ist reserviert.
 error_message_invalid: ist ungültig.
 error_message_confirmation: entspricht nicht der Bestätigung.
@@ -8,11 +8,13 @@ error_message_accepted: muss akzeptiert werden.
 error_message_empty: darf nicht leer sein.
 error_message_blank: muss ausgefüllt werden.
 error_message_too_long: ist zu lang (höchstens %d Zeichen).
-error_message_too_short: ist zu kurz (mindestens is %d Zeichen).
+error_message_too_short: ist zu kurz (mindestens %d Zeichen).
 error_message_wrong_length: hat die falsche Länge (%d Zeichen).
 error_message_taken: ist bereits vergeben.
 error_message_not_a_number: ist keine Zahl.
-
+# ActionController::Base.resources_path_names
+resources_path_new: neu
+resources_path_edit: bearbeiten
 # used by ActionView::Helpers::DateHelper.distance_of_time_in_words
 date_helper_less_than_x_seconds: weniger als %d Sekunden
 date_helper_half_a_minute: eine halbe Minute
@@ -81,7 +83,7 @@ date_helper_abbr_month_names:
     -           # Leave that line
   - Jan
   - Feb
-  - Mar
+  - Mär
   - Apr
   - Mai
   - Jun

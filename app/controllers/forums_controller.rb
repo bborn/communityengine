@@ -17,7 +17,11 @@ class ForumsController < BaseController
       format.html do
         # keep track of when we last viewed this forum for activity indicators
         (session[:forums] ||= {})[@forum.id] = Time.now.utc if logged_in?
-        @topic_pages, @topics = paginate(:topics, :per_page => 25, :conditions => ['forum_id = ?', @forum.id], :include => :replied_by_user, :order => 'sticky desc, replied_at desc')
+
+        @topics = @forum.topics.find(:all, 
+          :page => {:size => 20, :current => params[:page]}, 
+          :include => :replied_by_user, 
+          :order => 'sticky DESC, replied_at DESC')
       end
       
       format.xml do
@@ -30,8 +34,8 @@ class ForumsController < BaseController
   
   def create
     @forum.attributes = params[:forum]
+    @forum.tag_list = params[:tag_list] || ''
     @forum.save!
-    @forum.tag_with(params[:tag_list] || '')     
     respond_to do |format|
       format.html { redirect_to forums_path }
       format.xml  { head :created, :location => formatted_forum_url(:id => @forum, :format => :xml) }
@@ -40,8 +44,8 @@ class ForumsController < BaseController
 
   def update
     @forum.attributes = params[:forum]
+    @forum.tag_list = params[:tag_list] || ''
     @forum.save!
-    @forum.tag_with(params[:tag_list] || '')         
     respond_to do |format|
       format.html { redirect_to forums_path }
       format.xml  { head 200 }

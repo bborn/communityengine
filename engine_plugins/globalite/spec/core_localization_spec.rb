@@ -5,6 +5,7 @@ require File.dirname(__FILE__) + '/helpers/spec_helper'
 include ActionView::Helpers::DateHelper
 include ActionView::Helpers::NumberHelper
 include ActionView::Helpers::FormOptionsHelper
+include ActionView::Helpers::FormHelper
 
 describe "when Rails is loaded" do
   
@@ -111,6 +112,12 @@ describe "when Rails is loaded" do
     us.to_sentence.should == 'Heidi and Matt'
     Globalite.current_language = :fr
     us.to_sentence.should == 'Heidi et Matt'
+  end
+
+  it 'labels should be localized' do
+    Globalite.current_language = :de
+    # testing for :array_connector here as this is defined within de-DE.yml by default 
+    label(:dummy, :array_connector).should eql('<label for="dummy_array_connector">und</label>')
   end
   
 end

@@ -21,7 +21,7 @@
           = (AppConfig.photo['attachment_fu_options']['max_size'])
           megabyte upload limit
       %label Tags:
-      = text_field_tag 'tag_list', @photo.tags.collect{|t| t.name}.join(" "), {:autocomplete => "off", :size => 35}
+      = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
 
       #tag_list_auto_complete.auto_complete
       = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }

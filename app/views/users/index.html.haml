@@ -8,11 +8,11 @@
     .box.user_list
       %h3=:site_members.l :site => AppConfig.community_name
 
-      .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+      .pagination= paginating_links @users, :params => params if @users.page_count > 1
   
       %br.clear
   
       = render :partial => "users/user", :collection => @users
       
       %br.clear
-      .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+      .pagination= paginating_links @users, :params => params if @users.page_count > 1

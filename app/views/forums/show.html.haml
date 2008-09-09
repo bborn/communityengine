@@ -1,8 +1,9 @@
+- @meta = { :description => "#{@forum.name.capitalize} discussion forum.",:keywords => "#{@forum.tags.join(', ') if @forum.tags}"}
 - @section = 'forums'
 - @page_title = @forum.name
 
 .box.alt.first_alt
-  = link_to _('Forums'), forum_home_path
+  = link_to 'Forums'.l, forum_home_path
   %span.arrow
     &rarr;
   = h @forum.name   
@@ -10,35 +11,34 @@
 .box
   %p.subtitle
     = feed_icon_tag @forum.name, formatted_forum_sb_posts_path(@forum, :rss)
-    = pluralize @forum.topics_count, _('topic') 
+    = pluralize @forum.topics_count, 'topic'.l 
     , 
-    = pluralize @forum.sb_posts_count, _('post')
+    = pluralize @forum.sb_posts_count, 'post'.l
 
   - unless @forum.description.blank?
     = @forum.description_html
   
   - if @forum.moderators.any?
-    = "#{_('Moderators')}:"
+    = "#{'Moderators'.l}:"
     %ul.flat
       - @forum.moderators.each do |user|
         %li= link_to user.display_name, user_path(user)
     
   %br.clear
 
-  - if @topic_pages.page_count > 1
+  - if @topics.page_count > 1
     - if logged_in?
-      %h6.all= link_to 'Post a New topic', new_forum_topic_path(@forum)
+      %h6.all.right= link_to 'Post a New topic', new_forum_topic_path(@forum)
   
-    .pagination
-      = pagination_links @topic_pages, :window_size => 10
+    .pagination= paginating_links @topics
 
   - unless @topics.empty?
     %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
       %tr
-        %th.la{:colspan=>"2"}= _('Topic')
-        %th{:width=>"1%"}= _('Posts')
-        %th{:width=>"1%"}= _('Views') 
-        %th.la= _('Last post')
+        %th.la{:colspan=>"2"}= 'Topic'.l
+        %th{:width=>"1%"}= 'Posts'.l
+        %th{:width=>"1%"}= 'Views'.l 
+        %th.la= 'Last post'.l
         
       - for topic in @topics
         %tr
@@ -64,22 +64,22 @@
               %strong.fn= h(topic.replied_by_user.display_name)
             %span= link_to 'view', forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
   
-  - if @topic_pages.page_count > 1
-    %p.pages= pagination_links @topic_pages, :window_size => 10
+  - if @topics.page_count > 1
+    .pagination= paginating_links @topics  
 
   - if logged_in?
-    %h6.all= link_to _('Post a New topic'), new_forum_topic_path(@forum)
+    %h6.all.right= link_to 'Post a New topic'.l, new_forum_topic_path(@forum)
   - else
-    %h6.all= link_to _('Log in to create a new topic'), new_forum_topic_path(@forum)
+    %h6.all.right= link_to 'Log in to create a new topic'.l, new_forum_topic_path(@forum)
 
   - if @topics.size < 10
     - @related = Post.find_tagged_with(@forum.tag_list, :limit => 10)
     - unless @related.empty?
       %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
         %tr
-          %th.la{:colspan=>"2"}= _('This forum is still getting started... here are some blog posts to get you thinking ... ')
-          %th{:width=>"1%"}= _('Comments')
-          %th{:width=>"1%"}= _('Views')
-          %th.la= _('Author')
+          %th.la{:colspan=>"2"}= 'This forum is still getting started... here are some blog posts to get you thinking ... '.l
+          %th{:width=>"1%"}= 'Comments'.l
+          %th{:width=>"1%"}= 'Views'.l
+          %th.la= 'Author'.l
           -@related.each do |post|
             = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}

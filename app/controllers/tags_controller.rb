@@ -2,7 +2,7 @@ class TagsController < BaseController
   skip_before_filter :verify_authenticity_token, :only => 'auto_complete_for_tag_name'
     
   def auto_complete_for_tag_name
-    @tags = Tag.find_list(params[:id] || params[:tag_list])
+    @tags = Tag.find(:all, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
     render :inline => "<%= auto_complete_result(@tags, 'name') %>"
   end
   
@@ -19,36 +19,37 @@ class TagsController < BaseController
   end
   
   def show
-    @tag = Tag.find_by_name(params[:id])
-    if @tag.nil? 
-      flash[:notice] = :tag_does_not_exists.l_with_args(:tag => params[:id]) 
+    tag_names = params[:id]
+    @tags = Tag.find( :all, :conditions => [ 'name IN (?)', TagList.from(tag_names) ] )
+    if @tags.nil? || @tags.empty?
+      flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_names)
       redirect_to :action => :index and return
     end
-    @related_tags = @tag.related_tags
-    
-    if params[:type]
-      cond = Caboose::EZ::Condition.new
-      cond.append ['tags.name = ?', @tag.name]
+    @related_tags = @tags.collect { |tag| tag.related_tags }.flatten.uniq
+    @tags_raw = @tags.collect { |t| t.name } .join(',')
 
+    if params[:type]
       case params[:type]
         when 'Post'
-          @pages, @posts = paginate :posts, :order => "published_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 20
+          @pages = @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 20, :current => params[:page]})
           @photos, @users, @clippings = [], [], []
         when 'Photo'
-          @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 30
-          @posts, @users, @clippings = [], [], []          
+          @pages = @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
+          @posts, @users, @clippings = [], [], []
         when 'User'
-          @pages, @users = paginate :users, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 30
+          @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
           @posts, @photos, @clippings = [], [], []
         when 'Clipping'
-          @pages, @clippings = paginate :clippings, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 30      
-          @posts, @photos, @users = [], [], []          
-        end
+          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 1, :current => params[:page]})
+          @posts, @photos, @users = [], [], []
+      else
+        @clippings, @posts, @photos, @users = [], [], [], []
+      end
     else
-      @posts = Post.find_tagged_with(@tag.name, :limit => 5, :order => 'published_at DESC', :sql => " AND published_as = 'live'")
-      @photos = Photo.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC')
-      @users = User.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC').uniq
-      @clippings = Clipping.find_tagged_with(@tag.name, :limit => 10, :order => 'created_at DESC')
+      @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :limit => 5)
+      @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
+      @users = User.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10).uniq
+      @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
     end
   end
 

@@ -13,6 +13,7 @@ Requirements:
       RedCloth
       rake 0.8.1
       haml
+      aws-s3 (if using s3 for photos)
 
 GETTING COMMUNITY ENGINE RUNNING
 ==================================================================
@@ -115,6 +116,8 @@ CommunityEngine Users have a Role (by default, it's admin, moderator, or member)
 To set a user as an admin, you must manually change his role_id through the database.
 Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar.)
 Admins and moderators can edit and delete other users posts.
+There is a rake task to make an existing user into an admin: rake community_engine:make_admin email=user@foo.com 
+(Pass in the e-mail of the user you'd like to make an admin)
 
 
 ## THEMES ##
@@ -156,7 +159,7 @@ To wrap all localized strings in a <span> that shows their localization key, put
 
     Globalite.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
   
-Note, this will effect the look and feel of buttons. You can highlight what is localized by using the span.localized style (look in screen.css)
+Note, this will affect the look and feel of buttons. You can highlight what is localized by using the span.localized style (look in screen.css)
 
 
 
@@ -178,8 +181,11 @@ You can also override CommunityEngine's controllers by creating identically-name
 # Contributors - Thanks! :)
 
 Bryan Kearney - localization
-
-
+Alex Nesbitt - forgot password bugs
+Alejandro Raiczyk - Spanish localization
+Fritz Thielemann - German localization
+Oleg Ivanov (github.com/morhekil) - acts_as_taggable_on_steroids
+David Fugere - French localization
 
 # Todo
 - Track down "<RangeError ... is recycled object>" warnings on tests (anyone know where that's coming from?)

@@ -14,7 +14,8 @@
       %p
         %input{:type=>"submit", :value=> :search_users.l }
 
-    .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+    -if @users.page_count > 1
+      .pagination= paginating_links @users, :link_to_current_page => true
 
     %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
       %tr
@@ -35,4 +36,5 @@
             = link_to( "Assume ID".l , assume_user_path(user) )
             = (" | " + link_to("Activate".l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
 
-      .pagination= pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+    -if @users.page_count > 1
+      .pagination= paginating_links @users, :link_to_current_page => true

@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../../../../config/environment")
-
 require 'test_help'
+
 require 'pp'
 Test::Unit::TestCase.fixture_path = (RAILS_ROOT + "/vendor/plugins/community_engine/test/fixtures/")
 ActionController::IntegrationTest.fixture_path = Test::Unit::TestCase.fixture_path
@@ -42,10 +42,11 @@ class Test::Unit::TestCase
   end
 
   def assert_models_equal(expected_models, actual_models, message = nil)
+    #gross
     to_test_param = lambda { |r| "<#{r.class}:#{r.to_param}>" }
     full_message = build_message(message, "<?> expected but was\n<?>.\n", 
       expected_models.collect(&to_test_param), actual_models.collect(&to_test_param))
-    assert_block(full_message) { expected_models == actual_models }
+    assert_block(full_message) { (expected_models == actual_models || expected_models == actual_models.results) }
   end
    
 end

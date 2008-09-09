@@ -19,16 +19,10 @@
   .yui-b
     .box.hfeed
       %h3
-        =:recent_posts.l
+        =:recent_posts.l "Recent Posts"
         %ul.subnav
           %li= "(looking for {link}?)".l :looking_for_most_x, :link => link_to("popular".l, popular_path)
 
       = render :partial => 'posts/post', :collection => @posts      
       
-      - if @pages.length > 1
-        .pagination
-          = link_to "&laquo; Earlier posts", { :page => @pages.current.next } if @pages.current.next
-          = link_to " | Later posts &raquo; ", { :page => @pages.current.previous } if @pages.current.previous
-
-          - @section = 'popular'
-      
+      .pagination=paginating_links @posts if @posts.page_count > 1

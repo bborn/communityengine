@@ -1,8 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'users_controller'
-
-# Re-raise errors caught by the controller.
-class UsersController; def rescue_action(e) raise e end; end
 
 class UsersControllerTest < Test::Unit::TestCase
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
@@ -74,7 +70,7 @@ class UsersControllerTest < Test::Unit::TestCase
   def test_should_get_welcome_steps
     login_as :quentin
     
-    get :signup_completed, :id => users(:quentin).id
+    get :signup_completed, :id => users(:quentin).activation_code
     assert_response :success
     
     get :welcome_photo, :id => users(:quentin).id
@@ -167,7 +163,8 @@ class UsersControllerTest < Test::Unit::TestCase
 
   def test_should_list_users
     get :index
-    assert_equal assigns(:users).size, 10
+    assert_equal assigns(:users).size, 13
+    
     assert_response :success
   end
   
@@ -203,6 +200,15 @@ class UsersControllerTest < Test::Unit::TestCase
     put :update, :id => users(:quentin), :user => {:login => "changed_login", :email => "changed_email@email.com"}
     assert_redirected_to user_path(users(:quentin).reload)
     assert_equal assigns(:user).email, "changed_email@email.com"
+  end
+
+  def test_should_update_user_tags
+    login_as :quentin
+    users(:quentin).tag_list = ''
+    users(:quentin).save
+    put :update, :id => users(:quentin), :tag_list => 'tag1 tag2'
+    assert_redirected_to user_path(users(:quentin).reload)
+    assert_equal users(:quentin).tag_list, ['tag1', 'tag2']
   end
 
   def test_should_not_update_user
@@ -354,13 +360,21 @@ class UsersControllerTest < Test::Unit::TestCase
 
   def test_should_get_dashboard_with_no_recommended_posts
     login_as :quentin
-    users(:aaron).tag_with('hansel gretel')
+    users(:aaron).tag_list = 'hansel gretel'
+    users(:aaron).save
     assert !users(:aaron).tags.empty?
 
     assert users(:aaron).recommended_posts.empty?    
     get :dashboard, :id => users(:aaron).login_slug
     assert_response :success
   end
+
+  def test_should_show_user_statistics
+    login_as :admin
+    get :statistics, :id => users(:quentin).id
+    assert_response :success
+  end
+
 
   
   protected

@@ -1,3 +1,4 @@
+- @meta = { :description => "Popular posts on #{AppConfig.community_name}",:keywords => "#{AppConfig.meta_keywords}"}
 - @section = 'popular'
 
 .yui-b
@@ -30,5 +31,5 @@
       %h3 
         ="What's Popular".l :what_is_popular
         %ul.subnav
-          %li= "(looking for {link}?)".l :looking_for_most_x, :link => link_to("recent".l, recent_path)
+          %li= :looking_for_most_x.l :link => link_to("recent".l, recent_path)
       = render :partial => 'posts/post', :collection => @posts

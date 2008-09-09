@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@user.login}'s DIY projects, interior design ideas and favorites.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}, diy, design, interior-design" }
+- @meta = { :description => "#{@user.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}" }
 - @section = @user.eql?(current_user) ? 'my_profile' : 'users'
 - @sidebar_left = true
 
@@ -26,9 +26,9 @@
     %h3
       ="My Friends".l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
-    = link_to "&raquo; Invite a friend to #{AppConfig.community_name}", invite_user_path(@user) if @is_current_user      
+    = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user      
     %br
-    = link_to "&raquo; View all my friend requests (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
+    = link_to "&raquo; #{'View all my friend requests'.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
     %br
     %br    
     - @accepted_friendships.each do |user|
@@ -47,11 +47,11 @@
             = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url
           %dd.fn
             - if comment.recipient.eql?(comment.commentable)
-              %strong= "To: #{link_to comment.recipient.login, commentable_url}"
+              %strong= "To".l+": #{link_to comment.recipient.login, commentable_url}"
             - else
-              %strong= "To :#{link_to comment.recipient.login, user_path(comment.recipient)}"
+              %strong= "To".l+": #{link_to comment.recipient.login, user_path(comment.recipient)}"
               %br
-              %strong=" On: #{link_to comment.commentable_name, commentable_url} (#{comment.commentable_type})"
+              %strong= "On".l+": #{link_to comment.commentable_name, commentable_url} (#{comment.commentable_type})"
           %dd
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
                         
@@ -62,11 +62,11 @@
         %dl.vcard
           %dt.photo
             = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))        
-          %dd.fn= "#{comment.user.login} says:"
+          %dd.fn= "#{comment.user.login}" + "says".l + ":"
           %dd
             = truncate_words(comment.comment, 10)
             %br
-            = link_to "&raquo; View comment", user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
+            = link_to "&raquo; " + "View comment".l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
 
 #yui-main
   .yui-b

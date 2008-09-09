@@ -4,7 +4,7 @@
       = clipping.created_at.strftime("%B %d, %Y")
   .column.span-2.centered
     %em
-      = link_to pluralize( clipping.comments.size, 'comment'), user_clipping_path(clipping.user, clipping)+'#comments'
+      = link_to :comments_count.l(:count => clipping.comments.size), user_clipping_path(clipping.user, clipping)+'#comments'
   .column.span-4.last.centered
   - if @is_current_user || admin?
     .column.span-1.first

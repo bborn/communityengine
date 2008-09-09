@@ -49,9 +49,14 @@ class PostsControllerTest < Test::Unit::TestCase
   def test_should_create_contest_post
     login_as :quentin
     assert_difference Post, :count, 1 do
-      post :create, {:user_id => users(:quentin).id, :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk), :contest => contests(:one) } }
-      assert_equal Post.find_by_title("dude").contest, contests(:one)
-      assert_equal Post.find_by_title("dude").category, categories(:talk)
+      post :create, {
+        :user_id => users(:quentin).id,
+        :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk), :contest => contests(:one) },
+        :tag_list => 'tag1 tag2'
+        }
+      assert_equal contests(:one), Post.find_by_title("dude").contest
+      assert_equal categories(:talk), Post.find_by_title("dude").category
+      assert_equal ['tag1', 'tag2'], Post.find_by_title("dude").tag_list
       assert_response :redirect
     end
   end

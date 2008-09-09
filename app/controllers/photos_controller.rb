@@ -1,18 +1,18 @@
 require 'pp'
 
 class PhotosController < BaseController
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage_photos, :swfupload]
+  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :swfupload]
   before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow, :swfupload]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
 
-  skip_before_filter :verify_authenticity_token, :only => :create #because the TinyMCE image uploader can't provide the auth token
+  skip_before_filter :verify_authenticity_token, :only => [:create, :swfupload] #because the TinyMCE image uploader can't provide the auth token
   
   session :cookie_only => false, :only => :swfupload  
   
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
   
   def recent
-    @pages, @photos = paginate :photo, :order => "created_at DESC", :conditions => ["parent_id IS NULL"]
+    @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
   end
   
   # GET /photos
@@ -26,9 +26,9 @@ class PhotosController < BaseController
       cond.append ['tags.name = ?', params[:tag_name]]
     end
 
-    @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags
+    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page]})
 
-    @tags = Photo.tags_count :user_id => @user.id, :limit => 20
+    @tags = Photo.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
 
     @rss_title = "#{AppConfig.community_name}: #{@user.login}'s photos"
     @rss_url = formatted_user_photos_path(@user,:rss)
@@ -49,15 +49,18 @@ class PhotosController < BaseController
   end
   
   def manage_photos
-    @user = current_user
-    cond = Caboose::EZ::Condition.new
-    cond.user_id == @user.id
-    if params[:tag_name]    
-      cond.append ['tags.name = ?', params[:tag_name]]
+    if logged_in?
+      @user = current_user
+      cond = Caboose::EZ::Condition.new
+      cond.user_id == @user.id
+      if params[:tag_name]    
+        cond.append ['tags.name = ?', params[:tag_name]]
+      end
+  
+      @selected = params[:photo_id]
+      @photos = Photo.recent.find :all, :conditions => cond.to_sql, :include => :tags, :page => {:size => 10, :current => params[:page]}
+
     end
-    
-    @selected = params[:photo_id]
-    @pages, @photos = paginate :photos, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags, :per_page => 10
     respond_to do |format|
       format.js
     end
@@ -103,10 +106,10 @@ class PhotosController < BaseController
 
     @photo = Photo.new(params[:photo])
     @photo.user = @user
+    @photo.tag_list = params[:tag_list] || ''
 
     respond_to do |format|
       if @photo.save
-        @photo.tag_with(params[:tag_list] || '') 
         #start the garbage collector
         GC.start        
         flash[:notice] = 'Photo was successfully created.'.l
@@ -155,7 +158,7 @@ class PhotosController < BaseController
   def update
     @photo = Photo.find(params[:id])
     @user = @photo.user
-    @photo.tag_with(params[:tag_list] || '') 
+    @photo.tag_list = params[:tag_list] || ''
     
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
@@ -185,23 +188,6 @@ class PhotosController < BaseController
   def slideshow
     @xml_file = formatted_user_photos_url( {:user_id => @user, :format => :xml}.merge(:tag_name => params[:tag_name]) )
     render :action => 'slideshow'
-  end
-    
-  # protected
-  # def require_fake_session
-  #   raise session[:user].inspect
-  #   fake_session = ActionController::Base.session
-  #   @user = Marshal.load(Base64.decode64(fake_session.data))[:user]
-  #   raise @user.inspect
-  # 
-  #   begin
-  #     fake_session = ActionController::Base.session_store.find_session(params[:_session_id])
-  #     @user = Marshal.load(Base64.decode64(fake_session.data))[:user]
-  #     return @user
-  #   rescue
-  #     render :nothing => true, :status => 500 and return false
-  #   end    
-  # end
-  
+  end  
   
 end

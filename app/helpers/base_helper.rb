@@ -72,38 +72,6 @@ module BaseHelper
       yield c, classes[(c.users.size.to_i - min) / divisor]
     }
   end
-  
-
-  def pagination_info_for(paginator, options = {})
-    options = {:prefix => "Showing", :connector => '-', :suffix => ""}.merge(options)
-    window = paginator.current.first_item().to_s + options[:connector] + paginator.current.last_item().to_s
-    options[:prefix] + " <strong>#{window}</strong> of #{paginator.item_count} " + options[:suffix]
-  end
-
-  def pagination_links_for(paginator, options = {}, html_options = {:single_class_name => "single", :grouped_class_name => "grouped", :active_class_name => "active"} )
-    options = {:first_overflow_text => "first", :last_overflow_text => "last", :single_char_limit => 2, :grouped_char_limit => 6 }.merge(options)
-    html = "<div class='pagination #{options[:class] ? options[:class] : ''}'>"
-    our_params = (options[:params] || params).clone
-    
-    pagination_links_each(paginator, options) do |n|
-      name = n.to_s
-      if paginator.current_page.offset - paginator.current_page.window.pages.size > n && paginator[n].first?
-        name = options[:first_overflow_text]
-      end
-      if paginator.current_page.offset + 2 + paginator.current_page.window.pages.size < n && paginator[n].last?
-        name = options[:last_overflow_text]
-      end
-      classname = (name.size > options[:single_char_limit]) ? html_options[:grouped_class_name] : ""
-      if paginator.current_page == paginator[n]
-        classname += " " << html_options[:active_class_name]
-      end
-      
-      html << link_to(name, our_params.merge({ :page => n }), { :class => classname })              
-    end
-    html << "</div>"
-    html
-  end
-
 
   def truncate_words(text, length = 30, end_string = '...')
     return if text.blank?
@@ -194,16 +162,16 @@ module BaseHelper
 
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
-    html += link_to_remote "Request friendship!",
+    html += link_to_remote "Request friendship!".l,
 				{:update => "friend_request_#{user.id}",
 					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
-          500 => "alert('Sorry, there was an error requesting friendship')",
+          500 => "alert('"+'Sorry, there was an error requesting friendship'.l+"')",
 					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
 					:method => :post }, {:class => "add_friend button"}
 		html +=	"<span style='display:none;' class='spinner'>"
 		html += image_tag 'spinner.gif', :plugin => "community_engine"
-		html += " Requesting friendship...</span></span>"
+		html += "Requesting friendship".l+" ...</span></span>"
 		html
   end
 
@@ -214,14 +182,14 @@ module BaseHelper
     "<li class='#{classes.join(' ')}'>" + link_to( "<span>"+name+"</span>", options.delete(:url), options) + "</li>"
   end
 
-  def format_post_totals(posts)
-    "#{posts.size} posts, How to: #{posts.select{ |p| p.category.eql?(Category.get(:how_to))}.size}, Non How To: #{posts.select{ |p| !p.category.eql?(Category.get(:how_to))}.size}"
-  end
+  # def format_post_totals(posts)
+  #   "#{posts.size} posts, How to: #{posts.select{ |p| p.category.eql?(Category.get(:how_to))}.size}, Non How To: #{posts.select{ |p| !p.category.eql?(Category.get(:how_to))}.size}"
+  # end
   
   def more_comments_links(commentable)
-    html = link_to "&raquo; All comments", comments_url(commentable.class.to_s, commentable.to_param)
+    html = link_to "&raquo; " + "All comments".l, comments_url(commentable.class.to_s, commentable.to_param)
     html += "<br />"
-		html += link_to "&raquo; Comments RSS", formatted_comments_url(commentable.class.to_s, commentable.to_param, :rss)
+		html += link_to "&raquo; " + "Comments RSS".l, formatted_comments_url(commentable.class.to_s, commentable.to_param, :rss)
 		html
   end
   
@@ -261,18 +229,24 @@ module BaseHelper
     "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{APP_URL}/new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
   end
   
-  def pagination_links(pages = nil, options = {})
-    html = ""
-    paginator = (@pages || pages)
-    if paginator
-      html += "<span class='right'>#{pagination_info_for(paginator)}</span>"
-      if paginator.length > 1
-        html += pagination_links_for( paginator, {:link_to_current_page => true} )
-      end
-			html += '<br class="clear" /><br />'
+  def paginating_links(paginator, options = {}, html_options = {})
+    name = options[:name] || PaginatingFind::Helpers::DEFAULT_OPTIONS[:name]
+    params = (options[:params] || PaginatingFind::Helpers::DEFAULT_OPTIONS[:params]).clone
+
+    links = paginating_links_each(paginator, options) do |n|
+      params[name] = n
+      link_to(n, params, html_options.merge(:class => (paginator.page.eql?(n) ? 'active' : '')))
     end
-    html
+
+    content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + links    
+  end  
+  
+  def pagination_info_for(paginator, options = {})
+    options = {:prefix => "Showing".l, :connector => '-', :suffix => ""}.merge(options)
+    window = paginator.first_item.to_s + options[:connector] + paginator.last_item.to_s
+    options[:prefix] + " <strong>#{window}</strong> " + "of".l + " #{paginator.size} " + options[:suffix]
   end
+  
   
   def last_active
     session[:last_active] ||= Time.now.utc
@@ -334,7 +308,7 @@ module BaseHelper
     if date.to_date.eql?(Time.now.to_date)
       display = date.strftime("%l:%M%p").downcase
     elsif date.to_date.eql?(Time.now.to_date - 1)
-      display = "Yesterday"
+      display = "Yesterday".l
     else
       display = date.strftime("%B %d")
     end

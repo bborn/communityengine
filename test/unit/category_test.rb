@@ -10,15 +10,7 @@ class CategoryTest < Test::Unit::TestCase
     assert_equal Category.get(:news), categories(:news)        
     assert_equal Category.get(:talk), categories(:talk)
   end
-  
-  def test_should_get_all_names
-    assert_equal ["How To", "Inspiration", "Questions", "Talk", "News"], Category.all_names
-  end
-  
-  def test_should_get_recent_count
-    assert_equal 3, Category.get_recent_count(:how_to)
-  end
-  
+      
   def test_should_display_new_post_text
     c = Category.get(:questions)
     c.new_post_text = "Ask a question"

@@ -28,12 +28,8 @@ class FavoritesController < BaseController
     @favorite = @user.favorites.find(params[:id])
   end
   
-  def index
-    cond = Caboose::EZ::Condition.new
-    cond.append ['user_id = ?', @user.id]
-    
-    @pages, @favorites = paginate :favorites, :order => "created_at DESC", :conditions => cond.to_sql
-
+  def index  
+    @favorites = Favorite.recent.by_user(@user).find :all, :page => {:current => params[:page]}
   end
   
   

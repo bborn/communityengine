@@ -15,11 +15,12 @@ class ClippingsController < BaseController
     order = (params[:recent] ? "created_at DESC" : "clippings.favorited_count DESC")
     
     
-    @pages, @clippings = paginate(:clippings, 
+    @clippings = Clipping.find(:all,
+      :page => {:size => 30, :current => params[:page]},
       :order => order, 
       :conditions => cond.to_sql, 
-      :include => :tags, 
-      :per_page => 30)
+      :include => :tags
+      )
     
     @rss_title = "#{AppConfig.community_name}: #{params[:popular] ? 'Popular' : 'Recent'} Clippings"
     @rss_url = rss_site_clippings_path
@@ -49,9 +50,13 @@ class ClippingsController < BaseController
       cond.append ['tags.name = ?', params[:tag_name]]
     end
 
-    @pages, @clippings = paginate :clippings, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags
+    @clippings = Clipping.find(:all,
+      :page => {:size => 30, :current => params[:page]}, 
+      :order => "created_at DESC", 
+      :conditions => cond.to_sql, 
+      :include => :tags )
 
-    @tags = Clipping.tags_count :user_id => @user.id, :limit => 20
+    @tags = Clipping.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
     @clippings_data = @clippings.collect {|c| [c.id, c.image_url, c.description, c.url ]  }            
     
     @rss_title = "#{AppConfig.community_name}: #{@user.login}'s clippings"
@@ -141,14 +146,14 @@ class ClippingsController < BaseController
     @user = current_user
     @clipping = @user.clippings.new(params[:clipping])  
     @clipping.user = @user
-    
+    @clipping.tag_list = params[:tag_list] || ''
+
     respond_to do |format|
       if @clipping.save!
-        @clipping.tag_with(params[:tag_list] || '')     
         flash[:notice] = 'Clipping was successfully created.'.l
         format.html { 
           unless params[:user_id]
-            redirect_to_url(@clipping.url) rescue redirect_to user_clipping_url(@user, @clipping) 
+            redirect_to @clipping.url rescue redirect_to user_clipping_url(@user, @clipping)
           else
             redirect_to user_clipping_url(@user, @clipping) 
           end
@@ -162,12 +167,13 @@ class ClippingsController < BaseController
   # PUT /clippings/1
   # PUT /clippings/1.xml
   def update
-    @user = User.find(params[:user_id])        
+    @user = User.find(params[:user_id])
     @clipping = Clipping.find(params[:id])
-    
+    @clipping.tag_list = params[:tag_list] || ''
+
     respond_to do |format|
+      @clipping.save!
       if @clipping.update_attributes(params[:clipping])
-        @clipping.tag_with(params[:tag_list] || '')     
         format.html { redirect_to user_clipping_url(@user, @clipping) }
       else
         format.html { render :action => "edit" }

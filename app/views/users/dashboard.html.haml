@@ -64,6 +64,7 @@
         %h2="Activity from your network".l
         .box.fresh
           =render :partial => "activities/activity", :collection => @network_activity
+          %h6.all= link_to "See all activity".l, network_user_activities_path(current_user)
 
       -unless @recommended_posts.empty?
         %h3="Recommended Posts".l

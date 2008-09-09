@@ -63,8 +63,14 @@ class ClippingsControllerTest < Test::Unit::TestCase
   def test_should_create_clipping
     login_as :quentin
     assert_difference Clipping, :count, 1 do
-      post :create, :user_id => users(:quentin), :clipping => {:url => 'http://www.google.com', :image_url => 'http://www.google.com/intl/en/images/logo.gif' }
+      post :create,
+        :user_id => users(:quentin),
+        :clipping => {:url => 'http://www.google.com', :image_url => 'http://www.google.com/intl/en/images/logo.gif' },
+        :tag_list => 'tag1 tag2'
       assert_redirected_to user_clipping_path(users(:quentin), assigns(:clipping))
+
+      clipping = Clipping.find(assigns(:clipping).id)
+      assert_equal ['tag1', 'tag2'], clipping.tag_list
     end    
   end
 
@@ -90,8 +96,15 @@ class ClippingsControllerTest < Test::Unit::TestCase
   
   def test_should_update_clipping
     login_as :quentin
-    put :update, :id => 1, :clipping => {:url => 'changed url' }, :user_id => users(:quentin)
+    put :update, 
+      :id => 1,
+      :clipping => {:url => 'changed url' },
+      :user_id => users(:quentin),
+      :tag_list => 'tagX tagY'
     assert_redirected_to user_clipping_path(users(:quentin), assigns(:clipping))
+
+    clipping = Clipping.find(assigns(:clipping).id)
+    assert_equal ['tagX', 'tagY'], clipping.tag_list
   end
   
   def test_should_destroy_clipping

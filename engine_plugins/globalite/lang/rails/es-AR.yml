@@ -15,7 +15,9 @@ error_message_too_short: es demasiado corto (el mínimo es %d caracteres)
 error_message_wrong_length: no posee el largo correcto (debería ser de %d caracteres)
 error_message_taken: ya está siendo utilizado
 error_message_not_a_number: no es un número
-
+# ActionController::Base.resources_path_names
+resources_path_new: nuevo
+resources_path_edit: editar
 # used by ActionView::Helpers::DateHelper.distance_of_time_in_words
 date_helper_less_than_x_seconds: menos de %d segundos
 date_helper_half_a_minute: medio minuto
@@ -63,7 +65,7 @@ array_skip_last_comma: 'true'
 
 date_helper_month_names:
   - # Leave that line
-  - # Leave that line
+    - # Leave that line
   - Enero
   - Febrero
   - Marzo

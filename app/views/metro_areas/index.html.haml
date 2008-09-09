@@ -6,8 +6,7 @@
     .box
       %h3 Metro Areas
 
-      = pagination_info_for @pages
-      = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+      .pagination= paginating_links @metro_areas if @metro_areas.page_count > 1
 
       %table{:width=>"100%"}
         %tr

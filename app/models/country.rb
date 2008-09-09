@@ -13,4 +13,12 @@ class Country < ActiveRecord::Base
     MetroArea.find(:all, :include => :country).collect{ |m| m.country }.sort_by{ |c| c.name }.uniq
   end
   
+  def states
+    State.find(:all, :include => :metro_areas, :conditions => ["metro_areas.id in (?)", metro_area_ids ]).uniq
+  end
+  
+  def metro_area_ids
+    metro_areas.map{|m| m.id }
+  end
+  
 end

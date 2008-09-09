@@ -11,9 +11,7 @@
     %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments
 
-    .pagination
-      = pagination_info_for @pages
-      = pagination_links_for @pages, {:link_to_current_page => true} if @pages.length > 1
+    .pagination=paginating_links @comments if @comments.page_count > 1
 
     %h3="Add Your Comment!".l
     %p= render :partial => 'comments/comment_form', :locals => {:commentable => @commentable}  

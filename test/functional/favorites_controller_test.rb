@@ -47,5 +47,14 @@ class FavoritesControllerTest < Test::Unit::TestCase
       assert_response :success
     end
   end
+  
+  def test_should_get_index
+    login_as :quentin
+    post :create, :favoritable_type => 'clipping', :favoritable_id => clippings(:google).id, :format => 'js'    
+    
+    login_as :quentin
+    get :index, :user_id => users(:quentin).id
+    assert_response :success
+  end
 
 end

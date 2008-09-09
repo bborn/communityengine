@@ -1,10 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-#
-# Normally we do this, but we ommit it here so Engines can do its code mixing magic
-#
-# require 'base_controller'
-# Re-raise errors caught by the controller.
-# class BaseController < ApplicationController; def rescue_action(e) raise e end; end
 
 class BaseControllerTest < Test::Unit::TestCase
   fixtures :clippings, :users, :photos, :homepage_features, :taggings, :tags, :posts, :categories, :roles

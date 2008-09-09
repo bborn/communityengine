@@ -16,7 +16,7 @@ class UsersController < BaseController
 
     
   before_filter :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about, 
-                                          :welcome_invite, :return_admin, :assume, :featured, 
+                                          :welcome_invite, :return_admin, :assume, :featured,
                                           :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard]
   before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics ]
   before_filter :require_current_user, :only => [:edit, :update, :update_account,
@@ -39,8 +39,14 @@ class UsersController < BaseController
 
   def index
     cond, @search, @metro_areas, @states = User.paginated_users_conditions_with_search(params)    
-    @pages, @users = paginate :users, :order => "created_at DESC", :conditions => cond.to_sql, :include => :tags
-    @tags = User.tags_count :limit => 10
+    
+    @users = User.recent.find(:all,
+      :conditions => cond.to_sql, 
+      :include => :tags, 
+      :page => {:current => params[:page], :size => 20}
+      )
+    
+    @tags = User.tag_counts :limit => 10
     
     setup_metro_areas_for_cloud
   end
@@ -82,7 +88,7 @@ class UsersController < BaseController
     @user.save!
     create_friendship_with_inviter(@user, params)
     flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
-    redirect_to signup_completed_user_path(@user)
+    redirect_to signup_completed_user_path(@user.activation_code)
   rescue ActiveRecord::RecordInvalid
     render :action => 'new'
   end
@@ -115,10 +121,11 @@ class UsersController < BaseController
       @user.avatar = @avatar
     end
     
+    @user.tag_list = params[:tag_list] || ''
+
     if @user.save!
       @user.track_activity(:updated_profile)
       
-      @user.tag_with(params[:tag_list] || '')     
       flash[:notice] = "Your changes were saved.".l
       unless params[:welcome] 
         redirect_to user_path(@user)
@@ -213,7 +220,8 @@ class UsersController < BaseController
   end
   
   def signup_completed
-    @user = User.find(params[:id])
+    @user = User.find_by_activation_code(params[:id])
+    redirect_to home_path and return unless @user
     render :action => 'signup_completed', :layout => 'beta' if AppConfig.closed_beta_mode    
   end
   
@@ -290,17 +298,23 @@ class UsersController < BaseController
 
   def metro_area_update
     return unless request.xhr?
-    if params[:state_id]
-      metro_areas = MetroArea.find_all_by_state_id(params[:state_id], :order => "name")
-      render :partial => 'shared/location_chooser', :locals => {:states => State.find(:all), :metro_areas => metro_areas, :selected_country => Country.get(:us).id, :selected_state => params[:state_id].to_i, :selected_metro_area => nil }
+    
+    country = Country.find(params[:country_id]) unless params[:country_id].blank?
+    state   = State.find(params[:state_id]) unless params[:state_id].blank?
+    states  = country ? country.states : []
+    
+    if states.any?
+      metro_areas = state ? state.metro_areas.all(:order => "name") : []
     else
-      if params[:country_id].to_i.eql?(Country.get(:us).id)
-        render :partial => 'shared/location_chooser', :locals => {:states => State.find(:all), :metro_areas => [], :selected_country => params[:country_id].to_i, :selected_state => params[:state_id].to_i, :selected_metro_area => nil }
-      else
-        metro_areas = MetroArea.find_all_by_country_id(params[:country_id], :order => "name")
-        render :partial => 'shared/location_chooser', :locals => {:states => [], :metro_areas => metro_areas, :selected_country => params[:country_id].to_i, :selected_state => nil, :selected_metro_area => nil }
-      end
-    end      
+      metro_areas = country ? country.metro_areas : []
+    end
+
+    render :partial => 'shared/location_chooser', :locals => {
+      :states => states, 
+      :metro_areas => metro_areas, 
+      :selected_country => params[:country_id].to_i, 
+      :selected_state => params[:state_id].to_i, 
+      :selected_metro_area => nil }
   end
   
   def toggle_featured
@@ -328,7 +342,7 @@ class UsersController < BaseController
       :conditions => ['? <= published_at AND published_at <= ?', @month.beginning_of_month, (@month.end_of_month + 1.day)])    
     
     @estimated_payment = @posts.sum do |p| 
-      p.category.eql?(Category.get(:how_to)) ? 10 : 5
+      7
     end
   end  
   
@@ -341,13 +355,16 @@ class UsersController < BaseController
   end  
   
   def setup_locations_for(user)
-    metro_areas = []
-    if user.state
-      metro_areas = @user.state.metro_areas
-    elsif user.country
-      metro_areas = user.country.metro_areas
+    metro_areas = states = []
+    
+    if user.country
+      states = user.country.states
     end
-    states = user.country.eql?(Country.get(:us)) ? State.find(:all) : []    
+    
+    if user.state
+      metro_areas = user.state.metro_areas.all(:order => "name");
+    end
+    
     return metro_areas, states
   end
 

@@ -1,0 +1,43 @@
+# output compression saves bandwidth 
+gzip            on;
+gzip_http_version 1.0;
+gzip_comp_level 2;
+gzip_proxied any;
+gzip_types      text/plain text/html text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+upstream <%= application %> {  
+<% (0..mongrel_servers-1).each do |server| %>
+  <%= "server 127.0.0.1:#{mongrel_start_port+server};\n" %>
+<% end %>
+    }
+
+server {
+            listen   80;
+            server_name <%= server_name %>;
+
+            root   <%= deploy_to %>/current/public/;
+            index  index.html;
+				    client_max_body_size 50M;
+
+
+            location / {
+                          proxy_set_header  X-Real-IP  $remote_addr;
+                          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+                          proxy_set_header Host $http_host;
+                          proxy_redirect false;
+
+                          if (-f $request_filename/index.html) {
+                                           rewrite (.*) $1/index.html break;
+                          }
+
+                          if (-f $request_filename.html) {
+                                           rewrite (.*) $1.html break;
+                          }
+
+                          if (!-f $request_filename) {
+                                           proxy_pass http://<%= application %>;
+                                           break;
+                          }
+            }
+
+}

@@ -1,14 +1,6 @@
 .box
   %h3="Go check your e-mail!".l
   %ul.list.checks
-    %li
-      We just sent an e-mail to
-      %strong
-        = @user.email
-      that will let you activate your account. </li
-      %li
-        Look for a message from
-        = AppConfig.community_name
-        (check your junk mail folder too, just in case).
-      %li
-        See you back here in a short while...
+    %li= :we_just_sent_an_e_mail_to.l :email => @user.email
+    %li= :look_for_a_message_from.l :from => AppConfig.community_name
+    %li= :see_you_back_here_in_a_short_while.l        

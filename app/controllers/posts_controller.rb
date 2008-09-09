@@ -1,4 +1,5 @@
 class PostsController < BaseController
+
   include Viewable
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit, :update, :create ])
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
@@ -10,22 +11,27 @@ class PostsController < BaseController
   end  
                            
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage]
-  before_filter :find_user, :only => [:new, :edit, :index, :show, :update_view, :manage]
+  before_filter :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage]
   before_filter :require_ownership_or_moderator, :only => [:create, :edit, :update, :destroy, :manage]
 
+  skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages 
+  
   def manage
-    @posts = @user.posts.find_without_published_as(:all, :page => {:current => params[:page], :size => 10}, :order => 'published_at DESC')
+    @posts = @user.posts.find_without_published_as(:all, 
+      :page => {:current => params[:page], :size => 10}, 
+      :order => 'created_at DESC')
   end
 
   def index
     @user = User.find(params[:user_id])            
     @category = Category.find_by_name(params[:category_name]) if params[:category_name]
     cond = Caboose::EZ::Condition.new
-    cond.user_id == @user.id
     if @category
       cond.append ['category_id = ?', @category.id]
     end
-    @pages, @posts = paginate :posts, :order => "published_at DESC", :conditions => cond.to_sql, :per_page => 20
+
+    @posts = @user.posts.recent.find :all, :conditions => cond.to_sql, :page => {:size => 10, :current => params[:page]}
+    
     @is_current_user = @user.eql?(current_user)
 
     @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")
@@ -46,9 +52,6 @@ class PostsController < BaseController
     end
   end
   
-  def popular
-    @posts = Post.find(:all, :conditions => "published_at > '#{1.days.ago.to_s :db}'", :order => "view_count DESC")
-  end
     
   # GET /posts/1
   # GET /posts/1.xml
@@ -76,8 +79,8 @@ class PostsController < BaseController
   
   def update_views
     @post = Post.find(params[:id])
-    update_view_count(@post)
-    render :nothing => true
+    updated = update_view_count(@post)
+    render :text => updated ? 'updated' : 'duplicate'
   end
   
   def preview
@@ -102,11 +105,11 @@ class PostsController < BaseController
     @user = User.find(params[:user_id])
     @post = Post.new(params[:post])
     @post.user = @user
+    @post.tag_list = params[:tag_list] || ''
     respond_to do |format|
       if @post.save
         @post.create_poll(params[:poll], params[:choices]) if params[:poll]
         
-        @post.tag_with(params[:tag_list] || '') 
         flash[:notice] = @post.category ? :post_created_for_category.l_with_args(:category => Inflector.singularize(@post.category.name)) : "Your post was successfully created.".l
         format.html { 
           if @post.is_live?
@@ -126,7 +129,7 @@ class PostsController < BaseController
   def update
     @post = Post.find(params[:id])
     @user = @post.user
-    @post.tag_with(params[:tag_list] || '') 
+    @post.tag_list = params[:tag_list] || ''
     
     respond_to do |format|
       if @post.update_attributes(params[:post])
@@ -189,7 +192,7 @@ class PostsController < BaseController
   end
   
   def recent
-    @pages, @posts = paginate :posts, :order => "published_at DESC"
+    @posts = Post.recent.find :all, :page => {:current => params[:page], :size => 20}
 
     @recent_clippings = Clipping.find_recent(:limit => 15)
     @recent_photos = Photo.find_recent(:limit => 10)
@@ -207,8 +210,8 @@ class PostsController < BaseController
   end
   
   def featured
-    @pages, @posts = paginate :posts, :order => "posts.published_at DESC", :conditions => ["users.featured_writer = ?", true], :include => :user
-    @featured_writers = User.find_featured    
+    @posts = Post.by_featured_writers.recent.find(:all, :page => {:current => params[:page]})
+    @featured_writers = User.featured
         
     @rss_title = "#{AppConfig.community_name} Featured Posts"
     @rss_url = featured_rss_url

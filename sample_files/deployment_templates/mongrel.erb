@@ -1,0 +1,8 @@
+---
+<%= "cwd: #{deploy_to}/current\n" %>
+port: <%= "#{mongrel_start_port}\n" %>
+environment: production
+address: 127.0.0.1
+pid_file: <%= "#{deploy_to}/current/log/mongrel.pid\n" %>
+log_file: <%= "#{deploy_to}/current/log/mongrel.log\n" %>
+servers: <%= "#{mongrel_servers}\n" %>

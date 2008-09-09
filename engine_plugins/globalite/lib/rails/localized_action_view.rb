@@ -138,6 +138,24 @@ module ActionView
       
     end #module DateHelper
 
+    class InstanceTag       
+      def to_label_tag(text = nil, options = {})
+        if options[:locale]
+          @original_locale = Locale.code
+          Locale.code = options[:locale]
+        end
+        options = options.stringify_keys
+        name_and_id = options.dup
+        add_default_name_and_id(name_and_id)
+        options.delete("index")
+        options["for"] ||= name_and_id["id"]     
+        content = (text.blank? ? nil : text.to_s) || 
+                  (!method_name.blank? && 
+                    method_name.to_sym.l != "__localization_missing__" ? method_name.to_sym.l : method_name.humanize)
+        Locale.code = @original_locale if options[:locale]
+        label_tag(name_and_id["id"], content, options)
+      end  # to_label_tag
+    end  # class InstanceTag
 
     module FormOptionsHelper
       
@@ -183,7 +201,7 @@ module ActionView
           options[:object_name] ||= params.first
 
           original_failed_object = options[:object_name].to_s.gsub('_', ' ')
-          failed_object = options[:object_name].l(original_failed_object)
+          failed_object = options[:object_name].to_sym.l(original_failed_object)
           
           original_header_message = "#{pluralize(count, 'error')} prohibited this #{original_failed_object} from being saved"
           header_message = :active_record_helper_header_message.l_with_args({:error_count => count, :failed_object => failed_object }, original_header_message)

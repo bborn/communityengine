@@ -34,11 +34,24 @@ class Post < ActiveRecord::Base
     
   attr_accessor :invalid_emails
   
+  #Named scopes
+  named_scope :by_featured_writers, :conditions => ["users.featured_writer = ?", 1], :include => :user
+  named_scope :recent, :order => 'posts.published_at DESC'
+  named_scope :popular, :order => 'posts.view_count DESC'
+  named_scope :since, lambda { |days|
+    {:conditions => "posts.published_at > '#{days.ago.to_s :db}'" }
+  }
+  named_scope :tagged_with, lambda {|tag_name|
+    {:conditions => ["tags.name = ?", tag_name], :include => :tags}
+  }
+  
   def self.find_related_to(post, options = {})
     merged_options = options.merge({:limit => 8, 
         :order => 'published_at DESC', 
-        :sql => " AND posts.id != '#{post.id}' AND published_as = 'live' GROUP BY posts.id"})
-    posts = find_tagged_with(post.tags.collect{|t| t.name }, merged_options)
+        :conditions => [ 'posts.id != ? AND published_as = ?', post.id, 'live' ]
+    })
+
+    find_tagged_with(post.tag_list, merged_options).uniq
   end
 
   def to_param
@@ -50,16 +63,17 @@ class Post < ActiveRecord::Base
   end
   
   def self.find_recent(options = {:limit => 5})
-    find(:all, :order => "published_at desc", :limit => options[:limit], :include => :user)
+    self.recent.find :all, :limit => options[:limit]
   end
   
   def self.find_popular(options = {} )
     options.reverse_merge! :limit => 5, :since => 7.days
-    find(:all, :conditions => "published_at > '#{options[:since].ago.to_s :db}'", :order => "view_count desc", :limit => options[:limit])
+    
+    self.popular.since(options[:since]).find :all, :limit => options[:limit]
   end
 
   def self.find_featured(options = {:limit => 10})
-    find(:all, :order => "posts.published_at desc", :conditions => ["users.featured_writer = ?", true], :limit => options[:limit], :include => :user)    
+    self.recent.by_featured_writers.find(:all, :limit => options[:limit] )    
   end
 
   def self.find_most_commented(limit = 10, since = 7.days.ago)
