@@ -25,11 +25,13 @@ class CommentsController < BaseController
     end
 
     if @commentable
-      @comments_count = @commentable.comments.count        
-      @comments = Comment.recent.find(:all, :page => {:size => 10, :current => params[:page], :count => @comments_count})
+      cond = Caboose::EZ::Condition.new
+      
+      @comments = @commentable.comments.recent.find(:all, :page => {:size => 10, :current => params[:page]})
                 
-      unless @comments.empty?        
+      unless @comments.to_a.empty?        
         @title = @comments.first.commentable_name
+
         respond_to do |format|        
           format.html {
             @user = @comments.first.recipient        
@@ -43,7 +45,8 @@ class CommentsController < BaseController
         end
       end
     end
-
+    
+    
     respond_to do |format|        
       format.html {
         flash[:notice] = :no_comments_found.l_with_args(type => Inflector.constantize(Inflector.camelize(params[:commentable_type])))
@@ -51,6 +54,8 @@ class CommentsController < BaseController
       }
     end      
   end
+
+
 
   def new
     @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])    
