@@ -13,7 +13,9 @@ error_message_wrong_length: pole ma złą długość (prawidłowa wartość to %
 error_message_taken: pole wartość jest już zajęta
 error_message_not_a_number: wartość nie jest liczbą
 
-
+# ActionController::Base.resources_path_names
+resources_path_new: nowy
+resources_path_edit: edytuj
 # used by ActionView::Helpers::DateHelper.distance_of_time_in_words
 date_helper_less_than_x_seconds: mniej niż %d sekund
 date_helper_half_a_minute: pół minuty

@@ -1,0 +1,3 @@
+singular: vo dvore pluralize{1, korova, korovy, korov}
+plural: vo dvore pluralize{22, korova, korovy, korov}
+second_plural: vo dvore pluralize{75, korova, korovy, korov}

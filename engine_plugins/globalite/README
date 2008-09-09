@@ -1,4 +1,4 @@
-=Globalite
+﻿=Globalite
 
 
 Globalite is meant to be a breed of the best internationalization/localization plugins available for Rails. 
@@ -98,6 +98,10 @@ Get a number returned in currency, for instance if the locale was set to 'fr' th
 
 Get a distance of time in words localized.
 	distance_of_time_in_words(10.minutes.ago, Time.now)
+	
+Get the %edit% and %new% verbs in the url tanslated
+	http://grandascenseurs.fr/ascenseurs/nouvelle
+	http://haberler.com.tr/haberler/17/duzenle
 
 Active record errors are automatically rendered in the locale language
 
@@ -172,6 +176,7 @@ Matt Aimonetti  http://railsontherun.com  mattaimonetti AT gmail DOT com
 
 ===Contributors:
 
+Mert Torun (resource path localization)
 Ivan Chang yuanhueichang AT gmail_DOT_com ( Chinese translation, help on the ActiveRecord msg error i18n/l10n)
 Ralph von Der Heyden ralph AT rvdh_DOT_de (German translation)
 jiman.ryu AT gmail http://jasonpa.tistory.com/ (bug fix)

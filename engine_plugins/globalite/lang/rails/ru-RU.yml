@@ -12,7 +12,10 @@ error_message_too_short: слишком короткий (минимальное
 error_message_wrong_length: неверной длинны (должен содержать %d символов)
 error_message_taken: уже занят
 error_message_not_a_number: не число
-
+# ActionController::Base.resources_path_names
+# Cryllic needs to be transliterated into latin
+resources_path_new: novyj
+resources_path_edit: redaktirovatw
 # used by ActionView::Helpers::DateHelper.distance_of_time_in_words
 date_helper_less_than_x_seconds: меньше чем %d секунд
 date_helper_half_a_minute: полминуты
@@ -44,12 +47,12 @@ date_helper_time_formats: # DON'T  TRANSLATE, RE ORDER
 # added at the end of date if your date system doesn't use a 24 hours system
 date_helper_am: до полудня
 date_helper_pm: после полудня
-    
+
 # used by ActionView::Helpers::NumberHelper.number_to_currency
 number_helper_unit: "руб."
 number_helper_separator: "," #unit separator (between integer part and fraction part)
-number_helper_delimiter: " " #delimiter between each group of thousands. Example: 1.234.567 
-number_helper_order: [ number, unit ] 
+number_helper_delimiter: " " #delimiter between each group of thousands. Example: 1.234.567
+number_helper_order: [ number, unit ]
 #to support for instance French format, the order is different: Unit comes last (ex. "1.234,00 €")
 
 # use by +Array#to_sentence()+
@@ -79,20 +82,20 @@ date_helper_month_names:
 date_helper_abbr_month_names:
   -             # Leave that line
     -           # Leave that line
-  - Январь
-  - Февраль
-  - Март
-  - Апрель
+  - Янв
+  - Фев
+  - Мар
+  - Апр
   - Май
-  - Июнь
-  - Июль
-  - Август
-  - Сентябрь
-  - Октябрь
-  - Ноябрь
-  - Декабрь
+  - Июн
+  - Июл
+  - Авг
+  - Сен
+  - Окт
+  - Ноя
+  - Дек
 
-date_helper_day_names: 
+date_helper_day_names:
   - Воскресенье
   - Понедельник
   - Вторник
@@ -101,257 +104,257 @@ date_helper_day_names:
   - Пятница
   - Суббота
 
-date_helper_abbr_day_names: 
-  - В
+date_helper_abbr_day_names:
+  - Вс
   - Пн
   - Вт
   - Ср
   - Чт
   - Пт
   - Сб
-# Переведу позже
+
 countries_list:
-  - Afghanistan
-  - Albania
-  - Algeria
-  - American Samoa
-  - Andorra
-  - Angola
-  - Anguilla
-  - Antarctica
-  - Antigua And Barbuda
-  - Argentina
-  - Armenia
-  - Aruba
-  - Australia
-  - Austria
-  - Azerbaijan
-  - Bahamas
-  - Bahrain
-  - Bangladesh
-  - Barbados
-  - Belarus 
-  - Belgium
-  - Belize
-  - Benin
-  - Bermuda
-  - Bhutan
-  - Bolivia
-  - Bosnia and Herzegowina
-  - Botswana
-  - Bouvet Island
-  - Brazil
-  - British Indian Ocean Territory 
-  - Brunei Darussalam
-  - Bulgaria
-  - Burkina Faso
-  - Burma
-  - Burundi
-  - Cambodia
-  - Cameroon
-  - Canada
-  - Cape Verde
-  - Cayman Islands
-  - Central African Republic
-  - Chad
-  - Chile
-  - China
-  - Christmas Island
-  - Cocos (Keeling) Islands
-  - Colombia
-  - Comoros
-  - Congo
-  - Congo, the Democratic Republic of the
-  - Cook Islands
-  - Costa Rica
-  - Cote d'Ivoire
-  - Croatia
-  - Cuba
-  - Cyprus
-  - Czech Republic
-  - Denmark
-  - Djibouti
-  - Dominica
-  - Dominican Republic
-  - East Timor
-  - Ecuador
-  - Egypt
-  - El Salvador
-  - England
-  - Equatorial Guinea
-  - Eritrea
+  - Афганистан
+  - Албания
+  - Алжир
+  - Американское Самоа
+  - Андорра
+  - Ангола
+  - Ангилья
+  - Антарктика
+  - Антигуа и Барбуда
+  - Аргентина
+  - Армения
+  - Аруба
+  - Австралия
+  - Австрия
+  - Азербайджан
+  - Багамские Острова
+  - Бахрейн
+  - Бангладеш
+  - Барбадос
+  - Беларусь
+  - Бельгия
+  - Белиз
+  - Бенин
+  - Бермудские острова
+  - Бутан
+  - Боливия
+  - Босния и Герцеговина
+  - Ботсвана
+  - Буве
+  - Бразилия
+  - Британские территории в Индийском океане
+  - Бруней-Даруссалам
+  - Болгария
+  - Буркина-Фасо
+  - Бирма
+  - Бурунди
+  - Камбоджа
+  - Камерун
+  - Канада
+  - Кабо-Верде
+  - Каймановы острова
+  - Центральная Африканская Республика
+  - Чад
+  - Чили
+  - Китай
+  - Остров Рождества
+  - Кокосовые (Килинг) острова
+  - Колумбия
+  - Коморские острова
+  - Конго
+  - Конго, Демократическая Республика
+  - Острова Кука
+  - Коста-Рика
+  - Кот-д'Ивуар
+  - Хорватия
+  - Куба
+  - Кипр
+  - Чехия
+  - Дания
+  - Джибути
+  - Доминиканское Содружество
+  - Доминиканская Республика
+  - Восточный Тимор
+  - Эквадор
+  - Египет
+  - Сальвадор
+  - Англия
+  - Экваториальная Гвинея
+  - Эритрея
   - Espana
-  - Estonia
-  - Ethiopia
-  - Falkland Islands
-  - Faroe Islands
-  - Fiji
-  - Finland
-  - France
-  - French Guiana
-  - French Polynesia
-  - French Southern Territories
-  - Gabon
-  - Gambia 
-  - Georgia
-  - Germany
-  - Ghana
-  - Gibraltar
-  - Great Britain
-  - Greece
-  - Greenland
-  - Grenada
-  - Guadeloupe
-  - Guam
-  - Guatemala
-  - Guinea
-  - Guinea-Bissau
-  - Guyana
-  - Haiti
-  - Heard and Mc Donald Islands
-  - Honduras
-  - Hong Kong
-  - Hungary
-  - Iceland 
-  - India
-  - Indonesia
-  - Ireland
-  - Israel
-  - Italy
-  - Iran
-  - Iraq
-  - Jamaica
-  - Japan
-  - Jordan
-  - Kazakhstan
-  - Kenya
-  - Kiribati
-  - Korea, Republic of
-  - Korea (South)
-  - Kuwait
-  - Kyrgyzstan
-  - Lao People's Democratic Republic
-  - Latvia
-  - Lebanon
-  - Lesotho
-  - Liberia
-  - Liechtenstein
-  - Lithuania
-  - Luxembourg
-  - Macau
-  - Macedonia
-  - Madagascar
-  - Malawi
-  - Malaysia
-  - Maldives
-  - Mali
-  - Malta
-  - Marshall Islands
-  - Martinique
-  - Mauritania
-  - Mauritius
-  - Mayotte
-  - Mexico
-  - Micronesia, Federated States of
-  - Moldova, Republic of
-  - Monaco
-  - Mongolia
-  - Montserrat
-  - Morocco
-  - Mozambique
-  - Myanmar
-  - Namibia
-  - Nauru
-  - Nepal
-  - Netherlands
-  - Netherlands Antilles
-  - New Caledonia
-  - New Zealand
-  - Nicaragua
-  - Niger
-  - Nigeria
-  - Niue
-  - Norfolk Island
-  - Northern Ireland
-  - Northern Mariana Islands
-  - Norway
-  - Oman
-  - Pakistan
-  - Palau
-  - Panama
-  - Papua New Guinea
-  - Paraguay
-  - Peru
-  - Philippines
-  - Pitcairn
-  - Poland
-  - Portugal
-  - Puerto Rico
-  - Qatar
-  - Reunion
-  - Romania
-  - Russia
-  - Rwanda
-  - Saint Kitts and Nevis
-  - Saint Lucia
-  - Saint Vincent and the Grenadines
-  - Samoa (Independent)
-  - San Marino
-  - Sao Tome and Principe
-  - Saudi Arabia
-  - Scotland
-  - Senegal
-  - Serbia and Montenegro
-  - Seychelles
-  - Sierra Leone
-  - Singapore
-  - Slovakia
-  - Slovenia
-  - Solomon Islands
-  - Somalia
-  - South Africa
-  - South Georgia and the South Sandwich Islands
-  - South Korea
-  - Spain
-  - Sri Lanka
-  - St. Helena
-  - St. Pierre and Miquelon
-  - Suriname
-  - Svalbard and Jan Mayen Islands
-  - Swaziland
-  - Sweden
-  - Switzerland
-  - Taiwan
-  - Tajikistan
-  - Tanzania
-  - Thailand
-  - Togo
-  - Tokelau
-  - Tonga
-  - Trinidad
-  - Trinidad and Tobago
-  - Tunisia
-  - Turkey
-  - Turkmenistan
-  - Turks and Caicos Islands
-  - Tuvalu
-  - Uganda
-  - Ukraine
-  - United Arab Emirates
-  - United Kingdom
-  - United States
-  - United States Minor Outlying Islands
-  - Uruguay
-  - Uzbekistan
-  - Vanuatu
-  - Vatican City State (Holy See)
-  - Venezuela
-  - Viet Nam
-  - Virgin Islands (British)
-  - Virgin Islands (U.S.)
-  - Wales
-  - Wallis and Futuna Islands
-  - Western Sahara
-  - Yemen
-  - Zambia
-  - Zimbabwe
+  - Эстония
+  - Эфиопия
+  - Фолклендские острова
+  - Фарерские острова
+  - Фиджи
+  - Финляндия
+  - Франция
+  - Французская Гвиана
+  - Французская Полинезия
+  - Французские Южные территории
+  - Габон
+  - Гамбия
+  - Грузия
+  - Германия
+  - Гана
+  - Гибралтар
+  - Великобритании
+  - Греция
+  - Гренландия
+  - Гренада
+  - Гваделупа
+  - Гуам
+  - Гватемала
+  - Гвинея
+  - Гвинея-Бисау
+  - Гайана
+  - Гаити
+  - Остров Херд и Острова Макдоналд
+  - Гондурас
+  - Гонконг
+  - Венгрия
+  - Исландия
+  - Индия
+  - Индонезия
+  - Ирландия
+  - Израиль
+  - Италия
+  - Иран
+  - Ирак
+  - Ямайка
+  - Япония
+  - Иордания
+  - Казахстан
+  - Кения
+  - Кирибати
+  - Республика Корея
+  - Республика Корея (Южная)
+  - Кувейт
+  - Кыргызстан
+  - Лаосская Народно-Демократическая Республика
+  - Латвия
+  - Ливан
+  - Лесото
+  - Либерия
+  - Лихтенштейн
+  - Литва
+  - Люксембург
+  - Макао
+  - Македония
+  - Мадагаскар
+  - Малави
+  - Малайзия
+  - Мальдивы
+  - Мали
+  - Мальта
+  - Маршалловы острова
+  - Мартиника
+  - Мавритания
+  - Маврикий
+  - Майот
+  - Мексика
+  - Микронезия, Федеративные Штаты
+  - Молдова, Республика
+  - Монако
+  - Монголия
+  - Монтсеррат
+  - Марокко
+  - Мозамбик
+  - Мьянма
+  - Намибия
+  - Науру
+  - Непал
+  - Нидерланды
+  - Нидерландские Антильские острова
+  - Новая Каледония
+  - Новая Зеландия
+  - Никарагуа
+  - Нигер
+  - Нигерия
+  - Ниуэ
+  - Остров Норфолк
+  - Северная Ирландия
+  - Северные Марианские острова
+  - Норвегия
+  - Оман
+  - Пакистан
+  - Палау
+  - Панама
+  - Папуа-Новая Гвинея
+  - Парагвай
+  - Перу
+  - Филиппины
+  - Острова Питкэрн
+  - Польша
+  - Португалия
+  - Пуэрто-Рико
+  - Катар
+  - Реюньон
+  - Румыния
+  - Россия
+  - Руанда
+  - Сент-Китс и Невис
+  - Сент-Люсия
+  - Сент-Винсент и Гренадины
+  - Самоа (независимая)
+  - Сан-Марино
+  - Сан-Томе и Принсипи
+  - Саудовская Аравия
+  - Шотландия
+  - Сенегал
+  - Сербия и Черногория
+  - Сейшельские острова
+  - Сьерра-Леоне
+  - Сингапур
+  - Словакия
+  - Словения
+  - Соломоновы Острова
+  - Сомали
+  - Южная Африка
+  - Южная Георгия и Южные Сандвичевы острова
+  - Южная Корея
+  - Испания
+  - Шри-Ланка
+  - Остров Святой Елены
+  - Сен-Пьер и Микелон
+  - Суринам
+  - Шпицберген и Ян-Майен
+  - Свазиленд
+  - Швеция
+  - Швейцария
+  - Тайвань
+  - Таджикистан
+  - Танзания
+  - Таиланд
+  - Того
+  - Токелау
+  - Тонга
+  - Тринидад
+  - Тринидад и Тобаго
+  - Тунис
+  - Турция
+  - Туркменистан
+  - Острова Теркс и Кайкос
+  - Тувалу
+  - Уганда
+  - Украина
+  - Объединенные Арабские Эмираты
+  - Соединенное Королевство
+  - Соединенные Штаты Америки
+  - Внешние малые острова США
+  - Уругвай
+  - Узбекистан
+  - Вануату
+  - Ватикан (Святейший Престол)
+  - Венесуэла
+  - Вьетнам
+  - Виргинские острова (Британские)
+  - Вирджинские острова (США)
+  - Уэльс
+  - Уоллис и Футуна
+  - Западная Сахара
+  - Йемен
+  - Замбия
+  - Зимбабве
