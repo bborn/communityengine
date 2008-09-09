@@ -16,7 +16,7 @@ class UsersController < BaseController
 
     
   before_filter :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about, 
-                                          :welcome_invite, :return_admin, :assume, :featured, 
+                                          :welcome_invite, :return_admin, :assume, :featured,
                                           :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard]
   before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics ]
   before_filter :require_current_user, :only => [:edit, :update, :update_account,
@@ -88,7 +88,7 @@ class UsersController < BaseController
     @user.save!
     create_friendship_with_inviter(@user, params)
     flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
-    redirect_to signup_completed_user_path(@user)
+    redirect_to signup_completed_user_path(@user.activation_code)
   rescue ActiveRecord::RecordInvalid
     render :action => 'new'
   end
@@ -220,7 +220,8 @@ class UsersController < BaseController
   end
   
   def signup_completed
-    @user = User.find(params[:id])
+    @user = User.find_by_activation_code(params[:id])
+    redirect_to home_path and return unless @user
     render :action => 'signup_completed', :layout => 'beta' if AppConfig.closed_beta_mode    
   end
   

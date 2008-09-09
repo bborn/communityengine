@@ -88,3 +88,11 @@ welcome_message: Welcome! {login_link} or {signup_link}
 write_new_post: Write a '{category}' post
 #en: tag_does_not_exists: The tag {tag} does not exist
 tag_does_not_exists: The tag {tag} does not exist
+
+
+#we_just_sent_an_e_mail_to
+we_just_sent_an_e_mail_to: "We just sent an e-mail to <b>{email}</b> that will let you activate your account."
+#look_for_a_message_from
+look_for_a_message_from: "Look for a message from {from}. If you don't find it, look in your spam folder."
+#see_you_back_here_in_a_short_while
+see_you_back_here_in_a_short_while: "See you back here in a short while!"

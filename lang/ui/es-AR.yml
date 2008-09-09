@@ -668,3 +668,11 @@ no_clippings_yet: "Sin recortes a\xC3\xBAn"
 next: "Siguiente"
 #prev: Prev
 prev: "Anterior"
+
+
+#we_just_sent_an_e_mail_to
+we_just_sent_an_e_mail_to: "Acabamos de enviarte un email a <b>{email}</b> que te permitir\xC3\xA1 activar tu cuenta."
+#look_for_a_message_from
+look_for_a_message_from: "Busca un mensaje de {from}. Si no encuentras el mensaje, b\xC3\xBAscalo en la carpeta de correo no deseado, seguramente est\xC3\xA9 ah\xC3\xAD."
+#see_you_back_here_in_a_short_while
+see_you_back_here_in_a_short_while: "\xC2\xA1Nos vemos pronto!"

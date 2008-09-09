@@ -70,7 +70,7 @@ class UsersControllerTest < Test::Unit::TestCase
   def test_should_get_welcome_steps
     login_as :quentin
     
-    get :signup_completed, :id => users(:quentin).id
+    get :signup_completed, :id => users(:quentin).activation_code
     assert_response :success
     
     get :welcome_photo, :id => users(:quentin).id
