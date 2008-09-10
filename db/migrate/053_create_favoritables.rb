@@ -18,5 +18,6 @@ class CreateFavoritables < ActiveRecord::Migration
   def self.down
     drop_table :favorites
     remove_column :clippings, :favorited_count
+    remove_column :posts, :favorited_count    
   end
 end

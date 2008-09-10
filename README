@@ -185,7 +185,7 @@ Alex Nesbitt - forgot password bugs
 Alejandro Raiczyk - Spanish localization
 Fritz Thielemann - German localization
 Oleg Ivanov (github.com/morhekil) - acts_as_taggable_on_steroids
-
+David Fugere - French localization
 
 # Todo
 - Track down "<RangeError ... is recycled object>" warnings on tests (anyone know where that's coming from?)

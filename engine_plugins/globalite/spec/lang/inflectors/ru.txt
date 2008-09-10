@@ -1,0 +1,16 @@
+# source parameters are passed as a string named l_string
+
+count, singular, plural, second_plural = l_string.split(',').map{ |arg| arg.strip}
+count = count.to_i % 100
+
+noun = if count >= 10 && count < 20 then
+  second_plural
+else
+  case count % 10
+    when 1 then singular
+    when 2..4 then plural
+    else second_plural
+  end
+end
+
+"#{count} #{noun}"

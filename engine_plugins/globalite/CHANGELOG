@@ -1,9 +1,17 @@
+* Globalite now works with plugin_paths. [nmerouze]
+* fixed improper handling of multiple pluralizations in a single string [morhekil]
+* added custom inflectors support [morhekil]
+* updated Russian language file [Paul Philippov http://paulphilippov.com/]
+* improved Turkish language file [Mert Torun]
+* new feature: resource path localization [Mert Torun]
+
 * added Argentinean localization [Mariano Ayesa] 
 * added Russian localization [valodzka]
 * added Dutch localization [Koen Punt]
 * Added Polish localization [pnowak2]
 * Localization of model field names [pnowak2]
 * Added support for Hungarian [MrPrise]
+
 REVISON 70 - Sept 2 2007
  * Added support for Chinese (Taiwan, Hong Kong and Main Land China) [Ivan Chang ]
  * Added support for pluralization, use pluralize{count, singular, optional_plural_form} in your translation file

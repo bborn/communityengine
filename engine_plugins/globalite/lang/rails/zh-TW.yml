@@ -13,6 +13,13 @@ error_message_wrong_length: 長度不正確 (應該要 %d 個字元)
 error_message_taken: 已經有人使用
 error_message_not_a_number: 不是數字
 
+# ActionController::Base.resources_path_names
+# Chinese needs to be transliterated into latin
+resources_path_new: xin-de
+resources_path_edit: bian-ji
+# translated using google translate,
+# transliterated using http://rcalvi.com/cu_archive/Transliteration/demo.html
+
 # used by ActionView::Helpers::ActiveRecordHelper.error_messages_for
 active_record_helper_header_message: 輸入資訊錯誤
 active_record_helper_error_description: 請更正下列問題,

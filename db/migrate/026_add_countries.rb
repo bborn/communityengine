@@ -36,6 +36,7 @@ class AddCountries < ActiveRecord::Migration
     "Bulgaria",
     "Burkina Faso",
     "Burundi",
+    "Canada",
     "Cambodia",
     "Cameroon",
     "Cape Verde",

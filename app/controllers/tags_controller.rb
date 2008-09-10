@@ -27,7 +27,6 @@ class TagsController < BaseController
     end
     @related_tags = @tags.collect { |tag| tag.related_tags }.flatten.uniq
     @tags_raw = @tags.collect { |t| t.name } .join(',')
-    RAILS_DEFAULT_LOGGER.debug @tags_raw.inspect
 
     if params[:type]
       case params[:type]
@@ -41,7 +40,7 @@ class TagsController < BaseController
           @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
           @posts, @photos, @clippings = [], [], []
         when 'Clipping'
-          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 1, :current => params[:page]})
+          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 10, :current => params[:page]})
           @posts, @photos, @users = [], [], []
       else
         @clippings, @posts, @photos, @users = [], [], [], []
@@ -49,7 +48,7 @@ class TagsController < BaseController
     else
       @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :limit => 5)
       @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
-      @users = User.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
+      @users = User.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10).uniq
       @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
     end
   end

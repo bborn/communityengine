@@ -8,12 +8,14 @@ module Globalite
   extend L10n
   def self.localize_rails
     ActiveRecord::Errors.relocalize
+    ActionController::Base.relocalize
   end
 end
 
 # Localize Rails
 require 'rails/localization.rb'
 require 'rails/localized_action_view'
+require 'rails/localized_action_controller'
 require 'rails/localized_active_record'
 
 # added Boolean function to 'boolean' a string

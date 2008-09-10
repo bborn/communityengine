@@ -5,7 +5,7 @@ module StringExtension
     else
       sym = underscore.tr(' ', '_').gsub(/[^a-z0-9_]+/i, '').to_sym
     end
-    
+      
     if Globalite.show_localization_keys_for_debugging
       # wrap in a span to show the localization key
       return "<span class='localized' localization_key='#{sym}'>#{sym.localize(self, *args)}</span>"
