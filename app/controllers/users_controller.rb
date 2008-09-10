@@ -138,7 +138,7 @@ class UsersController < BaseController
   end
   
   def destroy
-    unless @user.admin?
+    unless @user.admin? || @user.featured_writer?
       @user.destroy
       flash[:notice] = "The user was deleted.".l
     else
