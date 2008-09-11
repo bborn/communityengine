@@ -915,14 +915,14 @@ div.progressBar div.background {
   .mceEditor table th {
     padding: 0;
     margin: 0;
-    border: auto;
+    border: inherit;
     font-weight: normal; }
   .mceEditor table td {
     padding: 0;
     margin: 0;
-    border: auto; }
+    border: inherit; }
   .mceEditor table tfoot {
-    font-style: auto; }
+    font-style: inherit; }
   .mceEditor table caption {
     background: none; }
   .mceEditor table img {
@@ -958,3 +958,12 @@ table.poll {
       font-size: 10px;
       text-align: right;
       padding-right: 2px; }
+
+/* User Menu Dropdown*/
+#user-menu {
+	padding-right: 15px;
+	background: url(/plugin_assets/community_engine/images/icons/bullet_arrow_down_50.png) no-repeat right;
+	}
+#user-menu:hover {
+	background: url(/plugin_assets/community_engine/images/icons/bullet_arrow_down.png) no-repeat right;	
+}

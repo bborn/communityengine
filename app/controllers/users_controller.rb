@@ -277,6 +277,19 @@ class UsersController < BaseController
     end 
   end
 
+  def resend_activation
+    @user = User.find_by_email(params[:email])
+    return unless request.post?       
+    
+    if @user && !@user.active?
+      flash[:notice] = :activation_email_resent_message.l :admin_email => AppConfig.support_email
+      
+      UserNotifier.deliver_signup_notification(@user)    
+      redirect_to login_path and return
+    else
+      flash[:notice] = :activation_email_not_sent_message.l
+    end
+  end
   
   def assume
     user = User.find(params[:id])

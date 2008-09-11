@@ -286,6 +286,34 @@ class UsersControllerTest < Test::Unit::TestCase
     end
   end
   
+  def test_should_resend_activation
+    users(:quentin).activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    users(:quentin).activated_at = nil
+    users(:quentin).save!
+    
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do
+      post :resend_activation, :email => users(:quentin).email
+      assert_redirected_to login_path    
+    end    
+  end
+  
+  def test_should_not_resend_activation_for_active_user
+    assert_no_difference ActionMailer::Base.deliveries, :length do
+      post :resend_activation, :email => users(:quentin).email
+      assert_response :success
+      assert_equal "Activation e-mail could not be sent. Perhaps that user is already active?", flash[:notice]
+    end    
+  end
+
+  def test_should_not_resend_activation_for_nonexistent_email
+    assert_no_difference ActionMailer::Base.deliveries, :length do
+      post :resend_activation, :email => "foo@bar.com"
+      assert_response :success
+      assert_equal "Activation e-mail could not be sent. Perhaps that user is already active?", flash[:notice]
+    end    
+  end
+
+  
   def test_assume_should_assume_users_id
     login_as :admin
     post :assume, :id => users(:quentin).id

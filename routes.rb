@@ -39,6 +39,7 @@ signup_by_id '/signup/:inviter_id/:inviter_code', :controller => 'users', :actio
 
 forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
 forgot_username '/forgot_username', :controller => 'users', :action => 'forgot_username'  
+resend_activation '/resend_activation', :controller => 'users', :action => 'resend_activation'  
 
 #clippings routes
 connect '/new_clipping', :controller => 'clippings', :action => 'new_clipping'
