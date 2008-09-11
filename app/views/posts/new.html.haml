@@ -17,7 +17,7 @@
         =@post.category ? (:new_post_for_category.l :category => @post.category.name) : "New post".l
 
       = error_messages_for :post
-      - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm"}) do |f|			
+      - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
         - unless @post.category || @post.contest 
           %label
             ="Category".l
@@ -37,7 +37,7 @@
         %label
           ="Body Text".l
           %em="(required)".l
-        = f.text_area :raw_post, :style => "width:100%;"
+        = f.text_area :raw_post, :style => "width:95%;"
 
         %label
           ="Tags".l
@@ -63,4 +63,3 @@
           = link_to 'cancel and go back to my posts'.l, user_posts_path(@user)
 
   = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}
-

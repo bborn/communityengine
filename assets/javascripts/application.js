@@ -43,7 +43,7 @@ var CommunityEngine = {
 		img.style.width = new_img_width + "px";
 		img.style.height = new_img_height + "px";
 		new_aspect_ratio = Math.round((new_img_width / new_img_height) * 100) / 100;
-	}	
+	}
 }
 
 var Cookie = {
