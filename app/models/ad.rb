@@ -7,7 +7,7 @@ class Ad < ActiveRecord::Base
   validates_inclusion_of :frequency, :in => FREQUENCIES  
   
   def self.display(location, logged_in = false)
-    return false if location.blank?
+    return nil if location.blank?
     ads = find(:all, 
       :conditions => ["location = ? 
         AND published = ? 
