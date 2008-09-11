@@ -32,12 +32,12 @@ class TagsControllerTest < Test::Unit::TestCase
   end
   
   def test_should_show_matching_items_for_multiple_tags
-    posts(:apt_post).tag_list = tags(:general).name + ',' + tags(:extra).name
+    posts(:apt_post).tag_list = "#{tags(:general).name},#{tags(:extra).name}"
     posts(:apt_post).save
-    posts(:apt2_post).tag_list = tags(:general).name + ',' + tags(:extra).name + ',' + tags(:misc).name
+    posts(:apt2_post).tag_list = "#{tags(:general).name},#{tags(:extra).name},#{tags(:misc).name}"
     posts(:apt2_post).save
 
-    get :show, :id => 'general extra'
+    get :show, :id => 'General,Extra'
     assert_response :success
     assert_equal 2, assigns(:posts).size
     assert assigns(:posts).include?(posts(:apt_post))
