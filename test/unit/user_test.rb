@@ -172,6 +172,14 @@ class UserTest < Test::Unit::TestCase
     assert !u.network_activity.empty?
   end
   
+  def test_comments_activity
+    user = users(:quentin)
+    2.times do
+      comment = Comment.create!(:comment => "foo", :user => users(:aaron), :commentable => user, :recipient => user)
+    end
+    assert_equal 2, user.comments_activity.size
+  end
+  
   protected
     def create_user(options = {})
       User.create({ :login => 'quire', 

@@ -5,6 +5,18 @@ class Activity < ActiveRecord::Base
   
   after_save :update_counter_on_user
   
+  named_scope :of_item_type, lambda {|type|
+    {:conditions => ["activities.item_type = ?", type]}
+  }
+  named_scope :since, lambda { |time|
+    {:conditions => ["activities.created_at > ?", time] }
+  }
+  named_scope :recent, :order => "activities.created_at DESC"
+  named_scope :by_users, lambda {|user_ids|
+    {:conditions => ['activities.user_id in (?)', user_ids]}
+  }
+  
+  
   def update_counter_on_user
     if user && user.class.column_names.include?('activities_count')
       user.update_attribute(:activities_count, Activity.by(user) )
