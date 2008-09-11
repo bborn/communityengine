@@ -1,0 +1,13 @@
+.yui-b.sidebar
+  =render :partial => 'shared/login_sidebar'
+
+#yui-main
+  .yui-b.main_column
+    .box
+      %h3="Resend your activation e-mail".l
+
+      - form_tag '/resend_activation', :class => 'MainForm' do
+        %label{"for"=>"email"}="Enter your email address:".l
+        = text_field_tag 'email', nil, :size => 35
+        %p
+          = submit_tag 'Resend my activation e-mail'.l
