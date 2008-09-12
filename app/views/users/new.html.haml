@@ -36,6 +36,9 @@
           %em="(Required: you must be at least 13 years old to sign up.)".l
         = date_select :user, :birthday, {:start_year => 1926, :end_year => (Time.now.year - 13)}
 
+        -if AppConfig.require_captcha_on_signup
+          .right{:style => 'margin-top:2em;'}= recaptcha_tags
+
         %label{"for"=>"user_password"}
           ="Type your password:".l
         = f.password_field :password

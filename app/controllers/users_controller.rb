@@ -85,12 +85,14 @@ class UsersController < BaseController
   def create
     @user = User.new(params[:user])
     @user.role = Role[:member]
-    @user.save!
-    create_friendship_with_inviter(@user, params)
-    flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
-    redirect_to signup_completed_user_path(@user.activation_code)
-  rescue ActiveRecord::RecordInvalid
-    render :action => 'new'
+
+    if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
+      create_friendship_with_inviter(@user, params)
+      flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
+      redirect_to signup_completed_user_path(@user.activation_code)
+    else
+      render :action => 'new'
+    end
   end
     
   def edit 
