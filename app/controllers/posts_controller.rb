@@ -233,6 +233,8 @@ class PostsController < BaseController
     render :partial => "/categories/tips", :locals => {:category => nil}    
   end
   
+  private
+  
   def require_ownership_or_moderator
     @user ||= User.find(params[:user_id] || params[:id] )
     unless admin? || moderator? || (@user && (@user.eql?(current_user)))

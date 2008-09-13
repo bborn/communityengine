@@ -21,7 +21,7 @@ module ResourceFeeder
       end
       
       options[:feed][:title]    ||= klass.name.pluralize
-      options[:feed][:link]     ||= SimplyHelpful::RecordIdentifier.named_route(new_record, options[:url_writer])
+      options[:feed][:link]     ||= polymorphic_url(new_record)
       options[:feed][:language] ||= "en-us"
       options[:feed][:ttl]      ||= "40"
       
@@ -29,7 +29,7 @@ module ResourceFeeder
       options[:item][:description] ||= [ :description, :body, :content ]
       options[:item][:pub_date]    ||= [ :updated_at, :updated_on, :created_at, :created_on ]
 
-      resource_link = lambda { |r| SimplyHelpful::RecordIdentifier.named_route(r, options[:url_writer]) }
+      resource_link = lambda { |r| polymorphic_url(r) }
 
       xml.instruct!
       xml.rss(:version => "2.0") do

@@ -1,0 +1,139 @@
+= Simple Private Messages
+
+This plugin provides basic private messaging functionality between the users
+of a site. It's not big on features but the idea is that it's nice and simple
+and light on resources.
+
+It's not bound to specific model names and plays nice with will_paginate.
+
+= Setup
+
+First create the private message model by running the private_message_model
+generator, passing two parameters - the name you want to use for the Message
+model and the name of the User model.
+
+For all examples in the readme, we will use Message and User.
+
+  ./script/generate private_message_model Message User
+
+Now add the following entry to the model which will have the messages
+
+  has_private_messages
+
+If you have used anything other than "Message", you will have to pass the
+correct class name along as :class_name.
+
+That's it.
+
+= Usage
+
+Examples assume you're using Restful Authentication or AAA, with a user model
+of User and message model of Message.
+
+== Creating / sending a message:
+
+  frank = User.find_by_login("frank")
+  george = User.find_by_login("george")
+
+  message = Message.new
+  message.subject = "Happy Festivus, son"
+  message.body = "It's time for the Feats of Strength."
+  message.sender = frank
+  message.recipient = george
+  message.save
+
+== Reading a message
+
+  message = Message.read(id, user)
+  
+Returns the message of the chosen id and ensures the passed user is either the
+sender or the recipient. If unread, it checks to see if the passed user is the
+recipient and if so marks the read_at timestamp.
+
+You can also check if a message has been read with the following:
+
+  message.read?
+
+== Retrieving a user's received mail
+
+  newman = User.find_by_login("newman")
+  newman.received_messages
+
+The following will return Newman's number of unread messages:
+
+  newman.unread_message_count
+  
+Or the following for true or false on whether there are unread messages:
+
+  newman.unread_messages?
+  
+== Retrieving a user's sent mail
+
+  newman = User.find_by_login("newman")
+  newman.sent_messages
+  
+== Custom finds
+
+  newman.sent_messages.find(:all,
+                          :conditions => ["read_at < ?", 2.days.ago],
+                          :limit => 20,
+                          :order => "created_at ASC")
+
+== Deleting a message
+
+  newman = User.find_by_login("newman")
+  message = newman.received_messages.find(3)
+  message.mark_deleted(newman)
+  
+This will look at a message and mark it read by the sender or recipient,
+based on whichever Newman is. It now will no longer appear in Newman's
+messages.
+
+  kramer = User.find_by_login("kramer")
+  message = kramer.sent_messages.find(3)
+  message.mark_deleted
+
+Now that both sender and recipient have marked the message deleted, it
+gets destroyed. Should a message be sent to oneself, it will be deleted
+in one step due to the sender and recipient being the same.
+
+= Scaffold
+
+A generator is included to create a basic controller and set of views.
+
+Run the private_message_scaffold generator with the same options as before:
+
+  ./script/generate private_message_scaffold Message User
+
+The controller will be named with the pluralised version of the model name.
+
+After that you need to add the resource to your routes.rb as a nested resource
+of the users controller, with a collection for the delete_selected action.
+
+  map.resources :users do |users|
+    users.resources :messages, :collection => { :delete_selected => :post }
+  end
+
+Then uncomment the entry at the top of the message model to establish the
+:to accessor.
+
+You should now have working messaging.
+
+= Tests
+
+Unit tests are provided for the model extensions but not for the generated
+scaffold. Running these requires sqlite3.
+
+=== Credits
+
+Testing functionality for creating dedicated models / loading of a custom
+schema taken from acts_as_taggable_on_steroids.
+
+=== Bug reports / suggestions
+
+www.professionalnerd.com / "jonYADAYADAprofessionalnerd.com".gsub(/YADAYADA/, "@")
+
+=== License
+
+Copyright (c) 2007 Jon Gilbraith released under the MIT license
+http://en.wikipedia.org/wiki/MIT_License

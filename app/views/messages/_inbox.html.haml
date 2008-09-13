@@ -1,0 +1,34 @@
+
+
+#yui-main
+  .yui-b
+    .box
+      %h3 Inbox
+
+      %table{:border => 0, :width => '100%'}
+        %thead
+          %tr
+            %th
+            %th Subject
+            %th Sender
+            %th Sent
+        %tbody
+          - if @messages.empty?
+            %tr
+              %td{ :colspan => "4" } No messages
+          -else
+            - @messages.each do |message|
+              %tr
+                %td= check_box_tag "delete[]", message.id
+                %td
+                  - if message.read?
+                    = link_to h(message.subject), user_message_path(@user, message)
+                  - else
+                    = link_to "#{h(message.subject)} (unread)", user_message_path(@user, message)
+                %td= link_to h(message.sender.login), user_path(@user)
+                %td= h message.created_at.to_s(:long)
+        %tfoot
+          %tr
+            %td{ :colspan => "4" }
+              %p= submit_tag "Delete selected"
+

@@ -1,0 +1,20 @@
+<%% form_for @<%= singular_lower_case_name %>, :url => user_<%= plural_lower_case_name %>_path(@user) do |f| %>
+  <p>
+    To:<br />
+		<%%= f.text_field :to %>
+		<%%= error_message_on @<%= singular_lower_case_name %>, :to %>
+  </p>
+  <p>
+    Subject:<br />
+    <%%= f.text_field :subject %>
+    <%%= error_message_on @<%= singular_lower_case_name %>, :subject %>
+    </p>
+    <p>
+      Message<br />
+      <%%= f.text_area :body %>
+			<%%= error_message_on @<%= singular_lower_case_name %>, :body %>
+    </p>
+    <p>
+      <%%= submit_tag "Send" %>
+    </p>
+<%% end %>

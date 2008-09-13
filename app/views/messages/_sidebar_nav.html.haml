@@ -1,0 +1,7 @@
+.yui-b.sidebar
+  .box
+    %h3="Links".l
+    %ul.checks
+      %li= link_to "Inbox", user_messages_path(@user)
+      %li= link_to "Sent Messages", user_messages_path(@user, :mailbox => :sent)
+      %li= link_to "Compose", new_user_message_path(@user)

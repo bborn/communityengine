@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   acts_as_taggable  
   acts_as_commentable
+  has_private_messages
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile]  
 
   #validation

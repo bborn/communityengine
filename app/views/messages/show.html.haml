@@ -1,0 +1,24 @@
+=render :partial => 'messages/sidebar_nav'
+
+#yui-main
+  .yui-b
+    .box
+      %h3
+        Subject:
+        =h @message.subject
+
+      %p
+        %strong From:
+        = @message.sender.eql?(@user) ? link_to("You", user_path(@user)) : link_to(h(@message.sender.login), user_path(@user))
+      %p
+        %strong Received:
+        = @message.created_at.to_s(:long)
+      %p
+        %strong To:
+        = @message.recipient.eql?(@user) ? link_to("You", user_path(@user)) : link_to(h(@message.recipient.login), user_path(@user))
+
+      %p= h @message.body
+
+      %p
+        - if @message.recipient.eql? @user
+          = link_to "Reply", new_user_message_path(@user, :reply_to => @message)
