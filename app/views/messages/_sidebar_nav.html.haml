@@ -1,7 +1,9 @@
 .yui-b.sidebar
   .box
     %h3="Links".l
-    %ul.checks
-      %li= link_to "Inbox", user_messages_path(@user)
-      %li= link_to "Sent Messages", user_messages_path(@user, :mailbox => :sent)
-      %li= link_to "Compose", new_user_message_path(@user)
+    %ul.message_nav
+      %li{:class => "inbox#{@user.unread_messages? ? '_new': ''}"}
+        = link_to "Inbox", user_messages_path(@user)
+        = "(#{@user.unread_message_count})" if @user.unread_messages?
+      %li.sent= link_to "Sent Messages", user_messages_path(@user, :mailbox => :sent)
+      %li.compose= link_to "Compose", new_user_message_path(@user)

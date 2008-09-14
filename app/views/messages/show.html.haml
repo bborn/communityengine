@@ -8,17 +8,20 @@
         =h @message.subject
 
       %p
-        %strong From:
+        From:
         = @message.sender.eql?(@user) ? link_to("You", user_path(@user)) : link_to(h(@message.sender.login), user_path(@user))
+
       %p
-        %strong Received:
-        = @message.created_at.to_s(:long)
-      %p
-        %strong To:
+        To:
         = @message.recipient.eql?(@user) ? link_to("You", user_path(@user)) : link_to(h(@message.recipient.login), user_path(@user))
+
+      
+      %p
+        Date:
+        = @message.created_at.to_s(:long)
 
       %p= h @message.body
 
-      %p
+      %ul.message_nav
         - if @message.recipient.eql? @user
-          = link_to "Reply", new_user_message_path(@user, :reply_to => @message)
+          %li.sent= link_to "Reply", new_user_message_path(@user, :reply_to => @message)

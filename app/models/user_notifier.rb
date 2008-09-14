@@ -16,44 +16,32 @@ class UserNotifier < ActionMailer::Base
   end
 
   def friendship_request(friendship)
-    setup_sender_info
-    @recipients  = "#{friendship.friend.email}"
-    @subject     = "#{friendship.user.login} would like to be friends with you on #{AppConfig.community_name}!"
-    @sent_on     = Time.now
+    setup_email(friendship.friend)
+    @subject     += "#{friendship.user.login} would like to be friends with you!"
     @body[:url]  = friendship.generate_url
-    @body[:user] = friendship.friend
     @body[:requester] = friendship.user
   end
 
   def comment_notice(comment)
-    @recipients  = "#{comment.recipient.email}"
-    setup_sender_info
-    @subject     = "#{comment.username} has something to say to you on #{AppConfig.community_name}!"
-    @sent_on     = Time.now
+    setup_email(comment.recipient)
+    @subject     += "#{comment.username} has something to say to you on #{AppConfig.community_name}!"
     @body[:url]  = comment.generate_commentable_url
-    @body[:user] = comment.recipient
     @body[:comment] = comment
     @body[:commenter] = comment.user
   end
   
   def follow_up_comment_notice(user, comment)
-    @recipients  = "#{user.email}"
-    setup_sender_info
-    @subject     = "#{comment.username} has commented on a #{comment.commentable_type} that you also commented on. [#{AppConfig.community_name}]"
-    @sent_on     = Time.now
+    setup_email(user)
+    @subject     += "#{comment.username} has commented on a #{comment.commentable_type} that you also commented on."
     @body[:url]  = comment.generate_commentable_url
-    @body[:user] = user
     @body[:comment] = comment
     @body[:commenter] = comment.user
   end  
 
   def new_forum_post_notice(user, post)
-     @recipients  = "#{user.email}"
-     setup_sender_info
-     @subject     = "#{post.user.login} has posted in a thread you are monitoring [#{AppConfig.community_name}]."
-     @sent_on     = Time.now
+     setup_email(user)
+     @subject     += "#{post.user.login} has posted in a thread you are monitoring."
      @body[:url]  = "#{forum_topic_url(:forum_id => post.topic.forum, :id => post.topic, :page => post.topic.last_page)}##{post.dom_id}"
-     @body[:user] = user
      @body[:post] = post
      @body[:author] = post.user
    end
@@ -62,6 +50,12 @@ class UserNotifier < ActionMailer::Base
     setup_email(user)
     @subject    += "Please activate your new #{AppConfig.community_name} account"
     @body[:url]  = "#{APP_URL}/users/activate/#{user.activation_code}"
+  end
+  
+  def message_notification(message)
+    setup_email(message.recipient)
+    @subject     += "#{message.sender.login} sent you a private message!"
+    @body[:message] = message
   end
 
 
@@ -101,7 +95,7 @@ class UserNotifier < ActionMailer::Base
   def setup_email(user)
     @recipients  = "#{user.email}"
     setup_sender_info
-    @subject     = "[#{AppConfig.community_name} registration] "
+    @subject     = "[#{AppConfig.community_name}] "
     @sent_on     = Time.now
     @body[:user] = user
   end

@@ -5,30 +5,30 @@
     .box
       %h3 Inbox
 
-      %table{:border => 0, :width => '100%'}
-        %thead
-          %tr
-            %th
-            %th Subject
-            %th Sender
-            %th Sent
+      %table.messages{:border => 0, :width => '100%'}
         %tbody
           - if @messages.empty?
             %tr
-              %td{ :colspan => "4" } No messages
+              %td{ :colspan => "5" } No messages
           -else
             - @messages.each do |message|
               %tr
-                %td= check_box_tag "delete[]", message.id
+                %td{:width => '10px'}
+                  %fieldset= check_box_tag "delete[]", message.id
+                %td{:width => '60px'}
+                  .photo= link_to image_tag( message.sender.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.sender.login}", "width"=>"50px" ), user_path(message.sender), :title => "#{message.sender.login}'s profile"
+
                 %td
-                  - if message.read?
-                    = link_to h(message.subject), user_message_path(@user, message)
-                  - else
-                    = link_to "#{h(message.subject)} (unread)", user_message_path(@user, message)
-                %td= link_to h(message.sender.login), user_path(@user)
-                %td= h message.created_at.to_s(:long)
+                  = link_to h(message.subject), user_message_path(@user, message)                  
+                  %br
+                  from:
+                  = link_to h(message.sender.login), user_path(@user)                  
+                %td{:width => '20px'}
+                  %em
+                    = message.read? ? 'read' : 'unread'
+                %td.meta{:width => '150px'}= h message.created_at.to_s(:long)
         %tfoot
           %tr
-            %td{ :colspan => "4" }
+            %td{ :colspan => "5" }
               %p= submit_tag "Delete selected"
 

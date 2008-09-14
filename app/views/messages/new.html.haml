@@ -7,16 +7,20 @@
       
       = error_messages_for :message
       - form_for @message, :url => user_messages_path(@user), :html => {:class => "MainForm"} do |f|
-        %label{:for => 'message_to'} 
-          To
-          %em (Type a username)
-        = f.text_field :to
+
+        -if @reply_to
+          =f.hidden_field :to
+        -else
+          %label{:for => 'message_to'} 
+            To
+            %em (Type a username)
+            = f.text_field :to
 
 
         %label{:for => 'message_subject'} Subject:
         = f.text_field :subject
 
-        %label{:for => "message_body"} Message
+        %label{:for => "message_body"} Message:
         = f.text_area :body
 
         %p
