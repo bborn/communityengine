@@ -929,6 +929,17 @@ div.progressBar div.background {
     margin: 0 0 0; }
 
 
+/* TABLES */
+table th {
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	}
+table td {
+	padding: 5px;
+	}
+			
+		
+
 table.poll {
   width: 100%;
   margin-bottom: 3em; }

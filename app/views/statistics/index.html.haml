@@ -1,0 +1,69 @@
+.yui-b.sidebar= render :partial => 'shared/admin_nav'
+
+#yui-main
+  .yui-b.main_column.box
+    %h3 Statistics
+    = ziya_chart( activities_chart_statistics_url(:range => params[:range]), {:bgcolor => '#ffffff', :width => 600, :height => 400, :id => "Activities", :swf_path => "/plugin_assets/community_engine/charts/"} )
+    %h3
+      Total users:
+      = @total_users
+
+    %h3
+      Unactivated users:
+      = @unactivated_users
+    %h3
+      New today:
+      = @today_new_users.size
+    %ul
+      - @today_new_users.each do |user|
+      %li
+        = link_to user.login, user_path(user)
+      - end
+    %h3
+      New yesterday:
+      = @yesterday_new_users.size
+    %ul
+      - @yesterday_new_users.each do |user|
+      %li
+        = link_to user.login, user_path(user)
+      - end
+    %h3
+      Active:
+      = pluralize @active_users_count, 'user'
+      (
+      = number_to_percentage((@active_users_count/@total_users.to_f)*100, :precision => 1)
+      , 1 month)
+    %h3
+      Most active (1 month)
+    %ul
+      - @active_users.each do |user|
+      %li
+        = link_to user.login, user_path(user.id)
+        (
+        = user.activities_count
+        )
+      - end
+    %h3
+      \% Reporting ZIP:
+      = number_to_percentage @percent_reporting_zip, :precision => 1
+    %h3
+      Male:
+      = number_to_percentage @percent_male
+      , Female:
+      = number_to_percentage @percent_female
+    %h3
+      Featured Writers
+    %ul
+      - @featured_writers.each do |w|
+      %li
+        = link_to w.login, statistics_user_path(w)
+      - end
+    %h3
+      Estimated Writers' Costs this month
+    $
+    = @estimated_payment
+    \-
+    = @posts.length
+    posts ($
+    = (@estimated_payment.to_i / @posts.length.to_i) rescue "0"
+    \/post)
