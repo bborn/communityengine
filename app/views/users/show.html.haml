@@ -26,42 +26,41 @@
     %h3
       ="My Friends".l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
-    = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user      
+    = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user
     %br
     = link_to "&raquo; #{'View all my friend requests'.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
     %br
-    %br    
+    %br
     - @accepted_friendships.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
       %h6.all
-        =link_to 'See All'.l, accepted_user_friendships_path(@user)   
+        =link_to 'See All'.l, accepted_user_friendships_path(@user)
 
   - unless @users_comments.empty?
     #photo_comments.yui-g.box.alt
       %h3="My recent comments".l
       - @users_comments.each do |comment|
-        - commentable_url = comment.generate_commentable_url
         %dl.vcard
           %dt.photo
-            = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url
+            = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url(comment)
           %dd.fn
             - if comment.recipient.eql?(comment.commentable)
-              %strong= "To".l+": #{link_to comment.recipient.login, commentable_url}"
+              %strong= "To".l+": #{link_to comment.recipient.login, commentable_url(comment)}"
             - else
               %strong= "To".l+": #{link_to comment.recipient.login, user_path(comment.recipient)}"
               %br
-              %strong= "On".l+": #{link_to comment.commentable_name, commentable_url} (#{comment.commentable_type})"
+              %strong= "On".l+": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type})"
           %dd
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
-                        
+
   - unless @photo_comments.empty?
     #photo_comments.yui-g.box.alt
       %h3="Photo Comments".l
       - @photo_comments.each do |comment|
         %dl.vcard
           %dt.photo
-            = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))        
+            = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))
           %dd.fn= "#{comment.user.login}" + "says".l + ":"
           %dd
             = truncate_words(comment.comment, 10)
@@ -70,10 +69,10 @@
 
 #yui-main
   .yui-b
-    - if @photos.empty? and @recent_posts.empty?
+    - if @photos.empty? and @recent_courses.empty?
       .box.alt.first_alt
         %h3= :small_profile.l :user => @user.login
-      
+
     - unless @photos.empty?
       #photos.box
         %h3="Photos".l
@@ -87,7 +86,7 @@
       #posts.box
         %h3="Recent Blog Posts".l
         = render :partial => 'posts/post', :collection => @recent_posts
-        %h6.right.all= link_to "View my blog".l, user_posts_path(@user)        
+        %h6.right.all= link_to "View my blog".l, user_posts_path(@user)
 
     - unless @clippings.empty?
       #clippings.box

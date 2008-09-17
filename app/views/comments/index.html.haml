@@ -6,7 +6,7 @@
     %h3
       = Inflector.underscore(@commentable.class).capitalize
       ="Comments".l + " -"
-      = link_to @title, @comments.first.generate_commentable_url(false)
+      = link_to @title, commentable_url(@comments.first)
 
     %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments

@@ -1,6 +1,4 @@
 class Comment < ActiveRecord::Base
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
 
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
@@ -61,18 +59,7 @@ class Comment < ActiveRecord::Base
         commentable.description || "Photo from #{commentable.user.login}"
     end
   end
-  
-  def generate_commentable_url(comment_anchor = true)
-    url = ''
-    if commentable.respond_to?(:commentable_url)
-      url = commentable.commentable_url(self)
-    else
-      url = polymorphic_url([self.recipient, self.commentable])
-    end
-    url += "#comment_#{self.id}" if comment_anchor
-    url
-  end
-  
+
   def title_for_rss
     "Comment from #{username}"
   end

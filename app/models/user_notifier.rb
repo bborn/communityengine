@@ -1,31 +1,30 @@
 class UserNotifier < ActionMailer::Base
-  default_url_options[:host] = APP_URL.sub('http://', '')
-  include ActionController::UrlWriter
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::SanitizeHelper  
   include BaseHelper
-  
+  ActionMailer::Base.default_url_options[:host] = APP_URL.sub('http://', '')
+
   def signup_invitation(email, user, message)
     setup_sender_info
     @recipients  = "#{email}"
     @subject     = "#{user.login} would like you to join #{AppConfig.community_name}!"
     @sent_on     = Time.now
     @body[:user] = user
-    @body[:url]  = user.generate_invite_url    
+    @body[:url]  = signup_by_id_url(user, user.invite_code)
     @body[:message] = message
   end
 
   def friendship_request(friendship)
     setup_email(friendship.friend)
     @subject     += "#{friendship.user.login} would like to be friends with you!"
-    @body[:url]  = friendship.generate_url
+    @body[:url]  = pending_user_friendships_url(friendship)
     @body[:requester] = friendship.user
   end
 
   def comment_notice(comment)
     setup_email(comment.recipient)
     @subject     += "#{comment.username} has something to say to you on #{AppConfig.community_name}!"
-    @body[:url]  = comment.generate_commentable_url
+    @body[:url]  = commentable_url(comment)
     @body[:comment] = comment
     @body[:commenter] = comment.user
   end
@@ -33,7 +32,7 @@ class UserNotifier < ActionMailer::Base
   def follow_up_comment_notice(user, comment)
     setup_email(user)
     @subject     += "#{comment.username} has commented on a #{comment.commentable_type} that you also commented on."
-    @body[:url]  = comment.generate_commentable_url
+    @body[:url]  = commentable_url(comment)
     @body[:comment] = comment
     @body[:commenter] = comment.user
   end  
@@ -68,7 +67,7 @@ class UserNotifier < ActionMailer::Base
     @body[:name] = name  
     @body[:title]  = post.title
     @body[:post] = post
-    @body[:signup_link] = (current_user ? current_user.generate_invite_url : "#{APP_URL}/signup" )
+    @body[:signup_link] = (current_user ?  signup_by_id_url(current_user, current_user.invite_code) : "#{APP_URL}/signup" )
     @body[:message]  = message
     @body[:url]  = user_post_url(post.user, post)
     @body[:description] = truncate_words(post.post, 100, @body[:url] )     

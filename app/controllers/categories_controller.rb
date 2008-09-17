@@ -43,7 +43,10 @@ class CategoriesController < BaseController
       format.html # show.rhtml
       format.rss {
         render_rss_feed_for(@posts, {:feed => {:title => "#{AppConfig.community_name}: #{@category.name} posts", :link => category_url(@category)},
-          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :published_at} })        
+          :item => {:title => :title,
+                    :link =>  Proc.new {|post| user_post_url(post.user, post)},
+                    :description => :post,
+                    :pub_date => :published_at} })
       }
     end
   end 

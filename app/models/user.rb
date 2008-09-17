@@ -1,8 +1,6 @@
 require 'digest/sha1'
 
-class User < ActiveRecord::Base  
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
+class User < ActiveRecord::Base
   MALE    = 'M'
   FEMALE  = 'F'
 
@@ -220,10 +218,6 @@ class User < ActiveRecord::Base
   end
   
 
-  def generate_invite_url
-    "#{APP_URL}/signup/#{self.to_param}/#{invite_code}"
-  end
-  
   def valid_invite_code?(code)
     code == invite_code
   end
@@ -417,10 +411,10 @@ class User < ActiveRecord::Base
   def self.build_search_conditions(query)
     query
   end
-  
-  def commentable_url(comment)
-    user_url(comment.recipient)    
-  end
+
+#  def commentable_url(comment)
+#    user_url(comment.recipient)
+#  end
 
 
   protected
