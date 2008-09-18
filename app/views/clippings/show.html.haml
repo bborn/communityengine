@@ -53,4 +53,4 @@
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @clipping.comments
-      %span#more_comments_links= more_comments_links(@post)
+      %span#more_comments_links= more_comments_links(@clipping)

@@ -14,7 +14,7 @@ class MonitorshipsControllerTest < Test::Unit::TestCase
 
   def test_should_require_login
     xhr :post, :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => users(:aaron).id
-    assert_response :redirect
+    assert_response 401
   end
   
   def test_should_add_monitorship
