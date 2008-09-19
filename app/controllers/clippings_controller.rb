@@ -65,7 +65,7 @@ class ClippingsController < BaseController
     respond_to do |format|
       format.html # index.rhtml
       format.js { render :inline => @clippings_data.to_json }
-      format.widget { render :template => 'clippings/widget', :layout => false }
+      # format.widget { render :template => 'clippings/widget', :layout => false }
       format.rss {
         render_rss_feed_for(@clippings,
            { :feed => {:title => @rss_title, :link => url_for(:controller => 'clippings', :action => 'index', :user_id => @user) },
