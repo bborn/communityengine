@@ -972,6 +972,11 @@ table.messages tbody td {
 	font-size: 85%;
 	text-align: right;
 	}
+.message_body {
+	padding: 10px;
+	border: 1px solid #ccc;
+	background: #efefef;
+}
 	
 
 table.poll {

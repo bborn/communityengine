@@ -13,7 +13,7 @@
             - @messages.each do |message|
               %tr
                 %td{:width => '10px'}
-                  %fieldset= check_box_tag "delete[]", message.id
+                  %fieldset.inline= check_box_tag "delete[]", message.id
                 %td{:width => '60px'}
                   .photo= link_to image_tag( message.recipient.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.recipient.login}", "width"=>"50px" ), user_path(message.recipient), :title => "#{message.recipient.login}'s profile"
 
@@ -28,4 +28,5 @@
           %tfoot
             %tr
               %td{ :colspan => "4" }
-                %p= submit_tag "Delete"
+                -if @messages.any?
+                  %p= submit_tag "Delete"
