@@ -1,6 +1,4 @@
 class Friendship < ActiveRecord::Base
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
 
   @@daily_request_limit = 12
   cattr_accessor :daily_request_limit
@@ -35,10 +33,6 @@ class Friendship < ActiveRecord::Base
   
   def reverse
     Friendship.find(:first, :conditions => ['user_id = ? and friend_id = ?', self.friend_id, self.user_id])
-  end
-  
-  def generate_url
-    pending_user_friendships_url(self.friend)    
   end
 
   def denied?

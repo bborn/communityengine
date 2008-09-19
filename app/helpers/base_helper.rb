@@ -4,6 +4,14 @@ require 'md5'
 module BaseHelper
 
 
+  def commentable_url(comment)
+    if comment.commentable_type != "User"
+      polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
+    else
+      user_url(comment.recipient)+"#comment_#{comment.id}"
+    end
+  end
+
 
   def forum_page?
     %w(forums topics sb_posts).include?(@controller.controller_name)
