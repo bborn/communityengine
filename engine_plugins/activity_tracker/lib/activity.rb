@@ -3,7 +3,7 @@ class Activity < ActiveRecord::Base
   belongs_to :item, :polymorphic => true
   validates_presence_of :user_id
   
-  after_save :update_counter_on_user
+  before_save :update_counter_on_user
   
   named_scope :of_item_type, lambda {|type|
     {:conditions => ["activities.item_type = ?", type]}
