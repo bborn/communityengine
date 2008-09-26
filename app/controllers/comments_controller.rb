@@ -58,7 +58,11 @@ class CommentsController < BaseController
 
   def new
     @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])
-    redirect_to "#{url_for(:controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id], :user_id => @commentable.owner.to_param)}#comments"
+    if @commentable.is_a?(User)
+      redirect_to "#{polymorphic_path(@commentable)}#comments"      
+    else
+      redirect_to "#{polymorphic_path([@commentable.owner, @commentable])}#comments"
+    end
   end
 
 
