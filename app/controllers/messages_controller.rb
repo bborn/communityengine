@@ -17,7 +17,7 @@ class MessagesController < BaseController
   end
   
   def new
-    @message = Message.new
+    @message = Message.new(params[:message])
 
     if params[:reply_to]
       @reply_to = @user.received_messages.find(params[:reply_to])
