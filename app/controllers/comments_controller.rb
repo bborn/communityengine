@@ -48,7 +48,7 @@ class CommentsController < BaseController
 
     respond_to do |format|
       format.html {
-        flash[:notice] = :no_comments_found.l_with_args(type => Inflector.constantize(Inflector.camelize(params[:commentable_type])))
+        flash[:notice] = :no_comments_found.l_with_args(:type => Inflector.constantize(Inflector.camelize(params[:commentable_type])))
         redirect_to :controller => 'base', :action => 'site_index' and return
       }
     end
