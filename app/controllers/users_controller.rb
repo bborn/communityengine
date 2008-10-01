@@ -316,7 +316,7 @@ class UsersController < BaseController
     
     country = Country.find(params[:country_id]) unless params[:country_id].blank?
     state   = State.find(params[:state_id]) unless params[:state_id].blank?
-    states  = country ? country.states : []
+    states  = country ? country.states.sort_by{|s| s.name} : []
     
     if states.any?
       metro_areas = state ? state.metro_areas.all(:order => "name") : []
