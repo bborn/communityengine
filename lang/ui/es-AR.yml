@@ -3,9 +3,11 @@ about: Acerca
 #en: about_me: About Me
 about_me: "Acerca de m\xC3\xAD"
 #en: about_site: About {site}
-about_site: "Acerca de {site}"
+about_site: Acerca de {site}
 #en: about_you: About You
 about_you: Acerca de usted
+#en: accepted_friendships: Accepted Friendships
+accepted_friendships: Amistades Aceptadas
 #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
 account_activation_error: "Activaci\xC3\xB3n de cuenta fracaso. Tal vez ya est\xC3\xA9 activa. Trate de iniciar una sesi\xC3\xB3n o mande un e-mail a {email} para obtener ayuda."
 #en: account_settings: Account settings
@@ -51,15 +53,15 @@ advertise_on: Anunciarse en
 #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
 after_signing_up_youll_receive_an_e_mail_confirmation_message: "Despu\xC3\xA9s de registrarse, usted recibir\xC3\xA1 un e-mail mensaje de confirmaci\xC3\xB3n."
 #en: all_clippings_tagged: All clippings tagged {tag_name}
-all_clippings_tagged: "Todos los clippings marcados {tag_name}"
+all_clippings_tagged: Todos los clippings marcados {tag_name}
 #en: all_photos_tagged: All photos tagged {tag_name}
-all_photos_tagged: "Todas las fotos marcadas {tag_name}"
+all_photos_tagged: Todas las fotos marcadas {tag_name}
 #en: all_posts_tagged: All posts tagged {tag_name}
-all_posts_tagged: "Todos las entradas marcadas {tag_name}"
+all_posts_tagged: Todos las entradas marcadas {tag_name}
 #en: all_tags: All tags
 all_tags: Todas las etiquetas
 #en: all_users_tagged: All users tagged {tag_name}
-all_users_tagged: "Todos los usuarios marcados {tag_name}"
+all_users_tagged: Todos los usuarios marcados {tag_name}
 #en: already_have_an_account: Already have an account?
 already_have_an_account: Ya tienes una cuenta?
 #en: an_error_occurred: An error occurred
@@ -116,6 +118,8 @@ clipping_comments: Comentarios sobre recortes
 clipping_was_successfully_created: Recorte se ha creado correctamente.
 #en: clippings: Clippings
 clippings: Recortes
+#en: clippings_let_you_to_save_cool_images_from_around_the_web: 
+clippings_let_you_to_save_cool_images_from_around_the_web: Los recortes te permiten guardar las imagenes que te gusten de la Web.
 #en: close_this_message: Close this message
 close_this_message: Cerrar este mensaje
 #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
@@ -166,6 +170,10 @@ dont_have_an_account: No tiene una cuenta?
 dont_wait_its: No espere! Es
 #en: draft: draft
 draft: borrador
+#en: drag_the_bookmarklet: 
+drag_the_bookmarklet: "Arrastra el bookmarklet (link) ::{site}:: que se encuentra a continuaci\xC3\xB3n a la barra de marcadores de tu navegador."
+#en: drag_this_to_your_bookmarks_toolbar: 
+drag_this_to_your_bookmarks_toolbar: "Arrastra esto a la barra de marcadores:"
 #en: e_mail: E-mail
 e_mail: E-mail
 #en: e_mail_address: E-mail address
@@ -197,7 +205,7 @@ event_was_successfully_created: Evento creado exitosamente.
 #en: events: Events
 events: Eventos
 #en: explore_site: Explore {site}
-explore_site: "Explorar {site}"
+explore_site: Explorar {site}
 #en: faq: FAQ
 faq: FAQ
 #en: favorited: favorited
@@ -210,8 +218,6 @@ features: "Caracter\xC3\xADsticas"
 female: Mujer
 #en: find_an_expert: Find an Expert
 find_an_expert: Encuentre un experto
-#en: forgot_your_passowrd: Forgot your passowrd?
-forgot_your_passowrd: "\xC2\xBFOlvid\xC3\xB3 su contrase\xC3\xB1a?"
 #en: forgot_your_password: Forgot your password?
 forgot_your_password: "\xC2\xBFOlvid\xC3\xB3 su contrase\xC3\xB1a?"
 #en: forgot_your_username: Forgot your username?
@@ -255,7 +261,7 @@ have_an_account_: "\xC2\xBFTen\xC3\xA9s una cuenta?"
 #en: have_something_to_contribute: Have something to contribute?
 have_something_to_contribute: "\xC2\xBFTen\xC3\xA9s algo para contribuir?"
 #en: help: Help
-help: Ayuda
+help: "\xC2\xA1Ayuda!"
 #en: home: Home
 home: Inicio
 #en: homepage_banner_download_msg: Download it now and get started
@@ -273,7 +279,7 @@ inactive: inactivo
 #en: invitation_was_successfully_created: Invitation was successfully created.
 invitation_was_successfully_created: "Invitaci\xC3\xB3n creada satisfactoriamente."
 #en: invite_message: The more people you invite the better {site} becomes.
-invite_message: "Cuantas mas personas invite a {site}, mejor."
+invite_message: Cuantas mas personas invite a {site}, mejor.
 #en: invite_some_customers: Invite some customers!
 invite_some_customers: "\xC2\xA1Invit\xC3\xA1 algunos clientes!"
 #en: invite_your_friends_to_join: Invite Your Friends To Join!
@@ -291,7 +297,7 @@ log_in: "Iniciar sesi\xC3\xB3n"
 #en: log_in_to_leave_a_comment: Log in to leave a comment
 log_in_to_leave_a_comment: "Inici\xC3\xA1 sesi\xC3\xB3n para dejar un comentario"
 #en: log_in_to_site: Log in to {site}
-log_in_to_site: "Acceda a {site}"
+log_in_to_site: Acceda a {site}
 #en: log_out: Log Out
 log_out: "Cerrar sesi\xC3\xB3n"
 #en: logged_in: "Logged in:"
@@ -301,7 +307,7 @@ logged_into_the_site: "inicio una sesi\xC3\xB3n"
 #en: login: Login
 login: "Iniciar sesi\xC3\xB3n"
 #en: looking_for_most_x: (looking for {link}?)
-looking_for_most_x: "Buscando lo mas {link}?"
+looking_for_most_x: Buscando lo mas {link}?
 #en: male: Male
 male: Hombre
 #en: manage_my: "Manage my:"
@@ -339,9 +345,13 @@ new_photo: Nueva foto
 #en: new_post: New post
 new_post: Nuevo post
 #en: new_post_for_category: New {category}
-new_post_for_category: "Nueva entrada en {category}"
+new_post_for_category: Nueva entrada en {category}
 #en: new_post_text: New Post text
 new_post_text: Nuevo post
+#en: next: 
+next: Siguiente
+#en: no_clippings_yet: 
+no_clippings_yet: "Sin recortes a\xC3\xBAn"
 #en: no_comments_found: "Lo sentimos, pero no se pudo encontrar ning\xC3\xBAn comentario para ese {type}"
 no_comments_found: "Lo sentimos, pero no se pudo encontrar ning\xC3\xBAn comentario para ese {type}"
 #en: no_tags: No tags
@@ -363,7 +373,7 @@ permanently_delete_this_event: "\xC2\xBFBorrar este evento?"
 #en: photo_comments: Photo Comments
 photo_comments: Comentarios de la foto
 #en: photo_message: Your profile photo represents you on {site}. You can change it later.
-photo_message: "Su foto de perfil lo representa en {site}. La puede cambiar mas tarde."
+photo_message: Su foto de perfil lo representa en {site}. La puede cambiar mas tarde.
 #en: photo_was_successfully_created: Photo was successfully created.
 photo_was_successfully_created: Foto creada satisfactoriamente.
 #en: photos: Photos
@@ -373,19 +383,19 @@ photos_should_be_x_pixels: La foto debe ser de 300x300 pixels.
 #en: please_log_in: Please log in.
 please_log_in: "Por favor inicie sesi\xC3\xB3n,"
 #en: please_post_something_at_least: Please post something at least...
-please_post_something_at_least: "Por favor postee algo al menos..."
+please_post_something_at_least: Por favor postee algo al menos...
 #en: plural_posts: "{count} posts"
 plural_posts: "{count} entradas"
 #en: popular: Popular
 popular: popular
 #en: popular_catgory: Popular {name}
-popular_catgory: "Popular en {name}"
+popular_catgory: Popular en {name}
 #en: popular_posts: Popular Posts
 popular_posts: Posts populares
 #en: post_an_event: Post an event
 post_an_event: Postea un evento
 #en: post_created_for_category: Your '{category}' post was successfully created.
-post_created_for_category: "Su entrada en '{category}' fue creada."
+post_created_for_category: Su entrada en '{category}' fue creada.
 #en: postal_code: "Postal code:"
 postal_code: "C\xC3\xB3digo postal"
 #en: posting_tips: Posting tips
@@ -394,6 +404,8 @@ posting_tips: Tips de posteo
 posts: Posts
 #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
 posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Los posts guardados como borrador no aparecer\xC3\xA1n en el blog hasta que los publiques."
+#en: prev: 
+prev: Anterior
 #en: profile: Profile
 profile: Perfil
 #en: profile_comments: Profile Comments
@@ -413,9 +425,9 @@ recent_posts: Entradas recientes
 #en: recommended_posts: Recommended Posts
 recommended_posts: Posts recomendados
 #en: related_clippings_all_members: Related Clippings (all members)
-related_clippings_all_members: "Recortes relacionados (todos los miembros)"
+related_clippings_all_members: Recortes relacionados (todos los miembros)
 #en: related_photos_all_members: Related Photos (all members)
-related_photos_all_members: "Fotos relacionadas (todos los miembros)"
+related_photos_all_members: Fotos relacionadas (todos los miembros)
 #en: related_posts: Related Posts
 related_posts: Posts relacionados
 #en: related_tags: Related Tags
@@ -425,7 +437,7 @@ remember_me: Recordarme
 #en: remember_you_can_always_change_this_later: Remember, you can always change this later.
 remember_you_can_always_change_this_later: "Acordate, siempre pod\xC3\xA9s cambiar esto despu\xC3\xA9s."
 #en: required: (required)
-required: "(requerido)"
+required: (requerido)
 #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
 required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Requerido: te vamos a mandar un mail de confirmaci\xC3\xB3n a la direcci\xC3\xB3n que ingreses.)"
 #en: required_you_must_be_at_least__years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
@@ -449,7 +461,7 @@ save_changes: Guardar cambios
 #en: save_post_as: "Save post as:"
 save_post_as: "Guardar post como:"
 #en: sb_post_was_deleted: Post '{title}' was deleted.
-sb_post_was_deleted: "La entrada '{title}' fue suprimida."
+sb_post_was_deleted: La entrada '{title}' fue suprimida.
 #en: search_users: Search Users
 search_users: "B\xC3\xBAsqueda de usuarios"
 #en: see_all: SEE ALL
@@ -475,7 +487,7 @@ sign_up_for_an_account: Suscribase para obtener una cuenta.
 #en: singular_posts: "{count} post"
 singular_posts: "{count} entrada"
 #en: site_members: "{site} members"
-site_members: "Miembros de {site}"
+site_members: Miembros de {site}
 #en: skill_was_successfully_created: Skill was successfully created.
 skill_was_successfully_created: Habilidad creada satisfactoriamente.
 #en: skills: Skills
@@ -507,7 +519,7 @@ stats: "estad\xC3\xADsticas"
 #en: status: Status
 status: Estado
 #en: tag_does_not_exists: The tag {tag} does not exist
-tag_does_not_exists: "Etiquetta {tag} no existe"
+tag_does_not_exists: Etiquetta {tag} no existe
 #en: tags: Tags
 tags: Etiquetas
 #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
@@ -547,7 +559,7 @@ to_start_adding_friends: Para agregar amigos,
 #en: top_writers: Top Writers
 top_writers: "m\xC3\xA1s activos escritores"
 #en: topic_deleted: Topic '{topic}' was deleted.
-topic_deleted: "El Tema '{topic}' fue suprimido."
+topic_deleted: El Tema '{topic}' fue suprimido.
 #en: type_your_password: "Type your password:"
 type_your_password: "Ingres\xC3\xA1 tu contrase\xC3\xB1a:"
 #en: uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: Uh oh. We couldn't log you in with the username and password you entered. Try again?
@@ -566,6 +578,8 @@ upload_an_image_for_your_post: "Sub\xC3\xAD una imagen para tu post"
 upload_and_continue_to_step_two: Subir y continuar con el paso 2
 #en: uploaded_a_photo: "uploaded a photo:"
 uploaded_a_photo: "public\xC3\xB3 una foto"
+#en: user_clippings: 
+user_clippings: Recortes de {user}
 #en: user_e_mail: "User e-mail:"
 user_e_mail: "E-mail del usuario:"
 #en: user_login: "User login:"
@@ -575,9 +589,9 @@ username: Nombre de usuario
 #en: users: Users
 users: Usuarios
 #en: users_blog: "{user}'s Blog"
-users_blog: "El blog de {user}"
+users_blog: El blog de {user}
 #en: users_photos: "{user}'s Photos"
-users_photos: "Las fotos de {user}"
+users_photos: Las fotos de {user}
 #en: view_all_my_clippings: View all my clippings
 view_all_my_clippings: Ver todos mis recortes
 #en: view_all_my_photos: View all my photos
@@ -589,7 +603,7 @@ view_my_blog: Ver mi blog
 #en: view_profile: View profile
 view_profile: Ver perfil
 #en: walkthrough_complete: You've completed the {site} walk-through. Now you can continue exploring!
-walkthrough_complete: "Ha completado el tour de {site}. Ahora puede seguir explorando!"
+walkthrough_complete: Ha completado el tour de {site}. Ahora puede seguir explorando!
 #en: want_to_be_popular: Want to be popular?
 want_to_be_popular: "\xC2\xBFQuer\xC3\xA9s ser popular?"
 #en: want_to_post_in_this_category: Want to post in this category?
@@ -597,7 +611,7 @@ want_to_post_in_this_category: "\xC2\xBFQuer\xC3\xA9s postear en esta categor\xC
 #en: we_need_you: We need you
 we_need_you: Te necesitamos
 #en: welcome_message: Welcome! {login_link} or {signup_link}
-welcome_message: "Bienvenido! {login_link} o {signup_link}"
+welcome_message: Bienvenido! {login_link} o {signup_link}
 #en: what_is_popular: What's Popular
 what_is_popular: "Lo m\xC3\xA1s popular"
 #en: whats_fresh: What's fresh
@@ -606,14 +620,16 @@ whats_fresh: Que hay de nuevo?
 whats_hot: "Lo m\xC3\xA1s popular"
 #en: whats_popular: What's Popular
 whats_popular: Populares
+#en: when_you_see_an_image_you_like_on_the_web: 
+when_you_see_an_image_you_like_on_the_web: "Cuando veas una im\xC3\xA1gen que te guste en la Web, has clic en el bookmarklet para guardarlo en {site}"
 #en: why_sign_up: Why Sign up?
 why_sign_up: "\xC2\xBFPorque suscribirse?"
 #en: write_a_blog_post: Write a blog post!
-write_a_blog_post: "Escriba una entrada!"
-#en: write_a_message: "Write a message\:"
+write_a_blog_post: Escriba una entrada!
+#en: write_a_message: "Write a message\\:"
 write_a_message: "Escrib\xC3\xAD un mensaje:"
 #en: write_new_post: Write a '{category}' post
-write_new_post: "Escriba una entrada de '{category}'"
+write_new_post: Escriba una entrada de '{category}'
 #en: wrote_a_post: "wrote a post:"
 wrote_a_post: escribio una entrada
 #en: you_can_browse_all_content_and_users_on: You can browse all content and users on
@@ -622,6 +638,8 @@ you_can_browse_all_content_and_users_on: "Pod\xC3\xA9s ver todo el contenido y u
 you_cant_delete_that_user: "No pod\xC3\xA9s borrar ese usuario."
 #en: you_could_tag_yourself: You could tag yourself
 you_could_tag_yourself: "Pod\xC3\xA9s taguearte a vos mismo"
+#en: you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: 
+you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: "No tienes ning\xC3\xBAn recorte. Utiliza el bookmarklet de la derecha para agregar algunos"
 #en: you_have_no_network_activity_yet: You have no network activity yet.
 you_have_no_network_activity_yet: "No ten\xC3\xA9s actividad en la red todav\xC3\xADa."
 #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
@@ -646,33 +664,3 @@ youre_editing_your_profile: "Est\xC3\xA1 editando su perfil."
 youve_been_logged_out_hope_you_come_back_soon: "Ha cerrado sesi\xC3\xB3n. Lo esperamos de vuelta pronto!"
 #en: zippostal_code: "ZIP/Postal code:"
 zippostal_code: "C\xC3\xB3digo postal"
-#clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
-clippings_let_you_to_save_cool_images_from_around_the_web: "Los recortes te permiten guardar las imagenes que te gusten de la Web."
-#help: Help!
-help: "\xC2\xA1Ayuda!"
-#drag_the_bookmarklet: Drag the ' socialsnow.com It!' bookmarklet (below) to your browser's toolbar.
-drag_the_bookmarklet: "Arrastra el bookmarklet (link) ::{site}:: que se encuentra a continuaci\xC3\xB3n a la barra de marcadores de tu navegador."
-#when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to socialsnow.com .
-when_you_see_an_image_you_like_on_the_web: "Cuando veas una im\xC3\xA1gen que te guste en la Web, has clic en el bookmarklet para guardarlo en {site}"
-#Bookmarklet: Bookmarklet
-Bookmarklet: "Bookmarklet"
-#drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar:
-drag_this_to_your_bookmarks_toolbar: "Arrastra esto a la barra de marcadores:"
-#user_clippings: diablito's clippings
-user_clippings: "Recortes de {user}"
-#you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
-you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: "No tienes ning\xC3\xBAn recorte. Utiliza el bookmarklet de la derecha para agregar algunos"
-#no_clippings_yet:
-no_clippings_yet: "Sin recortes a\xC3\xBAn"
-#next: Next
-next: "Siguiente"
-#prev: Prev
-prev: "Anterior"
-
-
-#we_just_sent_an_e_mail_to
-we_just_sent_an_e_mail_to: "Acabamos de enviarte un email a <b>{email}</b> que te permitir\xC3\xA1 activar tu cuenta."
-#look_for_a_message_from
-look_for_a_message_from: "Busca un mensaje de {from}. Si no encuentras el mensaje, b\xC3\xBAscalo en la carpeta de correo no deseado, seguramente est\xC3\xA9 ah\xC3\xAD."
-#see_you_back_here_in_a_short_while
-see_you_back_here_in_a_short_while: "\xC2\xA1Nos vemos pronto!"
