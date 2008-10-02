@@ -23,7 +23,7 @@
               %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>"Print this story"} Print
             %li.email
               %a{:href=>"#", :onclick=>"showSendTo_friend(); return false;", :title=>"E-mail this story to friends"} E-mail to friends
-            %li
+            %li.share
               %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358"}
             -if @is_current_user || admin? || moderator?
               %li.edit= link_to "Edit", edit_user_post_path(@post.user, @post)

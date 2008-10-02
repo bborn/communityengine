@@ -6,23 +6,23 @@ class PhotosController < BaseController
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
 
   skip_before_filter :verify_authenticity_token, :only => [:create, :swfupload] #because the TinyMCE image uploader can't provide the auth token
-  
-  session :cookie_only => false, :only => :swfupload  
-  
+
+  session :cookie_only => false, :only => :swfupload
+
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
-  
+
   def recent
     @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
   end
-  
+
   # GET /photos
   # GET /photos.xml
   def index
-    @user = User.find(params[:user_id])        
-    
+    @user = User.find(params[:user_id])
+
     cond = Caboose::EZ::Condition.new
     cond.user_id == @user.id
-    if params[:tag_name]    
+    if params[:tag_name]
       cond.append ['tags.name = ?', params[:tag_name]]
     end
 
@@ -37,26 +37,26 @@ class PhotosController < BaseController
       format.html # index.rhtml
       format.rss {
         render_rss_feed_for(@photos,
-           { :feed => {:title => @rss_title, :link => url_for(:controller => 'photos', :action => 'index', :user_id => @user) },           
+           { :feed => {:title => @rss_title, :link => url_for(:controller => 'photos', :action => 'index', :user_id => @user) },
              :item => {:title => :name,
-                       :description => :description_for_rss,
-                       :link => :link_for_rss,
-                       :pub_date => :created_at} })        
-        
+                       :description => Proc.new {|photo| description_for_rss(photo)},
+                       :link => Proc.new {|photo| user_photo_url(photo.user, photo)},
+                       :pub_date => :created_at} })
+
       }
-      format.xml { render :action => 'index.rxml', :layout => false}        
+      format.xml { render :action => 'index.rxml', :layout => false}
     end
   end
-  
+
   def manage_photos
     if logged_in?
       @user = current_user
       cond = Caboose::EZ::Condition.new
       cond.user_id == @user.id
-      if params[:tag_name]    
+      if params[:tag_name]
         cond.append ['tags.name = ?', params[:tag_name]]
       end
-  
+
       @selected = params[:photo_id]
       @photos = Photo.recent.find :all, :conditions => cond.to_sql, :include => :tags, :page => {:size => 10, :current => params[:page]}
 
@@ -65,7 +65,7 @@ class PhotosController < BaseController
       format.js
     end
   end
-  
+
   # GET /photos/1
   # GET /photos/1.xml
   def show
@@ -77,22 +77,22 @@ class PhotosController < BaseController
     @previous = @photo.previous_photo
     @next = @photo.next_photo
     @related = Photo.find_related_to(@photo)
-        
+
     respond_to do |format|
       format.html # show.rhtml
     end
   end
-  
+
   # GET /photos/new
-  def new    
-    @user = User.find(params[:user_id])    
+  def new
+    @user = User.find(params[:user_id])
     @photo = Photo.new
     if params[:inline]
       render :action => 'inline_new', :layout => false
     end
-    
+
   end
-    
+
   # GET /photos/1;edit
   def edit
     @photo = Photo.find(params[:id])
@@ -111,55 +111,55 @@ class PhotosController < BaseController
     respond_to do |format|
       if @photo.save
         #start the garbage collector
-        GC.start        
+        GC.start
         flash[:notice] = 'Photo was successfully created.'.l
-        
-        format.html { 
+
+        format.html {
           render :action => 'inline_new', :layout => false and return if params[:inline]
-          redirect_to user_photo_url(:id => @photo, :user_id => @photo.user) 
+          redirect_to user_photo_url(:id => @photo, :user_id => @photo.user)
         }
         format.js {
           responds_to_parent do
             render :update do |page|
               page << "upload_image_callback('#{@photo.public_filename()}', '#{@photo.display_name}', '#{@photo.id}');"
             end
-          end                
+          end
         }
       else
-        format.html { 
-          render :action => 'inline_new', :layout => false and return if params[:inline]                
-          render :action => "new" 
+        format.html {
+          render :action => 'inline_new', :layout => false and return if params[:inline]
+          render :action => "new"
         }
         format.js {
           responds_to_parent do
             render :update do |page|
               page.alert('Sorry, there was an error uploading the photo.')
             end
-          end                
+          end
         }
       end
     end
   end
-  
-  def swfupload  
+
+  def swfupload
     # swfupload action set in routes.rb
     @photo = Photo.new :uploaded_data => params[:Filedata]
     @photo.user = current_user
     @photo.save!
-    
+
     # This returns the thumbnail url for handlers.js to use to display the thumbnail
     render :text => @photo.public_filename(:thumb)
-  rescue 
+  rescue
     render :text => "Error: #{$!}", :status => 500
-  end  
-  
+  end
+
   # PUT /photos/1
   # PUT /photos/1.xml
   def update
     @photo = Photo.find(params[:id])
     @user = @photo.user
     @photo.tag_list = params[:tag_list] || ''
-    
+
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
         format.html { redirect_to user_photo_url(@photo.user, @photo) }
@@ -168,10 +168,10 @@ class PhotosController < BaseController
       end
     end
   end
-  
+
   # DELETE /photos/1
   # DELETE /photos/1.xml
-  def destroy    
+  def destroy
     @user = User.find(params[:user_id])
     @photo = Photo.find(params[:id])
     if @user.avatar.eql?(@photo)
@@ -179,15 +179,21 @@ class PhotosController < BaseController
       @user.save!
     end
     @photo.destroy
-     
+
     respond_to do |format|
       format.html { redirect_to user_photos_url(@photo.user)   }
     end
   end
-  
+
   def slideshow
     @xml_file = formatted_user_photos_url( {:user_id => @user, :format => :xml}.merge(:tag_name => params[:tag_name]) )
     render :action => 'slideshow'
-  end  
-  
+  end
+
+  protected
+
+  def description_for_rss(photo)
+    "<a href='#{user_photo_url(photo.user, photo)}' title='#{photo.name}'><img src='#{photo.public_filename(:large)}' alt='#{photo.name}' /><br />#{photo.description}</a>"
+  end
+
 end

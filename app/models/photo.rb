@@ -30,9 +30,6 @@ class Photo < ActiveRecord::Base
     self.name ? self.name : self.created_at.strftime("created on: %m/%d/%y")
   end
   
-  def link_for_rss
-    "#{APP_URL}/#{self.user.login}/photos/#{self.to_param}"
-  end
 
   def description_for_rss
     "<a href='#{self.link_for_rss}' title='#{self.name}'><img src='#{self.public_filename(:large)}' alt='#{self.name}' /><br />#{self.description}</a>"

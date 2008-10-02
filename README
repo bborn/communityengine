@@ -186,6 +186,8 @@ Alejandro Raiczyk - Spanish localization
 Fritz Thielemann - German localization
 Oleg Ivanov (github.com/morhekil) - acts_as_taggable_on_steroids
 David Fugere - French localization
+Barry Paul - routes refactoring
+
 
 # Todo
 - Track down "<RangeError ... is recycled object>" warnings on tests (anyone know where that's coming from?)

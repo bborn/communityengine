@@ -104,3 +104,10 @@ resend_activation_email_link: Click here to re-send your activation e-mail.
 activation_email_resent_message: Activation e-mail was re-sent. Go check your e-mail! Make sure {admin_email} is not on your spam blacklist.
 #activation_email_not_sent_message
 activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
+
+#prev
+prev: "Previous"
+#next
+next: "Next"
+#user_clippings
+user_clippings: "{user}'s clippings"

@@ -1,9 +1,4 @@
-require "uri"    
-    
 class Post < ActiveRecord::Base
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
-
   acts_as_commentable
   acts_as_taggable
   acts_as_activity :user, :if => Proc.new{|r| r.is_live?}
@@ -57,11 +52,7 @@ class Post < ActiveRecord::Base
   def to_param
     id.to_s << "-" << (title ? title.gsub(/[^a-z1-9]+/i, '-') : '' )
   end
-  
-  def link_for_rss
-    user_post_url(self.user, self)
-  end
-  
+
   def self.find_recent(options = {:limit => 5})
     self.recent.find :all, :limit => options[:limit]
   end

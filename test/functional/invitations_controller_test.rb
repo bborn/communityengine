@@ -14,6 +14,7 @@ class InvitationsControllerTest < Test::Unit::TestCase
   end
 
   def test_should_get_index
+    login_as :quentin
     get :index, :user_id => users(:quentin).id
     assert_response :success
     assert assigns(:invitations)

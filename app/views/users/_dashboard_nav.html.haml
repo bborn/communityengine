@@ -1,34 +1,39 @@
-.yui-g.box
-  .yui-u.first
-    %h3 View my:
+.yui-b
+  .box
+    %h3="Dashboard".l
+    .yui-g
+      .yui-u.first
+        = image_tag 'icons/accept.png', :plugin => 'community_engine'            
+        ="View my:".l
+        %ul
+          %li=link_to 'Profile'.l, user_path(@user)  
+          %li=link_to 'Blog'.l, user_posts_path(@user)
+          %li=link_to 'Photos'.l, user_photos_path(@user)
+          %li=link_to 'Clippings'.l, user_clippings_path(@user)
+          %li=link_to 'Friends'.l, accepted_user_friendships_path(@user)
+      .yui-u
+        = image_tag 'icons/wrench.png', :plugin => 'community_engine'      
+        ="Manage my:".l
+        %ul
+          %li=link_to 'Profile'.l, edit_user_path(@user)
+          %li=link_to 'Account settings'.l, edit_account_user_path(@user)
+          %li=link_to 'Blog posts'.l, manage_user_posts_path(@user)     
+          -if current_user.admin?
+            %li=link_to 'Admin dashboard'.l, admin_dashboard_path
+               
+  
+  .box.alt
+    %h3="Stats".l
     %ul
-      %li=link_to 'Profile'.l, user_path(@user)  
-      %li=link_to 'Blog'.l, user_posts_path(@user)
-      %li=link_to 'Photos'.l, user_photos_path(@user)
-      %li=link_to 'Clippings'.l, user_clippings_path(@user)
-      %li=link_to 'Friends'.l, accepted_user_friendships_path(@user)
-
-  .yui-u
-    %h3 Manage my:
-    %ul
-      %li=link_to 'Profile'.l, edit_user_path(@user)
-      %li=link_to 'Account settings'.l, edit_account_user_path(@user)
-      %li=link_to 'Blog posts'.l, manage_user_posts_path(@user)                
-      -if current_user.admin?
-        %li=link_to 'Admin dashboard'.l, admin_dashboard_path
-
-.box.alt
-  %h3 Stats
-  %ul
-    %li="Last logged in: #{@user.last_login_at && @user.last_login_at.strftime("%m/%d/%y")}"
-    %li= @user.created_at.strftime("Member since: %m/%d/%y")
-    -unless @user.posts.empty?
-      %li="#{@user.posts.count} blog posts."
-    -unless @user.photos.empty?
-      %li="#{@user.photos.count} photos."
-    -unless @user.clippings.empty?
-      %li="#{@user.clippings.count} clippings."
-    -unless @user.comments.empty?
-      %li="#{@user.posts.count} comments."
-    -unless @user.accepted_friendships.empty?
-      %li="#{@user.accepted_friendships.count} friends"
+      %li="You last logged in on #{@user.last_login_at && @user.last_login_at.strftime("%m/%d/%y")}"
+      %li= @user.created_at.strftime("Member since: %m/%d/%y")
+      -unless @user.posts.empty?
+        %li="You have written #{@user.posts.count} blog posts."
+      -unless @user.photos.empty?
+        %li="You have uploaded #{@user.photos.count} photos."
+      -unless @user.clippings.empty?
+        %li="You have created #{@user.clippings.count} clippings."
+      -unless @user.comments.empty?
+        %li="You have left #{@user.posts.count} comments."
+      -unless @user.accepted_friendships.empty?
+        %li="You have #{pluralize @user.accepted_friendships.count, 'friend'}."
