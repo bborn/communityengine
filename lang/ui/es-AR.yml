@@ -679,29 +679,29 @@ invite_a_friend: "Invitar a un amigo"
 view_all_my_friend_requests: "Ver todas las solicitudes de amigos"
 all_comments: "Todos los comentarios"
 you_last_logged_in_on: "Última sesión: "
-you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: No tienes recortes, usa el marcador de la derecha para agregar algunos
-no_clippings_yet: No hay recortes todavía
-yesterday: Ayer
-you_re_editing_your_account: Estás editando tu cuenta
-edit_your_user_profile: Editar tu perfil?
-joined: Miembro desde
-forum: Foro
-last_post: Último mensaje
-topics: Temas
-posts: Mensajes
-voices: Réplicas
-we_just_sent_an_email_to: Acabamos de enviarte un correo electrónico a 
-that_will_let_you_activate_your_account: que te permitirá activar tu cuenta.
-look_for_a_message_from: Busca un mensaje de 
-youre_editing_your_account: Estás editando tu cuenta
-notify_me_when: Noticarme cuando
-members_request_friendship: soliciten ser mis amigos
-members_comment_on_my_profile_blog_or_photos: cuando hagan comentarios en mi perfil, blog o fotos.
-send_me_occasional_news_and_updates_from_the: Envíame noticias y actualizaciones de parte de 
-profile_privacy: Privacidad del Perfil
-email_notification: Notificación de correo.
-make_my_profile_public: Hacer mi perfil público.
-when_checked_your_profile_will_be_visible_to_anyone: Cuando esté marcado tu perfil será visible a todos.
-when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: Cuando esté desmarcado tu perfil será visible únicamente a miembros de 
-email_address: Correo Electrónico
-confirm_password: Confirmar Contraseña
+you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: "No tienes recortes, usa el marcador de la derecha para agregar algunos"
+no_clippings_yet: "No hay recortes todavía"
+yesterday: "Ayer"
+you_re_editing_your_account: "Estás editando tu cuenta"
+edit_your_user_profile: "Editar tu perfil?"
+joined: "Miembro desde"
+forum: "Foro"
+last_post: "Último mensaje"
+topics: "Temas"
+posts: "Mensajes"
+voices: "Réplicas"
+we_just_sent_an_email_to: "Acabamos de enviarte un correo electrónico a "
+that_will_let_you_activate_your_account: "que te permitirá activar tu cuenta."
+look_for_a_message_from: "Busca un mensaje de "
+youre_editing_your_account: "Estás editando tu cuenta"
+notify_me_when: "Notificarme cuando"
+members_request_friendship: "soliciten ser mis amigos"
+members_comment_on_my_profile_blog_or_photos: "cuando hagan comentarios en mi perfil, blog o fotos."
+send_me_occasional_news_and_updates_from_the: "Envíame noticias y actualizaciones de parte de "
+profile_privacy: "Privacidad del Perfil"
+email_notification: "Notificación de correo."
+make_my_profile_public: "Hacer mi perfil público."
+when_checked_your_profile_will_be_visible_to_anyone: "Cuando esté marcado tu perfil será visible a todos."
+when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "Cuando esté desmarcado tu perfil será visible únicamente a miembros de "
+email_address: "Correo Electrónico"
+confirm_password: "Confirmar Contraseña"

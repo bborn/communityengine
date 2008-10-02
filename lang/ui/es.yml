@@ -257,18 +257,18 @@ event_was_successfully_created: "El evento se cre\xC3\xB3 con \xC3\xA9xito"
 #en: events: Events
 events: Eventos
 #en: explore_site: Explore {site}
-explore_site: Explora {site}
+explore_site: "Explora {site}"
 #en: faq: FAQ
 faq: "Preguntas m\xC3\xA1s frecuentes"
 #en: favorited: favorited
-favorited: favorito
+favorited: 'favorito'
 #en: featured_posts: Featured Posts
-featured_posts: Publicaciones Destacadas
+featured_posts: 'Publicaciones Destacadas'
 #en: featured_writer: Featured Writer
-featured_writer: Escritor Destacado
+featured_writer: 'Escritor Destacado'
 #en: features: Features
-features: Destacados
+features: 'Destacados'
 #en: female: Female
-female: Hembra
+female: 'Hembra'
 #en: find_an_expert: Find an Expert
-find_an_expert: Buscar un Experto
+find_an_expert: 'Buscar un Experto'
