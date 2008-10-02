@@ -4,11 +4,11 @@
 .yui-b
   .box
     - if logged_in?
-      %h3= "Get popular.".l
+      %h3.signup= "Get popular.".l
       %ul.list.checks
         %li=link_to "Write a blog post!".l, new_user_post_path({:user_id => current_user})
     - else
-      %h3= "Want to be popular?"
+      %h3.signup= "Want to be popular?"
       %ul.list.checks
         %li
           %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"}="Sign up for an account.".l
