@@ -20,7 +20,7 @@
         Date:
         = @message.created_at.to_s(:long)
 
-      %p= h @message.body
+      %pre.message_body= h @message.body
 
       %ul.message_nav
         - if @message.recipient.eql? @user

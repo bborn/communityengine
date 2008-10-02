@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  validates_presence_of :name
+  validates_presence_of :name, :identifier => 'validates_presence_of_name'
   validates_presence_of :start_time
   validates_presence_of :end_time
   validates_presence_of :user

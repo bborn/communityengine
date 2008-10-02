@@ -67,21 +67,29 @@ class UsersControllerTest < Test::Unit::TestCase
     assert !users(:quentin).reload.featured_writer?
   end
 
-  def test_should_get_welcome_steps
+  def test_should_get_signup_completed
     login_as :quentin
     
     get :signup_completed, :id => users(:quentin).activation_code
     assert_response :success
-    
+  end
+  
+  def test_should_get_welcome_photo
+    login_as :quentin  
     get :welcome_photo, :id => users(:quentin).id
     assert_response :success
-
+  end
+  
+  def test_should_get_welcome_about
+    login_as :quentin
     get :welcome_about, :id => users(:quentin).id
     assert_response :success
-
+  end
+  
+  def test_should_get_welcome_invite
+    login_as :quentin
     get :welcome_invite, :id => users(:quentin).id
     assert_response :success
-
   end
   
   def test_should_get_new

@@ -48,7 +48,7 @@ class CommentsController < BaseController
 
     respond_to do |format|
       format.html {
-        flash[:notice] = :no_comments_found.l_with_args(type => Inflector.constantize(Inflector.camelize(params[:commentable_type])))
+        flash[:notice] = :no_comments_found.l_with_args(:type => Inflector.constantize(Inflector.camelize(params[:commentable_type])))
         redirect_to :controller => 'base', :action => 'site_index' and return
       }
     end
@@ -58,7 +58,11 @@ class CommentsController < BaseController
 
   def new
     @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])
-    redirect_to "#{url_for(:controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id], :user_id => @commentable.owner.to_param)}#comments"
+    if @commentable.is_a?(User)
+      redirect_to "#{polymorphic_path(@commentable)}#comments"      
+    else
+      redirect_to "#{polymorphic_path([@commentable.owner, @commentable])}#comments"
+    end
   end
 
 

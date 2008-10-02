@@ -1,5 +1,5 @@
 class InvitationsController < BaseController
-  before_filter :require_current_user, :only => [:create, :edit, :update, :destroy]
+  before_filter :require_current_user, :only => [:create, :edit, :update, :destroy, :index]
   # GET /invitations
   # GET /invitations.xml
   def index
