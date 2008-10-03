@@ -19,7 +19,6 @@ Requirements:
 
 GETTING COMMUNITY ENGINE RUNNING
 --------------------------------
-
 1. From the command line
 
 	$rails site_name (create a rails app if you don't have one already)    
