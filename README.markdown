@@ -23,15 +23,15 @@ GETTING COMMUNITY ENGINE RUNNING
     $ script/plugin install git://github.com/lazyatom/engines.git
 3. Put community engine plugin into plugins directory (use one of the following methods):
 
-    # If you're not using git, and just want to add the source files:
-    # Download a tarball from https://github.com/bborn/communityengine/tarball/master 
-    # and unpack it into /vendor/plugins/community_engine
+    If you're not using git, and just want to add the source files:
+    Download a tarball from https://github.com/bborn/communityengine/tarball/master 
+    and unpack it into /vendor/plugins/community_engine
 
-    # Using git, make a shallow clone of the community_engine repository:
+    Using git, make a shallow clone of the community_engine repository:
     $ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
 
-    # If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule: 
-    # http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
+    If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule: 
+    http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
 
 4. Create your database and modify your config/database.yml appropriately.
 5. Delete public/index.html (if you haven't already)
