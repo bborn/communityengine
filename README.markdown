@@ -21,7 +21,7 @@ Getting CommunityEngine Running
 --------------------------------
 1. From the command line
 
-		$rails site_name (create a rails app if you don't have one already)    
+		$ rails site_name (create a rails app if you don't have one already)    
 
     
 2. Install the engines plugin:
