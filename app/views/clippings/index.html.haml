@@ -26,7 +26,7 @@
           %a{"href"=>"#{user_clipping_url(@user, clipping) }"}
             %img.polaroid.clipping{"class"=>"polaroid clipping", "src"=>"#{h clipping.image_uri(:thumb) }"}/
       - else
-        %p= @is_current_user ? :you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some.l : :no_clippings_yet.l
+        %p= @is_current_user ? 'You have no clippings. Use the bookmarklet on the right to add some.'.l : 'No clippings yet.'.l
 
     .box.alt#tag_list
       %h3="Tags".l

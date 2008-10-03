@@ -1,29 +1,43 @@
-#en cancel: Cancel
-cancel: Cancel
 #en: about_site: About {site}
-about_site: "About {site}"
+about_site: About {site}
 #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
 account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
-#en: all_clippings_tagged: "All clippings tagged {tag_name}"
-all_clippings_tagged: "All clippings tagged {tag_name}"
+#en: activation_email_not_sent_message: 
+activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
+#en: activation_email_resent_message: 
+activation_email_resent_message: Activation e-mail was re-sent. Go check your e-mail! Make sure {admin_email} is not on your spam blacklist.
+#en: all_clippings_tagged: All clippings tagged {tag_name}
+all_clippings_tagged: All clippings tagged {tag_name}
 #en: all_photos_tagged: All photos tagged {tag_name}
-all_photos_tagged: "All photos tagged {tag_name}"
+all_photos_tagged: All photos tagged {tag_name}
 #en: all_posts_tagged: All posts tagged {tag_name}
-all_posts_tagged: "All posts tagged {tag_name}"
+all_posts_tagged: All posts tagged {tag_name}
 #en: all_tags: All tags
 all_tags: All tags
 #en: all_users_tagged: All users tagged {tag_name}
-all_users_tagged: "All users tagged {tag_name}"
-#en: comments_count: "{count} pluralize{{count}, comment}"
-comments_count: "{count} pluralize{{count}, comment}"
+all_users_tagged: All users tagged {tag_name}
+#en: cancel: 
+cancel: Cancel
+#en: clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
+clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
+#en: drag_the_bookmarklet: Drag the {site}-It! bookmarklet to your bookmarks toolbar.
+drag_the_bookmarklet: Drag the {site}-It! bookmarklet to your bookmarks toolbar.
+#en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {site}
+when_you_see_an_image_you_like_on_the_web: "When you see an image you like on the Web, click the bookmarklet to save it to {site}"
+
+#en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
+drag_this_to_your_bookmarks_toolbar: "Drag this to your bookmarks toolbar"
+
 #en: comment_save_error: Your comment couldn't be saved.
-comment_save_error: "Your comment couldn't be saved. {error}"
+comment_save_error: Your comment couldn't be saved. {error}
+#en: comments_count: pluralize{{count}, comment}
+comments_count: pluralize{{count}, comment}
 #en: community_tagline: CommunityEngine Rocks!
 community_tagline: CommunityEngine Rocks!
 #en: create: Create
 create: Create
 #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {site} here
-dashboard_friends: "Once you start adding friends, you'll be able to track their activity on {site} here"
+dashboard_friends: Once you start adding friends, you'll be able to track their activity on {site} here
 #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {email}
 email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {email}
 #en: explore_site: Explore {site}
@@ -32,26 +46,32 @@ explore_site: Explore {site}
 friendship_requested: Requested friendship with {friend}.
 #en: get_started_banner: Get started with <a href="/">{site}</a> today!
 get_started_banner: Get started with <a href="/">{site}</a> today!
-#en: invite_message: The more people you invite the better {site} becomes.
-invite_message: The more people you invite the better {site} becomes.
 #en: invite_a_friend: Invite a friend to {site}
 invite_a_friend: Invite a friend to {site}
+#en: invite_message: The more people you invite the better {site} becomes.
+invite_message: The more people you invite the better {site} becomes.
 #en: log_in: Log In
 log_in: Log In
 #en: log_in_to_site: Log in to {site}
 log_in_to_site: Log in to {site}
-#en looking_for_most_x: Looking for {link}
+#en: look_for_a_message_from: 
+look_for_a_message_from: Look for a message from {from}. If you don't find it, look in your spam folder.
+#en: looking_for_most_x: 
 looking_for_most_x: Looking for {link}?
 #en: new_post_for_category: New {category}
 new_post_for_category: New {category}
+#en: next: 
+next: Next
+#en: no_activation_email: 
+no_activation_email: Still haven't received your activation e-mail?
 #en: no_comments_found: Sorry, we couldn't find any comments for that {type}
 no_comments_found: Sorry, we couldn't find any comments for that {type}
-# en: notify_of_friend_requests: "Notify me when {site} members request friendship.".l 
-notify_of_friend_requests: "Notify me when {site} members request friendship."
-#en: notify_of_comments: "Notify me when {site} members comment on my profile, blog, or photos."
-notify_of_comments: "Notify me when {site} members comment on my profile, blog, or photos."
-#en: notify_email_updates: "Send me occasional news and updates from the {site} Team."
-notify_email_updates: "Send me occasional news and updates from the {site} Team."
+#en: notify_email_updates: Send me occasional news and updates from the {site} Team.
+notify_email_updates: Send me occasional news and updates from the {site} Team.
+#en: notify_of_comments: Notify me when {site} members comment on my profile, blog, or photos.
+notify_of_comments: Notify me when {site} members comment on my profile, blog, or photos.
+#en: notify_of_friend_requests: 
+notify_of_friend_requests: Notify me when {site} members request friendship.
 #en: photo_message: Your profile photo represents you on {site}. You can change it later.
 photo_message: Your profile photo represents you on {site}. You can change it later.
 #en: plural_posts: "{count} posts"
@@ -60,10 +80,16 @@ plural_posts: "{count} posts"
 popular_catgory: Popular {name}
 #en: post_created_for_category: Your '{category}' post was successfully created.
 post_created_for_category: Your '{category}' post was successfully created.
+#en: prev: 
+prev: Previous
+#en: resend_activation_email_link: 
+resend_activation_email_link: Click here to re-send your activation e-mail.
 #en: sb_post_was_deleted: Post '{title}' was deleted.
 sb_post_was_deleted: Post '{title}' was deleted.
 #en: search_users: Search Users
 search_users: Search Users
+#en: see_you_back_here_in_a_short_while: 
+see_you_back_here_in_a_short_while: See you back here in a short while!
 #en: show_category: "{category}"
 show_category: "{category}"
 #en: singular_posts: "{count} post"
@@ -72,42 +98,23 @@ singular_posts: "{count} post"
 site_members: "{site} members"
 #en: small_profile: "{user} doesn't have much here yet. Stay tuned."
 small_profile: "{user} doesn't have much here yet. Stay tuned."
+#en: tag_does_not_exists: The tag {tag} does not exist
+tag_does_not_exists: The tag {tag} does not exist
 #en: topic_deleted: Topic '{topic}' was deleted.
 topic_deleted: Topic '{topic}' was deleted.
 #en: update: Update
 update: Update
+#en: user_clippings: 
+user_clippings: "{user}'s clippings"
 #en: users_blog: "{user}'s Blog"
 users_blog: "{user}'s Blog"
 #en: users_photos: "{user}'s Photos"
 users_photos: "{user}'s Photos"
 #en: walkthrough_complete: You've completed the {site} walk-through. Now you can continue exploring!
 walkthrough_complete: You've completed the {site} walk-through. Now you can continue exploring!
+#en: we_just_sent_an_e_mail_to: 
+we_just_sent_an_e_mail_to: We just sent an e-mail to <b>{email}</b> that will let you activate your account.
 #en: welcome_message: Welcome! {login_link} or {signup_link}
 welcome_message: Welcome! {login_link} or {signup_link}
 #en: write_new_post: Write a '{category}' post
 write_new_post: Write a '{category}' post
-#en: tag_does_not_exists: The tag {tag} does not exist
-tag_does_not_exists: The tag {tag} does not exist
-
-
-#we_just_sent_an_e_mail_to
-we_just_sent_an_e_mail_to: "We just sent an e-mail to <b>{email}</b> that will let you activate your account."
-#look_for_a_message_from
-look_for_a_message_from: "Look for a message from {from}. If you don't find it, look in your spam folder."
-#see_you_back_here_in_a_short_while
-see_you_back_here_in_a_short_while: "See you back here in a short while!"
-#no_activation_email
-no_activation_email: Still haven't received your activation e-mail?
-#resend_activation_email_link
-resend_activation_email_link: Click here to re-send your activation e-mail.
-#activation_email_resent_message
-activation_email_resent_message: Activation e-mail was re-sent. Go check your e-mail! Make sure {admin_email} is not on your spam blacklist.
-#activation_email_not_sent_message
-activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
-
-#prev
-prev: "Previous"
-#next
-next: "Next"
-#user_clippings
-user_clippings: "{user}'s clippings"

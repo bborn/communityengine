@@ -22,9 +22,9 @@
       %h3= link_to "#{:user_clippings.l :user =>@user.login}"
       .hentry.main
         - if @is_current_user
-          = link_to "#{:delete.l}", user_clipping_path(@user, @clipping), :confirm => 'Are you sure?'.l, :method => :delete
+          = link_to "Delete".l, user_clipping_path(@user, @clipping), :confirm => 'Are you sure?'.l, :method => :delete
           |
-          = link_to "#{:edit.l}", edit_user_clipping_path(@user, @clipping)
+          = link_to "Edit".l, edit_user_clipping_path(@user, @clipping)
 
         %p.centered
           %a{"href"=>"#{h @clipping.url }"}
