@@ -1,4 +1,4 @@
-COMMUNITY ENGINE
+CommunityEngine
 ================
 
 Information at: [www.missingmethod.com/projects/community_engine](www.missingmethod.com/projects/community_engine)
@@ -17,94 +17,95 @@ Requirements:
 	  haml
 	  aws-s3 (if using s3 for photos)
 
-GETTING COMMUNITY ENGINE RUNNING
+Getting CommunityEngine Running
 --------------------------------
 1. From the command line
 
-	$rails site_name (create a rails app if you don't have one already)    
+		$rails site_name (create a rails app if you don't have one already)    
 
     
-Install the engines plugin:
+2. Install the engines plugin:
 
-	$ script/plugin install git://github.com/lazyatom/engines.git
+		$ script/plugin install git://github.com/lazyatom/engines.git
 	
-Put the community engine plugin into plugins directory (use one of the following methods):
+3. Put the community engine plugin into plugins directory (use one of the following methods):
 
-*If you're not using git, and just want to add the source files:*
+	* If you're not using git, and just want to add the source files:
 
-	Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community_engine
+			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community_engine
 
-*Using git, make a shallow clone of the community_engine repository:*
+	* Using git, make a shallow clone of the community_engine repository:
 
-	$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
+			$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
 
-*If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:*
+	* If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:
 	
-	http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
+			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
 
-Create your database and modify your `config/database.yml` appropriately.
+4. Create your database and modify your `config/database.yml` appropriately.
 
-Delete public/index.html (if you haven't already)
+5. Delete public/index.html (if you haven't already)
 
-Modify your environment.rb as indicated below:
+6. Modify your environment.rb as indicated below:
 
-	## environment.rb should look something like this:
-	RAILS_GEM_VERSION = '2.1' unless defined? RAILS_GEM_VERSION
-	require File.join(File.dirname(__FILE__), 'boot')
-	require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
+		## environment.rb should look something like this:
+		RAILS_GEM_VERSION = '2.1' unless defined? RAILS_GEM_VERSION
+		require File.join(File.dirname(__FILE__), 'boot')
+		require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
-	Rails::Initializer.run do |config|
-	  #resource_hacks required here to ensure routes like /:login_slug work
-	  config.plugins = [:engines, :community_engine, :white_list, :all]
-	  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
+		Rails::Initializer.run do |config|
+		  #resource_hacks required here to ensure routes like /:login_slug work
+		  config.plugins = [:engines, :community_engine, :white_list, :all]
+		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
 
-	  ... Your stuff here ...
-	end
-	# Include your application configuration below
-	require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
+		  ... Your stuff here ...
+		end
+		# Include your application configuration below
+		require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
 
-Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
+7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
 
-	# development.rb, production.rb, and test.rb should include something like:
-	APP_URL = "http://localhost:3000" (or whatever your URL will be for that particular environment)
+		# development.rb, production.rb, and test.rb should include something like:
+		APP_URL = "http://localhost:3000" (or whatever your URL will be for that particular environment)
 
-Modify your routes.rb as indicated below:
+8. Modify your routes.rb as indicated below:
 
-	# Add this after any of your own existing routes, but before the default rails routes: 
-	map.from_plugin :community_engine
-	# Install the default routes as the lowest priority.
-	map.connect ':controller/:action/:id'
-	map.connect ':controller/:action/:id.:format'     
+		# Add this after any of your own existing routes, but before the default rails routes: 
+		map.from_plugin :community_engine
+		# Install the default routes as the lowest priority.
+		map.connect ':controller/:action/:id'
+		map.connect ':controller/:action/:id.:format'     
 
-Generate the community engine migrations: 
+9. Generate the community engine migrations: 
 
-	$ script/generate plugin_migration
+		$ script/generate plugin_migration
     
-From the command line:
+10. From the command line:
 	
-	$ rake db:migrate
+		$ rake db:migrate
 
-You may need to change these lines in `application.rb` (if you're not using cookie sessions):
+11. You may need to change these lines in `application.rb` (if you're not using cookie sessions):
 
-	# See ActionController::RequestForgeryProtection for details
-	# Uncomment the :secret if you're not using the cookie session store
-	protect_from_forgery # :secret => 'your_secret_string'
+		# See ActionController::RequestForgeryProtection for details
+		# Uncomment the :secret if you're not using the cookie session store
+		protect_from_forgery # :secret => 'your_secret_string'
 
-Run tests (remember, you must run `rake test` before you can run the community_engine tests): 
+12. Run tests (remember, you must run `rake test` before you can run the community_engine tests): 
 
-	$ rake test
-	$ rake community_engine:test
+		$ rake test
+		$ rake community_engine:test
 
-Start your server and check out your site! 
+13. Start your server and check out your site! 
 
-	$ mongrel_rails start
-	or
-	$ ./script/server
+		$ mongrel_rails start
+		or
+		$ ./script/server
 
 
 
-OPTIONAL CONFIGURATION
-----------------------
+Optional Configuration
+======================
+
 
 To override the default configuration, create an `application.yml` file in `RAILS_ROOT/config` 
 
@@ -114,7 +115,7 @@ This is where you can change commonly used configuration variables, like `AppCon
 
 This YAML file will get converted into an OpenStruct, giving you things like `AppConfig.community_name`, `AppConfig.support_email`, etc.
 
-PHOTO UPLOADING
+Photo Uploading
 ---------------
 
 By default CommunityEngine uses the filesystem to store photos.
@@ -128,11 +129,10 @@ Finally, you'll need an S3 account for S3 photo uploading.
 
 Create an s3.yml file in RAILS_ROOT/config 
 ------------------------------------------------------
-*OPTIONAL*
 
 CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
 
-ROLES 
+Roles
 ------
 
 CommunityEngine Users have a Role (by default, it's admin, moderator, or member)
@@ -148,33 +148,34 @@ There is a rake task to make an existing user into an admin:
 
 (Pass in the e-mail of the user you'd like to make an admin)
 
-THEMES
+
+Themes
 ------
 
 To create a theme:
 
 1. Add a 'themes' directory in RAILS_ROOT with the following structure:
 
-	/RAILS_ROOT
-	  /themes
-	    /your_theme_name
-	      /views
-	      /images
-	      /stylesheets
-	      /javascripts
+		/RAILS_ROOT
+		  /themes
+		    /your_theme_name
+		      /views
+		      /images
+		      /stylesheets
+		      /javascripts
       
-2. Add 'theme: your_theme_name' to your application.yml (you'll have to restart your server after doing this)
+2. Add `theme: your_theme_name` to your `application.yml` (you'll have to restart your server after doing this)
 
-3. Customize your theme. For example: you can create a /RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml to override the default one, and pull in your theme's styleshees.
+3. Customize your theme. For example: you can create a `/RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
 
-To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
+	To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
 
-	= stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
+		= stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
 
 *Note: when running in production mode, theme assets (images, js, and stylesheets) are automatically copied to you public directory (avoiding a Rails request on each image load).*
 
 
-LOCALIZATION
+Localization
 ------------
 
 Localization is done via an extended version of [Globalite](http://code.google.com/p/globalite/). 
