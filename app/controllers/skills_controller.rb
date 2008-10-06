@@ -32,7 +32,7 @@ class SkillsController < BaseController
     @active_users = @skill.users.find(:all,
       :include => [:posts],
       :limit => 5,
-      :conditions => ["users.updated_at > ? AND vendor = ?", @skill.id, 5.days.ago, true],
+      :conditions => ["users.updated_at > ? AND vendor = ?", 5.days.ago, true],
       :order => "users.view_count DESC")
     
     respond_to do |format|
