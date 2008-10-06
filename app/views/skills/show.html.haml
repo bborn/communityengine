@@ -16,4 +16,7 @@
       = @skill.name
     = content_tag :h2, "Sorry, we don't have any pros in this skill category yet." if @skill.users.empty?
 
-    = render :partial => "users/user", :collection => @skill.users
+    = render :partial => "users/user", :collection => @users
+    %br.clear
+    .pagination= paginating_links @users if @users.page_count > 1
+    

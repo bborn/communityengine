@@ -27,7 +27,8 @@ class SkillsController < BaseController
   # GET /skills/1.xml
   def show
     @skill = Skill.find(params[:id])
-    
+    @users = @skill.users.find(:all, :page => {:current => params[:page]})
+
     @active_users = User.find(:all,
       :include => [:posts, :offerings],
       :limit => 5,
