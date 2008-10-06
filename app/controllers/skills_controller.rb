@@ -7,7 +7,7 @@ class SkillsController < BaseController
   def index
     @skills = Skill.find(:all)
 
-    @users = User.recent.vendors.find :all, :include => :tags, :page => {:current => params[:page]}
+    @users = User.recent.vendors.find :all, :include => :tags, :page => {:current => params[:page], :size => 10}
     
     @tags = User.tag_counts :limit => 10
 
@@ -27,12 +27,12 @@ class SkillsController < BaseController
   # GET /skills/1.xml
   def show
     @skill = Skill.find(params[:id])
-    @users = @skill.users.find(:all, :page => {:current => params[:page]})
+    @users = @skill.users.find(:all, :page => {:current => params[:page], :size => 10})
 
-    @active_users = User.find(:all,
-      :include => [:posts, :offerings],
+    @active_users = @skill.users.find(:all,
+      :include => [:posts],
       :limit => 5,
-      :conditions => ["offerings.skill_id = ? AND users.updated_at > ? AND vendor = ?", @skill.id, 5.days.ago, true],
+      :conditions => ["users.updated_at > ? AND vendor = ?", @skill.id, 5.days.ago, true],
       :order => "users.view_count DESC")
     
     respond_to do |format|
