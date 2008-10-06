@@ -1,13 +1,6 @@
 .yui-b
   = render :partial => "skills/sidebar_menu"
 
-  - if @active_users.any?
-    .box.alt
-      %h3 Top Pros
-      - @active_users.each do |user|
-        = render :partial => "users/sidebar_user", :locals => {:user => user}
-
-
 #yui-main
   .yui-b.box
     %h3

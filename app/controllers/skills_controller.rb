@@ -28,13 +28,7 @@ class SkillsController < BaseController
   def show
     @skill = Skill.find(params[:id])
     @users = @skill.users.find(:all, :page => {:current => params[:page], :size => 10})
-
-    @active_users = @skill.users.find(:all,
-      :include => [:posts],
-      :limit => 5,
-      :conditions => ["users.updated_at > ? AND vendor = ?", 5.days.ago, true],
-      :order => "users.view_count DESC")
-    
+        
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @skill.to_xml }
