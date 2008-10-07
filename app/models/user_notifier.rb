@@ -17,7 +17,7 @@ class UserNotifier < ActionMailer::Base
   def friendship_request(friendship)
     setup_email(friendship.friend)
     @subject     += "#{friendship.user.login} would like to be friends with you!"
-    @body[:url]  = pending_user_friendships_url(friendship)
+    @body[:url]  = pending_user_friendships_url(friendship.friend)
     @body[:requester] = friendship.user
   end
 
