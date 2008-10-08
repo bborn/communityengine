@@ -307,16 +307,36 @@ class User < ActiveRecord::Base
     search['state_id'] = params[:state_id] || nil
     search['country_id'] = params[:country_id] || nil
     search['skill_id'] = params[:skill_id] || nil    
-    if search['metro_area_id']
-      metro_area = MetroArea.find(search['metro_area_id'])
-      country = metro_area.country
-      state = metro_area.state 
-      search['country_id'] = country.id if country
-      search['state_id'] = state.id if state
-      metro_areas = metro_area.state ? metro_area.state.metro_areas : metro_area.country.metro_areas
+
+    # if search['metro_area_id']
+    #   metro_area = MetroArea.find(search['metro_area_id'])
+    #   country = metro_area.country
+    #   state = metro_area.state 
+    #   search['country_id'] = country.id if country
+    #   search['state_id'] = state.id if state
+    #   metro_areas = metro_area.state ? metro_area.state.metro_areas : metro_area.country.metro_areas
+    # end    
+    # metro_areas ||= search['state_id'].blank? ? [] : State.find(search['state_id']).metro_areas
+    # states = search['state_id'].blank? ? [] : State.find(:all)    
+    
+    country = Country.find(params['country_id']) if search['country_id']
+    state   = State.find(params['state_id']) if search['state_id']
+    metro_area = MetroArea.find(search['metro_area_id']) if search['metro_area_id']
+
+    if metro_area && metro_area.country
+      country ||= metro_area.country 
+      state   ||= metro_area.state
+      search['country_id'] = metro_area.country.id if metro_area.country
+      search['state_id'] = metro_area.state.id if metro_area.state      
     end
-    metro_areas ||= search['state_id'].blank? ? [] : State.find(search['state_id']).metro_areas
-    states = search['state_id'].blank? ? [] : State.find(:all)    
+    
+    states  = country ? country.states.sort_by{|s| s.name} : []
+    if states.any?
+      metro_areas = state ? state.metro_areas.all(:order => "name") : []
+    else
+      metro_areas = country ? country.metro_areas : []
+    end
+    
     
     cond = Caboose::EZ::Condition.new
     cond.append ['activated_at IS NOT NULL ']
