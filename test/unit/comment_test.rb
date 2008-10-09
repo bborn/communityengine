@@ -28,6 +28,12 @@ class CommentTest < Test::Unit::TestCase
       comment = Comment.create(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
     end
   end
+  
+  def test_should_be_created_without_recipient
+    assert_difference Comment, :count, 1 do
+      comment = Comment.create!(:comment => 'foo', :user => users(:quentin), :commentable => users(:aaron))
+    end  
+  end
 
 
 end

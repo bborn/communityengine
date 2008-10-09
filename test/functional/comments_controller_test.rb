@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'comments_controller'
+# require 'comments_controller'
 
 # Re-raise errors caught by the controller.
-class CommentsController; def rescue_action(e) raise e end; end
+# class CommentsController; def rescue_action(e) raise e end; end
 
-class CommentsControllerTest < Test::Unit::TestCase
+class CommentsControllerTest < ActionController::TestCase
+# class CommentsControllerTest < Test::Unit::TestCase
   fixtures :users, :photos, :posts, :comments, :roles
 
   def setup

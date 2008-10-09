@@ -16,7 +16,7 @@ class CommentsController < BaseController
   end
 
   def index
-    @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])
+    @commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
 
     unless logged_in? || @commentable && @commentable.owner.profile_public?
       flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it.".l
@@ -24,8 +24,6 @@ class CommentsController < BaseController
     end
 
     if @commentable
-      cond = Caboose::EZ::Condition.new
-
       @comments = @commentable.comments.recent.find(:all, :page => {:size => 10, :current => params[:page]})
 
       unless @comments.to_a.empty?
@@ -37,37 +35,30 @@ class CommentsController < BaseController
             render :action => 'index' and return
           }
           format.rss {
-            @rss_title = "#{AppConfig.community_name}: #{Inflector.underscore(@commentable.class).capitalize} Comments - #{@title}"
-            @rss_url = formatted_comments_path(Inflector.underscore(@commentable.class),@commentable.id, :rss)
+            @rss_title = "#{AppConfig.community_name}: #{@commentable.class.to_s.underscore.capitalize} Comments - #{@title}"
+            @rss_url = formatted_comments_path(@commentable.class.to_s.underscore, @commentable.id, :rss)
             render_comments_rss_feed_for(@comments, @title) and return
           }
         end
       end
     end
 
-
     respond_to do |format|
       format.html {
-        flash[:notice] = :no_comments_found.l_with_args(:type => Inflector.constantize(Inflector.camelize(params[:commentable_type])))
+        flash[:notice] = :no_comments_found.l_with_args(:type => params[:commentable_type].camelize.constantize)
         redirect_to :controller => 'base', :action => 'site_index' and return
       }
     end
   end
 
-
-
   def new
-    @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])
-    if @commentable.is_a?(User)
-      redirect_to "#{polymorphic_path(@commentable)}#comments"      
-    else
-      redirect_to "#{polymorphic_path([@commentable.owner, @commentable])}#comments"
-    end
+    @commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
+    redirect_to commentable_comments_url(@commentable)
   end
 
 
   def create
-    @commentable = Inflector.constantize(Inflector.camelize(params[:commentable_type])).find(params[:commentable_id])
+    @commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
     @comment = Comment.new(params[:comment])
     @comment.recipient = @commentable.owner
 
@@ -81,7 +72,7 @@ class CommentsController < BaseController
 
         flash.now[:notice] = 'Comment was successfully created.'.l
         format.html {
-          redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id], :user_id => @comment.recipient.id
+          redirect_to commentable_url(@comment)
         }
         format.js {
           render :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}
@@ -89,7 +80,7 @@ class CommentsController < BaseController
       else
         flash.now[:error] = :comment_save_error.l_with_args(:error => @comment.errors.full_messages.to_sentence)
         format.html {
-          redirect_to :controller => Inflector.underscore(params[:commentable_type]).pluralize, :action => 'show', :id => params[:commentable_id]
+          redirect_to :controller => params[:commentable_type].underscore.pluralize, :action => 'show', :id => params[:commentable_id]
         }
         format.js{
           render :inline => flash[:error], :status => 500
@@ -126,14 +117,5 @@ class CommentsController < BaseController
                    }
       })
   end
-
-  def commentable_url(comment)
-    if comment.commentable_type != "User"
-      polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
-    else
-      user_url(comment.recipient)+"#comment_#{comment.id}"
-    end
-  end
-
 
 end

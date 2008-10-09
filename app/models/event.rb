@@ -9,7 +9,6 @@ class Event < ActiveRecord::Base
 
   attr_protected :user_id
   
-  
   named_scope :upcoming, :order => 'start_time DESC'
   
   def time_and_date

@@ -8,7 +8,8 @@ class BaseController < ApplicationController
   around_filter :set_locale  
   before_filter :login_from_cookie  
   skip_before_filter :verify_authenticity_token, :only => :footer_content
-    
+  helper_method :commentable_url
+
   caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
   def cache_action?
     !logged_in? && controller_name.eql?('base') && params[:format].blank? 
@@ -135,6 +136,27 @@ class BaseController < ApplicationController
     @active_contest = Contest.get_active
     @popular_posts = Post.find_popular({:limit => 10})    
     @popular_polls = Poll.find_popular(:limit => 8)
+  end
+
+
+  def commentable_url(comment)
+    if comment.recipient && comment.commentable
+      if comment.commentable_type != "User"
+        polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
+      elsif comment
+        user_url(comment.recipient)+"#comment_#{comment.id}"
+      end
+    elsif comment.commentable
+      polymorphic_url(comment.commentable)+"#comment_#{comment.id}"      
+    end
+  end
+
+  def commentable_comments_url(commentable)
+    if commentable.owner
+      "#{polymorphic_path([commentable.owner, commentable])}#comments"      
+    else
+      "#{polymorphic_path(commentable)}#comments"      
+    end    
   end
 
 end

@@ -1,5 +1,5 @@
 .yui-b
-  = render :partial => 'posts/author_profile', :locals => {:user => @user}
+  = render :partial => 'posts/author_profile', :locals => {:user => @user} if @user
 
 #yui-main
   .yui-b#comments.box.hfeed.comments
