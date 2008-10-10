@@ -43,7 +43,8 @@
       - @users_comments.each do |comment|
         %dl.vcard
           %dt.photo
-            = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url(comment)
+            -if comment.recipient
+              = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url(comment)
           %dd.fn
             - if comment.recipient && comment.recipient.eql?(comment.commentable)
               %strong= "To".l+": #{link_to comment.recipient.login, commentable_url(comment)}"
