@@ -3,7 +3,7 @@ class TagsController < BaseController
 
   caches_action :show, :if => Proc.new{|c| c.cache_action? }
   def cache_action?
-    !logged_in? && params[:type].empty?
+    !logged_in? && params[:type].blank?
   end  
 
   def auto_complete_for_tag_name
