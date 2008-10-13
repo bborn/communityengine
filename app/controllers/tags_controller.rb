@@ -1,6 +1,11 @@
 class TagsController < BaseController
   skip_before_filter :verify_authenticity_token, :only => 'auto_complete_for_tag_name'
-    
+
+  caches_action :show, :if => Proc.new{|c| c.cache_action? }
+  def cache_action?
+    !logged_in? && params[:type].empty?
+  end  
+
   def auto_complete_for_tag_name
     @tags = Tag.find(:all, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
     render :inline => "<%= auto_complete_result(@tags, 'name') %>"

@@ -4,6 +4,7 @@ class ClippingsController < BaseController
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:show,:new_clipping])
 
+  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
 
   def site_index
     cond = Caboose::EZ::Condition.new

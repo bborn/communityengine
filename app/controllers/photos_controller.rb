@@ -11,6 +11,8 @@ class PhotosController < BaseController
 
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
 
+  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
+
   def recent
     @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
   end

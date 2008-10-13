@@ -12,7 +12,7 @@ class SkillsController < BaseController
     @tags = User.tag_counts :limit => 10
 
     @active_users = User.find(:all,
-      :include => [:posts, :offerings],
+      :include => [:offerings],
       :limit => 5,
       :conditions => ["users.updated_at > ? AND vendor = ?", 5.days.ago, true],
       :order => "users.view_count DESC")

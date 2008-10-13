@@ -100,7 +100,9 @@ class UserNotifier < ActionMailer::Base
   end
   
   def setup_sender_info
-    @from        = "The #{AppConfig.community_name} Team <#{AppConfig.support_email}>"    
+    @from       = "The #{AppConfig.community_name} Team <#{AppConfig.support_email}>" 
+    headers     "Reply-to" => "#{AppConfig.support_email}"
+    @content_type = "text/html"           
   end
   
 end

@@ -24,6 +24,8 @@ class UsersController < BaseController
                                                 :welcome_photo, :welcome_about, :welcome_invite]
   before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator]
   before_filter :admin_or_current_user_required, :only => [:statistics]  
+  
+  cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
 
   def activate
     @user = User.find_by_activation_code(params[:id])
@@ -42,7 +44,7 @@ class UsersController < BaseController
     
     @users = User.recent.find(:all,
       :conditions => cond.to_sql, 
-      :include => :tags, 
+      :include => [:tags], 
       :page => {:current => params[:page], :size => 20}
       )
     

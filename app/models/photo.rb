@@ -20,8 +20,8 @@ class Photo < ActiveRecord::Base
   attr_protected :user_id
   
   #Named scopes
-  named_scope :recent, :order => "created_at DESC", :conditions => ["parent_id IS NULL"]
-  named_scope :new_this_week, :order => "created_at DESC", :conditions => ["created_at > ? AND parent_id IS NULL", 7.days.ago.to_s(:db)]
+  named_scope :recent, :order => "photos.created_at DESC", :conditions => ["photos.parent_id IS NULL"]
+  named_scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ? AND photos.parent_id IS NULL", 7.days.ago.to_s(:db)]
   named_scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
