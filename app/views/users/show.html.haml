@@ -62,7 +62,7 @@
         %dl.vcard
           %dt.photo
             = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))
-          %dd.fn= "#{comment.user.login}" + "says".l + ":"
+          %dd.fn= "#{comment.username}" + "says".l + ": "
           %dd
             = truncate_words(comment.comment, 10)
             %br
