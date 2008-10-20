@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class UsersControllerTest < Test::Unit::TestCase
+class UsersControllerTest < ActionController::TestCase
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
   # Then, you can remove it from this and the units test.
   include AuthenticatedTestHelper
@@ -134,6 +134,14 @@ class UsersControllerTest < Test::Unit::TestCase
       assert assigns(:user).errors.on(:email)
       assert_response :success
     end
+  end
+
+  def test_should_deactivate_and_logout
+    login_as :quentin
+    assert users(:quentin).active?
+    put :deactivate, :id => users(:quentin).id
+    assert !users(:quentin).reload.active?    
+    assert_redirected_to new_session_path
   end
   
   def test_should_not_activate_nil

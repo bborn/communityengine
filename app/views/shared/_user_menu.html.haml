@@ -7,13 +7,13 @@
       %li=link_to 'Admin dashboard'.l, admin_dashboard_path
     %li= link_to "Edit profile".l, edit_user_path(current_user) 
     %li= link_to "Edit account".l, edit_account_user_path(current_user)          
-    %li= link_to "Manage blog".l, edit_account_user_path(current_user)          
+    %li= link_to "Manage blog".l, manage_user_posts_path(current_user)          
 
 
   %hr
   %ul
     %li= link_to "View profile".l, user_path(current_user)                    
-    %li=link_to 'Blog'.l, manage_user_posts_path(current_user)
+    %li=link_to 'Blog'.l, user_posts_path(current_user)
     %li=link_to 'Photos'.l, user_photos_path(current_user)
     %li=link_to 'Clippings'.l, user_clippings_path(current_user)
     %li=link_to 'Friends'.l, accepted_user_friendships_path(current_user)        

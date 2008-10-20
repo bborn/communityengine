@@ -17,11 +17,11 @@ class UsersController < BaseController
     
   before_filter :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about, 
                                           :welcome_invite, :return_admin, :assume, :featured,
-                                          :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard]
-  before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics ]
+                                          :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard, :deactivate]
+  before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics, :deactivate ]
   before_filter :require_current_user, :only => [:edit, :update, :update_account,
                                                 :edit_pro_details, :update_pro_details,
-                                                :welcome_photo, :welcome_about, :welcome_invite]
+                                                :welcome_photo, :welcome_about, :welcome_invite, :deactivate]
   before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator]
   before_filter :admin_or_current_user_required, :only => [:statistics]  
   
@@ -37,6 +37,15 @@ class UsersController < BaseController
     end
     flash[:error] = :account_activation_error.l_with_args(:email => AppConfig.support_email) 
     redirect_to signup_path     
+  end
+  
+  def deactivate
+    @user.deactivate
+    self.current_user.forget_me if logged_in?
+    cookies.delete :auth_token
+    reset_session
+    flash[:notice] = :deactivate_completed.l
+    redirect_to new_session_path    
   end
 
   def index

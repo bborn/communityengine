@@ -40,5 +40,12 @@ class AdminControllerTest < Test::Unit::TestCase
     assert_response :redirect    
     assert users(:quentin).reload.active?
   end
+  
+  def test_should_deactivate_user
+    login_as :admin
+    put :deactivate_user, :id => users(:quentin).id
+    assert_response :redirect    
+    assert !users(:quentin).reload.active?    
+  end
 
 end

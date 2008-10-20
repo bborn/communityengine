@@ -171,6 +171,12 @@ class User < ActiveRecord::Base
     u && u.authenticated?(password) && u.update_last_login ? u : nil
   end
 
+  def deactivate
+    return if admin?
+    @activated = false
+    update_attributes(:activated_at => nil, :activation_code => make_activation_code)
+  end
+
   # Activates the user in the database.
   def activate
     @activated = true

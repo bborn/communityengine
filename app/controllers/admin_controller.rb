@@ -20,4 +20,11 @@ class AdminController < BaseController
     redirect_to :action => :users
   end
   
+  def deactivate_user
+    user = User.find(params[:id])
+    user.deactivate
+    flash[:notice] = "The user was deactivated".l
+    redirect_to :action => :users
+  end  
+  
 end

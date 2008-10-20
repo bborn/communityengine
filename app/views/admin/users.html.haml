@@ -34,7 +34,11 @@
             = user.active? ? 'active'.l : 'inactive'.l
           %td
             = link_to( "Assume ID".l , assume_user_path(user) )
-            = (" | " + link_to("Activate".l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
+            - if user.active?
+              = (" | " + link_to("Deactivate".l, :controller => "/admin", :action => "deactivate_user", :id => user.id)) unless user.active?
+            - else
+              = (" | " + link_to("Activate".l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
+
 
     -if @users.page_count > 1
       .pagination= paginating_links @users, :link_to_current_page => true

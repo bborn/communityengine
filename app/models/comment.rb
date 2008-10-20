@@ -57,6 +57,8 @@ class Comment < ActiveRecord::Base
         commentable.description || "Clipping from #{commentable.user.login}"
       when 'photo'
         commentable.description || "Photo from #{commentable.user.login}"
+      else 
+        commentable.class.to_s.humanize
     end
   end
 

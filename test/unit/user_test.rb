@@ -180,6 +180,12 @@ class UserTest < Test::Unit::TestCase
     assert_equal 2, user.comments_activity.size
   end
   
+  def test_should_deactivate
+    assert users(:quentin).active?
+    users(:quentin).deactivate
+    assert !users(:quentin).reload.active?
+  end
+  
   protected
     def create_user(options = {})
       User.create({ :login => 'quire', 

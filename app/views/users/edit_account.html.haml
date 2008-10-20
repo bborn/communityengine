@@ -50,4 +50,9 @@
             ="When unchecked, your profile will only be visible to people who are logged in to".l
             = "#{AppConfig.community_name}."
       %p= submit_tag 'Save Changes'.l  
-            
+      %p
+        =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, :confirm => :deactivate_confirmation.l
+        %br
+        %label
+          %em= :deactivate_tip.l
+      
