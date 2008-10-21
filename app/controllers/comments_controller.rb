@@ -26,7 +26,9 @@ class CommentsController < BaseController
     if @commentable
       @comments = @commentable.comments.recent.find(:all, :page => {:size => 10, :current => params[:page]})
 
-      unless @comments.to_a.empty?
+      if @comments.to_a.empty?
+        render :text => :no_comments_found.l_with_args(:type => params[:commentable_type].camelize.constantize) and return
+      else        
         @title = @comments.first.commentable_name
 
         respond_to do |format|
