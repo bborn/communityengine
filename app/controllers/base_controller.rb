@@ -152,7 +152,7 @@ class BaseController < ApplicationController
   end
 
   def commentable_comments_url(commentable)
-    if commentable.owner
+    if commentable.owner && commentable.owner != commentable
       "#{polymorphic_path([commentable.owner, commentable])}#comments"      
     else
       "#{polymorphic_path(commentable)}#comments"      
