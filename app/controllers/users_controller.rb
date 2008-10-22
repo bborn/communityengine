@@ -1,4 +1,7 @@
 class UsersController < BaseController
+  include Viewable
+  cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
+  
   if AppConfig.closed_beta_mode
     skip_before_filter :beta_login_required, :only => [:new, :create, :activate]
     before_filter :require_invitation, :only => [:new, :create]
@@ -9,12 +12,11 @@ class UsersController < BaseController
     end
   end    
 
-  include Viewable
   uses_tiny_mce(:options => AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"}), 
     :only => [:new, :create, :update, :edit, :welcome_about])
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
 
-    
+  # Filters
   before_filter :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about, 
                                           :welcome_invite, :return_admin, :assume, :featured,
                                           :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard, :deactivate]
@@ -24,16 +26,13 @@ class UsersController < BaseController
                                                 :welcome_photo, :welcome_about, :welcome_invite, :deactivate]
   before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator]
   before_filter :admin_or_current_user_required, :only => [:statistics]  
-  
-  cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
 
   def activate
     @user = User.find_by_activation_code(params[:id])
     if @user and @user.activate
       self.current_user = @user
-      redirect_to welcome_photo_user_path(@user)
       flash[:notice] = "Thanks for activating your account!".l 
-      return
+      redirect_to welcome_photo_user_path(@user) and return
     end
     flash[:error] = :account_activation_error.l_with_args(:email => AppConfig.support_email) 
     redirect_to signup_path     
@@ -69,33 +68,33 @@ class UsersController < BaseController
   end
   
   def show  
-    @friend_count = @user.accepted_friendships.count
-    @accepted_friendships = @user.accepted_friendships.find(:all, :limit => 5).collect{|f| f.friend }
-    @pending_friendships_count = @user.pending_friendships.count()
+    @friend_count               = @user.accepted_friendships.count
+    @accepted_friendships       = @user.accepted_friendships.find(:all, :limit => 5).collect{|f| f.friend }
+    @pending_friendships_count  = @user.pending_friendships.count()
 
-    @comments = @user.comments.find(:all, :limit => 10, :order => 'created_at DESC')
-    @photo_comments = Comment.find_photo_comments_for(@user)
-    
+    @comments       = @user.comments.find(:all, :limit => 10, :order => 'created_at DESC')
+    @photo_comments = Comment.find_photo_comments_for(@user)    
     @users_comments = Comment.find_comments_by_user(@user, :limit => 5)
 
-    @recent_posts = @user.posts.find(:all, :limit => 2, :order => "published_at DESC")
-    @clippings = @user.clippings.find(:all, :limit => 5)
-    @photos = @user.photos.find(:all, :limit => 5)
-    @comment = Comment.new(params[:comment])
+    @recent_posts   = @user.posts.find(:all, :limit => 2, :order => "published_at DESC")
+    @clippings      = @user.clippings.find(:all, :limit => 5)
+    @photos         = @user.photos.find(:all, :limit => 5)
+    @comment        = Comment.new(params[:comment])
+
     update_view_count(@user) unless current_user && current_user.eql?(@user)
   end
   
-  # render new.rhtml
   def new
-    @user = User.new( {:birthday => Date.parse((Time.now - 25.years).to_s) }.merge(params[:user] || {}) )
-    @inviter_id = params[:id]
+    @user         = User.new( {:birthday => Date.parse((Time.now - 25.years).to_s) }.merge(params[:user] || {}) )
+    @inviter_id   = params[:id]
     @inviter_code = params[:code]
+
     render :action => 'new', :layout => 'beta' and return if AppConfig.closed_beta_mode    
   end
 
   def create
-    @user = User.new(params[:user])
-    @user.role = Role[:member]
+    @user       = User.new(params[:user])
+    @user.role  = Role[:member]
 
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
       create_friendship_with_inviter(@user, params)
@@ -108,31 +107,27 @@ class UsersController < BaseController
     
   def edit 
     @metro_areas, @states = setup_locations_for(@user)
-    @skills = Skill.find(:all)
-    @offering = Offering.new
-
-    @avatar = Photo.new
+    @skills               = Skill.find(:all)
+    @offering             = Offering.new
+    @avatar               = Photo.new
   end
   
   def update
-    @user.attributes = params[:user]
+    @user.attributes      = params[:user]
     @metro_areas, @states = setup_locations_for(@user)
 
     unless params[:metro_area_id].blank?
-      @user.metro_area = MetroArea.find(params[:metro_area_id])
-      @user.state = (@user.metro_area && @user.metro_area.state) ? @user.metro_area.state : nil
-      @user.country = @user.metro_area.country if (@user.metro_area && @user.metro_area.country)
+      @user.metro_area  = MetroArea.find(params[:metro_area_id])
+      @user.state       = (@user.metro_area && @user.metro_area.state) ? @user.metro_area.state : nil
+      @user.country     = @user.metro_area.country if (@user.metro_area && @user.metro_area.country)
     else
-      @user.metro_area = nil
-      @user.state = nil
-      @user.country = nil
+      @user.metro_area = @user.state = @user.country = nil
     end
   
-    @avatar = Photo.new(params[:avatar])
-    @avatar.user = @user
-    if @avatar.save
-      @user.avatar = @avatar
-    end
+    @avatar       = Photo.new(params[:avatar])
+    @avatar.user  = @user
+
+    @user.avatar  = @avatar if @avatar.save
     
     @user.tag_list = params[:tag_list] || ''
 
@@ -163,9 +158,10 @@ class UsersController < BaseController
   end
   
   def change_profile_photo
-    @user = User.find(params[:id])
-    @photo = Photo.find(params[:photo_id])
+    @user   = User.find(params[:id])
+    @photo  = Photo.find(params[:photo_id])
     @user.avatar = @photo
+
     if @user.save!
       flash[:notice] = "Your changes were saved.".l
       redirect_to user_photo_path(@user, @photo)
@@ -175,15 +171,13 @@ class UsersController < BaseController
   end
     
   def edit_account
-    # allow account editing from a path like /account/edit
-    # this lets us give people a link in mass e-mails without having to lookup each user's unique path
-    @user = current_user
-    @is_current_user = true
+    @user             = current_user
+    @is_current_user  = true
   end
   
   def update_account
-    @user = current_user
-    @user.attributes = params[:user]
+    @user             = current_user
+    @user.attributes  = params[:user]
 
     if @user.save!
       flash[:notice] = "Your changes were saved.".l
@@ -222,10 +216,18 @@ class UsersController < BaseController
   def create_friendship_with_inviter(user, options = {})
     unless options[:inviter_code].blank? or options[:inviter_id].blank?
       friend = User.find(options[:inviter_id])
+
       if friend && friend.valid_invite_code?(options[:inviter_code])
-        accepted = FriendshipStatus[:accepted]
-        @friendship = Friendship.new(:user_id => friend.id, :friend_id => user.id,:friendship_status => accepted, :initiator => true)
-        reverse_friendship = Friendship.new(:user_id => user.id, :friend_id => friend.id, :friendship_status => accepted )
+        accepted    = FriendshipStatus[:accepted]
+        @friendship = Friendship.new(:user_id => friend.id, 
+          :friend_id => user.id,
+          :friendship_status => accepted, 
+          :initiator => true)
+
+        reverse_friendship = Friendship.new(:user_id => user.id, 
+          :friend_id => friend.id, 
+          :friendship_status => accepted )
+          
         @friendship.save
         reverse_friendship.save
       end
@@ -261,42 +263,37 @@ class UsersController < BaseController
   end
   
   def forgot_password  
-    @user = User.find_by_email(params[:email])  
     return unless request.post?   
-    if @user
-      if @user.reset_password
-        UserNotifier.deliver_reset_password(@user)
-        @user.save
-        redirect_to login_url
-        flash[:info] = "Your password has been reset and emailed to you.".l
-      end
+
+    @user = User.find_by_email(params[:email])  
+    if @user && @user.reset_password
+      UserNotifier.deliver_reset_password(@user)
+      @user.save
+      flash[:info] = "Your password has been reset and emailed to you.".l
+      redirect_to login_url
     else
       flash[:error] = "Sorry. We don't recognize that email address.".l
     end 
   end
 
   def forgot_username  
-    @user = User.find_by_email(params[:email])  
     return unless request.post?   
-    if @user
-      if @user.reset_password
-        UserNotifier.deliver_forgot_username(@user)
-        @user.save
-        redirect_to login_url
-        flash[:info] = "Your username was emailed to you.".l
-      end
+    
+    if @user = User.find_by_email(params[:email])
+      UserNotifier.deliver_forgot_username(@user)
+      flash[:info] = "Your username was emailed to you.".l
+      redirect_to login_url
     else
       flash[:error] = "Sorry. We don't recognize that email address.".l
     end 
   end
 
   def resend_activation
-    @user = User.find_by_email(params[:email])
     return unless request.post?       
-    
+
+    @user = User.find_by_email(params[:email])    
     if @user && !@user.active?
       flash[:notice] = :activation_email_resent_message.l :admin_email => AppConfig.support_email
-      
       UserNotifier.deliver_signup_notification(@user)    
       redirect_to login_path and return
     else
@@ -305,8 +302,7 @@ class UsersController < BaseController
   end
   
   def assume
-    user = User.find(params[:id])
-    self.current_user = user
+    self.current_user = User.find(params[:id])
     redirect_to user_path(current_user)
   end
 
@@ -356,7 +352,6 @@ class UsersController < BaseController
     redirect_to user_path(@user)
   end
 
-  
   def statistics
     if params[:date]
       date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i)
@@ -364,8 +359,12 @@ class UsersController < BaseController
     else
       @month = Time.today    
     end
+    
+    start_date  = @month.beginning_of_month
+    end_date    = @month.end_of_month + 1.day
+    
     @posts = @user.posts.find(:all, 
-      :conditions => ['? <= published_at AND published_at <= ?', @month.beginning_of_month, (@month.end_of_month + 1.day)])    
+      :conditions => ['? <= published_at AND published_at <= ?', start_date, end_date])    
     
     @estimated_payment = @posts.sum do |p| 
       7
@@ -373,29 +372,24 @@ class UsersController < BaseController
   end  
   
 
-  protected
+  protected  
+    def setup_metro_areas_for_cloud
+      @metro_areas_for_cloud = MetroArea.find(:all, :conditions => "users_count > 0", :order => "users_count DESC", :limit => 100)
+      @metro_areas_for_cloud = @metro_areas_for_cloud.sort_by{|m| m.name}
+    end  
   
-  def setup_metro_areas_for_cloud
-    @metro_areas_for_cloud = MetroArea.find(:all, :conditions => "users_count > 0", :order => "users_count DESC", :limit => 100)
-    @metro_areas_for_cloud = @metro_areas_for_cloud.sort_by{|m| m.name}
-  end  
-  
-  def setup_locations_for(user)
-    metro_areas = states = []
+    def setup_locations_for(user)
+      metro_areas = states = []
+          
+      states = user.country.states if user.country
+      
+      metro_areas = user.state.metro_areas.all(:order => "name") if user.state
     
-    if user.country
-      states = user.country.states
+      return metro_areas, states
     end
-    
-    if user.state
-      metro_areas = user.state.metro_areas.all(:order => "name");
-    end
-    
-    return metro_areas, states
-  end
 
-  def admin_or_current_user_required
-    current_user && (current_user.admin? || @is_current_user) ? true : access_denied     
-  end
+    def admin_or_current_user_required
+      current_user && (current_user.admin? || @is_current_user) ? true : access_denied     
+    end
 
 end
