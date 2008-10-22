@@ -63,7 +63,7 @@ class UserNotifier < ActionMailer::Base
     @sent_on     = Time.now
     setup_sender_info
     @subject     = "Check out this story on #{AppConfig.community_name}"
-    content_type "text/html"
+    content_type "text/plain"
     @body[:name] = name  
     @body[:title]  = post.title
     @body[:post] = post
