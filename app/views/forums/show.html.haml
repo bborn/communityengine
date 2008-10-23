@@ -81,5 +81,5 @@
           %th{:width=>"1%"}= 'Comments'.l
           %th{:width=>"1%"}= 'Views'.l
           %th.la= 'Author'.l
-          -@related.each do |post|
-            = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}
+        -@related.each do |post|
+          = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}

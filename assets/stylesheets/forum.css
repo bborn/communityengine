@@ -275,6 +275,11 @@ label {
 .photo {
 	background:#aaa url(/plugin_assets/community_engine/images/clearbits/smile.gif) no-repeat 8px 8px;
 }
+#footer_content .photo {
+	/* Prevents conflict with footer class*/
+	background: none;
+}
+
 
 .smallutils {
 	xfloat:right;
