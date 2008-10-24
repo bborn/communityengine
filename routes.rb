@@ -82,6 +82,7 @@ resources :homepage_features
 resources :metro_areas
 resources :ads
 resources :contests, :member => { :latest => :get }
+resources :activities
 
 resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :member => { 
     :dashboard => :get,
