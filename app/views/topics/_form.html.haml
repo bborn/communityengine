@@ -1,27 +1,27 @@
-%label{"for"=>"topic_title"}= 'Title'.l
+%label{"for"=>"topic_title"}= :title.l
 = form.text_field :title, :class => "primary"
 
 - if admin? or current_user.moderator_of?(@topic.forum)
   %fieldset
     %label
       = form.check_box :sticky
-      = 'Sticky'.l
+      = :sticky.l
     %label
       = form.check_box :locked
-      = 'Locked'.l
+      = :locked.l
 
 
 - if @topic.new_record?
-  %label Tags:
+  %label= :tags.l+":"
 
   = text_field_tag 'tag_list', @topic.tag_list, {:autocomplete => "off", :size => 35}
   #tag_list_auto_complete.auto_complete
   = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
 
-  %label{"for"=>"topic_body"}= 'Body'.l
+  %label{"for"=>"topic_body"}= :body.l
   = form.text_area :body, :rows => 12
   
   - if admin? and not @topic.new_record?
     %p#topic_forum_id
-      %label{"for"=>"topic_forum_id"}= 'Forum'.l
+      %label{"for"=>"topic_forum_id"}= :forum.l
       = form.select :forum_id, Forum.find(:all, :order => "position").map {|x| [x.name, x.id] }

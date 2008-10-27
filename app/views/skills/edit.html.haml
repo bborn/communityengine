@@ -1,13 +1,13 @@
 .box
-  %h3 Editing skill
+  %h3= :editing_skill
 
   - form_for(:skill, :url => skill_path(@skill), :html => { :method => :put, :class => "MainForm" }) do |f|
-    %label Name:
+    %label= :name:
     = f.text_field :name
 
-    %p= submit_tag "Update"
+    %p= submit_tag :update.l
 
 
-  = link_to 'Show', skill_path(@skill)
+  = link_to :show.l, skill_path(@skill)
   |
-  = link_to 'Back', skills_path
+  = link_to :back.l, skills_path

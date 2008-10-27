@@ -1,12 +1,12 @@
 .box
-  %h3="Friendship request detail".l
+  %h3=:friendship_request_detail.l
   - if @friendship.initiator? && @friendship.pending?
-    Waiting for 
+    =:waiting_for.l 
     = @friendship.friend.login
-    to accept
+    =:to_accept.l
   - elsif @friendship.pending?
-    This friendship is pending. 
-    = link_to "Click to accept it", accept_user_friendship_path(@user, @friendship), :method => :put
+    =:this_friendship_is_pending.l 
+    = link_to :click_to_accept_it.l, accept_user_friendship_path(@user, @friendship), :method => :put
 
   %br
-  = link_to 'Back', accepted_user_friendships_path(@user)
+  = link_to :back.l, accepted_user_friendships_path(@user)

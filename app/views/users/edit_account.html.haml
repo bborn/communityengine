@@ -1,7 +1,7 @@
 - form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
   .box.alt.first_alt
-    %h3="You're editing your account.".l
-    = link_to "Edit your user profile?", edit_user_path(@user)
+    %h3="You are editing your account.".l
+    = link_to "Edit your user profile?".l, edit_user_path(@user)
 
   = error_messages_for :user
 

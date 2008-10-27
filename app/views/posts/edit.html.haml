@@ -10,35 +10,35 @@
 #yui-main
   .yui-b
     .box
-      %h3="Editing post".l
+      %h3=:editing_post.l
 
       = error_messages_for :post
       - form_for(:post, :url => user_post_path(@user, @post), :html => { :method => :put, :class =>'MainForm' }) do |f|
         %label 
-          ="Title".l
+          =:title.l
           %em (required)
         = f.text_field :title
         %label
-          ="Category".l
+          =:category.l
           \:
         = f.collection_select(:category_id, Category.find(:all), :id, :name, {}, {})
         %label
-          ="Body Text".l
-          %em (required)          
+          =:body_text.l
+          %em= :required.l          
         = f.text_area :raw_post, :size => "86x15"
         %label
-          ="Tags".l
+          =:tags.l
           \:
         = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35}
         #tag_list_auto_complete.auto_complete
         = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
-        %label="Save post as:".l
-        = f.select(:published_as, [['Published', 'live'], ['Draft', 'draft']])
+        %label=:save_post_as.l
+        = f.select(:published_as, [[:published.l, 'live'], [:draft.l, 'draft']])
         %p
           = submit_tag :update.l
           or
           =link_to :cancel.l, user_post_path(current_user, @post)
         %p
-          =link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} Delete this post?", user_post_path(current_user, @post), :method => :delete, :confirm => "Are you sure you want to delete this post?"
+          =link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} "+:delete_this_post.l, user_post_path(current_user, @post), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l
 
   = observe_field  "post_category_id", {:url => {:action => 'category_tips_update'}, :with => "post_category_id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}

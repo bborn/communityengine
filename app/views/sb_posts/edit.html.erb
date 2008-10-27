@@ -1,13 +1,13 @@
-<h1><%= 'Edit Post'.l %></h1>
+<h1><%= :edit_post.l %></h1>
 
 <h2><%= link_to h(@post.topic.title), forum_topic_path(@post.forum_id, @post.topic) %></h2>
 
-<%= link_to('Delete post'.l, sb_post_path(:forum_id => @post.forum_id, :topic_id => @post.topic, :id => @post, :page => params[:page]), 
-      :class => "utility", :method => :delete, :confirm => 'Delete this post forever?'.l) %>
+<%= link_to(:delete_this_post.l, sb_post_path(:forum_id => @post.forum_id, :topic_id => @post.topic, :id => @post, :page => params[:page]), 
+      :class => "utility", :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l) %>
 
 <%= error_messages_for :topic %>
 <% form_for :post, :html => { :method => :put }, 
      :url  => sb_post_path(:forum_id => params[:forum_id], :id => params[:topic_id], :id => @post, :page => params[:page]) do |f| -%>
 <%= f.text_area :body %>
-<%= submit_tag 'Save'.l %> or <%= link_to 'cancel'.l, forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :page => params[:page]) %>
+<%= submit_tag :save.l %> or <%= link_to 'cancel'.l, forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :page => params[:page]) %>
 <% end -%>

@@ -1,47 +1,53 @@
 .yui-b
   .box
     %h3 Tips
-    %p Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.
-    %p Use tags to organize your photos. Separate tags with commas.
+    %p 
+      =:photo_tip_1.l
+    %p 
+      =:photo_tip_2.l
 
-  .box.alt= link_to "&raquo; Back to my photos", user_photos_path(@user)
+  .box.alt= link_to "&raquo; " + "Back to my photos".l, user_photos_path(@user)
 
 #yui-main
   #single_upload.yui-b.box
-    %h3 New photo
+    %h3 
+      ="New photo".l
 
     = error_messages_for :photo
     %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-      Want to upload multiple files at once?
+      ="Want to upload multiple files at once?".l
 
     - form_for(:photo, :url => user_photos_path, :html => {:multipart =>true, :class => "MainForm"} ) do |f|
       = f.file_field :uploaded_data
       %label
         %em
-          = (AppConfig.photo['attachment_fu_options']['max_size'])
-          megabyte upload limit
-      %label Tags:
+          = (AppConfig.photo['attachment_fu_options']['max_size']) + " " + "megabyte upload limit".l
+      %label 
+        ="Tags".l + ":"
       = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
 
       #tag_list_auto_complete.auto_complete
       = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
 
-      %label Name:
+      %label 
+        =:name.l + ":"
       = f.text_field :name, :size => 35
 
-      %label Description:
+      %label
+        =:description.l + ":"
       = f.text_area :description, :size => "58x5"
 
       %p
-        = submit_tag "Create"
-        or
-        = link_to 'cancel and go back to my photos', user_photos_path(@user)
+        = submit_tag :create.l
+        = :or.l
+        = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)
 
   #multiple_upload.yui-b.box{"style"=>"display:none;"}
-    %h3 New Photos &raquo; Multiple Uploader
+    %h3 
+      =:new_photos_raquo_multiple_uploader.l
 
     %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-      Just uploading one photo?
+      =:just_uploading_one_photo.l
     
     - session_key = (ActionController::Base.session.first[:session_key] || '_session_id').to_sym
     %p.centered
@@ -57,12 +63,12 @@
             %p
               %button{:id=>"btnBrowse", :type=>"button", :style=>"padding: 5px;", :onclick=>"uploader.swfu.selectFiles(); this.blur();"}
                 =image_tag '/icons/add.png', :plugin => 'community_engine'
-                Select Images to Upload
+                =:select_images_to_upload.l
             %label
               %em
-                You can select up to 5 files at a time.
+                =:you_can_select_up_to_5_files_at_a_time.l
                 %br
                 = (AppConfig.photo['attachment_fu_options']['max_size'])
-                megabyte upload limit per file.                
+                = "megabyte upload limit per file.".l
         #divFileProgressContainer{:style=>"height: 75px;"}
         #thumbnails

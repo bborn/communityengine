@@ -16,18 +16,18 @@
               %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
                 %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display("%B %d, %Y")
             %li.view= "views (#{@post.view_count})"
-            %li.comments= link_to "comments (#{@post.comments.size})", user_post_path(@user, @post)+'#comments'      
+            %li.comments= link_to :comments.l+" (#{@post.comments.size})", user_post_path(@user, @post)+'#comments'      
             - if current_user and current_user.can_request_friendship_with(@post.user)
               %li.addfriend= add_friend_link(@post.user)
             %li.print
-              %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>"Print this story"} Print
+              %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}= :print.l
             %li.email
-              %a{:href=>"#", :onclick=>"showSendTo_friend(); return false;", :title=>"E-mail this story to friends"} E-mail to friends
+              %a{:href=>"#", :onclick=>"showSendTo_friend(); return false;", :title=>:email_this_story_to_fiends.l}= :email_to_friends.l
             %li.share
               %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358"}
             -if @is_current_user || admin? || moderator?
-              %li.edit= link_to "Edit", edit_user_post_path(@post.user, @post)
-              %li.delete= link_to "Delete", user_post_path(@post.user, @post), {:method => :delete, :confirm => 'Permanently delete this post?'}
+              %li.edit= link_to :edit.l, edit_user_post_path(@post.user, @post)
+              %li.delete= link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
 
               
           %script{:type => 'text/javascript'}
@@ -51,8 +51,8 @@
         / entry-content
       / ends hentry
     #comments.box.hfeed.comments
-      %h3 Post Comments
-      %h2 Add Your Comment!
+      %h3= :post_comments.l 
+      %h2= :add_your_comment.l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @post}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments
@@ -66,14 +66,14 @@
 
   - unless @related.empty?
     .box.alt
-      %h3="Related Posts".l
+      %h3=:related_posts.l
       %ul.list.page
         - @related.each do |post|
           %li=link_to truncate(post.title, 75), user_post_path(post.user, post)      
 
   - unless @popular_posts.empty?
     .box.alt
-      %h3="Popular Posts".l
+      %h3=:popular_posts.l
       %ul.list.page
         - @popular_posts.each do |post|
           %li=link_to truncate(post.title, 75), user_post_path(post.user, post)      
