@@ -51,7 +51,16 @@
 .prototip .darktip .title { padding: 5px;}
 .prototip .darktip .content { background: #808080; color: #fff; font: 11px Arial, Helvetica, sans-serif; padding: 5px; }
 
-.prototip .silver { margin:0 10px 0 10px; border: 2px solid #2a1301; color: #fff; font: 11px Arial, Helvetica, sans-serif; border-top: none;}
+.prototip .silver { 
+	margin:0 10px 0 10px; 
+	border: 2px solid #2a1301; 
+	color: #fff; 
+	font: 12px Verdana, sans-serif; 
+	border-top: none;
+	*width:150px;
+	}
+
+.prototip .silver ul li { list-style-type: none;}
 .prototip .silver .toolbar { background: #2e2e2e; color: #fff; font-weight: bold; }
 .prototip .silver .toolbar a.close:hover { background: url(close_hover_red.gif);}
 .prototip .silver .title { padding: 5px; }
