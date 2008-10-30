@@ -253,7 +253,7 @@ custom_friendly_local: "maßgeschneidert, freundlich, lokal"
 #en: dashboard: Dashboard
 dashboard: "Übersicht"
 #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {site} here
-dashboard_friends: Die Aktivitäten deiner Freunde kannst du hier auf {site} vefolgen
+dashboard_friends: Die Aktivitäten deiner Freunde kannst du hier auf {site} verfolgen
 #en: date: Date
 date: Datum
 #en: date_created: Date Created
@@ -912,7 +912,7 @@ share_the_love: Share the love
 #en: show: Show
 show: Zeigen
 #en: show_category: {category}
-show_category: Zeige Kategorie
+show_category: Zeige {category}
 #en: show_this_photo: Show this photo
 show_this_photo: Zeige dieses Foto
 #en: showing: Showing
@@ -1169,8 +1169,8 @@ watch: beobachte
 watch_ing: tes
 #en: watching_topic: Watching topic
 watching_topic: Thema beobachten
-#en: we_just_sent_an_e_mail_to: We just sent an e-mail to: 
-we_just_sent_an_e_mail_to: Wir haben eine E-Mail geschickt an:
+#en: we_just_sent_an_e_mail_to: "We just sent an e-mail to:" 
+we_just_sent_an_e_mail_to: "Wir haben eine E-Mail geschickt an:"
 #en: we_need_you: We need you
 we_need_you: Wir brauchen dich
 #en: welcome_message: Welcome! {login_link} or {signup_link}
