@@ -1,25 +1,25 @@
 .yui-b
   .box
-    %h3 Help
-    %p Tags are keywords you use to organize your clippings. Separate multiple tags with commas.
+    %h3= :help.l
+    %p= :tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas.l
 
 #yui-main
   .yui-b
     .box
-      %h3 Editing clipping
+      %h3= :editing_clipping.l
       %img{"src"=>"#{h @clipping.image_uri}"}
       - form_for(:clipping, :url => user_clipping_path(@user, @clipping), :html => { :method => :put, :class => "MainForm" }) do |f|
-        %label Url
+        %label= :url.l
         = f.text_field :url
         
-        %label Description
+        %label= :description.l
         = f.text_field :description
 
-        %label Tags:
+        %label= :tags:
         = text_field_tag 'tag_list', @clipping.tag_list
 
         %p
-          = submit_tag "Save"
+          = submit_tag :save.l
 
           or
-          = link_to 'cancel, and go back to my clippings', user_clippings_path(@user)
+          = link_to :cancel_and_go_back_to_my_clippings.l, user_clippings_path(@user)

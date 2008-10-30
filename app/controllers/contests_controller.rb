@@ -42,7 +42,7 @@ class ContestsController < BaseController
     
     respond_to do |format|
       if @contest.save
-        flash[:notice] = 'Contest was successfully created.'.l
+        flash[:notice] = :contest_was_successfully_created.l
         
         format.html { redirect_to contest_url(@contest) }
         format.xml do

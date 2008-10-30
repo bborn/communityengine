@@ -8,19 +8,19 @@
   .column.span-4.last.centered
   - if @is_current_user || admin?
     .column.span-1.first
-      = link_to "#{image_tag 'icons/post.png', :plugin => :community_engine} Edit", edit_user_clipping_path(clipping.user, clipping)
+      = link_to "#{image_tag 'icons/post.png', :plugin => :community_engine} "+:edit.l, edit_user_clipping_path(clipping.user, clipping)
     .column.span-2.last
-      = link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} Delete", user_clipping_path(clipping.user, clipping), {:method => :delete, :confirm => 'Permanently delete this clipping?'}
+      = link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} "+:delete.l, user_clipping_path(clipping.user, clipping), {:method => :delete, :confirm => :permanently_delete_this_clipping.l}
 
   - if favorite = clipping.has_been_favorited_by(current_user, request.remote_ip)
     .favorite
-      = link_to_remote image_tag('icons/heart_off.png'), :url => favorite_path('clipping', clipping.id, favorite.id), :method => :delete, :loading => "new Effect.Pulsate($$('#clipping_#{clipping.id}_meta .favorite img').first())", :title => 'Un-favorite this' if logged_in?
+      = link_to_remote image_tag('icons/heart_off.png'), :url => favorite_path('clipping', clipping.id, favorite.id), :method => :delete, :loading => "new Effect.Pulsate($$('#clipping_#{clipping.id}_meta .favorite img').first())", :title => :un_favorite_this.l if logged_in?
       = image_tag('icons/heart_off.png') unless logged_in?
       
       %span.small.quiet= clipping.favorited_count
   - else
     .favorite  
-      = link_to_remote image_tag('icons/heart.png'), :url => favorites_path('clipping', clipping.id), :loading => "new Effect.Pulsate($$('#clipping_#{clipping.id}_meta .favorite img').first() )", :title => 'Favorite this'
+      = link_to_remote image_tag('icons/heart.png'), :url => favorites_path('clipping', clipping.id), :loading => "new Effect.Pulsate($$('#clipping_#{clipping.id}_meta .favorite img').first() )", :title => :favorite_this.l
       %span.quiet.small= clipping.favorited_count  
 
   .clear

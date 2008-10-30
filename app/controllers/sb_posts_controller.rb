@@ -71,7 +71,7 @@ class SbPostsController < BaseController
       format.xml { head :created, :location => formatted_sb_user_post_url(:forum_id => params[:forum_id], :topic_id => params[:topic_id], :id => @post, :format => :xml) }
     end
   rescue ActiveRecord::RecordInvalid
-    flash[:bad_reply] = 'Please post something at least...'.l
+    flash[:bad_reply] = :please_post_something_at_least.l
     respond_to do |format|
       format.html do
         redirect_to forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => 'reply-form', :page => params[:page] || '1')
@@ -91,7 +91,7 @@ class SbPostsController < BaseController
     @post.attributes = params[:post]
     @post.save!
   rescue ActiveRecord::RecordInvalid
-    flash[:bad_reply] = 'An error occurred'.l
+    flash[:bad_reply] = :an_error_occurred.l
   ensure
     respond_to do |format|
       format.html do

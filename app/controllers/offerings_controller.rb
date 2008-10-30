@@ -42,7 +42,7 @@ class OfferingsController < BaseController
     
     respond_to do |format|
       if @offering.save
-        flash[:notice] = 'Offering was successfully created.'.l
+        flash[:notice] = :offering_was_successfully_created.l
         
         format.html { redirect_to user_offering_url(@offering) }
         format.xml do
@@ -91,9 +91,9 @@ class OfferingsController < BaseController
     @user = User.find(params[:user_id])
     @offering = Offering.find(params[:id])
     if @offering.destroy
-      flash.now[:notice] = "The service was deleted.".l
+      flash.now[:notice] = :the_service_was_deleted.l
     else
-      flash.now[:error] = "Service could not be deleted.".l
+      flash.now[:error] = :service_could_not_be_deleted.l
     end
     
     respond_to do |format|

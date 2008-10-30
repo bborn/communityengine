@@ -35,12 +35,12 @@ class BaseController < ApplicationController
   def site_index    
     @posts = Post.find_recent(:limit => 16)
 
-    @rss_title = "#{AppConfig.community_name} Recent Posts"
+    @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
     @rss_url = rss_url
     respond_to do |format|     
       format.html { get_additional_homepage_data }
       format.rss do
-        render_rss_feed_for(@posts, { :feed => {:title => "#{AppConfig.community_name} Recent Posts", :link => recent_url},
+        render_rss_feed_for(@posts, { :feed => {:title => "#{AppConfig.community_name} "+:recent_posts.l, :link => recent_url},
                               :item => {:title => :title,
                                         :link =>  Proc.new {|post| user_post_url(post.user, post)},
                                          :description => :post,
@@ -81,12 +81,12 @@ class BaseController < ApplicationController
     if @user = User.find(params[:user_id] || params[:id])
       @is_current_user = (@user && @user.eql?(current_user))
       unless logged_in? || @user.profile_public?
-        flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it.".l
+        flash.now[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
         redirect_to :controller => 'sessions', :action => 'new'        
       end
       return @user
     else
-      flash.now[:error] = "Please log in.".l
+      flash.now[:error] = :please_log_in.l
       redirect_to :controller => 'sessions', :action => 'new'
       return false
     end

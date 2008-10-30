@@ -152,7 +152,7 @@ class PostsController < BaseController
     
     respond_to do |format|
       format.html { 
-        flash[:notice] = "Your post was deleted.".l
+        flash[:notice] = :your_post_was_deleted.l
         redirect_to manage_user_posts_url(@user)   
         }
     end
@@ -180,7 +180,7 @@ class PostsController < BaseController
       FROM taggings, tags 
       WHERE tags.id = taggings.tag_id GROUP BY tag_id");
 
-    @rss_title = "#{AppConfig.community_name} Popular Posts"
+    @rss_title = "#{AppConfig.community_name} "+:popular_posts.l
     @rss_url = popular_rss_url    
     respond_to do |format|
       format.html # index.rhtml
@@ -198,7 +198,7 @@ class PostsController < BaseController
     @recent_clippings = Clipping.find_recent(:limit => 15)
     @recent_photos = Photo.find_recent(:limit => 10)
     
-    @rss_title = "#{AppConfig.community_name} Recent Posts"
+    @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
     @rss_url = recent_rss_url
     respond_to do |format|
       format.html 
@@ -214,7 +214,7 @@ class PostsController < BaseController
     @posts = Post.by_featured_writers.recent.find(:all, :page => {:current => params[:page]})
     @featured_writers = User.featured
         
-    @rss_title = "#{AppConfig.community_name} Featured Posts"
+    @rss_title = "#{AppConfig.community_name} "+:featured_posts.l
     @rss_url = featured_rss_url
     respond_to do |format|
       format.html 

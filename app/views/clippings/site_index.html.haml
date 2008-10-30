@@ -4,7 +4,7 @@
   .yui-b    
     .box
       %h3
-        = params[:recent] ? "Recent " : "Popular "
+        = params[:recent] ? :recent.l : :popular.l
         Clippings
 
       .clippings_grid
@@ -24,11 +24,11 @@
   .box
     %h3 &nbsp;
     
-    Clippings are visual bookmarks. Use clippings to keep track of images you like from around the web. 
+    =:clippings_let_you_to_save_cool_images_from_around_the_web.l
     -if logged_in?
-      =link_to 'Go to your clippings page to get started.', user_clippings_path(current_user)
+      =link_to :go_to_your_clippings_page_to_get_started.l, user_clippings_path(current_user)
     -else
-      To get started with clippings, first 
-      =link_to 'create an account.', signup_path
+      =:to_get_started_with_clippings_first.l+" " 
+      =link_to :create_an_account.l, signup_path
   .box.alt
-    =link_to "View #{params[:recent] ? 'Popular' : 'Recent'} Clippings", site_clippings_path(:recent => !params[:recent])
+    =link_to :view.l+" #{params[:recent] ? :popular.l : :recent.l} "+:clippings.l, site_clippings_path(:recent => !params[:recent])

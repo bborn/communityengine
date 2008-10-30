@@ -32,7 +32,7 @@ class UsersController < BaseController
     if @user and @user.activate
       self.current_user = @user
       redirect_to welcome_photo_user_path(@user)
-      flash[:notice] = "Thanks for activating your account!".l 
+      flash[:notice] = :thanks_for_activating_your_account.l 
       return
     end
     flash[:error] = :account_activation_error.l_with_args(:email => AppConfig.support_email) 
@@ -130,7 +130,7 @@ class UsersController < BaseController
     if @user.save!
       @user.track_activity(:updated_profile)
       
-      flash[:notice] = "Your changes were saved.".l
+      flash[:notice] = :your_changes_were_saved.l
       unless params[:welcome] 
         redirect_to user_path(@user)
       else
@@ -144,9 +144,9 @@ class UsersController < BaseController
   def destroy
     unless @user.admin? || @user.featured_writer?
       @user.destroy
-      flash[:notice] = "The user was deleted.".l
+      flash[:notice] = :the_user_was_deleted.l
     else
-      flash[:error] = "You can't delete that user.".l
+      flash[:error] = :you_cant_delete_that_user.l
     end
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -158,7 +158,7 @@ class UsersController < BaseController
     @photo = Photo.find(params[:photo_id])
     @user.avatar = @photo
     if @user.save!
-      flash[:notice] = "Your changes were saved.".l
+      flash[:notice] = :your_changes_were_saved.l
       redirect_to user_photo_path(@user, @photo)
     end
   rescue ActiveRecord::RecordInvalid
@@ -177,7 +177,7 @@ class UsersController < BaseController
     @user.attributes = params[:user]
 
     if @user.save!
-      flash[:notice] = "Your changes were saved.".l
+      flash[:notice] = :your_changes_were_saved.l
       redirect_to user_path(@user)
     end
   rescue ActiveRecord::RecordInvalid
@@ -197,7 +197,7 @@ class UsersController < BaseController
     if @user.save!
       respond_to do |format|
         format.html { 
-          flash[:notice] = "Your changes were saved.".l
+          flash[:notice] = :your_changes_were_saved.l
           redirect_to edit_pro_details_user_path(@user)   
         }
         format.js {
@@ -259,10 +259,10 @@ class UsersController < BaseController
         UserNotifier.deliver_reset_password(@user)
         @user.save
         redirect_to login_url
-        flash[:info] = "Your password has been reset and emailed to you.".l
+        flash[:info] = :your_password_has_been_reset_and_emailed_to_you.l
       end
     else
-      flash[:error] = "Sorry. We don't recognize that email address.".l
+      flash[:error] = :sorry_we_dont_recognize_that_email_address.l
     end 
   end
 
@@ -274,10 +274,10 @@ class UsersController < BaseController
         UserNotifier.deliver_forgot_username(@user)
         @user.save
         redirect_to login_url
-        flash[:info] = "Your username was emailed to you.".l
+        flash[:info] = :your_username_was_emailed_to_you.l
       end
     else
-      flash[:error] = "Sorry. We don't recognize that email address.".l
+      flash[:error] = :sorry_we_dont_recognize_that_email_address.l
     end 
   end
 
