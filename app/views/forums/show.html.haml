@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@forum.name.capitalize} discussion forum.",:keywords => "#{@forum.tags.join(', ') if @forum.tags}"}
+- @meta = { :description => "#{@forum.name.capitalize} discussion forum.",:keywords => "#{@forum.tags.join(', ') if @forum.tags}",:robots => AppConfig.robots_meta_show_content}
 - @section = 'forums'
 - @page_title = @forum.name
 
