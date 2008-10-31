@@ -5,8 +5,8 @@ Information at: [www.missingmethod.com/projects/community_engine](www.missingmet
 
 Requirements:
 
-	- RAILS VERSION 2.2
-	- The engines plugin for Rails 2.2
+	- RAILS VERSION 2.1.2
+	- The engines plugin for Rails 2.1.2
 	- ImageMagick 
 	- Several gems:
 	  rmagick
@@ -49,7 +49,7 @@ Getting CommunityEngine Running
 6. Modify your environment.rb as indicated below:
 
 		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.2' unless defined? RAILS_GEM_VERSION
+		RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
 		require File.join(File.dirname(__FILE__), 'boot')
 		require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
