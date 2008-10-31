@@ -22,7 +22,7 @@
                   = link_to h(message.subject), user_message_path(@user, message)                  
                   %br
                   from:
-                  = link_to h(message.sender.login), user_path(@user)                  
+                  = link_to h(message.sender.login), user_path(message.sender)                  
                 %td{:width => '20px'}
                   %em
                     = message.read? ? 'read' : 'unread'
