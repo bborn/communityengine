@@ -78,7 +78,7 @@ module ActionView
       #   <%= f.date_select :published_date, :locale => @locale %>
       # </p>
       #
-      def date_select(object_name, method, options = {})
+      def date_select(object_name, method, options = {}, html_options = {})
         if options[:locale]
           @original_locale = Locale.code
           Locale.code = options[:locale]
@@ -91,7 +91,7 @@ module ActionView
 
       # Blend default options with localized :order option
       # Look at date_select for an usage example
-      def datetime_select(object_name, method, options = {})
+      def datetime_select(object_name, method, options = {}, html_options = {})
         if options[:locale]
           @original_locale = Locale.code
           Locale.code = options[:locale]
