@@ -120,6 +120,7 @@
 #en: create: Create
 #en: create_an_account: Create an account
 #en: create_a_clipping: Create a clipping
+#en: create_a_post: Create a post
 #en: create_new_forum: Create new forum
 #en: create_your_account: Create Your Account
 #en: created_at: Created at
@@ -230,7 +231,7 @@
 #en: go_to_the_forums: go to the forums
 #en: go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
 #en: go_to_your_profile: Go to your profile
-#en: have_an_account_: "Have an account? "
+#en: have_an_account: "Have an account? "
 #en: have_something_to_contribute: Have something to contribute?
 #en: help: Help
 #en: home: Home
@@ -271,17 +272,18 @@
 #en: log_in_to_leave_a_comment: Log in to leave a comment
 #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
 #en: log_in_to_site: Log in to {site}
-#en: log_in_to_your_: Log in to your
+#en: log_in_to_your: Log in to your
 #en: log_out: Log Out
 #en: log_out_of_your: Log out of your 
 #en: logged_in: "Logged in:"
 #en: logged_into_the_site: logged into the site
 #en: login: Login
+#en: logins: Logins
 #en: location: Location
 #en: locked: Locked
 #en: locked2: (locked)
 #en: look_for_a_message_from: Look for a message from:
-#en looking_for_most_x: Looking for {link}
+#en: looking_for_most_x: Looking for {link}
 #en: make_moderator: Make moderator
 #en: make_my_profile_public: Make my profile public
 #en: make_this_my_profile_photo: Make this my profile photo
@@ -386,7 +388,6 @@
 #en: postal_code: "Postal code:"
 #en: posting_tips: "Posting Tips"
 #en: post_topic: Post topic
-#en: posts: Posts
 #en: posts_photos_and_bookmarks: posts, photos and bookmarks
 #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
 #en: preview: Preview
@@ -556,8 +557,10 @@
 #en: url: Url
 #en: user_e_mail: "User e-mail:"
 #en: username: Username
+#en: user: User
 #en: users: Users
 #en: users_blog: "{user}'s Blog"
+#en: user_clippings: Clippings of
 #en: user_login: User login
 #en: users_online: Users online
 #en: users_photos: "{user}'s Photos"

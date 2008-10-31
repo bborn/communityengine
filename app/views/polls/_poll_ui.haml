@@ -6,7 +6,8 @@
     %thead
       %tr
         %th{:colspan => 2}
-          .right=:total_votes.l +": #{poll.votes.size}"
+          .right
+          = :total_votes.l+": #{poll.votes.size}"
           = poll.question
     -poll.choices.each do |choice|
       %tr

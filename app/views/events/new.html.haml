@@ -2,8 +2,8 @@
   %h3= :new_event.l
   = error_messages_for :event
   - form_for(:event, :url => events_path, :html => {:class => "MainForm"} ) do |f|
-    %label= :name
-    = f.text_field :name.l
+    %label= :name.l
+    = f.text_field :name
     
     %label= :description.l
     = f.text_area :description, :size => "69x10", :class => "rich_text_editor"

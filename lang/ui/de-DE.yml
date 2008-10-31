@@ -242,6 +242,8 @@ create: Erstellen
 create_an_account: registrieren
 #en: create_a_clipping: Create a clipping
 create_a_clipping: Neues Clipping erstellen
+#en: create_a_post: Create a post
+create_a_post: Beitrag erstellen
 #en: create_new_forum: Create new forum
 create_new_forum: Neues Forum anlegen
 #en: create_your_account: Create Your Account
@@ -461,8 +463,8 @@ go_to_the_forums: Gehe zu den Foren
 go_to_your_clippings_page_to_get_started: Um zu beginnen, geh zu deiner Clippings-Seite.
 #en: go_to_your_profile: Go to your profile
 go_to_your_profile: Geh zu deinem Profil
-#en: have_an_account_: "Have an account? "
-have_an_account_: Hast du ein Konto?
+#en: have_an_account: "Have an account? "
+have_an_account: Hast du ein Konto?
 #en: have_something_to_contribute: Have something to contribute?
 have_something_to_contribute: Hast du etwas, was du beitragen kannst?
 #en: help: Help
@@ -543,8 +545,8 @@ log_in_to_leave_a_comment: Zum Kommentarschreiben anmelden
 log_in_to_reply_to_this_topic: Zum Antworten auf das Thema musst du dich anmelden
 #en: log_in_to_site: Log in to {site}
 log_in_to_site: Anmeldung bei {site}
-#en: log_in_to_your_: Log in to your
-log_in_to_your_: Einloggen zu deinem
+#en: log_in_to_your: Log in to your
+log_in_to_your: Einloggen zu deinem
 #en: log_out: Log Out
 log_out: Abmelden
 #en: log_out_of_your: Log out of your 
@@ -555,6 +557,8 @@ logged_in: "Angemeldet:"
 logged_into_the_site: hat sich angemeldet
 #en: login: Login
 login: Anmeldung
+#en: logins: Logins
+logins: Anmeldungen
 #en: location: Location
 location: Ort
 #en: locked: Locked
@@ -773,8 +777,6 @@ postal_code: "Postleitzahl:"
 posting_tips: "Tip zum Schreiben eines Beitrags"
 #en: post_topic: Post topic
 post_topic: Thema speichern
-#en: posts: Posts
-posts: "Einträge"
 #en: posts_photos_and_bookmarks: posts, photos and bookmarks
 posts_photos_and_bookmarks: Beiträge, Fotos und Bookmarks
 #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
@@ -1113,10 +1115,14 @@ url: Url
 user_e_mail: "Benutzer-E-Mail:"
 #en: username: Username
 username: Benutzername
+#en: user: User
+user: Benutzer
 #en: users: Users
 users: Benutzer
 #en: users_blog: "{user}'s Blog"
 users_blog: Benutzerblog
+#en: user_clippings: Clippings of
+user_clippings: Clippings von
 #en: user_login: User login
 user_login: Benutzerkennung
 #en: users_online: Users online
@@ -1200,7 +1206,7 @@ write_a_message: "Schreibe eine Nachricht:"
 #en: write_new_post: Write a '{category}' post
 write_new_post: Schreibe einen neuen Eintrag
 #en: wrote_a_post: "wrote a post:"
-wrote_a_post: "Schrieb folgenden Beitrag:"
+wrote_a_post: "schrieb folgenden Beitrag:"
 #en: you_are_editing_your_account: You are editing your account.
 you_are_editing_your_account: "Du bearbeitest gerade dein Konto."
 #en: you_are_editing_your_profile: "You're editing your profile."

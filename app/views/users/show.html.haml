@@ -84,7 +84,7 @@
 
     - unless @recent_posts.empty?
       #posts.box
-        %h3=:recent_blog:posts.l
+        %h3=:recent_blog_posts.l
         = render :partial => 'posts/post', :collection => @recent_posts
         %h6.right.all= link_to :view_my_blog.l, user_posts_path(@user)
 

@@ -34,6 +34,6 @@
       -unless @user.clippings.empty?
         %li=:you_have_created.l+" #{@user.clippings.count} "+:clippings.l+"."
       -unless @user.comments.empty?
-        %li=:you_have_left.l+" #{@user.posts.count} "+:comments.l"."
+        %li=:you_have_left.l+" #{@user.posts.count} "+:comments.l+"."
       -unless @user.accepted_friendships.empty?
         %li=:you_have.l+" #{pluralize @user.accepted_friendships.count, :friend.l}."

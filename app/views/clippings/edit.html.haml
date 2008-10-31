@@ -15,7 +15,7 @@
         %label= :description.l
         = f.text_field :description
 
-        %label= :tags:
+        %label= :tags.l+":"
         = text_field_tag 'tag_list', @clipping.tag_list
 
         %p
