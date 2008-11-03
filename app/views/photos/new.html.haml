@@ -21,7 +21,8 @@
       = f.file_field :uploaded_data
       %label
         %em
-          = (AppConfig.photo['attachment_fu_options']['max_size']) + " " + :megabyte_upload_limit.l
+          = (AppConfig.photo['attachment_fu_options']['max_size']) 
+          = " " + :megabyte_upload_limit.l
       %label 
         =:tags.l + ":"
       = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}

@@ -18,7 +18,7 @@
   #tag_list_auto_complete.auto_complete
   = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
 
-  %label{"for"=>"topic_body"}= :body.l
+  %label{"for"=>"topic_body"}= :body_text.l
   = form.text_area :body, :rows => 12
   
   - if admin? and not @topic.new_record?

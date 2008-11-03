@@ -35,7 +35,7 @@
 
       #comments.box.hfeed.comments
         %h3=:photo_comments.l
-        %h2=:add_your_comment!.l
+        %h2=:add_your_comment.l
         %p= render :partial => 'comments/comment_form', :locals => {:commentable => @photo}
         %a#newest_comment
         = render :partial => 'comments/comment', :collection => @photo.comments

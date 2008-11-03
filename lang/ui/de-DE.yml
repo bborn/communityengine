@@ -10,6 +10,8 @@ about_site: "\xC3\x9Cber uns {site}"
 about_you: "\xC3\x9Cber dich"
 #en: accept: Accept
 accept: Annehmen
+#en: accepted: accepted
+accepted: angenommen
 #en: accepted_friendships: Accepted Friendships
 accepted_friendships: bestätigte Freundschaften
 #en: accept_this_request: Accept this request
@@ -281,6 +283,8 @@ delete_this_post: Diesen Eintrag löschen?
 delete_this_user: Benutzer löschen
 #en: deny: Deny
 deny: Ablehnen
+#en: denied: denied
+denied: abgelehnt
 #en: denied_friendships: Denied Friendships
 denied_friendships: abgelehnte Freundschaften
 #en: description: Description
@@ -313,6 +317,10 @@ edit_account: Konto bearbeiten
 edit_contest: Wettbewerb bearbeiten
 #en: edit_event: Edit event
 edit_event: Bearbeite das Ereignis
+#en: edit_forum: Edit forum
+edit_forum: Forum bearbeiten
+#en: edit_post: Edit post
+edit_post: Beitrag bearbeiten
 #en: edit_profile: Edit profile
 edit_profile: Profil bearbeiten
 #en: edit_this_event: Edit this event
@@ -677,6 +685,8 @@ new_post_text: Text für den Link 'Neuer Beitrag'
 new_skill: Neue Fähigkeit
 #en: new_today: New today
 new_today: Heute neu
+#en: new_topic: New topic
+new_topic: Neues Thema
 #en: new_yesterday: New yesterday
 new_yesterday: Gestern neu
 #en: next_page: Next page
@@ -851,6 +861,8 @@ reply: Antworten
 reply_to_topic: Antworte auf das Thema
 #en: request_friendship: Request friendship
 request_friendship: Freundschaftsanfrage
+#en: requested: requested
+requested: angefragt
 #en: requested_friendship_with: Requested friendship with
 requested_friendship_with: Freundschaft angefragt bei
 #en: requesting_friendship: Requesting friendship

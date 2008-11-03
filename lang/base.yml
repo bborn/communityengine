@@ -4,6 +4,7 @@
 #en: about_site: About {site}
 #en: about_you: About You
 #en: accept: Accept
+#en: accepted: accepted
 #en: accepted_friendships: Accepted Friendships
 #en: accept_this_request: Accept this request
 #en: account: account
@@ -140,6 +141,7 @@
 #en: delete_this_topic_forever: Delete this topic forever?
 #en: delete_this_user: Delete this user
 #en: deny: Deny
+#en: denied: denied
 #en: denied_friendships: Denied Friendships
 #en: description: Description
 #en: destroy: Destroy
@@ -156,6 +158,8 @@
 #en: edit_account: Edit account
 #en: edit_contest: Edit Contest
 #en: edit_event: Edit event
+#en: edit_forum: Edit forum
+#en: edit_post: Edit post
 #en: edit_profile: Edit profile
 #en: edit_this_event: Edit this event
 #en: edit_this_photo_details: Edit this photo's details
@@ -338,6 +342,7 @@
 #en: new_post_text: New Post text
 #en: new_skill: New skill
 #en: new_today: New today
+#en: new_topic: New topic
 #en: new_yesterday: New yesterday
 #en: next_page: Next page
 #en: no_comments_found: Sorry, we couldn't find any comments for that {type}
@@ -425,6 +430,7 @@
 #en: reply: Reply
 #en: reply_to_topic: Reply
 #en: request_friendship: Request friendship
+#en: requested: requested
 #en: requested_friendship_with: Requested friendship with
 #en: requesting_friendship: Requesting friendship
 #en: required: (required)
