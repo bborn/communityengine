@@ -51,11 +51,11 @@ class SbPostsController < BaseController
     if @topic.locked?
       respond_to do |format|
         format.html do
-          flash[:notice] = 'This topic is locked.'.l
+          flash[:notice] = :this_topic_is_locked.l
           redirect_to(forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id]))
         end
         format.xml do
-          render :text => 'This topic is locked.', :status => 400
+          render :text => :this_topic_is_locked.l, :status => 400
         end
       end
       return

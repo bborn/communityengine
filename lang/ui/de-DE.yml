@@ -26,6 +26,8 @@ account_settings: Kontenoptionen
 actions: Aktionen
 #en: activate: Activate
 activate: Aktivieren
+#en: activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
+activation_email_not_sent_message: Aktivierungs-EMail konnte nicht gesendet werden. Ist der Benutzer vielleicht schon aktiviert?
 #en: active: active
 active: Aktiv
 #en: active_users: Active Users
