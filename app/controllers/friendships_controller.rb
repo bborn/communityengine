@@ -102,7 +102,7 @@ class FriendshipsController < BaseController
           flash[:notice] = :friendship_requested.l_with_args(:friend => @friendship.friend.login) 
           redirect_to accepted_user_friendships_path(@user)
         }
-        format.js { render( :inline => "Requested friendship with #{@friendship.friend.login}." ) }        
+        format.js { render( :inline => :requested_friendship_with.l+" #{@friendship.friend.login}." ) }        
       else
         flash.now[:error] = :friendship_could_not_be_created.l
         @users = User.find(:all)

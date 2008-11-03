@@ -1,5 +1,5 @@
 .box
-  %h3= :new_metro_area
+  %h3= :new_metro_area.l
 
   = error_messages_for :metro_area
   - form_for(:metro_area, :url => metro_areas_path, :html => {:class => "MainForm"}) do |f|

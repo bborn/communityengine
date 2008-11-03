@@ -14,7 +14,7 @@
               :class => "utility", :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l) %>  
 
         <%= ajax_spinner_for "editbox", "spinner_black.gif" %>
-        <%= submit_tag :save_changes.l, :or => link_to_function('cancel'.l, "EditForm.cancel()") %>
+        <%= submit_tag :save_changes.l, :or => link_to_function(:cancel.l, "EditForm.cancel()") %>
 
       </td>
     </tr>

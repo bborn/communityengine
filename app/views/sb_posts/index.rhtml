@@ -9,7 +9,7 @@
 </h1>
 <p class="subtitle">
   <%= feed_icon_tag @page_title, formatted_search_all_sb_posts_path(:format => 'rss') %>
-  <%= pluralize(@posts.size, "post") %> found
+  <%= pluralize(@posts.size, "post")+' '+:found.l %> 
 </p>
 
 <% if @posts.page_count > 1 -%>

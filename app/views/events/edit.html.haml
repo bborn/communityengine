@@ -14,7 +14,7 @@
     %label= :end_time.l
     = datetime_select(:event, :end_time)
     
-    %label= location.l
+    %label= :location.l
     = f.text_field :location
     - #= render :partial => 'shared/location_chooser', :locals => {:selected_country => nil, :selected_state => nil, :selected_metro_area => @event.metro_area_id, :states => [], :metro_areas => MetroArea.find(:all)}
     - #= render :partial => 'shared/location_chooser', :locals => {:selected_metro_area => @event.metro_area_id, }

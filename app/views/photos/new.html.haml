@@ -6,24 +6,24 @@
     %p 
       =:photo_tip_2.l
 
-  .box.alt= link_to "&raquo; " + "Back to my photos".l, user_photos_path(@user)
+  .box.alt= link_to "&raquo; " + :back_to_my_photos.l, user_photos_path(@user)
 
 #yui-main
   #single_upload.yui-b.box
     %h3 
-      ="New photo".l
+      =:new_photo.l
 
     = error_messages_for :photo
     %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-      ="Want to upload multiple files at once?".l
+      =:want_to_upload_multiple_files_at_once.l
 
     - form_for(:photo, :url => user_photos_path, :html => {:multipart =>true, :class => "MainForm"} ) do |f|
       = f.file_field :uploaded_data
       %label
         %em
-          = (AppConfig.photo['attachment_fu_options']['max_size']) + " " + "megabyte upload limit".l
+          = (AppConfig.photo['attachment_fu_options']['max_size']) + " " + :megabyte_upload_limit.l
       %label 
-        ="Tags".l + ":"
+        =:tags.l + ":"
       = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
 
       #tag_list_auto_complete.auto_complete
@@ -69,6 +69,6 @@
                 =:you_can_select_up_to_5_files_at_a_time.l
                 %br
                 = (AppConfig.photo['attachment_fu_options']['max_size'])
-                = "megabyte upload limit per file.".l
+                = :megabyte_upload_limit_per_file.l
         #divFileProgressContainer{:style=>"height: 75px;"}
         #thumbnails

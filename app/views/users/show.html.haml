@@ -98,7 +98,7 @@
 
     #comments.box.hfeed.comments
       %h3=:profile_comments.l
-      %h2=:add_your_comment!.l
+      %h2=:add_your_comment.l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @user}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments

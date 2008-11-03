@@ -16,7 +16,7 @@
       - form_for(:post, :url => user_post_path(@user, @post), :html => { :method => :put, :class =>'MainForm' }) do |f|
         %label 
           =:title.l
-          %em (required)
+          %em= :required.l
         = f.text_field :title
         %label
           =:category.l

@@ -193,7 +193,7 @@
 #en: faq_section: FAQ section
 #en: favorites: Favorites
 #en: favorite_this: Favorite this
-#en:featured_posts: Featured posts
+#en: featured_posts: Featured posts
 #en: features: Features
 #en: feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
 #en: female: Female
@@ -203,9 +203,10 @@
 #en: find_experts: Find experts
 #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
 #en: for_detailed_contest_rules: "For detailed contest rules,"
-#en: for_more_informationon_tags_check_out_the: For more information on Tags check out the
+#en: for_more_informationon_on_tags_check_out_the: For more information on Tags check out the
 #en: forgot_your_password: Forgot your password?
 #en: forgot_your_username: Forgot your username?
+#en: forum: Forum
 #en: forums: Forums
 #en: found: found
 #en: frequency: Frequency
@@ -272,6 +273,7 @@
 #en: log_in_to_leave_a_comment: Log in to leave a comment
 #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
 #en: log_in_to_site: Log in to {site}
+#en: log_in_to_vote: Log in to vote
 #en: log_in_to_your: Log in to your
 #en: log_out: Log Out
 #en: log_out_of_your: Log out of your 
@@ -324,6 +326,7 @@
 #en: new_clipping: New clipping
 #en: new_contest: New contest
 #en: new_event: New Event
+#en: new_forum: New Forum
 #en: new_homepage_feature: New Homepage Feature
 #en: new_invitation: New Invitation
 #en: new_invitation_from: New Invitation from
@@ -379,6 +382,7 @@
 #en: popular_posts: Popular Posts
 #en: popular_posts_on: Popular Posts on
 #en: popular_polls: Popular Polls
+#en position: Position
 #en: post: Post
 #en: posts: Posts
 #en: post_a_new_topic: Post a new topic
@@ -421,6 +425,7 @@
 #en: reply: Reply
 #en: reply_to_topic: Reply
 #en: request_friendship: Request friendship
+#en: requested_friendship_with: Requested friendship with
 #en: requesting_friendship: Requesting friendship
 #en: required: (required)
 #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
@@ -437,9 +442,11 @@
 #en: save_changes: Save Changes
 #en: save_forum: Save Forum
 #en: save_post_as: "Save post as:"
+#en: save_reply: Save reply
 #en: says: says
 #en: sb_post_was_deleted: Post '{title}' was deleted.
 #en: scrapbook: Scrapbook
+#en: search: Search
 #en: search_users: Search Users
 #en: searching_for: Searching for
 #en: see_all: SEE ALL
@@ -452,7 +459,6 @@
 #en: send_me_my_username: Send me my username
 #en: sent_messages: Sent messages
 #en: send_this_story_to_friends: Send this message to friends
-#en: search: Search
 #en: service_could_not_be_deleted: Service could not be deleted.
 #en: share_the_love: Share the love
 #en: show: Show
@@ -560,7 +566,7 @@
 #en: user: User
 #en: users: Users
 #en: users_blog: "{user}'s Blog"
-#en: user_clippings: Clippings of
+#en: user_clippings: Clippings of {user}
 #en: user_login: User login
 #en: users_online: Users online
 #en: users_photos: "{user}'s Photos"
@@ -586,6 +592,7 @@
 #en: want_to_upload_multiple_files_at_once: Want to upload multiple files at once?
 #en: watch: Watch
 #en: watch_ing: ing
+#en: watch_topic: Watch topic
 #en: watching_topic: Watching topic
 #en: we_just_sent_an_e_mail_to: We just sent an e-mail to: 
 #en: we_need_you: We need you

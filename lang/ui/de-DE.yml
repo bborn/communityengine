@@ -117,7 +117,7 @@ becomes: werden.
 #en: begin: begin
 begin: Beginn
 #en: begin_required: begin (required)
-begin: Beginn (erforderlich)
+begin_required: Beginn (erforderlich)
 #en: bigger_font_size_more_popular_tag: "Bigger font size = more popular tag"
 bigger_font_size_more_popular_tag: "Je größer die Schrift, desto beliebter der Tag"
 #en: birthday: Birthday
@@ -407,12 +407,14 @@ find_experts: Finde Experten
 find_out_where_to_be_and_when_to_be_there: Finde raus, wann du wo sein musst.
 #en: for_detailed_contest_rules: "For detailed contest rules,"
 for_detailed_contest_rules: "Für detailierte Wettbewerbsregeln,"
-#en: for_more_informationon_tags_check_out_the: For more information on Tags check out the
-for_more_informationon_tags_check_out_the: Für mehr Informationen über Tags check die
+#en: for_more_informationon_on_tags_check_out_the: For more information on Tags check out the
+for_more_informationon_on_tags_check_out_the: Für mehr Informationen über Tags check die
 #en: forgot_your_password: Forgot your password?
 forgot_your_password: Passwort vergessen?
 #en: forgot_your_username: Forgot your username?
 forgot_your_username: Benutzernamen vergessen?
+#en: forum: Forum
+forum: Forum
 #en: forums: Forums
 forums: Foren
 #en: found: found
@@ -543,6 +545,8 @@ log_in_to_create_a_new_topic: Log dich ein, um ein neues Thema zu beginnen
 log_in_to_leave_a_comment: Zum Kommentarschreiben anmelden
 #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
 log_in_to_reply_to_this_topic: Zum Antworten auf das Thema musst du dich anmelden
+#en: log_in_to_vote: Log in to vote
+log_in_to_vote: Zum Abstimmen musst du dich anmelden
 #en: log_in_to_site: Log in to {site}
 log_in_to_site: Anmeldung bei {site}
 #en: log_in_to_your: Log in to your
@@ -649,6 +653,8 @@ new_clipping: Neues Clipping
 new_contest: Neuer Wettbewerb
 #en: new_event: New Event
 new_event: Neues Ereignis
+#en: new_forum: New Forum
+new_forum: Neues Forum
 #en: new_homepage_feature: New Homepage Feature
 new_homepage_feature: Neues Homepage Feature
 #en: new_invitation: New Invitation
@@ -759,6 +765,8 @@ popular_posts: "beliebte Einträge"
 popular_posts_on: "beliebte Einträge auf"
 #en: popular_polls: Popular Polls
 popular_polls: beliebte Umfragen
+#en position: Position
+position: Position
 #en: post: Post
 post: "Beitrag"
 #en: posts: Posts
@@ -843,6 +851,8 @@ reply: Antworten
 reply_to_topic: Antworte auf das Thema
 #en: request_friendship: Request friendship
 request_friendship: Freundschaftsanfrage
+#en: requested_friendship_with: Requested friendship with
+requested_friendship_with: Freundschaft angefragt bei
 #en: requesting_friendship: Requesting friendship
 requesting_friendship: Freundschaftsanfrage
 #en: required: (required)
@@ -875,12 +885,16 @@ save_changes: "Änderungen speichern"
 save_forum: Forum speichern
 #en: save_post_as: "Save post as:"
 save_post_as: "Eintrag speichern als:"
+#en: save_reply: Save reply
+save_reply: Antwort speichern
 #en: says: says
 says: sagt
 #en: sb_post_was_deleted: Post '{title}' was deleted.
 sb_post_was_deleted: Der Eintrag '{title}' wurde gelöscht.
 #en: scrapbook: Scrapbook
 scrapbook: Album
+#en: search: Search
+search: Suche
 #en: search_users: Search Users
 search_users: Suche Benutzer
 #en: searching_for: Searching for
@@ -905,8 +919,6 @@ send_me_my_username: Zusendung des Benutzernamens
 sent_messages: gesendete Nachrichten
 #en: send_this_story_to_friends: Send this message to friends
 send_this_story_to_friends: Schick diese Nachricht an Freunde
-#en: search: Search
-search: Suche auf
 #en: service_could_not_be_deleted: Service could not be deleted.
 service_could_not_be_deleted: "Service kann nicht gelöscht werden."
 #en: share_the_love: Share the love
@@ -1062,7 +1074,7 @@ to_start_adding_friends: "Um Freunde hinzuzufügen, kannst du"
 #en: to_you: You
 to_you: Dich
 #en: toggle: Toggle
-toggle: Schalte um auf
+toggle: "An-/Ausschalten:"
 #en_ top_pros: Top Pros
 top_pros: Top Profis
 #en: top_writers: Top Writers
@@ -1121,8 +1133,8 @@ user: Benutzer
 users: Benutzer
 #en: users_blog: "{user}'s Blog"
 users_blog: Benutzerblog
-#en: user_clippings: Clippings of
-user_clippings: Clippings von
+#en: user_clippings: Clippings of {user}
+user_clippings: Clippings von {user}
 #en: user_login: User login
 user_login: Benutzerkennung
 #en: users_online: Users online
@@ -1173,8 +1185,10 @@ want_to_upload_multiple_files_at_once: Willst du mehrere Datei gleichzeitig hoch
 watch: beobachte
 #en: watch_ing: ing
 watch_ing: tes
+#en: watch_topic: Watch topic
+watch_topic: beobachte Thema
 #en: watching_topic: Watching topic
-watching_topic: Thema beobachten
+watching_topic: Thema wird beobachtet
 #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to:" 
 we_just_sent_an_e_mail_to: "Wir haben eine E-Mail geschickt an:"
 #en: we_need_you: We need you
