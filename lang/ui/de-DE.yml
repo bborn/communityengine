@@ -1235,6 +1235,8 @@ write_a_message: "Schreibe eine Nachricht:"
 write_new_post: Schreibe einen neuen Eintrag
 #en: wrote_a_post: "wrote a post:"
 wrote_a_post: "schrieb folgenden Beitrag:"
+#en: yesterday: Yesterday
+yesterday: Gestern
 #en: you_are_editing_your_account: You are editing your account.
 you_are_editing_your_account: "Du bearbeitest gerade dein Konto."
 #en: you_are_editing_your_profile: "You're editing your profile."

@@ -16,7 +16,7 @@
 #yui-main
   .yui-b
     #clippings.box.hfeed
-      %h3= link_to :user_clippings.l :user => @user.login, user_clippings_path(@user)
+      %h3= link_to "#{:user_clippings.l :user =>@user.login}", user_clippings_path(@user)
       - if @clippings.any?
         -if @clippings.page_count > 1
           .pagination=paginating_links @clippings
