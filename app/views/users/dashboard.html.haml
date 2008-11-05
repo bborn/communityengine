@@ -23,8 +23,8 @@
           =:to_start_adding_friends.l
           =link_to :browse_all_members.l, users_path
         %p
-          =link_to :update_your_profile_and_tag_yourself.l, edit_user_path(current_user)
-          =:to_start_getting_recommended_content_on_your_dashboard.l
+          =link_to :update_profile_and_tag_yourself.l, edit_user_path(current_user)
+          =:to_get_recommended_content_on_your_dashboard.l
 
     
       -unless @network_activity.empty?
