@@ -740,8 +740,8 @@ pending: ausstehend
 pending_friendships: zu bestätigende Freundschaften
 #en: people: People
 people: Leute
-#en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends.
-people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: "Leute, die sich durch deine Einladung angemeldet haben, werden automatisch zu deinen Freunden hinzugef\xEF\xBF\xBD"
+#en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
+people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: "Leute, die sich durch deine Einladung angemeldet haben, werden automatisch zu deinen Freunden hinzugef\xEF\xBF\xBD auf" 
 #en: permanently_delete_this_clipping: Permanently delete this clipping?
 permanently_delete_this_clipping: "Soll das Clipping dauerhaft gelöscht werden?"
 #en: permanently_delete_this_event: Permanently delete this event?
