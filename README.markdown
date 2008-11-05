@@ -226,7 +226,7 @@ Contributors - Thanks! :)
 - Bryan Kearney - localization
 - Alex Nesbitt - forgot password bugs
 - Alejandro Raiczyk - Spanish localization
-- Fritz Thielemann - German localization
+- [Fritz Thielemann](http://github.com/fritzek) - German localization, il8n 
 - [Oleg Ivanov](github.com/morhekil) - `acts_as_taggable_on_steroids`
 - David Fugere - French localization
 - Barry Paul - routes refactoring

@@ -3,7 +3,7 @@
 #yui-main
   .yui-b
     .box
-      %h3= :compose_message
+      %h3= :compose_message.l
       
       = error_messages_for :message
       - form_for @message, :url => user_messages_path(@user), :html => {:class => "MainForm"} do |f|

@@ -168,8 +168,8 @@ categories: Categories
 category: Category
 #en: category_was_successfully_created: Category was successfully created.
 category_was_successfully_created: Category was successfully created.
-#en: choises: Choices
-choises: Choices
+#en: choices: Choices
+choices: Choices
 #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
 choose_a_photo_for_your_profile: "Choose a photo for your profile:"
 #en: choose_a_photo_to_upload: "Choose a photo to upload:"
@@ -228,8 +228,8 @@ comments_rss: Comments RSS
 community_tagline: CommunityEngine Rocks!
 #en: compose: Compose
 compose: Compose
-#en: compose_messages: Compose messages
-compose_messages: Compose messages
+#en: compose_message: Compose message
+compose_message: Compose message
 #en: confirm_password: Confirm Password
 confirm_password: Confirm Password
 #en: contest_was_successfully_created: Contest was successfully created.
@@ -426,8 +426,8 @@ find_experts: Find experts
 find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
 #en: for_detailed_contest_rules: "For detailed contest rules,"
 for_detailed_contest_rules: "For detailed contest rules,"
-#en: for_more_informationon_on_tags_check_out_the: For more information on Tags check out the
-for_more_informationon_on_tags_check_out_the: For more information on Tags check out the
+#en: for_more_information_on_tags_check_out_the: For more information on tags check out the
+for_more_information_on_tags_check_out_the: For more information on tags check out the
 #en: forgot_your_password: Forgot your password?
 forgot_your_password: Forgot your password?
 #en: forgot_your_username: Forgot your username?
@@ -492,6 +492,8 @@ have_something_to_contribute: Have something to contribute?
 help: Help
 #en: home: Home
 home: Home
+#en: homepage_banner_download_msg: Download it now and get started
+homepage_banner_download_msg: Download it now and get started
 #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
 homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
 #en: homepage_banner_signup_prompt: See how it works
@@ -622,6 +624,8 @@ message: Message
 messages_deleted: Messages deleted
 #en: messages_sent: Messages sent!
 messages_sent: Messages sent!
+#en: metro_area: Metro Area
+metro_area: Metro Area
 #en: metro_areas: Metro Areas
 metro_areas: Metro Areas
 #en: metro_area_was_successfully_created: MetroArea was successfully created.
@@ -684,8 +688,8 @@ new_invitation_from: New Invitation from
 new_metro_area: New Metro Area
 #en: new_photo: New photo.
 new_photo: New photo.
-#en: new_photos_&raquo;_multiple_uploader: "New Photos &raquo; Multiple Uploader"
-new_photos_&raquo;_multiple_uploader: "New Photos &raquo; Multiple Uploader"
+#en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
+new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
 #en: new_post: New post
 new_post: New post
 #en: new_post_for_category: New {category}
@@ -722,8 +726,8 @@ notify_of_comments: Notify of comments
 notify_of_friend_requests: Notify of friend requests
 #en: offering_was_successfully_created: Offering was successfully created.
 offering_was_successfully_created: Offering was successfully created.
-#en: on: On
-on: On
+#en: on_commentable: On
+on_commentable: 'On'
 #en: one_day_ago: one day ago
 one_day_ago: one day ago
 #en: one_hour_ago: one hour ago
