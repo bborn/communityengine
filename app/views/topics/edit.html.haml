@@ -1,7 +1,7 @@
 .box
-  %h3= 'Edit Topic'.l
+  %h3= :edit_topic.l
 
 = error_messages_for :topic
 - form_for :topic,:url  => forum_topic_path(@forum, @topic), :html => { :method => :put, :class => "MainForm" } do |f|
   = render :partial => "form", :object => f 
-  %p= submit_tag 'Save Changes'.l, :or => link_to('Cancel'.l, forum_topic_path(@forum, @topic))
+  %p= submit_tag :save_changes.l, :or => link_to(:cancel.l, forum_topic_path(@forum, @topic))

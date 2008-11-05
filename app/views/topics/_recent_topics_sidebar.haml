@@ -1,11 +1,11 @@
-%h2 In the Forums
+%h2= :in_the_forums.l
 %table{:width => '100%'}
   %thead
     %tr 
       %th.quiet
-        Topic
+        =:topic.l
       %th.quiet.centered
-        Posts
+        =:posts.l
   %tbody
     -@topics.each do |topic|
       %tr
@@ -19,4 +19,4 @@
             
         %td.post_count
           %strong= topic.sb_posts_count
-=link_to 'go to the forums &raquo;', forums_path, :class => 'right small'        
+=link_to :go_to_the_forums.l+' &raquo;', forums_path, :class => 'right small'        

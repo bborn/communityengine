@@ -1,6 +1,6 @@
 <tr class="hentry">
   <td style="padding:5px; width:16px;" class="c1">
-    <%= image_tag "clearbits/comment.gif", :class => "icon grey", :title => "No recent activity#{post}", :plugin => "community_engine" %>
+    <%= image_tag "clearbits/comment.gif", :class => "icon grey", :title => :no_recent_activity.l+" #{post}", :plugin => "community_engine" %>
   </td>
   <td class="c2">
     <%= link_to h(post.title), user_post_path(post.user, post), :class => "entry-title", :rel => "bookmark", :target => '_blank' %>

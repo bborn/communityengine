@@ -9,7 +9,7 @@
 
     - if @related.any?
       .box.alt
-        %h3="Related Photos (all members)".l
+        %h3=:related_photos_all_members.l
         .centered
           - @related.each do |photo|
             = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo), {:title => "#{h(photo.description)} from #{photo.user.login}"}
@@ -18,24 +18,24 @@
     .yui-b
       .box.hfeed
         %h3
-          = link_to "#{@user.login}'s photos", user_photos_path(@user)
+          = link_to "#{@user.login}'s "+:photos.l, user_photos_path(@user)
           \:
           = link_to h(@photo.display_name), user_photo_path(@user, @photo)
         - if @is_current_user
           .box.alt
-            = link_to "Make this my profile photo", change_profile_photo_user_path({:id => @user, :photo_id => @photo}), :method => :put
+            = link_to :make_this_my_profile_photo.l, change_profile_photo_user_path({:id => @user, :photo_id => @photo}), :method => :put
             |
-            = link_to "Edit this photo's details", edit_user_photo_path(@user, @photo) if @is_current_user
+            = link_to :edit_this_photo_details.l, edit_user_photo_path(@user, @photo) if @is_current_user
             |
-            = link_to("Delete this photo", user_photo_path(@user, @photo), :method => :delete) + "<br class='clear' />"
+            = link_to(:delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete) + "<br class='clear' />"
 
         %p.centered= image_tag( @photo.public_filename, :class => "polaroid" )
         %p= h @photo.description
         %p= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t.name), :class => 'tag') }.join(" ")
 
       #comments.box.hfeed.comments
-        %h3="Photo Comments".l
-        %h2="Add Your Comment!".l
+        %h3=:photo_comments.l
+        %h2=:add_your_comment.l
         %p= render :partial => 'comments/comment_form', :locals => {:commentable => @photo}
         %a#newest_comment
         = render :partial => 'comments/comment', :collection => @photo.comments

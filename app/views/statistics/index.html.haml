@@ -2,37 +2,37 @@
 
 #yui-main
   .yui-b.main_column.box
-    %h3 Statistics
+    %h3= :statistics.l
     = ziya_chart( activities_chart_statistics_url(:range => params[:range]), {:bgcolor => '#ffffff', :width => 600, :height => 400, :id => "Activities", :swf_path => "/plugin_assets/community_engine/charts/"} )
     %h3
-      Total users:
+      = :total_users.l+":"
       = @total_users
 
     %h3
-      Unactivated users:
+      = :unactivated_users.l+":"
       = @unactivated_users
     %h3
-      New today:
+      = :new_today.l+":"
       = @today_new_users.size
     %ul
       - @today_new_users.each do |user|
         %li= link_to user.login, user_path(user)
 
     %h3
-      New yesterday:
+      = :new_yesterday.l+":"
       = @yesterday_new_users.size
     %ul
       - @yesterday_new_users.each do |user|
         %li= link_to user.login, user_path(user)
 
     %h3
-      Active:
-      = pluralize @active_users_count, 'user'
+      = :active.l+":"
+      = pluralize @active_users_count, :user.l
       (
       = number_to_percentage((@active_users_count/@total_users.to_f)*100, :precision => 1)
-      , 1 month)
+      =", 1 "+:month.l+")"
     %h3
-      Most active (1 month)
+      = :most_active_1_month.l
     %ul
       - @active_users.each do |user|
         %li
@@ -45,18 +45,18 @@
       \% Reporting ZIP:
       = number_to_percentage @percent_reporting_zip, :precision => 1
     %h3
-      Male:
+      =:male.l+":"
       = number_to_percentage @percent_male
-      , Female:
+      =", "+:female.l+":"
       = number_to_percentage @percent_female
     %h3
-      Featured Writers
+      = AppConfig.featured_writer_label
     %ul
       - @featured_writers.each do |w|
         %li= link_to w.login, statistics_user_path(w)
 
     %h3
-      Estimated Writers' Costs this month
+      =:estimated_writers_costs_this_month.l
     $
     = @estimated_payment
     \-

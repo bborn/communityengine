@@ -4,10 +4,10 @@
 #yui-main
   .yui-b.main_column
     .box
-      %h3="Resend your activation e-mail".l
+      %h3=:resend_your_activation_e_mail.l
 
       - form_tag '/resend_activation', :class => 'MainForm' do
-        %label{"for"=>"email"}="Enter your email address:".l
+        %label{"for"=>"email"}=:enter_your_email_address.l
         = text_field_tag 'email', nil, :size => 35
         %p
-          = submit_tag 'Resend my activation e-mail'.l
+          = submit_tag :resend_my_activation_e_mail.l

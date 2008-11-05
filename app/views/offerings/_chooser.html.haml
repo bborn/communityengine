@@ -2,7 +2,7 @@
 - @skills = Skill.find(:all) - @user_skills
 
 .yui-g.box
-  %h3 My Skills
+  %h3= :my_skills
   .yui-u.first
     %ul#skills.sortable
       - @skills.each do |s|
@@ -15,7 +15,7 @@
       = render :partial => 'skill', :collection => @user.offerings.collect{ |o| o.skill }
     %label
       %em
-        Drag and drop up to three skills into the gray area above.
+        = :drag_and_drop_up_to_three_skills_into_the_gray_area_above.l
 
   %script{"type"=>"text/javascript"}
     \//
