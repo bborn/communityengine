@@ -580,8 +580,8 @@ location: Location
 locked: Locked
 #en: locked2: (locked)
 locked2: (locked)
-#en: look_for_a_message_from: Look for a message from:
-look_for_a_message_from: Look for a message from:
+#en: look_for_a_message_from: "Look for a message from:"
+look_for_a_message_from: "Look for a message from:"
 #en: looking_for_most_x: Looking for {link}
 looking_for_most_x: Looking for {link}
 #en: make_moderator: Make moderator

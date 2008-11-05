@@ -10,3 +10,5 @@ If you see a token like "_translation_missing_" save the URL and the context of 
 For Developers
 ==============
 If you rework standard CE and you add a visible item to a view, a flash notice or something else, please use strictly the translation tokens. Place these tokens in base.yml for other translators to give them a chance to complete their translation files.
+
+Keep in mind: if you have special characters or a colon in your translation phrase you have to surround them with double quotes.

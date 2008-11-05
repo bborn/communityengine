@@ -289,7 +289,7 @@
 #en: location: Location
 #en: locked: Locked
 #en: locked2: (locked)
-#en: look_for_a_message_from: Look for a message from:
+#en: look_for_a_message_from: "Look for a message from:"
 #en: looking_for_most_x: Looking for {link}
 #en: make_moderator: Make moderator
 #en: make_my_profile_public: Make my profile public
