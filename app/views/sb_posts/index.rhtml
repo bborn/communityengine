@@ -41,7 +41,7 @@
   </td>
   <td class="body entry-content">
     <p class="topic">
-      <%=:topic.l link_to h(post.forum_name), forum_path(post.forum_id) %> / 
+      <%=:topic.l( link_to(h(post.forum_name), forum_path(post.forum_id)) ) %> / 
       <%= link_to h(post.topic_title), forum_topic_path(post.forum_id, post.topic_id) %>
     </p>
     
