@@ -47,7 +47,7 @@ class Comment < ActiveRecord::Base
   end    
     
   def commentable_name
-    type = Inflector.underscore(self.commentable_type)
+    type = self.commentable_type.underscore
     case type
       when 'user'
         commentable.login

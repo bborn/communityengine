@@ -55,7 +55,7 @@ module ActivityTracker # :nodoc:
     def create_activity_from_self
       activity = Activity.new
       activity.item = self
-      activity.action = Inflector::underscore(self.class)
+      activity.action = self.class.to_s.underscore
       actor_id = self.send( activity_options[:actor].to_s + "_id" )
       activity.user_id = actor_id
       activity.save
