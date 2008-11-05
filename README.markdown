@@ -1,7 +1,7 @@
 CommunityEngine
 ================
 
-Information at: [www.missingmethod.com/projects/community_engine](www.missingmethod.com/projects/community_engine)
+Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
@@ -227,14 +227,13 @@ Contributors - Thanks! :)
 - Alex Nesbitt - forgot password bugs
 - Alejandro Raiczyk - Spanish localization
 - [Fritz Thielemann](http://github.com/fritzek) - German localization, il8n 
-- [Oleg Ivanov](github.com/morhekil) - `acts_as_taggable_on_steroids`
+- [Oleg Ivanov](http://github.com/morhekil) - `acts_as_taggable_on_steroids`
 - David Fugere - French localization
 - Barry Paul - routes refactoring
 
 
-Todo
+To Do
 ----
-
 * Track down `<RangeError ... is recycled object>` warnings on tests (anyone know where that's coming from?)
 
 Bug tracking is via [Lighthouse](http://communityengine.lighthouseapp.com)
