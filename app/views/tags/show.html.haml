@@ -20,14 +20,19 @@
   .yui-b.box
 
     - if @posts.any?
-      #posts
-        %h3=:posts.l
-        %ul.list.page
-          - @posts.each do |post|
-            %li
-              = link_to( truncate(post.display_title, 75), user_post_path(post.user, post), :title => :by.l+" #{post.user.login}" )
-              %p.post_excerpt= truncate_words(post.post, 35, '...' )
-        %h6.all= link_to :all_posts_tagged.l(:tag_name => @tags_raw), tag_path(:id => @tags_raw, :type => 'Post') unless params[:type]
+      -unless params[:type]
+        #posts        
+          %h3=:posts.l
+          %ul.list.page
+            - @posts.each do |post|
+              %li
+                = link_to( truncate(post.display_title, 75), user_post_path(post.user, post), :title => :by.l+" #{post.user.login}" )
+                %p.post_excerpt= truncate_words(post.post, 35, '...' )
+          %h6.all= link_to :all_posts_tagged.l(:tag_name => @tags_raw), tag_path(:id => @tags_raw, :type => 'Post') unless params[:type]
+        -else 
+          .box.first_alt.hfeed= render :partial => 'posts/post', :collection => @posts      
+      
+
 
     - if @photos.any?
       %br.clear
