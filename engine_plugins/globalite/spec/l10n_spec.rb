@@ -159,7 +159,12 @@ describe "After loading languages, Globalite" do
     Locale.set_code 'test'
     Locale.code.should == :"en-*"
   end
-   
+
+  it "should return an array of inflectors it loaded" do
+    inflectors = Globalite.inflectors
+    inflectors.should be_an_instance_of(Hash)
+    inflectors.should include(:'ru')
+  end
 end
 
 describe "When a non-existent language is set" do
@@ -196,7 +201,7 @@ describe "a localization key (in general)" do
     Globalite.language = :en
     Globalite.locale.should == :'en-*'
     
-    :welcome_friend.localize.should == "Welcome mate!"
+    :welcome_friend.localize.should =~ /Welcome( mate|, dude)\!/
     :error_message_exclusion.l.should == "is reserved"
   end
   
@@ -232,7 +237,18 @@ describe "a localization key (in general)" do
     Globalite.current_language = :fr
     :pluralization_with_passed_args.l_with_args({:count => 2}).should == "Heidi a vu trois 2 chevaux dans le parc"
   end
-  
+
+  it "should use custom inflectors for pluralization if loaded" do
+    Globalite.current_language = :ru
+    :singular.l.should == 'vo dvore 1 korova'
+    :plural.l.should == 'vo dvore 22 korovy'
+    :second_plural.l.should == 'vo dvore 75 korov'
+  end
+
+  it "should handle multiple pluralizations in the same string properly" do
+    Globalite.current_language = :fr
+    :double_pluralization.l.should == "2 erreurs et 5 erreurs"
+  end
 end
 
 describe "an alternative location with localization files" do

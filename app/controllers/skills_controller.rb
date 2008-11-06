@@ -7,12 +7,12 @@ class SkillsController < BaseController
   def index
     @skills = Skill.find(:all)
 
-    @users = User.recent.vendors.find :all, :include => :tags, :page => {:current => params[:page]}
+    @users = User.recent.vendors.find :all, :include => :tags, :page => {:current => params[:page], :size => 10}
     
-    @tags = User.tags_count :limit => 10
+    @tags = User.tag_counts :limit => 10
 
     @active_users = User.find(:all,
-      :include => [:posts, :offerings],
+      :include => [:offerings],
       :limit => 5,
       :conditions => ["users.updated_at > ? AND vendor = ?", 5.days.ago, true],
       :order => "users.view_count DESC")
@@ -27,13 +27,8 @@ class SkillsController < BaseController
   # GET /skills/1.xml
   def show
     @skill = Skill.find(params[:id])
-    
-    @active_users = User.find(:all,
-      :include => [:posts, :offerings],
-      :limit => 5,
-      :conditions => ["offerings.skill_id = ? AND users.updated_at > ? AND vendor = ?", @skill.id, 5.days.ago, true],
-      :order => "users.view_count DESC")
-    
+    @users = @skill.users.find(:all, :page => {:current => params[:page], :size => 10})
+        
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @skill.to_xml }
@@ -57,7 +52,7 @@ class SkillsController < BaseController
     
     respond_to do |format|
       if @skill.save
-        flash[:notice] = 'Skill was successfully created.'.l
+        flash[:notice] = :skill_was_successfully_created.l
         
         format.html { redirect_to skill_url(@skill) }
         format.xml do

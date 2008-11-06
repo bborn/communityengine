@@ -1,60 +1,61 @@
 - form_tag user_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
   .box.alt.first_alt
-    %h3="You're editing your profile.".l
-    = link_to "&raquo; " + "Edit your account settings instead?".l, edit_account_user_path(@user)
+    %h3=:you_are_editing_your_profile.l
+    = link_to "&raquo; " + :edit_your_account_settings_instead.l, edit_account_user_path(@user)
   
   = error_messages_for :user
 
-  %p= submit_tag 'Save Changes'.l  
+  %p= submit_tag :save_changes.l  
   .yui-b
     #profile_details.box
-      %h3="Profile Photo".l
+      %h3=:profile_photo.l
       = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
       = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
       %label
-        ="Choose a photo for your profile:".l
+        =:choose_a_photo_for_your_profile.l
       = file_field :avatar, :uploaded_data, :size => "20"
       
-      %h3 Location
+      %h3= :location.l
       = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
 
       %label
-        ="ZIP/Postal code:".l
+        =:zippostal_code.l
       = text_field :user, :zip, :style=>"width:90px"
 
-      %h3="Birthday & Gender".l
+      %h3=:birthday_gender.l
       %fieldset
         %legend
-          ="Gender".l
+          =:gender.l
         %label
           = radio_button :user, :gender, User::MALE
-          ="Male".l
+          =:male.l
         %label
           = radio_button :user, :gender, User::FEMALE
-          ="Female".l
+          =:female.l
 
       %label
-        ="Birthday".l
+        =:birthday.l
         \:
       = date_select :user, :birthday, {:start_year => 1926, :end_year => Time.now.year - 1}
       
   #yui-main
     .yui-b
       .box
-        %h3="About Me".l
+        %h3=:about_me.l
         = text_area :user, :description, :class => "rich_text_editor", :style => "width:100%"
         
       .box.alt
-        ="Tips".l + ":"
+        =:tips.l + ":"
         = render :partial => 'shared/bio_help'
-        Feel free to embed images or videos (
-        %a{"href"=>"faq#images_and_flash", "target"=>"new"} How do I do that?
+        =:feel_free_to_embed_images_or_videos.l + "("
+        %a{"href"=>"faq#images_and_flash", "target"=>"new"} 
+          =:how_do_i_do_that.l
         )
 
       = render :partial => 'offerings/chooser' if @user.vendor?
       
       .box
-        %h3 Tags
+        %h3= :tags.l
         #user_tags
           = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
           #tag_list_auto_complete.auto_complete
@@ -62,18 +63,18 @@
           
           %label
             %em
-              ="You could tag yourself".l
+              =:you_could_tag_yourself.l
               - if @user.vendor?
-                "custom, friendly, local".l
+                =:custom_friendly_local.l
               - else
                 = AppConfig.meta_keywords.split(",")[0..3].join(", ")
               %br
-              ="Tags are comma-separated keywords that describe you.".l
+              =:tags_are_comma_separated_keywords_that_describe_you.l
               %br
-              ="You can browse all content and users on".l
+              =:you_can_browse_all_content_and_users_on.l
               = AppConfig.community_name
-              ="by looking at the".l
-              = link_to "tags page", tags_path
+              =:by_looking_at_the.l
+              = link_to :tags_page.l, tags_path
 
       %p
-        = submit_tag 'Save Changes'
+        = submit_tag :save_changes.l

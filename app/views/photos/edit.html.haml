@@ -1,17 +1,17 @@
 .yui-b
   .box
-    %h3 Help
+    %h3= :help.l
     %p
-      Tags are keywords you use to organize your photos. Separate multiple tags with commas.
-    = link_to 'Show this photo', user_photo_path(@user, @photo)
+      = :tags_are_keywords_you_use_to_organize_your_photos.l
+    = link_to :show_this_photo.l, user_photo_path(@user, @photo)
     |
-    = link_to 'Back to my photos', user_photos_path(@user)
+    = link_to :back_to_my_photos.l, user_photos_path(@user)
 
-  .box.alt= link_to "Delete this photo?", user_photo_path(@user, @photo), :method => :delete, :confirm => "Are you sure you want to delete this photo?"
+  .box.alt= link_to :delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_photo.l
 
 #yui-main
   .yui-b.box
-    %h3 Editing photo
+    %h3= :editing_photo.l
 
     = error_messages_for :photo
     - form_for(:photo, :url => user_photo_path(@user, @photo), :html => { :method => :put, :class => "MainForm" }) do |f|
@@ -20,12 +20,12 @@
       = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
       #tag_list_auto_complete.auto_complete{"class"=>"auto_complete", "id"=>"tag_list_auto_complete"}/
       = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
-      %label Name:
+      %label= :name.l + ":"
       = f.text_field :name, :size => 35
-      %label Description:
+      %label= :description.l + ":"
       = f.text_area :description, :size => "58x5"
 
       %p
-        = submit_tag "Update"
+        = submit_tag :update.l
         or
-        = link_to 'cancel and go back to my photos', user_photos_path(@user)
+        = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)

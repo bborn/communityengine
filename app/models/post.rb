@@ -1,9 +1,4 @@
-require "uri"    
-    
 class Post < ActiveRecord::Base
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
-
   acts_as_commentable
   acts_as_taggable
   acts_as_activity :user, :if => Proc.new{|r| r.is_live?}
@@ -48,18 +43,16 @@ class Post < ActiveRecord::Base
   def self.find_related_to(post, options = {})
     merged_options = options.merge({:limit => 8, 
         :order => 'published_at DESC', 
-        :sql => " AND posts.id != '#{post.id}' AND published_as = 'live' GROUP BY posts.id"})
-    posts = find_tagged_with(post.tags.collect{|t| t.name }, merged_options)
+        :conditions => [ 'posts.id != ? AND published_as = ?', post.id, 'live' ]
+    })
+
+    find_tagged_with(post.tag_list, merged_options).uniq
   end
 
   def to_param
     id.to_s << "-" << (title ? title.gsub(/[^a-z1-9]+/i, '-') : '' )
   end
-  
-  def link_for_rss
-    user_post_url(self.user, self)
-  end
-  
+
   def self.find_recent(options = {:limit => 5})
     self.recent.find :all, :limit => options[:limit]
   end

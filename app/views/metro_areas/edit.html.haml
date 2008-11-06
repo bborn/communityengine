@@ -1,16 +1,16 @@
 .box
-  %h3 Editing Metro Area
+  %h3= :editing_metro_area.l
 
   = error_messages_for :metro_area
   - form_for(:metro_area, :url => metro_area_path(@metro_area), :html => { :method => :put, :class => 'MainForm' }) do |f|
-    %label Country:
+    %label= :country.l + ":"
     = f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name
-    %label State:
+    %label= :state.l + ":"
     = f.collection_select :state_id, State.find(:all), :id, :name, :include_blank => true
-    %label Name:
+    %label= :name.l + ":"
     = f.text_field :name
 
     %p
-      = submit_tag "Update"
+      = submit_tag :update.l
 
-    = link_to 'Back', metro_areas_path
+    = link_to :back.l, metro_areas_path

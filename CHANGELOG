@@ -1,0 +1,4 @@
+= 0.10.7
+
+* Updating CE to be compatible with Rails 2.1.2
+* Lots of il8n refactoring, mainly using symbol tokens instead of string for localization in views. 

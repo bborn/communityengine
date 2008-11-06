@@ -6,6 +6,8 @@ about_me: "Acerca de m\xC3\xAD"
 about_site: Acerca de {site}
 #en: about_you: About You
 about_you: Acerca de usted
+#en: accepted_friendships: Accepted Friendships
+accepted_friendships: Amistades Aceptadas
 #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
 account_activation_error: "Activaci\xC3\xB3n de cuenta fracaso. Tal vez ya est\xC3\xA9 activa. Trate de iniciar una sesi\xC3\xB3n o mande un e-mail a {email} para obtener ayuda."
 #en: account_settings: Account settings
@@ -116,6 +118,8 @@ clipping_comments: Comentarios sobre recortes
 clipping_was_successfully_created: Recorte se ha creado correctamente.
 #en: clippings: Clippings
 clippings: Recortes
+#en: clippings_let_you_to_save_cool_images_from_around_the_web: 
+clippings_let_you_to_save_cool_images_from_around_the_web: Los recortes te permiten guardar las imagenes que te gusten de la Web.
 #en: close_this_message: Close this message
 close_this_message: Cerrar este mensaje
 #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
@@ -143,11 +147,11 @@ create: Crear
 #en: create_an_account: Create an account
 create_an_account: Crea una cuenta
 #en: create_your_account: Create Your Account
-create_your_account: "Cr\xC3\xA9e su cuenta"
+create_your_account: "Crea tu cuenta"
 #en: custom_friendly_local: custom, friendly, local
 custom_friendly_local: adaptable, amigable, localizable
 #en: dashboard: Dashboard
-dashboard: Tablero de instrumentos
+dashboard: panel de control
 #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {site} here
 dashboard_friends: "Una vez que comienza a a\xC3\xB1adir amigos, podra seguir sus actividades en {site} aqu\xC3\xAD."
 #en: date_created: Date Created
@@ -166,6 +170,10 @@ dont_have_an_account: No tiene una cuenta?
 dont_wait_its: No espere! Es
 #en: draft: draft
 draft: borrador
+#en: drag_the_bookmarklet: 
+drag_the_bookmarklet: "Arrastra el bookmarklet (link) ::{site}:: que se encuentra a continuaci\xC3\xB3n a la barra de marcadores de tu navegador."
+#en: drag_this_to_your_bookmarks_toolbar: 
+drag_this_to_your_bookmarks_toolbar: "Arrastra esto a la barra de marcadores:"
 #en: e_mail: E-mail
 e_mail: E-mail
 #en: e_mail_address: E-mail address
@@ -210,8 +218,6 @@ features: "Caracter\xC3\xADsticas"
 female: Mujer
 #en: find_an_expert: Find an Expert
 find_an_expert: Encuentre un experto
-#en: forgot_your_passowrd: Forgot your passowrd?
-forgot_your_passowrd: "\xC2\xBFOlvid\xC3\xB3 su contrase\xC3\xB1a?"
 #en: forgot_your_password: Forgot your password?
 forgot_your_password: "\xC2\xBFOlvid\xC3\xB3 su contrase\xC3\xB1a?"
 #en: forgot_your_username: Forgot your username?
@@ -329,7 +335,7 @@ name: Nombre
 #en: navigation_menu_text: Navigation menu text
 navigation_menu_text: "Texto de navegaci\xC3\xB3n del menu"
 #en: need_to_contact_us: Need to contact us?
-need_to_contact_us: "\xC2\xBFNecesit\xC3\xA1s contactarnos?"
+need_to_contact_us: "\xC2\xBFNecesitas contactarnos?"
 #en: new_ad: New Ad
 new_ad: Nuevo aviso
 #en: new_category: New category
@@ -342,6 +348,10 @@ new_post: Nuevo post
 new_post_for_category: Nueva entrada en {category}
 #en: new_post_text: New Post text
 new_post_text: Nuevo post
+#en: next: 
+next: Siguiente
+#en: no_clippings_yet: 
+no_clippings_yet: "Sin recortes a\xC3\xBAn"
 #en: no_comments_found: "Lo sentimos, pero no se pudo encontrar ning\xC3\xBAn comentario para ese {type}"
 no_comments_found: "Lo sentimos, pero no se pudo encontrar ning\xC3\xBAn comentario para ese {type}"
 #en: no_tags: No tags
@@ -394,6 +404,8 @@ posting_tips: Tips de posteo
 posts: Posts
 #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
 posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Los posts guardados como borrador no aparecer\xC3\xA1n en el blog hasta que los publiques."
+#en: prev: 
+prev: Anterior
 #en: profile: Profile
 profile: Perfil
 #en: profile_comments: Profile Comments
@@ -403,9 +415,9 @@ profile_photo: Foto del perfil
 #en: published: Published
 published: Publicado
 #en: re_type_your_password_to_confirm: "Re-type your password to confirm:"
-re_type_your_password_to_confirm: "Retipee si contrase\xC3\xB1a para confirmar:"
+re_type_your_password_to_confirm: "Retipee su contrase\xC3\xB1a para confirmar:"
 #en: recent: Recent
-recent: receiente
+recent: reciente
 #en: recent_blog_posts: Recent Blog Posts
 recent_blog_posts: "Posts m\xC3\xA1s recientes"
 #en: recent_posts: Recent Posts
@@ -507,7 +519,7 @@ stats: "estad\xC3\xADsticas"
 #en: status: Status
 status: Estado
 #en: tag_does_not_exists: The tag {tag} does not exist
-tag_does_not_exists: Etiquetta no existe
+tag_does_not_exists: Etiquetta {tag} no existe
 #en: tags: Tags
 tags: Etiquetas
 #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
@@ -529,7 +541,7 @@ the_user_was_activated: El usuario fue activado.
 #en: the_user_was_deleted: The user was deleted.
 the_user_was_deleted: El usuario fue borrado.
 #en: this_is_your_dashboard: This is your dashboard.
-this_is_your_dashboard: Este es su tablero de instrumentos.
+this_is_your_dashboard: Este es su panel de control.
 #en: this_topic_is_locked: This topic is locked.
 this_topic_is_locked: "Este tema est\xC3\xA1 bloqueado."
 #en: this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
@@ -541,7 +553,7 @@ tips: "Tips:"
 #en: title: Title
 title: "T\xC3\xADtulo"
 #en: to_get_recommended_content_on_your_dashboard: to start getting recommended content on your dashboard.
-to_get_recommended_content_on_your_dashboard: para empezar a recibir contenidos recomendados en su tablero de instrumentos.
+to_get_recommended_content_on_your_dashboard: para empezar a recibir contenidos recomendados en su panel de control.
 #en: to_start_adding_friends: To start adding friends, you can
 to_start_adding_friends: Para agregar amigos,
 #en: top_writers: Top Writers
@@ -566,6 +578,8 @@ upload_an_image_for_your_post: "Sub\xC3\xAD una imagen para tu post"
 upload_and_continue_to_step_two: Subir y continuar con el paso 2
 #en: uploaded_a_photo: "uploaded a photo:"
 uploaded_a_photo: "public\xC3\xB3 una foto"
+#en: user_clippings: 
+user_clippings: Recortes de {user}
 #en: user_e_mail: "User e-mail:"
 user_e_mail: "E-mail del usuario:"
 #en: user_login: "User login:"
@@ -574,6 +588,8 @@ user_login: "Nombre de usuario:"
 username: Nombre de usuario
 #en: users: Users
 users: Usuarios
+showing_posts: Mostrando mensajes
+showing: Mostrando
 #en: users_blog: "{user}'s Blog"
 users_blog: El blog de {user}
 #en: users_photos: "{user}'s Photos"
@@ -606,10 +622,16 @@ whats_fresh: Que hay de nuevo?
 whats_hot: "Lo m\xC3\xA1s popular"
 #en: whats_popular: What's Popular
 whats_popular: Populares
+#en: when_you_see_an_image_you_like_on_the_web: 
+when_you_see_an_image_you_like_on_the_web: "Cuando veas una im\xC3\xA1gen que te guste en la Web, has clic en el bookmarklet para guardarlo en {site}"
 #en: why_sign_up: Why Sign up?
 why_sign_up: "\xC2\xBFPorque suscribirse?"
 #en: write_a_blog_post: Write a blog post!
 write_a_blog_post: Escriba una entrada!
+#
+want_to_be_popular: ¿Deseas ser popular?
+this_months_best: Lo mejor de este mes
+have_an_account: ¿Tienes una cuenta?
 #en: write_a_message: "Write a message:"
 write_a_message: "Escrib\xC3\xAD un mensaje:"
 #en: write_new_post: Write a '{category}' post
@@ -622,6 +644,8 @@ you_can_browse_all_content_and_users_on: "Pod\xC3\xA9s ver todo el contenido y u
 you_cant_delete_that_user: "No pod\xC3\xA9s borrar ese usuario."
 #en: you_could_tag_yourself: You could tag yourself
 you_could_tag_yourself: "Pod\xC3\xA9s taguearte a vos mismo"
+#en: you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: 
+you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: "No tienes ning\xC3\xBAn recorte. Utiliza el bookmarklet de la derecha para agregar algunos"
 #en: you_have_no_network_activity_yet: You have no network activity yet.
 you_have_no_network_activity_yet: "No ten\xC3\xA9s actividad en la red todav\xC3\xADa."
 #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
@@ -646,3 +670,38 @@ youre_editing_your_profile: "Est\xC3\xA1 editando su perfil."
 youve_been_logged_out_hope_you_come_back_soon: "Ha cerrado sesi\xC3\xB3n. Lo esperamos de vuelta pronto!"
 #en: zippostal_code: "ZIP/Postal code:"
 zippostal_code: "C\xC3\xB3digo postal"
+no_profile_photo: "Perfil sin fotografía, "
+click_here_to_upload_one: "Haz click aquí para subir tu fotografía"
+my_details: "Acerca de mí"
+member_since: "Miembro desde "
+profile_views: "Visitas al perfil"
+invite_a_friend: "Invitar a un amigo"
+view_all_my_friend_requests: "Ver todas las solicitudes de amigos"
+all_comments: "Todos los comentarios"
+you_last_logged_in_on: "Última sesión: "
+you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: "No tienes recortes, usa el marcador de la derecha para agregar algunos"
+no_clippings_yet: "No hay recortes todavía"
+yesterday: "Ayer"
+you_re_editing_your_account: "Estás editando tu cuenta"
+edit_your_user_profile: "Editar tu perfil?"
+joined: "Miembro desde"
+forum: "Foro"
+last_post: "Último mensaje"
+topics: "Temas"
+posts: "Mensajes"
+voices: "Réplicas"
+we_just_sent_an_email_to: "Acabamos de enviarte un correo electrónico a "
+that_will_let_you_activate_your_account: "que te permitirá activar tu cuenta."
+look_for_a_message_from: "Busca un mensaje de "
+youre_editing_your_account: "Estás editando tu cuenta"
+notify_me_when: "Notificarme cuando"
+members_request_friendship: "soliciten ser mis amigos"
+members_comment_on_my_profile_blog_or_photos: "cuando hagan comentarios en mi perfil, blog o fotos."
+send_me_occasional_news_and_updates_from_the: "Envíame noticias y actualizaciones de parte de "
+profile_privacy: "Privacidad del Perfil"
+email_notification: "Notificación de correo."
+make_my_profile_public: "Hacer mi perfil público."
+when_checked_your_profile_will_be_visible_to_anyone: "Cuando esté marcado tu perfil será visible a todos."
+when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "Cuando esté desmarcado tu perfil será visible únicamente a miembros de "
+email_address: "Correo Electrónico"
+confirm_password: "Confirmar Contraseña"

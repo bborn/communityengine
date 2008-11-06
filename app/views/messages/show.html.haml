@@ -1,0 +1,27 @@
+=render :partial => 'messages/sidebar_nav'
+
+#yui-main
+  .yui-b
+    .box
+      %h3
+        = :subject.l + ":"
+        =h @message.subject
+
+      %p
+        = :from.l + ":"
+        = @message.sender.eql?(@user) ? link_to("You", user_path(@user)) : link_to(h(@message.sender.login), user_path(@user))
+
+      %p
+        = :to.l + ":"
+        = @message.recipient.eql?(@user) ? link_to(:to_you.l, user_path(@user)) : link_to(h(@message.recipient.login), user_path(@user))
+
+      
+      %p
+        = :date.l + ":"
+        = @message.created_at.to_s(:long)
+
+      %pre.message_body= h @message.body
+
+      %ul.message_nav
+        - if @message.recipient.eql? @user
+          %li.sent= link_to :reply.l, new_user_message_path(@user, :reply_to => @message)

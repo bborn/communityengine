@@ -1,3 +1,4 @@
+-@section = 'my_clippings'
 - @meta = { :description => "#{@clipping.description}.",:keywords => "#{@clipping.tags.join(', ') if @clipping.tags}"}
 
 .yui-b
@@ -5,51 +6,51 @@
 
   - if @previous || @next
     .box.alt
-      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; Prev ", user_clipping_path(@user, @previous), :class => 'left' if @previous
-      = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />Next &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next
+      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:prev.l} ", user_clipping_path(@user, @previous), :class => 'left' if @previous
+      = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next
 
   - if @related.any?
     .box.alt
-    %h3="Related Clippings (all members)".l
+    %h3=:related_clippings_all_members.l
     .centered
       - @related.each do |clipping|
         = link_to image_tag(clipping.image_uri, :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
 
 #yui-main
   .yui-b
-    .box.hfeed  
-      %h3= "#{link_to "#{@user.login}'s clippings", user_clippings_path(@user)}: #{@clipping.created_at.strftime("%B %d, %Y")}"
+    .box.hfeed
+      %h3= link_to :user_clippings.l(:user =>@user.login)
       .hentry.main
         - if @is_current_user
-          = link_to 'Delete', user_clipping_path(@user, @clipping), :confirm => 'Are you sure?', :method => :delete
+          = link_to :delete.l, user_clipping_path(@user, @clipping), :confirm => :are_you_sure.l, :method => :delete
           |
-          = link_to 'Edit', edit_user_clipping_path(@user, @clipping)
+          = link_to :edit.l, edit_user_clipping_path(@user, @clipping)
 
         %p.centered
           %a{"href"=>"#{h @clipping.url }"}
             %img{:src=>"#{h @clipping.image_uri}", :class=>"clipping", :alt=> "#{h @clipping.description}"}
 
         %p
-          From:    
+          =:from.l
           %a{"href"=>"#{h @clipping.url }", "title"=>"#{h @clipping.description }"}
             = h truncate(@clipping.url, 95)
 
         %p
-          ="Description".l
+          =:description.l
           \:
           =h @clipping.description
-  
+
         %p
-          ="Tags".l
+          =:tags.l
           \:
         %ul.tags
           - @clipping.tags.each do |t|
             %li=link_to( t.name, tag_url(t.name), :rel => 'tag')
 
     #comments.box.hfeed.comments
-      %h3="Clipping Comments".l
-      %h2="Add Your Comment!".l
+      %h3=:clipping_comments.l
+      %h2=:add_your_comment.l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @clipping.comments
-      %span#more_comments_links= more_comments_links(@post)
+      %span#more_comments_links= more_comments_links(@clipping)

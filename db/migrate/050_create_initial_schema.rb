@@ -4,7 +4,7 @@ class CreateInitialSchema < ActiveRecord::Migration
       t.column "name",             :string
       t.column "description",      :string
       t.column "topics_count",     :integer, :default => 0
-      t.column "sb_posts_count",      :integer, :default => 0
+      t.column "sb_posts_count",   :integer, :default => 0
       t.column "position",         :integer
       t.column "description_html", :text
       t.column "owner_type",       :string
@@ -34,8 +34,8 @@ class CreateInitialSchema < ActiveRecord::Migration
       t.column "body_html",  :text
     end
 
-    add_index "sb_posts", ["forum_id", "created_at"], :name => "index_posts_on_forum_id"
-    add_index "sb_posts", ["user_id", "created_at"], :name => "index_posts_on_user_id"
+    add_index "sb_posts", ["forum_id", "created_at"], :name => "index_sb_posts_on_forum_id"
+    add_index "sb_posts", ["user_id", "created_at"], :name => "index_sb_posts_on_user_id"
 
     create_table "topics", :force => true do |t|
       t.column "forum_id",     :integer

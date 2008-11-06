@@ -1,12 +1,12 @@
 .yui-b
-  = render :partial => 'posts/author_profile', :locals => {:user => @user}
+  = render :partial => 'posts/author_profile', :locals => {:user => @user} if @user
 
 #yui-main
   .yui-b#comments.box.hfeed.comments
     %h3
-      = Inflector.underscore(@commentable.class).capitalize
+      = @commentable.class.to_s.underscore.capitalize
       ="Comments".l + " -"
-      = link_to @title, @comments.first.generate_commentable_url(false)
+      = link_to @title, commentable_url(@comments.first)
 
     %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments

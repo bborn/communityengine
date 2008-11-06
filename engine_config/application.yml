@@ -13,6 +13,19 @@ community_locale: "en-US"
 
 # The label you use for 'staff' writers (featured writer, staff, pro, etc.)
 featured_writer_label: 'Featured Writer'
+allow_anonymous_commenting: false
+require_captcha_on_signup: false
+#recaptcha_pub_key: YOUR_PUB_KEY
+#recaptcha_priv_key: YOUR_PRIV_KEY
+# uncomment these keys if you turn captcha on for commenting or signup
+
+# for SEO reasons sometime you should control the robots on how they have to handle your content
+# listing of stuff which points to single posts or entries should normally not been indexed, 
+# but the robot should follow the internal link to show the post
+robots_meta_list_content: 'noindex,follow'
+# the post itself should be indexed; 
+# when links are included and they point to external sites, the robot should not follow
+robots_meta_show_content: 'index,nofollow'
 
 photo:
   missing_thumb: '/plugin_assets/community_engine/images/icon_missing_thumb.gif'

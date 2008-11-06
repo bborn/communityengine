@@ -6,9 +6,9 @@
     .yui-u.first
       %h2= link_to user.login, user_path(user)
       = "from #{user.location}<br/>" if user.metro_area      
-      = friendship.friendship_status.name
+      = friendship.friendship_status.name ? :accepted.l : :denied.l
       \: 
-      requested 
+      =:requested.l
       = time_ago_in_words friendship.created_at
 
     .yui-u= friendship_control_links(friendship) if @is_current_user

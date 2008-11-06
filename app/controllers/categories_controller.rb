@@ -29,7 +29,7 @@ class CategoriesController < BaseController
     @popular_posts = @category.posts.find(:all, :limit => 10, :order => "view_count DESC")
     @popular_polls = Poll.find_popular_in_category(@category)
 
-    @rss_title = "#{AppConfig.community_name}: #{@category.name} posts"
+    @rss_title = "#{AppConfig.community_name}: #{@category.name} "+:posts.l
     @rss_url = formatted_category_path(@category, :rss)
 
     @active_users = User.find(:all,
@@ -42,8 +42,11 @@ class CategoriesController < BaseController
     respond_to do |format|
       format.html # show.rhtml
       format.rss {
-        render_rss_feed_for(@posts, {:feed => {:title => "#{AppConfig.community_name}: #{@category.name} posts", :link => category_url(@category)},
-          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :published_at} })        
+        render_rss_feed_for(@posts, {:feed => {:title => "#{AppConfig.community_name}: #{@category.name} "+:posts.l, :link => category_url(@category)},
+          :item => {:title => :title,
+                    :link =>  Proc.new {|post| user_post_url(post.user, post)},
+                    :description => :post,
+                    :pub_date => :published_at} })
       }
     end
   end 
@@ -65,7 +68,7 @@ class CategoriesController < BaseController
     
     respond_to do |format|
       if @category.save
-        flash[:notice] = 'Category was successfully created.'.l
+        flash[:notice] = :category_was_successfully_created.l
         
         format.html { redirect_to category_url(@category) }
         format.xml do

@@ -6,11 +6,11 @@
         %li.fn
           = link_to comment.user.login, user_path(comment.user), :class => 'url'
         %li.update
-          %a{"href"=>"#{comment.generate_commentable_url}", "rel"=>"bookmark"}
+          %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
             %abbr.published{"title"=>"#{comment.created_at}"}
               = comment.created_at.strftime("%B %d, %Y")
         -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to_remote("Delete".l, {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )
+          %li.delete=link_to_remote("Delete".l, {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
     .entry-content= comment.comment
 
 -else
@@ -23,7 +23,7 @@
         %li.fn
           =link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }
         %li.update
-          %a{"href"=>"#{comment.generate_commentable_url}", "rel"=>"bookmark"}
+          %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
             %abbr.published{"title"=>"#{comment.created_at}"}
               = comment.created_at.strftime("%B %d, %Y")
         -if ( comment.can_be_deleted_by(current_user) )

@@ -1,7 +1,7 @@
 <div class="profile">
 	<div id="yui-main">
 		<div class="yui-b section">
-			<h2>Edit contest</h2>
+			<h2><%= :edit_contest.l %></h2>
 
 			<% form_for(:contest, :url => contest_path(@contest), :html => { :method => :put }) do |f| %>
 								
@@ -26,7 +26,7 @@
 				</p>
 
 				<p>
-					<%= submit_tag "Save" %> or <%= link_to 'cancel and go back to my contests', contests_path %>
+					<%= submit_tag :save.l %> or <%= link_to :cancel_and_go_back_to_my_contests.l, contests_path %>
 				</p>
 			<% end %>
 		</div>

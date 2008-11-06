@@ -1,13 +1,11 @@
 class Comment < ActiveRecord::Base
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
 
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
   belongs_to :recipient, :class_name => "User", :foreign_key => "recipient_id"
   
   validates_presence_of :comment
-  validates_presence_of :recipient
+  # validates_presence_of :recipient
   
   validates_length_of :comment, :maximum => 2000
   
@@ -44,12 +42,12 @@ class Comment < ActiveRecord::Base
     User.find(:all, 
       :conditions => ["users.id NOT IN (?) AND users.notify_comments = ? 
                       AND commentable_id = ? AND commentable_type = ? 
-                      AND comments.created_at > ?", [user_id, recipient_id], true, commentable_id, commentable_type, 2.weeks.ago], 
+                      AND comments.created_at > ?", [user_id, recipient_id.to_i], true, commentable_id, commentable_type, 2.weeks.ago], 
       :include => :comments_as_author, :group => "users.id", :limit => 20)    
   end    
     
   def commentable_name
-    type = Inflector.underscore(self.commentable_type)
+    type = self.commentable_type.underscore
     case type
       when 'user'
         commentable.login
@@ -59,20 +57,11 @@ class Comment < ActiveRecord::Base
         commentable.description || "Clipping from #{commentable.user.login}"
       when 'photo'
         commentable.description || "Photo from #{commentable.user.login}"
+      else 
+        commentable.class.to_s.humanize
     end
   end
-  
-  def generate_commentable_url(comment_anchor = true)
-    url = ''
-    if commentable.respond_to?(:commentable_url)
-      url = commentable.commentable_url(self)
-    else
-      url = polymorphic_url([self.recipient, self.commentable])
-    end
-    url += "#comment_#{self.id}" if comment_anchor
-    url
-  end
-  
+
   def title_for_rss
     "Comment from #{username}"
   end
@@ -86,10 +75,11 @@ class Comment < ActiveRecord::Base
   end
   
   def can_be_deleted_by(person)
-    person && (person.admin? || person.eql?(user) || person.eql?(recipient) )
+    person && (person.admin? || person.id.eql?(user.id) || person.id.eql?(recipient.id) )
   end
   
   def should_notify_recipient?
+    return unless recipient
     return false if recipient.eql?(user)
     return false unless recipient.notify_comments?
     true    

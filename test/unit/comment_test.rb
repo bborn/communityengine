@@ -14,11 +14,7 @@ class CommentTest < Test::Unit::TestCase
     assert comment.can_be_deleted_by(users(:quentin))    
     assert !comment.can_be_deleted_by(users(:florian))
   end
-
-  def test_should_generate_commetable_url
-    assert_equal "#{APP_URL}/quentin/posts/1-Building-communities-is-all-about-love-#comment_1", comments(:quentins_comment_on_his_own_post).generate_commentable_url
-  end
-  
+    
   def test_should_be_created_anonymously
     AppConfig.allow_anonymous_commenting = true
     assert_difference Comment, :count, 1 do
@@ -31,6 +27,12 @@ class CommentTest < Test::Unit::TestCase
     assert_no_difference Comment, :count do
       comment = Comment.create(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
     end
+  end
+  
+  def test_should_be_created_without_recipient
+    assert_difference Comment, :count, 1 do
+      comment = Comment.create!(:comment => 'foo', :user => users(:quentin), :commentable => users(:aaron))
+    end  
   end
 
 

@@ -7,7 +7,7 @@ class Ad < ActiveRecord::Base
   validates_inclusion_of :frequency, :in => FREQUENCIES  
   
   def self.display(location, logged_in = false)
-    return false if location.blank?
+    return nil if location.blank?
     ads = find(:all, 
       :conditions => ["location = ? 
         AND published = ? 
@@ -18,7 +18,7 @@ class Ad < ActiveRecord::Base
     ad = random_weighted(ads.map{|a| [a, a.frequency] })
     ad ? ad.html : ''
   end
-  
+    
   def self.audiences_for(logged_in)
     ["all", "logged_#{logged_in ? 'in' : 'out'}"]
   end

@@ -1,0 +1,32 @@
+#yui-main
+  .yui-b
+    .box
+
+      %h3= :sent_messages.l
+      %table.messages{:border => 0, :width => '100%'}
+        %tbody
+          - if @messages.empty?
+            %tr
+              %td{ :colspan => "4" }
+                = :no_messages
+          - else
+            - @messages.each do |message|
+              %tr
+                %td{:width => '10px'}
+                  %fieldset.inline= check_box_tag "delete[]", message.id
+                %td{:width => '60px'}
+                  .photo= link_to image_tag( message.recipient.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.recipient.login}", "width"=>"50px" ), user_path(message.recipient), :title => "#{message.recipient.login}'s " + :profile.l
+
+                %td
+                  = link_to h(message.subject), user_message_path(@user, message)                  
+                  %br
+                  to:
+                  = link_to h(message.recipient.login), user_path(@user)                  
+                %td.meta{:width => '150px'}= h message.created_at.to_s(:long)
+            
+            
+          %tfoot
+            %tr
+              %td{ :colspan => "4" }
+                -if @messages.any?
+                  %p= submit_tag :delete.l

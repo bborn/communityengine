@@ -2,27 +2,28 @@
 .yui-b
   .box
     - if logged_in?
-      %h3= "Get popular.".l
+      %h3= :get_popular.l
       %ul.list.checks
-        %li=link_to "Write a blog post!".l, new_user_post_path({:user_id => current_user})
+        %li=link_to :write_a_blog_post.l, new_user_post_path({:user_id => current_user})
     - else
-      %h3= "Want to be popular?".l
+      %h3= :want_to_be_popular.l
       %ul.list.checks
         %li
-          %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"} Sign up for an account.
+          %a{:href=>"/signup", :title=>:sign_up_for_a_.l+" #{AppConfig.community_name} "+:account.l}=:sign_up_for_an_account.l
           %br
             %small
-              Have an account? 
-              %a{:href=>"/login", :title=>"Log in to your #{AppConfig.community_name} account"} &raquo;Login
-
+              =:have_an_account.l
+              %a{:href=>"/login", :title=>:log_in_to_your.l+" #{AppConfig.community_name} "+:account.l}
+                &raquo;
+                =:log_in.l
 #yui-main
   .yui-b
     .box.hfeed
       %h3
-        =:recent_posts.l "Recent Posts"
+        =:recent_posts.l
         %ul.subnav
-          %li= "(looking for {link}?)".l :looking_for_most_x, :link => link_to("popular".l, popular_path)
+          %li= :looking_for_most_x.l :link => link_to(:popular.l, popular_path)
 
       = render :partial => 'posts/post', :collection => @posts      
       
-      .pagination=paginating_links @posts if @posts.page_count > 1
+      .pagination=paginating_links @posts

@@ -1,6 +1,4 @@
 class Clipping < ActiveRecord::Base
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
 
   acts_as_commentable
   belongs_to :user
@@ -27,9 +25,11 @@ class Clipping < ActiveRecord::Base
     
   def self.find_related_to(clipping, options = {})
     merged_options = options.merge({:limit => 8, 
-        :order => 'created_at DESC', 
-        :sql => " AND clippings.id != '#{clipping.id}' GROUP BY clippings.id"})
-    clippings = find_tagged_with(clipping.tags.collect{|t| t.name }, merged_options)
+        :order => 'created_at DESC',
+        :conditions => [ 'clippings.id != ?', clipping.id ]
+    })
+
+    find_tagged_with(clipping.tags.collect{|t| t.name }, merged_options).uniq
   end
 
   def self.find_recent(options = {:limit => 5})
@@ -54,15 +54,7 @@ class Clipping < ActiveRecord::Base
   def title_for_rss
     description.empty? ? created_at.to_formatted_s(:long) : description
   end
-  
-  def description_for_rss
-    "<a href='#{link_for_rss}' title='#{title_for_rss}'><img src='#{image_url}' alt='#{description}' /></a>"
-  end
 
-  def link_for_rss
-    user_clipping_url(self.user, self)
-  end
-  
   def has_been_favorited_by(user = nil, remote_ip = nil)
     f = Favorite.find_by_user_or_ip_address(self, user, remote_ip)
     return f

@@ -39,6 +39,7 @@ signup_by_id '/signup/:inviter_id/:inviter_code', :controller => 'users', :actio
 
 forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
 forgot_username '/forgot_username', :controller => 'users', :action => 'forgot_username'  
+resend_activation '/resend_activation', :controller => 'users', :action => 'resend_activation'  
 
 #clippings routes
 connect '/new_clipping', :controller => 'clippings', :action => 'new_clipping'
@@ -81,6 +82,7 @@ resources :homepage_features
 resources :metro_areas
 resources :ads
 resources :contests, :member => { :latest => :get }
+resources :activities
 
 resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :member => { 
     :dashboard => :get,
@@ -101,7 +103,8 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
     :welcome_stylesheet => :get, 
     :welcome_invite => :get,
     :welcome_complete => :get,
-    :statistics => :any
+    :statistics => :any,
+    :deactivate => :put
      } do |user|
   user.resources :friendships, :member => { :accept => :put, :deny => :put }, :collection => { :accepted => :get, :pending => :get, :denied => :get }
   user.resources :photos, :collection => {:swfupload => :post, :slideshow => :get}
@@ -111,6 +114,7 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :invitations
   user.resources :offerings, :collection => {:replace => :put}
   user.resources :favorites, :name_prefix => 'user_'
+  user.resources :messages, :collection => { :delete_selected => :post }  
 end
 resources :votes
 

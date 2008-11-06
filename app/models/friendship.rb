@@ -1,6 +1,4 @@
 class Friendship < ActiveRecord::Base
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
 
   @@daily_request_limit = 12
   cattr_accessor :daily_request_limit
@@ -15,8 +13,10 @@ class Friendship < ActiveRecord::Base
   validates_uniqueness_of :friend_id, :scope => :user_id
   
   # named scopes
-  named_scope :accepted, :conditions => ["friendship_status_id = ?", FriendshipStatus[:accepted].id]
-
+  named_scope :accepted, lambda {
+    #hack: prevents FriendshipStatus[:accepted] from getting called before the friendship_status records are in the db (only matters in testing ENV)
+    {:conditions => ["friendship_status_id = ?", FriendshipStatus[:accepted].id]    }
+  }
   validates_each :user_id do |record, attr, value|
     record.errors.add attr, 'can not be same as friend' if record.user_id.eql?(record.friend_id)
   end
@@ -33,10 +33,6 @@ class Friendship < ActiveRecord::Base
   
   def reverse
     Friendship.find(:first, :conditions => ['user_id = ? and friend_id = ?', self.friend_id, self.user_id])
-  end
-  
-  def generate_url
-    pending_user_friendships_url(self.friend)    
   end
 
   def denied?

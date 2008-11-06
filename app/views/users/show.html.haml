@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@user.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}" }
+- @meta = { :description => "#{@user.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 - @section = @user.eql?(current_user) ? 'my_profile' : 'users'
 - @sidebar_left = true
 
@@ -8,7 +8,7 @@
     ? Hey, you're a
     = AppConfig.community_name
     Pro! You should
-    = link_to "update your profile".l, edit_user_path(@user)
+    = link_to :update_your-profile.l, edit_user_path(@user)
     \! Add your skills, contact info and Web site.
 
 
@@ -19,87 +19,86 @@
   - if @user.description
     #about_me.box
       %h3
-        ="About Me".l
+        =:about_me.l
       %p= @user.description
 
   #friends.box.alt
     %h3
-      ="My Friends".l
+      =:my_friends.l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
-    = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user      
+    = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user
     %br
-    = link_to "&raquo; #{'View all my friend requests'.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
+    = link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
     %br
-    %br    
+    %br
     - @accepted_friendships.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
       %h6.all
-        =link_to 'See All'.l, accepted_user_friendships_path(@user)   
+        =link_to :see_all.l, accepted_user_friendships_path(@user)
 
   - unless @users_comments.empty?
     #photo_comments.yui-g.box.alt
-      %h3="My recent comments".l
+      %h3=:my_recent_comments.l
       - @users_comments.each do |comment|
-        - commentable_url = comment.generate_commentable_url
         %dl.vcard
           %dt.photo
-            = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url
+            = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url(comment)
           %dd.fn
             - if comment.recipient.eql?(comment.commentable)
-              %strong= "To".l+": #{link_to comment.recipient.login, commentable_url}"
+              %strong= :to.l + ": #{link_to comment.recipient.login, commentable_url(comment)}"
             - else
-              %strong= "To".l+": #{link_to comment.recipient.login, user_path(comment.recipient)}"
+              %strong= :to.l + ": #{link_to comment.recipient.login, user_path(comment.recipient)}"
               %br
-              %strong= "On".l+": #{link_to comment.commentable_name, commentable_url} (#{comment.commentable_type})"
+              %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type})"
           %dd
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
-                        
+
   - unless @photo_comments.empty?
     #photo_comments.yui-g.box.alt
-      %h3="Photo Comments".l
+      %h3=:photo_comments.l
       - @photo_comments.each do |comment|
         %dl.vcard
           %dt.photo
-            = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))        
-          %dd.fn= "#{comment.user.login}" + "says".l + ":"
+            = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))
+          %dd.fn= "#{comment.user.login}" + " " + :says.l + ":"
           %dd
             = truncate_words(comment.comment, 10)
             %br
-            = link_to "&raquo; " + "View comment".l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
+            = link_to "&raquo; " + :view_comment.l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
 
 #yui-main
   .yui-b
     - if @photos.empty? and @recent_posts.empty?
       .box.alt.first_alt
         %h3= :small_profile.l :user => @user.login
-      
+
     - unless @photos.empty?
       #photos.box
-        %h3="Photos".l
+        %h3=:photos.l
         - @photos.each do |photo|
           = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
 
-        %h6.all.right= link_to "View all my photos".l, user_photos_path(@user)
-        = "#{link_to("Add a photo".l, new_user_photo_path(@user))}" if @is_current_user
+        %h6.all.right= link_to :view_all_my_photos.l, user_photos_path(@user)
+        = "#{link_to(:add_a_photo.l, new_user_photo_path(@user))}" if @is_current_user
 
     - unless @recent_posts.empty?
       #posts.box
-        %h3="Recent Blog Posts".l
+        %h3=:recent_blog_posts.l
         = render :partial => 'posts/post', :collection => @recent_posts
-        %h6.right.all= link_to "View my blog".l, user_posts_path(@user)        
+        %h6.right.all= link_to :view_my_blog.l, user_posts_path(@user)
 
     - unless @clippings.empty?
       #clippings.box
-        %h3="Clippings".l
+        %h3=:clippings.l
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(@user, clipping)}"}
             %img.clipping.polaroid{"src"=>"#{h clipping.image_uri(:thumb)}", :width => '100', :height => '100'}
-        %h6.all.right= link_to "View all my clippings".l, user_clippings_path(@user)
+        %h6.all.right= link_to :view_all_my_clippings.l, user_clippings_path(@user)
 
     #comments.box.hfeed.comments
-      %h3="Profile Comments".l
-      %h2="Add Your Comment!".l
+      %h3=:profile_comments.l
+      %h2=:add_your_comment.l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @user}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments

@@ -1,24 +1,26 @@
 require 'digest/sha1'
 
-class User < ActiveRecord::Base  
-  include ActionController::UrlWriter
-  default_url_options[:host] = APP_URL.sub('http://', '')
+class User < ActiveRecord::Base
   MALE    = 'M'
   FEMALE  = 'F'
-
+  attr_accessor :password
   attr_protected :admin, :featured, :role_id
   
-  before_save :encrypt_password, :whitelist_attributes
-  before_create :make_activation_code
-  after_create :update_last_login
-  after_create {|user| UserNotifier.deliver_signup_notification(user) }
-  after_save   {|user| UserNotifier.deliver_activation(user) if user.recently_activated? }  
-
-  # Virtual attribute for the unencrypted password
-  attr_accessor :password
   acts_as_taggable  
   acts_as_commentable
+  has_private_messages
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile]  
+  
+  #callbacks  
+  before_save   :encrypt_password, :whitelist_attributes
+  before_create :make_activation_code
+  after_create  :update_last_login
+  after_create {|user| UserNotifier.deliver_signup_notification(user) }
+  after_save   {|user| UserNotifier.deliver_activation(user) if user.recently_activated? }  
+  before_save   :generate_login_slug
+  after_save    :recount_metro_area_users
+  after_destroy :recount_metro_area_users
+
 
   #validation
   validates_presence_of     :login, :email
@@ -35,44 +37,38 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login_slug
   validates_date :birthday, :before => 13.years.ago.to_date  
 
-  has_many :posts, :order => "published_at desc", :dependent => :destroy
-  has_many :photos, :order => "created_at desc", :dependent => :destroy
-  has_many :invitations, :dependent => :destroy
-  has_many :offerings, :dependent => :destroy
+  #associations
+    has_enumerated :role  
+    has_many :posts, :order => "published_at desc", :dependent => :destroy
+    has_many :photos, :order => "created_at desc", :dependent => :destroy
+    has_many :invitations, :dependent => :destroy
+    has_many :offerings, :dependent => :destroy
 
-  has_enumerated :role  
+    #friendship associations
+    has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
+    has_many :accepted_friendships, :class_name => "Friendship", :conditions => ['friendship_status_id = ?', 2]
+    has_many :pending_friendships, :class_name => "Friendship", :conditions => ['initiator = ? AND friendship_status_id = ?', false, 1]
+    has_many :friendships_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', true], :dependent => :destroy
+    has_many :friendships_not_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', false], :dependent => :destroy
+    has_many :occurances_as_friend, :class_name => "Friendship", :foreign_key => "friend_id", :dependent => :destroy
 
-  #friends
-  has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
-  has_many :accepted_friendships, :class_name => "Friendship", :conditions => ['friendship_status_id = ?', 2]
-  has_many :pending_friendships, :class_name => "Friendship", :conditions => ['initiator = ? AND friendship_status_id = ?', false, 1]
-  has_many :friendships_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', true], :dependent => :destroy
-  has_many :friendships_not_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', false], :dependent => :destroy
-  has_many :occurances_as_friend, :class_name => "Friendship", :foreign_key => "friend_id", :dependent => :destroy
+    #forums
+    has_many :moderatorships, :dependent => :destroy
+    has_many :forums, :through => :moderatorships, :order => 'forums.name'
+    has_many :sb_posts, :dependent => :destroy
+    has_many :topics, :dependent => :destroy
+    has_many :monitorships, :dependent => :destroy
+    has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
 
-  #forums
-  has_many :moderatorships, :dependent => :destroy
-  has_many :forums, :through => :moderatorships, :order => 'forums.name'
-  has_many :sb_posts, :dependent => :destroy
-  has_many :topics, :dependent => :destroy
-  has_many :monitorships, :dependent => :destroy
-  has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
-
-  belongs_to :avatar, :class_name => "Photo", :foreign_key => "avatar_id"
-  belongs_to :metro_area
-  belongs_to :state
-  belongs_to :country
-  has_many :comments_as_author, :class_name => "Comment", :foreign_key => "user_id", :order => "created_at desc", :dependent => :destroy
-  has_many :comments_as_recipient, :class_name => "Comment", :foreign_key => "recipient_id", :order => "created_at desc", :dependent => :destroy
-  has_many :clippings, :order => "created_at desc", :dependent => :destroy
-  has_many :favorites, :order => "created_at desc", :dependent => :destroy
-  
-  #callbacks
-  before_save :generate_login_slug
-  after_save    :recount_metro_area_users
-  after_destroy :recount_metro_area_users
-  
-  
+    belongs_to  :avatar, :class_name => "Photo", :foreign_key => "avatar_id"
+    belongs_to  :metro_area
+    belongs_to  :state
+    belongs_to  :country
+    has_many    :comments_as_author, :class_name => "Comment", :foreign_key => "user_id", :order => "created_at desc", :dependent => :destroy
+    has_many    :comments_as_recipient, :class_name => "Comment", :foreign_key => "recipient_id", :order => "created_at desc", :dependent => :destroy
+    has_many    :clippings, :order => "created_at desc", :dependent => :destroy
+    has_many    :favorites, :order => "created_at desc", :dependent => :destroy
+    
   #named scopes
   named_scope :recent, :order => 'users.created_at DESC'
   named_scope :featured, :conditions => ["users.featured_writer = ?", 1]
@@ -82,7 +78,137 @@ class User < ActiveRecord::Base
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
   
+
+  ## Class Methods
+
+  # override activerecord's find to allow us to find by name or id transparently
+  def self.find(*args)
+    if args.is_a?(Array) and args.first.is_a?(String) and (args.first.index(/[a-zA-Z\-_]+/) or args.first.to_i.eql?(0) )
+      find_by_login_slug(args)
+    else
+      super
+    end
+  end
   
+  def self.find_country_and_state_from_search_params(search)
+    country     = Country.find(search['country_id']) if !search['country_id'].blank?
+    state       = State.find(search['state_id']) if !search['state_id'].blank?
+    metro_area  = MetroArea.find(search['metro_area_id']) if !search['metro_area_id'].blank?
+
+    if metro_area && metro_area.country
+      country ||= metro_area.country 
+      state   ||= metro_area.state
+      search['country_id'] = metro_area.country.id if metro_area.country
+      search['state_id'] = metro_area.state.id if metro_area.state      
+    end
+    
+    states  = country ? country.states.sort_by{|s| s.name} : []
+    if states.any?
+      metro_areas = state ? state.metro_areas.all(:order => "name") : []
+    else
+      metro_areas = country ? country.metro_areas : []
+    end    
+    
+    return [metro_areas, states]
+  end
+
+  def self.prepare_params_for_search(params)
+    search = {}.merge(params)
+    search['metro_area_id'] = params[:metro_area_id] || nil
+    search['state_id'] = params[:state_id] || nil
+    search['country_id'] = params[:country_id] || nil
+    search['skill_id'] = params[:skill_id] || nil    
+    search
+  end
+  
+  def self.build_conditions_for_search(search)
+    cond = Caboose::EZ::Condition.new
+
+    cond.append ['activated_at IS NOT NULL ']
+    if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
+      cond.append ['country_id = ?', search['country_id'].to_s]
+    end
+    if search['state_id'] && !search['metro_area_id']
+      cond.append ['state_id = ?', search['state_id'].to_s]
+    end
+    if search['metro_area_id']
+      cond.append ['metro_area_id = ?', search['metro_area_id'].to_s]
+    end
+    if search['login']    
+      cond.login =~ "%#{search['login']}%"
+    end
+    if search['vendor']
+      cond.vendor == true
+    end    
+    if search['description']
+      cond.description =~ "%#{search['description']}%"
+    end    
+    cond
+  end  
+  
+  def self.find_by_activity(options = {})
+    options.reverse_merge! :limit => 30, :require_avatar => true, :since => 7.days.ago   
+    
+    activities = Activity.since(options[:since]).find(:all, 
+      :select => '*, count(*) as count', 
+      :group => "activities.user_id", 
+      :conditions => "#{options[:require_avatar] ? ' users.avatar_id IS NOT NULL' : nil}", 
+      :order => 'count DESC', 
+      :joins => "LEFT JOIN users ON users.id = activities.user_id",
+      :limit => options[:limit]
+      )
+    activities.map{|a| find(a.user_id) }
+  end  
+    
+  def self.find_featured
+    self.featured
+  end
+  
+  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
+  def self.authenticate(login, password)
+    # hide records with a nil activated_at
+    u = find :first, :conditions => ['login = ? and activated_at IS NOT NULL', login]
+    u = find :first, :conditions => ['email = ? and activated_at IS NOT NULL', login] if u.nil?
+    u && u.authenticated?(password) && u.update_last_login ? u : nil
+  end
+  
+  def self.encrypt(password, salt)
+    Digest::SHA1.hexdigest("--#{salt}--#{password}--")
+  end
+
+  def self.paginated_users_conditions_with_search(params)
+    search = prepare_params_for_search(params)
+
+    metro_areas, states = find_country_and_state_from_search_params(search)
+    
+    cond = build_conditions_for_search(search)
+    return cond, search, metro_areas, states
+  end  
+
+  
+  def self.recent_activity(page = {})
+    page.reverse_merge! :size => 10, :current => 1
+    Activity.recent.find(:all, :page => page)      
+  end
+
+  def self.currently_online
+    User.find(:all, :conditions => ["sb_last_seen_at > ?", Time.now.utc-5.minutes])
+  end
+  
+  def self.search(query, options = {})
+    with_scope :find => { :conditions => build_search_conditions(query) } do
+      find :all, options
+    end
+  end
+  
+  def self.build_search_conditions(query)
+    query
+  end  
+  
+  ## End Class Methods  
+  
+  
+  ## Instance Methods
   
   def moderator_of?(forum)
     moderatorships.count(:all, :conditions => ['forum_id = ?', (forum.is_a?(Forum) ? forum.id : forum)]) == 1
@@ -97,10 +223,6 @@ class User < ActiveRecord::Base
     super
   end
 
-  def password_required?
-    true
-  end  
-  
   def recount_metro_area_users
     return unless self.metro_area
     ma = self.metro_area
@@ -110,41 +232,6 @@ class User < ActiveRecord::Base
   
   def to_param
     login_slug
-  end
-
-  # override activerecord's find to allow us to find by name or id transparently
-  def self.find(*args)
-    if args.is_a?(Array) and args.first.is_a?(String) and (args.first.index(/[a-zA-Z\-_]+/) or args.first.to_i.eql?(0) )
-      find_by_login_slug(args)
-    else
-      super
-    end
-  end
-
-  def self.find_active(options = {:limit => 10})
-    commented_on = Comment.find(:all, :limit => 3, :include => :recipient, :conditions => "users.avatar_id is not null and users.featured_writer = 0", :order => "comments.created_at desc").collect{ |c| c.recipient }.uniq
-    posters = Post.find(:all, :limit => 3, :include => :user, :conditions => "users.avatar_id is not null and users.featured_writer = 0" ,:order => "posts.published_at DESC").collect{ |p| p.user }.uniq
-    full = commented_on | posters
-    full.sort{ |a,b| b.updated_at <=> a.updated_at }[0..options[:limit]]
-  end
-    
-  def self.find_by_activity(options = {})
-    options.reverse_merge! :limit => 30, :require_avatar => true, :since => 7.days.ago   
-    
-    activities = Activity.find(
-      :all, 
-      :select => '*, count(*) as count', 
-      :group => "activities.user_id", 
-      :conditions => ["activities.created_at > ? #{options[:require_avatar] ? ' AND users.avatar_id IS NOT NULL' : ''}", options[:since]], 
-      :order => 'count DESC', 
-      :joins => "LEFT JOIN users ON users.id = activities.user_id",
-      :limit => options[:limit]
-      )
-    activities.map{|a| find(a.user_id) }
-  end  
-    
-  def self.find_featured
-    self.featured
   end
   
   def this_months_posts
@@ -168,16 +255,12 @@ class User < ActiveRecord::Base
     end
   end
 
-
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)
-    # hide records with a nil activated_at
-    u = find :first, :conditions => ['login = ? and activated_at IS NOT NULL', login]
-    u = find :first, :conditions => ['email = ? and activated_at IS NOT NULL', login] if u.nil?
-    u && u.authenticated?(password) && u.update_last_login ? u : nil
+  def deactivate
+    return if admin? #don't allow admin deactivation
+    @activated = false
+    update_attributes(:activated_at => nil, :activation_code => make_activation_code)
   end
 
-  # Activates the user in the database.
   def activate
     @activated = true
     update_attributes(:activated_at => Time.now.utc, :activation_code => nil)
@@ -187,17 +270,10 @@ class User < ActiveRecord::Base
     activation_code.nil?
   end
 
-  # Returns true if the user has just been activated.
   def recently_activated?
     @activated
   end
   
-  # Encrypts some data with the salt.
-  def self.encrypt(password, salt)
-    Digest::SHA1.hexdigest("--#{salt}--#{password}--")
-  end
-
-  # Encrypts the password with the user salt
   def encrypt(password)
     self.class.encrypt(password, salt)
   end
@@ -223,11 +299,6 @@ class User < ActiveRecord::Base
     save(false)
   end
   
-
-  def generate_invite_url
-    "#{APP_URL}/signup/#{self.to_param}/#{invite_code}"
-  end
-  
   def valid_invite_code?(code)
     code == invite_code
   end
@@ -237,29 +308,25 @@ class User < ActiveRecord::Base
   end
   
   def location
-    loc = ""
-    loc = self.metro_area.name if self.metro_area
+    metro_area && metro_area.name || ""
   end
   
   def full_location
-    loc = ""
-    (loc += self.metro_area.name) if self.metro_area
-    (loc += ", " + self.country.name) if self.country
-    loc
+    "#{metro_area.name if self.metro_area}#{" , #{self.country.name}" if self.country}"
   end
   
   def reset_password
-     p = newpass(8)
-     self.password = p
-     self.password_confirmation = p
+     new_password = newpass(8)
+     self.password = new_password
+     self.password_confirmation = new_password
      return self.valid?
   end
 
   def newpass( len )
      chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-     newpass = ""
-     1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }
-     return newpass
+     new_password = ""
+     1.upto(len) { |i| new_password << chars[rand(chars.size-1)] }
+     return new_password
   end
   
   def owner
@@ -311,64 +378,22 @@ class User < ActiveRecord::Base
     friendships_initiated_by_me.count(:conditions => ['created_at > ?', Time.now.beginning_of_day]) >= Friendship.daily_request_limit
   end
 
-  def self.paginated_users_conditions_with_search(params)
-    search = {}.merge(params)
-    search['metro_area_id'] = params[:metro_area_id] || nil
-    search['state_id'] = params[:state_id] || nil
-    search['country_id'] = params[:country_id] || nil
-    search['skill_id'] = params[:skill_id] || nil    
-    if search['metro_area_id']
-      metro_area = MetroArea.find(search['metro_area_id'])
-      country = metro_area.country
-      state = metro_area.state 
-      search['country_id'] = country.id if country
-      search['state_id'] = state.id if state
-      metro_areas = metro_area.state ? metro_area.state.metro_areas : metro_area.country.metro_areas
-    end
-    metro_areas ||= search['state_id'].blank? ? [] : State.find(search['state_id']).metro_areas
-    states = search['state_id'].blank? ? [] : State.find(:all)    
-    
-    cond = Caboose::EZ::Condition.new
-    cond.append ['activated_at IS NOT NULL ']
-    if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
-      cond.append ['country_id = ?', search['country_id'].to_s]
-    end
-    if search['state_id'] && !search['metro_area_id']
-      cond.append ['state_id = ?', search['state_id'].to_s]
-    end
-    if search['metro_area_id']
-      cond.append ['metro_area_id = ?', search['metro_area_id'].to_s]
-    end
-    if search['login']    
-      cond.login =~ "%#{search['login']}%"
-    end
-    if search['vendor']
-      cond.vendor == true
-    end    
-    if search['description']
-      cond.description =~ "%#{search['description']}%"
-    end
-    return cond, search, metro_areas, states
-  end
-
   def network_activity(page = {}, since = 1.week.ago)
     page.reverse_merge :size => 10, :current => 1
-    
     ids = self.friends_ids
-    Activity.find(:all, 
-      :conditions => ['user_id in (?) AND created_at > ?', ids, since], 
-      :order => 'created_at DESC',
-      :page => page)      
-  end
-  
-  def self.recent_activity(page = {})
-    page.reverse_merge! :size => 10, :current => 1
     
-    Activity.find(:all, 
-      :order => 'created_at DESC',
+    Activity.recent.since(since).by_users(ids).find(:all, :page => page)          
+  end
+
+  def comments_activity(page = {}, since = 1.week.ago)
+    page.reverse_merge :size => 10, :current => 1
+
+    Activity.recent.since(since).find(:all, 
+      :conditions => ['comments.recipient_id = ? AND activities.user_id != ?', self.id, self.id], 
+      :joins => "LEFT JOIN comments ON comments.id = activities.item_id AND activities.item_type = 'Comment'",
       :page => page)      
   end
-  
+
   def friends_ids
     return [] if accepted_friendships.empty?
     accepted_friendships.map{|fr| fr.friend_id }
@@ -396,55 +421,39 @@ class User < ActiveRecord::Base
   def admin?
     role && role.eql?(Role[:admin])
   end
+
   def moderator?
     role && role.eql?(Role[:moderator])
   end
+
   def member?
     role && role.eql?(Role[:member])
   end
+
+  ## End Instance Methods
   
-
-
-  #from savage beast
-  def self.currently_online
-    User.find(:all, :conditions => ["sb_last_seen_at > ?", Time.now.utc-5.minutes])
-  end
-  def self.search(query, options = {})
-    with_scope :find => { :conditions => build_search_conditions(query) } do
-      find :all, options
-    end
-  end
-  def self.build_search_conditions(query)
-    # query && ['LOWER(display_name) LIKE :q OR LOWER(login) LIKE :q', {:q => "%#{query}%"}]
-    query
-  end
-  
-  def commentable_url(comment)
-    user_url(comment.recipient)    
-  end
-
 
   protected
-  # If you're going to use activation, uncomment this too
-  def make_activation_code
-    self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
-  end
 
-  # before filters
-  def encrypt_password
-    return if password.blank?
-    self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
-    self.crypted_password = encrypt(password)
-  end
+    def make_activation_code
+      self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    end
 
-  def whitelist_attributes
-    self.login = self.login.strip
-    self.description = white_list(self.description )
-    self.stylesheet = white_list(self.stylesheet )
-  end
+    # before filters
+    def encrypt_password
+      return if password.blank?
+      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+      self.crypted_password = encrypt(password)
+    end
+
+    def whitelist_attributes
+      self.login = self.login.strip
+      self.description = white_list(self.description )
+      self.stylesheet = white_list(self.stylesheet )
+    end
   
-  def password_required?
-    crypted_password.blank? || !password.blank?
-  end
+    def password_required?
+      crypted_password.blank? || !password.blank?
+    end
   
 end

@@ -25,12 +25,12 @@ class PostSweeper < ActionController::Caching::Sweeper
     expire_action(:controller => 'base', :action => 'footer_content')
     
     # Also expire the sitemap
-    expire_page(:controller => 'sitemap', :action => 'index')
+    expire_action(:controller => 'sitemap', :action => 'index')
 
     # Expire the category pages
-    expire_page(:controller => 'categories', :action => 'show')
+    expire_action(:controller => 'categories', :action => 'show')
 
-    # Also expire the show pages, incase we just edited a blog entry
-    expire_page(:controller => 'posts', :action => 'show')
+    # Also expire the show pages, in case we just edited a blog entry
+    expire_action(:controller => 'posts', :action => 'show')
   end
 end

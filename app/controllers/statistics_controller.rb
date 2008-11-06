@@ -50,11 +50,11 @@ class StatisticsController < BaseController
 
     chart.add( :axis_category_text, labels )
     
-    chart.add( :series, "Logins", days.collect{|d| @logins[d] || 0 } )
-    chart.add( :series, "Comments", days.collect{|d| @comments[d] || 0 } )    
-    chart.add( :series, "Posts", days.collect{|d| @posts[d] || 0 } )        
-    chart.add( :series, "Photos", days.collect{|d| @photos[d] || 0 } )        
-    chart.add( :series, "Clippings", days.collect{|d| @clippings[d] || 0 } )            
+    chart.add( :series, :logins.l, days.collect{|d| @logins[d] || 0 } )
+    chart.add( :series, :comments.l, days.collect{|d| @comments[d] || 0 } )    
+    chart.add( :series, :posts.l, days.collect{|d| @posts[d] || 0 } )        
+    chart.add( :series, :photos.l, days.collect{|d| @photos[d] || 0 } )        
+    chart.add( :series, :clippings.l, days.collect{|d| @clippings[d] || 0 } )            
     render :xml => chart.to_s    
   end
   

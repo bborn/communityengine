@@ -55,8 +55,8 @@ class TopicsController < BaseController
       @post.topic=@topic
       @post.user = current_user
       # only save topic if post is valid so in the view topic will be a new record if there was an error
+      @topic.tag_list = params[:tag_list] || ''
       @topic.save if @post.valid?
-      @topic.tag_with(params[:tag_list] || '')               
       @post.save
     end
     if !@topic.valid?
@@ -80,8 +80,8 @@ class TopicsController < BaseController
   def update
     @topic.attributes = params[:topic]
     assign_protected
+    @topic.tag_list = params[:tag_list] || ''
     @topic.save!
-    @topic.tag_with(params[:tag_list] || '')                   
     respond_to do |format|
       format.html { redirect_to forum_topic_path(@forum, @topic) }
       format.xml  { head 200 }

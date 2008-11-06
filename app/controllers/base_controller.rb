@@ -8,7 +8,8 @@ class BaseController < ApplicationController
   around_filter :set_locale  
   before_filter :login_from_cookie  
   skip_before_filter :verify_authenticity_token, :only => :footer_content
-    
+  helper_method :commentable_url
+
   caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
   def cache_action?
     !logged_in? && controller_name.eql?('base') && params[:format].blank? 
@@ -34,14 +35,17 @@ class BaseController < ApplicationController
   def site_index    
     @posts = Post.find_recent(:limit => 16)
 
-    @rss_title = "#{AppConfig.community_name} Recent Posts"
+    @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
     @rss_url = rss_url
     respond_to do |format|     
       format.html { get_additional_homepage_data }
       format.rss do
-        render_rss_feed_for(@posts, { :feed => {:title => "#{AppConfig.community_name} Recent Posts", :link => recent_url},
-          :item => {:title => :title, :link => :link_for_rss, :description => :post, :pub_date => :published_at} 
-          })        
+        render_rss_feed_for(@posts, { :feed => {:title => "#{AppConfig.community_name} "+:recent_posts.l, :link => recent_url},
+                              :item => {:title => :title,
+                                        :link =>  Proc.new {|post| user_post_url(post.user, post)},
+                                         :description => :post,
+                                         :pub_date => :published_at}
+          })
       end
     end    
   end
@@ -74,15 +78,15 @@ class BaseController < ApplicationController
   end
   
   def find_user
-    if @user = User.find(params[:user_id] || params[:id])
+    if @user = User.active.find(params[:user_id] || params[:id])
       @is_current_user = (@user && @user.eql?(current_user))
       unless logged_in? || @user.profile_public?
-        flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it.".l
+        flash.now[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
         redirect_to :controller => 'sessions', :action => 'new'        
       end
       return @user
     else
-      flash.now[:error] = "Please log in.".l
+      flash.now[:error] = :please_log_in.l
       redirect_to :controller => 'sessions', :action => 'new'
       return false
     end
@@ -132,6 +136,27 @@ class BaseController < ApplicationController
     @active_contest = Contest.get_active
     @popular_posts = Post.find_popular({:limit => 10})    
     @popular_polls = Poll.find_popular(:limit => 8)
+  end
+
+
+  def commentable_url(comment)
+    if comment.recipient && comment.commentable
+      if comment.commentable_type != "User"
+        polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
+      elsif comment
+        user_url(comment.recipient)+"#comment_#{comment.id}"
+      end
+    elsif comment.commentable
+      polymorphic_url(comment.commentable)+"#comment_#{comment.id}"      
+    end
+  end
+
+  def commentable_comments_url(commentable)
+    if commentable.owner && commentable.owner != commentable
+      "#{polymorphic_path([commentable.owner, commentable])}#comments"      
+    else
+      "#{polymorphic_path(commentable)}#comments"      
+    end    
   end
 
 end

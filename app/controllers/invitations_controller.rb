@@ -1,5 +1,5 @@
 class InvitationsController < BaseController
-  before_filter :require_current_user, :only => [:create, :edit, :update, :destroy]
+  before_filter :require_current_user, :only => [:create, :edit, :update, :destroy, :index]
   # GET /invitations
   # GET /invitations.xml
   def index
@@ -44,7 +44,7 @@ class InvitationsController < BaseController
     
     respond_to do |format|
       if @invitation.save
-        flash[:notice] = 'Invitation was successfully created.'.l
+        flash[:notice] = :invitation_was_successfully_created.l
         format.html { 
           unless params[:welcome]
             redirect_to user_path(@invitation.user) 

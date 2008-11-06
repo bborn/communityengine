@@ -4,21 +4,21 @@
 .yui-b
   .box
     - if logged_in?
-      %h3="Have something to contribute?".l
+      %h3.signup=:have_something_to_contribute.l
       %ul.list.checks
         %li= link_to @category.display_new_post_text() || :write_new_post.l(:category=>@category.name), new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
     - else
-      %h3="Want to post in this category?".l
+      %h3.signup= @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)
       %ul.list.checks
         %li
-          %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"}="Sign up for an account.".l
+          %a{:href=>"/signup", :title=>:sign_up_for_a_.l+" #{AppConfig.community_name} "+:account.l}=:sign_up_for_an_account.l
           %br
             %small
-              ="Have an account? ".l
-              %a{:href=>"/login", :title=>"Log in to your #{AppConfig.community_name} account"}="&raquo; " + "Login".l
+              =:have_an_account.l
+              %a{:href=>"/login", :title=>:log_in_to_your.l+" #{AppConfig.community_name} "+:account.l}="&raquo; " + :login.l
 
   .box.alt
-    %h3="Top Writers".l
+    %h3=:top_writers.l
     - @active_users.each do |user|
       = render :partial => "users/sidebar_user", :locals => {:user => user} 
       
@@ -35,8 +35,8 @@
       %h3      
         =:show_category.l :category => @category.name
         %ul.subnav
-          %li= link_to "Recent".l, category_path(@category), {:class => (params[:popular] ? '' : 'active')}
-          %li= link_to "Popular".l, category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
+          %li= link_to :recent.l, category_path(@category), {:class => (params[:popular] ? '' : 'active')}
+          %li= link_to :popular.l, category_path(:popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
 
       = render :partial => 'posts/post', :collection => @posts      
       - if @posts.page_count > 1

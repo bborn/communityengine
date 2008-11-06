@@ -1,0 +1,11 @@
+Description:
+    Creates a basic but working controller and set of views for private
+    messages.
+
+    Run the following generator, passing the name of the model you created.
+
+Example:
+  
+    ./script/generate private_message_scaffold Message
+
+Further steps are involved after this, see the README for full details.

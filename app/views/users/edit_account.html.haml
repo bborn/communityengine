@@ -1,26 +1,26 @@
 - form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
   .box.alt.first_alt
-    %h3="You're editing your account.".l
-    = link_to "Edit your user profile?", edit_user_path(@user)
+    %h3=:you_are_editing_your_account.l
+    = link_to :edit_your_user_profile.l, edit_user_path(@user)
 
   = error_messages_for :user
 
   .yui-b.box
-    %h3="Username".l
+    %h3=:username.l
     = text_field :user, :login, :size => "28"
 
-    %h3="E-mail Address".l
+    %h3=:e_mail_address.l
     = text_field :user, :email, :size => "28"
 
-    %h3="Password".l
+    %h3=:password.l
     = password_field :user, :password, :size => "28"
 
-    %label="Confirm Password".l
+    %label=:confirm_password.l
     = password_field :user, :password_confirmation, :size => "28"
 
   #yui-main
     .yui-b.box
-      %h3="E-mail Notification".l
+      %h3=:e_mail_notification.l
 
       %fieldset
         %label 
@@ -36,18 +36,18 @@
           =:notify_email_updates.l :site => AppConfig.community_name
           
 
-      %h3="Profile Privacy".l
+      %h3=:profile_privacy.l
 
       %fieldset
         %label
           = check_box :user, :profile_public
-          ="Make my profile public".l
+          =:make_my_profile_public.l
           %br
           %em
-            ="When checked, your profile will be visible to anyone.".l
+            =:when_checked_your_profile_will_be_visible_to_anyone.l
           %br
           %em
-            ="When unchecked, your profile will only be visible to people who are logged in to".l
+            =:when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to.l
             = "#{AppConfig.community_name}."
-      %p= submit_tag 'Save Changes'.l  
+      %p= submit_tag :save_changes.l  
             

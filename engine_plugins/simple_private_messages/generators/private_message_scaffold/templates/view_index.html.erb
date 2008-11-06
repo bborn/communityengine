@@ -1,0 +1,7 @@
+<%% form_tag delete_selected_user_<%= plural_lower_case_name %>_path(@<%= singular_lower_case_parent %>) do %>
+	<%% if params[:mailbox] == "sent" %>
+			<%%= render :partial => "sent" %>
+	<%% else %>
+			<%%= render :partial => "inbox" %>
+		<%% end %>
+<%% end %>
