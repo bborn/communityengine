@@ -1,6 +1,11 @@
 class AdminController < BaseController
   before_filter :admin_required
   
+  def messages
+    @user = current_user
+    @messages = Message.find(:all, :page => {:current => params[:page], :size => 50}, :order => 'created_at DESC')
+  end
+  
   def users
     cond = Caboose::EZ::Condition.new
     if params['login']    
