@@ -1,4 +1,4 @@
-- @meta = { :description => AppConfig.meta_description, :keywords => AppConfig.meta_keywords }
+- @meta = { :description => AppConfig.meta_description, :keywords => AppConfig.meta_keywords, :robots => AppConfig.robots_meta_list_content }
 
 -unless logged_in?
   =render :partial => 'base/homepage_banner_message'
@@ -7,7 +7,7 @@
   .yui-b
     .box.hfeed
       %h3
-        ="Recent Posts".l
+        =:recent_posts.l
       = render :partial => 'posts/post', :collection => @posts
 
 .yui-b  
@@ -16,25 +16,25 @@
     %ul.list.checks
       - Category.find(:all).each do |c|
         %li= link_to c.name, category_path(c)
-      %li= link_to "What's Popular".l, popular_url, {:class => 'popular'}
-      %li= link_to "Find an Expert".l, skills_path, {:class => 'users'}
+      %li= link_to :whats_popular.l, popular_url, {:class => 'popular'}
+      %li= link_to :find_an_expert.l, skills_path, {:class => 'users'}
 
   .box.alt
     %h3
-      = "What's Hot".l
+      = :whats_hot.l
       
     %ul.list.page
       -@popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
     %h6.all
-      %a{:href=>"/popular"}= "SEE ALL".l
+      %a{:href=>"/popular"}= :see_all.l
 
   .box.alt
-    %h3= "Featured Writers".l :staff_writers
+    %h3= AppConfig.featured_writer_label
     -@featured_writers.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
 
   .box.alt
-    %h3= "Active Users".l
+    %h3= :active_users.l
     -@active_users.each do |user|    
       =render :partial => "users/sidebar_user", :locals => {:user => user}      

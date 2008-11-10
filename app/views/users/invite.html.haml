@@ -4,32 +4,32 @@
 
 .yui-b
   .box.alt.first_alt
-    %h3="Spread the word".l
+    %h3=:spread_the_word.l
     %p
-      The more people you invite, the better
+      =:the_more_people_you_invite_the_better.l
       = AppConfig.community_name
-      becomes.
+      =:becomes.l
     %p
-      People who sign up using your invitation will automatically be added as your friends on
+      =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on.l
       = AppConfig.community_name
       \.
 
 #yui-main
   .yui-b
     .box
-      %h3="Invite Your Friends To Join!".l
+      %h3=:invite_your_friends_to_join.l
       - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "MainForm"} ) do |f|
         .right
           %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/application/plaxo'); return false;"}
-            %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>"Add from my address book"}/
+            %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/
         %label{"for"=>"email_addresses"} 
-          Enter e-mail addresses 
-          %em (comma-separated)
+          =:enter_e_mail_addresses.l 
+          %em= :comma_separated.l
         = f.text_area :email_addresses , :rows => "5"
-        %label{"for"=>"message"} Write a message
+        %label{"for"=>"message"}= :write_a_message.l
         = f.text_area :message, :rows => "5"
 
         %p
-          = submit_tag "Send Invitations!"
+          = submit_tag :send_invitations.l
           or
-          = link_to "cancel", user_path(@user)
+          = link_to :cancel.l, user_path(@user)

@@ -4,16 +4,16 @@
 #yui-main
   .yui-b
     .box
-      %h3 Homepage Features
-      = link_to 'New Homepage Feature', new_homepage_feature_path 
+      %h3= :homepage_features.l
+      = link_to :new_homepage_feature.l, new_homepage_feature_path 
 
       %table{:width=>"100%"}
         %tr
-          %th Date
-          %th Title
-          %th Description
-          %th Image
-          %th Actions
+          %th= :date.l
+          %th= :title.l
+          %th= :description.l
+          %th= :image.l
+          %th= :actions.l
 
         - for homepage_feature in @homepage_features
           %tr
@@ -23,8 +23,8 @@
             %td=h truncate(homepage_feature.description, 250)
             %td= image_tag homepage_feature.public_filename(:thumb)
             %td
-              = link_to 'Show', homepage_feature_path(homepage_feature)
+              = link_to :show.l, homepage_feature_path(homepage_feature)
               %br
-              = link_to 'Edit', edit_homepage_feature_path(homepage_feature)
+              = link_to :edit.l, edit_homepage_feature_path(homepage_feature)
               %br
-              = link_to 'Destroy', homepage_feature_path(homepage_feature), :confirm => 'Are you sure?', :method => :delete
+              = link_to :destroy.l, homepage_feature_path(homepage_feature), :confirm => :are_you_sure.l, :method => :delete

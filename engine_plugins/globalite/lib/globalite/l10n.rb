@@ -204,7 +204,7 @@ module Globalite
         elsif plural
           plural
         elsif Object.const_defined?("Inflector")
-          Inflector.pluralize(singular)
+          singular.pluralize
         else
           singular + "s"
         end

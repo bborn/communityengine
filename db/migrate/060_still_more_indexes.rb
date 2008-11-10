@@ -12,7 +12,6 @@ class StillMoreIndexes < ActiveRecord::Migration
     remove_index :posts, :user_id        
     remove_index :tags, :name
     remove_index :taggings, :column => :taggable_id
-
     remove_index :photos, :created_at    
     remove_index :users, :created_at
     remove_index :clippings, :created_at

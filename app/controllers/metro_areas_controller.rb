@@ -28,7 +28,7 @@ class MetroAreasController < BaseController
     
     respond_to do |format|
       if @metro_area.save
-        flash[:notice] = 'MetroArea was successfully created.'.l
+        flash[:notice] = :metro_area_was_successfully_created.l
         
         format.html { redirect_to metro_area_url(@metro_area) }
         format.xml do

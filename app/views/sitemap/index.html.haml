@@ -9,12 +9,12 @@
           - @categories.each do |c|
             %li= link_to c.name, category_path(c)      
       .yui-g
-        %h3 Pages
+        %h3= :pages.l
         %ul
-          %li=link_to 'Home', '/'
-          %li= link_to 'Users', users_path
-          %li= link_to 'About', about_path
-          %li= link_to 'FAQ', faq_path
-          %li=link_to 'Log in', '/login'
+          %li=link_to :home.l, '/'
+          %li= link_to :users.l, users_path
+          %li= link_to :about.l, about_path
+          %li= link_to :faq.l, faq_path
+          %li=link_to :log_in.l, '/login'
           
 

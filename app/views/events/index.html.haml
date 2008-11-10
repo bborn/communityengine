@@ -3,11 +3,11 @@
 .yui-b
   - if @is_admin_user
     .box.alt.first_alt
-      = link_to "Post an event".l, new_event_path
+      = link_to :post_an_event.l, new_event_path
 
   .box
-    %h3 Events
-    Find out where to be, and when to be there.
+    %h3= :events.l
+    = :find_out_where_to_be_and_when_to_be_there.l
 
 #yui-main
   .yui-b
@@ -18,9 +18,9 @@
       - @events.each do |event|
         %h3= event.name
         - if event.user.eql?(current_user)
-          = link_to "Edit this event".l, edit_event_path(event)
+          = link_to :edit_this_event.l, edit_event_path(event)
           |
-          = link_to("Delete this event".l, event_path(event), {:method => :delete, :confirm => 'Permanently delete this event?'.l})
+          = link_to(:delete_this_event.l, event_path(event), {:method => :delete, :confirm => :permanently_delete_this_event.l})
         %strong= h event.time_and_date
         %br
         %strong= h event.location

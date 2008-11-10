@@ -19,7 +19,7 @@ class CommentsController < BaseController
     @commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
 
     unless logged_in? || @commentable && @commentable.owner.profile_public?
-      flash.now[:error] = "This user's profile is not public. You'll need to create an account and log in to access it.".l
+      flash.now[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
       redirect_to :controller => 'sessions', :action => 'new' and return
     end
 
@@ -72,7 +72,7 @@ class CommentsController < BaseController
         @commentable.add_comment @comment
         @comment.send_notifications
 
-        flash.now[:notice] = 'Comment was successfully created.'.l
+        flash.now[:notice] = :comment_was_successfully_created.l
         format.html {
           redirect_to commentable_url(@comment)
         }
@@ -94,9 +94,9 @@ class CommentsController < BaseController
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.can_be_deleted_by(current_user) && @comment.destroy
-      flash.now[:notice] = "The comment was deleted.".l
+      flash.now[:notice] = :the_comment_was_deleted.l
     else
-      flash.now[:error] = "Comment could not be deleted.".l
+      flash.now[:error] = :comment_could_not_be_deleted.l
     end
     respond_to do |format|
       format.html { redirect_to users_url }

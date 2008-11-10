@@ -3,20 +3,20 @@
     - photos.each do |p|
       %li{:id => p.id, :class => @selected.eql?(p.id.to_s) ? 'selected' : ''}
         .thumbs
-          Insert:
+          = :insert.l + ":"
           %br
           %a{:href=>'#_thumb', :onclick=>"select_thumb(this);return false;"}
-            Thumb
+            = :thumb.l
           %a{:href=>'#_medium', :onclick=>"select_thumb(this);return false;"}
-            Medium
+            = :medium.l
           %a{:href=>'#', :onclick=>"select_thumb(this);return false;"}
-            Large
+            = :large.l
           %br
           %a{:href=>'#', :onclick=>"$(this).up('li').removeClassName('selected');return false;", :style => 'float:right; font-size: 10px;'}
-            cancel
+            = :cancel.l
         %a{:href=>'#', :onclick=>"select_image(this);return false;"}
           = image_tag( p.public_filename(:thumb), :alt => p.display_name )
 
 
 - else
-  No Images Uploaded Yet.
+  = :no_images_uploaded_yet.l

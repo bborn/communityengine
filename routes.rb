@@ -30,6 +30,8 @@ connect '/application/:action', :controller => 'base'
 
 # admin routes
 admin_dashboard '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
+admin_dashboard '/admin/users', :controller => 'admin', :action => 'users'
+admin_dashboard '/admin/messages', :controller => 'admin', :action => 'messages'
 
 # sessions routes
 login  '/login',  :controller => 'sessions', :action => 'new'
@@ -82,6 +84,7 @@ resources :homepage_features
 resources :metro_areas
 resources :ads
 resources :contests, :member => { :latest => :get }
+resources :activities
 
 resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :member => { 
     :dashboard => :get,

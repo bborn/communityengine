@@ -1,19 +1,19 @@
 CommunityEngine
 ================
 
-Information at: [www.missingmethod.com/projects/community_engine](www.missingmethod.com/projects/community_engine)
+Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.1
-	- The engines plugin for Rails 2.1: http://railsengines.org/news/2008/06/01/engines-2-1-0-release/
+	- RAILS VERSION 2.1.2
+	- The engines plugin for Rails 2.1.2
 	- ImageMagick 
 	- Several gems:
 	  rmagick
 	  hpricot
 	  htmlentities
 	  RedCloth
-	  rake 0.8.1
+	  rake 0.8.3
 	  haml
 	  aws-s3 (if using s3 for photos)
 
@@ -49,7 +49,7 @@ Getting CommunityEngine Running
 6. Modify your environment.rb as indicated below:
 
 		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.1' unless defined? RAILS_GEM_VERSION
+		RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
 		require File.join(File.dirname(__FILE__), 'boot')
 		require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
@@ -226,15 +226,14 @@ Contributors - Thanks! :)
 - Bryan Kearney - localization
 - Alex Nesbitt - forgot password bugs
 - Alejandro Raiczyk - Spanish localization
-- Fritz Thielemann - German localization
-- [Oleg Ivanov](github.com/morhekil) - `acts_as_taggable_on_steroids`
+- [Fritz Thielemann](http://github.com/fritzek) - German localization, il8n 
+- [Oleg Ivanov](http://github.com/morhekil) - `acts_as_taggable_on_steroids`
 - David Fugere - French localization
 - Barry Paul - routes refactoring
 
 
-Todo
+To Do
 ----
-
 * Track down `<RangeError ... is recycled object>` warnings on tests (anyone know where that's coming from?)
 
 Bug tracking is via [Lighthouse](http://communityengine.lighthouseapp.com)

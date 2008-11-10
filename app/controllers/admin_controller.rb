@@ -1,6 +1,11 @@
 class AdminController < BaseController
   before_filter :admin_required
   
+  def messages
+    @user = current_user
+    @messages = Message.find(:all, :page => {:current => params[:page], :size => 50}, :order => 'created_at DESC')
+  end
+  
   def users
     cond = Caboose::EZ::Condition.new
     if params['login']    
@@ -16,7 +21,7 @@ class AdminController < BaseController
   def activate_user
     user = User.find(params[:id])
     user.activate
-    flash[:notice] = "The user was activated".l
+    flash[:notice] = :the_user_was_activated.l
     redirect_to :action => :users
   end
   

@@ -5,24 +5,24 @@
 		:url => send_to_friend_user_post_path(:user_id => params[:user_id], :id => params[:id]), 
 		:complete => "$('send_to_friend_spinner').hide();", 	
 		500 => "$$('div#send_to_friend div.errors')[0].innerHTML = request.responseText; return false;",
-		:success => "alert('Messages sent!'); Element.toggle('send_to_friend'); Lightbox.hideAll(); return false;"
+		:success => "alert('"+:messages_sent.l+"'); Element.toggle('send_to_friend'); Lightbox.hideAll(); return false;"
 		} ) do -%>
 	  <div class="errors"></div>	
-	  <h3><%= "Send this story to friends".l %> </h3>
+	  <h3><%= :send_this_story_to_friends.l %> </h3>
 	  <p>
-		Enter a message: <br />
-		<input type="text" name="message" value="This story is awesome!" style="width:100%"/>
+		<%= :enter_a_message.l+':' %> <br />
+		<input type="text" name="message" value=<%= :this_story_is_awesome.l %> style="width:100%"/>
 	  </p>
 	  <p>
-		Enter e-mail addresses (comma-separated): <br />
+		<%= :enter_e_mail_addresses_comma_sep.l+':' %> <br />
     <a href="#" onclick="showPlaxoABChooser('emails', '/application/plaxo'); return false;">
-      <img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" />
+      <img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt=<%= :add_from_my_address_book.l %> />
     </a>
 		<br />
 		<input type="text" name="emails" style="width:100%" id="emails"/>
 	  </p>
 	  <p>
-	    <%= submit_tag "Send" %>
+	    <%= submit_tag :send.l %>
 		<%= image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'send_to_friend_spinner'	%>
 	  </p>
 	<% end -%>

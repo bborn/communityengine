@@ -317,7 +317,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_no_difference ActionMailer::Base.deliveries, :length do
       post :resend_activation, :email => users(:quentin).email
       assert_response :success
-      assert_equal "Activation e-mail could not be sent. Perhaps that user is already active?", flash[:notice]
+      assert_equal :activation_email_not_sent_message.l, flash[:notice]
     end    
   end
 
@@ -325,7 +325,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_no_difference ActionMailer::Base.deliveries, :length do
       post :resend_activation, :email => "foo@bar.com"
       assert_response :success
-      assert_equal "Activation e-mail could not be sent. Perhaps that user is already active?", flash[:notice]
+      assert_equal :activation_email_not_sent_message.l, flash[:notice]
     end    
   end
 

@@ -1,6 +1,6 @@
 <div class="col_full">
 	<% rounded do %>
-		<h1>Editing homepage feature</h1>
+		<h1><%= :editing_homepage_feature.l %></h1>
 
 		<%= error_messages_for :homepage_feature %>
 
@@ -12,22 +12,22 @@
 		  </p>
 
 		  <p>
-		    <b>Title</b><br />
+		    <b><%= :title.l %></b><br />
 		    <%= f.text_field :title %>
 		  </p>
 
 		  <p>
-		    <b>Description</b><br />
+		    <b><%= :description.l %></b><br />
 			<%= f.text_area :description, :size => "69x10", :class => "rich_text_editor" %>
 		  </p>
 
 		  <p>
-		    <b>Filename</b><br />
+		    <b><%= :filename.l %></b><br />
 			<%= f.file_field :uploaded_data %>
 		  </p>
 
 		  <p>
-		    <%= submit_tag "Update" %> 	or <%= link_to 'Cancel, and go back to all features', homepage_features_path %>
+		    <%= submit_tag :update.l %> 	or <%= link_to :cancel_and_go_back_to_all_features.l, homepage_features_path %>
 		  </p>
 		<% end %>
 

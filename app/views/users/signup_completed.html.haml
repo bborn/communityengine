@@ -1,9 +1,9 @@
 .box
-  %h3="Go check your e-mail!".l
+  %h3=:go_check_your_e_mail.l
   %ul.list.checks
     %li= :we_just_sent_an_e_mail_to.l :email => @user.email
     %li= :look_for_a_message_from.l :from => AppConfig.community_name
     %li= :see_you_back_here_in_a_short_while.l        
 
   %h3= :no_activation_email.l
-  = link_to(:resend_activation_email_link.l, "/resend_activation?email=#{@user.email}", :method => 'post')
+  = link_to(:resend_activation_email.l, "/resend_activation?email=#{@user.email}", :method => 'post')

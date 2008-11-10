@@ -4,17 +4,17 @@
 #yui-main
   .yui-b
     .box
-      %h3 Contests
-      = link_to 'New contest', new_contest_path
+      %h3= :contests.l
+      = link_to :new_contest.l, new_contest_path
 
       %table{:width=>"100%"}
         %tr
-          %th Date
-          %th Title
-          %th Description
-          %th begin
-          %th end
-          %th Actions
+          %th= :date.l
+          %th= :title.l
+          %th= :description.l
+          %th= :begin.l
+          %th= :end.l
+          %th= :actions.l
 
         - for contest in @contests
           %tr
@@ -24,8 +24,8 @@
             %td=h contest.begin.strftime("%m/%d/%y")
             %td=h contest.end.strftime("%m/%d/%y")
             %td
-              = link_to 'Show', contest_path(contest)
+              = link_to :show.l, contest_path(contest)
               %br
-              = link_to 'Edit', edit_contest_path(contest)
+              = link_to :edit.l, edit_contest_path(contest)
               %br
-              = link_to 'Destroy', contest_path(contest), :confirm => 'Are you sure?', :method => :delete
+              = link_to :destroy.l, contest_path(contest), :confirm => :are_you_sure.l, :method => :delete

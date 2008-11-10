@@ -4,16 +4,16 @@
 <% if params[:q].blank? -%>
   <%= @page_title %>
 <% else -%>
-  <%= 'Searching for'.l %> '<%= h params[:q] %>'
+  <%= :searching_for.l %> '<%= h params[:q] %>'
 <% end -%>
 </h1>
 <p class="subtitle">
   <%= feed_icon_tag @page_title, formatted_search_all_sb_posts_path(:format => 'rss') %>
-  <%= pluralize(@posts.size, "post") %> found
+  <%= pluralize(@posts.size, "post")+' '+:found.l %> 
 </p>
 
 <% if @posts.page_count > 1 -%>
-<div class="pagination"><%= 'Pages:'.l %> <strong><%= paginating_links @posts %></strong></div>
+<div class="pagination"><%= :pages.l %> <strong><%= paginating_links @posts %></strong></div>
 <% end -%>
 
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
@@ -41,7 +41,7 @@
   </td>
   <td class="body entry-content">
     <p class="topic">
-      Topic: <%= link_to h(post.forum_name), forum_path(post.forum_id) %> / 
+      <%=:topic.l( link_to(h(post.forum_name), forum_path(post.forum_id)) ) %> / 
       <%= link_to h(post.topic_title), forum_topic_path(post.forum_id, post.topic_id) %>
     </p>
     
@@ -57,5 +57,5 @@
 <% end %>
 
 <% if @posts.page_count > 1 -%>
-<div class="pagination"><%= 'Pages:'.l %> <strong><%= paginating_links @posts %></strong></div>
+<div class="pagination"><%= :pages.l %> <strong><%= paginating_links @posts %></strong></div>
 <% end -%>

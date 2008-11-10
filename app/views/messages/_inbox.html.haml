@@ -3,26 +3,27 @@
 #yui-main
   .yui-b
     .box
-      %h3 Inbox
+      %h3= :inbox.l
 
       %table.messages{:border => 0, :width => '100%'}
         %tbody
           - if @messages.empty?
             %tr
-              %td{ :colspan => "5" } No messages
+              %td{ :colspan => "5" }
+                = :no_messages.l
           -else
             - @messages.each do |message|
               %tr
                 %td{:width => '10px'}
                   %fieldset.inline= check_box_tag "delete[]", message.id
                 %td{:width => '60px'}
-                  .photo= link_to image_tag( message.sender.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.sender.login}", "width"=>"50px" ), user_path(message.sender), :title => "#{message.sender.login}'s profile"
+                  .photo= link_to image_tag( message.sender.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.sender.login}", "width"=>"50px" ), user_path(message.sender), :title => "#{message.sender.login}'s " + :profile.l
 
                 %td
                   = link_to h(message.subject), user_message_path(@user, message)                  
                   %br
                   from:
-                  = link_to h(message.sender.login), user_path(@user)                  
+                  = link_to h(message.sender.login), user_path(message.sender)                  
                 %td{:width => '20px'}
                   %em
                     = message.read? ? 'read' : 'unread'
@@ -31,5 +32,5 @@
           %tr
             %td{ :colspan => "5" }
               -if @messages.any?
-                %p= submit_tag "Delete selected"
+                %p= submit_tag :delete_selected.l
 

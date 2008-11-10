@@ -4,16 +4,16 @@
 #yui-main
   .yui-b
     .box
-      %h3 Metro Areas
+      %h3= :metro_areas.l
 
       .pagination= paginating_links @metro_areas if @metro_areas.page_count > 1
 
       %table{:width=>"100%"}
         %tr
-          %th Name
-          %th State
-          %th Country
-          %th Actions
+          %th= :name.l
+          %th= :state.l
+          %th= :country.l
+          %th= :actions.l
 
         - for metro_area in @metro_areas
           %tr
@@ -21,8 +21,8 @@
             %td= metro_area.state.name if metro_area.state 
             %td= metro_area.country.name 
             %td
-              = link_to 'Edit', edit_metro_area_path(metro_area) 
+              = link_to :edit.l, edit_metro_area_path(metro_area) 
               |
-              = link_to 'Destroy', metro_area_path(metro_area), :confirm => 'Are you sure?', :method => :delete
+              = link_to :destroy.l, metro_area_path(metro_area), :confirm => :are_you_sure.l, :method => :delete
       
-      = link_to 'New Metro Area', new_metro_area_path
+      = link_to :new_metro_area.l, new_metro_area_path

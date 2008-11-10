@@ -35,7 +35,7 @@ class MessagesController < BaseController
     @message.recipient = User.find_by_login(params[:message][:to])
 
     if @message.save
-      flash[:notice] = "Message sent"
+      flash[:notice] = :message_sent.l
       redirect_to user_messages_path(@user)
     else
       render :action => :new
@@ -49,7 +49,7 @@ class MessagesController < BaseController
           @message = Message.find(:first, :conditions => ["messages.id = ? AND (sender_id = ? OR recipient_id = ?)", id, @user, @user])
           @message.mark_deleted(@user) unless @message.nil?
         }
-        flash[:notice] = "Messages deleted"
+        flash[:notice] = :messages_deleted.l
       end
       redirect_to user_message_path(@user, @messages)
     end

@@ -1,7 +1,7 @@
 module Viewable
   protected
   def update_view_count(viewable)      
-    stack_name = Inflector.underscore(viewable.class).downcase
+    stack_name = viewable.class.to_s.underscore.downcase
         
     if cookies[stack_name].nil?
       cookies[stack_name] = [viewable.id.to_s]      
