@@ -33,7 +33,7 @@ class BaseController < ApplicationController
   end
 
   def site_index    
-    @posts = Post.find_recent(:limit => 16)
+    @posts = Post.find_recent(:limit => 20)
 
     @rss_title = "#{AppConfig.community_name} Recent Posts"
     @rss_url = rss_url
