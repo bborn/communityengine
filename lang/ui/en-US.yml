@@ -624,6 +624,8 @@ message: Message
 messages_deleted: Messages deleted
 #en: messages_sent: Messages sent!
 messages_sent: Messages sent!
+#en: message_sent: Message sent!
+message_sent: Message sent!
 #en: metro_area: Metro Area
 metro_area: Metro Area
 #en: metro_areas: Metro Areas
