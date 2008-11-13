@@ -186,9 +186,9 @@ class User < ActiveRecord::Base
   end  
 
   
-  def self.recent_activity(page = {})
+  def self.recent_activity(page = {}, options = {})
     page.reverse_merge! :size => 10, :current => 1
-    Activity.recent.find(:all, :page => page)      
+    Activity.recent.find(:all, :page => page, *options)      
   end
 
   def self.currently_online
