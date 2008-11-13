@@ -7,9 +7,6 @@
 <% for invitation in @invitations %>
   <tr>
     <td><%= invitation.email_addresses %></td>
-    <td><%= link_to :show.l, user_invitation_path(current_user, invitation) %></td>
-    <td><%= link_to :edit.l, edit_user_invitation_path(current_user, invitation) %></td>
-    <td><%= link_to :destroy.l, user_invitation_path(current_user, invitation), :confirm => :are_you_sure.l, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

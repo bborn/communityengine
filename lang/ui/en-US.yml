@@ -135,7 +135,7 @@ blog_posts: Blog posts
 #en: body_text: Body Text
 body_text: Body Text
 #en: body_text_reqiured: Body Text (required)
-body_text_reqiured: Body Text (required)
+body_text_required: Body Text (required)
 #en: bookmarklet: bookmarklet
 bookmarklet: bookmarklet
 #en: browse_all_members: browse all members
@@ -530,6 +530,8 @@ invite_message: The more people you invite the better {site} becomes.
 invite_some_customers: Invite some customers!
 #en: invite_your_friends_to_join: Invite Your Friends To Join!
 invite_your_friends_to_join: Invite Your Friends To Join!
+#en: invited_friends: invited some friends to join!
+invited_friends: invited some friends to join!
 #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
 is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
 #en: items: Items
