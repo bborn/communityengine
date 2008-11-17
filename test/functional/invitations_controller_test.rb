@@ -52,9 +52,4 @@ class InvitationsControllerTest < Test::Unit::TestCase
     assert assigns(:invitation).errors.on(:email_addresses)
   end
 
-
-  def test_should_show_invitation
-    get :show, :id => 1, :user_id => users(:quentin).id
-    assert_response :success
-  end
 end

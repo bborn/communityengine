@@ -10,16 +10,6 @@ class InvitationsController < BaseController
     end
   end
   
-
-  def show
-    @invitation = Invitation.find(params[:id])
-    
-    respond_to do |format|
-      format.html
-    end
-  end
-  
-
   def new
     @user = current_user
     @invitation = Invitation.new
