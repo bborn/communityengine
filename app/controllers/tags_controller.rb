@@ -36,16 +36,16 @@ class TagsController < BaseController
 
     if params[:type]
       case params[:type]
-        when 'Post'
+        when 'Post', 'posts'
           @pages = @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 20, :current => params[:page]})
           @photos, @users, @clippings = [], [], []
-        when 'Photo'
+        when 'Photo', 'photos'
           @pages = @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
           @posts, @users, @clippings = [], [], []
-        when 'User'
+        when 'User', 'users'
           @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
           @posts, @photos, @clippings = [], [], []
-        when 'Clipping'
+        when 'Clipping', 'clippings'
           @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 10, :current => params[:page]})
           @posts, @photos, @users = [], [], []
       else
