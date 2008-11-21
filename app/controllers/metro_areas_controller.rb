@@ -10,7 +10,7 @@ class MetroAreasController < BaseController
     @metro_area = MetroArea.find(params[:id])
     
     respond_to do |format|
-      format.html # show.rhtml
+      format.html 
       format.xml  { render :xml => @metro_area.to_xml }
     end
   end

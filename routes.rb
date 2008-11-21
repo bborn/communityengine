@@ -84,7 +84,7 @@ resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
 resources :homepage_features
 resources :metro_areas
 resources :ads
-resources :contests, :member => { :latest => :get }
+resources :contests, :collection => { :current => :get }
 resources :activities
 
 resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :member => { 
@@ -120,6 +120,7 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :messages, :collection => { :delete_selected => :post }  
 end
 resources :votes
+resources :invitations
 
 users_posts_in_category '/users/:user_id/posts/category/:category_name', :controller => 'posts', :action => 'index', :category_name => :category_name
 
