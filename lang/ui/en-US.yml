@@ -738,8 +738,8 @@ one_day_ago: one day ago
 one_hour_ago: one hour ago
 #en: one_minute_ago: one minute ago
 one_minute_ago: one minute ago
-#en: optional: (optional)
-optional: (optional)
+#en: optional: optional
+optional: optional
 #en: optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
 optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
 #en: or: or
