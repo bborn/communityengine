@@ -5,4 +5,4 @@
   %ul
     -polls.each do |poll|
       %li
-        =link_to "#{truncate(poll.question, 75)} <small class='quiet'>(#{pluralize poll.votes.count, " + :votes.l +"})</small>", user_post_path(poll.post.user, poll.post)
+        =link_to "#{truncate(poll.question, 75)} <small class='quiet'>(#{:vote_amount.l :count => poll.votes.count})</small>", user_post_path(poll.post.user, poll.post)

@@ -1200,6 +1200,8 @@ vote: Vote
 vote_now: Vote now!
 #en: votes: votes
 votes: votes
+#en: vote_amount: {count} vote(s)
+vote_amount: pluralize{{count}, vote, votes}
 #en: waiting_for: Waiting for
 waiting_for: Waiting for
 #en: walkthrough_complete: You've completed the {site} walk-through. Now you can continue exploring!
