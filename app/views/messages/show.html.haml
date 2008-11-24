@@ -9,11 +9,11 @@
 
       %p
         = :from.l + ":"
-        = @message.sender.eql?(@user) ? link_to("You", user_path(@user)) : link_to(h(@message.sender.login), user_path(@user))
+        = @message.sender.eql?(@user) ? link_to("You", user_path(@user)) : link_to(h(@message.sender.login), user_path(@message.sender))
 
       %p
         = :to.l + ":"
-        = @message.recipient.eql?(@user) ? link_to(:to_you.l, user_path(@user)) : link_to(h(@message.recipient.login), user_path(@user))
+        = @message.recipient.eql?(@user) ? link_to(:to_you.l, user_path(@user)) : link_to(h(@message.recipient.login), user_path(@message.recipient))
 
       
       %p
