@@ -21,7 +21,7 @@
                   = link_to h(message.subject), user_message_path(@user, message)                  
                   %br
                   to:
-                  = link_to h(message.recipient.login), user_path(message.recipient)                  
+                  = link_to h(message.recipient.login), user_path(@user)                  
                 %td.meta{:width => '150px'}= h message.created_at.to_s(:long)
             
             

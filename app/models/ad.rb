@@ -11,7 +11,7 @@ class Ad < ActiveRecord::Base
     ads = find(:all, 
       :conditions => ["location = ? 
         AND published = ? 
-        AND (time_constrained = ? OR (start_date < ? AND end_date > ?))
+        AND (time_constrained = ? OR (start_date > ? AND end_date < ?))
         AND (audience IN (?) )", 
         location.to_s, true, false, Time.now, Time.now, audiences_for(logged_in) ])
         
