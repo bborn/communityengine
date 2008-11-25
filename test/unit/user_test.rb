@@ -185,6 +185,12 @@ class UserTest < Test::Unit::TestCase
     assert_equal "Minneapolis / St. Paul", users(:quentin).full_location    
   end
   
+  def test_should_prohibit_reserved_logins    
+    user = create_user(:login => 'contests')
+    assert !user.valid?
+  end
+  
+  
   protected
     def create_user(options = {})
       User.create({ :login => 'quire', 

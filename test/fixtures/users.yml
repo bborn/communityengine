@@ -45,7 +45,7 @@ kevin:
   role_id: 3
 admin:
   id: 4
-  login: admin
+  login: administrator
   email: admin@example.com
   description: I am all powerful
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
