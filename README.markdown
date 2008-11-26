@@ -154,7 +154,7 @@ Themes
 
 To create a theme:
 
-1. Add a 'themes' directory in RAILS_ROOT with the following structure:
+1. Add a 'themes' directory in `RAILS_ROOT` with the following structure:
 
 		/RAILS_ROOT
 		  /themes
