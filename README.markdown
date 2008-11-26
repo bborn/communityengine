@@ -56,12 +56,12 @@ Getting CommunityEngine Running
 		Rails::Initializer.run do |config|
 		  #resource_hacks required here to ensure routes like /:login_slug work
 		  config.plugins = [:engines, :community\_engine, :white_list, :all]
-		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community\_engine/engine_plugins"]
+		  config.plugin_paths += ["#{RAILS\_ROOT}/vendor/plugins/community\_engine/engine_plugins"]
 
 		  ... Your stuff here ...
 		end
 		# Include your application configuration below
-		require "#{RAILS_ROOT}/vendor/plugins/community\_engine/engine_config/boot.rb"
+		require "#{RAILS\_ROOT}/vendor/plugins/community\_engine/engine_config/boot.rb"
 
 7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
 
@@ -107,7 +107,7 @@ Optional Configuration
 ======================
 
 
-To override the default configuration, create an `application.yml` file in `RAILS_ROOT/config` 
+To override the default configuration, create an `application.yml` file in `RAILS\_ROOT/config` 
 
 The application configuration defined in this file overrides the one defined in `/community\_engine/engine_config/application.yml`
 
@@ -127,10 +127,10 @@ You'll need to change your configuration in your `application.yml` to tell Commu
 Finally, you'll need an S3 account for S3 photo uploading.
 
 
-Create an s3.yml file in RAILS_ROOT/config 
+Create an s3.yml file in RAILS\_ROOT/config 
 ------------------------------------------------------
 
-CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
+CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS\_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
 
 Roles
 ------
@@ -154,9 +154,9 @@ Themes
 
 To create a theme:
 
-1. Add a 'themes' directory in RAILS_ROOT with the following structure:
+1. Add a 'themes' directory in RAILS\_ROOT with the following structure:
 
-		/RAILS_ROOT
+		/RAILS\_ROOT
 		  /themes
 		    /your_theme_name
 		      /views
@@ -166,7 +166,7 @@ To create a theme:
       
 2. Add `theme: your_theme_name` to your `application.yml` (you'll have to restart your server after doing this)
 
-3. Customize your theme. For example: you can create a `/RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
+3. Customize your theme. For example: you can create a `/RAILS\_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
 
 	To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
 
@@ -190,7 +190,7 @@ And in your language file you'd have:
 
 	welcome: "Welcome {name}"
 
-To customize the language, or add a new language create a new yaml file in `RAILS_ROOT/lang/ui`.
+To customize the language, or add a new language create a new yaml file in `RAILS\_ROOT/lang/ui`.
 The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
 The language only file (`es.yml`) will support all locales.
 
@@ -206,7 +206,7 @@ Other notes
 -----------
 
 Any views you create in your app directory will override those in `community\_engine/app/views`. 
-For example, you could create `RAILS_ROOT/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
+For example, you could create `RAILS\_ROOT/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
 
 You can also override CommunityEngine's controllers by creating identically-named controllers in your application's `app/controllers` directory.
 
