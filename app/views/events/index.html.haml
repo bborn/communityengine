@@ -17,7 +17,7 @@
 
       - @events.each do |event|
         %h3= event.name
-        - if event.user.eql?(current_user)
+        - if (logged_in? && event.user.eql?(current_user))
           = link_to :edit_this_event.l, edit_event_path(event)
           |
           = link_to(:delete_this_event.l, event_path(event), {:method => :delete, :confirm => :permanently_delete_this_event.l})
