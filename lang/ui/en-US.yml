@@ -592,8 +592,8 @@ location: Location
 locked: Locked
 #en: locked2: (locked)
 locked2: (locked)
-#en: look_for_a_message_from: "Look for a message from:"
-look_for_a_message_from: "Look for a message from:"
+#en: look_for_a_message_from: "Look for a message from: {from}"
+look_for_a_message_from: "Look for a message from: {from}"
 #en: looking_for_most_x: Looking for {link}
 looking_for_most_x: Looking for {link}
 #en: make_moderator: Make moderator
@@ -710,6 +710,8 @@ new_topic: New topic
 new_yesterday: New yesterday
 #en: next_page: Next page
 next_page: Next page
+#en: no_activation_email: Didn't get an email?
+no_activation_email: Didn't get an email?
 #en: no_comments_found: Sorry, we couldn't find any comments for that {type}
 no_comments_found: Sorry, we couldn't find any comments for that {type}
 #en: no_images_uploaded_yet: No images uploaded yet.
@@ -756,8 +758,8 @@ pending: pending
 pending_friendships: Pending Friendships
 #en: people: People
 people: People
-#en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
-people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
+#en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends.
+people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends.
 #en: permanently_delete_this_clipping: Permanently delete this clipping?
 permanently_delete_this_clipping: Permanently delete this clipping?
 #en: permanently_delete_this_event: Permanently delete this event?
@@ -894,8 +896,8 @@ required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required
 required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
 #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
 required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
-#en: resend_my_activation_e_mail: Resend my activation e-mail
-resend_my_activation_e_mail: Resend my activation e-mail
+#en: resend_activation_email: Resend my activation e-mail
+resend_activation_email: Resend my activation e-mail
 #en: resend_your_activation_e_mail: Resend your activation e-mail
 resend_your_activation_e_mail: Resend your activation e-mail
 #en: reset_my_password: Reset my password
@@ -1222,8 +1224,8 @@ watch_ing: ing
 watch_topic: Watch topic
 #en: watching_topic: Watching topic
 watching_topic: Watching topic
-#en: we_just_sent_an_e_mail_to: "We just sent an e-mail to:"
-we_just_sent_an_e_mail_to: "We just sent an e-mail to:"
+#en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: {email}"
+we_just_sent_an_e_mail_to: "We just sent an e-mail to: {email}"
 #en: we_need_you: We need you
 we_need_you: We need you
 #en: welcome_message: Welcome! {login_link} or {signup_link}
