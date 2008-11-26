@@ -33,7 +33,6 @@ class CommentsController < BaseController
 
       if @comments.to_a.empty?
 
-        #just in case... but i think i have all the cases covered
         render :text => :no_comments_found.l_with_args(:type => comment_type.constantize) and return unless (comment_type == "User" || @commentable.user_id)
         
         if comment_type == "User"
@@ -43,7 +42,6 @@ class CommentsController < BaseController
         else comment_type != "User" 
           @user = @commentable.user
           @title = comment_title
-          #@back_url = ("user_" + )url_for @commentable, :user => @user
           @back_url = url_for([@user, @commentable].compact)
         end
 
