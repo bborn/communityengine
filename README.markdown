@@ -34,11 +34,11 @@ Getting CommunityEngine Running
 
 			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community\_engine
 
-	* Using git, make a shallow clone of the community\_engine repository:
+	* Using git, make a shallow clone of the community_engine repository:
 
-			$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community\_engine
+			$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
 
-	* If you want to keep your community\_engine plugin up to date using git, you'll have to add it as a submodule:
+	* If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:
 	
 			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
 
@@ -55,13 +55,13 @@ Getting CommunityEngine Running
 
 		Rails::Initializer.run do |config|
 		  #resource_hacks required here to ensure routes like /:login_slug work
-		  config.plugins = [:engines, :community\_engine, :white_list, :all]
-		  config.plugin_paths += ["#{RAILS\_ROOT}/vendor/plugins/community\_engine/engine_plugins"]
+		  config.plugins = [:engines, :community_engine, :white_list, :all]
+		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
 
 		  ... Your stuff here ...
 		end
 		# Include your application configuration below
-		require "#{RAILS\_ROOT}/vendor/plugins/community\_engine/engine_config/boot.rb"
+		require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
 
 7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
 
@@ -71,7 +71,7 @@ Getting CommunityEngine Running
 8. Modify your routes.rb as indicated below:
 
 		# Add this after any of your own existing routes, but before the default rails routes: 
-		map.from_plugin :community\_engine
+		map.from_plugin :community_engine
 		# Install the default routes as the lowest priority.
 		map.connect ':controller/:action/:id'
 		map.connect ':controller/:action/:id.:format'     
@@ -93,7 +93,7 @@ Getting CommunityEngine Running
 12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
 
 		$ rake test
-		$ rake community\_engine:test
+		$ rake community_engine:test
 
 13. Start your server and check out your site! 
 
@@ -107,9 +107,9 @@ Optional Configuration
 ======================
 
 
-To override the default configuration, create an `application.yml` file in `RAILS\_ROOT/config` 
+To override the default configuration, create an `application.yml` file in `RAILS_ROOT/config` 
 
-The application configuration defined in this file overrides the one defined in `/community\_engine/engine_config/application.yml`
+The application configuration defined in this file overrides the one defined in `/community_engine/engine_config/application.yml`
 
 This is where you can change commonly used configuration variables, like `AppConfig.community_name`, etc.
 
@@ -120,17 +120,17 @@ Photo Uploading
 
 By default CommunityEngine uses the filesystem to store photos.
 
-To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called `amazon_s3.yml` to the application's root config directory (examples are in `/community\_engine/sample_files`). 
+To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called `amazon_s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`). 
 
 You'll need to change your configuration in your `application.yml` to tell CommunityEngine to use s3 as the photo backend.
 
 Finally, you'll need an S3 account for S3 photo uploading.
 
 
-Create an s3.yml file in RAILS\_ROOT/config 
+Create an s3.yml file in `RAILS_ROOT/config` 
 ------------------------------------------------------
 
-CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS\_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
+CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
 
 Roles
 ------
@@ -144,7 +144,7 @@ Admins and moderators can edit and delete other users posts.
 
 There is a rake task to make an existing user into an admin: 
 
-	rake community\_engine:make_admin email=user@foo.com 
+	rake community_engine:make_admin email=user@foo.com 
 
 (Pass in the e-mail of the user you'd like to make an admin)
 
@@ -154,9 +154,9 @@ Themes
 
 To create a theme:
 
-1. Add a 'themes' directory in RAILS\_ROOT with the following structure:
+1. Add a 'themes' directory in RAILS_ROOT with the following structure:
 
-		/RAILS\_ROOT
+		/RAILS_ROOT
 		  /themes
 		    /your_theme_name
 		      /views
@@ -166,7 +166,7 @@ To create a theme:
       
 2. Add `theme: your_theme_name` to your `application.yml` (you'll have to restart your server after doing this)
 
-3. Customize your theme. For example: you can create a `/RAILS\_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
+3. Customize your theme. For example: you can create a `/RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
 
 	To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
 
@@ -190,7 +190,7 @@ And in your language file you'd have:
 
 	welcome: "Welcome {name}"
 
-To customize the language, or add a new language create a new yaml file in `RAILS\_ROOT/lang/ui`.
+To customize the language, or add a new language create a new yaml file in `RAILS_ROOT/lang/ui`.
 The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
 The language only file (`es.yml`) will support all locales.
 
@@ -205,8 +205,8 @@ Note, this will affect the look and feel of buttons. You can highlight what is l
 Other notes
 -----------
 
-Any views you create in your app directory will override those in `community\_engine/app/views`. 
-For example, you could create `RAILS\_ROOT/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
+Any views you create in your app directory will override those in `community_engine/app/views`. 
+For example, you could create `RAILS_ROOT/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
 
 You can also override CommunityEngine's controllers by creating identically-named controllers in your application's `app/controllers` directory.
 
