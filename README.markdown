@@ -32,13 +32,13 @@ Getting CommunityEngine Running
 
 	* If you're not using git, and just want to add the source files:
 
-			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community_engine
+			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community\_engine
 
-	* Using git, make a shallow clone of the community_engine repository:
+	* Using git, make a shallow clone of the community\_engine repository:
 
-			$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
+			$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community\_engine
 
-	* If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:
+	* If you want to keep your community\_engine plugin up to date using git, you'll have to add it as a submodule:
 	
 			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
 
@@ -55,13 +55,13 @@ Getting CommunityEngine Running
 
 		Rails::Initializer.run do |config|
 		  #resource_hacks required here to ensure routes like /:login_slug work
-		  config.plugins = [:engines, :community_engine, :white_list, :all]
-		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
+		  config.plugins = [:engines, :community\_engine, :white_list, :all]
+		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community\_engine/engine_plugins"]
 
 		  ... Your stuff here ...
 		end
 		# Include your application configuration below
-		require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
+		require "#{RAILS_ROOT}/vendor/plugins/community\_engine/engine_config/boot.rb"
 
 7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
 
@@ -71,7 +71,7 @@ Getting CommunityEngine Running
 8. Modify your routes.rb as indicated below:
 
 		# Add this after any of your own existing routes, but before the default rails routes: 
-		map.from_plugin :community_engine
+		map.from_plugin :community\_engine
 		# Install the default routes as the lowest priority.
 		map.connect ':controller/:action/:id'
 		map.connect ':controller/:action/:id.:format'     
@@ -90,10 +90,10 @@ Getting CommunityEngine Running
 		# Uncomment the :secret if you're not using the cookie session store
 		protect_from_forgery # :secret => 'your_secret_string'
 
-12. Run tests (remember, you must run `rake test` before you can run the community_engine tests): 
+12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
 
 		$ rake test
-		$ rake community_engine:test
+		$ rake community\_engine:test
 
 13. Start your server and check out your site! 
 
@@ -109,7 +109,7 @@ Optional Configuration
 
 To override the default configuration, create an `application.yml` file in `RAILS_ROOT/config` 
 
-The application configuration defined in this file overrides the one defined in `/community_engine/engine_config/application.yml`
+The application configuration defined in this file overrides the one defined in `/community\_engine/engine_config/application.yml`
 
 This is where you can change commonly used configuration variables, like `AppConfig.community_name`, etc.
 
@@ -120,7 +120,7 @@ Photo Uploading
 
 By default CommunityEngine uses the filesystem to store photos.
 
-To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called `amazon_s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`). 
+To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called `amazon_s3.yml` to the application's root config directory (examples are in `/community\_engine/sample_files`). 
 
 You'll need to change your configuration in your `application.yml` to tell CommunityEngine to use s3 as the photo backend.
 
@@ -144,7 +144,7 @@ Admins and moderators can edit and delete other users posts.
 
 There is a rake task to make an existing user into an admin: 
 
-	rake community_engine:make_admin email=user@foo.com 
+	rake community\_engine:make_admin email=user@foo.com 
 
 (Pass in the e-mail of the user you'd like to make an admin)
 
@@ -205,7 +205,7 @@ Note, this will affect the look and feel of buttons. You can highlight what is l
 Other notes
 -----------
 
-Any views you create in your app directory will override those in `community_engine/app/views`. 
+Any views you create in your app directory will override those in `community\_engine/app/views`. 
 For example, you could create `RAILS_ROOT/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
 
 You can also override CommunityEngine's controllers by creating identically-named controllers in your application's `app/controllers` directory.
