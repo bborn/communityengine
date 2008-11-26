@@ -32,7 +32,7 @@ Getting CommunityEngine Running
 
 	* If you're not using git, and just want to add the source files:
 
-			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community_engine
+			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community\_engine
 
 	* Using git, make a shallow clone of the community_engine repository:
 
@@ -90,7 +90,7 @@ Getting CommunityEngine Running
 		# Uncomment the :secret if you're not using the cookie session store
 		protect_from_forgery # :secret => 'your_secret_string'
 
-12. Run tests (remember, you must run `rake test` before you can run the community_engine tests): 
+12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
 
 		$ rake test
 		$ rake community_engine:test
@@ -127,7 +127,7 @@ You'll need to change your configuration in your `application.yml` to tell Commu
 Finally, you'll need an S3 account for S3 photo uploading.
 
 
-Create an s3.yml file in RAILS_ROOT/config 
+Create an s3.yml file in `RAILS_ROOT/config` 
 ------------------------------------------------------
 
 CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
@@ -154,7 +154,7 @@ Themes
 
 To create a theme:
 
-1. Add a 'themes' directory in RAILS_ROOT with the following structure:
+1. Add a 'themes' directory in `RAILS_ROOT` with the following structure:
 
 		/RAILS_ROOT
 		  /themes
