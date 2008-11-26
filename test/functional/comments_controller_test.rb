@@ -120,6 +120,20 @@ class CommentsControllerTest < ActionController::TestCase
     assert_response :success
     assert !assigns(:comments).empty?
   end
+  
+  def test_should_show_empty_comments_index
+    login_as :aaron
+    get :index, :user_id => users(:quentin).to_param
+    assert_response :success
+    assert assigns(:comments).empty?
+  end
+  
+  def test_should_show_empty_comments_index_rss
+    login_as :aaron
+    get :index, :user_id => users(:quentin).to_param, :format => 'rss'
+    assert_response :success
+    assert assigns(:comments).empty?
+  end
 
   def test_should_show_private_comments_index_if_logged_in
     login_as :quentin
