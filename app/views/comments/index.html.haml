@@ -6,7 +6,7 @@
     %h3
       = @commentable.class.to_s.underscore.capitalize
       ="Comments".l + " -"
-      = link_to @title, commentable_url(@comments.first)
+      = link_to @title, @back_url
 
     %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments

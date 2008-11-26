@@ -716,6 +716,8 @@ next_page: Next page
 no_activation_email: Didn't get an email?
 #en: no_comments_found: Sorry, we couldn't find any comments for that {type}
 no_comments_found: Sorry, we couldn't find any comments for that {type}
+#en: no_comments_yet: No one has commented on this {type} yet. You could be the first!
+no_comments_yet: No one has commented on this {type} yet. You could be the first!
 #en: no_images_uploaded_yet: No images uploaded yet.
 no_images_uploaded_yet: No images uploaded yet.
 #en: no_messages: no messages
