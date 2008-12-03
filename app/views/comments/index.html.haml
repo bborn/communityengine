@@ -2,11 +2,13 @@
   = render :partial => 'posts/author_profile', :locals => {:user => @user} if @user
 
 #yui-main
+  - if @comments.empty?
+    #emptycomments= :no_comments_yet.l_with_args(:type => @commentable.class.to_s.underscore)
   .yui-b#comments.box.hfeed.comments
     %h3
       = @commentable.class.to_s.underscore.capitalize
       ="Comments".l + " -"
-      = link_to @title, commentable_url(@comments.first)
+      = link_to @title, @back_url
 
     %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments

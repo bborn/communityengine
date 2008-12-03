@@ -374,8 +374,8 @@ end: end
 end_date: End date
 #en: end_required: end (required)
 end_required: end (required)
-#en: end_tome: End time
-end_tome: End time
+#en: end_time: End time
+end_time: End time
 #en: enter_a_message: Enter a message
 enter_a_message: Enter a message
 #en: enter_e_mail_addresses: Enter e-mail addresses
@@ -716,6 +716,8 @@ next_page: Next page
 no_activation_email: Didn't get an email?
 #en: no_comments_found: Sorry, we couldn't find any comments for that {type}
 no_comments_found: Sorry, we couldn't find any comments for that {type}
+#en: no_comments_yet: No one has commented on this {type} yet. You could be the first!
+no_comments_yet: No one has commented on this {type} yet. You could be the first!
 #en: no_images_uploaded_yet: No images uploaded yet.
 no_images_uploaded_yet: No images uploaded yet.
 #en: no_messages: no messages
