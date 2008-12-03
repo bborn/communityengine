@@ -11,7 +11,6 @@ class BaseControllerTest < Test::Unit::TestCase
   end
     
   def test_should_get_index
-    get :site_index
     assert_response :success
     assert assigns(:active_users)
   end
