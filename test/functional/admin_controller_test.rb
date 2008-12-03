@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class UsersControllerTest < ActionController::TestCase
+class AdminControllerTest < ActionController::TestCase
   fixtures :users, :categories, :roles
 
   def setup
