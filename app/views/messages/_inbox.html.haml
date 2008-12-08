@@ -32,5 +32,7 @@
           %tr
             %td{ :colspan => "5" }
               -if @messages.any?
-                %p= submit_tag :delete_selected.l
+                %p= submit_tag :delete_selected.l              
+      
+      .pagination=paginating_links @messages if @messages.page_count > 1                
 
