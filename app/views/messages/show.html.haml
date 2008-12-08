@@ -20,7 +20,7 @@
         = :date.l + ":"
         = @message.created_at.to_s(:long)
 
-      %pre.message_body= h auto_link(@message.body)
+      %pre.message_body= auto_link(h (@message.body))
 
       %ul.message_nav
         - if @message.recipient.eql? @user
