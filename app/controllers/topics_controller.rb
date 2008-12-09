@@ -41,7 +41,7 @@ class TopicsController < BaseController
       end
       format.rss do
         @posts = @topic.sb_posts.find(:all, :order => 'created_at desc', :limit => 25)
-        render :action => 'show.rxml', :layout => false
+        render :action => 'show.xml.builder', :layout => false
       end
     end
   end

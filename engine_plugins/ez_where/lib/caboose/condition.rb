@@ -145,7 +145,7 @@ module Caboose
           @clauses << cond unless cond.empty?
         elsif condition.instance_of?(Class) and condition.respond_to?(:inheritance_column)
           # see AR::Base#ensure_proper_type                
-          clause([condition.table_name, condition.send(:inheritance_column)]) == Inflector.demodulize(condition.name)        
+          clause([condition.table_name, condition.send(:inheritance_column)]) == condition.name.demodulize      
         elsif condition.kind_of?(ActiveRecord::Base)
           if condition.attributes[condition.class.primary_key].nil?
             condition.attributes.each { |k, v| clause([condition.class.table_name, k]) == v unless v.to_s.empty? } 
