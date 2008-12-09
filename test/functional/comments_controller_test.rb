@@ -109,33 +109,47 @@ class CommentsControllerTest < ActionController::TestCase
 
   def test_should_show_comments_index
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:aaron).to_param
+    get :index, :user_id => users(:aaron).to_param
     assert_response :success
     assert !assigns(:comments).empty?
   end
 
   def test_should_show_comments_index_rss
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:aaron).to_param, :format => 'rss'
+    get :index, :user_id => users(:aaron).to_param, :format => 'rss'
     assert_response :success
     assert !assigns(:comments).empty?
+  end
+  
+  def test_should_show_empty_comments_index
+    login_as :aaron
+    get :index, :user_id => users(:quentin).to_param
+    assert_response :success
+    assert assigns(:comments).empty?
+  end
+  
+  def test_should_show_empty_comments_index_rss
+    login_as :aaron
+    get :index, :user_id => users(:quentin).to_param, :format => 'rss'
+    assert_response :success
+    assert assigns(:comments).empty?
   end
 
   def test_should_show_private_comments_index_if_logged_in
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:privateuser).to_param
+    get :index, :user_id => users(:privateuser).to_param
     assert !assigns(:comments).empty?    
     assert_response :success
   end
 
   def test_should_not_show_private_comments_index
-    get :index, :commentable_type => 'user', :commentable_id => users(:privateuser).to_param
+    get :index, :user_id => users(:privateuser).to_param
     assert_response :redirect
   end
   
   def test_should_show_comments_index_rss_if_logged_in
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:aaron).to_param, :format => 'rss'
+    get :index, :user_id => users(:aaron).to_param, :format => 'rss'
     assert !assigns(:comments).empty?
     assert_response :success
   end

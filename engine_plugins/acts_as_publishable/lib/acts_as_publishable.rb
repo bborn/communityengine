@@ -18,6 +18,9 @@ module Acts
           cattr_accessor :publish_states
           self.publish_states = args.collect{|state| state.to_s.downcase.to_sym }
           include InstanceMethods
+          
+          named_scope :live, :conditions => "published_as = 'live'"
+          named_scope :draft, :conditions => "published_as = 'draft'"
 
 
           class << self
