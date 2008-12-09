@@ -45,7 +45,7 @@ class UsersController < BaseController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = :deactivate_completed.l
-    redirect_to new_session_path    
+    redirect_to login_path
   end
 
   def index

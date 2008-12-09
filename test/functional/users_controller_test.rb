@@ -63,7 +63,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_not_toggle_featured_writer_if_not_admin
     login_as :quentin
     put :toggle_featured, :id => users(:quentin)
-    assert_redirected_to :login_url
+    assert_redirected_to login_url
     assert !users(:quentin).reload.featured_writer?
   end
 
@@ -141,7 +141,7 @@ class UsersControllerTest < ActionController::TestCase
     assert users(:quentin).active?
     put :deactivate, :id => users(:quentin).id
     assert !users(:quentin).reload.active?    
-    assert_redirected_to new_session_path
+    assert_redirected_to login_path
   end
   
   def test_should_not_activate_nil
@@ -207,10 +207,9 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_not_show_edit_form
     login_as :quentin
     get :edit, :id => users(:aaron)
-    assert_redirected_to new_session_path
+    assert_redirected_to login_path
   end
 
-  
   def test_should_update_user
     login_as :quentin
     put :update, :id => users(:quentin), :user => {:login => "changed_login", :email => "changed_email@email.com"}
@@ -230,7 +229,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_not_update_user
     login_as :quentin
     put :update, :id => users(:aaron), :user => {:login => "changed_login", :email => "changed_email@email.com"}
-    assert_redirected_to new_session_path
+    assert_redirected_to login_path
   end
 
   def test_should_destroy_user

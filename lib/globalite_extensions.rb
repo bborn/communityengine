@@ -34,6 +34,11 @@ module SymbolExtensionCustom
     
   end
   alias_method :l, :localize_with_debugging
+  
+  def l_with_args(*args)
+    self.l(*args)
+  end
+  
 end
  
 Symbol.send :include, SymbolExtensionCustom
