@@ -46,7 +46,7 @@ module ActivityTracker # :nodoc:
         include InstanceMethods
       end
       self.activity_options = {:actions => actions}    
-      after_destroy { |record| Activity.destroy_all(:user_id => record.id)
+      after_destroy { |record| Activity.destroy_all(:user_id => record.id) }
     end
         
   end
