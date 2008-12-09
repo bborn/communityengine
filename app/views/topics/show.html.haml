@@ -79,7 +79,7 @@
 
           = avatar_for post.user
           %span.fn
-            = link_to truncate(h(post.user.display_name), 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil)
+            = link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil)
 
           %span.posts= pluralize post.user.sb_posts_count, :post.l
           - if logged_in? && post.editable_by?(current_user)

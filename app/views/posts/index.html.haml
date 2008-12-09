@@ -6,7 +6,7 @@
       %h3=:popular_posts.l
       %ul.list.page
         - @popular_posts.each do |post|
-          %li= link_to truncate(post.title, 75), user_post_path(@user, post)
+          %li= link_to truncate(post.title, :length => 75), user_post_path(@user, post)
 
 #yui-main
   .yui-b

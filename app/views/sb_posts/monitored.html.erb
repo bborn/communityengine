@@ -37,7 +37,7 @@
     </div>
 
     <%= avatar_for post.user %>
-    <span class="fn"><%= link_to truncate(h(post.user.display_name), 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil) %></span>
+    <span class="fn"><%= link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil) %></span>
     <span class="posts"><%= pluralize post.user.sb_posts_count, 'post' %></span>
   </td>
   <td class="body entry-content">

@@ -26,7 +26,7 @@
           %ul.list.page
             - @posts.each do |post|
               %li
-                = link_to( truncate(post.display_title, 75), user_post_path(post.user, post), :title => :by.l+" #{post.user.login}" )
+                = link_to( truncate(post.display_title, :length => 75), user_post_path(post.user, post), :title => :by.l+" #{post.user.login}" )
                 %p.post_excerpt= truncate_words(post.post, 35, '...' )
           %h6.all= link_to :all_posts_tagged.l(:tag_name => @tags_raw), tag_path(:id => @tags_raw, :type => 'Post') unless params[:type]
         -else 
