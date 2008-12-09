@@ -1,0 +1,10 @@
+%label{:for => 'poll_question'} 
+  =:question.l
+=text_field_tag 'poll[question]', nil, :class => 'text'
+
+%label
+  =:choices.l
+%ul.list#options
+  -3.times do
+    %li= text_field_tag 'choices[]', nil, :class => 'text'
+        

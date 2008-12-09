@@ -3,6 +3,7 @@
 * Updating CE for Rails 2.2.2 compatibility
 * Removed Globalite in favor of Rails' native I18n API. Ce localization should work without modification
 * Updated attachment_fu plugin 
+* renamed dozens of files to use Rails 2.0 conventions (ie. .html.haml)
 
 = 0.10.7
 
