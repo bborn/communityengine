@@ -1,5 +1,5 @@
-require 'globalite'
+
 require 'globalite_extensions'
-# Load the base translations, and the app overrides
-Globalite.add_localization_source(File.join(RAILS_ROOT, "vendor", "plugins", "community_engine", "lang", "ui"))
-Globalite.add_localization_source(File.join(RAILS_ROOT, "lang", "ui"))
+I18n.load_path += Dir[ (File.join(RAILS_ROOT, "vendor", "plugins", "community_engine", "lang", "ui", '*.{rb,yml}')) ]
+I18n.load_path += Dir[ (File.join(RAILS_ROOT, "lang", "ui", '*.{rb,yml}')) ]
+I18n.default_locale = "de-DE"

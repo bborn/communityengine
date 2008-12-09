@@ -47,9 +47,9 @@ module BaseHelper
     str << '><div class="box_top"></div>'
     str << "\n"
     
-    concat(str, content.binding)
+    concat(str)
     yield(content)
-    concat('<br class="clear" /><div class="box_bottom"></div></div>', content.binding)
+    concat('<br class="clear" /><div class="box_bottom"></div></div>')
   end
 
 

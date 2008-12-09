@@ -52,7 +52,7 @@ class FileSystemTest < Test::Unit::TestCase
     assert_not_created do
       use_temp_file 'files/rails.png' do |file|
         attachment.filename        = 'rails2.png'
-        attachment.temp_path = File.join(fixture_path, file)
+        attachment.temp_paths.unshift File.join(fixture_path, file)
         attachment.save!
         assert  File.exists?(attachment.full_filename), "#{attachment.full_filename} does not exist"    
         assert !File.exists?(old_filename),             "#{old_filename} still exists"
