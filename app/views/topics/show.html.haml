@@ -50,7 +50,7 @@
   %p.subtitle
     = feed_icon_tag @topic.title, formatted_forum_topic_path(@forum, @topic, :rss)
     = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
-    = ", Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t.name), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
+    = ", Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
   
   %ul.flat.talking
     %li.label= :voices.l+":"

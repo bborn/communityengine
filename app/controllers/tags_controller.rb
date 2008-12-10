@@ -24,7 +24,7 @@ class TagsController < BaseController
   end
   
   def show
-    tag_names = params[:id]
+    tag_names = URI::decode(params[:id])
 
     @tags = Tag.find(:all, :conditions => [ 'name IN (?)', TagList.from(tag_names) ] )
     if @tags.nil? || @tags.empty?

@@ -47,7 +47,7 @@
           - unless @post.tags.empty?
             %ul.tags
               - @post.tags.each do |t|
-                %li=link_to( t.name, tag_url(t.name), :rel => 'tag')
+                %li=link_to( t.name, tag_url(t), :rel => 'tag')
         / entry-content
       / ends hentry
     #comments.box.hfeed.comments

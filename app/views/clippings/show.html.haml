@@ -45,7 +45,7 @@
           \:
         %ul.tags
           - @clipping.tags.each do |t|
-            %li=link_to( t.name, tag_url(t.name), :rel => 'tag')
+            %li=link_to( t.name, tag_url(t), :rel => 'tag')
 
     #comments.box.hfeed.comments
       %h3=:clipping_comments.l
