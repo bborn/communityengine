@@ -6,9 +6,9 @@ class MessagesController < BaseController
     
   def index
     if params[:mailbox] == "sent"
-      @messages = @user.sent_messages
+      @messages = @user.sent_messages.find(:all, :page => {:current => params[:page], :size => 20})
     else
-      @messages = @user.received_messages
+      @messages = @user.received_messages.find(:all, :page => {:current => params[:page], :size => 20})
     end
   end
   
