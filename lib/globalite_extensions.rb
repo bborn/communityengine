@@ -5,6 +5,7 @@ module StringExtension
     else
       sym = underscore.tr(' ', '_').gsub(/[^a-z0-9_]+/i, '').to_sym
     end
+    args << {:default => self}
       
     if AppConfig.show_localization_keys_for_debugging
       # wrap in a span to show the localization key

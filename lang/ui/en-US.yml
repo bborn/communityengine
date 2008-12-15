@@ -1,4 +1,4 @@
-en-US:
+en:
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  a few seconds ago
   #en: about: About
@@ -262,7 +262,7 @@ en-US:
   #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
   dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
   #en: date: Date
-  date: Date
+  date_title: Date
   #en: date_created: Date Created
   date_created: Date Created
   #en: date_published: Date Published
