@@ -6,7 +6,7 @@
 
   - if @previous || @next
     .box.alt
-      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:prev.l} ", user_clipping_path(@user, @previous), :class => 'left' if @previous
+      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ", user_clipping_path(@user, @previous), :class => 'left' if @previous
       = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next
 
   - if @related.any?
@@ -14,7 +14,7 @@
     %h3=:related_clippings_all_members.l
     .centered
       - @related.each do |clipping|
-        = link_to image_tag(clipping.image_uri, :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
+        = link_to image_tag(clipping.image_uri(:thumb), :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
 
 #yui-main
   .yui-b

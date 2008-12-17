@@ -709,6 +709,8 @@ en:
   new_topic: New topic
   #en: new_yesterday: New yesterday
   new_yesterday: New yesterday
+  #en: next: next
+  next: next
   #en: next_page: Next page
   next_page: Next page
   #en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
@@ -823,6 +825,8 @@ en:
   preview: Preview
   #en: previewing_your_post: Previewing your post
   previewing_your_post: Previewing your post
+  #en: previous: previous
+  previous: previous
   #en: print: Print
   print: Print
   #en: print_this_story: "Print this story"
