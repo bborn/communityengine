@@ -1,18 +1,8 @@
 require 'tlsmail'
 Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)    
 
-God::Contacts::Email.message_settings = {
-  :from => 'god@<%= "#{application}" %>.com'
-}    
-God::Contacts::Email.server_settings = {
-  :address => "smtp.gmail.com",
-  :port => 587,
-  :authentication => :plain,
-  :user_name => "bruno.bornsztein@gmail.com",
-  :password => "vbnvbn"
-}    
 God.contact(:email) do |c|
-  c.name = 'bruno'
+  c.name = 'admin'
   c.email = '<%= crontab_email %>'
 end    
 
@@ -36,7 +26,7 @@ RAILS_ROOT = "<%= "#{deploy_to}" %>/current"
       start.condition(:process_running) do |c|
         c.interval = 5.seconds
         c.running = false
-        c.notify = 'bruno'            
+        c.notify = 'admin'            
       end
     end
 
@@ -44,13 +34,13 @@ RAILS_ROOT = "<%= "#{deploy_to}" %>/current"
       restart.condition(:memory_usage) do |c|
         c.above = 150.megabytes
         c.times = [3, 5] # 3 out of 5 intervals
-        c.notify = 'bruno'            
+        c.notify = 'admin'            
       end
 
       restart.condition(:cpu_usage) do |c|
         c.above = 50.percent
         c.times = 5
-        c.notify = 'bruno'                        
+        c.notify = 'admin'                        
       end
     end
 
@@ -64,7 +54,7 @@ RAILS_ROOT = "<%= "#{deploy_to}" %>/current"
         c.retry_in = 10.minutes
         c.retry_times = 5
         c.retry_within = 2.hours
-        c.notify = 'bruno'
+        c.notify = 'admin'
       end
     end
     
