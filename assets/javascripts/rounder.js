@@ -40,6 +40,8 @@ Rico.Corner = {
    },
 
    _roundCornersImpl: function(e, color, bgColor) {
+      if(this.options.wrapper)
+			this._renderWrapper(e);
       if(this.options.border)
          this._renderBorder(e,bgColor);
       if(this._isTopRounded())
@@ -47,6 +49,10 @@ Rico.Corner = {
       if(this._isBottomRounded())
          this._roundBottomCorners(e,color,bgColor);
    },
+
+	_renderWrapper: function(el){
+		el.innerHTML = "<div class='wrapper'>"+el.innerHTML+"</div>";
+	},
 
    _renderBorder: function(el,bgColor) {
       var borderValue = "1px solid " + this._borderColor(bgColor);
@@ -120,6 +126,7 @@ Rico.Corner = {
          bgColor : "fromParent",
          blend   : true,
          border  : false,
+			wrapper : false,
          compact : false
       }
       Object.extend(this.options, options || {});
