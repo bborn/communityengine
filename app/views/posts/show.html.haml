@@ -1,6 +1,7 @@
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/util.js"}
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
+
 - @section = (@post.category && @post.category.name)
 - @meta = { :description => "#{@post.title}", :keywords => "#{@post.tags.join(", ") unless @post.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 
@@ -22,7 +23,7 @@
             %li.print
               %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}= :print.l
             %li.email
-              %a{:href=>"#", :onclick=>"showSendTo_friend(); return false;", :title=>:email_this_story_to_fiends.l}= :email_to_friends.l
+              %a{:href=>"#", :onclick=>"showSendTo_friend(); return false;", :title=>:email_this_story_to_friends.l}= :email_to_friends.l
             %li.share
               %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358"}
             -if @is_current_user || admin? || moderator?

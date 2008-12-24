@@ -357,8 +357,8 @@ de-DE:
   email_addresses: Email-Adressen
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}
   email_signup_thanks: Danke für die Registrierung! Du erhälst umgehend eine e-mail zur Bestätigung unter {{email}}
-  #en: email_this_story_to_fiends: "E-mail this story to friends"
-  email_this_story_to_fiends: "E-mail diese Geschichte deinen Freunden"
+  #en: email_this_story_to_friends: "E-mail this story to friends"
+  email_this_story_to_friends: "E-mail diese Geschichte deinen Freunden"
   #en: email_to_friends: E-mail to friends
   email_to_friends: E-mail an Freunde
   #en: end: end

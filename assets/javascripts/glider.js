@@ -17,7 +17,7 @@ Object.extend(Object.extend(Glider.prototype, Abstract.prototype), {
 	    this.wrapper    = $(wrapper);
 	    this.scroller   = this.wrapper.down('div.scroller');
 	    this.sections   = this.wrapper.getElementsBySelector('div.section');
-	    this.options    = Object.extend({ duration: 1.0, frequency: 3 }, options || {});
+	    this.options    = Object.extend({ duration: 1.0, frequency: 3, offsetLeft: 0 }, options || {});
 
 	    this.sections.each( function(section, index) {
 	      section._index = index
@@ -60,7 +60,7 @@ Object.extend(Object.extend(Glider.prototype, Abstract.prototype), {
 	     elementOffset = Position.cumulativeOffset($(element));
 
 		  this.scrolling 	= new Effect.SmoothScroll(container, 
-				{duration:options.duration, x:(elementOffset[0]-containerOffset[0]), y:(elementOffset[1]-containerOffset[1])});
+				{duration:options.duration, x:((elementOffset[0]-containerOffset[0]) - this.options.offsetLeft), y:(elementOffset[1]-containerOffset[1])});
 		  return false;
 		},
 		
