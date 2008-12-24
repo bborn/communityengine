@@ -16,7 +16,7 @@
       - form_for(:post, :url => user_post_path(@user, @post), :html => { :method => :put, :class =>'MainForm' }) do |f|
         %label 
           =:title.l
-          %em= :required.l
+          %em= '('+:required.l+')'
         = f.text_field :title
         %label
           =:category.l
@@ -24,7 +24,7 @@
         = f.collection_select(:category_id, Category.find(:all), :id, :name, {}, {})
         %label
           =:body_text.l
-          %em= :required.l          
+          %em= '('+:required.l+')'
         = f.text_area :raw_post, :size => "86x15"
         %label
           =:tags.l

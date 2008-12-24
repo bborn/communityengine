@@ -709,6 +709,8 @@ en:
   new_topic: New topic
   #en: new_yesterday: New yesterday
   new_yesterday: New yesterday
+  #en: next: next
+  next: next
   #en: next_page: Next page
   next_page: Next page
   #en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
@@ -739,10 +741,10 @@ en:
   one_hour_ago: one hour ago
   #en: one_minute_ago: one minute ago
   one_minute_ago: one minute ago
-  #en: optional: (optional)
-  optional: (optional)
-  #en: optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
-  optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
+  #en: optional: optional
+  optional: optional
+  #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
+  optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   #en: or: or
   or: or
   #en: page: page
@@ -823,6 +825,8 @@ en:
   preview: Preview
   #en: previewing_your_post: Previewing your post
   previewing_your_post: Previewing your post
+  #en: previous: previous
+  previous: previous
   #en: print: Print
   print: Print
   #en: print_this_story: "Print this story"
@@ -887,8 +891,8 @@ en:
   requested_friendship_with: Requested friendship with
   #en: requesting_friendship: Requesting friendship
   requesting_friendship: Requesting friendship
-  #en: required: (required)
-  required: (required)
+  #en: required: required
+  required: required
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
