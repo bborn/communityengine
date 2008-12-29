@@ -34,7 +34,7 @@ admin_dashboard '/admin/users', :controller => 'admin', :action => 'users'
 admin_dashboard '/admin/messages', :controller => 'admin', :action => 'messages'
 
 # sessions routes
-
+teaser '', :controller=>'base', :action=>'teaser'
 login  '/login',  :controller => 'sessions', :action => 'new'
 signup '/signup', :controller => 'users', :action => 'new'
 logout '/logout', :controller => 'sessions', :action => 'destroy'
