@@ -1084,7 +1084,7 @@ this_is_your_dashboard: This is your dashboard.
 this_month_best: "This month's Best"
 #en: this_story_is_awesome: "This story is awesome!"
 this_story_is_awesome: "This story is awesome!"
-#en: this_topic_is_locked: This topic is locked.
+#en: this_story_is_awesome_is_locked: This topic is locked.
 this_topic_is_locked: This topic is locked.
 #en: this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
 this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
@@ -1116,8 +1116,8 @@ toggle: Toggle
 top_pros: Top Pros
 #en: top_writers: Top Writers
 top_writers: Top Writers
-#en: topic: Topics
-topic: Topics
+#en: topic: Topic
+topic: Topic
 #en: topics: Topics
 topics: Topics
 #en: topic_deleted: Topic '{topic}' was deleted.
