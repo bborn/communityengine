@@ -20,6 +20,12 @@ class UserNotifier < ActionMailer::Base
     @body[:url]  = pending_user_friendships_url(friendship.friend)
     @body[:requester] = friendship.user
   end
+  
+  def friendship_accepted(friendship)
+    @body[:requester] = friendship.user
+    @body[:friend]    = friendship.friend
+    @body[:url]       = user_url(friendship.friend)
+  end
 
   def comment_notice(comment)
     setup_email(comment.recipient)

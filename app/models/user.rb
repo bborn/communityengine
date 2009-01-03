@@ -430,7 +430,15 @@ class User < ActiveRecord::Base
   def member?
     role && role.eql?(Role[:member])
   end
-
+  
+  def male?
+    gender && gender.eql?(MALE)
+  end
+  
+  def female
+    gender && gender.eql?(FEMALE)    
+  end
+  
   ## End Instance Methods
   
 

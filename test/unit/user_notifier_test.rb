@@ -8,7 +8,7 @@ class UserNotifierTest < Test::Unit::TestCase
 
   include ActionMailer::Quoting
 
-  fixtures :users, :friendships, :comments, :posts, :sb_posts, :topics, :forums, :roles
+  fixtures :users, :friendships, :friendship_statuses, :comments, :posts, :sb_posts, :topics, :forums, :roles
 
   def setup
     ActionMailer::Base.delivery_method = :test
@@ -36,6 +36,13 @@ class UserNotifierTest < Test::Unit::TestCase
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       UserNotifier.deliver_friendship_request(friendships(:aaron_receive_quentin_pending))
     end
+  end
+  
+  def test_should_deliver_friendship_accepted_notification
+    f = friendships(:aaron_receive_quentin_pending)    
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do
+      f.update_attributes(:friendship_status => FriendshipStatus[:accepted]) && f.reverse.update_attributes(:friendship_status => FriendshipStatus[:accepted])          
+    end    
   end
   
   def test_should_deliver_comment_notice

@@ -3,7 +3,6 @@ require 'md5'
 # Methods added to this helper will be available to all templates in the application.
 module BaseHelper
 
-
   def commentable_url(comment)
     if comment.commentable_type != "User"
       polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
@@ -335,5 +334,10 @@ module BaseHelper
       display = date.strftime("%B %d")
     end
   end
+
+  def possesive(user)
+    user.gender ? (user.male? ? :his.l : :her.l)  : :their.l    
+  end
+  
 
 end
