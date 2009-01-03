@@ -22,6 +22,7 @@ class UserNotifier < ActionMailer::Base
   end
   
   def friendship_accepted(friendship)
+    setup_email(friendship.user)    
     @body[:requester] = friendship.user
     @body[:friend]    = friendship.friend
     @body[:url]       = user_url(friendship.friend)
