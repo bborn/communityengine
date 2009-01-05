@@ -476,8 +476,6 @@ get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
 get_started_upload_a_profile_photo: "Get Started: Upload a profile photo"
 #en: go: Go
 go: Go
-#en: go2: Go
-go2: Go
 #en: go_check_your_e_mail: Go check your e-mail!
 go_check_your_e_mail: Go check your e-mail!
 #en: go_to_the_forums: go to the forums
@@ -492,6 +490,10 @@ have_an_account: "Have an account? "
 have_something_to_contribute: Have something to contribute?
 #en: help: Help
 help: Help
+#en: her: her
+her: her
+#en: his: his
+his: his
 #en: home: Home
 home: Home
 #en: homepage_banner_download_msg: Download it now and get started
@@ -1072,6 +1074,8 @@ the_slideshow_is_disabled: The slideshow is disabled.
 the_user_was_activated: The user was activated
 #en: the_user_was_deleted: The user was deleted.
 the_user_was_deleted: The user was deleted.
+#en: their: their
+their: their
 #en: this_contest_is_closed: This contest is closed
 this_contest_is_closed: This contest is closed
 #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
@@ -1084,7 +1088,7 @@ this_is_your_dashboard: This is your dashboard.
 this_month_best: "This month's Best"
 #en: this_story_is_awesome: "This story is awesome!"
 this_story_is_awesome: "This story is awesome!"
-#en: this_topic_is_locked: This topic is locked.
+#en: this_story_is_awesome_is_locked: This topic is locked.
 this_topic_is_locked: This topic is locked.
 #en: this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
 this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
@@ -1116,8 +1120,8 @@ toggle: Toggle
 top_pros: Top Pros
 #en: top_writers: Top Writers
 top_writers: Top Writers
-#en: topic: Topics
-topic: Topics
+#en: topic: Topic
+topic: Topic
 #en: topics: Topics
 topics: Topics
 #en: topic_deleted: Topic '{topic}' was deleted.

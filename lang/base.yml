@@ -240,6 +240,8 @@
 #en: have_an_account: "Have an account? "
 #en: have_something_to_contribute: Have something to contribute?
 #en: help: Help
+#en: her: her
+#en: his: his
 #en: home: Home
 #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
 #en: homepage_banner_signup_prompt: See how it works
@@ -524,6 +526,7 @@
 #en: the_slideshow_is_disabled: The slideshow is disabled.
 #en: the_user_was_activated: The user was activated
 #en: the_user_was_deleted: The user was deleted.
+#en: their: their
 #en: this_contest_is_closed: This contest is closed
 #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
 #en: this_friendship_is_pending: This Friendship is pending.

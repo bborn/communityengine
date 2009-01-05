@@ -19,5 +19,20 @@ class FriendshipTest < Test::Unit::TestCase
     assert(!f3.valid?, "Friendship should not be valid")
     assert_equal f3.errors.on(:base), "Sorry, you'll have to wait a little while before requesting any more friendships."
   end
+  
+  def test_should_notify_requester_when_accepted
+    f = friendships(:aaron_receive_quentin_pending)    
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do
+      f.update_attributes(:friendship_status => FriendshipStatus[:accepted]) && f.reverse.update_attributes(:friendship_status => FriendshipStatus[:accepted])    
+    end        
+  end
+
+  def test_should_not_notify_requester_when_pending
+    f = friendships(:aaron_receive_quentin_pending)    
+    assert_difference ActionMailer::Base.deliveries, :length, 0 do
+      f.update_attributes(:friendship_status => FriendshipStatus[:pending]) && f.reverse.update_attributes(:friendship_status => FriendshipStatus[:pending])    
+    end        
+  end
+
 
 end

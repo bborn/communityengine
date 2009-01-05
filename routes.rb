@@ -1,4 +1,5 @@
 #Forum routes go first
+recent_forum_posts '/forums/recent', :controller => 'sb_posts', :action => 'index'
 resources :forums, :sb_posts, :monitorship
 resources :sb_posts, :name_prefix => 'all_', :collection => { :search => :get, :monitored => :get }
 
