@@ -135,6 +135,8 @@ es-AR:
   comment_was_successfully_created: Comentario se ha creado correctamente.
   #en: comments: Comments
   comments: Comentarios
+  #en: comments_rss: Comments RSS
+  comments_rss: Comentarios (RSS)  
   #en: community_tagline: CommunityEngine Rocks!
   community_tagline: CommunityEngine es genial!
   #en: contest_was_successfully_created: Contest was successfully created.
@@ -179,6 +181,8 @@ es-AR:
   e_mail: E-mail
   #en: e_mail_address: E-mail address
   e_mail_address: "direcci\xC3\xB3n de E-mail"
+  #en: email_to_friends: E-mail to friends
+  email_to_friends: enviar  
   #en: edit: Edit
   edit: Editar
   #en: edit_account: Edit account
@@ -359,6 +363,8 @@ es-AR:
   no_tags: Sin tags
   #en: offering_was_successfully_created: Offering was successfully created.
   offering_was_successfully_created: Oferta creada satisfactoriamente.
+  #en: on_commentable: On
+  on_commentable: sobre
   #en: optional: (optional)
   optional: (opcional)
   #en: optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
@@ -401,10 +407,14 @@ es-AR:
   postal_code: "C\xC3\xB3digo postal"
   #en: posting_tips: Posting tips
   posting_tips: Tips de posteo
+  #en: post: Post
+  post: Post  
   #en: posts: Posts
   posts: Posts
   #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Los posts guardados como borrador no aparecer\xC3\xA1n en el blog hasta que los publiques."
+  #en: print: Print
+  print: imprimir
   #en: prev: 
   prev: Anterior
   #en: profile: Profile
@@ -415,6 +425,8 @@ es-AR:
   profile_photo: Foto del perfil
   #en: published: Published
   published: Publicado
+  #en: read_more: read more
+  read_more: leer mas  
   #en: re_type_your_password_to_confirm: "Re-type your password to confirm:"
   re_type_your_password_to_confirm: "Retipee su contrase\xC3\xB1a para confirmar:"
   #en: recent: Recent
@@ -553,6 +565,12 @@ es-AR:
   tips: "Tips:"
   #en: title: Title
   title: "T\xC3\xADtulo"
+  #en: title_required: "Title (required)"
+  title_required: "T\xC3\xADtulo (requerido)"
+  #en: to: To
+  to: a
+  #en: to_accept: to accept
+  to_accept: para aceptar
   #en: to_get_recommended_content_on_your_dashboard: to start getting recommended content on your dashboard.
   to_get_recommended_content_on_your_dashboard: para empezar a recibir contenidos recomendados en su panel de control.
   #en: to_start_adding_friends: To start adding friends, you can
@@ -599,8 +617,10 @@ es-AR:
   view_all_my_clippings: Ver todos mis recortes
   #en: view_all_my_photos: View all my photos
   view_all_my_photos: Ver todas mis fotos
-  #en: view_my: "View my:"
+  #en: view_my: "View my:"  
   view_my: "Ver mi:"
+  #en: views: Views
+  views: Vistas  
   #en: view_my_blog: View my blog
   view_my_blog: Ver mi blog
   #en: view_profile: View profile
