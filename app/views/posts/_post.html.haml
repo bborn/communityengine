@@ -13,7 +13,7 @@
         %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark"}
           %abbr.published{:title=>"#{post.published_at}"}= post.published_at_display("%B %d, %Y")
       %li.view
-        =:views.l
+        = :views.l
         = "(#{post.view_count})"
       %li.comments
         = link_to :comments.l+" (#{post.comments.count})", user_post_path(post.user, post)+'#comments'      
