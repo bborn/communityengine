@@ -7,7 +7,7 @@
   .yui-b#comments.box.hfeed.comments
     %h3
       = @commentable.class.to_s.underscore.capitalize
-      ="Comments".l + " -"
+      = :comments.l + " -"
       = link_to @title, @back_url
 
     %a#newest_comment

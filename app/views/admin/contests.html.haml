@@ -9,7 +9,7 @@
 
       %table{:width=>"100%"}
         %tr
-          %th= :date.l
+          %th= :date_title.l
           %th= :title.l
           %th= :description.l
           %th= :begin.l
@@ -20,7 +20,7 @@
           %tr
             %td=h contest.created_at.strftime("%m/%d/%y")
             %td=h contest.title
-            %td=h truncate(contest.post, 250)
+            %td=h truncate(contest.post, :length => 250)
             %td=h contest.begin.strftime("%m/%d/%y")
             %td=h contest.end.strftime("%m/%d/%y")
             %td

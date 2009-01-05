@@ -5,8 +5,8 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.1.2
-	- The engines plugin for Rails 2.1.2
+	- RAILS VERSION 2.2.2
+	- The engines plugin for Rails 2.2.2
 	- ImageMagick 
 	- Several gems:
 	  rmagick
@@ -14,7 +14,7 @@ Requirements:
 	  htmlentities
 	  RedCloth
 	  rake 0.8.3
-	  haml
+	  haml 2.0.5 (updated for Rails 2.2.2)
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
@@ -49,7 +49,7 @@ Getting CommunityEngine Running
 6. Modify your environment.rb as indicated below:
 
 		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
+		RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 		require File.join(File.dirname(__FILE__), 'boot')
 		require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
@@ -178,7 +178,7 @@ To create a theme:
 Localization
 ------------
 
-Localization is done via an extended version of [Globalite](http://code.google.com/p/globalite/). 
+Localization is done via Rails native I18n API. We've added some extensions to String and Symbol to allow backwards compatibility (we used to use Globalite).
 
 Strings and Symbols respond to the `.l` method that allows for a look up of the symbol (or a symbolized version of the string) into a strings file which is stored in yaml. 
 
@@ -194,9 +194,9 @@ To customize the language, or add a new language create a new yaml file in `RAIL
 The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
 The language only file (`es.yml`) will support all locales.
 
-To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb` (don't forget to take it out in production!):
+To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb`:
 
-	Globalite.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
+	AppConfig.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
   
 Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
 
@@ -216,8 +216,8 @@ Gotchas
 
 1. I get errors running rake! Error: (wrong number of arguments (3 for 1)
   - make sure you have the latest version of rake
-2. I get test errors after upgrading to Rails 2.1
-  - make sure you have upgraded to the Engines 2.1 plugin, and modified your environment.rb to use Rails 2.1.
+2. I get test errors after upgrading to Rails 2.2.2
+  - make sure you have upgraded to the latest Engines plugin, and modified your environment.rb to use Rails 2.2.2.
 
 
 Contributors - Thanks! :)

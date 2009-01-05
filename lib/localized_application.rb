@@ -9,19 +9,20 @@ module LocalizedApplication
     @request_method = request.env['REQUEST_METHOD']
 
     if AppConfig.community_locale
-        logger.debug "[globalite] loading locale: #{AppConfig.community_locale} from config"
-        Locale.code = AppConfig.community_locale
+        logger.debug "[I18n] loading locale: #{AppConfig.community_locale} from config"
+        I18n.locale = AppConfig.community_locale
     else
-        Locale.code = get_valid_lang_from_accept_header
-        logger.debug "[globalite] found a valid http header locale: #{Locale.code}"
+        I18n.locale = get_valid_lang_from_accept_header
+        logger.debug "[I18n] found a valid http header locale: #{I18n.locale}"
     end
     
-    logger.debug "[globalite] Locale set to #{Locale.code}"
+    logger.debug "[I18n] Locale set to #{I18n.locale}"
     # render the page
+
     yield
 
     # reset the locale to its default value
-    Locale.reset!
+    I18n.locale = I18n.default_locale
   end
 
   # Get a sorted array of the navigator languages
@@ -37,7 +38,7 @@ module LocalizedApplication
             wl[($2.to_f rescue -1.0)]= $1
         end
     }
-    logger.debug "[globalite] client accepted locales: #{wl.sort{|a,b| b[0] <=> a[0] }.map{|a| a[1] }.to_sentence}"
+    logger.debug "[I18n] client accepted locales: #{wl.sort{|a,b| b[0] <=> a[0] }.map{|a| a[1] }.to_sentence}"
     sorted_langs = wl.sort{|a,b| b[0] <=> a[0] }.map{|a| a[1] }
   end
 
@@ -46,8 +47,8 @@ module LocalizedApplication
   def get_valid_lang_from_accept_header
     # Get the sorted navigator languages and find the first one that matches our available languages
     get_sorted_langs_from_accept_header.detect do |l|
-  my_locale = get_matching_ui_locale(l)
-        return my_locale if !my_locale.nil?
+      my_locale = get_matching_ui_locale(l)
+      return my_locale if !my_locale.nil?
     end
   end
 
@@ -58,20 +59,20 @@ module LocalizedApplication
     to_try = Array.new()
     if locale[3,5]
       country = locale[3,5].upcase
-      logger.debug "[globalite] trying to match locale: #{lang}-#{country} and #{lang}-*"
+      logger.debug "[I18n] trying to match locale: #{lang}-#{country} and #{lang}-*"
       to_try << "#{lang}-#{country}".to_sym
       to_try << "#{lang}-*".to_sym
     else
-      logger.debug "[globalite] trying to match #{lang}-*"
+      logger.debug "[I18n] trying to match #{lang}-*"
       to_try << "#{lang}-*".to_sym
     end
 
     # Check with exact matching
     to_try.each do |possible_locale|
-      if Globalite.ui_locales.values.include?(possible_locale)
-        logger.debug "[globalite] Globalite does include #{locale} matching #{possible_locale}"
+      # if Globalite.ui_locales.values.include?(possible_locale)
+      #   logger.debug "[I18n] Globalite does include #{locale} matching #{possible_locale}"
         return possible_locale
-      end
+      # end
     end
 
     return nil

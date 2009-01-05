@@ -5,14 +5,14 @@
         = params[:type] ? h((params[:type]+'s').l) : :items.l
         =:tagged.l+":"
         - @tags.each do |tag|
-          = link_to h(tag.name), tag_path(tag.name)
+          = link_to h(tag.name), tag_path(tag)
         
     .box
       %h3.tags=:related_tags.l
       %ul
         - tag_cloud @related_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
           - css_class = css_class + (name.eql?(params[:id]) ? " selected": "")
-          %li= link_to h(name), tag_path(name), :class => css_class
+          %li= link_to h(name), tag_path(URI::encode(name, /[\/.?#]/)), :class => css_class
       
       %h6.all= link_to :all_tags.l, tags_path
 
@@ -26,9 +26,9 @@
           %ul.list.page
             - @posts.each do |post|
               %li
-                = link_to( truncate(post.display_title, 75), user_post_path(post.user, post), :title => :by.l+" #{post.user.login}" )
+                = link_to( truncate(post.display_title, :length => 75), user_post_path(post.user, post), :title => :by.l+" #{post.user.login}" )
                 %p.post_excerpt= truncate_words(post.post, 35, '...' )
-          %h6.all= link_to :all_posts_tagged.l(:tag_name => @tags_raw), tag_path(:id => @tags_raw, :type => 'Post') unless params[:type]
+          %h6.all= link_to :all_posts_tagged.l(:tag_name => URI::encode(@tags_raw, /[\/.?#]/)), tag_path(:id => URI::encode(@tags_raw, /[\/.?#]/), :type => 'Post') unless params[:type]
         -else 
           .box.first_alt.hfeed= render :partial => 'posts/post', :collection => @posts      
       
@@ -39,7 +39,7 @@
       %h3=:photos.l
       - @photos.each do |photo|
         = link_to image_tag(photo.public_filename(:thumb), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})", :class => "polaroid"), user_photo_path(photo.user, photo)
-      %h6.all= link_to :all_photos_tagged.l(:tag_name => @tags_raw), tag_path(:id => @tags_raw, :type => 'Photo') unless params[:type]
+      %h6.all= link_to :all_photos_tagged.l(:tag_name => URI::encode(@tags_raw, /[\/.?#]/)), tag_path(:id => URI::encode(@tags_raw, /[\/.?#]/), :type => 'Photo') unless params[:type]
       
       
     - if @users.any?
@@ -47,7 +47,7 @@
         %h3=:users.l
         - @users.each do |user|
           = link_to image_tag(user.avatar_photo_url(:thumb), :class => "polaroid"), user_path(user), :title => user.login
-        %h6.all= link_to :all_users_tagged.l(:tag_name => @tags_raw), tag_path(:id => @tags_raw, :type => 'User') unless params[:type]
+        %h6.all= link_to :all_users_tagged.l(:tag_name => URI::encode(@tags_raw, /[\/.?#]/)), tag_path(:id => URI::encode(@tags_raw, /[\/.?#]/), :type => 'User') unless params[:type]
 
 
     - unless @clippings.empty?
@@ -56,7 +56,7 @@
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(clipping.user, clipping) }"}
             %img.polaroid.clipping{"src"=>"#{h clipping.image_uri}", "style"=>"width:108px"}
-        %h6.all= link_to :all_clippings_tagged.l(:tag_name => @tags_raw), tag_path(:id => @tags_raw, :type => 'Clipping') unless params[:type]
+        %h6.all= link_to :all_clippings_tagged.l(:tag_name => URI::encode(@tags_raw, /[\/.?#]/)), tag_path(:id => URI::encode(@tags_raw, /[\/.?#]/), :type => 'Clipping') unless params[:type]
 
     - if @pages
       .pagination= paginating_links @pages, :params => params if @pages.page_count > 1

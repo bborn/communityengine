@@ -46,9 +46,9 @@ module BaseHelper
     str << '><div class="box_top"></div>'
     str << "\n"
     
-    concat(str, content.binding)
+    concat(str)
     yield(content)
-    concat('<br class="clear" /><div class="box_bottom"></div></div>', content.binding)
+    concat('<br class="clear" /><div class="box_bottom"></div></div>')
   end
 
 
@@ -265,7 +265,7 @@ module BaseHelper
   def pagination_info_for(paginator, options = {})
     options = {:prefix => :showing.l, :connector => '-', :suffix => ""}.merge(options)
     window = paginator.first_item.to_s + options[:connector] + paginator.last_item.to_s
-    options[:prefix] + " <strong>#{window}</strong> " + "of".l + " #{paginator.size} " + options[:suffix]
+    options[:prefix] + " <strong>#{window}</strong> " + 'of'.l + " #{paginator.size} " + options[:suffix]
   end
   
   

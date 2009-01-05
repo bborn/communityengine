@@ -1,7 +1,7 @@
 class TagsController < BaseController
   skip_before_filter :verify_authenticity_token, :only => 'auto_complete_for_tag_name'
 
-  caches_action :show, :if => Proc.new{|c| c.cache_action? }
+  caches_action :show, :cache_path => Proc.new { |controller| controller.send(:tag_url, controller.params[:id]) }, :if => Proc.new{|c| c.cache_action? }
   def cache_action?
     !logged_in? && params[:type].blank?
   end  
@@ -24,7 +24,7 @@ class TagsController < BaseController
   end
   
   def show
-    tag_names = params[:id]
+    tag_names = URI::decode(params[:id])
 
     @tags = Tag.find(:all, :conditions => [ 'name IN (?)', TagList.from(tag_names) ] )
     if @tags.nil? || @tags.empty?

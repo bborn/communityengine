@@ -1,14 +1,14 @@
 #en: a_few_seconds_ago:  a few seconds ago
 #en: about: About
 #en: about_me: About Me
-#en: about_site: About {site}
+#en: about_site: About {{site}}
 #en: about_you: About You
 #en: accept: Accept
 #en: accepted: accepted
 #en: accepted_friendships: Accepted Friendships
 #en: accept_this_request: Accept this request
 #en: account: account
-#en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {email} for help.
+#en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help.
 #en: account_settings: Account settings
 #en: actions: Actions
 #en: activate: Activate
@@ -33,12 +33,12 @@
 #en: advertise: Advertise
 #en: advertise_on: Advertise on
 #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
-#en: all_clippings_tagged: All clippings tagged {tag_name}
+#en: all_clippings_tagged: All clippings tagged {{tag_name}}
 #en: all_comments: All comments
-#en: all_photos_tagged: All photos tagged {tag_name}
-#en: all_posts_tagged: All posts tagged {tag_name}
+#en: all_photos_tagged: All photos tagged {{tag_name}}
+#en: all_posts_tagged: All posts tagged {{tag_name}}
 #en: all_tags: All tags
-#en: all_users_tagged: All users tagged {tag_name}
+#en: all_users_tagged: All users tagged {{tag_name}}
 #en: already_have_an_account: Already have an account?
 #en: an_error_occurred: An error occurred
 #en: are_you_sure: Are you sure?
@@ -128,7 +128,7 @@
 #en: created_at: Created at
 #en: custom_friendly_local: custom, friendly, local
 #en: dashboard: Dashboard
-#en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {site} here
+#en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
 #en: date: Date
 #en: date_created: Date Created
 #en: date_published: Date Published
@@ -150,7 +150,7 @@
 #en: dont_wait_its: Don't wait! It's
 #en: draft: draft
 #en: drag_and_drop_up_to_three_skills_into_gray_area_above: Drag and drop up to three skills into gray area above.
-#en: drag_the_bookmarklet: Drag the {site}-It! bookmarklet to your bookmarks toolbar.
+#en: drag_the_bookmarklet: Drag the {{site}}-It! bookmarklet to your bookmarks toolbar.
 #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
 #en: e_mail: E-mail
 #en: e_mail_address: E-mail address
@@ -176,8 +176,8 @@
 #en: editing_post: Editing post
 #en: editing_skill: Editing skill
 #en: email_addresses: Email Addresses
-#en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {email}
-#en: email_this_story_to_fiends: "E-mail this story to friends"
+#en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}
+#en: email_this_story_to_friends: "E-mail this story to friends"
 #en: email_to_friends: E-mail to friends
 #en: end: end
 #en: end_date: End date
@@ -192,7 +192,7 @@
 #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
 #en: event_was_successfully_created: Event was successfully created.
 #en: events: Events
-#en: explore_site: Explore {site}
+#en: explore_site: Explore {{site}}
 #en: failed: failed
 #en: faq: FAQ
 #en: faq_section: FAQ section
@@ -221,13 +221,13 @@
 #en: friends: Friends
 #en: friendship_could_not_be_created: Friendship could not be created
 #en: friendship_request_detail: Friendship request detail
-#en: friendship_requested: Requested friendship with {friend}.
+#en: friendship_requested: Requested friendship with {{friend}}.
 #en: from: From
 #en: from2: From
 #en: gender: Gender
 #en: get_help_from_someone_who_knows: Get help from someone who knows
 #en: get_popular: Get popular.
-#en: get_started_banner: Get started with <a href="/">{site}</a> today!
+#en: get_started_banner: Get started with <a href="/">{{site}}</a> today!
 #en: get_started_invite_some_friends: "Get Started: Invite some friends!"
 #en: get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
 #en: get_started_upload_a_profile_photo: "Get Started: Upload a profile photo"
@@ -258,7 +258,7 @@
 #en: insert: Insert
 #en: invite_a_friend: Invite a friend
 #en: invitation_was_successfully_created: Invitation was successfully created.
-#en: invite_message: The more people you invite the better {site} becomes.
+#en: invite_message: The more people you invite the better {{site}} becomes.
 #en: invite_some_customers: Invite some customers!
 #en: invite_your_friends_to_join: Invite Your Friends To Join!
 #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
@@ -279,7 +279,7 @@
 #en: log_in_to_create_a_new_topic: Log in to create a new topic
 #en: log_in_to_leave_a_comment: Log in to leave a comment
 #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
-#en: log_in_to_site: Log in to {site}
+#en: log_in_to_site: Log in to {{site}}
 #en: log_in_to_vote: Log in to vote
 #en: log_in_to_your: Log in to your
 #en: log_out: Log Out
@@ -292,7 +292,7 @@
 #en: locked: Locked
 #en: locked2: (locked)
 #en: look_for_a_message_from: "Look for a message from:"
-#en: looking_for_most_x: Looking for {link}
+#en: looking_for_most_x: Looking for {{link}}
 #en: make_moderator: Make moderator
 #en: make_my_profile_public: Make my profile public
 #en: make_this_my_profile_photo: Make this my profile photo
@@ -341,14 +341,14 @@
 #en: new_photo: New photo.
 #en: new_photos_&raquo;_multiple_uploader: "New Photos &raquo; Multiple Uploader"
 #en: new_post: New post
-#en: new_post_for_category: New {category}
+#en: new_post_for_category: New {{category}}
 #en: new_post_text: New Post text
 #en: new_skill: New skill
 #en: new_today: New today
 #en: new_topic: New topic
 #en: new_yesterday: New yesterday
 #en: next_page: Next page
-#en: no_comments_found: Sorry, we couldn't find any comments for that {type}
+#en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
 #en: no_images_uploaded_yet: No images uploaded yet.
 #en: no_messages: no messages
 #en: no_profile_photo: "No profile photo?"
@@ -376,7 +376,7 @@
 #en: permanently_delete_this_event: Permanently delete this event?
 #en: permanently_delete_this_post: Permanently delete this post?
 #en: photo_comments: Photo Comments
-#en: photo_message: Your profile photo represents you on {site}. You can change it later.
+#en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
 #en: photo_was_successfully_created: Photo was successfully created.
 #en: photos: Photos
 #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
@@ -384,9 +384,9 @@
 #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
 #en: please_log_in: Please log in.
 #en: please_post_something_at_least: Please post something at least...
-#en: plural_posts: "{count} posts"
+#en: plural_posts: "{{count}} posts"
 #en: popular: Popular
-#en: popular_catgory: Popular {name}
+#en: popular_catgory: Popular {{name}}
 #en: popular_posts: Popular Posts
 #en: popular_posts_on: Popular Posts on
 #en: popular_polls: Popular Polls
@@ -395,7 +395,7 @@
 #en: posts: Posts
 #en: post_a_new_topic: Post a new topic
 #en: post_an_event: Post an event
-#en: post_created_for_category: Your '{category}' post was successfully created.
+#en: post_created_for_category: Your '{{category}}' post was successfully created.
 #en: post_comments: Post Comments
 #en: postal_code: "Postal code:"
 #en: posting_tips: "Posting Tips"
@@ -453,7 +453,7 @@
 #en: save_post_as: "Save post as:"
 #en: save_reply: Save reply
 #en: says: says
-#en: sb_post_was_deleted: Post '{title}' was deleted.
+#en: sb_post_was_deleted: Post '{{title}}' was deleted.
 #en: scrapbook: Scrapbook
 #en: search: Search
 #en: search_users: Search Users
@@ -471,7 +471,7 @@
 #en: service_could_not_be_deleted: Service could not be deleted.
 #en: share_the_love: Share the love
 #en: show: Show
-#en: show_category: {category}
+#en: show_category: {{category}}
 #en: show_this_photo: Show this photo
 #en: showing: Showing
 #en: showing_ad: Showing Ad
@@ -483,13 +483,13 @@
 #en: sign_up_for_a_: Sign up for a
 #en: sign_up_reason_1: Some reason to sign up
 #en: sign_up_reason_2: Some reason to sign up
-#en: singular_posts: "{count} post"
-#en: site_members: "{site} members"
+#en: singular_posts: "{{count}} post"
+#en: site_members: "{{site}} members"
 #en: skill_was_successfully_created: Skill was successfully created.
 #en: skills: Skills
 #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
 #en: skip_this_step: Skip this step
-#en: small_profile: "{user} doesn't have much here yet. Stay tuned."
+#en: small_profile: "{{user}} doesn't have much here yet. Stay tuned."
 #en: sorry_there_was_an_error: Sorry, there was an error.
 #en: sorry_there_was_an_error_requesting_friendship: Sorry, there was an error requesting friendship.
 #en: sorry_there_was_an_error_uploading_the_photo: Sorry, there was an error uploading the photo.
@@ -506,7 +506,7 @@
 #en: sticky: Sticky
 #en: subject: Subject
 #en: subscribe_to: Subscribe to
-#en: tag_does_not_exists: The tag {tag} does not exist
+#en: tag_does_not_exists: The tag {{tag}} does not exist
 #en: tag_name: Tag name
 #en: tag_yourself: tag yourself
 #en: tags: Tags
@@ -551,7 +551,7 @@
 #en: top_writers: Top Writers
 #en: topic: Topics
 #en: topics: Topics
-#en: topic_deleted: Topic '{topic}' was deleted.
+#en: topic_deleted: Topic '{{topic}}' was deleted.
 #en: topic_locked: Topic locked
 #en: total_users: Total users
 #en: total_votes: Total votes
@@ -575,11 +575,11 @@
 #en: username: Username
 #en: user: User
 #en: users: Users
-#en: users_blog: "{user}'s Blog"
-#en: user_clippings: Clippings of {user}
+#en: users_blog: "{{user}}'s Blog"
+#en: user_clippings: Clippings of {{user}}
 #en: user_login: User login
 #en: users_online: Users online
-#en: users_photos: "{user}'s Photos"
+#en: users_photos: "{{user}}'s Photos"
 #en: view: View
 #en: views: Views
 #en: view_all_my_clippings: View all my clippings
@@ -595,7 +595,7 @@
 #en: vote_now: Vote now!
 #en: votes: votes
 #en: waiting_for: Waiting for
-#en: walkthrough_complete: You've completed the {site} walk-through. Now you can continue exploring!
+#en: walkthrough_complete: You've completed the {{site}} walk-through. Now you can continue exploring!
 #en: want_to_be_popular: Want to be popular?
 #en: want_to_list_your_services_on: Want to list your services on
 #en: want_to_post_in_this_category: Want to post in this category?
@@ -606,7 +606,7 @@
 #en: watching_topic: Watching topic
 #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to:"
 #en: we_need_you: We need you
-#en: welcome_message: Welcome! {login_link} or {signup_link}
+#en: welcome_message: Welcome! {{login_link}} or {{signup_link}}
 #en: what_are_tags: 'What are "Tags"?'
 #en: what_is_popular: What's Popular
 #en: whats_fresh: What's fresh
@@ -614,11 +614,11 @@
 #en: whats_popular: What's Popular
 #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
 #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
-#en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {site}
+#en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
 #en: why_sign_up: Why Sign up?
 #en: write_a_blog_post: Write a blog post!
 #en: write_a_message: "Write a message:"
-#en: write_new_post: Write a '{category}' post
+#en: write_new_post: Write a '{{category}}' post
 #en: wrote_a_post: "wrote a post:"
 #en: yesterday: Yesterday
 #en: you_are_editing_your_account: You are editing your account.

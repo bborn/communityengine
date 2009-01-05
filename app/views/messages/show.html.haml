@@ -17,7 +17,7 @@
 
       
       %p
-        = :date.l + ":"
+        = :date_title.l + ":"
         = @message.created_at.to_s(:long)
 
       %pre.message_body= auto_link(h (@message.body))
