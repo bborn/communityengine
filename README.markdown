@@ -188,7 +188,7 @@ For complex strings with substitutions, Symbols respond to the `.l` method with 
   
 And in your language file you'd have:
 
-	welcome: "Welcome {name}"
+	welcome: "Welcome {{name}}"
 
 To customize the language, or add a new language create a new yaml file in `RAILS_ROOT/lang/ui`.
 The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
