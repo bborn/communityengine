@@ -335,5 +335,24 @@ module BaseHelper
       display = date.strftime("%B %d")
     end
   end
+  
+  def profile_completeness(user)
+    segments = [
+      {:val => 2, :action => link_to('Add a profile photo', edit_user_path(user, :anchor => 'profile_details')), :test => !user.avatar.nil? },
+      {:val => 1, :action => link_to('Fill in your about me', edit_user_path(user, :anchor => 'user_description')), :test => !user.description.blank?},      
+      {:val => 2, :action => link_to('Select your city', edit_user_path(user, :anchor => 'location_chooser')), :test => !user.tennis_metro_area.nil? },            
+      {:val => 1, :action => link_to('Tag yourself', edit_user_path(user, :anchor => "user_tags")), :test => user.tags.any?},                  
+      {:val => 1, :action => link_to('Invite some friends', new_invitation_path), :test => user.invitations.any?}
+    ]
+    
+    completed_score = segments.select{|s| s[:test].eql?(true)}.sum{|s| s[:val]}
+    incomplete = segments.select{|s| !s[:test] }
+    
+    total = segments.sum{|s| s[:val] }
+    score = (completed_score.to_f/total.to_f)*100
+
+    {:score => score, :incomplete => incomplete, :total => total}
+  end
+  
 
 end
