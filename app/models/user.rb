@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   validates_format_of       :login, :with => /^[\sA-Za-z0-9_-]+$/
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   validates_uniqueness_of   :login_slug
+  validates_exclusion_of    :login, :in => AppConfig.reserved_logins
   validates_date :birthday, :before => 13.years.ago.to_date  
 
   #associations
@@ -186,9 +187,9 @@ class User < ActiveRecord::Base
   end  
 
   
-  def self.recent_activity(page = {})
+  def self.recent_activity(page = {}, options = {})
     page.reverse_merge! :size => 10, :current => 1
-    Activity.recent.find(:all, :page => page)      
+    Activity.recent.find(:all, :page => page, *options)      
   end
 
   def self.currently_online
@@ -429,7 +430,15 @@ class User < ActiveRecord::Base
   def member?
     role && role.eql?(Role[:member])
   end
-
+  
+  def male?
+    gender && gender.eql?(MALE)
+  end
+  
+  def female
+    gender && gender.eql?(FEMALE)    
+  end
+  
   ## End Instance Methods
   
 

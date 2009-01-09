@@ -1,4 +1,5 @@
 #Forum routes go first
+recent_forum_posts '/forums/recent', :controller => 'sb_posts', :action => 'index'
 resources :forums, :sb_posts, :monitorship
 resources :sb_posts, :name_prefix => 'all_', :collection => { :search => :get, :monitored => :get }
 
@@ -30,8 +31,11 @@ connect '/application/:action', :controller => 'base'
 
 # admin routes
 admin_dashboard '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
+admin_dashboard '/admin/users', :controller => 'admin', :action => 'users'
+admin_dashboard '/admin/messages', :controller => 'admin', :action => 'messages'
 
 # sessions routes
+teaser '', :controller=>'base', :action=>'teaser'
 login  '/login',  :controller => 'sessions', :action => 'new'
 signup '/signup', :controller => 'users', :action => 'new'
 logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -71,6 +75,7 @@ create_photo 'create_photo.js', :controller => 'photos', :action => 'create', :f
 resources :sessions
 resources :statistics, :collection => {:activities => :get, :activities_chart => :get}
 resources :tags, :member_path => '/tags/:id'
+show_tag_type '/tags/:id/:type', :controller => 'tags', :action => 'show'
 search_tags '/search/tags', :controller => 'tags', :action => 'show'
 
 resources :categories
@@ -81,7 +86,7 @@ resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
 resources :homepage_features
 resources :metro_areas
 resources :ads
-resources :contests, :member => { :latest => :get }
+resources :contests, :collection => { :current => :get }
 resources :activities
 
 resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :member => { 
@@ -115,8 +120,10 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :offerings, :collection => {:replace => :put}
   user.resources :favorites, :name_prefix => 'user_'
   user.resources :messages, :collection => { :delete_selected => :post }  
+  user.resources :comments
 end
 resources :votes
+resources :invitations
 
 users_posts_in_category '/users/:user_id/posts/category/:category_name', :controller => 'posts', :action => 'index', :category_name => :category_name
 

@@ -8,7 +8,7 @@ class ActivitiesController < BaseController
   end
   
   def index
-    @activities = User.recent_activity(:size => 30, :current => 1)
+    @activities = User.recent_activity(:size => 30, :current => params[:page], :limit => 1000)
     @popular_tags = popular_tags(30, ' count DESC')    
   end
 

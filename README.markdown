@@ -5,8 +5,8 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.1.2
-	- The engines plugin for Rails 2.1.2
+	- RAILS VERSION 2.2.2
+	- The engines plugin for Rails 2.2.2
 	- ImageMagick 
 	- Several gems:
 	  rmagick
@@ -14,7 +14,7 @@ Requirements:
 	  htmlentities
 	  RedCloth
 	  rake 0.8.3
-	  haml
+	  haml 2.0.5 (updated for Rails 2.2.2)
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
@@ -32,7 +32,7 @@ Getting CommunityEngine Running
 
 	* If you're not using git, and just want to add the source files:
 
-			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community_engine
+			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community\_engine
 
 	* Using git, make a shallow clone of the community_engine repository:
 
@@ -49,7 +49,7 @@ Getting CommunityEngine Running
 6. Modify your environment.rb as indicated below:
 
 		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
+		RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 		require File.join(File.dirname(__FILE__), 'boot')
 		require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
@@ -90,7 +90,7 @@ Getting CommunityEngine Running
 		# Uncomment the :secret if you're not using the cookie session store
 		protect_from_forgery # :secret => 'your_secret_string'
 
-12. Run tests (remember, you must run `rake test` before you can run the community_engine tests): 
+12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
 
 		$ rake test
 		$ rake community_engine:test
@@ -127,7 +127,7 @@ You'll need to change your configuration in your `application.yml` to tell Commu
 Finally, you'll need an S3 account for S3 photo uploading.
 
 
-Create an s3.yml file in RAILS_ROOT/config 
+Create an s3.yml file in `RAILS_ROOT/config` 
 ------------------------------------------------------
 
 CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
@@ -154,7 +154,7 @@ Themes
 
 To create a theme:
 
-1. Add a 'themes' directory in RAILS_ROOT with the following structure:
+1. Add a 'themes' directory in `RAILS_ROOT` with the following structure:
 
 		/RAILS_ROOT
 		  /themes
@@ -178,7 +178,7 @@ To create a theme:
 Localization
 ------------
 
-Localization is done via an extended version of [Globalite](http://code.google.com/p/globalite/). 
+Localization is done via Rails native I18n API. We've added some extensions to String and Symbol to allow backwards compatibility (we used to use Globalite).
 
 Strings and Symbols respond to the `.l` method that allows for a look up of the symbol (or a symbolized version of the string) into a strings file which is stored in yaml. 
 
@@ -188,15 +188,15 @@ For complex strings with substitutions, Symbols respond to the `.l` method with 
   
 And in your language file you'd have:
 
-	welcome: "Welcome {name}"
+	welcome: "Welcome {{name}}"
 
 To customize the language, or add a new language create a new yaml file in `RAILS_ROOT/lang/ui`.
 The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
 The language only file (`es.yml`) will support all locales.
 
-To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb` (don't forget to take it out in production!):
+To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb`:
 
-	Globalite.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
+	AppConfig.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
   
 Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
 
@@ -216,8 +216,8 @@ Gotchas
 
 1. I get errors running rake! Error: (wrong number of arguments (3 for 1)
   - make sure you have the latest version of rake
-2. I get test errors after upgrading to Rails 2.1
-  - make sure you have upgraded to the Engines 2.1 plugin, and modified your environment.rb to use Rails 2.1.
+2. I get test errors after upgrading to Rails 2.2.2
+  - make sure you have upgraded to the latest Engines plugin, and modified your environment.rb to use Rails 2.2.2.
 
 
 Contributors - Thanks! :)

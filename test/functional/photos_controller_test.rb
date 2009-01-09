@@ -143,7 +143,7 @@ class PhotosControllerTest < Test::Unit::TestCase
     assert_difference Photo, :count, 0 do
       delete :destroy, :id => photos(:library_pic), :user_id => users(:aaron).id
     end
-    assert_redirected_to new_session_path
+    assert_redirected_to login_path
   end
   
   def test_should_remove_avatar_when_photo_is_destroyed

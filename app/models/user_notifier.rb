@@ -1,6 +1,8 @@
 class UserNotifier < ActionMailer::Base
   include ActionView::Helpers::TextHelper
-  include ActionView::Helpers::SanitizeHelper  
+  include ActionView::Helpers::SanitizeHelper
+  extend  ActionView::Helpers::SanitizeHelper::ClassMethods # Required for rails 2.2
+
   include BaseHelper
   ActionMailer::Base.default_url_options[:host] = APP_URL.sub('http://', '')
 
@@ -19,6 +21,14 @@ class UserNotifier < ActionMailer::Base
     @subject     += "#{friendship.user.login} would like to be friends with you!"
     @body[:url]  = pending_user_friendships_url(friendship.friend)
     @body[:requester] = friendship.user
+  end
+  
+  def friendship_accepted(friendship)
+    setup_email(friendship.user) 
+    @subject     += "Friendship request accepted!"       
+    @body[:requester] = friendship.user
+    @body[:friend]    = friendship.friend
+    @body[:url]       = user_url(friendship.friend)
   end
 
   def comment_notice(comment)

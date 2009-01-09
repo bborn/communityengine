@@ -45,7 +45,7 @@ class UsersController < BaseController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = :deactivate_completed.l
-    redirect_to new_session_path    
+    redirect_to login_path
   end
 
   def index
@@ -168,6 +168,7 @@ class UsersController < BaseController
       redirect_to user_photo_path(@user, @photo)
     end
   rescue ActiveRecord::RecordInvalid
+    @metro_areas, @states = setup_locations_for(@user)
     render :action => 'edit'
   end
     

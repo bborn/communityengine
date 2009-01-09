@@ -8,5 +8,5 @@
   .box
     %h3=:tags.l
     - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
-      = link_to name, tag_path(name), :class => css_class
+      = link_to name, tag_path(URI::encode(name, /[\/.?#]/)), :class => css_class
     %h6.all=link_to :all_tags.l, tags_path

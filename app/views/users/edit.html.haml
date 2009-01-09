@@ -52,7 +52,8 @@
           =:how_do_i_do_that.l
         )
 
-      = render :partial => 'offerings/chooser' if @user.vendor?
+      - if @user.vendor? 
+        = render :partial => 'offerings/chooser'
       
       .box
         %h3= :tags.l

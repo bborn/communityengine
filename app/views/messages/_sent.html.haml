@@ -8,7 +8,7 @@
           - if @messages.empty?
             %tr
               %td{ :colspan => "4" }
-                = :no_messages
+                = :no_messages.l
           - else
             - @messages.each do |message|
               %tr

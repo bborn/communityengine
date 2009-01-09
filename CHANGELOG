@@ -1,3 +1,11 @@
+= 0.10.8
+
+* Updating CE for Rails 2.2.2 compatibility
+* Removed Globalite in favor of Rails' native I18n API. Ce localization should work without modification
+* renamed dozens of files to use Rails 2.0 conventions (ie. .html.haml)
+* updated truncate calls to use new options hash format
+
+
 = 0.10.7
 
 * Updating CE to be compatible with Rails 2.1.2

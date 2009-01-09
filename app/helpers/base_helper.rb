@@ -3,7 +3,6 @@ require 'md5'
 # Methods added to this helper will be available to all templates in the application.
 module BaseHelper
 
-
   def commentable_url(comment)
     if comment.commentable_type != "User"
       polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
@@ -47,9 +46,9 @@ module BaseHelper
     str << '><div class="box_top"></div>'
     str << "\n"
     
-    concat(str, content.binding)
+    concat(str)
     yield(content)
-    concat('<br class="clear" /><div class="box_bottom"></div></div>', content.binding)
+    concat('<br class="clear" /><div class="box_bottom"></div></div>')
   end
 
 
@@ -195,10 +194,18 @@ module BaseHelper
   # end
   
   def more_comments_links(commentable)
-    html = link_to "&raquo; " + :all_comments.l, comments_url(commentable.class.to_s, commentable.to_param)
+    html = link_to "&raquo; " + :all_comments.l, comments_url(commentable.class.to_s.underscore, commentable.to_param)
     html += "<br />"
-		html += link_to "&raquo; " + :comments_rss.l, formatted_comments_url(commentable.class.to_s, commentable.to_param, :rss)
+		html += link_to "&raquo; " + :comments_rss.l, formatted_comments_url(commentable.class.to_s.underscore, commentable.to_param, :rss)
 		html
+  end
+  
+  def more_user_comments_links(user = @user)
+    html = link_to "&raquo; " + :all_comments.l, user_comments_url(user)
+    html += "<br />"
+    #formatted_user_comments_url(user.to_param, :rss) was still returning /user/id/comments.rss, so brute-forcing it
+		html += link_to "&raquo; " + :comments_rss.l, formatted_user_comments_url(user.to_param, :rss)
+		html  
   end
   
   def activities_line_graph(options = {})
@@ -258,7 +265,7 @@ module BaseHelper
   def pagination_info_for(paginator, options = {})
     options = {:prefix => :showing.l, :connector => '-', :suffix => ""}.merge(options)
     window = paginator.first_item.to_s + options[:connector] + paginator.last_item.to_s
-    options[:prefix] + " <strong>#{window}</strong> " + "of".l + " #{paginator.size} " + options[:suffix]
+    options[:prefix] + " <strong>#{window}</strong> " + 'of'.l + " #{paginator.size} " + options[:suffix]
   end
   
   
@@ -327,5 +334,29 @@ module BaseHelper
       display = date.strftime("%B %d")
     end
   end
+  
+  def profile_completeness(user)
+    segments = [
+      {:val => 2, :action => link_to('Add a profile photo', edit_user_path(user, :anchor => 'profile_details')), :test => !user.avatar.nil? },
+      {:val => 1, :action => link_to('Fill in your about me', edit_user_path(user, :anchor => 'user_description')), :test => !user.description.blank?},      
+      {:val => 2, :action => link_to('Select your city', edit_user_path(user, :anchor => 'location_chooser')), :test => !user.metro_area.nil? },            
+      {:val => 1, :action => link_to('Tag yourself', edit_user_path(user, :anchor => "user_tags")), :test => user.tags.any?},                  
+      {:val => 1, :action => link_to('Invite some friends', new_invitation_path), :test => user.invitations.any?}
+    ]
+    
+    completed_score = segments.select{|s| s[:test].eql?(true)}.sum{|s| s[:val]}
+    incomplete = segments.select{|s| !s[:test] }
+    
+    total = segments.sum{|s| s[:val] }
+    score = (completed_score.to_f/total.to_f)*100
+
+    {:score => score, :incomplete => incomplete, :total => total}
+  end
+  
+
+  def possesive(user)
+    user.gender ? (user.male? ? :his.l : :her.l)  : :their.l    
+  end
+  
 
 end

@@ -7,6 +7,8 @@
     %p= link_to :create_new_forum.l, new_forum_path, :class => "utility"
 
 .box
+
+  .right=link_to :recent_posts.l, recent_forum_posts_path
   %h3= :forums.l
   %p.subtitle
     = feed_icon_tag :recent_posts.l, formatted_all_sb_posts_path(:format => 'rss')
@@ -55,7 +57,7 @@
               = link_to :view.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
               )
 
-  %p= link_to :recent_posts.l, all_sb_posts_path
+  %p= link_to :recent_posts.l, recent_forum_posts_path
 
 
   - online_users = User.currently_online 

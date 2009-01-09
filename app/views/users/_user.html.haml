@@ -17,7 +17,7 @@
           - if current_user and current_user.can_request_friendship_with(user)
             %li.addfriend= add_friend_link(user)
 
-        = "<p>" + user.tags[0...6].collect{|t| link_to( t.name, tag_url(t.name), :class => "tag") if t }.join(" ") + "</p>" unless user.tags.empty?
+        = "<p>" + user.tags[0...6].collect{|t| link_to( t.name, tag_url(t), :class => "tag") if t }.join(" ") + "</p>" unless user.tags.empty?
 
       .yui-u{"style"=>"overflow:hidden"}
         - if @search && @search['description']
