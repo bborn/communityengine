@@ -36,6 +36,19 @@ class CommentTest < Test::Unit::TestCase
     AppConfig.allow_anonymous_commenting = false
   end  
   
+  def test_should_not_notify_previous_anonymous_commenter_if_self
+    AppConfig.allow_anonymous_commenting = true
+    Comment.create!(:comment => 'foo', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin))
+    Comment.create!(:comment => 'bar', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin))    
+
+    comment = Comment.create!(:comment => 'bar', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin))        
+
+    assert_difference ActionMailer::Base.deliveries, :length, 0 do
+      comment.notify_previous_anonymous_commenters
+    end
+    AppConfig.allow_anonymous_commenting = false
+  end  
+  
   
   def test_should_not_be_created_anonymously
     assert_no_difference Comment, :count do
