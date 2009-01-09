@@ -11,10 +11,10 @@
 
   - if @related.any?
     .box.alt
-    %h3=:related_clippings_all_members.l
-    .centered
-      - @related.each do |clipping|
-        = link_to image_tag(clipping.image_uri(:thumb), :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
+      %h3=:related_clippings_all_members.l
+      .centered
+        - @related.each do |clipping|
+          = link_to image_tag(clipping.image_uri(:thumb), :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
 
 #yui-main
   .yui-b
