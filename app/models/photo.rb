@@ -25,7 +25,8 @@ class Photo < ActiveRecord::Base
   }
 
   def display_name
-    self.name ? self.name : I18n.translate(:created_at) + I18n.localize(self.created_at.to_date)
+    self.name ? self.name : I18n.translate(:created_at, :scope => [:activerecord, :attributes, :photo]
+    ) + I18n.localize(self.created_at.to_date)
   end
   
 
