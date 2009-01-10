@@ -25,7 +25,7 @@ class Photo < ActiveRecord::Base
   }
 
   def display_name
-    self.name ? self.name : self.created_at.strftime("created on: %m/%d/%y")
+    self.name ? self.name : I18n.translate(:created_at) + I18n.localize(self.created_at.to_date)
   end
   
 
