@@ -1,4 +1,8 @@
 de-DE:
+  activerecord:
+    attributes:
+      photo:
+        created_at: "erstellt am: "
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  vor ein paar Sekunden
   #en: about: About
