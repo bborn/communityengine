@@ -32,7 +32,6 @@ class CommentsControllerTest < ActionController::TestCase
       create_user_comment(:user_id => users(:aaron).id)
     end
   end  
-  
 
   def test_should_create_user_comment_without_notification
     users(:quentin).notify_comments = false
@@ -53,7 +52,7 @@ class CommentsControllerTest < ActionController::TestCase
     end    
     assert_response :redirect    
   end
-
+  
   def test_should_create_photo_comment
     login_as :aaron
     assert_difference Comment, :count, 1 do

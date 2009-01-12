@@ -47,6 +47,16 @@ class UserNotifier < ActionMailer::Base
     @body[:commenter] = comment.user
   end  
 
+  def follow_up_comment_notice_anonymous(email, comment)
+    @recipients  = "#{email}"
+    setup_sender_info
+    @subject     = "[#{AppConfig.community_name}] "
+    @sent_on     = Time.now
+    @subject     += "#{comment.username} has commented on a #{comment.commentable_type} that you also commented on."
+    @body[:url]  = commentable_url(comment)
+    @body[:comment] = comment
+  end
+
   def new_forum_post_notice(user, post)
      setup_email(user)
      @subject     += "#{post.user.login} has posted in a thread you are monitoring."

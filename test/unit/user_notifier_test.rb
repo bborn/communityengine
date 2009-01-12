@@ -57,6 +57,12 @@ class UserNotifierTest < Test::Unit::TestCase
     end    
   end
   
+  def test_should_deliver_follow_up_comment_notice_anonymous
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do
+      UserNotifier.deliver_follow_up_comment_notice_anonymous('test@example.com', comments(:aarons_comment_on_quentins_post))
+    end    
+  end  
+  
   def test_should_deliver_new_forum_post_notice
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       UserNotifier.deliver_new_forum_post_notice(users(:dwr), sb_posts(:ponies))
