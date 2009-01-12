@@ -19,13 +19,15 @@ module Professionalnerd #:nodoc:
                      :class_name => options[:class_name],
                      :foreign_key => 'sender_id',
                      :order => "created_at DESC",
-                     :conditions => ["sender_deleted = ?", false]
+                     :conditions => ["sender_deleted = ?", false],
+                     :dependent => :destroy
 
             has_many :received_messages,
                      :class_name => options[:class_name],
                      :foreign_key => 'recipient_id',
                      :order => "created_at DESC",
-                     :conditions => ["recipient_deleted = ?", false]
+                     :conditions => ["recipient_deleted = ?", false],
+                     :dependent => :destroy                     
 
             extend ClassMethods 
             include InstanceMethods 
