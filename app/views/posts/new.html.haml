@@ -18,12 +18,11 @@
 
       = error_messages_for :post
       - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
-        - unless @post.category || @post.contest 
+        - unless @post.category || @post.contest || @categories.nil?
           %label
             =:category.l
-            \:
           %select{:id=>"post_category_id", :name=>"post[category_id]"}
-            -for category in Category.find(:all)
+            -for category in @categories
               %option{:value=>"#{category.id}"}= h(category.name)
         -else
           = f.hidden_field :category_id

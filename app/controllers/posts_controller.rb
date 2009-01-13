@@ -93,6 +93,7 @@ class PostsController < BaseController
     @user = User.find(params[:user_id])    
     @post = Post.new(params[:post])
     @post.published_as = 'live'
+    @categories = Category.find(:all)
   end
   
   # GET /posts/1;edit
