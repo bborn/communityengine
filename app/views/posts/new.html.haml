@@ -18,7 +18,7 @@
 
       = error_messages_for :post
       - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
-        - unless @post.category || @post.contest || @categories.nil?
+        - unless @post.category || @post.contest || @categories.empty?
           %label
             =:category.l
           %select{:id=>"post_category_id", :name=>"post[category_id]"}
@@ -30,17 +30,17 @@
 
         %label
           =:title.l
-          %em=:required.l
+          %em="(#{:required.l})"
         = f.text_field :title
 
         %label
           =:body_text.l
-          %em=:required.l
+          %em="(#{:required.l})"
         = f.text_area :raw_post, :style => "width:95%;"
 
         %label
           =:tags.l
-          %em=:optional_keywords_describing_this_post_separated_by_commas.l
+          %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
         = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35}
         .auto_complete#tag_list_auto_complete
           = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }

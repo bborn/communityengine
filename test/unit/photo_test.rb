@@ -24,4 +24,9 @@ class PhotoTest < Test::Unit::TestCase
     assert_equal next_photo, photos(:library_pic)
   end  
   
+  def test_display_name
+    photos(:another_pic).name = nil
+    assert photos(:another_pic).display_name
+  end
+  
 end
