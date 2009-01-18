@@ -15,7 +15,7 @@ class AddPolls < ActiveRecord::Migration
     end
     
     create_table :votes do |t|
-      t.column :user_id, :integer
+      t.column :user_id, :string      
       t.column :poll_id, :integer
       t.column :choice_id, :integer
       t.column :created_at, :datetime
