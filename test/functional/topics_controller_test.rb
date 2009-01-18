@@ -44,7 +44,7 @@ class TopicsControllerTest < Test::Unit::TestCase
   def test_sticky_and_locked_protected_from_non_admin
     login_as :joe
     assert ! users(:joe).admin?
-    assert ! users(:joe).moderator_of?(:rails)
+    assert ! users(:joe).moderator_of?(forums(:rails))
     post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sticky => "1", :locked => "1", :body => 'foo' }
     assert assigns(:topic)
     assert ! assigns(:topic).sticky?

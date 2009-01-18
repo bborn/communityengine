@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
   attr_accessor :invalid_emails
   
   #Named scopes
-  named_scope :by_featured_writers, :conditions => ["users.featured_writer = ?", 1], :include => :user
+  named_scope :by_featured_writers, :conditions => ["users.featured_writer = ?", true], :include => :user
   named_scope :recent, :order => 'posts.published_at DESC'
   named_scope :popular, :order => 'posts.view_count DESC'
   named_scope :since, lambda { |days|
@@ -72,7 +72,8 @@ class Post < ActiveRecord::Base
       :select => 'posts.*, count(*) as comments_count',
       :joins => "LEFT JOIN comments ON comments.commentable_id = posts.id",
       :conditions => ['comments.commentable_type = ? AND posts.published_at > ?', 'Post', since],
-      :group => 'comments.commentable_id',
+#      :group => 'comments.commentable_id',      
+      :group => self.columns.map{|column| self.table_name + "." + column.name}.join(","),
       :order => 'comments_count DESC',
       :limit => limit
       )

@@ -72,9 +72,9 @@ class User < ActiveRecord::Base
     
   #named scopes
   named_scope :recent, :order => 'users.created_at DESC'
-  named_scope :featured, :conditions => ["users.featured_writer = ?", 1]
+  named_scope :featured, :conditions => ["users.featured_writer = ?", true]
   named_scope :active, :conditions => ["users.activated_at IS NOT NULL"]  
-  named_scope :vendors, :conditions => ["users.vendor = ?", 1]
+  named_scope :vendors, :conditions => ["users.vendor = ?", true]
   named_scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
@@ -149,10 +149,11 @@ class User < ActiveRecord::Base
   
   def self.find_by_activity(options = {})
     options.reverse_merge! :limit => 30, :require_avatar => true, :since => 7.days.ago   
-    
+    #Activity.since.find(:all,:select => Activity.columns.map{|column| Activity.table_name + "." + column.name}.join(",")+', count(*) as count',:group => Activity.columns.map{|column| Activity.table_name + "." + column.name}.join(","),:order => 'count DESC',:joins => "LEFT JOIN users ON users.id = activities.user_id" )
+    #Activity.since(7.days.ago).find(:all,:select => 'activities.user_id, count(*) as count',:group => 'activities.user_id',:order => 'count DESC',:joins => "LEFT JOIN users ON users.id = activities.user_id" )
     activities = Activity.since(options[:since]).find(:all, 
-      :select => '*, count(*) as count', 
-      :group => "activities.user_id", 
+      :select => 'activities.user_id, count(*) as count', 
+      :group => 'activities.user_id', 
       :conditions => "#{options[:require_avatar] ? ' users.avatar_id IS NOT NULL' : nil}", 
       :order => 'count DESC', 
       :joins => "LEFT JOIN users ON users.id = activities.user_id",
