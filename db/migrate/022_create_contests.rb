@@ -4,8 +4,8 @@ class CreateContests < ActiveRecord::Migration
       t.column :title, :string
       t.column :created_at, :datetime
       t.column :updated_at, :datetime
-      t.column :begin_date, :datetime
-      t.column :end_date, :datetime
+      t.column :begin, :datetime
+      t.column :end, :datetime
       t.column :raw_post, :text
       t.column :post, :text
     end
