@@ -35,7 +35,7 @@ class ClippingTest < Test::Unit::TestCase
   end
   
   def test_should_get_clipping_image
-    assert_difference Asset, :count, 4 do
+    assert_difference Asset, :count, 1 do
       c = Clipping.create(:user => users(:quentin), :url => 'http://example.com', :image_url => 'http://www.google.com/intl/en_ALL/images/logo.gif')
       c.save!
     end

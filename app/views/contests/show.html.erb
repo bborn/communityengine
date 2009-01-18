@@ -1,7 +1,7 @@
 <div class="column span-9 posts">
 	<div class="contest">			
 		<h2><%= @contest.title %></h2>
-		<h3>From <%= @contest.begin.strftime("%B %d, %Y") %> To <%= @contest.end.strftime("%B %d, %Y") %></h3>
+		<h3>From <%= @contest.begin_date.strftime("%B %d, %Y") %> To <%= @contest.end_date.strftime("%B %d, %Y") %></h3>
 		<p><%= @contest.post %></p>
 	</div>
   

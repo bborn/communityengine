@@ -105,13 +105,13 @@ class PostTest < Test::Unit::TestCase
   end
   
   def test_update_poll
-    assert posts(:funny_post).create_poll({:question => 'Who can have a great time?'}, ['I can', 'You can', 'No one can'])
+    assert posts(:not_funny_post).create_poll({:question => 'Who can have a great time?'}, ['I can', 'You can', 'No one can'])
     
-    assert posts(:funny_post).update_poll({:question => 'Who can have a terrible time?'}, ['Foo', 'Bar'])
+    assert posts(:not_funny_post).update_poll({:question => 'Who can have a terrible time?'}, ['Foo', 'Bar'])
     
-    assert_equal posts(:funny_post).poll.question, 'Who can have a terrible time?'
-    assert_equal posts(:funny_post).poll.choices.first.description, 'Foo'
-    assert_equal posts(:funny_post).poll.choices.last.description, 'Bar'
+    assert_equal 'Who can have a terrible time?', posts(:not_funny_post).poll.question 
+    assert_equal 'Foo', posts(:not_funny_post).poll.choices.first.description
+    assert_equal 'Bar', posts(:not_funny_post).poll.choices.last.description
   end
   
   def test_update_poll_with_no_choices_should_delete_poll
