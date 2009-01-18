@@ -151,7 +151,7 @@ class UsersControllerTest < ActionController::TestCase
   
   def test_should_activate_user
     users(:quentin).activated_at = nil
-    users(:quentin).activation_code = nil
+    users(:quentin).activation_code = ':quentin_activation_code'
     users(:quentin).save!
     assert_nil User.authenticate('quentin', 'test')
     

@@ -2,9 +2,9 @@ class Contest < ActiveRecord::Base
   has_many :posts, :order => "published_at desc"
   before_save :transform_post
 
-  validates_presence_of :begin, :end, :title, :banner_title, :banner_subtitle
+  validates_presence_of :begin_date, :end_date, :title, :banner_title, :banner_subtitle
   
-  named_scope :active, :conditions => ["begin < ? AND end > ?", Time.now, Time.now], :order => 'created_at desc'
+  named_scope :active, :conditions => ["begin_date < ? AND end_date > ?", Time.now, Time.now], :order => 'created_at desc'
 
   def self.current
     active.find(:first)
@@ -15,11 +15,11 @@ class Contest < ActiveRecord::Base
   end
   
   def self.get_active
-    Contest.find(:first, :conditions => ["begin < ? AND end > ?", Time.now, Time.now], :order => 'created_at desc')
+    Contest.find(:first, :conditions => ["begin_date < ? AND end_date > ?", Time.now, Time.now], :order => 'created_at desc')
   end
   
   def active?
-    (self.begin < Time.now ) and (self.end > Time.now )
+    (self.begin_date < Time.now ) and (self.end_date > Time.now )
   end
 
   def time_and_date
@@ -35,11 +35,11 @@ class Contest < ActiveRecord::Base
   end
   
   def start_time
-    self.begin
+    self.begin_date
   end
   
   def end_time
-    self.end
+    self.end_date
   end
 
   

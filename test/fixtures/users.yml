@@ -66,7 +66,7 @@ dwr:
   created_at: <%= 1.days.ago.to_s :db %>
   activated_at: <%= 30.minutes.ago.to_s :db %>  
   activation_code: 
-  vendor: 1
+  vendor: true
   login_slug: dwreach
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
@@ -109,7 +109,7 @@ super_writer:
   activated_at: <%= 10.minutes.ago.to_s :db %>  
   metro_area_id: 5
   activation_code: 
-  featured_writer: 1
+  featured_writer: true
   login_slug: superwriter
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3  
@@ -123,7 +123,7 @@ plumberbob:
   created_at: <%= 1.days.ago.to_s :db %>
   activated_at: <%= 30.minutes.ago.to_s :db %>  
   activation_code: 
-  vendor: 1
+  vendor: true
   login_slug: plumberbob
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3  
@@ -137,9 +137,9 @@ privateuser:
   created_at: <%= 1.days.ago.to_s :db %>
   activated_at: <%= 30.minutes.ago.to_s :db %>  
   activation_code: 
-  vendor: 0
+  vendor: false
   login_slug: privateuser
-  profile_public: 0
+  profile_public: false
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3  
 sam:

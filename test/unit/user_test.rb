@@ -169,9 +169,14 @@ class UserTest < Test::Unit::TestCase
   
   def test_comments_activity
     user = users(:quentin)
+    
+    #might be a good idea to check if there are any comments_activity objects beforehand
+    #assert_equal 0, user.comments_activity.size
+    
     2.times do
       comment = Comment.create!(:comment => "foo", :user => users(:aaron), :commentable => user, :recipient => user)
     end
+    
     assert_equal 2, user.comments_activity.size
   end
   
