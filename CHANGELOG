@@ -1,3 +1,6 @@
+0.10.9
+* postgres compatibility (thanks Jak4)
+
 = 0.10.8
 
 * Updating CE for Rails 2.2.2 compatibility
