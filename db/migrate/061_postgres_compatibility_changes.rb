@@ -27,6 +27,6 @@ class PostgresCompatibilityChanges < ActiveRecord::Migration
     #postgres users can't use the "reversion" on the next line, comment it
     #change_column :votes, :user_id, :string
     #postgres users can't use the "reversion" on the next line, comment it
-   # change_column :messages, :recipient_deleted, :boolean, :default => 0
+    change_column :messages, :recipient_deleted, :boolean, :default => 0
   end
 end
