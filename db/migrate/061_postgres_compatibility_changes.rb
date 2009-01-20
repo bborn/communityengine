@@ -9,23 +9,24 @@ class PostgresCompatibilityChanges < ActiveRecord::Migration
     # also comment the change_column calls in this file 
 
     # for postgres databases: 010_create_invitations.rb, comment the next line
-    change_column :invitations, :user_id, :integer
+    #change_column :invitations, :user_id, :integer
     rename_column :contests, :begin, :begin_date
     rename_column :contests, :end, :end_date
     # for postgres databases: 047_add_polls.rb
-    change_column :votes, :user_id, :integer
+    #change_column :votes, :user_id, :integer
     
+    # for postgres databases: 059_create_invitations.rb, comment the next line
     change_column :messages, :recipient_deleted, :boolean, :default => false
   end
 
   def self.down
     #postgres users can't use the "reversion" on the next line, comment it   
-    change_column :invitations, :user_id, :string    
+    #change_column :invitations, :user_id, :string    
     rename_column :contests, :begin_date, :begin
     rename_column :contests, :end_date, :end
     #postgres users can't use the "reversion" on the next line, comment it
-    change_column :votes, :user_id, :string
+    #change_column :votes, :user_id, :string
     #postgres users can't use the "reversion" on the next line, comment it
-    change_column :messages, :recipient_deleted, :boolean, :default => 0
+   # change_column :messages, :recipient_deleted, :boolean, :default => 0
   end
 end
