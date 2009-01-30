@@ -1,0 +1,16 @@
+<h3><%= :listing_invitations.l %></h3>
+
+<table>
+  <tr>
+  </tr>
+  
+<% for invitation in @invitations %>
+  <tr>
+    <td><%= invitation.email_addresses %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to :new_invitation.l, new_user_invitation_path %>

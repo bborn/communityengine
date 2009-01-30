@@ -1,0 +1,18 @@
+.clipping{:id => "clipping_#{clipping.id}"}
+  %a{:href=>"#{user_clipping_url(clipping.user, clipping)}", :title => h(truncate_words(clipping.description)) }     
+    = image_tag clipping.image_uri(:medium_square), :class => 'clipping_image'
+  %p
+    = h(truncate_words(clipping.description))
+
+  - if favorite = clipping.has_been_favorited_by(current_user, request.remote_ip)
+    .favorite
+      = image_tag 'icons/heart_off.png', :plugin => 'community_engine'
+      = clipping.favorited_count
+      %br
+      %small.quiet= link_to :in_your_favorites.l, user_favorite_path(current_user, favorite) if logged_in?    
+
+      %small= link_to_remote '(un-favorite)', :url => favorite_path('clipping', clipping.id, favorite.id), :method => :delete, :loading => "new Effect.Fade($$('#clipping_#{clipping.id} .favorite img').first())", :title => :un_favorite_this.l if logged_in?
+  - else
+    .favorite  
+      = link_to_remote image_tag('icons/heart.png', :plugin => 'community_engine'), :url => favorites_path('clipping', clipping.id), :loading => "new Effect.Pulsate($$('#clipping_#{clipping.id} .favorite img').first() )", :title => :un_favorite_this.l
+      = clipping.favorited_count

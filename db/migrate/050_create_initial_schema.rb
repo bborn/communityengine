@@ -4,7 +4,7 @@ class CreateInitialSchema < ActiveRecord::Migration
       t.column "name",             :string
       t.column "description",      :string
       t.column "topics_count",     :integer, :default => 0
-      t.column "sb_posts_count",      :integer, :default => 0
+      t.column "sb_posts_count",   :integer, :default => 0
       t.column "position",         :integer
       t.column "description_html", :text
       t.column "owner_type",       :string

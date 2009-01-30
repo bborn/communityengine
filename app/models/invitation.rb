@@ -1,4 +1,6 @@
 class Invitation < ActiveRecord::Base
+  acts_as_activity :user
+  
   belongs_to :user
   
   after_save :send_invite
@@ -12,6 +14,7 @@ class Invitation < ActiveRecord::Base
     invalid_emails = []
     email_addresses = email_addresses || ''
     emails = email_addresses.split(",").collect{|email| email.strip }.uniq
+    
     emails.each{ |email|
       unless email =~ /[\w._%-]+@[\w.-]+.[a-zA-Z]{2,4}/
         invalid_emails << email

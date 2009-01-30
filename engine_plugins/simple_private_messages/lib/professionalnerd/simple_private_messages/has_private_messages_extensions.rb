@@ -19,13 +19,15 @@ module Professionalnerd #:nodoc:
                      :class_name => options[:class_name],
                      :foreign_key => 'sender_id',
                      :order => "created_at DESC",
-                     :conditions => ["sender_deleted = ?", false]
+                     :conditions => ["sender_deleted = ?", false],
+                     :dependent => :destroy
 
             has_many :received_messages,
                      :class_name => options[:class_name],
                      :foreign_key => 'recipient_id',
                      :order => "created_at DESC",
-                     :conditions => ["recipient_deleted = ?", false]
+                     :conditions => ["recipient_deleted = ?", false],
+                     :dependent => :destroy                     
 
             extend ClassMethods 
             include InstanceMethods 
@@ -46,7 +48,7 @@ module Professionalnerd #:nodoc:
         
         # Returns the number of unread messages for this user
         def unread_message_count
-          eval options[:class_name] + '.count(:conditions => ["recipient_id = ? AND read_at IS NULL", self])'
+          eval options[:class_name] + '.count(:conditions => ["recipient_id = ? AND recipient_deleted IS NULL AND read_at IS NULL", self])'
         end
       end 
     end

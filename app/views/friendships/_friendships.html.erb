@@ -1,0 +1,14 @@
+<table>
+  <tr>
+  </tr>
+  
+<% for friendship in @friendships %>
+  <tr>
+    <td><%= friendship.friend.login %>, <%= friendship.friendship_status.name %></td>
+    <td><%= friendship.initiator? ? "initiator" : "not initiator" %></td>
+    <td><%= time_ago_in_words friendship.created_at %></td>
+    <td><%= link_to(:accept.l, accept_user_friendship_path(@user, friendship), :method => :put) unless friendship.initiator? %></td>
+    <td><%= link_to(:deny.l, user_friendship_path(friendship.user, friendship), :confirm => :are_you_sure.l, :method => :delete) %></td>
+  </tr>
+<% end %>
+</table>

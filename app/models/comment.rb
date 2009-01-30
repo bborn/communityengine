@@ -47,7 +47,7 @@ class Comment < ActiveRecord::Base
   end    
     
   def commentable_name
-    type = Inflector.underscore(self.commentable_type)
+    type = self.commentable_type.underscore
     case type
       when 'user'
         commentable.login
@@ -91,9 +91,17 @@ class Comment < ActiveRecord::Base
     end    
   end
   
+  def notify_previous_anonymous_commenters
+    anonymous_commenters_emails = commentable.comments.map{|c| c.author_email if ( !c.user && !c.author_email.eql?(self.author_email) && c.author_email) }.uniq.compact
+    anonymous_commenters_emails.each do |email|
+      UserNotifier.deliver_follow_up_comment_notice_anonymous(email, self)
+    end    
+  end  
+  
   def send_notifications
     UserNotifier.deliver_comment_notice(self) if should_notify_recipient?
-    self.notify_previous_commenters    
+    self.notify_previous_commenters  
+    self.notify_previous_anonymous_commenters if AppConfig.allow_anonymous_commenting
   end
   
   protected

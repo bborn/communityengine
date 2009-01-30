@@ -1,22 +1,22 @@
-%h2 In the Forums
+%h2= :in_the_forums.l
 %table{:width => '100%'}
   %thead
     %tr 
       %th.quiet
-        Topic
+        =:topic.l
       %th.quiet.centered
-        Posts
+        =:posts.l
   %tbody
     -@topics.each do |topic|
       %tr
         %td
-          =link_to truncate(strip_tags(topic.title), 45), forum_topic_path(:forum_id => topic.forum, :id => topic.sb_posts.last.topic.id, :page => topic.last_page, :anchor => topic.sb_posts.last.dom_id)
+          =link_to truncate(strip_tags(topic.title), :length => 45), forum_topic_path(:forum_id => topic.forum, :id => topic.sb_posts.last.topic.id, :page => topic.last_page, :anchor => topic.sb_posts.last.dom_id)
           %br
           %p.small.quiet  
             = "in #{link_to topic.forum.name, forum_path(topic.forum)} by <strong>#{topic.sb_posts.last.user.login}</strong>:"
             %br
-            =h truncate(strip_tags(topic.sb_posts.last.body), 45)
+            =h truncate(strip_tags(topic.sb_posts.last.body), :length => 45)
             
         %td.post_count
           %strong= topic.sb_posts_count
-=link_to 'go to the forums &raquo;', forums_path, :class => 'right small'        
+=link_to :go_to_the_forums.l+' &raquo;', forums_path, :class => 'right small'        

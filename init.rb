@@ -30,5 +30,12 @@ module ApplicationConfiguration
   
   config_hash = (users_app_config||{}).reverse_merge!(default_app_config)
 
-  ::AppConfig = OpenStruct.new config_hash
+  unless defined?(AppConfig)
+    ::AppConfig = OpenStruct.new config_hash
+  else
+    orig_hash   = AppConfig.marshal_dump
+    merged_hash = config_hash.merge(orig_hash)
+    
+    AppConfig = OpenStruct.new merged_hash
+  end
 end

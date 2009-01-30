@@ -114,7 +114,7 @@ class PhotosController < BaseController
       if @photo.save
         #start the garbage collector
         GC.start
-        flash[:notice] = 'Photo was successfully created.'.l
+        flash[:notice] = :photo_was_successfully_created.l
 
         format.html {
           render :action => 'inline_new', :layout => false and return if params[:inline]
@@ -135,7 +135,7 @@ class PhotosController < BaseController
         format.js {
           responds_to_parent do
             render :update do |page|
-              page.alert('Sorry, there was an error uploading the photo.')
+              page.alert(:sorry_there_was_an_error_uploading_the_photo.l)
             end
           end
         }

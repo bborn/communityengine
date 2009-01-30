@@ -5,15 +5,15 @@
         %h2
           =:get_started_banner.l :site=>AppConfig.community_name
         %p
-          ="CommunityEngine is the best way to go from zero to hero in no time".l :homepage_banner_msg
+          =:homepage_banner_msg.l
         %h4
           %a{:href=>"http://www.missingmethod.com/projects/community_engine"}
-            ="Download it now and get started".l :homepage_banner_download_msg
+            =:homepage_banner_download_msg.l
     .yui-u
       .box
         %h2
-          ="See how it works".l :homepage_banner_signup_prompt
+          =:homepage_banner_signup_prompt.l
         %p
-          ="Create Your Account".l
+          =:create_your_account.l
         %h4 
-          =link_to "Sign Up!".l, signup_path
+          =link_to :sign_up.l, signup_path

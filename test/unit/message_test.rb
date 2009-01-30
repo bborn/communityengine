@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class MessageTest < Test::Unit::TestCase
-  fixtures :users, :roles
+  fixtures :all
 
   def test_should_send_notification
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
@@ -33,6 +33,13 @@ class MessageTest < Test::Unit::TestCase
     assert m.errors.on(:base)
   end
   
+  def test_should_be_deleted_with_user
+    message = Message.create!(:sender => users(:quentin), :recipient => users(:aaron), :body => 'hey aaron', :subject => 'Hello friend!')    
+  
+    assert_difference Message, :count, -1 do
+      users(:quentin).destroy
+    end
+  end
 
 
 end

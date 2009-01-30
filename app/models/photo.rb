@@ -16,8 +16,6 @@ class Photo < ActiveRecord::Base
   
   belongs_to :user
   has_one :user_as_avatar, :class_name => "User", :foreign_key => "avatar_id"
-
-  attr_protected :user_id
   
   #Named scopes
   named_scope :recent, :order => "photos.created_at DESC", :conditions => ["photos.parent_id IS NULL"]

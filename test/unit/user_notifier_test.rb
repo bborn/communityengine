@@ -8,7 +8,7 @@ class UserNotifierTest < Test::Unit::TestCase
 
   include ActionMailer::Quoting
 
-  fixtures :users, :friendships, :comments, :posts, :sb_posts, :topics, :forums, :roles
+  fixtures :users, :friendships, :friendship_statuses, :comments, :posts, :sb_posts, :topics, :forums, :roles
 
   def setup
     ActionMailer::Base.delivery_method = :test
@@ -38,6 +38,13 @@ class UserNotifierTest < Test::Unit::TestCase
     end
   end
   
+  def test_should_deliver_friendship_accepted_notification
+    f = friendships(:aaron_receive_quentin_pending)    
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do
+      f.update_attributes(:friendship_status => FriendshipStatus[:accepted]) && f.reverse.update_attributes(:friendship_status => FriendshipStatus[:accepted])          
+    end    
+  end
+  
   def test_should_deliver_comment_notice
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       UserNotifier.deliver_comment_notice(comments(:aarons_comment_on_quentins_post))
@@ -49,6 +56,12 @@ class UserNotifierTest < Test::Unit::TestCase
       UserNotifier.deliver_follow_up_comment_notice(users(:dwr), comments(:aarons_comment_on_quentins_post))
     end    
   end
+  
+  def test_should_deliver_follow_up_comment_notice_anonymous
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do
+      UserNotifier.deliver_follow_up_comment_notice_anonymous('test@example.com', comments(:aarons_comment_on_quentins_post))
+    end    
+  end  
   
   def test_should_deliver_new_forum_post_notice
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
