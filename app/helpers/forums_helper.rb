@@ -22,7 +22,7 @@ module ForumsHelper
     post = ''
     if topic.locked?
       icon = "lock" 
-      post = ", this topic is locked."
+      post = ", "+:this_topic_is_locked.l
       color = "darkgrey"
     end  
     [icon, color, post  ]

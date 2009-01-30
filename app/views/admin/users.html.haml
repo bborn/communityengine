@@ -5,11 +5,11 @@
   .yui-b.box
     %h3
       = AppConfig.community_name
-      = "Members".l
+      = :members.l
     - form_tag '/admin/users', :class => 'MainForm' do
-      %label= "User login:".l
+      %label= :user_login.l
       = text_field_tag 'login', params['login']
-      %label= "User e-mail:".l
+      %label= :user_e_mail.l
       = text_field_tag 'email', params['email']
       %p
         %input{:type=>"submit", :value=> :search_users.l }
@@ -19,10 +19,10 @@
 
     %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
       %tr
-        %th="Login".l
-        %th="E-mail".l
-        %th="Status".l
-        %th="Actions".l
+        %th=:login.l
+        %th=:e_mail.l
+        %th=:status.l
+        %th=:actions.l
         
       - @users.each do |user|
         %tr
@@ -33,12 +33,8 @@
           %td
             = user.active? ? 'active'.l : 'inactive'.l
           %td
-            = link_to( "Assume ID".l , assume_user_path(user) )
-            - if user.active?
-              = (" | " + link_to("Deactivate".l, :controller => "/admin", :action => "deactivate_user", :id => user.id)) unless user.active?
-            - else
-              = (" | " + link_to("Activate".l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
-
+            = link_to( :assume_id.l , assume_user_path(user) )
+            = (" | " + link_to(:activate.l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
 
     -if @users.page_count > 1
       .pagination= paginating_links @users, :link_to_current_page => true

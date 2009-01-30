@@ -10,33 +10,33 @@
       %h3= random_greeting(@user)
     
       -if @user.pending_friendships.any?
-        %p=link_to "#{image_tag 'icons/user_add.png', :plugin => 'community_engine'} You have pending friendship requests.", pending_user_friendships_path(@user)
+        %p=link_to "#{image_tag 'icons/user_add.png', :plugin => 'community_engine'} "+:you_have_pending_friendship_requests.l, pending_user_friendships_path(@user)
     
     
       -if @network_activity.empty? && @recommended_posts.empty?
         %p
-          ="This is your dashboard.".l
+          =:this_is_your_dashboard.l
           %br
           =:dashboard_friends.l :site => AppConfig.community_name
           
         %p
-          ="To start adding friends, you can".l :to_start_adding_friends
-          =link_to 'browse all members'.l, users_path
+          =:to_start_adding_friends.l
+          =link_to :browse_all_members.l, users_path
         %p
-          =link_to 'Update your profile and tag yourself'.l(:update_profile_and_tag_yourself), edit_user_path(current_user)
-          ="to start getting recommended content on your dashboard.".l :to_get_recommended_content_on_your_dashboard
+          =link_to :update_profile_and_tag_yourself.l, edit_user_path(current_user)
+          =:to_get_recommended_content_on_your_dashboard.l
 
     
       -unless @network_activity.empty?
-        %h2="Activity from your network".l
+        %h2=:activity_from_your_network.l
         .box.fresh
           =render :partial => "activities/activity", :collection => @network_activity
-          %h6.all= link_to "See all activity".l, network_user_activities_path(current_user)
+          %h6.all= link_to :see_all_activity.l, network_user_activities_path(current_user)
 
       -unless @recommended_posts.empty?
-        %h3="Recommended Posts".l
+        %h3=:recommended_posts.l
         #posts
           %ul
             -@recommended_posts.each do |post|
               %li
-                = link_to( "#{post.tag_for_first_image_in_body} #{truncate(post.display_title, 75)} <span class='post_excerpt'>#{ truncate_words(post.post, 35, '...' )} (by #{post.user.login})</span>", user_post_path(post.user, post), :title => "by #{post.user.login}" )
+                = link_to( "#{post.tag_for_first_image_in_body} #{truncate(post.display_title, :length => 75)} <span class='post_excerpt'>#{ truncate_words(post.post, 35, '...' )} (:by.l #{post.user.login})</span>", user_post_path(post.user, post), :title => ":by.l #{post.user.login}" )

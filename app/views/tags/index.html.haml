@@ -1,28 +1,28 @@
 .yui-b
   .box
-    %h3 What are "Tags"?
+    %h3= :what_are_tags.l
     %p
-      %strong= "Tags are one-word descriptors users assign to blog posts, pictures, and clippings on #{AppConfig.community_name}."
+      %strong= :tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on.l+" #{AppConfig.community_name}."
     %p
-      %strong Bigger font size = more popular tag.
+      %strong= :bigger_font_size_more_popular_tag.l
     %p
-      For more information on Tags, check out the
-      = link_to "FAQ", faq_url
-      page.
+      =:for_more_information_on_tags_check_out_the.l
+      = link_to :faq.l, faq_url
+      =:page.l
       
   .box.alt
-    %h3 Search
+    %h3= :search.l
     %form.MainForm{"action"=>"/search/tags/", "method"=>"get"}
-      %label Tag name:
+      %label= :tag_name.l+":"
       = text_field_tag 'id', params[:id], :autocomplete => "off"
       #id_auto_complete.auto_complete{"class"=>"auto_complete", "id"=>"id_auto_complete"}
       = auto_complete_field 'id', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
       %p
-        %input{"type"=>"submit", "value"=>"go"}
+        %input{"type"=>"submit", "value"=>:go.l}
 
 
 #yui-main
   .yui-b.box
-    %h3 Browse Content By Tags
+    %h3= :browse_content_by_tags.l
     - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
-      = link_to name, tag_url(name), :class => css_class
+      = link_to name, tag_url(URI::encode(name, /[\/.?#]/)), :class => css_class

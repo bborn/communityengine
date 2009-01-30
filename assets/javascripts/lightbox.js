@@ -56,7 +56,7 @@ Lightbox.base.prototype = {
 		//insert the closer image into the div
 		new Insertion.Top(this.element, closer);
 		
-		Event.observe($('close'), 'click', this.hideBox.bindAsEventListener(this) );
+		Event.observe(this.element.down('#close'), 'click', this.hideBox.bindAsEventListener(this) );
 		
 		if (this.options.closeOnOverlayClick){
 			Event.observe($('overlay'), 'click', this.hideBox.bindAsEventListener(this) );
@@ -91,7 +91,7 @@ Lightbox.base.prototype = {
 		return false;
 	},
 	
-	hideBox : function(evt){	
+	hideBox : function(evt){
 		this.cleanupOtherElements();		
 		Element.removeClassName(this.element, this.options.lightboxClassName)
 		Element.hide(this.element);

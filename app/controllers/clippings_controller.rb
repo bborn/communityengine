@@ -23,7 +23,7 @@ class ClippingsController < BaseController
       :include => :tags
       )
 
-    @rss_title = "#{AppConfig.community_name}: #{params[:popular] ? 'Popular' : 'Recent'} Clippings"
+    @rss_title = "#{AppConfig.community_name}: #{params[:popular] ? :popular.l : :recent.l} "+:clippings.l
     @rss_url = rss_site_clippings_path
     respond_to do |format|
       format.html
@@ -151,7 +151,7 @@ class ClippingsController < BaseController
 
     respond_to do |format|
       if @clipping.save!
-        flash[:notice] = 'Clipping was successfully created.'.l
+        flash[:notice] = :clipping_was_successfully_created.l
         format.html {
           unless params[:user_id]
             redirect_to @clipping.url rescue redirect_to user_clipping_url(@user, @clipping)

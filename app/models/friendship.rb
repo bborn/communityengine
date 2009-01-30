@@ -28,6 +28,7 @@ class Friendship < ActiveRecord::Base
   end  
     
   before_validation_on_create :set_pending
+  after_save :notify_requester, :if => Proc.new{|fr| fr.accepted? && fr.initiator }
 
   attr_protected :friendship_status_id
   
@@ -43,8 +44,16 @@ class Friendship < ActiveRecord::Base
     friendship_status.eql?(FriendshipStatus[:pending])
   end
   
+  def accepted?
+    friendship_status.eql?(FriendshipStatus[:accepted])    
+  end
+  
   def self.friends?(user, friend)
     find(:first, :conditions => ["user_id = ? AND friend_id = ? AND friendship_status_id = ?", user.id, friend.id, FriendshipStatus[:accepted].id ])
+  end
+  
+  def notify_requester
+    UserNotifier.deliver_friendship_accepted(self)
   end
     
   private

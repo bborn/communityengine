@@ -2,8 +2,8 @@
   %h3= category.name
   %p= category.tips
 - else 
-  %h3="We need you".l
+  %h3=:we_need_you.l
   %p
     %em Every single person
     has something to say, something to give, something that will help someone else.  Join in!
-%p= "Need some help?  Check out our #{link_to "FAQ section", faq_url}."
+%p= :need_some_help_contact_our.l+" #{link_to :faq_section.l, faq_url}."

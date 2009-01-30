@@ -1,8 +1,3 @@
-# Make it always write to tempfiles, never StringIO
-OpenURI::Buffer.module_eval {
-  remove_const :StringMax
-  const_set :StringMax, 0
-}
 class UrlUpload
   EXTENSIONS = {
     "image/jpeg" => ["jpg", "jpeg", "jpe"],

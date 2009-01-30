@@ -1,0 +1,5 @@
+if @moderatorship.valid?
+  page.select(".make-moderator-#{@moderatorship.user_id}").invoke('update', render(:partial => '/moderators/toggle', :locals => {:forum => @moderatorship.forum, :user => @moderatorship.user }))
+else
+  page.alert(:failed.l)
+end

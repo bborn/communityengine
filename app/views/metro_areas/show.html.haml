@@ -1,22 +1,22 @@
 .box
 
-  %h3="Showing Metro Area Details".l
+  %h3=:showing_metro_area_details.l
   
   %p
     %b
-      ="Country".l
+      =:country.l
       \:
     = h @metro_area.country.name
   %p
     %b
-      ="State".l
+      =:state.l
       \:
     = @metro_area.state.name if @metro_area.state
   %p
     %b
-      ="Name".l
+      =:name.l
       \:
     = @metro_area.name
-  = link_to 'Edit'.l, edit_metro_area_path(@metro_area)
+  = link_to :edit.l, edit_metro_area_path(@metro_area)
   |
-  = link_to 'Back'.l, metro_areas_path
+  = link_to :back.l, metro_areas_path

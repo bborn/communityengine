@@ -1,50 +1,35 @@
 class InvitationsController < BaseController
-  before_filter :require_current_user, :only => [:create, :edit, :update, :destroy, :index]
-  # GET /invitations
-  # GET /invitations.xml
+  before_filter :login_required
+
   def index
-    @user = User.find(params[:user_id])    
+    @user = current_user
     @invitations = @user.invitations
 
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @invitations.to_xml }
+      format.html 
     end
   end
   
-  # GET /invitations/1
-  # GET /invitations/1.xml
-  def show
-    @invitation = Invitation.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @invitation.to_xml }
-    end
-  end
-  
-  # GET /invitations/new
   def new
-    @user = User.find(params[:user_id])    
+    @user = current_user
     @invitation = Invitation.new
   end
   
-  # GET /invitations/1;edit
+
   def edit
     @invitation = Invitation.find(params[:id])
   end
 
-  # POST /invitations
-  # POST /invitations.xml
+
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
 
     @invitation = Invitation.new(params[:invitation])
     @invitation.user = @user
     
     respond_to do |format|
       if @invitation.save
-        flash[:notice] = 'Invitation was successfully created.'.l
+        flash[:notice] = :invitation_was_successfully_created.l
         format.html { 
           unless params[:welcome]
             redirect_to user_path(@invitation.user) 

@@ -121,12 +121,7 @@ class UserTest < Test::Unit::TestCase
     assert_equal users(:quentin).avatar_photo_url, AppConfig.photo['missing_medium']
     assert_equal users(:quentin).avatar_photo_url(:thumb), AppConfig.photo['missing_thumb']
   end
-  
-  def test_should_get_active_users
-    active_users = User.find_active
-    assert active_users.empty? #none have avatar photos
-  end
-  
+    
   def test_should_find_featured
     featured = User.find_featured
     assert_equal featured.size, 1
@@ -185,6 +180,16 @@ class UserTest < Test::Unit::TestCase
     users(:quentin).deactivate
     assert !users(:quentin).reload.active?
   end
+
+  def test_should_return_full_location
+    assert_equal "Minneapolis / St. Paul", users(:quentin).full_location    
+  end
+  
+  def test_should_prohibit_reserved_logins    
+    user = create_user(:login => 'contests')
+    assert !user.valid?
+  end
+
   
   protected
     def create_user(options = {})
