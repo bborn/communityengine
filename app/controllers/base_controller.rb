@@ -81,12 +81,12 @@ class BaseController < ApplicationController
     if @user = User.active.find(params[:user_id] || params[:id])
       @is_current_user = (@user && @user.eql?(current_user))
       unless logged_in? || @user.profile_public?
-        flash.now[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
+        flash[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
         redirect_to :controller => 'sessions', :action => 'new'        
       end
       return @user
     else
-      flash.now[:error] = :please_log_in.l
+      flash[:error] = :please_log_in.l
       redirect_to :controller => 'sessions', :action => 'new'
       return false
     end
