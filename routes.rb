@@ -29,9 +29,10 @@ else
 end
 
 # admin routes
-admin_dashboard '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
-admin_dashboard '/admin/users', :controller => 'admin', :action => 'users'
-admin_dashboard '/admin/messages', :controller => 'admin', :action => 'messages'
+admin_dashboard   '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
+admin_users       '/admin/users', :controller => 'admin', :action => 'users'
+admin_messages    '/admin/messages', :controller => 'admin', :action => 'messages'
+admin_comments    '/admin/comments', :controller => 'admin', :action => 'comments'
 
 # sessions routes
 teaser '', :controller=>'base', :action=>'teaser'
