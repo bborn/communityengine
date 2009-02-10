@@ -28,7 +28,8 @@ class UsersController < BaseController
   before_filter :admin_or_current_user_required, :only => [:statistics]  
 
   def activate
-    @user = User.find_by_activation_code(params[:id])
+    redirect_to signup_path and return if params[:id].blank?
+    @user = User.find_by_activation_code(params[:id]) 
     if @user and @user.activate
       self.current_user = @user
       redirect_to welcome_photo_user_path(@user)
