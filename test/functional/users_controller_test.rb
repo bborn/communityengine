@@ -154,6 +154,10 @@ class UsersControllerTest < ActionController::TestCase
     users(:quentin).activation_code = nil
     users(:quentin).save!
     assert_nil User.authenticate('quentin', 'test')
+    
+    users(:quentin).activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    users(:quentin).save!
+    
     get :activate, :id => users(:quentin).activation_code
     assert_equal users(:quentin), User.authenticate('quentin', 'test')
   end  
