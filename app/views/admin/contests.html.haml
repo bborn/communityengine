@@ -21,8 +21,8 @@
             %td=h contest.created_at.strftime("%m/%d/%y")
             %td=h contest.title
             %td=h truncate(contest.post, :length => 250)
-            %td=h contest.begin.strftime("%m/%d/%y")
-            %td=h contest.end.strftime("%m/%d/%y")
+            %td=h contest.begin_date.strftime("%m/%d/%y")
+            %td=h contest.end_date.strftime("%m/%d/%y")
             %td
               = link_to :show.l, contest_path(contest)
               %br
