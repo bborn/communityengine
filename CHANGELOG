@@ -1,5 +1,8 @@
-0.10.9
+= 0.10.9
 * postgres compatibility (thanks Johannes)
+* Some SEO improvements to page titles and urls for showing tags
+* Fixed a security vulnerability
+
 
 = 0.10.8
 

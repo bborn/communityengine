@@ -114,12 +114,14 @@ module BaseHelper
         if @post and @post.title
           title = @post.title + ' &raquo; ' + app_base + tagline
           title += (@post.tags.empty? ? '' : " &laquo; "+:keywords.l+": " + @post.tags[0...4].join(', ') )
+          @canonical_url = user_post_url(@post.user, @post)
         end
 			when 'users'
         if @user and @user.login
           title = @user.login
           title += ', expert in ' + @user.offerings.collect{|o| o.skill.name }.join(', ') if @user.vendor? and !@user.offerings.empty?
           title += ' &raquo; ' + app_base + tagline
+          @canonical_url = user_url(@user)          
         else
           title = :showing_users.l+' &raquo; ' + app_base + tagline
         end
@@ -137,7 +139,8 @@ module BaseHelper
             title = @tags.map(&:name).join(', ') + ' '
             title += params[:type] ? params[:type].pluralize : :posts_photos_and_bookmarks.l
             title += ' (Related: ' + @related_tags.join(', ') + ')' if @related_tags
-            title += ' | ' + app_base            
+            title += ' | ' + app_base    
+            @canonical_url = tag_url(URI::encode(@tags_raw, /[\/.?#]/)) if @tags_raw
           else
           title = 'Showing tags &raquo; ' + app_base + tagline            
 			  end
