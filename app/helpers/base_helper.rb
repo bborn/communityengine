@@ -137,12 +137,15 @@ module BaseHelper
           title = @user.login + '\'s '+:clippings.l+' &raquo; ' + app_base + tagline
         end
 			when 'tags'
-        if @tag and @tag.name
-          title = @tag.name + ' '+:posts_photos_and_bookmarks.l+' &raquo; ' + app_base + tagline
-          title += ' | Related: ' + @related_tags.join(', ')
-        else
-          title = 'Showing tags &raquo; ' + app_base + tagline
-        end
+				case @controller.action_name
+			    when 'show'
+            title = @tags.map(&:name).join(', ') + ' '
+            title += params[:type] ? params[:type].pluralize : :posts_photos_and_bookmarks.l
+            title += ' (Related: ' + @related_tags.join(', ') + ')' if @related_tags
+            title += ' | ' + app_base            
+          else
+          title = 'Showing tags &raquo; ' + app_base + tagline            
+			  end
       when 'categories'
         if @category and @category.name
           title = @category.name + ' '+:posts_photos_and_bookmarks.l+' &raquo; ' + app_base + tagline
