@@ -4,7 +4,7 @@ class SitemapController < BaseController
 
   def index
     @users = User.active.find(:all, :select => 'id, login, updated_at, login_slug')
-    @posts = Post.find(:all, :select => 'posts.id, posts.user_id, posts.title, posts.published_at, users.id, users.login_slug as user_slug', :joins => "LEFT JOIN users on users.id = posts.user_id")
+    @posts = Post.find(:all, :select => 'posts.id, posts.user_id, posts.title, posts.published_at, users.id, users.login_slug', :include => :user)
   
     @categories = Category.find(:all)
   
