@@ -18,7 +18,8 @@ xml.urlset "xmlns" => "http://www.google.com/schemas/sitemap/0.84" do
 
   @posts.each do |post|
     xml.url do
-      xml.loc         "#{APP_URL}/#{post['user_slug']}/posts/#{post.to_param}"
+      puts post.inspect
+      xml.loc         "#{APP_URL}/#{post.user.login_slug}/posts/#{post.to_param}"
       xml.lastmod     w3c_date(post.published_at)
       xml.changefreq  "daily"
       xml.priority    0.6
