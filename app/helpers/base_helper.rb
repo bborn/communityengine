@@ -109,12 +109,7 @@ module BaseHelper
 		title = app_base
 		case @controller.controller_name
 			when 'base'
-				case @controller.action_name
-					when 'popular'
-						title = :popular_posts.l+' &raquo; ' + app_base + tagline
-					else 
-						title += tagline
-				end
+					title += tagline
 			when 'posts'
         if @post and @post.title
           title = @post.title + ' &raquo; ' + app_base + tagline
