@@ -53,7 +53,7 @@ class PhotosControllerTest < Test::Unit::TestCase
   
   def test_should_create_photo
     login_as :quentin
-    assert_difference Photo, :count, 1 do
+    assert_difference Photo, :count, 4 do
       post :create,
         :photo => { :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,

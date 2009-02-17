@@ -2,7 +2,7 @@ CommunityEngine.SwfUpload = Class.create({
 	initialize: function(upload_url){
 		this.swfu = new SWFUpload({
 			upload_url : upload_url,
-		  flash_url: '/plugin_assets/community_engine/images/swf/swfupload_f9.swf',
+		  flash_url: '/plugin_assets/community_engine/images/swf/swfupload.swf',
 		  file_size_limit : '3072',
 		  file_types : '*.jpg;*.gif;*.png;*.jpeg',
 		  file_types_description : 'Images',
@@ -18,6 +18,16 @@ CommunityEngine.SwfUpload = Class.create({
 		  custom_settings : { 
 		    upload_target : 'divFileProgressContainer'
 		  }, 
+      button_placeholder_id : "SWFUploadButton",
+      button_image_url : "/plugin_assets/community_engine/images/swf/choose.png",	// Relative to the SWF file
+			button_width: 180,
+			button_height: 30,
+			button_text : '<span class="button">Select Images </span>',
+			button_text_style : '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
+			button_text_top_padding: 10,
+			button_text_left_padding: 18,
+			button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+			button_cursor: SWFUpload.CURSOR.HAND,
 			debug: false
 		});
 	},

@@ -8,9 +8,9 @@ Technoweenie::AttachmentFu::InstanceMethods.module_eval do
     self.filename     = file_data.original_filename if respond_to?(:filename)
     if file_data.is_a?(StringIO)
       file_data.rewind
-      self.temp_data = file_data.read
+      set_temp_data file_data.read      
     else
-      self.temp_path = file_data.path
+      self.temp_paths.unshift file_data      
     end
   end
   
