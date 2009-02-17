@@ -8,9 +8,9 @@ class ClippingImageTest < Test::Unit::TestCase
   end
     
   def test_should_be_created
-    uploaded_data = UrlUpload.new('http://www.google.com/intl/en_ALL/images/logo.gif')
     ci = ClippingImage.new(:attachable => clippings(:google))
-    ci.uploaded_data = uploaded_data    
+    io = ci.data_from_url('http://www.google.com/intl/en_ALL/images/logo.gif')            
+    ci.uploaded_data = io
     assert ci.save!
   end
 

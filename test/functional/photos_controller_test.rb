@@ -118,7 +118,7 @@ class PhotosControllerTest < Test::Unit::TestCase
 
     assert_redirected_to user_photo_path(users(:quentin), assigns(:photo))
 
-    photo = Photo.find(assigns(:photo).id)
+    photo = photos(:library_pic).reload
     assert_equal "changed_name", photo.name
     assert_equal ['tagX', 'tagY'], photo.tag_list
   end
