@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PhotoTest < Test::Unit::TestCase
-  fixtures :photos, :tags, :taggings
+  fixtures :all
 
   # Replace this with your real tests.
   def test_should_find_related_photos
@@ -27,6 +27,14 @@ class PhotoTest < Test::Unit::TestCase
   def test_display_name
     photos(:another_pic).name = nil
     assert photos(:another_pic).display_name
+  end
+  
+  def test_should_create_photo
+    assert_difference Photo, :count, 4 do
+      photo = Photo.new :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')
+      photo.user = users(:quentin)
+      photo.save!      
+    end
   end
   
 end
