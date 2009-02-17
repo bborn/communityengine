@@ -23,6 +23,7 @@ class Photo < ActiveRecord::Base
   named_scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
+  attr_accessible :name, :description
 
   def display_name
     self.name ? self.name : "#{:created_at.l.downcase}: #{I18n.localize(self.created_at.to_date)}"

@@ -62,8 +62,8 @@ class Clipping < ActiveRecord::Base
   
   def add_image
     begin
-      uploaded_data = UrlUpload.new(self.image_url)
       self.image = ClippingImage.new
+      uploaded_data = self.image.data_from_url(self.image_url)
       self.image.uploaded_data = uploaded_data
     rescue
       nil

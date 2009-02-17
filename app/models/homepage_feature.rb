@@ -1,7 +1,7 @@
 class HomepageFeature < ActiveRecord::Base  
   has_attachment prepare_options_for_attachment_fu(AppConfig.feature['attachment_fu_options'])
+  attr_accessible :url, :title, :description
 
-  validates_presence_of
   validates_presence_of :content_type
   validates_presence_of :filename
   validates_presence_of :url, :if => Proc.new{|record| record.parent.nil? }
