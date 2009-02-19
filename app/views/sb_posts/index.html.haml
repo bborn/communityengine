@@ -14,22 +14,15 @@
     - if params[:q].blank?
       = @page_title
     - else
-      = :searching_for.l
-      '
-      = h params[:q]
-      '
+      ="#{:searching_for.l} '#{h params[:q]}'"
 
   %p.subtitle
     = feed_icon_tag @page_title, formatted_all_sb_posts_path(:format => 'rss')
     = pluralize(@posts.size, "post")+' '+:found.l
 
   - if @posts.page_count > 1
-    .pagination
-      = :pages.l
-      %strong
-        = paginating_links @posts
-
-
+    .pagination= paginating_links @posts
+        
   %table.posts.wide{ :cellspacing => "0", :border => "0", :cellpadding => "0", :width => '100%'}
     - for post in @posts do
       - unless post == @posts.to_a.first
