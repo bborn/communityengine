@@ -41,7 +41,7 @@
 
           = avatar_for @users[post.user_id]
           %span.fn
-            = link_to truncate(h(@users[post.user_id].display_name), 15), user_path(post.user)
+            = link_to truncate(h(@users[post.user_id].display_name), :length => 15), user_path(post.user)
           %span.posts
             = pluralize @users[post.user_id].sb_posts_count, 'post'
         %td.body.entry-content
