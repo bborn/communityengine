@@ -76,7 +76,7 @@ class Comment < ActiveRecord::Base
   end
   
   def can_be_deleted_by(person)
-    person && (person.admin? || person.id.eql?(user.id) || person.id.eql?(recipient.id) )
+    person && (person.admin? || person.id.eql?(user_id) || person.id.eql?(recipient_id) )
   end
   
   def should_notify_recipient?
