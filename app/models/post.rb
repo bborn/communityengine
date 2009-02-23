@@ -179,9 +179,9 @@ class Post < ActiveRecord::Base
     f = Favorite.find_by_user_or_ip_address(self, user, remote_ip)
     return f
   end  
-      
+
   def published_at_display(format = "%Y/%m/%d")
-    is_live? ? published_at.strftime(format) : 'Draft'
+    is_live? ? published_at.to_s(format) : 'Draft'
   end
       
 end
