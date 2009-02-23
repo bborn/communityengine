@@ -31,7 +31,7 @@ class Topic < ActiveRecord::Base
   end
 
   def to_param
-    id.to_s << "-" << (title ? title.gsub(/[^a-z1-9]+/i, '-') : '' )
+    id.to_s << "-" << (title ? title.parameterize : '' )
   end
 
   def voices

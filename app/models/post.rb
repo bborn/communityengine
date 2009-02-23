@@ -50,7 +50,7 @@ class Post < ActiveRecord::Base
   end
 
   def to_param
-    id.to_s << "-" << (title ? title.gsub(/[^a-z1-9]+/i, '-') : '' )
+    id.to_s << "-" << (title ? title.parameterize : '' )
   end
 
   def self.find_recent(options = {:limit => 5})

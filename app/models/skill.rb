@@ -4,7 +4,7 @@ class Skill < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def to_param
-    id.to_s << "-" << (name ? name.gsub(/[^a-z1-9]+/i, '-') : '' )
+    id.to_s << "-" << (name ? name.parameterize : '' )
   end
   
 end

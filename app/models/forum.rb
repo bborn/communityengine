@@ -32,7 +32,7 @@ class Forum < ActiveRecord::Base
   format_attribute :description
   
   def to_param
-    id.to_s << "-" << (name ? name.gsub(/[^a-z1-9]+/i, '-') : '' )
+    id.to_s << "-" << (name ? name.parameterize : '' )
   end
   
 end
