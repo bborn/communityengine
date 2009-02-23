@@ -200,6 +200,7 @@ To wrap all localized strings in a `<span>` that shows their localization key, p
   
 Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
 
+For more, see /lang/readme.txt.
 
 
 Other notes
