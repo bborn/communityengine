@@ -327,11 +327,11 @@ module BaseHelper
 
   def time_ago_in_words_or_date(date)
     if date.to_date.eql?(Time.now.to_date)
-      display = date.to_time.to_s(:time)
+      display = I18n.l(date.to_time, :format => :time_ago)
     elsif date.to_date.eql?(Time.now.to_date - 1)
       display = :yesterday.l
     else
-      display = date.to_s(:short)
+      display = I18n.l(date, :format => :date_ago)
     end
   end
   

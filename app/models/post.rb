@@ -180,8 +180,8 @@ class Post < ActiveRecord::Base
     return f
   end  
 
-  def published_at_display(format = "%Y/%m/%d")
-    is_live? ? published_at.to_s(format) : 'Draft'
+  def published_at_display(format = :published_date)
+    is_live? ? I18n.l(published_at, :format => format) : 'Draft'
   end
       
 end
