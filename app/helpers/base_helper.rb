@@ -331,7 +331,7 @@ module BaseHelper
     elsif date.to_date.eql?(Time.now.to_date - 1)
       display = :yesterday.l
     else
-      display = I18n.l(date, :format => :date_ago)
+      display = I18n.l(date.to_date, :format => :date_ago)
     end
   end
   
