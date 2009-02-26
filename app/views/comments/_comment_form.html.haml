@@ -39,5 +39,5 @@
       = image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner'
 - else
   = link_to "Log in to leave a comment".l, new_comment_path(commentable.class, commentable.id)
-  or
+  = :or.l
   = link_to "Create an account".l, signup_path

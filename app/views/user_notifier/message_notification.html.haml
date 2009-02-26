@@ -1,0 +1,4 @@
+=:user_notifier_message_notification.l_with_args(:user => @message.recipient.login, :private_message_sender => @message.sender.login, :community => AppConfig.community_name, :private_message_url => user_message_url(@message.recipient, @message))
+
+=:user_notifier_thanks.l_with_args(:community => AppConfig.community_name)
+

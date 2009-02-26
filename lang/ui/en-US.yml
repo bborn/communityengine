@@ -309,8 +309,8 @@ en:
   dont_wait_its: Don't wait! It's
   #en: draft: draft
   draft: draft
-  #en: drag_and_drop_up_to_three_skills_into_gray_area_above: Drag and drop up to three skills into gray area above.
-  drag_and_drop_up_to_three_skills_into_gray_area_above: Drag and drop up to three skills into gray area above.
+  #en: drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
+  drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
   #en: drag_the_bookmarklet: Drag the {{site}}-It! bookmarklet to your bookmarks toolbar.
   drag_the_bookmarklet: Drag the {{site}}-It! bookmarklet to your bookmarks toolbar.
   #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
@@ -395,6 +395,8 @@ en:
   event_was_successfully_created: Event was successfully created.
   #en: events: Events
   events: Events
+  #en: every_person_has_something_to_say: Every single person has something to say, something to give, something that will help someone else.  Join in!
+  every_person_has_something_to_say: Every single person has something to say, something to give, something that will help someone else.  Join in!
   #en: explore_site: Explore {{site}}
   explore_site: Explore {{site}}
   #en: failed: failed
@@ -409,6 +411,10 @@ en:
   favorite_this: Favorite this
   #en: featured_posts: Featured posts
   featured_posts: Featured posts
+  #en: featured_writer: Featured writer
+  featured_writer: Featured writer
+  #en: featured_writers: Featured writers
+  featured_writers: Featured writers
   #en: features: Features
   features: Features
   #en: feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
@@ -713,6 +719,8 @@ en:
   next: next
   #en: next_page: Next page
   next_page: Next page
+  #en: no_activation_email: No activation email
+  no_activation_email: No activation email
   #en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
   no_comments_found: Sorry, we couldn't find any comments for that {{type}}
   #en: no_images_uploaded_yet: No images uploaded yet.
@@ -731,6 +739,8 @@ en:
   notify_of_comments: Notify of comments
   #en: notify_of_friend_requests: Notify of friend requests
   notify_of_friend_requests: Notify of friend requests
+  #en: of: of
+  of: of
   #en: offering_was_successfully_created: Offering was successfully created.
   offering_was_successfully_created: Offering was successfully created.
   #en: on_commentable: On
@@ -759,6 +769,8 @@ en:
   pending_friendships: Pending Friendships
   #en: people: People
   people: People
+  #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends
+  people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends
   #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
   people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
   #en: permanently_delete_this_clipping: Permanently delete this clipping?
@@ -769,6 +781,8 @@ en:
   permanently_delete_this_post: Permanently delete this post?
   #en: photo_comments: Photo Comments
   photo_comments: Photo Comments
+  #en: photo_from_user: "{{photo_description}} from {{user}}"
+  photo_from_user: "{{photo_description}} from {{user}}"
   #en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
   photo_message: Your profile photo represents you on {{site}}. You can change it later.
   #en: photo_was_successfully_created: Photo was successfully created.
@@ -1057,6 +1071,8 @@ en:
   thanks_youre_now_logged_in: Thanks! You're now logged in.
   #en: the_comment_was_deleted: The comment was deleted.
   the_comment_was_deleted: The comment was deleted.
+  #en: the_community_team: "The {{community}} team"
+  the_community_team: "The {{community}} team"
   #en: the_friendship_was_accepted: The friendship was accepted.
   the_friendship_was_accepted: The friendship was accepted.
   #en: the_friendship_was_denied: The friendship was denied.
@@ -1177,6 +1193,42 @@ en:
   users_online: Users online
   #en: users_photos: "{{user}}'s Photos"
   users_photos: "{{user}}'s Photos"
+  #en: user_notifier_change_email_preferences: "\n\n---------------------------------------------------------------------------------\n\nIf you don't want to receive e-mails like this one from {{community_name}}, you can change your e-mail preferences here:\n\n\t {{change_account_here}}"
+  user_notifier_change_email_preferences: "\n\n---------------------------------------------------------------------------------\n\nIf you don't want to receive e-mails like this one from {{community_name}}, you can change your e-mail preferences here:\n\n\t {{change_account_here}}"
+  #en: user_notifier_thanks: "\n\nThanks,\nThe {{community}} team"
+  user_notifier_thanks: "\n\nThanks,\nThe {{community}} team"
+  #en: user_notifier_report_abuse: "\n---------------------------------------\n\n\t {{community_introduction}} \n\n For support, or to report abuse, please contact {{support}}."
+  user_notifier_report_abuse: "\n---------------------------------------\n\n\t {{community_introduction}} \n\n For support, or to report abuse, please contact {{support}}."
+  #en: user_notifier_activation: "Hi {{user}},\nJust a quick note to let you know your {{community}} account has been activated. There's always a lot going on at {{community}}, so come check out what's new:\n\n\t{{url}}\n\n* As a {{community}} member, you'll receive occasional e-mails from us (with news, contest announcements, and updates on the site). If you don't want them, you can change your e-mail preferences here:\n\n{{edit_account_url}}\n\nThanks for joining {{community}}!\nThe {{community}} Team"
+  user_notifier_activation: "Hi {{user}},\nJust a quick note to let you know your {{community}} account has been activated. There's always a lot going on at {{community}}, so come check out what's new:\n\n\t{{url}}\n\n* As a {{community}} member, you'll receive occasional e-mails from us (with news, contest announcements, and updates on the site). If you don't want them, you can change your e-mail preferences here:\n\n{{edit_account_url}}\n\nThanks for joining {{community}}!\nThe {{community}} Team"
+  #en: user_notifier_comment_notice: "Hey {{user}}\n\n{{commentator}} has something to say about you! Use this link to see:\n\n\t{{url}}"
+  user_notifier_comment_notice: "Hey {{user}}\n\n{{commentator}} has something to say about you! Use this link to see:\n\n\t{{url}}"
+  #en: user_notifier_follow_up_comment_notice_anonymous: "Hey!\n\n{{commentator}} has added a comment to a {{commentable}} that you commented on. Use this link to check it out:\n\n\t{{url}}\n\n Thanks,\nThe {{community}} team\n\n---------------------------------------------------------------------------------\nIf you believe you received this notice in error, please contact support at\n\t{{support}}"
+  user_notifier_follow_up_comment_notice_anonymous: "Hey!\n\n{{commentator}} has added a comment to a {{commentable}} that you commented on. Use this link to check it out:\n\n\t{{url}}\n\n Thanks,\nThe {{community}} team\n\n---------------------------------------------------------------------------------\nIf you believe you received this notice in error, please contact support at\n\t{{support}}"
+  #en: user_notifier_follow_up_comment_notice: "Hey {{user}}!\n\n{{commentator}} has added a comment to a {{commentable}} that you commented on. Use this link to check it out:\n\n\t{{url}}"
+  user_notifier_follow_up_comment_notice: "Hey {{user}}!\n\n{{commentator}} has added a comment to a {{commentable}} that you commented on. Use this link to check it out:\n\n\t{{url}}"
+  #en: user_notifier_forgot_username: "Hi there!\nYou asked us to remind you of your community username.Your username is: {{user}}.\n\nIf you have any questions, or you think this reminder was sent in error, please contact community support at {{support}}."
+  user_notifier_forgot_username: "Hi there!\nYou asked us to remind you of your community username. Your username is: {{user}}.\n\nIf you have any questions, or you think this reminder was sent in error, please contact community support at {{support}}."
+  #en: user_notifier_friendship_accepted: "Hey {{user}}!\n\n{{friend}} has accepted your friendship request. To visit their profile:\n\n\t{{url}}"
+  user_notifier_friendship_accepted: "Hey {{user}}!\n\n{{friend}} has accepted your friendship request. To visit their profile:\n\n\t{{url}}"
+  #en: user_notifier_friendship_request: "Hey {{user}}!\n\n{{friendship_requester}} would like to be friends with you! Use this link to see:\n\n\t{{url}}"
+  user_notifier_friendship_request: "Hey {{user}}!\n\n{{friendship_requester}} would like to be friends with you! Use this link to see:\n\n\t{{url}}"
+  #en: user_notifier_message_notification: "Hey {{user}}!\n\n{{private_message_sender}} has sent you a private message on {{community}}. Use this link to read it:\n\n\t{{private_message_url}}"
+  user_notifier_message_notification: "Hey {{user}}!\n\n{{private_message_sender}} has sent you a private message on {{community}}. Use this link to read it:\n\n\t{{private_message_url}}"
+  #en: user_notifier_new_forum_post_notice: "Hey {{user}}!\n\n{{author}} has replied to a thread you are monitoring! Use this link to see:\n\n\t{{url}}"
+  user_notifier_new_forum_post_notice: "Hey {{user}}!\n\n{{author}} has replied to a thread you are monitoring! Use this link to see:\n\n\t{{url}}"
+  #en: user_notifier_post_recommendation: "{{user}} wants to share the following article with you:\n\n\t{{post_title}}\n\t[{{url}}]\n\nDescription: {{post_description}}\n\nPersonal Message: {{personal_message}}\n\n\n---------------------------------------\n\nUse this link to sign up for your own {{community}} account: \n\n\t[{{signup_url}}]\n\nThanks,\n"
+  user_notifier_post_recommendation: "{{user}} wants to share the following article with you:\n\n\t{{post_title}}\n\t{{url}}\n\nDescription: {{post_description}}\n\nPersonal Message: {{personal_message}}\n\n\n---------------------------------------\n\nUse this link to sign up for your own {{community}} account: \n\n\t[{{signup_url}}]\n\nThanks,\n"
+  #en: user_notifier_reset_password: "Hi there!\nWe've reset your community password. Your new password is: {{new_password}}\n\nIf you have any questions, please contact {{community}} support at {{support}}."
+  user_notifier_reset_password: "Hi there!\nWe've reset your community password. Your new password is: {{new_password}}\n\nIf you have any questions, please contact {{community}} support at {{support}}."
+  #en: user_notifier_signup_invitation: "{{message}}\n\n--------------\n\nHi!\n\n{{user}}({{email}}) has just invited you to join community. {{community_description}}\n\nVisit this link to sign up:\n\n{{url}}"
+  user_notifier_signup_invitation: "{{message}}\n\n--------------\n\nHi!\n\n{{user}}({{email}}) has just invited you to join community. {{community_description}}\n\nVisit this link to sign up:\n\n{{url}}"
+  #en: user_notifier_signup_notification: "Welcome to {{community}}, {{user}}!\nYour account has been created, but you still need to activate it before you can log in.\nHere's the skinny:\n\n\tYour username: {{user}}\n\nUse this link to activate your account:\n\n\t{{url}}\n\nCan't click the link? Just copy and paste it into your address bar.\n\nQuestions? Easy: {{support}}.\n\nHope to see you hanging out on community really soon! The {{community}} team"
+  user_notifier_signup_notification: "Welcome to {{community}}, {{user}}!\nYour account has been created, but you still need to activate it before you can log in.\nHere's the skinny:\n\n\tYour username: {{user}}\n\nUse this link to activate your account:\n\n\t{{url}}\n\nCan't click the link? Just copy and paste it into your address bar.\n\nQuestions? Easy: {{support}}.\n\nHope to see you hanging out on community really soon! The {{community}} team"
+  #en: user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
+  user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
+  #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
+  user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
   #en: view: View
   view: View
   #en: views: Views

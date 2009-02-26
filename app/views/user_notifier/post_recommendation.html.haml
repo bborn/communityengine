@@ -1,0 +1,6 @@
+=:user_notifier_post_recommendation.l_with_args(:user => @name, :post_title => @title, :url => @url, :post_description => @description, :personal_message => @message, :community => AppConfig.community_name, :signup_url => @signup_link)
+
+%p
+  = @name.eql?('Someone') ? :the_community_team.l_with_args(:community => AppConfig.community_name) : @name 
+
+=:user_notifier_report_abuse.l_with_args(:community_introduction => AppConfig.community_description, :support => AppConfig.support_email)
