@@ -68,7 +68,7 @@ en:
   #en: advertise_on: Advertise on
   advertise_on: Advertise on
   #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
-  after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
+  after_signing_up_youll_receive_an_e_mail_confirmation_message: "After signing up, you'll receive an e-mail confirmation message."
   #en: all_clippings_tagged: All clippings tagged {{tag_name}}
   all_clippings_tagged: All clippings tagged {{tag_name}}
   #en: all_comments: All comments
@@ -260,7 +260,7 @@ en:
   #en: dashboard: Dashboard
   dashboard: Dashboard
   #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
-  dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
+  dashboard_friends: "Once you start adding friends, you'll be able to track their activity on {{site}} here"
   #en: date: Date
   date_title: Date
   #en: date_created: Date Created
@@ -534,7 +534,7 @@ en:
   #en: invited_friends: invited some friends to join!
   invited_friends: invited some friends to join!
   #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
-  is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
+  is_great_check_it_out_youll_love_it: "is great, check it out you'll love it!"
   #en: items: Items
   items: Items
   #en: joined: joined
@@ -593,8 +593,8 @@ en:
   locked: Locked
   #en: locked2: (locked)
   locked2: (locked)
-  #en: look_for_a_message_from: "Look for a message from:"
-  look_for_a_message_from: "Look for a message from:"
+  #en: look_for_a_message_from: "Look for a message from: {{from}}"
+  look_for_a_message_from: "Look for a message from: {{from}}"
   #en: looking_for_most_x: Looking for {{link}}
   looking_for_most_x: Looking for {{link}}
   #en: make_moderator: Make moderator
@@ -713,8 +713,10 @@ en:
   next: next
   #en: next_page: Next page
   next_page: Next page
+  #en: no_activation_email: No activation e-mail?
+  no_activation_email: No activation e-mail?
   #en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
-  no_comments_found: Sorry, we couldn't find any comments for that {{type}}
+  no_comments_found: "Sorry, we couldn't find any comments for that {{type}}"
   #en: no_images_uploaded_yet: No images uploaded yet.
   no_images_uploaded_yet: No images uploaded yet.
   #en: no_messages: no messages
@@ -1225,8 +1227,8 @@ en:
   watch_topic: Watch topic
   #en: watching_topic: Watching topic
   watching_topic: Watching topic
-  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to:"
-  we_just_sent_an_e_mail_to: "We just sent an e-mail to:"
+  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: {{email}}"
+  we_just_sent_an_e_mail_to: "We just sent an e-mail to: {{email}}"
   #en: we_need_you: We need you
   we_need_you: We need you
   #en: welcome_message: Welcome! {{login_link}} or {{signup_link}}

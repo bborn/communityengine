@@ -291,7 +291,7 @@
 #en: location: Location
 #en: locked: Locked
 #en: locked2: (locked)
-#en: look_for_a_message_from: "Look for a message from:"
+#en: look_for_a_message_from: "Look for a message from: {{from}}"
 #en: looking_for_most_x: Looking for {{link}}
 #en: make_moderator: Make moderator
 #en: make_my_profile_public: Make my profile public
@@ -604,7 +604,7 @@
 #en: watch_ing: ing
 #en: watch_topic: Watch topic
 #en: watching_topic: Watching topic
-#en: we_just_sent_an_e_mail_to: "We just sent an e-mail to:"
+#en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: {{email}}"
 #en: we_need_you: We need you
 #en: welcome_message: Welcome! {{login_link}} or {{signup_link}}
 #en: what_are_tags: 'What are "Tags"?'

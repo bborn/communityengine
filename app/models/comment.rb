@@ -93,7 +93,7 @@ class Comment < ActiveRecord::Base
   end
   
   def notify_previous_anonymous_commenters
-    anonymous_commenters_emails = commentable.comments.map{|c| c.author_email if ( !c.user && !c.author_email.eql?(self.author_email) && c.author_email) }.uniq.compact
+    anonymous_commenters_emails = commentable.comments.map{|c| c.author_email if ( !c.user_id && !c.author_email.eql?(self.author_email) && c.author_email) }.uniq.compact
     anonymous_commenters_emails.each do |email|
       UserNotifier.deliver_follow_up_comment_notice_anonymous(email, self)
     end    

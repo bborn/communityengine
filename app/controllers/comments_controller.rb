@@ -22,7 +22,7 @@ class CommentsController < BaseController
     #don't use the get_type, as we want the specific case where the user typed /User/username/comments
     redirect_to user_comments_path(params[:commentable_id]) and return if (params[:commentable_type] && params[:commentable_type].camelize == "User")    
       
-    unless logged_in? || @commentable && @commentable.owner.profile_public?
+    unless logged_in? || @commentable && (@commentable.owner && @commentable.owner.profile_public?)
       flash.now[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
       redirect_to :controller => 'sessions', :action => 'new' and return
     end
@@ -91,20 +91,12 @@ class CommentsController < BaseController
         @comment.send_notifications
 
         flash.now[:notice] = :comment_was_successfully_created.l
-        format.html {
-          redirect_to commentable_url(@comment)
-        }
-        format.js {
-          render :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}
-        }
+        format.html { redirect_to commentable_url(@comment) }
+        format.js
       else
         flash.now[:error] = :comment_save_error.l_with_args(:error => @comment.errors.full_messages.to_sentence)
-        format.html {
-          redirect_to :controller => comment_type.underscore.pluralize, :action => 'show', :id => comment_id
-        }
-        format.js{
-          render :inline => flash[:error], :status => 500
-        }
+        format.html { redirect_to :controller => comment_type.underscore.pluralize, :action => 'show', :id => comment_id }
+        format.js
       end
     end
   end

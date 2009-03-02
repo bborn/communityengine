@@ -108,6 +108,7 @@ class PostsController < BaseController
     @post = Post.new(params[:post])
     @post.user = @user
     @post.tag_list = params[:tag_list] || ''
+    
     respond_to do |format|
       if @post.save
         @post.create_poll(params[:poll], params[:choices]) if params[:poll]
@@ -120,8 +121,10 @@ class PostsController < BaseController
             redirect_to manage_user_posts_path(@user)
           end
         }
+        format.js
       else
         format.html { render :action => "new" }
+        format.js        
       end
     end
   end

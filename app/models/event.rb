@@ -11,6 +11,8 @@ class Event < ActiveRecord::Base
   
   named_scope :upcoming, :order => 'start_time DESC'
   
+  acts_as_commentable    
+  
   def time_and_date
     if spans_days?
       string = "#{start_time.strftime("%B %d")} to #{end_time.strftime("%B %d %Y")}"
