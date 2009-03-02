@@ -18,10 +18,8 @@
       %em="(2000 character limit)".l :comment_character_limit
     = text_area :comment, :comment, {:size => "86x5", :class => "rich_text_editor"}
     
-    -unless logged_in?
-      
+    - unless logged_in?
       .right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
-      
       %label{"for"=>"comment[author_name"}
         ="Name:".l
         %em="(#{'Optional'.l})"
