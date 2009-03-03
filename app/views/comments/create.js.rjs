@@ -1,5 +1,5 @@
 if @comment.new_record?
-  page.select('div#coments div.errors').invoke('update', flash[:error])
+  page.select('div#comments div.errors').invoke('update', flash[:error])
   page << "new Effect.Highlight($$('div#comments div.errors')[0]);"
 else
   page.insert_html :after, 'newest_comment', :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}  

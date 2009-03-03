@@ -182,12 +182,18 @@ class UsersController < BaseController
     @user             = current_user
     @user.attributes  = params[:user]
 
-    if @user.save!
+    if @user.save
       flash[:notice] = :your_changes_were_saved.l
-      redirect_to user_path(@user)
+      respond_to do |format|
+        format.html {redirect_to user_path(@user)}
+        format.js
+      end      
+    else
+      respond_to do |format|
+        format.html {render :action => 'edit_account'}
+        format.js
+      end
     end
-  rescue ActiveRecord::RecordInvalid
-    render :action => 'edit_account'
   end
 
   def edit_pro_details
