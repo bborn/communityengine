@@ -12,7 +12,6 @@ closed_beta_mode: false
 community_locale: "en"
 
 # The label you use for 'staff' writers (featured writer, staff, pro, etc.)
-featured_writer_label: 'Featured Writer'
 allow_anonymous_commenting: false
 require_captcha_on_signup: false
 #recaptcha_pub_key: YOUR_PUB_KEY

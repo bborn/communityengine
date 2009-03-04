@@ -231,6 +231,7 @@ Contributors - Thanks! :)
 - [Oleg Ivanov](http://github.com/morhekil) - `acts_as_taggable_on_steroids`
 - David Fugere - French localization
 - Barry Paul - routes refactoring
+- [Andrei Erdoss](http://github.com/cauta) localization
 
 
 To Do
