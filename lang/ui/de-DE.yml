@@ -6,6 +6,7 @@ de-DE:
 
   time:
     formats:
+      published_date: "%d.%m.%Y"      
       time_ago: "%H:%M"
 
   activerecord:

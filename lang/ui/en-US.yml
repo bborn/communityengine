@@ -6,6 +6,7 @@ en:
 
   time:
     formats:
+      published_date: "%Y/%m/%d"      
       time_ago: "%l:%M%p"
 
   activerecord:
