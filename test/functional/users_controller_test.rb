@@ -135,6 +135,11 @@ class UsersControllerTest < ActionController::TestCase
       assert_response :success
     end
   end
+  
+  def test_should_render_new_form_when_signing_up_without_required_attributes
+    create_user(:user => {:password => nil})
+    assert_response :success
+  end
 
   def test_should_deactivate_and_logout
     login_as :quentin
@@ -426,10 +431,11 @@ class UsersControllerTest < ActionController::TestCase
   
   protected
     def create_user(options = {})
-      post :create, {:user => { :login => 'quire', :email => 'quire@example.com', 
-        :password => 'quire123', :password_confirmation => 'quire123',
-        :birthday => 15.years.ago
-         }.merge(options[:user] || {}) }.merge(options || {})
+      params = {:user => {:login => 'quire', :email => 'quire@example.com', :password => 'quire123', :password_confirmation => 'quire123', :birthday => 15.years.ago}}
+      user_opts = options.delete(:user)
+      params[:user].merge!(user_opts) if user_opts
+    
+      post :create, params.merge(options)
     end
         
 end
