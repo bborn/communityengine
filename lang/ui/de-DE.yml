@@ -1,4 +1,17 @@
 de-DE:
+  date:
+    formats:
+      published_date: "%d.%m.%Y"
+      date_ago: "%e. %b"
+
+  time:
+    formats:
+      time_ago: "%H:%M"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "erstellt am: "
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  vor ein paar Sekunden
   #en: about: About

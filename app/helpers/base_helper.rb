@@ -327,11 +327,11 @@ module BaseHelper
 
   def time_ago_in_words_or_date(date)
     if date.to_date.eql?(Time.now.to_date)
-      display = date.strftime("%l:%M%p").downcase
+      display = I18n.l(date.to_time, :format => :time_ago)
     elsif date.to_date.eql?(Time.now.to_date - 1)
       display = :yesterday.l
     else
-      display = date.strftime("%B %d")
+      display = I18n.l(date.to_date, :format => :date_ago)
     end
   end
   

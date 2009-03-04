@@ -1,4 +1,17 @@
 en:
+  date:
+    formats:
+      published_date: "%Y/%m/%d"
+      date_ago: "%B %d"
+
+  time:
+    formats:
+      time_ago: "%l:%M%p"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "created at: "
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  a few seconds ago
   #en: about: About
