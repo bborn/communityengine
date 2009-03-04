@@ -1,4 +1,10 @@
 es-MX: 
+  date:
+    order: [ :day, :month, :year ]
+    day_names: [Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
   want_to_post_in_this_category: ¿Desea escribir en esta categoría?
   unactivated_users: Usuarios no activados
   active_users: Usuarios activos
