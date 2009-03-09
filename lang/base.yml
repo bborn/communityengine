@@ -83,7 +83,7 @@
 #en: categories: Categories
 #en: category: Category
 #en: category_was_successfully_created: Category was successfully created.
-#en: choises: Choices
+#en: choices: Choices
 #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
 #en: choose_a_photo_to_upload: "Choose a photo to upload:"
 #en: choose_your_location: Choose your location
@@ -113,7 +113,7 @@
 #en: comments_rss: Comments RSS
 #en: community_tagline: CommunityEngine Rocks!
 #en: compose: Compose
-#en: compose_messages: Compose messages
+#en: compose_message: Compose message
 #en: confirm_password: Confirm Password
 #en: contest_was_successfully_created: Contest was successfully created.
 #en: contests: Contests
@@ -129,10 +129,16 @@
 #en: custom_friendly_local: custom, friendly, local
 #en: dashboard: Dashboard
 #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
+#en: date:formats:published_date: "%Y/%m/%d"
+#en: date:formats:date_ago: "%B %d"
 #en: date: Date
 #en: date_created: Date Created
 #en: date_published: Date Published
 #en: days_ago: days ago
+#en: deactivate_link: Click here to deactivate your account
+#en: deactivate_tip: Deactivating your account will remove your profile from the site. 
+#en: deactivate_confirmation: Are you sure you want to deactivate your account?
+#en: deactivate_completed: Thanks. Your account has been deactivated and you have been logged out.
 #en: delete: Delete
 #en: delete_selected: Delete selected
 #en: delete_this_event: Delete this event
@@ -149,7 +155,7 @@
 #en: dont_have_an_account: Don't have an account?
 #en: dont_wait_its: Don't wait! It's
 #en: draft: draft
-#en: drag_and_drop_up_to_three_skills_into_gray_area_above: Drag and drop up to three skills into gray area above.
+#en: drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
 #en: drag_the_bookmarklet: Drag the {{site}}-It! bookmarklet to your bookmarks toolbar.
 #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
 #en: e_mail: E-mail
@@ -192,6 +198,7 @@
 #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
 #en: event_was_successfully_created: Event was successfully created.
 #en: events: Events
+#en: every_person_has_something_to_say: "Every single person has something to say, something to give, something that will help someone else.  Join in!"
 #en: explore_site: Explore {{site}}
 #en: failed: failed
 #en: faq: FAQ
@@ -199,6 +206,8 @@
 #en: favorites: Favorites
 #en: favorite_this: Favorite this
 #en: featured_posts: Featured posts
+#en: featured_writer: Featured writer
+#en: featured_writers: Featured writers
 #en: features: Features
 #en: feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
 #en: female: Female
@@ -208,7 +217,7 @@
 #en: find_experts: Find experts
 #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
 #en: for_detailed_contest_rules: "For detailed contest rules,"
-#en: for_more_informationon_on_tags_check_out_the: For more information on Tags check out the
+#en: for_more_information_on_tags_check_out_the: For more information on tags check out the
 #en: forgot_your_password: Forgot your password?
 #en: forgot_your_username: Forgot your username?
 #en: forum: Forum
@@ -240,9 +249,8 @@
 #en: have_an_account: "Have an account? "
 #en: have_something_to_contribute: Have something to contribute?
 #en: help: Help
-#en: her: her
-#en: his: his
 #en: home: Home
+#en: homepage_banner_download_msg: Download it now and get started
 #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
 #en: homepage_banner_signup_prompt: See how it works
 #en: homepage_features: Homepage Features
@@ -261,6 +269,7 @@
 #en: invite_message: The more people you invite the better {{site}} becomes.
 #en: invite_some_customers: Invite some customers!
 #en: invite_your_friends_to_join: Invite Your Friends To Join!
+#en: invited_friends: invited some friends to join!
 #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
 #en: items: Items
 #en: joined: joined
@@ -308,6 +317,8 @@
 #en: message: Message
 #en: messages_deleted: Messages deleted
 #en: messages_sent: Messages sent!
+#en: message_sent: Message sent!
+#en: metro_area: Metro Area
 #en: metro_areas: Metro Areas
 #en: metro_area_was_successfully_created: MetroArea was successfully created.
 #en: minutes_ago: minutes ago
@@ -339,7 +350,7 @@
 #en: new_invitation_from: New Invitation from
 #en: new_metro_area: New Metro Area
 #en: new_photo: New photo.
-#en: new_photos_&raquo;_multiple_uploader: "New Photos &raquo; Multiple Uploader"
+#en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
 #en: new_post: New post
 #en: new_post_for_category: New {{category}}
 #en: new_post_text: New Post text
@@ -347,7 +358,9 @@
 #en: new_today: New today
 #en: new_topic: New topic
 #en: new_yesterday: New yesterday
+#en: next: next
 #en: next_page: Next page
+#en: no_activation_email: No activation email
 #en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
 #en: no_images_uploaded_yet: No images uploaded yet.
 #en: no_messages: no messages
@@ -357,13 +370,14 @@
 #en: notify_email_updates: Notify of community news
 #en: notify_of_comments: Notify of comments
 #en: notify_of_friend_requests: Notify of friend requests
+#en: of: of
 #en: offering_was_successfully_created: Offering was successfully created.
-#en: on: On
+#en: on_commentable: On
 #en: one_day_ago: one day ago
 #en: one_hour_ago: one hour ago
 #en: one_minute_ago: one minute ago
-#en: optional: (optional)
-#en: optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
+#en: optional: optional
+#en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
 #en: or: or
 #en: page: page
 #en: pages: "Pages:"
@@ -371,11 +385,13 @@
 #en: pending: pending
 #en: pending_friendships: Pending Friendships
 #en: people: People
+#en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends
 #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
 #en: permanently_delete_this_clipping: Permanently delete this clipping?
 #en: permanently_delete_this_event: Permanently delete this event?
 #en: permanently_delete_this_post: Permanently delete this post?
 #en: photo_comments: Photo Comments
+#en: photo_from_user: "{{photo_description}} from {{user}}"
 #en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
 #en: photo_was_successfully_created: Photo was successfully created.
 #en: photos: Photos
@@ -404,6 +420,7 @@
 #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
 #en: preview: Preview
 #en: previewing_your_post: Previewing your post
+#en: previous: previous
 #en: print: Print
 #en: print_this_story: "Print this story"
 #en: profile: Profile
@@ -436,7 +453,7 @@
 #en: requested: requested
 #en: requested_friendship_with: Requested friendship with
 #en: requesting_friendship: Requesting friendship
-#en: required: (required)
+#en: required: required
 #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
 #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
 #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
@@ -519,6 +536,7 @@
 #en: thanks_for_activating_your_account: Thanks for activating your account!
 #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
 #en: the_comment_was_deleted: The comment was deleted.
+#en: the_community_team: "The {{community}} team"
 #en: the_friendship_was_accepted: The friendship was accepted.
 #en: the_friendship_was_denied: The friendship was denied.
 #en: the_more_people_you_invite_the_better: The more people you invite, the better
@@ -526,7 +544,6 @@
 #en: the_slideshow_is_disabled: The slideshow is disabled.
 #en: the_user_was_activated: The user was activated
 #en: the_user_was_deleted: The user was deleted.
-#en: their: their
 #en: this_contest_is_closed: This contest is closed
 #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
 #en: this_friendship_is_pending: This Friendship is pending.
@@ -536,6 +553,7 @@
 #en: this_topic_is_locked: This topic is locked.
 #en: this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
 #en: thumb: Thumb
+#en: time:formats:time_ago: "%l:%M%p"
 #en: time_constrained: Time constrained
 #en: tips: "Tips:"
 #en: title: Title
@@ -580,6 +598,24 @@
 #en: user_login: User login
 #en: users_online: Users online
 #en: users_photos: "{{user}}'s Photos"
+#en: user_notifier_change_email_preferences: "\n\n---------------------------------------------------------------------------------\n\nIf you don't want to receive e-mails like this one from {{community_name}}, you can change your e-mail preferences here:\n\n\t {{change_account_here}}"
+#en: user_notifier_thanks: "\n\nThanks,\nThe {{community}} team"
+#en: user_notifier_report_abuse: "\n---------------------------------------\n\n\t{{community_introduction}}\n\nFor support, or to report abuse, please contact {{support}}."
+#en: user_notifier_activation: "Hi {{user}},\nJust a quick note to let you know your {{community}} account has been activated. There's always a lot going on at {{community}}, so come check out what's new:\n\n\t{{url}}\n\n* As a {{community}} member, you'll receive occasional e-mails from us (with news, contest announcements, and updates on the site). If you don't want them, you can change your e-mail preferences here:\n\n{{edit_account_url}}\n\nThanks for joining {{community}}!\nThe {{community}} Team"
+#en: user_notifier_comment_notice: "Hey {{user}}\n\n{{commentator}} has something to say about you! Use this link to see:\n\n\t{{url}}"
+#en: user_notifier_follow_up_comment_notice_anonymous: "Hey!\n\n{{commentator}} has added a comment to a {{commentable}} that you commented on. Use this link to check it out:\n\n\t{{url}}\n\n Thanks,\nThe {{community}} team\n\n---------------------------------------------------------------------------------\nIf you believe you received this notice in error, please contact support at\n\t{{support}}"
+#en: user_notifier_follow_up_comment_notice: "Hey {{user}}!\n\n{{commentator}} has added a comment to a {{commentable}} that you commented on. Use this link to check it out:\n\n\t{{url}}"
+#en: user_notifier_forgot_username: "Hi there!\nYou asked us to remind you of your community username.Your username is: {{user}}.\n\nIf you have any questions, or you think this reminder was sent in error, please contact community support at {{support}}."
+#en: user_notifier_friendship_accepted: "Hey {{user}}!\n\n{{friend}} has accepted your friendship request. To visit their profile:\n\n\t{{url}}"
+#en: user_notifier_friendship_request: "Hey {{user}}!\n\n{{friendship_requester}} would like to be friends with you! Use this link to see:\n\n\t{{url}}"
+#en: user_notifier_message_notification: "Hey {{user}}!\n\n{{private_message_sender}} has sent you a private message on {{community}}. Use this link to read it:\n\n\t{{private_message_url}}"
+#en: user_notifier_new_forum_post_notice: "Hey {{user}}!\n\n{{author}} has replied to a thread you are monitoring! Use this link to see:\n\n\t{{url}}"
+#en: user_notifier_post_recommendation: "{{user}} wants to share the following article with you:\n\n\t{{post_title}}\n\t[{{url}}]\n\nDescription: {{post_description}}\n\nPersonal Message: {{personal_message}}\n\n\n---------------------------------------\n\nUse this link to sign up for your own {{community}} account: \n\n\t[{{signup_url}}]\n\nThanks,\n"
+#en: user_notifier_reset_password: "Hi there!\nWe've reset your community password. Your new password is: {{new_password}}\n\nIf you have any questions, please contact {{community}} support at {{support}}."
+#en: user_notifier_signup_invitation: "{{message}}/n/n--------------\n\nHi!\n\n{{user}}({{email}}) has just invited you to join community. {{community_description}}\n\nVisit this link to sign up:\n\n{{url}}"
+#en: user_notifier_signup_notification: "Welcome to {{community}}, {{user}}!\nYour account has been created, but you still need to activate it before you can log in.\nHere's the skinny:\n\n\tYour username: {{user}}\n\nUse this link to activate your account:\n\n\t{{url}}\n\nCan't click the link? Just copy and paste it into your address bar.\n\nQuestions? Easy: {{support}}.\n\nHope to see you hanging out on community really soon! The {{community}} team"
+#en: user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
+#en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
 #en: view: View
 #en: views: Views
 #en: view_all_my_clippings: View all my clippings

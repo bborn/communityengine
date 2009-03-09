@@ -1,4 +1,18 @@
 es-ES:
+  date:
+    formats:
+      published_date: "%Y/%m/%d"
+      date_ago: "%B %d"
+
+  time:
+    formats:
+      published_date: "%Y/%m/%d"      
+      time_ago: "%l:%M%p"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "creado: "
   #en: about: About
   about: "Qui\xC3\xA9nes somos"
   #en: about_me: About Me

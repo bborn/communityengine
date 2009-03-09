@@ -117,7 +117,7 @@ module BaseHelper
           @canonical_url = user_post_url(@post.user, @post)
         end
 			when 'users'
-        if @user and @user.login
+        if @user && !@user.new_record? && @user.login 
           title = @user.login
           title += ', expert in ' + @user.offerings.collect{|o| o.skill.name }.join(', ') if @user.vendor? and !@user.offerings.empty?
           title += ' &raquo; ' + app_base + tagline
@@ -328,11 +328,11 @@ module BaseHelper
 
   def time_ago_in_words_or_date(date)
     if date.to_date.eql?(Time.now.to_date)
-      display = date.strftime("%l:%M%p").downcase
+      display = I18n.l(date.to_time, :format => :time_ago)
     elsif date.to_date.eql?(Time.now.to_date - 1)
       display = :yesterday.l
     else
-      display = date.strftime("%B %d")
+      display = I18n.l(date.to_date, :format => :date_ago)
     end
   end
   
