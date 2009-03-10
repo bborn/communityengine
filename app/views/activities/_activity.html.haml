@@ -39,4 +39,4 @@
         - when 'logged_in'
           =:logged_into_the_site.l
         - else
-          = " #{activity.action.sub("_", " ") }"
+          = " #{activity.action.humanize.lowercase }"
