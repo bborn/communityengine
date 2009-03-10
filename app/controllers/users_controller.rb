@@ -328,8 +328,7 @@ class UsersController < BaseController
   end
 
   def metro_area_update
-    return unless request.xhr?
-    
+  
     country = Country.find(params[:country_id]) unless params[:country_id].blank?
     state   = State.find(params[:state_id]) unless params[:state_id].blank?
     states  = country ? country.states.sort_by{|s| s.name} : []
@@ -340,12 +339,16 @@ class UsersController < BaseController
       metro_areas = country ? country.metro_areas : []
     end
 
-    render :partial => 'shared/location_chooser', :locals => {
-      :states => states, 
-      :metro_areas => metro_areas, 
-      :selected_country => params[:country_id].to_i, 
-      :selected_state => params[:state_id].to_i, 
-      :selected_metro_area => nil }
+    respond_to do |format|
+      format.js {
+        render :partial => 'shared/location_chooser', :locals => {
+          :states => states, 
+          :metro_areas => metro_areas, 
+          :selected_country => params[:country_id].to_i, 
+          :selected_state => params[:state_id].to_i, 
+          :selected_metro_area => nil }        
+      }
+    end
   end
   
   def toggle_featured
