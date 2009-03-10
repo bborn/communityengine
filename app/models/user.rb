@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   acts_as_taggable  
   acts_as_commentable
   has_private_messages
-  tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile]  
+  tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
   before_save   :encrypt_password, :whitelist_attributes
