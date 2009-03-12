@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   acts_as_taggable  
   acts_as_commentable
   has_private_messages
-  tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile]  
+  tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
   before_save   :encrypt_password, :whitelist_attributes
@@ -382,7 +382,10 @@ class User < ActiveRecord::Base
 
   def network_activity(page = {}, since = 1.week.ago)
     page.reverse_merge :size => 10, :current => 1
-    ids = self.friends_ids
+    friend_ids = self.friends_ids
+    metro_area_people_ids = self.metro_area ? self.metro_area.users.map(&:id) : []
+    
+    ids = ((friends_ids | metro_area_people_ids) - [self.id])[0..100] #don't pull TOO much activity for now
     
     Activity.recent.since(since).by_users(ids).find(:all, :page => page)          
   end
