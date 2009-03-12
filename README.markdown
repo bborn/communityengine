@@ -92,7 +92,7 @@ Getting CommunityEngine Running
 
 12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
 
-		$ rake test
+    $ rake test
 		$ rake community_engine:test
 
 13. Start your server and check out your site! 
