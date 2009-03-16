@@ -16,7 +16,7 @@ class PhotosController < BaseController
   def recent
     @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
   end
-
+  
   # GET /photos
   # GET /photos.xml
   def index

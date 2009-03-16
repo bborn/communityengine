@@ -280,6 +280,26 @@ class UsersControllerTest < ActionController::TestCase
     assert users(:quentin).reload.avatar.filename, "library.jpg"
   end
   
+  def test_should_crop_profile_photo
+    login_as :quentin
+    avatar = Photo.new(:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg'))
+    avatar.user = users(:quentin)
+    avatar.save!
+    users(:quentin).avatar = avatar
+
+    put :crop_profile_photo, :id => users(:quentin).id, :x1 => 0, :y1 => 0, :width => 290, :height => 320
+    
+    assert_redirected_to user_path(users(:quentin))
+  end
+  
+  def test_should_upload_profile_photo
+    login_as :quentin
+
+    put :upload_profile_photo, :id => users(:quentin), :avatar => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    
+    assert_redirected_to crop_profile_photo_user_path(users(:quentin))    
+  end
+  
   def test_create_friendship_with_invited_user
     assert_difference User, :count do
       assert_difference Friendship, :count, 2 do

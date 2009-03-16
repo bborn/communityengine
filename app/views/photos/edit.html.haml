@@ -11,14 +11,16 @@
 
 #yui-main
   .yui-b.box
-    %h3= :editing_photo.l
+    %h3= :editing_photo.l  
 
     = error_messages_for :photo
     - form_for(:photo, :url => user_photo_path(@user, @photo), :html => { :method => :put, :class => "MainForm" }) do |f|
-      = image_tag( @photo.public_filename(:medium), :class => "polaroid" )
+      
+      = image_tag( @photo.public_filename(:medium), :id => 'photo', :class => 'polaroid' )
+      
       %label Tags:
       = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
-      #tag_list_auto_complete.auto_complete{"class"=>"auto_complete", "id"=>"tag_list_auto_complete"}/
+      #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"} 
       = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
       %label= :name.l + ":"
       = f.text_field :name, :size => 35
@@ -29,3 +31,6 @@
         = submit_tag :update.l
         or
         = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)
+
+
+

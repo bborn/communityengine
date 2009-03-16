@@ -865,6 +865,10 @@ en:
   profile_comments: Profile Comments
   #en: profile_photo: Profile Photo
   profile_photo: Profile Photo
+  #en: profile_photo_change: Change profile photo
+  profile_photo_change: Change profile photo
+  #en: profile_photo_crop: Crop profile photo
+  profile_photo_crop: Crop profile photo
   #en: profile_privacy: Profile Privacy
   profile_privacy: Profile Privacy
   #en: profile_views: profile views

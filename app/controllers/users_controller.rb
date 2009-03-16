@@ -1,3 +1,5 @@
+require "RMagick"
+
 class UsersController < BaseController
   include Viewable
   cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
@@ -19,11 +21,14 @@ class UsersController < BaseController
   # Filters
   before_filter :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about, 
                                           :welcome_invite, :return_admin, :assume, :featured,
-                                          :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard, :deactivate]
-  before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics, :deactivate ]
+                                          :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard, :deactivate, 
+                                          :crop_profile_photo, :upload_profile_photo]
+  before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics, :deactivate, 
+                                      :crop_profile_photo, :upload_profile_photo ]
   before_filter :require_current_user, :only => [:edit, :update, :update_account,
                                                 :edit_pro_details, :update_pro_details,
-                                                :welcome_photo, :welcome_about, :welcome_invite, :deactivate]
+                                                :welcome_photo, :welcome_about, :welcome_invite, :deactivate, 
+                                                :crop_profile_photo, :upload_profile_photo]
   before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator]
   before_filter :admin_or_current_user_required, :only => [:statistics]  
 
@@ -174,6 +179,33 @@ class UsersController < BaseController
   rescue ActiveRecord::RecordInvalid
     @metro_areas, @states = setup_locations_for(@user)
     render :action => 'edit'
+  end
+  
+  def crop_profile_photo    
+    return unless request.put?
+    
+    if @photo = @user.avatar
+      if params[:x1]
+        img = Magick::Image::read(@photo.s3_url).first.crop(params[:x1].to_i, params[:y1].to_i,params[:width].to_i, params[:height].to_i, true)
+        crop = {'tempfile' => StringIO.new(img.to_blob), 'content_type' => @photo.content_type, 'filename' => "custom_#{@photo.filename}"}
+        @photo.uploaded_data = crop
+        @photo.save!
+      end
+    end
+
+    redirect_to user_path(@user)
+  end
+  
+  def upload_profile_photo
+    @avatar       = Photo.new(params[:avatar])
+    return unless request.put?
+    
+    @avatar.user  = @user
+    if @avatar.save
+      @user.avatar  = @avatar 
+      @user.save
+      redirect_to crop_profile_photo_user_path(@user)
+    end
   end
     
   def edit_account

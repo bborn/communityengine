@@ -109,7 +109,9 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
     :welcome_invite => :get,
     :welcome_complete => :get,
     :statistics => :any,
-    :deactivate => :put
+    :deactivate => :put,
+    :crop_profile_photo => [:get, :put],
+    :upload_profile_photo => [:get, :put]
      } do |user|
   user.resources :friendships, :member => { :accept => :put, :deny => :put }, :collection => { :accepted => :get, :pending => :get, :denied => :get }
   user.resources :photos, :collection => {:swfupload => :post, :slideshow => :get}

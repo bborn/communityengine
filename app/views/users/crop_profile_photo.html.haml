@@ -1,0 +1,51 @@
+= javascript_include_tag "builder", "dragdrop", "cropper", :plugin => :community_engine
+    
+      
+.yui-b
+
+  .box.alt.first_alt
+    = link_to :profile_photo_change.l, upload_profile_photo_user_path(@user)
+    
+  .box
+    %h3=:profile_photo.l
+    #previewWrap
+    
+
+#yui-main
+  .yui-b.box
+    %h3= :profile_photo_crop.l  
+
+    = image_tag( @photo.public_filename, :id => 'photo' )
+    
+    = error_messages_for :photo
+    - form_for(:photo, :url => crop_profile_photo_user_path(@user), :html => { :method => :put, :class => "MainForm" }) do |f|
+      %input{ :type=>"hidden", :name=>"x1", :id=>"x1", :size=>"4"}
+      %input{ :type=>"hidden", :name=>"y1", :id=>"y1", :size=>"4"}
+      %input{ :type=>"hidden", :name=>"x2", :id=>"x2", :size=>"4"}
+      %input{ :type=>"hidden", :name=>"y2", :id=>"y2", :size=>"4"}
+      %input{ :type=>"hidden", :name=>"width", :id=>"width", :size=>"4"}
+      %input{ :type=>"hidden", :name=>"height", :id=>"height", :size=>"4"}      
+      
+      %p
+        = submit_tag :update.l
+        or
+        = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)
+
+
+
+
+
+%script{:type => 'text/javascript'}
+  :plain
+    function onEndCrop( coords, dimensions ) {
+      $( 'x1' ).value = coords.x1;
+      $( 'y1' ).value = coords.y1;
+      $( 'x2' ).value = coords.x2;
+      $( 'y2' ).value = coords.y2;
+      $( 'width' ).value = dimensions.width;
+      $( 'height' ).value = dimensions.height;
+    }
+    function loadExample() {
+      new Cropper.ImgWithPreview( 'photo', { previewWrap: 'previewWrap', minWidth: 290, minHeight: 320, ratioDim: { x: 290, y: 320 }, onEndCrop: onEndCrop } );      
+    }
+    Event.observe( window, 'load', function() { loadExample(); } );      
