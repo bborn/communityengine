@@ -182,9 +182,10 @@ class UsersController < BaseController
   end
   
   def crop_profile_photo    
+    @photo = @user.avatar    
     return unless request.put?
     
-    if @photo = @user.avatar
+    if @photo
       if params[:x1]
         img = Magick::Image::read(@photo.s3_url).first.crop(params[:x1].to_i, params[:y1].to_i,params[:width].to_i, params[:height].to_i, true)
         crop = {'tempfile' => StringIO.new(img.to_blob), 'content_type' => @photo.content_type, 'filename' => "custom_#{@photo.filename}"}
