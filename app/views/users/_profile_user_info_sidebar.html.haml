@@ -27,6 +27,7 @@
       = link_to :click_here_to_upload_one.l, edit_user_path(@user)
     - else
       = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+      = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)              
 
   - if current_user and current_user.can_request_friendship_with(@user)
     = add_friend_link(@user)
