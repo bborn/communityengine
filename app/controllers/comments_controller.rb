@@ -10,11 +10,6 @@ class CommentsController < BaseController
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
 
-  def show
-    @comment = Comment.find(params[:id])
-    render :text => @comment.inspect
-  end
-
   def index
   
     @commentable = comment_type.constantize.find(comment_id)
