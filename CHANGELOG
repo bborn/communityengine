@@ -1,4 +1,4 @@
-= 0.10.9
+= 1.0.0
 * postgres compatibility (thanks Johannes)
 * Some SEO improvements to page titles and urls for showing tags
 * Fixed a security vulnerability
