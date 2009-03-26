@@ -42,6 +42,8 @@ Getting CommunityEngine Running
 	
 			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
 
+	* Make sure you rename your CE directory to `community_engine` (note the underscore) if it isn't named that for some reason
+
 4. Create your database and modify your `config/database.yml` appropriately.
 
 5. Delete public/index.html (if you haven't already)
