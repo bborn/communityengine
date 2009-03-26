@@ -7,7 +7,7 @@ Requirements:
 
 	- RAILS VERSION 2.2.2
 	- The engines plugin for Rails 2.2.2
-	- ImageMagick 
+	- ImageMagick (>6.4) 
 	- Several gems:
 	  rmagick
 	  hpricot
