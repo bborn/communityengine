@@ -1,3 +1,7 @@
+= edge
+* updated TinyMCE scripts
+
+
 = 1.0.0
 * postgres compatibility (thanks Johannes)
 * Some SEO improvements to page titles and urls for showing tags
