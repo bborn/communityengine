@@ -9,7 +9,6 @@
 	<script type="text/javascript" src="../../utils/form_utils.js"></script>
 	<script type="text/javascript" src="../../utils/editable_selects.js"></script>
 	<link href="css/media.css" rel="stylesheet" type="text/css" />
-	<base target="_self" />
 </head>
 <body style="display: none">
     <form onsubmit="insertMedia();return false;" action="#">
@@ -33,7 +32,7 @@
 										<option value="flash">Flash</option>
 										<!-- <option value="flv">Flash video (FLV)</option> -->
 										<option value="qt">Quicktime</option>
-										<option value="shockwave">Shockware</option>
+										<option value="shockwave">Shockwave</option>
 										<option value="wmp">Windows Media</option>
 										<option value="rmp">Real Media</option>
 									</select>
@@ -44,7 +43,7 @@
 							  <td>
 									<table border="0" cellspacing="0" cellpadding="0">
 									  <tr>
-										<td><input id="src" name="src" type="text" value="" onchange="switchType(this.value);generatePreview();" /></td>
+										<td><input id="src" name="src" type="text" value="" class="mceFocus" onchange="switchType(this.value);generatePreview();" /></td>
 										<td id="filebrowsercontainer">&nbsp;</td>
 									  </tr>
 									</table>
@@ -52,7 +51,7 @@
 							</tr>
 							<tr id="linklistrow">
 								<td><label for="linklist">{#media_dlg.list}</label></td>
-								<td id="linklistcontainer">&nbsp;</td>
+								<td id="linklistcontainer"><select id="linklist"><option value=""></option></select></td>
 							</tr>
 							<tr>
 								<td><label for="width">{#media_dlg.size}</label></td>
@@ -143,6 +142,7 @@
 									<option value="showall">showall</option>
 									<option value="noborder">noborder</option>
 									<option value="exactfit">exactfit</option>
+									<option value="noscale">noscale</option>
 								</select>
 							</td>
 						</tr>
@@ -259,8 +259,7 @@
 							<td><label for="flv_defaultvolume">{#media_dlg.flv_defaultvolume}</label></td>
 							<td><input type="text" id="flv_defaultvolume" name="flv_defaultvolume" onchange="generatePreview();" /></td>
 
-							<td><label for="flv_starttime">{#media_dlg.flv_starttime}</label></td>
-							<td><input type="text" id="flv_starttime" name="flv_starttime" onchange="generatePreview();" /></td>
+
 						</tr>
 
 						<tr>
@@ -811,7 +810,7 @@
 
 		<div class="mceActionPanel">
 			<div style="float: left">
-				<input type="button" id="insert" name="insert" value="{#insert}" onclick="insertMedia();" />
+				<input type="submit" id="insert" name="insert" value="{#insert}" />
 			</div>
 
 			<div style="float: right">

@@ -16,6 +16,7 @@ var ImageDialog = {
 		this.fillFileList('src_list', 'tinyMCEImageList');
 		this.fillFileList('over_list', 'tinyMCEImageList');
 		this.fillFileList('out_list', 'tinyMCEImageList');
+		TinyMCE_EditableSelects.init();
 
 		if (n.nodeName == 'IMG') {
 			nl.src.value = dom.getAttrib(n, 'src');
@@ -27,7 +28,7 @@ var ImageDialog = {
 			nl.hspace.value = this.getAttrib(n, 'hspace');
 			nl.border.value = this.getAttrib(n, 'border');
 			selectByValue(f, 'align', this.getAttrib(n, 'align'));
-			selectByValue(f, 'class_list', dom.getAttrib(n, 'class'));
+			selectByValue(f, 'class_list', dom.getAttrib(n, 'class'), true, true);
 			nl.style.value = dom.getAttrib(n, 'style');
 			nl.id.value = dom.getAttrib(n, 'id');
 			nl.dir.value = dom.getAttrib(n, 'dir');
@@ -102,7 +103,7 @@ var ImageDialog = {
 
 		if (tinyMCEPopup.getParam("accessibility_warnings", 1)) {
 			if (!f.alt.value) {
-				tinyMCEPopup.editor.windowManager.confirm(tinyMCEPopup.getLang('advimage_dlg.missing_alt'), function(s) {
+				tinyMCEPopup.confirm(tinyMCEPopup.getLang('advimage_dlg.missing_alt'), function(s) {
 					if (s)
 						t.insertAndClose();
 				});
@@ -116,6 +117,8 @@ var ImageDialog = {
 
 	insertAndClose : function() {
 		var ed = tinyMCEPopup.editor, f = document.forms[0], nl = f.elements, v, args = {}, el;
+
+		tinyMCEPopup.restoreSelection();
 
 		// Fixes crash in Safari
 		if (tinymce.isWebKit)
@@ -168,7 +171,7 @@ var ImageDialog = {
 		if (el && el.nodeName == 'IMG') {
 			ed.dom.setAttribs(el, args);
 		} else {
-			ed.execCommand('mceInsertContent', false, '<img id="__mce_tmp" src="javascript:;" />', {skip_undo : 1});
+			ed.execCommand('mceInsertContent', false, '<img id="__mce_tmp" />', {skip_undo : 1});
 			ed.dom.setAttribs('__mce_tmp', args);
 			ed.dom.setAttrib('__mce_tmp', 'id', '');
 			ed.undoManager.add();
@@ -269,6 +272,7 @@ var ImageDialog = {
 			cl = tinyMCEPopup.editor.dom.getClasses();
 
 		if (cl.length > 0) {
+			lst.options.length = 0;
 			lst.options[lst.options.length] = new Option(tinyMCEPopup.getLang('not_set'), '');
 
 			tinymce.each(cl, function(o) {
@@ -282,6 +286,7 @@ var ImageDialog = {
 		var dom = tinyMCEPopup.dom, lst = dom.get(id), v, cl;
 
 		l = window[l];
+		lst.options.length = 0;
 
 		if (l && l.length > 0) {
 			lst.options[lst.options.length] = new Option('', '');
@@ -378,7 +383,7 @@ var ImageDialog = {
 				v = f.border.value;
 				if (v || v == '0') {
 					if (v == '0')
-						img.style.border = '';
+						img.style.border = '0';
 					else
 						img.style.border = v + 'px solid black';
 				}

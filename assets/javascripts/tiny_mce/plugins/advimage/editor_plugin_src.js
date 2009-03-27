@@ -1,5 +1,5 @@
 /**
- * $Id: editor_plugin_src.js 520 2008-01-07 16:30:32Z spocke $
+ * $Id: editor_plugin_src.js 677 2008-03-07 13:52:41Z spocke $
  *
  * @author Moxiecode
  * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
@@ -10,10 +10,8 @@
 		init : function(ed, url) {
 			// Register commands
 			ed.addCommand('mceAdvImage', function() {
-				var e = ed.selection.getNode();
-
 				// Internal image object like a flash placeholder
-				if (ed.dom.getAttrib(e, 'class').indexOf('mceItem') != -1)
+				if (ed.dom.getAttrib(ed.selection.getNode(), 'class').indexOf('mceItem') != -1)
 					return;
 
 				ed.windowManager.open({
