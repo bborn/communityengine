@@ -55,26 +55,6 @@
 
     <script type="text/javascript">
 
-    var remote;
-    function startRemote(){
-      remote = new PeriodicalExecuter(switchChannel, 2);  
-    }
-
-    var tv =  $$('#header .width').first();
-    var sites = ['', 'curbly', 'uncooped', 'teacherly', 'weebabystuff']
-    var currentIndex = 0;
-
-    function switchChannel() {
-      var next = (sites.length - 1 == currentIndex) ? 0 : currentIndex + 1;      
-      tv.toggleClassName(sites[currentIndex]);
-      tv.toggleClassName(sites[next]);
-      currentIndex = next;
-    }
-
-    tv.observe('mouseover', function(){remote.stop()})
-    tv.observe('mouseout', startRemote)
-    startRemote();
-
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>

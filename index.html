@@ -73,6 +73,7 @@ title: A Social Networking Plugin for Ruby on Rails
 			<li><a href="http://www.socialsnow.com" target="_top">SocialSnow (Spanish)</a></li>			
 			<li><a href="http://www.thedoctorstv.com/base/site_index" target="_top">TheDoctors (TV show)</a></li>						
 		</ul>
+		<p>&raquo;<a href="live.html">More live CE sites</a></p>
 		
 		<h4>Screen shots</h4>
 		<p><a href="imgs/CE_user_profile.jpg" rel="lightbox"><img src="imgs/thumb1.jpg" alt="image" width="218" height="138" /></a></p>
@@ -90,3 +91,25 @@ title: A Social Networking Plugin for Ruby on Rails
 
 </div><!-- ends .width -->
 
+
+<script type="text/javascript" charset="utf-8">
+    var remote;
+    function startRemote(){
+      remote = new PeriodicalExecuter(switchChannel, 2);  
+    }
+
+    var tv =  $$('#header .width').first();
+    var sites = ['', 'curbly', 'uncooped', 'teacherly', 'weebabystuff']
+    var currentIndex = 0;
+
+    function switchChannel() {
+      var next = (sites.length - 1 == currentIndex) ? 0 : currentIndex + 1;      
+      tv.toggleClassName(sites[currentIndex]);
+      tv.toggleClassName(sites[next]);
+      currentIndex = next;
+    }
+
+    tv.observe('mouseover', function(){remote.stop()})
+    tv.observe('mouseout', startRemote)
+    startRemote();
+</script>
