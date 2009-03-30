@@ -63,7 +63,7 @@ margin:0 auto;}
 
 /* h6 btn */
 
-h6{background: url(/imgs/bg_h6btn.gif) repeat-x center left;}
+h6{background: url(../imgs/bg_h6btn.gif) repeat-x center left;}
 
 h6 a{
 text-transform: uppercase;
@@ -89,7 +89,7 @@ h1{
 float: left;
 width: 251px;
 height: 32px;
-background: transparent url(/imgs/logo.gif) no-repeat 0 0;
+background: transparent url(../imgs/logo.gif) no-repeat 0 0;
 text-indent: -99999px;
 margin: 20px 0;
 }
@@ -110,13 +110,13 @@ color: #7c7764;
 
 #header{
 clear: both;
-background: #ffeea8 url(/imgs/bg_header.gif) repeat-x bottom left;
+background: #ffeea8 url(../imgs/bg_header.gif) repeat-x bottom left;
 border-bottom: 1px solid #ffdc56;
 }
 
 #header .width{
 background-color: transparent;
-background-image: url(/imgs/screen.png);
+background-image: url(../imgs/screen.png);
 background-repeat:  no-repeat;
 background-position: center right;
 padding:20px 330px 20px 0;
@@ -127,16 +127,16 @@ background-image: none;
 }
 
 #header .curbly {
-	background-image: url(/imgs/screen-curbly.png);
+	background-image: url(../imgs/screen-curbly.png);
 }
 #header .uncooped {
-	background-image: url(/imgs/screen-uncooped.png);
+	background-image: url(../imgs/screen-uncooped.png);
 }
 #header .teacherly {
-	background-image: url(/imgs/screen-teacherly.png);
+	background-image: url(../imgs/screen-teacherly.png);
 }
 #header .weebabystuff {
-	background-image: url(/imgs/screen-weebabystuff.png);
+	background-image: url(../imgs/screen-weebabystuff.png);
 }
 
 #header h3{font-size: 2.4em;}
@@ -149,7 +149,7 @@ line-height: 1.6em;
 #header h6 a{
 padding: 15px 10px 15px 55px;
 font-size: 1.6em;
-background-image: url(/imgs/icons/download.png);
+background-image: url(../imgs/icons/download.png);
 background-position: 5px 50%;
 margin-top: 20px;
 }
@@ -159,14 +159,14 @@ margin-top: 20px;
 /* =============================================== */
 
 #content{
-background:#fff url(/imgs/content_shadow.gif) no-repeat top center;
+background:#fff url(../imgs/content_shadow.gif) no-repeat top center;
 }
 
 #content li, ul.url li{
 border-bottom: 1px dotted #cdccc8;
 padding: 5px 0 5px 21px; 
 background-color: transparent;
-background-image: url(/imgs/icons/check.png);
+background-image: url(../imgs/icons/check.png);
 background-repeat: no-repeat;
 background-position: 0 5px;
 }
@@ -176,20 +176,30 @@ background-position: 0 5px;
 #content li p a.payloadz {
   background:none;
 }
-#content li p.buy span {
+#content li ul li {
+  border:none;
+  background:none;
+  font-size: 11px;
+  padding: 5px 0 0 10px;
+}
+
+
+/*Buy plugin*/
+p.buy span {
   font-size: 14px;
 }
-#content li p.buy img {
+p.buy img {
   vertical-align: top;
 }
 
 
 
-ul.url li{background-image: url(/imgs/icons/url.png)!important;}
+
+ul.url li{background-image: url(../imgs/icons/url.png)!important;}
 
 p.mail a{
 padding: 2px 0 2px 21px;
-background-image: url(/imgs/icons/mail.png);
+background-image: url(../imgs/icons/mail.png);
 background-repeat: no-repeat;
 background-position: left center;
 }
@@ -224,7 +234,7 @@ background: #cdccc8;}
 #SideCol h6 a{
 padding: 10px 10px 10px 30px;
 font-size: 1.4em;
-background-image: url(/imgs/icons/demo.png);
+background-image: url(../imgs/icons/demo.png);
 background-position: 10px 50%;
 margin-top: 20px;
 }
@@ -234,8 +244,7 @@ margin-top: 20px;
 /* =============================================== */
 
 #footer{
-border:1px solid red;
-background: #fafaf9 url(/imgs/bg_footer.gif) repeat-x 0 0;
+background: #fafaf9 url(../imgs/bg_footer.gif) repeat-x 0 0;
 clear: both;
 color: #6c6c6c;
 margin-top: 30px;
@@ -276,12 +285,12 @@ width: 230px;
 /* 9. IE6 hacks for png tranparency                */
 /* =============================================== */
 
-* html #header .width{background: transparent url(/imgs/IEgifs/screen.gif) no-repeat center right;}
-* html #header h6 a{background-image: url(/imgs/IEgifs/download.gif);} 
-* html #content li{ background-image: url(/imgs/IEgifs/check.gif); }
-* html ul.url li{background-image: url(/imgs/IEgifs/url.gif)!important;}
-* html p.mail a{background-image: url(/imgs/IEgifs/mail.gif);}
-* html #SideCol h6 a{background-image: url(/imgs/IEgifs/demo.gif);}
+* html #header .width{background: transparent url(../imgs/IEgifs/screen.gif) no-repeat center right;}
+* html #header h6 a{background-image: url(../imgs/IEgifs/download.gif);} 
+* html #content li{ background-image: url(../imgs/IEgifs/check.gif); }
+* html ul.url li{background-image: url(../imgs/IEgifs/url.gif)!important;}
+* html p.mail a{background-image: url(../imgs/IEgifs/mail.gif);}
+* html #SideCol h6 a{background-image: url(../imgs/IEgifs/demo.gif);}
 
 /* CE NAV */
 #ce_nav {
