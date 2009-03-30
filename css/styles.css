@@ -1,0 +1,303 @@
+/*========================================================*/
+/*    Cascading Style Sheet for the Tool website          */
+/*========================================================*/
+
+/*========================================================*/
+/*                  Table of Contents                     */
+/*========================================================*/
+/*  1. UNIVERSAL THINGS                                   */
+/*  2. LOGO                                               */
+/*  3. HEADER                                             */
+/*  4. CONTENT                                            */
+/*  5. MAIN AREA                                          */
+/*  6. SIDE COL                                           */ 
+/*  7. FOOTER                                             */
+/*  8. CLEARFIX                                           */
+/*  9. IE6 hacks for png tranparency                      */
+/*========================================================*/
+
+
+/* =============================================== */
+/* 1. UNIVERSAL THINGS                             */
+/* =============================================== */
+
+@import url("reset.css"); /* resets all browser */
+
+body{
+text-align:left;
+background:#fff;
+font:normal 62.5%  Arial, "Helvetica Neue", Helvetica, sans-serif;
+color:#585548;
+}
+
+a{color:#0063ff;}
+
+a:hover{
+color:#fff;
+background-color:#0063ff;
+text-decoration:none;}
+
+p{
+font-size:1.2em;
+margin:10px 0;
+line-height: 1.5em;
+}
+
+li{font-size:1.2em;}
+
+h4{
+font-size: 1.4em;
+text-transform: uppercase;
+margin: 20px 0 10px 0;
+}
+
+h5{
+font-size: 1.2em;
+margin: 20px 0 10px 0;
+}
+
+.width{
+width:750px;
+margin:0 auto;}
+
+
+/* h6 btn */
+
+h6{background: url(/imgs/bg_h6btn.gif) repeat-x center left;}
+
+h6 a{
+text-transform: uppercase;
+display: block;
+border: 1px solid #b4c91a;
+color: #4a4f21;
+text-decoration: none;
+background-position: left center;
+background-repeat: no-repeat;
+background-color: transparent;
+}
+
+h6 a:hover{
+background-color: #b4c91a;
+}
+
+
+/* =============================================== */
+/* 2. LOGO                                         */
+/* =============================================== */
+
+h1{
+float: left;
+width: 251px;
+height: 32px;
+background: transparent url(/imgs/logo.gif) no-repeat 0 0;
+text-indent: -99999px;
+margin: 20px 0;
+}
+
+h2{
+float: right;
+line-height: 70px;
+font-family: Georgia, Times, serif;
+font-style: italic;
+font-weight: normal;
+font-size: 14px;
+color: #7c7764;
+}
+
+/* =============================================== */
+/* 3. HEADER                                       */
+/* =============================================== */
+
+#header{
+clear: both;
+background: #ffeea8 url(/imgs/bg_header.gif) repeat-x bottom left;
+border-bottom: 1px solid #ffdc56;
+}
+
+#header .width{
+background-color: transparent;
+background-image: url(/imgs/screen.png);
+background-repeat:  no-repeat;
+background-position: center right;
+padding:20px 330px 20px 0;
+width: 420px;
+}
+#header .noback {
+background-image: none;
+}
+
+#header .curbly {
+	background-image: url(/imgs/screen-curbly.png);
+}
+#header .uncooped {
+	background-image: url(/imgs/screen-uncooped.png);
+}
+#header .teacherly {
+	background-image: url(/imgs/screen-teacherly.png);
+}
+#header .weebabystuff {
+	background-image: url(/imgs/screen-weebabystuff.png);
+}
+
+#header h3{font-size: 2.4em;}
+
+#header p{
+font-size: 1.6em;
+line-height: 1.6em;
+}
+
+#header h6 a{
+padding: 15px 10px 15px 55px;
+font-size: 1.6em;
+background-image: url(/imgs/icons/download.png);
+background-position: 5px 50%;
+margin-top: 20px;
+}
+
+/* =============================================== */
+/* 4. CONTENT                                      */
+/* =============================================== */
+
+#content{
+background:#fff url(/imgs/content_shadow.gif) no-repeat top center;
+}
+
+#content li, ul.url li{
+border-bottom: 1px dotted #cdccc8;
+padding: 5px 0 5px 21px; 
+background-color: transparent;
+background-image: url(/imgs/icons/check.png);
+background-repeat: no-repeat;
+background-position: 0 5px;
+}
+#content li p {
+  font-size: 11px;
+}
+#content li p a.payloadz {
+  background:none;
+}
+#content li p.buy span {
+  font-size: 14px;
+}
+#content li p.buy img {
+  vertical-align: top;
+}
+
+
+
+ul.url li{background-image: url(/imgs/icons/url.png)!important;}
+
+p.mail a{
+padding: 2px 0 2px 21px;
+background-image: url(/imgs/icons/mail.png);
+background-repeat: no-repeat;
+background-position: left center;
+}
+
+/* =============================================== */
+/* 5. MAIN AREA                                    */
+/* =============================================== */
+
+#MainArea{
+float: left;
+width: 500px;
+}
+
+/* =============================================== */
+/* 6. SIDE COL                                     */
+/* =============================================== */
+
+#SideCol{
+float: right;
+width: 230px;}
+
+#SideCol a img{
+background: #fff;
+border: 1px solid #cdccc8;
+display: block;
+padding: 5px;
+}
+
+#SideCol a:hover img{
+background: #cdccc8;}
+
+#SideCol h6 a{
+padding: 10px 10px 10px 30px;
+font-size: 1.4em;
+background-image: url(/imgs/icons/demo.png);
+background-position: 10px 50%;
+margin-top: 20px;
+}
+
+/* =============================================== */
+/* 7. FOOTER                                       */
+/* =============================================== */
+
+#footer{
+border:1px solid red;
+background: #fafaf9 url(/imgs/bg_footer.gif) repeat-x 0 0;
+clear: both;
+color: #6c6c6c;
+margin-top: 30px;
+}
+
+#footer li{
+border: none;
+}
+
+#FooterInfo{
+float: left;
+width: 500px;}
+
+#right{
+float: right;
+width: 230px;
+}
+
+/* =============================================== */
+/* 8. CLEARFIX                                     */
+/* =============================================== */
+
+#content:after, #footer:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+#content, #footer {display: inline-table;}
+
+/* Hides from IE-mac \*/
+#content, #footer{height: 1%;}
+#content, #footer{display: block;}
+/* End hide from IE-mac */
+
+/* =============================================== */
+/* 9. IE6 hacks for png tranparency                */
+/* =============================================== */
+
+* html #header .width{background: transparent url(/imgs/IEgifs/screen.gif) no-repeat center right;}
+* html #header h6 a{background-image: url(/imgs/IEgifs/download.gif);} 
+* html #content li{ background-image: url(/imgs/IEgifs/check.gif); }
+* html ul.url li{background-image: url(/imgs/IEgifs/url.gif)!important;}
+* html p.mail a{background-image: url(/imgs/IEgifs/mail.gif);}
+* html #SideCol h6 a{background-image: url(/imgs/IEgifs/demo.gif);}
+
+/* CE NAV */
+#ce_nav {
+	border-top: 4px solid #780000;	
+  background: #efefef;
+  border-bottom: 2px solid #ccc;
+  text-align: left; }
+  #ce_nav ul {
+    list-style: none; }
+    #ce_nav ul li {
+      display: inline; }
+      #ce_nav ul li a {
+        display: block;
+        float: left;
+        padding: .5em;
+        color: #333366; }
+      #ce_nav ul li a:hover {
+        background: #666;
+        color: #fff; }
