@@ -41,6 +41,10 @@ Getting CommunityEngine Running
 	* If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:
 	
 			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
+			Basically:
+			git submodule add git://github.com/bborn/communityengine.git vendor/plugins/community_engine
+			git submodule init
+			git submodule update
 
 	* Make sure you rename your CE directory to `community_engine` (note the underscore) if it isn't named that for some reason
 
