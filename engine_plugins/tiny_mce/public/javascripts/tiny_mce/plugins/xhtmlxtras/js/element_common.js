@@ -136,7 +136,7 @@ SXE.initElementDialog = function(element_name) {
 
 	element_name = element_name.toLowerCase();
 	var elm = SXE.inst.dom.getParent(SXE.focusElement, element_name.toUpperCase());
-	if (elm != null && elm.nodeName == element_name.toUpperCase()) {
+	if (elm != null && elm.nodeName.toUpperCase() == element_name.toUpperCase()) {
 		SXE.currentAction = "update";
 	}
 
@@ -160,19 +160,19 @@ SXE.insertElement = function(element_name) {
 			if (tinymce.isIE && element_name.indexOf('html:') == 0)
 				element_name = element_name.substring(5).toLowerCase();
 
-			h = '<' + tagName + ' id="#sxe_temp_' + element_name + '#">' + s + '</' + tagName + '>';
-
-			tinyMCEPopup.execCommand('mceInsertContent', false, h);
-
-			var elementArray = tinymce.grep(SXE.inst.dom.select(element_name), function(n) {return n.id == '#sxe_temp_' + element_name + '#';});
+			insertInlineElement(element_name);
+			var elementArray = tinymce.grep(SXE.inst.dom.select(element_name));
 			for (var i=0; i<elementArray.length; i++) {
 				var elm = elementArray[i];
 
-				elm.id = '';
-				elm.setAttribute('id', '');
-				elm.removeAttribute('id');
+				if (SXE.inst.dom.getAttrib(elm, '_mce_new')) {
+					elm.id = '';
+					elm.setAttribute('id', '');
+					elm.removeAttribute('id');
+					elm.removeAttribute('_mce_new');
 
-				setAllCommonAttribs(elm);
+					setAllCommonAttribs(elm);
+				}
 			}
 		}
 	} else {
@@ -185,7 +185,7 @@ SXE.insertElement = function(element_name) {
 SXE.removeElement = function(element_name){
 	element_name = element_name.toLowerCase();
 	elm = SXE.inst.dom.getParent(SXE.focusElement, element_name.toUpperCase());
-	if(elm && elm.nodeName == element_name.toUpperCase()){
+	if(elm && elm.nodeName.toUpperCase() == element_name.toUpperCase()){
 		tinyMCEPopup.execCommand('mceBeginUndoLevel');
 		tinyMCE.execCommand('mceRemoveNode', false, elm);
 		SXE.inst.nodeChanged();
@@ -218,4 +218,14 @@ SXE.removeClass = function(elm,cl) {
 SXE.addClass = function(elm,cl) {
 	if(!SXE.containsClass(elm,cl)) elm.className ? elm.className += " " + cl : elm.className = cl;
 	return true;
+}
+
+function insertInlineElement(en) {
+	var ed = tinyMCEPopup.editor, dom = ed.dom;
+
+	ed.getDoc().execCommand('FontName', false, 'mceinline');
+	tinymce.each(dom.select('span,font'), function(n) {
+		if (n.style.fontFamily == 'mceinline' || n.face == 'mceinline')
+			dom.replace(dom.create(en, {_mce_new : 1}), n, 1);
+	});
 }

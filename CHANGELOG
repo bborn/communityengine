@@ -1,8 +1,13 @@
-= 0.10.9
+= edge
+* updated TinyMCE scripts
+
+
+= 1.0.0
 * postgres compatibility (thanks Johannes)
 * Some SEO improvements to page titles and urls for showing tags
 * Fixed a security vulnerability
 * updated to newest attachment_fu plugin (note new cropping in geometry strings for photo in application.yml)
+    - this attachment fu requires ImageMagick 6.4 or greater
 * updated swfupload to fix flash 10 compatibility
 * added ability to crop profile photo to better fit dimensions (/username/crop_profile_photo)
 

@@ -1,5 +1,5 @@
 /**
- * $Id: editor_plugin_src.js 609 2008-02-18 16:19:27Z spocke $
+ * $Id: editor_plugin_src.js 923 2008-09-09 16:45:29Z spocke $
  *
  * @author Moxiecode
  * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
@@ -16,19 +16,21 @@
 
 			// Register commands
 			ed.addCommand('mceFullScreen', function() {
-				var win, de = document.documentElement;
+				var win, de = DOM.doc.documentElement;
 
 				if (ed.getParam('fullscreen_is_enabled')) {
 					if (ed.getParam('fullscreen_new_window'))
 						closeFullscreen(); // Call to close in new window
 					else {
-						window.setTimeout(function() {
+						DOM.win.setTimeout(function() {
+							tinymce.dom.Event.remove(DOM.win, 'resize', t.resizeFunc);
 							tinyMCE.get(ed.getParam('fullscreen_editor_id')).setContent(ed.getContent({format : 'raw'}), {format : 'raw'});
 							tinyMCE.remove(ed);
 							DOM.remove('mce_fullscreen_container');
 							de.style.overflow = ed.getParam('fullscreen_html_overflow');
-							DOM.setStyle(document.body, 'overflow', ed.getParam('fullscreen_overflow'));
-							window.scrollTo(ed.getParam('fullscreen_scrollx'), ed.getParam('fullscreen_scrolly'));
+							DOM.setStyle(DOM.doc.body, 'overflow', ed.getParam('fullscreen_overflow'));
+							DOM.win.scrollTo(ed.getParam('fullscreen_scrollx'), ed.getParam('fullscreen_scrolly'));
+							tinyMCE.settings = tinyMCE.oldSettings; // Restore old settings
 						}, 10);
 					}
 
@@ -36,14 +38,15 @@
 				}
 
 				if (ed.getParam('fullscreen_new_window')) {
-					win = window.open(url + "/fullscreen.htm", "mceFullScreenPopup", "fullscreen=yes,menubar=no,toolbar=no,scrollbars=no,resizable=no,left=0,top=0,width=" + screen.availWidth + ",height=" + screen.availHeight);
+					win = DOM.win.open(url + "/fullscreen.htm", "mceFullScreenPopup", "fullscreen=yes,menubar=no,toolbar=no,scrollbars=no,resizable=yes,left=0,top=0,width=" + screen.availWidth + ",height=" + screen.availHeight);
 					try {
 						win.resizeTo(screen.availWidth, screen.availHeight);
 					} catch (e) {
 						// Ignore
 					}
 				} else {
-					s.fullscreen_overflow = DOM.getStyle(document.body, 'overflow', 1) || 'auto';
+					tinyMCE.oldSettings = tinyMCE.settings; // Store old settings
+					s.fullscreen_overflow = DOM.getStyle(DOM.doc.body, 'overflow', 1) || 'auto';
 					s.fullscreen_html_overflow = DOM.getStyle(de, 'overflow', 1);
 					vp = DOM.getViewPort();
 					s.fullscreen_scrollx = vp.x;
@@ -57,18 +60,22 @@
 					if (tinymce.isIE && s.fullscreen_overflow == 'scroll')
 						s.fullscreen_overflow = 'auto';
 
+					// Fixes an IE bug where the scrollbars doesn't reappear
+					if (tinymce.isIE && (s.fullscreen_html_overflow == 'visible' || s.fullscreen_html_overflow == 'scroll'))
+						s.fullscreen_html_overflow = 'auto'; 
+
 					if (s.fullscreen_overflow == '0px')
 						s.fullscreen_overflow = '';
 
-					DOM.setStyle(document.body, 'overflow', 'hidden');
+					DOM.setStyle(DOM.doc.body, 'overflow', 'hidden');
 					de.style.overflow = 'hidden'; //Fix for IE6/7
 					vp = DOM.getViewPort();
-					window.scrollTo(0, 0);
+					DOM.win.scrollTo(0, 0);
 
 					if (tinymce.isIE)
 						vp.h -= 1;
 
-					n = DOM.add(document.body, 'div', {id : 'mce_fullscreen_container', style : 'position:absolute;top:0;left:0;width:' + vp.w + 'px;height:' + vp.h + 'px;z-index:150;'});
+					n = DOM.add(DOM.doc.body, 'div', {id : 'mce_fullscreen_container', style : 'position:' + (tinymce.isIE6 || (tinymce.isIE && !DOM.boxModel) ? 'absolute' : 'fixed') + ';top:0;left:0;width:' + vp.w + 'px;height:' + vp.h + 'px;z-index:200000;'});
 					DOM.add(n, 'div', {id : 'mce_fullscreen'});
 
 					tinymce.each(ed.settings, function(v, n) {
@@ -96,6 +103,7 @@
 					t.fullscreenEditor = new tinymce.Editor('mce_fullscreen', s);
 					t.fullscreenEditor.onInit.add(function() {
 						t.fullscreenEditor.setContent(ed.getContent());
+						t.fullscreenEditor.focus();
 					});
 
 					t.fullscreenEditor.render();
@@ -104,6 +112,12 @@
 					t.fullscreenElement = new tinymce.dom.Element('mce_fullscreen_container');
 					t.fullscreenElement.update();
 					//document.body.overflow = 'hidden';
+
+					t.resizeFunc = tinymce.dom.Event.add(DOM.win, 'resize', function() {
+						var vp = tinymce.DOM.getViewPort();
+
+						t.fullscreenEditor.theme.resizeTo(vp.w, vp.h);
+					});
 				}
 			});
 

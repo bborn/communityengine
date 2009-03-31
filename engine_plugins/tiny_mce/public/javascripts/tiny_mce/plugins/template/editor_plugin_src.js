@@ -37,7 +37,7 @@
 				each(dom.select('div', o.node), function(e) {
 					if (dom.hasClass(e, 'mceTmpl')) {
 						each(dom.select('*', e), function(e) {
-							if (dom.hasClass(e, ed.getParam('template_mdate_classes').replace(/\s+/g, '|')))
+							if (dom.hasClass(e, ed.getParam('template_mdate_classes', 'mdate').replace(/\s+/g, '|')))
 								e.innerHTML = t._getDateTime(new Date(), ed.getParam("template_mdate_format", ed.getLang("template.mdate_format")));
 						});
 
@@ -68,6 +68,13 @@
 			});
 
 			el = dom.create('div', null, h);
+
+			// Find template element within div
+			n = dom.select('.mceTmpl', el);
+			if (n && n.length > 0) {
+				el = dom.create('div', null);
+				el.appendChild(n[0].cloneNode(true));
+			}
 
 			function hasClass(n, c) {
 				return new RegExp('\\b' + c + '\\b', 'g').test(n.className);
