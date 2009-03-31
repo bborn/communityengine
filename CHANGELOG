@@ -1,5 +1,4 @@
 = edge
-* updated TinyMCE scripts
 
 
 = 1.0.0
@@ -10,6 +9,8 @@
     - this attachment fu requires ImageMagick 6.4 or greater
 * updated swfupload to fix flash 10 compatibility
 * added ability to crop profile photo to better fit dimensions (/username/crop_profile_photo)
+* updated TinyMCE scripts
+* updated to newest Prototype and scriptaculous
 
 = 0.10.8
 
