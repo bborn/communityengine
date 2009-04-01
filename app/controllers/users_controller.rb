@@ -182,7 +182,10 @@ class UsersController < BaseController
   end
   
   def crop_profile_photo    
-    @photo = @user.avatar    
+    unless @photo = @user.avatar   
+      flash[:notice] = :no_profile_photo.l
+      redirect_to upload_profile_photo_user_path(@user) and return
+    end
     return unless request.put?
     
     if @photo
