@@ -35,8 +35,7 @@ class CGI::Session::ActiveRecordStore
 
   def initialize(session, option = nil)
     if option.include?("session_data")
-      session.instance_variable_set('@session_id', option
-      ["session_data"]) unless option["session_data"].empty?
+      session.instance_variable_set('@session_id', option["session_data"]) unless option["session_data"].empty?
     end
     original_initialize(session, option)
   end
