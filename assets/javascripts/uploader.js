@@ -21,10 +21,10 @@ CommunityEngine.SwfUpload = Class.create({
       button_placeholder_id : "SWFUploadButton",
       button_image_url : "/plugin_assets/community_engine/images/swf/choose.png",	// Relative to the SWF file
 			button_width: 180,
-			button_height: 30,
+			button_height: 18,
 			button_text : '<span class="button">Select Images </span>',
 			button_text_style : '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
-			button_text_top_padding: 10,
+			button_text_top_padding: 2,
 			button_text_left_padding: 18,
 			button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
 			button_cursor: SWFUpload.CURSOR.HAND,
