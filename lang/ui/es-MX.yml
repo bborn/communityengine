@@ -613,7 +613,7 @@ es-MX:
   my_tags: Mis etiquetas
   choose_your_location: "Elige tu ubicación"
   what_are_tags: ¿Que son las "Etiquetas"?
-  show_category:  {{category}}
+  show_category:  "{{category}}"
   home: Inicio
   why_sign_up: ¿Por que Registrarme?
   make_this_my_profile_photo: Haz esta la foto de tu perfil

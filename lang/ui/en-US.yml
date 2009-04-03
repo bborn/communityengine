@@ -994,7 +994,7 @@ en:
   #en: show: Show
   show: Show
   #en: show_category: {{category}}
-  show_category: {{category}}
+  show_category: "{{category}}"
   #en: show_this_photo: Show this photo
   show_this_photo: Show this photo
   #en: showing: Showing

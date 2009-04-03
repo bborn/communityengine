@@ -955,8 +955,8 @@ de-DE:
   share_the_love: Share the love
   #en: show: Show
   show: Zeigen
-  #en: show_category: {{category}}
-  show_category: Zeige {{category}}
+  #en: show_category: "{{category}}"
+  show_category: Zeige "{{category}}"
   #en: show_this_photo: Show this photo
   show_this_photo: Zeige dieses Foto
   #en: showing: Showing

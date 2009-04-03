@@ -488,7 +488,7 @@
 #en: service_could_not_be_deleted: Service could not be deleted.
 #en: share_the_love: Share the love
 #en: show: Show
-#en: show_category: {{category}}
+#en: show_category: "{{category}}"
 #en: show_this_photo: Show this photo
 #en: showing: Showing
 #en: showing_ad: Showing Ad
