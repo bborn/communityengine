@@ -5,6 +5,7 @@ class PostsController < BaseController
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
          
   cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]
+  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
   caches_action :show, :if => Proc.new{|c| c.cache_action? }
   def cache_action?
     !logged_in? && controller_name.eql?('posts')
@@ -92,6 +93,7 @@ class PostsController < BaseController
     @user = User.find(params[:user_id])    
     @post = Post.new(params[:post])
     @post.published_as = 'live'
+    @categories = Category.find(:all)
   end
   
   # GET /posts/1;edit
@@ -106,11 +108,12 @@ class PostsController < BaseController
     @post = Post.new(params[:post])
     @post.user = @user
     @post.tag_list = params[:tag_list] || ''
+    
     respond_to do |format|
       if @post.save
         @post.create_poll(params[:poll], params[:choices]) if params[:poll]
         
-        flash[:notice] = @post.category ? :post_created_for_category.l_with_args(:category => Inflector.singularize(@post.category.name)) : "Your post was successfully created.".l
+        flash[:notice] = @post.category ? :post_created_for_category.l_with_args(:category => @post.category.name.singularize) : "Your post was successfully created.".l
         format.html { 
           if @post.is_live?
             redirect_to @post.category ? category_path(@post.category) : user_post_path(@user, @post) 
@@ -118,8 +121,10 @@ class PostsController < BaseController
             redirect_to manage_user_posts_path(@user)
           end
         }
+        format.js
       else
         format.html { render :action => "new" }
+        format.js        
       end
     end
   end
@@ -151,7 +156,7 @@ class PostsController < BaseController
     
     respond_to do |format|
       format.html { 
-        flash[:notice] = "Your post was deleted.".l
+        flash[:notice] = :your_post_was_deleted.l
         redirect_to manage_user_posts_url(@user)   
         }
     end
@@ -177,9 +182,9 @@ class PostsController < BaseController
     
     @related_tags = Tag.find_by_sql("SELECT tags.id, tags.name, count(*) AS count 
       FROM taggings, tags 
-      WHERE tags.id = taggings.tag_id GROUP BY tag_id");
+      WHERE tags.id = taggings.tag_id GROUP BY tags.id, tags.name");
 
-    @rss_title = "#{AppConfig.community_name} Popular Posts"
+    @rss_title = "#{AppConfig.community_name} "+:popular_posts.l
     @rss_url = popular_rss_url    
     respond_to do |format|
       format.html # index.rhtml
@@ -197,7 +202,7 @@ class PostsController < BaseController
     @recent_clippings = Clipping.find_recent(:limit => 15)
     @recent_photos = Photo.find_recent(:limit => 10)
     
-    @rss_title = "#{AppConfig.community_name} Recent Posts"
+    @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
     @rss_url = recent_rss_url
     respond_to do |format|
       format.html 
@@ -213,7 +218,7 @@ class PostsController < BaseController
     @posts = Post.by_featured_writers.recent.find(:all, :page => {:current => params[:page]})
     @featured_writers = User.featured
         
-    @rss_title = "#{AppConfig.community_name} Featured Posts"
+    @rss_title = "#{AppConfig.community_name} "+:featured_posts.l
     @rss_url = featured_rss_url
     respond_to do |format|
       format.html 

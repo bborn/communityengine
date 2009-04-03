@@ -1,20 +1,20 @@
 .box
-  %h3="Author".l
+  %h3=:author.l
   %dl.vcard
     %dt.photo
-      = link_to image_tag( user.avatar_photo_url(:thumb), "height"=>"50", "alt"=>"#{user.login}", "width"=>"50" ), user_path(user), :title => "#{user.login}'s profile"
+      = link_to image_tag( user.avatar_photo_url(:thumb), "height"=>"50", "alt"=>"#{user.login}", "width"=>"50" ), user_path(user), :title => "#{user.login}'s"+ :profile.l
     %dd.fn
       = link_to user.login, user_path(user), :class => 'url'
-      = " <small>(" + "Featured Writer".l + ")</small>" if user.featured_writer?        
+      = " <small>(" + :featured_writer.l + ")</small>" if user.featured_writer?        
     %dd
     - if user.description
       = truncate_words( user.description, 12, '...')
     %dd.member
-      =user.created_at.strftime("Member since: %m/%d/%y")
+      =user.created_at.strftime(:member_since.l + ": %m/%d/%y")
     %dd.post
       - if user.posts.count == 1
         = link_to :singular_posts.l(:count => user.posts.count), user_posts_path(user)    
       - else
         = link_to :plural_posts.l(:count => user.posts.count), user_posts_path(user)         
     %dd.rss
-      =link_to 'RSS feed'.l, formatted_user_posts_path(user, 'rss')    
+      =link_to :rss_feed.l, formatted_user_posts_path(user, 'rss')    

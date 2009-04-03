@@ -1,6 +1,8 @@
 class UserNotifier < ActionMailer::Base
   include ActionView::Helpers::TextHelper
-  include ActionView::Helpers::SanitizeHelper  
+  include ActionView::Helpers::SanitizeHelper
+  extend  ActionView::Helpers::SanitizeHelper::ClassMethods # Required for rails 2.2
+
   include BaseHelper
   ActionMailer::Base.default_url_options[:host] = APP_URL.sub('http://', '')
 
@@ -17,8 +19,16 @@ class UserNotifier < ActionMailer::Base
   def friendship_request(friendship)
     setup_email(friendship.friend)
     @subject     += "#{friendship.user.login} would like to be friends with you!"
-    @body[:url]  = pending_user_friendships_url(friendship)
+    @body[:url]  = pending_user_friendships_url(friendship.friend)
     @body[:requester] = friendship.user
+  end
+  
+  def friendship_accepted(friendship)
+    setup_email(friendship.user) 
+    @subject     += "Friendship request accepted!"       
+    @body[:requester] = friendship.user
+    @body[:friend]    = friendship.friend
+    @body[:url]       = user_url(friendship.friend)
   end
 
   def comment_notice(comment)
@@ -36,6 +46,16 @@ class UserNotifier < ActionMailer::Base
     @body[:comment] = comment
     @body[:commenter] = comment.user
   end  
+
+  def follow_up_comment_notice_anonymous(email, comment)
+    @recipients  = "#{email}"
+    setup_sender_info
+    @subject     = "[#{AppConfig.community_name}] "
+    @sent_on     = Time.now
+    @subject     += "#{comment.username} has commented on a #{comment.commentable_type} that you also commented on."
+    @body[:url]  = commentable_url(comment)
+    @body[:comment] = comment
+  end
 
   def new_forum_post_notice(user, post)
      setup_email(user)
@@ -63,7 +83,7 @@ class UserNotifier < ActionMailer::Base
     @sent_on     = Time.now
     setup_sender_info
     @subject     = "Check out this story on #{AppConfig.community_name}"
-    content_type "text/html"
+    content_type "text/plain"
     @body[:name] = name  
     @body[:title]  = post.title
     @body[:post] = post
@@ -100,7 +120,9 @@ class UserNotifier < ActionMailer::Base
   end
   
   def setup_sender_info
-    @from        = "The #{AppConfig.community_name} Team <#{AppConfig.support_email}>"    
+    @from       = "The #{AppConfig.community_name} Team <#{AppConfig.support_email}>" 
+    headers     "Reply-to" => "#{AppConfig.support_email}"
+    @content_type = "text/plain"           
   end
   
 end

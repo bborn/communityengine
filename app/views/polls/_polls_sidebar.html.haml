@@ -1,0 +1,8 @@
+.clear
+%br
+.padded
+  %h2= :popular_polls.l
+  %ul
+    -polls.each do |poll|
+      %li
+        =link_to "#{truncate(poll.question, :length => 75)} <small class='quiet'>(#{pluralize poll.votes.count, :votes.l})</small>", user_post_path(poll.post.user, poll.post)

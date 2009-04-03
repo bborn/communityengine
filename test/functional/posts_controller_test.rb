@@ -112,7 +112,7 @@ class PostsControllerTest < Test::Unit::TestCase
     assert_difference Post, :count, 0 do
       delete :destroy, :id => posts(:funny_post), :user_id => users(:aaron).id
     end
-    assert_redirected_to new_session_path
+    assert_redirected_to login_path
   end
   
   def test_should_send_emails_to_friends

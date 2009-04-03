@@ -1,6 +1,11 @@
 class TagsController < BaseController
   skip_before_filter :verify_authenticity_token, :only => 'auto_complete_for_tag_name'
-    
+
+  caches_action :show, :cache_path => Proc.new { |controller| controller.send(:tag_url, controller.params[:id]) }, :if => Proc.new{|c| c.cache_action? }
+  def cache_action?
+    !logged_in? && params[:type].blank?
+  end  
+
   def auto_complete_for_tag_name
     @tags = Tag.find(:all, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
     render :inline => "<%= auto_complete_result(@tags, 'name') %>"
@@ -19,7 +24,7 @@ class TagsController < BaseController
   end
   
   def show
-    tag_names = params[:id]
+    tag_names = URI::decode(params[:id])
 
     @tags = Tag.find(:all, :conditions => [ 'name IN (?)', TagList.from(tag_names) ] )
     if @tags.nil? || @tags.empty?
@@ -31,16 +36,16 @@ class TagsController < BaseController
 
     if params[:type]
       case params[:type]
-        when 'Post'
+        when 'Post', 'posts'
           @pages = @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 20, :current => params[:page]})
           @photos, @users, @clippings = [], [], []
-        when 'Photo'
+        when 'Photo', 'photos'
           @pages = @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
           @posts, @users, @clippings = [], [], []
-        when 'User'
+        when 'User', 'users'
           @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
           @posts, @photos, @clippings = [], [], []
-        when 'Clipping'
+        when 'Clipping', 'clippings'
           @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 10, :current => params[:page]})
           @posts, @photos, @users = [], [], []
       else

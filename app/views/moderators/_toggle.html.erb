@@ -1,0 +1,14 @@
+<% if !user.moderator_of?(forum)  %>
+  <%= link_to_remote(:make_moderator.l, 
+      {:url => forum_moderators_path(:forum_id => forum.id, :user_id => user.id), 
+       :method => :post}, 
+      {:class => "utility"}
+      ) %>      
+<% else %>
+  <% moderatorship = Moderatorship.find_by_user_id_and_forum_id(user.id, forum.id) %>
+  <%= link_to_remote(:remove_moderator.l, 
+    {:url => forum_moderator_path(forum, moderatorship.id), 
+     :method => :delete}, 
+    {:class => "utility"}
+    ) %>      
+<% end %>

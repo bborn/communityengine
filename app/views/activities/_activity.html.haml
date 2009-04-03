@@ -6,33 +6,37 @@
     - if activity.item
       - case activity.item_type
         - when 'Post'
-          ="wrote a post:".l
+          =:wrote_a_post.l
           = link_to activity.item.title, user_post_path(activity.item.user, activity.item)
         - when 'Photo'
-          ="uploaded a photo:".l
+          =:uploaded_a_photo.l
           = link_to image_tag(activity.item.public_filename(:thumb), :width => '50px'), user_photo_path(activity.item.user, activity.item)
         - when 'Topic'
-          ="started a topic:".l
+          =:started_a_topic.l
           -topic = activity.item
           = link_to truncate_words(topic.title), forum_topic_path(topic.forum, topic)
         - when 'SbPost'
-          ="added to a forum topic:".l
+          =:added_to_a_forum_topic.l
           - topic = activity.item.topic
           = link_to truncate_words(activity.item.body), forum_topic_path(topic.forum, topic)
         - when 'Comment'
-          ="left a comment:".l
+          =:left_a_comment.l
           = link_to truncate_words(activity.item.comment), commentable_url(activity.item)
         - when 'Favorite'
-          ="favorited".l
+          =:favorited.l
           = link_to " a #{activity.item.favoritable.class.to_s.humanize.downcase}", user_favorite_path(activity.item.user, activity.item)
         - when 'Clipping'
-          ="added a clipping:".l
+          =:added_a_clipping.l
           = link_to image_tag( activity.item.image_uri(:thumb), :width => '50px'), user_clipping_path(activity.item.user, activity.item)        
+        - when 'Invitation'
+          =:invited_friends.l
+        -else
+          =render :partial => 'activities/unhandled_item', :locals => {:activity => activity}
     - else
       - case activity.action
         - when 'updated_profile'
-          ="updated their profile".l
+          =:updated_their_profile.l
         - when 'logged_in'
-          ="logged into the site".l
+          =:logged_into_the_site.l
         - else
-          = " #{activity.action.sub("_", " ") }"
+          = " #{activity.action.humanize.downcase }"

@@ -11,10 +11,12 @@ class PhotosController < BaseController
 
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
 
+  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
+
   def recent
     @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
   end
-
+  
   # GET /photos
   # GET /photos.xml
   def index
@@ -112,7 +114,7 @@ class PhotosController < BaseController
       if @photo.save
         #start the garbage collector
         GC.start
-        flash[:notice] = 'Photo was successfully created.'.l
+        flash[:notice] = :photo_was_successfully_created.l
 
         format.html {
           render :action => 'inline_new', :layout => false and return if params[:inline]
@@ -133,7 +135,7 @@ class PhotosController < BaseController
         format.js {
           responds_to_parent do
             render :update do |page|
-              page.alert('Sorry, there was an error uploading the photo.')
+              page.alert(:sorry_there_was_an_error_uploading_the_photo.l)
             end
           end
         }

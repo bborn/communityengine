@@ -14,52 +14,51 @@
   .yui-b
     .box
       %h3
-        =@post.category ? (:new_post_for_category.l :category => @post.category.name) : "New post".l
+        =@post.category ? (:new_post_for_category.l :category => @post.category.name) : :new_post.l
 
       = error_messages_for :post
       - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
-        - unless @post.category || @post.contest 
+        - unless @post.category || @post.contest || @categories.empty?
           %label
-            ="Category".l
-            \:
+            =:category.l
           %select{:id=>"post_category_id", :name=>"post[category_id]"}
-            -for category in Category.find(:all)
+            -for category in @categories
               %option{:value=>"#{category.id}"}= h(category.name)
         -else
           = f.hidden_field :category_id
           = f.hidden_field :contest_id
 
         %label
-          ="Title".l
-          %em="(required)".l
+          =:title.l
+          %em="(#{:required.l})"
         = f.text_field :title
 
         %label
-          ="Body Text".l
-          %em="(required)".l
+          =:body_text.l
+          %em="(#{:required.l})"
         = f.text_area :raw_post, :style => "width:95%;"
 
         %label
-          ="Tags".l
-          %em="(optional keywords describing this post, separated by commas)".l
+          =:tags.l
+          %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
         = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35}
         .auto_complete#tag_list_auto_complete
           = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
         
         %label
           %a{:href=> "#", :onclick => "$('poll-ui').toggle(); return false;"}
-            = "#{image_tag 'icons/poll.png', :plugin => 'community_engine' } " + "Add a poll".l
-          %em="(optional)".l
+            = "#{image_tag 'icons/poll.png', :plugin => 'community_engine' } " + :add_a_poll.l
+          %em=:optional.l
         #poll-ui{:style => 'display:none'}=render :partial => 'polls/new'
 
         %label
-          ="Save post as:".l
-        = f.select(:published_as, [['Published', 'live'], ['Draft', 'draft']])
+          =:save_post_as.l
+        = f.select(:published_as, [[:published.l, 'live'], [:draft.l, 'draft']])
         
         %p
-          = submit_tag "Save".l
+          = submit_tag :save.l
         %p
-          or 
-          = link_to 'cancel and go back to my posts'.l, user_posts_path(@user)
+          =:or.l 
+          = link_to :cancel_and_go_back_to_my_posts.l, user_posts_path(@user)
 
   = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}

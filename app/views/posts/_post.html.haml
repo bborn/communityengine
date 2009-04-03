@@ -13,10 +13,10 @@
         %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark"}
           %abbr.published{:title=>"#{post.published_at}"}= post.published_at_display("%B %d, %Y")
       %li.view
-        views
+        = :views.l
         = "(#{post.view_count})"
       %li.comments
-        = link_to "Comments".l+" (#{post.comments.count})", user_post_path(post.user, post)+'#comments'      
+        = link_to :comments.l+" (#{post.comments.count})", user_post_path(post.user, post)+'#comments'      
       - if current_user and current_user.can_request_friendship_with(post.user)
         %li.addfriend= add_friend_link(post.user)
 
@@ -25,4 +25,5 @@
     
     = render :partial => 'polls/excerpt', :locals => {:poll => post.poll} if post.poll
     
-    %h6=link_to 'read more', user_post_path(post.user, post), :rel=> 'bookmark'
+    %h6=link_to :read_more.l, user_post_path(post.user, post), :rel=> 'bookmark'
+  

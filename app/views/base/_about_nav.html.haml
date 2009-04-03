@@ -3,14 +3,14 @@
     %h3=:about_site.l :site => AppConfig.community_name
     %ul.list.checks
       %li
-        %a{:href=>"/faq"}= "Frequently Asked Questions".l
+        %a{:href=>"/faq"}= :frequently_asked_questions.l
       %li 
         %a{:href=>"/about"}=:about_site.l(:site => AppConfig.community_name)
       %li 
         %a{:href=>"/advertise"} 
-          ="Advertise".l
+          =:advertise.l
   .box.alt
-    %h3="Need to contact us?".l
+    %h3=:need_to_contact_us.l
     %p
-      ="Don't wait! It's".l
+      =:dont_wait_its.l
       %a{:href=>"mailto:#{AppConfig.support_email}"}= AppConfig.support_email

@@ -1,5 +1,6 @@
 class Country < ActiveRecord::Base
   has_many :metro_areas
+  has_many :states
   
   def self.get(name)
     case name

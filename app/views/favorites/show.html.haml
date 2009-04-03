@@ -1,0 +1,13 @@
+.profile
+  .column.span-9.first
+    .favorites.section
+      .favorite
+        %h2= link_to "#{@user.login}'s "+:favorites.l, user_favorites_path(@user)        
+
+        %p
+          =render :partial => 'favorites/favorite', :locals => {:favorite => @favorite}
+        
+  #sidebar.column.span-5.last
+    = Ad.display(:sidebar_1, logged_in?)
+
+    = Ad.display(:sidebar_2, logged_in?)

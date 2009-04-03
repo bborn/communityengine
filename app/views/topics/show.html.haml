@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@topic.title.capitalize} discussion.",:keywords => "#{@topic.tags.join(', ') if @topic.tags}"}
+- @meta = { :description => "#{@topic.title.capitalize} discussion.",:keywords => "#{@topic.tags.join(', ') if @topic.tags}", :robots => AppConfig.robots_meta_show_content}
 - @section = 'forums'
 - @page_title = @topic.title
 - @monitoring = logged_in? && current_user.monitoring_topic?(@topic)
@@ -19,12 +19,12 @@
         %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
         %label#monitor_label{"for"=>"monitor_checkbox"}
           
-          = "Watch#{@monitoring ? 'ing' : ''}"
-          = 'topic'.l
+          = :watch.l+"#{@monitoring ? :watch_ing.l : ''}"
+          = :topic.l
         = hidden_field_tag '_method', 'delete' if @monitoring
         = submit_tag :Set, :id => 'monitor_submit', :style => "display:none"
         
-  = link_to "Forums", forum_home_path
+  = link_to :forums.l, forum_home_path
   %span.arrow &rarr;
   = link_to h(@topic.forum.name), forum_path(@topic.forum)
   %span.arrow &rarr;
@@ -36,28 +36,28 @@
   %h3#topic-title
     = h @topic.title
     - if @topic.locked?
-      %span= '(locked)'.l
+      %span= :locked2.l
     - if logged_in?
       %span#topic_mod{"style"=>"display:none;"}
         - if @topic.editable_by?(current_user)
-          = link_to('edit'.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
+          = link_to(:edit.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
           |
-          = link_to('delete'.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => 'Delete this topic forever?'.l)
+          = link_to(:delete.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => :delete_this_topic_forever.l)
       %script{:type => "text/javascript"}
         $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
         $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
 
   %p.subtitle
     = feed_icon_tag @topic.title, formatted_forum_topic_path(@forum, @topic, :rss)
-    = "#{pluralize @topic.sb_posts.count, 'post'}, #{pluralize @topic.voices, 'voice'}"
-    = ", Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t.name), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
+    = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
+    = ", Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
   
   %ul.flat.talking
-    %li.label= "#{'Voices'.l}:"
+    %li.label= :voices.l+":"
     - @voices.each do |user|
       %li= link_to h(user.display_name), user_path(user)
 
-  %h6.all.right= link_to_function 'Reply to topic'.l, "ReplyForm.init()", :class => "utility"
+  %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
   - if @posts.page_count > 1
     .pagination.clear= paginating_links @posts
 
@@ -79,14 +79,14 @@
 
           = avatar_for post.user
           %span.fn
-            = link_to truncate(h(post.user.display_name), 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil)
+            = link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil)
 
-          %span.posts= pluralize post.user.sb_posts_count, 'post'
+          %span.posts= pluralize post.user.sb_posts_count, :post.l
           - if logged_in? && post.editable_by?(current_user)
             %p
               %span.edit
                 = ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif"
-                = link_to_remote('Edit post'.l, {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, {:class => "utility"})
+                = link_to_remote(:edit_post.l, {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, {:class => "utility"})
               - if admin? && !post.user.admin?
                 %div{"class"=>"make-moderator-#{post.user_id}"}
                   = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
@@ -103,10 +103,10 @@
     #edit
     - if @topic.locked?
       %p
-        = image_tag "clearbits/lock.gif", :class => "icon grey", :title => "Topic locked", :plugin => "community_engine"
-        %label= 'This topic is locked.'.l
+        = image_tag "clearbits/lock.gif", :class => "icon grey", :title => :topic_locked.l, :plugin => "community_engine"
+        %label= :this_topic_is_locked.l
     - else
-      %h6.all.right= link_to_function 'Reply to topic'.l, "ReplyForm.init()", :class => "utility"
+      %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
       #reply.editbox
         .container
           = content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply]
@@ -117,17 +117,17 @@
                 %td{"rowspan"=>"2", "width"=>"70%"}
                   = f.text_area :body, :style => "width: 99%"
                 %td{"style"=>"vertical-align:top;"}
-                  = submit_tag _("Save Reply")
-                  %span.button_or= "or #{link_to_function 'cancel'.l, "$('reply').hide()"}"
+                  = submit_tag :save_reply.l
+                  %span.button_or= :or.l+" #{link_to_function :cancel.l, "$('reply').hide()"}"
               %tr
                 %td{"style"=>"vertical-align: bottom; padding-bottom:15px;"}
 
     = javascript_tag "$('reply').hide();"
   - else
-    %p= link_to 'Log in to reply to this topic'.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
+    %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
 
 .box.alt
-  = link_to _("Forums"), forum_home_path
+  = link_to :forums.l, forum_home_path
   %span.arrow &rarr;
   = link_to h(@topic.forum.name), forum_path(@topic.forum)
   %span.arrow &rarr;

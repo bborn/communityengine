@@ -26,7 +26,7 @@ class EventsController < BaseController
     
     respond_to do |format|
       if @event.save
-        flash[:notice] = 'Event was successfully created.'.l
+        flash[:notice] = :event_was_successfully_created.l
         
         format.html { redirect_to events_path }
       else

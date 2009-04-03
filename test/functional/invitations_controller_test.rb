@@ -14,12 +14,14 @@ class InvitationsControllerTest < Test::Unit::TestCase
   end
 
   def test_should_get_index
+    login_as :quentin
     get :index, :user_id => users(:quentin).id
     assert_response :success
     assert assigns(:invitations)
   end
 
   def test_should_get_new
+    login_as :quentin
     get :new, :user_id => users(:quentin).id
     assert_response :success
   end
@@ -50,9 +52,4 @@ class InvitationsControllerTest < Test::Unit::TestCase
     assert assigns(:invitation).errors.on(:email_addresses)
   end
 
-
-  def test_should_show_invitation
-    get :show, :id => 1, :user_id => users(:quentin).id
-    assert_response :success
-  end
 end

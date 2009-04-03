@@ -1,0 +1,4 @@
+#page["monitorship-icon-topics-#{params[:topic_id]}"].remove_class_name(:green)
+#page["monitorship-icon-topics-#{params[:topic_id]}"].add_class_name(:darkgrey)
+
+page[:monitor_label].innerHTML=:watch_topic.l

@@ -11,6 +11,9 @@ class Activity < ActiveRecord::Base
   named_scope :since, lambda { |time|
     {:conditions => ["activities.created_at > ?", time] }
   }
+  named_scope :before, lambda {|time|
+    {:conditions => ["activities.created_at < ?", time] }    
+  }
   named_scope :recent, :order => "activities.created_at DESC"
   named_scope :by_users, lambda {|user_ids|
     {:conditions => ['activities.user_id in (?)', user_ids]}

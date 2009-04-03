@@ -7,6 +7,9 @@ var SearchReplaceDialog = {
 		this.switchMode(m);
 
 		f[m + '_panel_searchstring'].value = tinyMCEPopup.getWindowArg("search_string");
+
+		// Focus input field
+		f[m + '_panel_searchstring'].focus();
 	},
 
 	switchMode : function(m) {
@@ -39,6 +42,9 @@ var SearchReplaceDialog = {
 		ca = f[m + '_panel_casesensitivebox'].checked;
 		rs = f['replace_panel_replacestring'].value;
 
+		if (s == '')
+			return;
+
 		function fix() {
 			// Correct Firefox graphics glitches
 			r = se.getRng().cloneRange();
@@ -59,6 +65,10 @@ var SearchReplaceDialog = {
 
 		switch (a) {
 			case 'all':
+				// Move caret to beginning of text
+				ed.execCommand('SelectAll');
+				ed.selection.collapse(true);
+
 				if (tinymce.isIE) {
 					while (r.findText(s, b ? -1 : 1, fl)) {
 						r.scrollIntoView();
@@ -76,31 +86,37 @@ var SearchReplaceDialog = {
 				}
 
 				if (fo)
-					wm.alert(ed.getLang('searchreplace_dlg.allreplaced'));
+					tinyMCEPopup.alert(ed.getLang('searchreplace_dlg.allreplaced'));
 				else
-					wm.alert(ed.getLang('searchreplace_dlg.notfound'));
+					tinyMCEPopup.alert(ed.getLang('searchreplace_dlg.notfound'));
 
 				return;
 
 			case 'current':
-				replace();
+				if (!ed.selection.isCollapsed())
+					replace();
+
 				break;
 		}
 
 		se.collapse(b);
 		r = se.getRng();
 
+		// Whats the point
+		if (!s)
+			return;
+
 		if (tinymce.isIE) {
 			if (r.findText(s, b ? -1 : 1, fl)) {
 				r.scrollIntoView();
 				r.select();
 			} else
-				wm.alert(ed.getLang('searchreplace_dlg.notfound'));
+				tinyMCEPopup.alert(ed.getLang('searchreplace_dlg.notfound'));
 
 			tinyMCEPopup.storeSelection();
 		} else {
 			if (!w.find(s, ca, b, false, false, false, false))
-				wm.alert(ed.getLang('searchreplace_dlg.notfound'));
+				tinyMCEPopup.alert(ed.getLang('searchreplace_dlg.notfound'));
 			else
 				fix();
 		}

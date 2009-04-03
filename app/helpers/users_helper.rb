@@ -8,5 +8,5 @@ module UsersHelper
         'Wassup', 'Aloha', 'Halloo']
     "#{greetings.sort_by {rand}.first} #{user.login}!"
   end
-  
+    
 end

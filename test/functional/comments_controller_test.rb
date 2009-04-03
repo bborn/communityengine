@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'comments_controller'
+# require 'comments_controller'
 
 # Re-raise errors caught by the controller.
-class CommentsController; def rescue_action(e) raise e end; end
+# class CommentsController; def rescue_action(e) raise e end; end
 
-class CommentsControllerTest < Test::Unit::TestCase
+class CommentsControllerTest < ActionController::TestCase
+# class CommentsControllerTest < Test::Unit::TestCase
   fixtures :users, :photos, :posts, :comments, :roles
 
   def setup
@@ -31,7 +32,6 @@ class CommentsControllerTest < Test::Unit::TestCase
       create_user_comment(:user_id => users(:aaron).id)
     end
   end  
-  
 
   def test_should_create_user_comment_without_notification
     users(:quentin).notify_comments = false
@@ -52,7 +52,7 @@ class CommentsControllerTest < Test::Unit::TestCase
     end    
     assert_response :redirect    
   end
-
+  
   def test_should_create_photo_comment
     login_as :aaron
     assert_difference Comment, :count, 1 do
@@ -108,33 +108,47 @@ class CommentsControllerTest < Test::Unit::TestCase
 
   def test_should_show_comments_index
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:aaron).to_param
+    get :index, :user_id => users(:aaron).to_param
     assert_response :success
     assert !assigns(:comments).empty?
   end
 
   def test_should_show_comments_index_rss
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:aaron).to_param, :format => 'rss'
+    get :index, :user_id => users(:aaron).to_param, :format => 'rss'
     assert_response :success
     assert !assigns(:comments).empty?
+  end
+  
+  def test_should_show_empty_comments_index
+    login_as :aaron
+    get :index, :user_id => users(:quentin).to_param
+    assert_response :success
+    assert assigns(:comments).empty?
+  end
+  
+  def test_should_show_empty_comments_index_rss
+    login_as :aaron
+    get :index, :user_id => users(:quentin).to_param, :format => 'rss'
+    assert_response :success
+    assert assigns(:comments).empty?
   end
 
   def test_should_show_private_comments_index_if_logged_in
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:privateuser).to_param
+    get :index, :user_id => users(:privateuser).to_param
     assert !assigns(:comments).empty?    
     assert_response :success
   end
 
   def test_should_not_show_private_comments_index
-    get :index, :commentable_type => 'user', :commentable_id => users(:privateuser).to_param
+    get :index, :user_id => users(:privateuser).to_param
     assert_response :redirect
   end
   
   def test_should_show_comments_index_rss_if_logged_in
     login_as :quentin
-    get :index, :commentable_type => 'user', :commentable_id => users(:aaron).to_param, :format => 'rss'
+    get :index, :user_id => users(:aaron).to_param, :format => 'rss'
     assert !assigns(:comments).empty?
     assert_response :success
   end

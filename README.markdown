@@ -1,0 +1,243 @@
+CommunityEngine
+================
+
+Information at: [http://www.communityengine.org](http://www.communityengine.org)
+
+Requirements:
+
+	- RAILS VERSION 2.2.2
+	- The engines plugin for Rails 2.2.2
+	- ImageMagick (>6.4) 
+	- Several gems:
+	  rmagick
+	  hpricot
+	  htmlentities
+	  RedCloth
+	  rake 0.8.3
+	  haml 2.0.5 (updated for Rails 2.2.2)
+	  aws-s3 (if using s3 for photos)
+
+Getting CommunityEngine Running
+--------------------------------
+1. From the command line
+
+		$ rails site_name (create a rails app if you don't have one already)    
+
+    
+2. Install the engines plugin:
+
+		$ script/plugin install git://github.com/lazyatom/engines.git
+	
+3. Put the community engine plugin into plugins directory (use one of the following methods):
+
+	* If you're not using git, and just want to add the source files:
+
+			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community\_engine
+
+	* Using git, make a shallow clone of the community_engine repository:
+
+			$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
+
+	* If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:
+	
+			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
+
+	* Make sure you rename your CE directory to `community_engine` (note the underscore) if it isn't named that for some reason
+
+4. Create your database and modify your `config/database.yml` appropriately.
+
+5. Delete public/index.html (if you haven't already)
+
+6. Modify your environment.rb as indicated below:
+
+		## environment.rb should look something like this:
+		RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
+		require File.join(File.dirname(__FILE__), 'boot')
+		require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
+
+		Rails::Initializer.run do |config|
+		  #resource_hacks required here to ensure routes like /:login_slug work
+		  config.plugins = [:engines, :community_engine, :white_list, :all]
+		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
+
+		  ... Your stuff here ...
+		end
+		# Include your application configuration below
+		require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
+
+7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
+
+		# development.rb, production.rb, and test.rb should include something like:
+		APP_URL = "http://localhost:3000" (or whatever your URL will be for that particular environment)
+
+8. Modify your routes.rb as indicated below:
+
+		# Add this after any of your own existing routes, but before the default rails routes: 
+		map.from_plugin :community_engine
+		# Install the default routes as the lowest priority.
+		map.connect ':controller/:action/:id'
+		map.connect ':controller/:action/:id.:format'     
+
+9. Generate the community engine migrations: 
+
+		$ script/generate plugin_migration
+    
+10. From the command line:
+	
+		$ rake db:migrate
+
+11. You may need to change these lines in `application.rb` (if you're not using cookie sessions):
+
+		# See ActionController::RequestForgeryProtection for details
+		# Uncomment the :secret if you're not using the cookie session store
+		protect_from_forgery # :secret => 'your_secret_string'
+
+12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
+
+    $ rake test
+		$ rake community_engine:test
+
+13. Start your server and check out your site! 
+
+		$ mongrel_rails start
+		or
+		$ ./script/server
+
+
+
+Optional Configuration
+======================
+
+
+To override the default configuration, create an `application.yml` file in `RAILS_ROOT/config` 
+
+The application configuration defined in this file overrides the one defined in `/community_engine/engine_config/application.yml`
+
+This is where you can change commonly used configuration variables, like `AppConfig.community_name`, etc.
+
+This YAML file will get converted into an OpenStruct, giving you things like `AppConfig.community_name`, `AppConfig.support_email`, etc.
+
+Photo Uploading
+---------------
+
+By default CommunityEngine uses the filesystem to store photos.
+
+To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called `amazon_s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`). 
+
+You'll need to change your configuration in your `application.yml` to tell CommunityEngine to use s3 as the photo backend.
+
+Finally, you'll need an S3 account for S3 photo uploading.
+
+
+Create an s3.yml file in `RAILS_ROOT/config` 
+------------------------------------------------------
+
+CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
+
+Roles
+------
+
+CommunityEngine Users have a Role (by default, it's admin, moderator, or member)
+
+To set a user as an admin, you must manually change his `role_id` through the database.
+Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar.)
+
+Admins and moderators can edit and delete other users posts.
+
+There is a rake task to make an existing user into an admin: 
+
+	rake community_engine:make_admin email=user@foo.com 
+
+(Pass in the e-mail of the user you'd like to make an admin)
+
+
+Themes
+------
+
+To create a theme:
+
+1. Add a 'themes' directory in `RAILS_ROOT` with the following structure:
+
+		/RAILS_ROOT
+		  /themes
+		    /your_theme_name
+		      /views
+		      /images
+		      /stylesheets
+		      /javascripts
+      
+2. Add `theme: your_theme_name` to your `application.yml` (you'll have to restart your server after doing this)
+
+3. Customize your theme. For example: you can create a `/RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
+
+	To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
+
+		= stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
+
+*Note: when running in production mode, theme assets (images, js, and stylesheets) are automatically copied to you public directory (avoiding a Rails request on each image load).*
+
+
+Localization
+------------
+
+Localization is done via Rails native I18n API. We've added some extensions to String and Symbol to allow backwards compatibility (we used to use Globalite).
+
+Strings and Symbols respond to the `.l` method that allows for a look up of the symbol (or a symbolized version of the string) into a strings file which is stored in yaml. 
+
+For complex strings with substitutions, Symbols respond to the `.l` method with a hash passed as an argument, for example: 
+
+	:welcome.l :name => current_user.name
+  
+And in your language file you'd have:
+
+	welcome: "Welcome {{name}}"
+
+To customize the language, or add a new language create a new yaml file in `RAILS_ROOT/lang/ui`.
+The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
+The language only file (`es.yml`) will support all locales.
+
+To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb`:
+
+	AppConfig.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
+  
+Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
+
+For more, see /lang/readme.txt.
+
+
+Other notes
+-----------
+
+Any views you create in your app directory will override those in `community_engine/app/views`. 
+For example, you could create `RAILS_ROOT/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
+
+You can also override CommunityEngine's controllers by creating identically-named controllers in your application's `app/controllers` directory.
+
+
+Gotchas
+-------
+
+1. I get errors running rake! Error: (wrong number of arguments (3 for 1)
+  - make sure you have the latest version of rake
+2. I get test errors after upgrading to Rails 2.2.2
+  - make sure you have upgraded to the latest Engines plugin, and modified your environment.rb to use Rails 2.2.2.
+
+
+Contributors - Thanks! :)
+-------------------------
+
+- Bryan Kearney - localization
+- Alex Nesbitt - forgot password bugs
+- Alejandro Raiczyk - Spanish localization
+- [Fritz Thielemann](http://github.com/fritzek) - German localization, il8n 
+- [Oleg Ivanov](http://github.com/morhekil) - `acts_as_taggable_on_steroids`
+- David Fugere - French localization
+- Barry Paul - routes refactoring
+- [Andrei Erdoss](http://github.com/cauta) localization
+
+
+To Do
+----
+* Track down `<RangeError ... is recycled object>` warnings on tests (anyone know where that's coming from?)
+
+Bug tracking is via [Lighthouse](http://communityengine.lighthouseapp.com)

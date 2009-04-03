@@ -1,17 +1,12 @@
 module Viewable
   protected
-  def update_view_count(viewable)  
-    stack_name = Inflector.underscore(viewable.class).downcase
+  def update_view_count(viewable)     
+    stack_name = viewable.class.to_s.underscore.downcase
+    already_viewed = (cookies[stack_name] || '').split(',') 
 
-    if cookies[stack_name].nil?
-      cookies[stack_name] = [viewable.id.to_s]      
-      viewable.update_attribute(:view_count, viewable.view_count + 1)      
-    elsif !cookies[stack_name].include?(viewable.id.to_s)
-      cookies[stack_name] << viewable.id.to_s
-      viewable.update_attribute(:view_count, viewable.view_count + 1)
-    else
-      #already viewed it, do nothing
-      return false
+    unless already_viewed.include?(viewable.id.to_s)
+      cookies[stack_name] = (already_viewed << viewable.id.to_s).join(',')
+      viewable.class.update_counters(viewable.id, {:view_count => 1}) 
     end
   end
 end

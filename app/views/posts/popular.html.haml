@@ -1,26 +1,26 @@
-- @meta = { :description => "Popular posts on #{AppConfig.community_name}",:keywords => "#{AppConfig.meta_keywords}"}
+- @meta = { :description => :popular_posts_on.l+" #{AppConfig.community_name}",:keywords => "#{AppConfig.meta_keywords}", :robots => AppConfig.robots_meta_list_content}
 - @section = 'popular'
 
 .yui-b
   .box
     - if logged_in?
-      %h3= "Get popular.".l
+      %h3.signup= :get_popular.l
       %ul.list.checks
-        %li=link_to "Write a blog post!".l, new_user_post_path({:user_id => current_user})
+        %li=link_to :write_a_blog_post.l, new_user_post_path({:user_id => current_user})
     - else
-      %h3= "Want to be popular?"
+      %h3.signup= :want_to_be_popular.l 
       %ul.list.checks
         %li
-          %a{:href=>"/signup", :title=>"Sign up for a #{AppConfig.community_name} account"}="Sign up for an account.".l
+          %a{:href=>"/signup", :title=>:sign_up_for_a_.l+" #{AppConfig.community_name} "+:account.l}=:sign_up_for_an_account.l
           %br
             %small
-              Have an account? 
-              %a{:href=>"/login", :title=>"Log in to your #{AppConfig.community_name} account"}
+              =:have_an_account.l
+              %a{:href=>"/login", :title=>:log_in_to_your.l+" #{AppConfig.community_name} "+:account.l}
                 &raquo;
-                ="Log in".l
+                =:log_in.l
 
   .box.alt
-    %h3= "This month's Best"
+    %h3= :this_month_best.l 
     %ul.list.page    
       - @monthly_popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
@@ -29,7 +29,7 @@
   .yui-b
     .box.hfeed
       %h3 
-        ="What's Popular".l :what_is_popular
+        =:what_is_popular.l
         %ul.subnav
-          %li= :looking_for_most_x.l :link => link_to("recent".l, recent_path)
+          %li= :looking_for_most_x.l :link => link_to("#{:recent.l}?", recent_path)
       = render :partial => 'posts/post', :collection => @posts

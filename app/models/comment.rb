@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to :recipient, :class_name => "User", :foreign_key => "recipient_id"
   
   validates_presence_of :comment
-  validates_presence_of :recipient
+  # validates_presence_of :recipient
   
   validates_length_of :comment, :maximum => 2000
   
@@ -42,12 +42,13 @@ class Comment < ActiveRecord::Base
     User.find(:all, 
       :conditions => ["users.id NOT IN (?) AND users.notify_comments = ? 
                       AND commentable_id = ? AND commentable_type = ? 
-                      AND comments.created_at > ?", [user_id, recipient_id], true, commentable_id, commentable_type, 2.weeks.ago], 
-      :include => :comments_as_author, :group => "users.id", :limit => 20)    
+                      AND comments.created_at > ?", [user_id, recipient_id.to_i], true, commentable_id, commentable_type, 2.weeks.ago], 
+#      :include => :comments_as_author, :group => "users.id", :limit => 20)    
+      :include => :comments_as_author, :limit => 20)
   end    
     
   def commentable_name
-    type = Inflector.underscore(self.commentable_type)
+    type = self.commentable_type.underscore
     case type
       when 'user'
         commentable.login
@@ -57,6 +58,8 @@ class Comment < ActiveRecord::Base
         commentable.description || "Clipping from #{commentable.user.login}"
       when 'photo'
         commentable.description || "Photo from #{commentable.user.login}"
+      else 
+        commentable.class.to_s.humanize
     end
   end
 
@@ -73,10 +76,11 @@ class Comment < ActiveRecord::Base
   end
   
   def can_be_deleted_by(person)
-    person && (person.admin? || person.eql?(user) || person.eql?(recipient) )
+    person && (person.admin? || person.id.eql?(user_id) || person.id.eql?(recipient_id) )
   end
   
   def should_notify_recipient?
+    return unless recipient
     return false if recipient.eql?(user)
     return false unless recipient.notify_comments?
     true    
@@ -88,9 +92,17 @@ class Comment < ActiveRecord::Base
     end    
   end
   
+  def notify_previous_anonymous_commenters
+    anonymous_commenters_emails = commentable.comments.map{|c|  c.author_email if ( !c.user && !c.author_email.eql?(self.author_email) && c.author_email) }.uniq.compact
+    anonymous_commenters_emails.each do |email|
+      UserNotifier.deliver_follow_up_comment_notice_anonymous(email, self)
+    end    
+  end  
+  
   def send_notifications
     UserNotifier.deliver_comment_notice(self) if should_notify_recipient?
-    self.notify_previous_commenters    
+    self.notify_previous_commenters  
+    self.notify_previous_anonymous_commenters if AppConfig.allow_anonymous_commenting
   end
   
   protected

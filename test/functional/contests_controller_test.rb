@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'contests_controller'
 
-# Re-raise errors caught by the controller.
-class ContestsController; def rescue_action(e) raise e end; end
-
-class ContestsControllerTest < Test::Unit::TestCase
+class ContestsControllerTest < ActionController::TestCase
   fixtures :contests, :users, :roles
 
   def setup
@@ -29,7 +25,7 @@ class ContestsControllerTest < Test::Unit::TestCase
   def test_should_create_contest
     login_as :admin
     assert_difference Contest, :count, 1 do
-      post :create, :contest => {:title => 'created from tests', :banner_title => 'created from tests', :banner_subtitle => 'created from tests', :begin => 500.days.ago.to_s, :end => 0.days.ago.to_s }
+      post :create, :contest => {:title => 'created from tests', :banner_title => 'created from tests', :banner_subtitle => 'created from tests', :begin_date => 500.days.ago.to_s, :end_date => 0.days.ago.to_s }
     end
     assert_redirected_to contest_path(assigns(:contest))
   end
@@ -37,7 +33,7 @@ class ContestsControllerTest < Test::Unit::TestCase
   def test_should_require_title
     login_as :admin
     assert_no_difference Contest, :count do
-      post :create, :contest => {:banner_title => 'created from tests', :banner_subtitle => 'created from tests', :begin => 500.days.ago.to_s, :end => 0.days.ago.to_s }
+      post :create, :contest => {:banner_title => 'created from tests', :banner_subtitle => 'created from tests', :begin_date => 500.days.ago.to_s, :end_date => 0.days.ago.to_s }
     end
     assert assigns(:contest).errors.on(:title)
   end

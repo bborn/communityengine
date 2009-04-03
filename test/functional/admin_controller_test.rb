@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'admin_controller'
 
-# Re-raise errors caught by the controller.
-class AdminController; def rescue_action(e) raise e end; end
-
-class AdminControllerTest < Test::Unit::TestCase
+class AdminControllerTest < ActionController::TestCase
   fixtures :users, :categories, :roles
 
   def setup
@@ -39,6 +35,13 @@ class AdminControllerTest < Test::Unit::TestCase
     put :activate_user, :id => users(:quentin).id
     assert_response :redirect    
     assert users(:quentin).reload.active?
+  end
+  
+  def test_should_deactivate_user
+    login_as :admin
+    put :deactivate_user, :id => users(:quentin).id
+    assert_response :redirect    
+    assert !users(:quentin).reload.active?    
   end
 
 end

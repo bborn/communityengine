@@ -53,7 +53,7 @@ class PhotosControllerTest < Test::Unit::TestCase
   
   def test_should_create_photo
     login_as :quentin
-    assert_difference Photo, :count, 1 do
+    assert_difference Photo, :count, 4 do
       post :create,
         :photo => { :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
@@ -118,7 +118,7 @@ class PhotosControllerTest < Test::Unit::TestCase
 
     assert_redirected_to user_photo_path(users(:quentin), assigns(:photo))
 
-    photo = Photo.find(assigns(:photo).id)
+    photo = photos(:library_pic).reload
     assert_equal "changed_name", photo.name
     assert_equal ['tagX', 'tagY'], photo.tag_list
   end
@@ -143,7 +143,7 @@ class PhotosControllerTest < Test::Unit::TestCase
     assert_difference Photo, :count, 0 do
       delete :destroy, :id => photos(:library_pic), :user_id => users(:aaron).id
     end
-    assert_redirected_to new_session_path
+    assert_redirected_to login_path
   end
   
   def test_should_remove_avatar_when_photo_is_destroyed
