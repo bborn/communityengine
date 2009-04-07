@@ -91,12 +91,18 @@ class PhotosControllerTest < Test::Unit::TestCase
   end
 
   def test_should_show_private_photo_if_logged_in
+    photos(:library_pic).user = users(:privateuser)
+    photos(:library_pic).save
+    
     login_as :quentin
     get :show, :id => photos(:library_pic).id, :user_id => users(:privateuser).id
     assert_response :success
   end
   
   def test_should_not_show_private_photo
+    photos(:library_pic).user = users(:privateuser)
+    photos(:library_pic).save
+    
     get :show, :id => photos(:library_pic).id, :user_id => users(:privateuser).id
     assert_response :redirect    
   end

@@ -72,7 +72,7 @@ class PhotosController < BaseController
   # GET /photos/1.xml
   def show
     @photo = @user.photos.find(params[:id])
-    @user = @photo.user
+    
     @is_current_user = @user.eql?(current_user)
     @comment = Comment.new(params[:comment])
 
