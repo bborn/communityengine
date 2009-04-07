@@ -285,8 +285,10 @@ class UsersControllerTest < ActionController::TestCase
     avatar = Photo.new(:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg'))
     avatar.user = users(:quentin)
     avatar.save!
-    users(:quentin).avatar = avatar
 
+    users(:quentin).avatar = avatar
+    users(:quentin).save
+    
     put :crop_profile_photo, :id => users(:quentin).id, :x1 => 0, :y1 => 0, :width => 290, :height => 320
     
     assert_redirected_to user_path(users(:quentin))
