@@ -70,7 +70,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_get_signup_completed
     login_as :quentin
     
-    get :signup_completed, :id => users(:quentin).activation_code
+    get :signup_completed, :id => users(:quentin)
     assert_response :success
   end
   
@@ -338,22 +338,22 @@ class UsersControllerTest < ActionController::TestCase
     users(:quentin).save!
     
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      post :resend_activation, :email => users(:quentin).email
+      post :resend_activation, :id => users(:quentin).to_param
       assert_redirected_to login_path    
     end    
   end
   
   def test_should_not_resend_activation_for_active_user
     assert_no_difference ActionMailer::Base.deliveries, :length do
-      post :resend_activation, :email => users(:quentin).email
+      post :resend_activation, :id => users(:quentin).to_param
       assert_response :success
       assert_equal :activation_email_not_sent_message.l, flash[:notice]
     end    
   end
 
-  def test_should_not_resend_activation_for_nonexistent_email
+  def test_should_not_resend_activation_for_nonexistent_user
     assert_no_difference ActionMailer::Base.deliveries, :length do
-      post :resend_activation, :email => "foo@bar.com"
+      post :resend_activation, :id => "nonexistant"
       assert_response :success
       assert_equal :activation_email_not_sent_message.l, flash[:notice]
     end    
