@@ -190,7 +190,7 @@ class UsersController < BaseController
     
     if @photo
       if params[:x1]
-        img = Magick::Image::read(@photo.s3_url).first.crop(params[:x1].to_i, params[:y1].to_i,params[:width].to_i, params[:height].to_i, true)
+        img = Magick::Image::read(@photo.path_or_s3_url_for_image).first.crop(params[:x1].to_i, params[:y1].to_i,params[:width].to_i, params[:height].to_i, true)
         img.format = @photo.content_type.split('/').last
         crop = {'tempfile' => StringIO.new(img.to_blob), 'content_type' => @photo.content_type, 'filename' => "custom_#{@photo.filename}"}
         @photo.uploaded_data = crop

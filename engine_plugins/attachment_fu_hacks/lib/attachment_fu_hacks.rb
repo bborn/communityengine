@@ -28,6 +28,14 @@ Technoweenie::AttachmentFu::InstanceMethods.module_eval do
       return file_data.content_type
     end
   end
+  
+  def path_or_s3_url_for_image(thumbnail = nil)
+    if attachment_options[:storage].eql?(:s3)
+      s3_url(thumbnail)
+    else
+      full_filename(thumbnail)
+    end
+  end
 
   protected
 
