@@ -1,4 +1,5 @@
-= edge
+= 1.0.1
+* fixed error on messages#delete
 
 
 = 1.0.0
