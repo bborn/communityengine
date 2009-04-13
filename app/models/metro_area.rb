@@ -7,4 +7,6 @@ class MetroArea < ActiveRecord::Base
   validates_presence_of :country_id
   validates_presence_of :name
 
+	acts_as_commentable
+
 end
