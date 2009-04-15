@@ -1,10 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'monitorships_controller'
 
-# Re-raise errors caught by the controller.
-class MonitorshipsController; def rescue_action(e) raise e end; end
+class MonitorshipsControllerTest < ActionController::TestCase
 
-class MonitorshipsControllerTest < Test::Unit::TestCase
   all_fixtures
   def setup
     @controller = MonitorshipsController.new
@@ -13,8 +11,8 @@ class MonitorshipsControllerTest < Test::Unit::TestCase
   end
 
   def test_should_require_login
-    xhr :post, :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => users(:aaron).id
-    assert_response :redirect
+    post :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => users(:aaron).id, :format => 'js'
+    assert_js_redirected_to login_path
   end
   
   def test_should_add_monitorship
@@ -30,7 +28,7 @@ class MonitorshipsControllerTest < Test::Unit::TestCase
   def test_should_activate_monitorship
     login_as :sam
     assert_difference Monitorship, :count, 0 do
-      xhr :post, :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => users(:sam).id
+      xhr :post, :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => users(:sam).id      
       assert_response :success
     end
   end

@@ -1,4 +1,5 @@
 = 1.0.1
+* fixed error when cropping photos using file system storage
 * fixed error on messages#delete
 
 

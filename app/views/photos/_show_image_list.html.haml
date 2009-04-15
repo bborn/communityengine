@@ -5,18 +5,16 @@
         .thumbs
           = :insert.l + ":"
           %br
-          %a{:href=>'#_thumb', :onclick=>"select_thumb(this);return false;"}
+          %a{:href=>p.public_filename(:thumb), :onclick=>"select_thumb(this);return false;", :alt => p.display_name}
             = :thumb.l
-          %a{:href=>'#_medium', :onclick=>"select_thumb(this);return false;"}
+          %a{:href=>p.public_filename(:medium), :onclick=>"select_thumb(this);return false;", :alt => p.display_name}
             = :medium.l
-          %a{:href=>'#', :onclick=>"select_thumb(this);return false;"}
+          %a{:href=>p.public_filename(), :onclick=>"select_thumb(this);return false;", :alt => p.display_name}
             = :large.l
           %br
           %a{:href=>'#', :onclick=>"$(this).up('li').removeClassName('selected');return false;", :style => 'float:right; font-size: 10px;'}
             = :cancel.l
         %a{:href=>'#', :onclick=>"select_image(this);return false;"}
           = image_tag( p.public_filename(:thumb), :alt => p.display_name )
-
-
 - else
   = :no_images_uploaded_yet.l

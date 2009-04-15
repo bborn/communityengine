@@ -109,7 +109,7 @@ class UsersController < BaseController
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
       create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
-      redirect_to signup_completed_user_path(@user.activation_code)
+      redirect_to signup_completed_user_path(@user)
     else
       render :action => 'new'
     end
@@ -284,7 +284,7 @@ class UsersController < BaseController
   end
   
   def signup_completed
-    @user = User.find_by_activation_code(params[:id])
+    @user = User.find(params[:id])
     redirect_to home_path and return unless @user
     render :action => 'signup_completed', :layout => 'beta' if AppConfig.closed_beta_mode    
   end
@@ -340,9 +340,9 @@ class UsersController < BaseController
   def resend_activation
     return unless request.post?       
 
-    @user = User.find_by_email(params[:email])    
+    @user = User.find(params[:id])    
     if @user && !@user.active?
-      flash[:notice] = :activation_email_resent_message.l :admin_email => AppConfig.support_email
+      flash[:notice] = :activation_email_resent_message.l
       UserNotifier.deliver_signup_notification(@user)    
       redirect_to login_path and return
     else

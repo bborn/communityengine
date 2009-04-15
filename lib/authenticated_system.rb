@@ -102,7 +102,7 @@ module AuthenticatedSystem
       respond_to do |accepts|
         accepts.html do
           store_location
-          redirect_to(:controller => '/sessions', :action => 'new') and return false
+          redirect_to login_path and return false
         end
         accepts.xml do
           headers["Status"]           = "Unauthorized"
@@ -110,8 +110,10 @@ module AuthenticatedSystem
           render :text => "Could't authenticate you", :status => '401 Unauthorized'
         end
         accepts.js do
-          store_location          
-          redirect_to(:controller => '/sessions', :action => 'new') and return false
+          store_location        
+          render :update do |page|
+            page.redirect_to login_path and return false
+          end
         end        
       end
       false

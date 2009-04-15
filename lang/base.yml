@@ -13,6 +13,7 @@
 #en: actions: Actions
 #en: activate: Activate
 #en: activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
+#en: activation_email_resent_message: An activation e-mail was resent to the e-mail address you used to sign up.
 #en: active: active
 #en: active_users: Active Users
 #en: activity_from_your_network: Activity from your network
