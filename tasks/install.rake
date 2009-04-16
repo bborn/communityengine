@@ -11,7 +11,7 @@ namespace :community_engine do
   task :check_required_gems do
     #check if we have the required gems
     installed_gems = `gem list --no-details --no-versions`.split("\n")
-    required_gems = %w(rmagick hpricot mime-types htmlentities RedCloth rake mysql)
+    required_gems = %w(rmagick hpricot mime-types htmlentities rake mysql)
     missing_gems = required_gems-installed_gems
     
     if missing_gems.any?

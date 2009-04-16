@@ -127,7 +127,7 @@ class SbPostsController < BaseController
     
     def render_posts_or_xml(template_name = action_name)
       respond_to do |format|
-        format.html { render :action => "#{template_name}.html.erb" }
+        format.html { render :action => "#{template_name}" }
         format.rss  { render :action => "#{template_name}.xml.builder", :layout => false }
         format.xml  { render :xml => @posts.to_xml }
       end

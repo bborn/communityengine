@@ -61,7 +61,7 @@ class ClippingsController < BaseController
     @clippings_data = @clippings.collect {|c| [c.id, c.image_url, c.description, c.url ]  }
 
     @rss_title = "#{AppConfig.community_name}: #{@user.login}'s clippings"
-    @rss_url = formatted_user_clippings_path(@user,:rss)
+    @rss_url = user_clippings_path(@user,:format => :rss)
 
     respond_to do |format|
       format.html # index.rhtml

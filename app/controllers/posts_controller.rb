@@ -38,7 +38,7 @@ class PostsController < BaseController
     @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")
     
     @rss_title = "#{AppConfig.community_name}: #{@user.login}'s posts"
-    @rss_url = formatted_user_posts_path(@user,:rss)
+    @rss_url = user_posts_path(@user,:format => :rss)
         
     respond_to do |format|
       format.html # index.rhtml
@@ -58,7 +58,7 @@ class PostsController < BaseController
   # GET /posts/1.xml
   def show
     @rss_title = "#{AppConfig.community_name}: #{@user.login}'s posts"
-    @rss_url = formatted_user_posts_path(@user,:rss)
+    @rss_url = user_posts_path(@user,:format => :rss)
     
     @post = Post.find(params[:id])
     @user = @post.user

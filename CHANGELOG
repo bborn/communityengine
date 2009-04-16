@@ -1,5 +1,7 @@
 = 1.0.2
 * Rails 2.3 compatibility
+* RedCloth no longer required
+* fixed swfupload to work with 2.3 and use Rack middleware
 
 = 1.0.1
 * fixed error when cropping photos using file system storage

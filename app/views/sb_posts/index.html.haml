@@ -17,7 +17,7 @@
       ="#{:searching_for.l} '#{h params[:q]}'"
 
   %p.subtitle
-    = feed_icon_tag @page_title, formatted_all_sb_posts_path(:format => 'rss')
+    = feed_icon_tag @page_title, all_sb_posts_path(:format => 'rss')
     = pluralize(@posts.size, "post")+' '+:found.l
 
   - if @posts.page_count > 1

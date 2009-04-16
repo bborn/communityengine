@@ -53,7 +53,7 @@ class TopicTest < ActiveSupport::TestCase
     old = counts.call
     t = forums(:rails).topics.build(:title => 'foo')
     t.user = users(:aaron)
-    assert_valid t
+    assert t.valid?
     t.save
     assert_equal 0, t.sticky
     [forums(:rails), users(:aaron)].each &:reload

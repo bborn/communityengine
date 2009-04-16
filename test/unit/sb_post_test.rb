@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class SbPostTest < ActiveSupport::TestCase
   all_fixtures
+  include ActionController::TestProcess
 
   def test_should_select_posts
     assert_equal [sb_posts(:pdi), sb_posts(:pdi_reply), sb_posts(:pdi_rebuttal)], topics(:pdi).sb_posts
@@ -24,7 +25,7 @@ class SbPostTest < ActiveSupport::TestCase
     old_equal  = equal.call
     
     p = create_post topics(:pdi), :body => 'blah'
-    assert_valid p
+    assert p.valid?
 
     [forums(:rails), users(:aaron), topics(:pdi)].each &:reload
     
@@ -34,7 +35,7 @@ class SbPostTest < ActiveSupport::TestCase
 
   def test_should_update_cached_data
     p = create_post topics(:pdi), :body => 'ok, ill get right on it'
-    assert_valid p
+    assert p.valid?
     topics(:pdi).reload
     assert_equal p.id, topics(:pdi).last_post_id
     assert_equal p.user_id, topics(:pdi).replied_by

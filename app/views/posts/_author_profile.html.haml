@@ -17,4 +17,4 @@
       - else
         = link_to :plural_posts.l(:count => user.posts.count), user_posts_path(user)         
     %dd.rss
-      =link_to :rss_feed.l, formatted_user_posts_path(user, 'rss')    
+      =link_to :rss_feed.l, user_posts_path(user, :format => :rss)    

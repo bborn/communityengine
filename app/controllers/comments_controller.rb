@@ -133,7 +133,7 @@ class CommentsController < BaseController
   end
   
   def comment_rss_link
-    params[:commentable_id] ? formatted_comments_path(@commentable.class.to_s.underscore, @commentable.id, :rss) : formatted_user_comments_path(@user, :rss)
+    params[:commentable_id] ? comments_path(@commentable.class.to_s.underscore, @commentable.id, :format => :rss) : user_comments_path(@user, :format => :rss)
   end
   
   def comment_title

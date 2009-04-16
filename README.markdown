@@ -12,7 +12,6 @@ Requirements:
 	  rmagick
 	  hpricot
 	  htmlentities
-	  RedCloth
 	  rake 0.8.3
 	  haml 2.0.5
 	  aws-s3 (if using s3 for photos)

@@ -11,7 +11,7 @@
   .right=link_to :recent_posts.l, recent_forum_posts_path
   %h3= :forums.l
   %p.subtitle
-    = feed_icon_tag :recent_posts.l, formatted_all_sb_posts_path(:format => 'rss')
+    = feed_icon_tag :recent_posts.l, all_sb_posts_path(:format => 'rss')
     = number_with_delimiter(Topic.count) 
     = "#{'topics'.l},"
     = number_with_delimiter(SbPost.count)

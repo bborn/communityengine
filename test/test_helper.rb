@@ -52,7 +52,7 @@ class ActiveSupport::TestCase
   def assert_js_redirected_to(options={}, message=nil)
     clean_backtrace do
       assert_response(:success, message)
-      assert_match /text\/javascript/, @response.headers['type'], 'Response should be Javascript content-type';
+      assert_match /text\/javascript/, @response.headers['Content-Type'], 'Response should be Javascript content-type';
       js_regexp = %r{(\w+://)?.*?(/|$|\\\?)(.*)}
       url_regexp = %r{^window\.location\.href [=] ['"]#{js_regexp}['"][;]$}
       redirected_to = @response.body.match(url_regexp)
