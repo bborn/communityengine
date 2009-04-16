@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class CommentTest < Test::Unit::TestCase
+class CommentTest < ActiveSupport::TestCase
   fixtures :comments, :users, :posts, :roles
 
   def test_should_find_comments_by_user

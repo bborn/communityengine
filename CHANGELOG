@@ -1,3 +1,6 @@
+= 1.0.2
+* Rails 2.3 compatibility
+
 = 1.0.1
 * fixed error when cropping photos using file system storage
 * fixed error on messages#delete

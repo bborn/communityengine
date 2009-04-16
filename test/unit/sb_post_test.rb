@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class SbPostTest < Test::Unit::TestCase
+class SbPostTest < ActiveSupport::TestCase
   all_fixtures
 
   def test_should_select_posts

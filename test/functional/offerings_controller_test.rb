@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'offerings_controller'
 
-# Re-raise errors caught by the controller.
-class OfferingsController; def rescue_action(e) raise e end; end
-
-class OfferingsControllerTest < Test::Unit::TestCase
+class OfferingsControllerTest < ActionController::TestCase
   fixtures :offerings, :skills, :users, :roles
 
   def setup

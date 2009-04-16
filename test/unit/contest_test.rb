@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class ContestTest < Test::Unit::TestCase
+class ContestTest < ActiveSupport::TestCase
   fixtures :contests
 
   def test_transform_post

@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'topics_controller'
 
-# Re-raise errors caught by the controller.
-#class TopicsController; def rescue_action(e) raise e end; end
-
-class TopicsControllerTest < Test::Unit::TestCase
+class TopicsControllerTest < ActionController::TestCase
   all_fixtures
 
   def setup
@@ -102,13 +98,6 @@ class TopicsControllerTest < Test::Unit::TestCase
     assert_equal ['tag1', 'tag2'], Topic.find(assigns(:topic).id).tag_list
   end
 
-  # def test_should_create_topic_with_xml
-  #   content_type 'application/xml'
-  #   authorize_as :aaron
-  #   post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :body => 'foo' }, :format => 'xml'
-  #   assert_response :created
-  #   assert_equal formatted_forum_topic_url(:forum_id => forums(:rails), :id => assigns(:topic), :format => :xml), @response.headers["Location"]
-  # end
 
   def test_should_delete_topic
     counts = lambda { [SbPost.count, forums(:rails).topics_count, forums(:rails).sb_posts_count] }
@@ -122,12 +111,7 @@ class TopicsControllerTest < Test::Unit::TestCase
     assert_equal old.collect { |n| n - 1}, counts.call
   end
 
-  # def test_should_delete_topic_with_xml
-  #   content_type 'application/xml'
-  #   authorize_as :aaron
-  #   delete :destroy, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :format => 'xml'
-  #   assert_response :success
-  # end
+
 
   def test_should_allow_moderator_to_delete_topic
     assert_difference Topic, :count, -1 do
@@ -194,12 +178,6 @@ class TopicsControllerTest < Test::Unit::TestCase
     assert_equal ['tagX', 'tagY'], topics(:ponies).reload.tag_list
   end
 
-  # def test_should_update_with_xml
-  #   content_type 'application/xml'
-  #   authorize_as :sam
-  #   put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { }, :format => 'xml'
-  #   assert_response :success
-  # end
 
   def test_should_not_update_user_id_of_own_post
     login_as :sam
@@ -214,12 +192,6 @@ class TopicsControllerTest < Test::Unit::TestCase
     assert_redirected_to login_path
   end
 
-  # def test_should_not_update_other_post_with_xml
-  #   content_type 'application/xml'
-  #   authorize_as :sam
-  #   put :update, :forum_id => forums(:comics).id, :id => topics(:galactus).id, :topic => { }, :format => 'xml'
-  #   assert_response :unauthorized
-  # end
 
   def test_should_update_other_post_as_moderator
     login_as :sam

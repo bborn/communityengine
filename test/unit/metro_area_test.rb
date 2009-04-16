@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class MetroAreaTest < Test::Unit::TestCase
+class MetroAreaTest < ActiveSupport::TestCase
   fixtures :metro_areas
 
   # Replace this with your real tests.

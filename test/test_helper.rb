@@ -3,11 +3,11 @@ require File.expand_path(File.dirname(__FILE__) + "/../../../../config/environme
 require 'test_help'
 require 'action_view/test_case'
 require 'pp'
-Test::Unit::TestCase.fixture_path = (RAILS_ROOT + "/vendor/plugins/community_engine/test/fixtures/")
-ActionController::IntegrationTest.fixture_path = Test::Unit::TestCase.fixture_path
+ActiveSupport::TestCase.fixture_path = (RAILS_ROOT + "/vendor/plugins/community_engine/test/fixtures/")
+ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
 
-class Test::Unit::TestCase
+class ActiveSupport::TestCase
   include AuthenticatedTestHelper
   
   def self.all_fixtures

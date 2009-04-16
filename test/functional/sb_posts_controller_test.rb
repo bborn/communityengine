@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'sb_posts_controller'
 
-# Re-raise errors caught by the controller.
-class SbPostsController; def rescue_action(e) raise e end; end
-
-class SbPostsControllerTest < Test::Unit::TestCase
+class SbPostsControllerTest < ActionController::TestCase
   all_fixtures
   def setup
     @controller = SbPostsController.new

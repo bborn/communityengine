@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'ads_controller'
 
-# Re-raise errors caught by the controller.
-class AdsController; def rescue_action(e) raise e end; end
-
-class AdsControllerTest < Test::Unit::TestCase
+class AdsControllerTest < ActionController::TestCase
   fixtures :ads, :users, :categories, :roles
 
   def setup

@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'forums_controller'
 
-# Re-raise errors caught by the controller.
-class ForumsController; def rescue_action(e) raise e end; end
-
-class ForumsControllerTest < Test::Unit::TestCase
+class ForumsControllerTest < ActionController::TestCase
   all_fixtures
 
   def setup
@@ -49,18 +45,6 @@ class ForumsControllerTest < Test::Unit::TestCase
     assert_redirected_to forums_path
   end
   
-  # def test_should_create_forum_with_xml
-  #   content_type 'application/xml'
-  #   authorize_as :aaron
-  # 
-  #   assert_difference Forum, :count do
-  #     post :create, :forum => { :name => 'yeah' }, :format => 'xml'
-  #   end
-  #   
-  #   assert_response :created
-  #   assert_equal formatted_forum_url(:id => assigns(:forum), :format => :xml), @response.headers["Location"]
-  # end
-
   def test_should_show_forum
     get :show, :id => 1
     assert_response :success

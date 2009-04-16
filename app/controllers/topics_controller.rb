@@ -71,7 +71,7 @@ class TopicsController < BaseController
           redirect_to forum_topic_path(@forum, @topic) 
         }
         format.xml  { 
-          head :created, :location => formatted_forum_topic_url(:forum_id => @forum, :id => @topic, :format => :xml) 
+          head :created, :location => forum_topic_url(:forum_id => @forum, :id => @topic, :format => :xml) 
         }
       end
     end

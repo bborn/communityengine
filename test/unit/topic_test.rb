@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TopicTest < Test::Unit::TestCase
+class TopicTest < ActiveSupport::TestCase
   all_fixtures
 
   def test_save_should_update_post_id_for_posts_belonging_to_topic

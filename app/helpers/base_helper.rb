@@ -197,15 +197,14 @@ module BaseHelper
   def more_comments_links(commentable)
     html = link_to "&raquo; " + :all_comments.l, comments_url(commentable.class.to_s.underscore, commentable.to_param)
     html += "<br />"
-		html += link_to "&raquo; " + :comments_rss.l, formatted_comments_url(commentable.class.to_s.underscore, commentable.to_param, :rss)
+		html += link_to "&raquo; " + :comments_rss.l, comments_url(commentable.class.to_s.underscore, commentable.to_param, :format => :rss)
 		html
   end
   
   def more_user_comments_links(user = @user)
     html = link_to "&raquo; " + :all_comments.l, user_comments_url(user)
     html += "<br />"
-    #formatted_user_comments_url(user.to_param, :rss) was still returning /user/id/comments.rss, so brute-forcing it
-		html += link_to "&raquo; " + :comments_rss.l, formatted_user_comments_url(user.to_param, :rss)
+		html += link_to "&raquo; " + :comments_rss.l, user_comments_url(user.to_param, :format => :rss)
 		html  
   end
   

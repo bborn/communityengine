@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class ModeratorshipTest < Test::Unit::TestCase
+class ModeratorshipTest < ActiveSupport::TestCase
   all_fixtures
 
   def test_should_find_moderators

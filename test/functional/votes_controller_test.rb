@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'votes_controller'
 
-# Re-raise errors caught by the controller.
-class VotesController; def rescue_action(e) raise e end; end
-
-class VotesControllerTest < Test::Unit::TestCase
+class VotesControllerTest < ActionController::TestCase
   fixtures :users, :posts, :roles
 
   def setup

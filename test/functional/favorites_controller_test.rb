@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'favorites_controller'
 
-# Re-raise errors caught by the controller.
-class FavoritesController; def rescue_action(e) raise e end; end
-
-class FavoritesControllerTest < Test::Unit::TestCase
+class FavoritesControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :roles
 
   def setup

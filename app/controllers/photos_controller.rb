@@ -188,7 +188,7 @@ class PhotosController < BaseController
   end
 
   def slideshow
-    @xml_file = formatted_user_photos_url( {:user_id => @user, :format => :xml}.merge(:tag_name => params[:tag_name]) )
+    @xml_file = user_photos_url( {:user_id => @user, :format => :xml}.merge(:tag_name => params[:tag_name]) )
     render :action => 'slideshow'
   end
 

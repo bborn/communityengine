@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class MonitorshipsTest < Test::Unit::TestCase
+class MonitorshipsTest < ActiveSupport::TestCase
   all_fixtures
 
   def test_should_find_monitorships_from_users

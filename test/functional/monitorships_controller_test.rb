@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'monitorships_controller'
 
 class MonitorshipsControllerTest < ActionController::TestCase
 

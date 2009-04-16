@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TagsControllerTest < Test::Unit::TestCase
+class TagsControllerTest < ActionController::TestCase
   fixtures :tags, :taggings, :photos, :roles, :posts
 
   def setup

@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'activities_controller'
 
-# Re-raise errors caught by the controller.
-class ActivitiesController; def rescue_action(e) raise e end; end
-
-class ActivitiesControllerTest < Test::Unit::TestCase
+class ActivitiesControllerTest < ActionController::TestCase
   fixtures :users, :categories, :posts, :comments, :roles
 
   def setup

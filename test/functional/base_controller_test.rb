@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class BaseControllerTest < Test::Unit::TestCase
+class BaseControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :photos, :homepage_features, :taggings, :tags, :posts, :categories, :roles
 
   def setup

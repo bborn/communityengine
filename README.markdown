@@ -5,7 +5,7 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.2.2
+	- RAILS VERSION 2.3.2
 	- The engines plugin for Rails 2.2.2
 	- ImageMagick (>6.4) 
 	- Several gems:
@@ -14,7 +14,7 @@ Requirements:
 	  htmlentities
 	  RedCloth
 	  rake 0.8.3
-	  haml 2.0.5 (updated for Rails 2.2.2)
+	  haml 2.0.5
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running

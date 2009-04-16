@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'clippings_controller'
 
-# Re-raise errors caught by the controller.
-class ClippingsController; def rescue_action(e) raise e end; end
-
-class ClippingsControllerTest < Test::Unit::TestCase
+class ClippingsControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :roles
 
   def setup

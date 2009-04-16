@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class ForumTest < Test::Unit::TestCase
+class ForumTest < ActiveSupport::TestCase
   all_fixtures
 
   def test_should_list_only_top_level_topics

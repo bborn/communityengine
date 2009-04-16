@@ -1,7 +1,7 @@
 require 'pp'
 require File.join(File.dirname(__FILE__), 'abstract_unit')
 
-class ActivityTrackerTest < Test::Unit::TestCase
+class ActivityTrackerTest < ActiveSupport::TestCase
   fixtures :test_users, :test_posts
 
   def test_should_create_activity
