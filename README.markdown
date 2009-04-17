@@ -224,6 +224,12 @@ Gotchas
   - make sure you have the latest version of rake
 2. I get test errors after upgrading to Rails 2.2.2
   - make sure you have upgraded to the latest Engines plugin, and modified your environment.rb to use Rails 2.2.2.
+3. When upgrading to Rails 2.3, make sure your `action_controller.session` key is called `:key`, instead of the old `:session_key`:
+
+        config.action_controller.session = {
+          :key => '_ce_session',
+          :secret      => 'secret'
+        }
 
 
 Contributors - Thanks! :)
