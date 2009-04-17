@@ -25,7 +25,7 @@ module CommunityEngine
     
     def guess_current_ce_version
       # DUMB: checks your db/migrate and parses out the last CE migration to find out which version you're at      
-      last_version =  Dir["#{RAILS_ROOT}/db/migrate/[0-9]*_community_engine_*.rb"].sort.last
+      last_version =  Dir["#{RAILS_ROOT}/db/migrate/[0-9]*_community_engine_to*.rb"].sort.last
       if last_version
         last_version[/.*_community_engine_to_version_(\d+)/, 1].to_i
       else

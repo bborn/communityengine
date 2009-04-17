@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
   attr_accessor :invalid_emails
   
   #Named scopes
-  named_scope :by_featured_writers, :conditions => ["users.featured_writer = ?", 1], :include => :user
+  named_scope :by_featured_writers, :conditions => ["users.featured_writer = ?", true], :include => :user
   named_scope :recent, :order => 'posts.published_at DESC'
   named_scope :popular, :order => 'posts.view_count DESC'
   named_scope :since, lambda { |days|
@@ -50,7 +50,7 @@ class Post < ActiveRecord::Base
   end
 
   def to_param
-    id.to_s << "-" << (title ? title.gsub(/[^a-z1-9]+/i, '-') : '' )
+    id.to_s << "-" << (title ? title.parameterize : '' )
   end
 
   def self.find_recent(options = {:limit => 5})
@@ -72,7 +72,8 @@ class Post < ActiveRecord::Base
       :select => 'posts.*, count(*) as comments_count',
       :joins => "LEFT JOIN comments ON comments.commentable_id = posts.id",
       :conditions => ['comments.commentable_type = ? AND posts.published_at > ?', 'Post', since],
-      :group => 'comments.commentable_id',
+#      :group => 'comments.commentable_id',      
+      :group => self.columns.map{|column| self.table_name + "." + column.name}.join(","),
       :order => 'comments_count DESC',
       :limit => limit
       )
@@ -179,9 +180,9 @@ class Post < ActiveRecord::Base
     f = Favorite.find_by_user_or_ip_address(self, user, remote_ip)
     return f
   end  
-      
-  def published_at_display(format = "%Y/%m/%d")
-    is_live? ? published_at.strftime(format) : 'Draft'
+
+  def published_at_display(format = 'published_date')
+    is_live? ? I18n.l(published_at, :format => format) : 'Draft'
   end
       
 end

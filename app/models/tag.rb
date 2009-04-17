@@ -15,7 +15,7 @@ class Tag < ActiveRecord::Base
       ON taggings.tag_id = tags.id
       WHERE (taggings.taggable_id IN (#{taggable_ids.join(',')}))
       AND tags.id != '#{self.id}'
-      GROUP BY tags.id
+      GROUP BY tags.id, tags.name
       ORDER BY count DESC
       LIMIT 10"
 
@@ -27,7 +27,7 @@ class Tag < ActiveRecord::Base
       FROM taggings, tags 
       WHERE tags.id = taggings.tag_id "
     sql += " AND taggings.taggable_type = '#{type}'" unless type.nil?      
-    sql += " GROUP BY tag_id"
+    sql += " GROUP BY tags.id, tags.name"
     sql += " ORDER BY #{order}"
     sql += " LIMIT #{limit}" if limit
     Tag.find_by_sql(sql)

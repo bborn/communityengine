@@ -46,7 +46,7 @@ class CommentTest < Test::Unit::TestCase
     assert_difference ActionMailer::Base.deliveries, :length, 0 do
       comment.notify_previous_anonymous_commenters
     end
-    AppConfig.allow_anonymous_commenting = false
+    AppConfig.allow_anonymous_commenting = nil
   end  
   
   

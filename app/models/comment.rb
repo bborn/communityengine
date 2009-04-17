@@ -43,7 +43,8 @@ class Comment < ActiveRecord::Base
       :conditions => ["users.id NOT IN (?) AND users.notify_comments = ? 
                       AND commentable_id = ? AND commentable_type = ? 
                       AND comments.created_at > ?", [user_id, recipient_id.to_i], true, commentable_id, commentable_type, 2.weeks.ago], 
-      :include => :comments_as_author, :group => "users.id", :limit => 20)    
+#      :include => :comments_as_author, :group => "users.id", :limit => 20)    
+      :include => :comments_as_author, :limit => 20)
   end    
     
   def commentable_name
@@ -75,7 +76,7 @@ class Comment < ActiveRecord::Base
   end
   
   def can_be_deleted_by(person)
-    person && (person.admin? || person.id.eql?(user.id) || person.id.eql?(recipient.id) )
+    person && (person.admin? || person.id.eql?(user_id) || person.id.eql?(recipient_id) )
   end
   
   def should_notify_recipient?
@@ -92,7 +93,7 @@ class Comment < ActiveRecord::Base
   end
   
   def notify_previous_anonymous_commenters
-    anonymous_commenters_emails = commentable.comments.map{|c| c.author_email if ( !c.user && !c.author_email.eql?(self.author_email) && c.author_email) }.uniq.compact
+    anonymous_commenters_emails = commentable.comments.map{|c|  c.author_email if ( !c.user && !c.author_email.eql?(self.author_email) && c.author_email) }.uniq.compact
     anonymous_commenters_emails.each do |email|
       UserNotifier.deliver_follow_up_comment_notice_anonymous(email, self)
     end    

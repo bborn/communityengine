@@ -45,7 +45,8 @@
 			});
 
 			ed.onInit.add(function() {
-				ed.dom.loadCSS(url + '/css/content.css');
+				if (ed.settings.content_css !== false)
+					ed.dom.loadCSS(url + '/css/content.css');
 			});
 
 			ed.onClick.add(t._showMenu, t);
@@ -74,15 +75,13 @@
 
 			// Find selected language
 			t.languages = {};
-			each(ed.getParam('spellchecker_languages', '+English=en,Danish=da,Dutch=nl,Finnish=fi,French=fr,German=de,Italian=it,Polish=pl,Portuguese=pt,Spanish=es,Swedish=sv').split(','), function(v) {
-				v = v.split('=');
-
-				if (v[0].indexOf('+') === 0) {
-					v[0] = v[0].substring(1);
-					t.selectedLang = v[1];
+			each(ed.getParam('spellchecker_languages', '+English=en,Danish=da,Dutch=nl,Finnish=fi,French=fr,German=de,Italian=it,Polish=pl,Portuguese=pt,Spanish=es,Swedish=sv', 'hash'), function(v, k) {
+				if (k.indexOf('+') === 0) {
+					k = k.substring(1);
+					t.selectedLang = v;
 				}
 
-				t.languages[v[0]] = v[1];
+				t.languages[k] = v;
 			});
 		},
 
@@ -229,7 +228,7 @@
 				m = ed.controlManager.createDropMenu('spellcheckermenu', {
 					offset_x : p1.x,
 					offset_y : p1.y,
-					'class' : 'noIcons'
+					'class' : 'mceNoIcons'
 				});
 
 				t._menu = m;
@@ -300,20 +299,23 @@
 		_done : function() {
 			var t = this, la = t.active;
 
-			t.active = 0;
-			t._removeWords();
+			if (t.active) {
+				t.active = 0;
+				t._removeWords();
 
-			if (t._menu)
-				t._menu.hideMenu();
+				if (t._menu)
+					t._menu.hideMenu();
 
-			if (la)
-				t.editor.nodeChanged();
+				if (la)
+					t.editor.nodeChanged();
+			}
 		},
 
 		_sendRPC : function(m, p, cb) {
 			var t = this, url = t.editor.getParam("spellchecker_rpc_url", "{backend}");
 
 			if (url == '{backend}') {
+				t.editor.setProgressState(0);
 				alert('Please specify: spellchecker_rpc_url');
 				return;
 			}

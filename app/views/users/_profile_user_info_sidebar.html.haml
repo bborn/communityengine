@@ -6,27 +6,26 @@
     %br/
     = link_to( "&raquo; #{:delete_this_user.l}", user_path(@user), {:method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l} )
     %br/
-    = link_to( "&raquo; #{:toggle.l} #{AppConfig.featured_writer_label}", toggle_featured_user_path(@user), {:method => :put} )
+    = link_to( "&raquo; #{:toggle.l} #{:featured_writer.l}", toggle_featured_user_path(@user), {:method => :put} )
     %br/
     = link_to( "&raquo; #{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}", toggle_moderator_user_path(@user), {:method => :put} )
 
 #profile_details.box.hentry
   %h3
     = link_to @user.login, user_path(@user)
-    = " <small>(#{AppConfig.featured_writer_label})</small>" if @user.featured_writer?
+    = " <small>(#{:featured_writer.l})</small>" if @user.featured_writer?
 
   .centered
-    - if @user.avatar
-      = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
-      = @user.featured_writer ? "<div class='right_corner'><div class='featured_writer'></div></div>" : ''
-      = image_tag( @user.avatar_photo_url(:medium), :class => 'polaroid')
-    - elsif @is_current_user
-      = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid")
-      %br
-      =:no_profile_photo.l
-      = link_to :click_here_to_upload_one.l, edit_user_path(@user)
-    - else
-      = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+    - if @is_current_user
+      - if @user.avatar
+        = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
+        = @user.featured_writer ? "<div class='right_corner'><div class='featured_writer'></div></div>" : ''
+        = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)
+      - else 
+        =:no_profile_photo.l
+        = link_to :click_here_to_upload_one.l, edit_user_path(@user)
+      %br        
+    = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid")    
 
   - if current_user and current_user.can_request_friendship_with(@user)
     = add_friend_link(@user)

@@ -1,5 +1,5 @@
 /**
- * $Id: editor_plugin_src.js 592 2008-02-12 18:09:06Z spocke $
+ * $Id: editor_plugin_src.js 652 2008-02-29 13:09:46Z spocke $
  *
  * @author Moxiecode
  * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
@@ -80,9 +80,9 @@
 			tinymce.each(dom.select('div,p', e), function(e) {
 				if (/^(absolute|relative|static)$/i.test(e.style.position)) {
 					if (s)
-						dom.addClass(e, 'mceVisualAid');
+						dom.addClass(e, 'mceItemVisualAid');
 					else
-						dom.removeClass(e, 'mceVisualAid');	
+						dom.removeClass(e, 'mceItemVisualAid');	
 				}
 			});
 		},
@@ -160,7 +160,7 @@
 					width : 100,
 					height : 100
 				},
-				'class' : 'mceVisualAid'
+				'class' : 'mceItemVisualAid'
 			}, ed.selection.getContent() || ed.getLang('layer.content'));
 		},
 
@@ -180,7 +180,7 @@
 						height : ''
 					});
 
-					ed.dom.removeClass(le, 'mceVisualAid');
+					ed.dom.removeClass(le, 'mceItemVisualAid');
 				} else {
 					if (le.style.left == "")
 						le.style.left = 20 + 'px';

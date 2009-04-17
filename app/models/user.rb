@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   acts_as_taggable  
   acts_as_commentable
   has_private_messages
-  tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile]  
+  tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
   before_save   :encrypt_password, :whitelist_attributes
@@ -72,9 +72,9 @@ class User < ActiveRecord::Base
     
   #named scopes
   named_scope :recent, :order => 'users.created_at DESC'
-  named_scope :featured, :conditions => ["users.featured_writer = ?", 1]
+  named_scope :featured, :conditions => ["users.featured_writer = ?", true]
   named_scope :active, :conditions => ["users.activated_at IS NOT NULL"]  
-  named_scope :vendors, :conditions => ["users.vendor = ?", 1]
+  named_scope :vendors, :conditions => ["users.vendor = ?", true]
   named_scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
@@ -149,10 +149,11 @@ class User < ActiveRecord::Base
   
   def self.find_by_activity(options = {})
     options.reverse_merge! :limit => 30, :require_avatar => true, :since => 7.days.ago   
-    
+    #Activity.since.find(:all,:select => Activity.columns.map{|column| Activity.table_name + "." + column.name}.join(",")+', count(*) as count',:group => Activity.columns.map{|column| Activity.table_name + "." + column.name}.join(","),:order => 'count DESC',:joins => "LEFT JOIN users ON users.id = activities.user_id" )
+    #Activity.since(7.days.ago).find(:all,:select => 'activities.user_id, count(*) as count',:group => 'activities.user_id',:order => 'count DESC',:joins => "LEFT JOIN users ON users.id = activities.user_id" )
     activities = Activity.since(options[:since]).find(:all, 
-      :select => '*, count(*) as count', 
-      :group => "activities.user_id", 
+      :select => 'activities.user_id, count(*) as count', 
+      :group => 'activities.user_id', 
       :conditions => "#{options[:require_avatar] ? ' users.avatar_id IS NOT NULL' : nil}", 
       :order => 'count DESC', 
       :joins => "LEFT JOIN users ON users.id = activities.user_id",
@@ -381,7 +382,10 @@ class User < ActiveRecord::Base
 
   def network_activity(page = {}, since = 1.week.ago)
     page.reverse_merge :size => 10, :current => 1
-    ids = self.friends_ids
+    friend_ids = self.friends_ids
+    metro_area_people_ids = self.metro_area ? self.metro_area.users.map(&:id) : []
+    
+    ids = ((friends_ids | metro_area_people_ids) - [self.id])[0..100] #don't pull TOO much activity for now
     
     Activity.recent.since(since).by_users(ids).find(:all, :page => page)          
   end

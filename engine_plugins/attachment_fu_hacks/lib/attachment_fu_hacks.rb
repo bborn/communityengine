@@ -3,15 +3,22 @@ Technoweenie::AttachmentFu::InstanceMethods.module_eval do
   # Overriding this method to allow content_type to be detected when
   # swfupload submits images with content_type set to 'application/octet-stream'
   def uploaded_data=(file_data)
-    return nil if file_data.nil? || file_data.size == 0
-    self.content_type = detect_mimetype(file_data)
-    self.filename     = file_data.original_filename if respond_to?(:filename)
+    if file_data.respond_to?(:content_type)
+      return nil if file_data.nil? || file_data.size == 0
+      self.content_type = detect_mimetype(file_data)
+      self.filename     = file_data.original_filename if respond_to?(:filename)
+    else
+      return nil if file_data.blank? || file_data['size'] == 0
+      self.content_type = file_data['content_type']
+      self.filename =  file_data['filename']
+      file_data = file_data['tempfile']
+    end
     if file_data.is_a?(StringIO)
       file_data.rewind
-      self.temp_data = file_data.read
+      set_temp_data file_data.read
     else
-      self.temp_path = file_data.path
-    end
+      self.temp_paths.unshift file_data
+    end    
   end
   
   def detect_mimetype(file_data)
@@ -19,6 +26,14 @@ Technoweenie::AttachmentFu::InstanceMethods.module_eval do
       return File.mime_type?(file_data.original_filename)
     else
       return file_data.content_type
+    end
+  end
+  
+  def path_or_s3_url_for_image(thumbnail = nil)
+    if attachment_options[:storage].eql?(:s3)
+      s3_url(thumbnail)
+    else
+      full_filename(thumbnail)
     end
   end
 

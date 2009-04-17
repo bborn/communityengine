@@ -53,7 +53,7 @@ class PhotosControllerTest < Test::Unit::TestCase
   
   def test_should_create_photo
     login_as :quentin
-    assert_difference Photo, :count, 1 do
+    assert_difference Photo, :count, 4 do
       post :create,
         :photo => { :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
@@ -91,12 +91,18 @@ class PhotosControllerTest < Test::Unit::TestCase
   end
 
   def test_should_show_private_photo_if_logged_in
+    photos(:library_pic).user = users(:privateuser)
+    photos(:library_pic).save
+    
     login_as :quentin
     get :show, :id => photos(:library_pic).id, :user_id => users(:privateuser).id
     assert_response :success
   end
   
   def test_should_not_show_private_photo
+    photos(:library_pic).user = users(:privateuser)
+    photos(:library_pic).save
+    
     get :show, :id => photos(:library_pic).id, :user_id => users(:privateuser).id
     assert_response :redirect    
   end
@@ -118,7 +124,7 @@ class PhotosControllerTest < Test::Unit::TestCase
 
     assert_redirected_to user_photo_path(users(:quentin), assigns(:photo))
 
-    photo = Photo.find(assigns(:photo).id)
+    photo = photos(:library_pic).reload
     assert_equal "changed_name", photo.name
     assert_equal ['tagX', 'tagY'], photo.tag_list
   end

@@ -27,3 +27,17 @@ class CGI::Session::CookieStore
     @session_data || @session.cgi.cookies[@cookie_options['name']].first
   end
 end
+
+
+
+class CGI::Session::ActiveRecordStore
+  alias original_initialize initialize
+
+  def initialize(session, option = nil)
+    if option.include?("session_data")
+      session.instance_variable_set('@session_id', option["session_data"]) unless option["session_data"].empty?
+    end
+    original_initialize(session, option)
+  end
+end
+

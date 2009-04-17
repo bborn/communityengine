@@ -1,0 +1,13 @@
+if @comment.new_record?
+  page.select('div#comments div.errors').invoke('update', flash[:error])
+  page << "new Effect.Highlight($$('div#comments div.errors')[0]);"
+else
+  page.insert_html :after, 'newest_comment', :partial => 'comments/comment.html.haml', :locals => {:comment => @comment, :highlighted => true}  
+  page << "tinyMCE.activeEditor.setContent(''); scrollToNewestComment();"
+  page.select('#emptycomments').invoke('hide')
+end
+
+page.select('#comment_spinner').invoke('hide')
+page << "if($('dynamic_recaptcha')){Recaptcha.create('#{AppConfig.recaptcha_pub_key}', $('dynamic_recaptcha') )}"  
+          
+

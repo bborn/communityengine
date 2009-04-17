@@ -19,19 +19,19 @@ class SbPostsControllerTest < Test::Unit::TestCase
     old_equal  = equal.call
 
     login_as :aaron
-    post :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :post => { :body => 'blah' }
-    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).id, :id => topics(:pdi).id, :anchor => assigns(:post).dom_id, :page => '1')
+    post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah' }
+    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1')
     assert_equal topics(:pdi), assigns(:topic)
     [forums(:rails), users(:aaron), topics(:pdi)].each &:reload
   
     assert_equal old_counts.collect { |n| n + 1}, counts.call
     assert_equal old_equal, equal.call
   end
-  
+
   def test_should_update_topic_replied_at_upon_replying
     old=topics(:pdi).replied_at
     login_as :aaron
-    post :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :post => { :body => 'blah' }
+    post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah' }
     assert_not_equal(old, topics(:pdi).reload.replied_at)
     assert old < topics(:pdi).reload.replied_at
   end
@@ -39,8 +39,8 @@ class SbPostsControllerTest < Test::Unit::TestCase
   def test_should_reply_with_no_body
     assert_difference SbPost, :count, 0 do
       login_as :aaron
-      post :create, :forum_id => forums(:rails).id, :topic_id => sb_posts(:pdi).id, :post => {}
-      assert_redirected_to forum_topic_path(:forum_id => forums(:rails).id, :id => sb_posts(:pdi).id, :anchor => 'reply-form', :page => '1')
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => sb_posts(:pdi).to_param, :post => {}
+      assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => sb_posts(:pdi).to_param, :anchor => 'reply-form', :page => '1')
     end
   end
 
@@ -51,8 +51,8 @@ class SbPostsControllerTest < Test::Unit::TestCase
     old_equal  = equal.call
 
     login_as :admin
-    delete :destroy, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => sb_posts(:pdi_reply).id
-    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).id, :id => topics(:pdi).id)
+    delete :destroy, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_reply).to_param
+    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param)
 
     [forums(:rails), users(:sam), topics(:pdi)].each &:reload
 
@@ -63,7 +63,7 @@ class SbPostsControllerTest < Test::Unit::TestCase
   def test_should_delete_reply_as_moderator
     assert_difference SbPost, :count, -1 do
       login_as :sam
-      delete :destroy, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => sb_posts(:pdi_rebuttal).id
+      delete :destroy, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param
     end
   end
 
@@ -71,8 +71,8 @@ class SbPostsControllerTest < Test::Unit::TestCase
     assert_difference SbPost, :count, -1 do
       assert_difference Topic, :count, -1 do
         login_as :aaron
-        delete :destroy, :forum_id => forums(:rails).id, :topic_id => topics(:il8n).id, :id => sb_posts(:il8n).id
-        assert_redirected_to forum_path(forums(:rails).id)
+        delete :destroy, :forum_id => forums(:rails).to_param, :topic_id => topics(:il8n).to_param, :id => sb_posts(:il8n).to_param
+        assert_redirected_to forum_path(forums(:rails).to_param)
         assert_raise(ActiveRecord::RecordNotFound) { topics(:il8n).reload }
       end
     end
@@ -80,39 +80,39 @@ class SbPostsControllerTest < Test::Unit::TestCase
 
   def test_edit_js
     login_as :sam
-    get :edit, :forum_id => forums(:comics).id, :topic_id => topics(:galactus).id, :id => sb_posts(:silver_surfer).id, :format => 'js'
+    get :edit, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:silver_surfer).to_param, :format => 'js'
     assert_response :success
   end
 
   def test_can_edit_own_post
     login_as :sam
-    put :update, :forum_id => forums(:comics).id, :topic_id => topics(:galactus).id, :id => sb_posts(:silver_surfer).id, :post => {}
-    assert_redirected_to forum_topic_path(:forum_id => forums(:comics).id, :id => topics(:galactus).id, :anchor => sb_posts(:silver_surfer).dom_id, :page => '1')
+    put :update, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:silver_surfer).to_param, :post => {}
+    assert_redirected_to forum_topic_path(:forum_id => forums(:comics).to_param, :id => topics(:galactus).to_param, :anchor => sb_posts(:silver_surfer).dom_id, :page => '1')
   end
 
   def test_can_edit_other_post_as_moderator
     login_as :sam
-    put :update, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => sb_posts(:pdi_rebuttal), :post => {}
-    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).id, :id => topics(:pdi).id, :anchor => sb_posts(:pdi_rebuttal).dom_id, :page => '1')
+    put :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param, :post => {}
+    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => sb_posts(:pdi_rebuttal).dom_id, :page => '1')
   end
 
   def test_cannot_edit_other_post
     login_as :sam
-    put :update, :forum_id => forums(:comics).id, :topic_id => topics(:galactus).id, :id => sb_posts(:galactus).id, :post => {}
+    put :update, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:galactus).to_param, :post => {}
     assert_redirected_to login_path
   end
 
   def test_cannot_edit_own_post_user_id
     login_as :sam
-    put :update, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => sb_posts(:pdi_reply).id, :post => { :user_id => 32 }
-    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).id, :id => topics(:pdi).id, :anchor => sb_posts(:pdi_reply).dom_id, :page => '1')
+    put :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_reply).to_param, :post => { :user_id => 32 }
+    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => sb_posts(:pdi_reply).dom_id, :page => '1')
     assert_equal users(:sam).id, sb_posts(:pdi_reply).reload.user_id
   end
 
   def test_can_edit_other_post_as_admin
     login_as :admin
-    put :update, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => sb_posts(:pdi_rebuttal).id, :post => {}
-    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).id, :id => topics(:pdi).id, :anchor => sb_posts(:pdi_rebuttal).dom_id, :page => '1')
+    put :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param, :post => {}
+    assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => sb_posts(:pdi_rebuttal).dom_id, :page => '1')
   end
   
   def test_should_view_recent_posts
@@ -122,7 +122,7 @@ class SbPostsControllerTest < Test::Unit::TestCase
   end
 
   def test_should_view_posts_by_forum
-    get :index, :forum_id => forums(:comics).id
+    get :index, :forum_id => forums(:comics).to_param
     assert_response :success
     assert_models_equal [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
@@ -145,7 +145,7 @@ class SbPostsControllerTest < Test::Unit::TestCase
   end
 
   def test_should_search_posts_by_forum
-    get :search, :forum_id => forums(:comics).id, :q => 'galactus'
+    get :search, :forum_id => forums(:comics).to_param, :q => 'galactus'
     assert_response :success
     assert_models_equal [sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
@@ -157,7 +157,7 @@ class SbPostsControllerTest < Test::Unit::TestCase
   end
 
   def test_should_view_posts_by_forum_as_rss
-    get :index, :forum_id => forums(:comics).id, :format => 'rss'
+    get :index, :forum_id => forums(:comics).to_param, :format => 'rss'
     assert_response :success
     assert_models_equal [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
@@ -173,8 +173,8 @@ class SbPostsControllerTest < Test::Unit::TestCase
     galactus.locked = 1
     galactus.save
     login_as :aaron
-    post :create, :forum_id => forums(:comics).id, :topic_id => topics(:galactus).id, :post => { :body => 'blah' }
-    assert_redirected_to forum_topic_path(:forum_id => forums(:comics).id, :id => topics(:galactus).id)
+    post :create, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :post => { :body => 'blah' }
+    assert_redirected_to forum_topic_path(:forum_id => forums(:comics).to_param, :id => topics(:galactus).to_param)
     assert_equal :this_topic_is_locked.l, flash[:notice]
   end
 end

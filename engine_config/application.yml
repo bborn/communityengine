@@ -12,7 +12,6 @@ closed_beta_mode: false
 community_locale: "en"
 
 # The label you use for 'staff' writers (featured writer, staff, pro, etc.)
-featured_writer_label: 'Featured Writer'
 allow_anonymous_commenting: false
 require_captcha_on_signup: false
 #recaptcha_pub_key: YOUR_PUB_KEY
@@ -35,7 +34,7 @@ photo:
     min_size: 1    
     #size in megabytes
     max_size: 3
-    thumbnails: {thumb: "100x100!", medium: "290x320!", large: "664>"}
+    thumbnails: {thumb: "c100x100!", medium: "c290x320!", large: "664>"}
     #options - 's3', 'file_system', 'db_system' - see attachment_fu for details
     storage: 'file_system'
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
@@ -47,7 +46,7 @@ feature:
     resize_to: "465>"
     min_size: 1    
     max_size: 1
-    thumbnails: {thumb: '45x45!', large: '635x150!'}    
+    thumbnails: {thumb: 'c45x45!', large: 'c635x150!'}    
     storage: 'file_system'
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
         
@@ -56,7 +55,7 @@ clipping:
     resize_to: "465>"
     min_size: 1    
     max_size: 3
-    thumbnails: {thumb: "100x100!", medium_square: "200x200!", medium: "200>"}
+    thumbnails: {thumb: "c100x100!", medium_square: "c200x200!", medium: "200>"}
     storage: 'file_system'
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
     

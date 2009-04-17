@@ -4,6 +4,9 @@ module LocalizedApplication
   # Set the locale from the parameters, the session, or the navigator
   # If none of these works, the Globalite default locale is set (en-*)
   def set_locale
+    if RAILS_ENV.eql?('test')
+      AppConfig.community_locale = 'en'
+    end
     # Get the current path and request method (useful in the layout for changing the language)
     @current_path = request.env['PATH_INFO']
     @request_method = request.env['REQUEST_METHOD']

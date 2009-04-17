@@ -1,5 +1,5 @@
 /**
- * $Id: editor_plugin_src.js 612 2008-02-19 12:33:44Z spocke $
+ * $Id: editor_plugin_src.js 953 2008-11-04 10:16:50Z spocke $
  *
  * @author Moxiecode
  * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
@@ -33,13 +33,46 @@
 				ed.addButton(c[0], {title : c[1], cmd : c[2], ui : c[3]});
 			});
 
+			if (ed.getParam('inline_styles')) {
+				// Force move of attribs to styles in strict mode
+				ed.onPreProcess.add(function(ed, o) {
+					var dom = ed.dom;
+
+					each(dom.select('table', o.node), function(n) {
+						var v;
+
+						if (v = dom.getAttrib(n, 'width')) {
+							dom.setStyle(n, 'width', v);
+							dom.setAttrib(n, 'width');
+						}
+
+						if (v = dom.getAttrib(n, 'height')) {
+							dom.setStyle(n, 'height', v);
+							dom.setAttrib(n, 'height');
+						}
+					});
+				});
+			}
+
 			ed.onInit.add(function() {
 				if (ed && ed.plugins.contextmenu) {
 					ed.plugins.contextmenu.onContextMenu.add(function(th, m, e) {
-						var sm;
+						var sm, se = ed.selection, el = se.getNode() || ed.getBody();
 
 						if (ed.dom.getParent(e, 'td') || ed.dom.getParent(e, 'th')) {
 							m.removeAll();
+
+							if (el.nodeName == 'A' && !ed.dom.getAttrib(el, 'name')) {
+								m.add({title : 'advanced.link_desc', icon : 'link', cmd : ed.plugins.advlink ? 'mceAdvLink' : 'mceLink', ui : true});
+								m.add({title : 'advanced.unlink_desc', icon : 'unlink', cmd : 'UnLink'});
+								m.addSeparator();
+							}
+
+							if (el.nodeName == 'IMG' && el.className.indexOf('mceItem') == -1) {
+								m.add({title : 'advanced.image_desc', icon : 'image', cmd : ed.plugins.advimage ? 'mceAdvImage' : 'mceImage', ui : true});
+								m.addSeparator();
+							}
+
 							m.add({title : 'table.desc', icon : 'table', cmd : 'mceInsertTable', ui : true, value : {action : 'insert'}});
 							m.add({title : 'table.props_desc', icon : 'table_props', cmd : 'mceInsertTable', ui : true});
 							m.add({title : 'table.del', icon : 'delete_table', cmd : 'mceTableDelete', ui : true});
@@ -76,14 +109,32 @@
 
 			// Add undo level when new rows are created using the tab key
 			ed.onKeyDown.add(function(ed, e) {
-				if (e.keyCode == 9 && ed.dom.getParent(ed.selection.getNode(), 'TABLE'))
+				if (e.keyCode == 9 && ed.dom.getParent(ed.selection.getNode(), 'TABLE')) {
+					if (!tinymce.isGecko && !tinymce.isOpera) {
+						tinyMCE.execInstanceCommand(ed.editorId, "mceTableMoveToNextRow", true);
+						return tinymce.dom.Event.cancel(e);
+					}
+
 					ed.undoManager.add();
+				}
 			});
+
+			// Select whole table is a table border is clicked
+			if (!tinymce.isIE) {
+				if (ed.getParam('table_selection', true)) {
+					ed.onClick.add(function(ed, e) {
+						e = e.target;
+
+						if (e.nodeName === 'TABLE')
+							ed.selection.select(e);
+					});
+				}
+			}
 
 			ed.onNodeChange.add(function(ed, cm, n) {
 				var p = ed.dom.getParent(n, 'td,th,caption');
 
-				cm.setActive('table', !!p);
+				cm.setActive('table', n.nodeName === 'TABLE' || !!p);
 				if (p && p.nodeName === 'CAPTION')
 					p = null;
 
@@ -100,6 +151,14 @@
 				cm.setDisabled('split_cells', !p || (parseInt(ed.dom.getAttrib(p, 'colspan', '1')) < 2 && parseInt(ed.dom.getAttrib(p, 'rowspan', '1')) < 2));
 				cm.setDisabled('merge_cells', !p);
 			});
+
+			// Padd empty table cells
+			if (!tinymce.isIE) {
+				ed.onBeforeSetContent.add(function(ed, o) {
+					if (o.initial)
+						o.content = o.content.replace(/<(td|th)([^>]+|)>\s*<\/(td|th)>/g, tinymce.isOpera ? '<$1$2>&nbsp;</$1>' : '<$1$2><br mce_bogus="1" /></$1>');
+				});
+			}
 		},
 
 		execCommand : function(cmd, ui, val) {
@@ -107,6 +166,7 @@
 
 			// Is table command
 			switch (cmd) {
+				case "mceTableMoveToNextRow":
 				case "mceInsertTable":
 				case "mceTableRowProps":
 				case "mceTableCellProps":
@@ -232,8 +292,21 @@
 				return null;
 			}
 
+			function getNextCell(table, cell) {
+				var cells = [], x = 0, i, j, cell, nextCell;
+
+				for (i = 0; i < table.rows.length; i++)
+					for (j = 0; j < table.rows[i].cells.length; j++, x++)
+						cells[x] = table.rows[i].cells[j];
+
+				for (i = 0; i < cells.length; i++)
+					if (cells[i] == cell)
+						if (nextCell = cells[i+1])
+							return nextCell;
+			}
+
 			function getTableGrid(table) {
-				var grid = new Array(), rows = table.rows, x, y, td, sd, xstart, x2, y2;
+				var grid = [], rows = table.rows, x, y, td, sd, xstart, x2, y2;
 
 				for (y=0; y<rows.length; y++) {
 					for (x=0; x<rows[y].cells.length; x++) {
@@ -246,7 +319,7 @@
 						// Fill box
 						for (y2=y; y2<y+sd['rowspan']; y2++) {
 							if (!grid[y2])
-								grid[y2] = new Array();
+								grid[y2] = [];
 
 							for (x2=xstart; x2<xstart+sd['colspan']; x2++)
 								grid[y2][x2] = td;
@@ -399,6 +472,19 @@
 
 			// Handle commands
 			switch (command) {
+				case "mceTableMoveToNextRow":
+					var nextCell = getNextCell(tableElm, tdElm);
+
+					if (!nextCell) {
+						inst.execCommand("mceTableInsertRowAfter", tdElm);
+						nextCell = getNextCell(tableElm, tdElm);
+					}
+
+					inst.selection.select(nextCell);
+					inst.selection.collapse(true);
+
+					return true;
+
 				case "mceTableRowProps":
 					if (trElm == null)
 						return true;
@@ -611,7 +697,7 @@
 								var cpos = getCellPos(grid, tdElm);
 
 								// Only one row, remove whole table
-								if (grid.length == 1) {
+								if (grid.length == 1 && tableElm.nodeName == 'TBODY') {
 									inst.dom.remove(inst.dom.getParent(tableElm, "table"));
 									return true;
 								}
@@ -663,7 +749,7 @@
 								if (!trElm || !tdElm)
 									return true;
 
-								var grid = getTableGrid(tableElm);
+								var grid = getTableGrid(inst.dom.getParent(tableElm, "table"));
 								var cpos = getCellPos(grid, tdElm);
 								var lastTDElm = null;
 
@@ -694,7 +780,7 @@
 								if (!trElm || !tdElm)
 									return true;
 
-								var grid = getTableGrid(tableElm);
+								var grid = getTableGrid(inst.dom.getParent(tableElm, "table"));
 								var cpos = getCellPos(grid, tdElm);
 								var lastTDElm = null;
 
@@ -734,7 +820,7 @@
 								var lastTDElm = null;
 
 								// Only one col, remove whole table
-								if (grid.length > 1 && grid[0].length <= 1) {
+								if ((grid.length > 1 && grid[0].length <= 1) && tableElm.nodeName == 'TBODY') {
 									inst.dom.remove(inst.dom.getParent(tableElm, "table"));
 									return true;
 								}
@@ -827,7 +913,7 @@
 									// Get rows and cells
 									var tRows = tableElm.rows;
 									for (var y=cpos.rowindex; y<grid.length; y++) {
-										var rowCells = new Array();
+										var rowCells = [];
 
 										for (var x=cpos.cellindex; x<grid[y].length; x++) {
 											var td = getCell(grid, y, x);
@@ -843,6 +929,12 @@
 
 										if (rowCells.length > 0)
 											rows[rows.length] = rowCells;
+
+										var td = getCell(grid, cpos.rowindex, cpos.cellindex);
+										each(ed.dom.select('br', td), function(e, i) {
+											if (i > 0 && ed.dom.getAttrib('mce_bogus'))
+												ed.dom.remove(e);
+										});
 									}
 
 									//return true;
@@ -866,14 +958,14 @@
 									if (!tdElm)
 										break;
 
-									if (tdElm.nodeName == "TD")
+									if (tdElm.nodeName == "TD" || tdElm.nodeName == "TH")
 										cells[cells.length] = tdElm;
 								}
 
 								// Get rows and cells
 								var tRows = tableElm.rows;
 								for (var y=0; y<tRows.length; y++) {
-									var rowCells = new Array();
+									var rowCells = [];
 
 									for (var x=0; x<tRows[y].cells.length; x++) {
 										var td = tRows[y].cells[x];
@@ -890,7 +982,7 @@
 								}
 
 								// Find selected cells in grid and box
-								var curRow = new Array();
+								var curRow = [];
 								var lastTR = null;
 								for (var y=0; y<grid.length; y++) {
 									for (var x=0; x<grid[y].length; x++) {
@@ -1016,6 +1108,12 @@
 									}
 								}
 							}
+
+							// Remove all but one bogus br
+							each(ed.dom.select('br', tdElm), function(e, i) {
+								if (i > 0 && ed.dom.getAttrib(e, 'mce_bogus'))
+									ed.dom.remove(e);
+							});
 
 							break;
 						}

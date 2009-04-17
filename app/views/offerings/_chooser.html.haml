@@ -6,9 +6,8 @@
   .yui-u.first
     %ul#skills.sortable
       - @skills.each do |s|
-      %li{:id => "skill_#{ s.id }"}
-        = s.name
-      - end
+        %li{:id => "skill_#{ s.id }"}
+          = s.name
       %br.clear
   .yui-u
     %ul#users_skills.sortable

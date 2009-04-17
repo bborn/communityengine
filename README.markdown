@@ -1,4 +1,4 @@
-CommunityEngine
+CommunityEngine [v1.0.0]
 ================
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
@@ -7,7 +7,7 @@ Requirements:
 
 	- RAILS VERSION 2.2.2
 	- The engines plugin for Rails 2.2.2
-	- ImageMagick 
+	- ImageMagick (>6.4) 
 	- Several gems:
 	  rmagick
 	  hpricot
@@ -41,6 +41,12 @@ Getting CommunityEngine Running
 	* If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:
 	
 			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
+			Basically:
+			git submodule add git://github.com/bborn/communityengine.git vendor/plugins/community_engine
+			git submodule init
+			git submodule update
+
+	* Make sure you rename your CE directory to `community_engine` (note the underscore) if it isn't named that for some reason
 
 4. Create your database and modify your `config/database.yml` appropriately.
 
@@ -92,7 +98,7 @@ Getting CommunityEngine Running
 
 12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
 
-		$ rake test
+    $ rake test
 		$ rake community_engine:test
 
 13. Start your server and check out your site! 
@@ -200,6 +206,7 @@ To wrap all localized strings in a `<span>` that shows their localization key, p
   
 Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
 
+For more, see /lang/readme.txt.
 
 
 Other notes
@@ -230,6 +237,7 @@ Contributors - Thanks! :)
 - [Oleg Ivanov](http://github.com/morhekil) - `acts_as_taggable_on_steroids`
 - David Fugere - French localization
 - Barry Paul - routes refactoring
+- [Andrei Erdoss](http://github.com/cauta) localization
 
 
 To Do

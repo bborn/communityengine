@@ -2,6 +2,21 @@ class Photo < ActiveRecord::Base
   acts_as_commentable
   
   has_attachment prepare_options_for_attachment_fu(AppConfig.photo['attachment_fu_options'])
+  # attr_accessor :cropped_size
+  # before_thumbnail_saved do |thumbnail|
+  #   raise thumbnail.inspect
+  #   # thumbnail.send(:'attributes=', {:thumbnail_resize_options => cropped_size}, false) if thumbnail.parent.cropped_size
+  #   if thumbnail.parent.cropped_size[:x1]
+  #     # img = Magick::Image::read(@photo.public_filename).first
+  #     thumbnail.crop!(::Magick::CenterGravity, parent.cropped_size[:x1].to_i, parent.cropped_size[:y1].to_i, parent.cropped_size[:width].to_i, parent.cropped_size[:height].to_i, true)
+  #     raise thumbnail.inspect
+  #     # size = AppConfig.photo['attachment_fu_options']['thumbnails']['medium']
+  #     # dimensions = size[1..size.size].split("x")
+  #     # img.crop_resized!(dimensions[0].to_i, dimensions[1].to_i)
+  #     # img.write @settings.header_image_file
+  #   end
+  # end
+
 
   acts_as_taggable
 
@@ -23,9 +38,10 @@ class Photo < ActiveRecord::Base
   named_scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
+  attr_accessible :name, :description
 
   def display_name
-    self.name ? self.name : self.created_at.strftime("created on: %m/%d/%y")
+    self.name ? self.name : "#{:created_at.l.downcase}: #{I18n.localize(self.created_at.to_date)}"
   end
   
 

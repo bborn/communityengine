@@ -1,4 +1,18 @@
 de-DE:
+  date:
+    formats:
+      published_date: "%d.%m.%Y"
+      date_ago: "%e. %b"
+
+  time:
+    formats:
+      published_date: "%d.%m.%Y"      
+      time_ago: "%H:%M"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "erstellt am: "
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  vor ein paar Sekunden
   #en: about: About
@@ -941,8 +955,8 @@ de-DE:
   share_the_love: Share the love
   #en: show: Show
   show: Zeigen
-  #en: show_category: {{category}}
-  show_category: Zeige {{category}}
+  #en: show_category: "{{category}}"
+  show_category: Zeige "{{category}}"
   #en: show_this_photo: Show this photo
   show_this_photo: Zeige dieses Foto
   #en: showing: Showing

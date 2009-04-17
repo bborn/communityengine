@@ -27,12 +27,12 @@ if AppConfig.closed_beta_mode
 else
   home '', :controller => "base", :action => "site_index"
 end
-connect '/application/:action', :controller => 'base'
 
 # admin routes
-admin_dashboard '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
-admin_dashboard '/admin/users', :controller => 'admin', :action => 'users'
-admin_dashboard '/admin/messages', :controller => 'admin', :action => 'messages'
+admin_dashboard   '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
+admin_users       '/admin/users', :controller => 'admin', :action => 'users'
+admin_messages    '/admin/messages', :controller => 'admin', :action => 'messages'
+admin_comments    '/admin/comments', :controller => 'admin', :action => 'comments'
 
 # sessions routes
 teaser '', :controller=>'base', :action=>'teaser'
@@ -109,7 +109,9 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
     :welcome_invite => :get,
     :welcome_complete => :get,
     :statistics => :any,
-    :deactivate => :put
+    :deactivate => :put,
+    :crop_profile_photo => [:get, :put],
+    :upload_profile_photo => [:get, :put]
      } do |user|
   user.resources :friendships, :member => { :accept => :put, :deny => :put }, :collection => { :accepted => :get, :pending => :get, :denied => :get }
   user.resources :photos, :collection => {:swfupload => :post, :slideshow => :get}

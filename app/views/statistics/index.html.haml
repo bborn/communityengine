@@ -27,7 +27,7 @@
 
     %h3
       = :active.l+":"
-      = pluralize @active_users_count, :user.l
+      = pluralize @active_users_count, :user.l, :users.l
       (
       = number_to_percentage((@active_users_count/@total_users.to_f)*100, :precision => 1)
       =", 1 "+:month.l+")"
@@ -50,7 +50,7 @@
       =", "+:female.l+":"
       = number_to_percentage @percent_female
     %h3
-      = AppConfig.featured_writer_label
+      = :featured_writer.l
     %ul
       - @featured_writers.each do |w|
         %li= link_to w.login, statistics_user_path(w)
@@ -61,6 +61,9 @@
     = @estimated_payment
     \-
     = @posts.length
-    posts ($
+    = :posts.l
+    ($
     = (@estimated_payment.to_i / @posts.length.to_i) rescue "0"
-    \/post)
+    \/
+    =:post.l
+    )

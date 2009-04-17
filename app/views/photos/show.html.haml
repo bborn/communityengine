@@ -4,21 +4,21 @@
 
     - if @previous || @next
       .photo_nav.box.alt
-        = link_to "<img src='#{@previous.public_filename(:thumb)}' /><br />&laquo; Prev ", user_photo_path(@user, @previous), :class => 'left' if @previous
-        = link_to "<img src='#{@next.public_filename(:thumb)}' /><br />Next &raquo;", user_photo_path(@user, @next), :class => 'right' if @next
+        = link_to "<img src='#{@previous.public_filename(:thumb)}' /><br />&laquo; " + :previous.l, user_photo_path(@user, @previous), :class => 'left' if @previous
+        = link_to "<img src='#{@next.public_filename(:thumb)}' /><br />" + :next.l + "&raquo;", user_photo_path(@user, @next), :class => 'right' if @next
 
     - if @related.any?
       .box.alt
         %h3=:related_photos_all_members.l
         .centered
           - @related.each do |photo|
-            = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo), {:title => "#{h(photo.description)} from #{photo.user.login}"}
+            = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo), {:title => :photo_from_user.l_with_args(:photo_description => h(photo.description), :user => photo.user.login)}
 
   #yui-main
     .yui-b
       .box.hfeed
         %h3
-          = link_to "#{@user.login}'s "+:photos.l, user_photos_path(@user)
+          = link_to :users_photos.l_with_args(:user => @user.login), user_photos_path(@user)
           \:
           = link_to h(@photo.display_name), user_photo_path(@user, @photo)
         - if @is_current_user

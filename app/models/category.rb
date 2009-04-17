@@ -2,11 +2,11 @@ class Category < ActiveRecord::Base
   has_many :posts, :order => "published_at desc"
 
   def to_param
-    id.to_s << "-" << (name ? name.gsub(/[^a-z1-9]+/i, '-') : '' )
+    id.to_s << "-" << (name ? name.parameterize : '' )
   end
   
   def slug
-    name.gsub(/[^a-z1-9]+/i, '-').downcase
+    name.parameterize.downcase
   end
 
   def self.get(name)

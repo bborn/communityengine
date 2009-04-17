@@ -14,22 +14,15 @@
     - if params[:q].blank?
       = @page_title
     - else
-      = :searching_for.l
-      '
-      = h params[:q]
-      '
+      ="#{:searching_for.l} '#{h params[:q]}'"
 
   %p.subtitle
     = feed_icon_tag @page_title, formatted_all_sb_posts_path(:format => 'rss')
     = pluralize(@posts.size, "post")+' '+:found.l
 
   - if @posts.page_count > 1
-    .pagination
-      = :pages.l
-      %strong
-        = paginating_links @posts
-
-
+    .pagination= paginating_links @posts
+        
   %table.posts.wide{ :cellspacing => "0", :border => "0", :cellpadding => "0", :width => '100%'}
     - for post in @posts do
       - unless post == @posts.to_a.first
@@ -48,7 +41,7 @@
 
           = avatar_for @users[post.user_id]
           %span.fn
-            = link_to truncate(h(@users[post.user_id].display_name), 15), user_path(post.user)
+            = link_to truncate(h(@users[post.user_id].display_name), :length => 15), user_path(post.user)
           %span.posts
             = pluralize @users[post.user_id].sb_posts_count, 'post'
         %td.body.entry-content

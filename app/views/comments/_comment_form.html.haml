@@ -1,25 +1,25 @@
 - if logged_in? || AppConfig.allow_anonymous_commenting
-  %script{"type"=>"text/javascript"}
-    function scrollToNewestComment(){
-    loc = document.location.toString();
-    if (loc.indexOf("#") != -1){
-    parts = loc.split('#')
-    loc = parts[0] + "#newest_comment"
-    } else {
-    loc = loc + "#newest_comment";
-    }
-    document.location.href = loc;
-    }
+  %script{:type=>"text/javascript"} 
+    :plain
+      function scrollToNewestComment(){
+        loc = document.location.toString();
+        if (loc.indexOf("#") != -1){
+          parts = loc.split('#')
+          loc = parts[0] + "#newest_comment"
+        } else {
+          loc = loc + "#newest_comment";
+        }
+        document.location.href = loc;
+      }
+      
   .errors
-  - form_remote_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(commentable.class.to_s.underscore, commentable.id ), 500 => "$$('div#comments div.errors')[0].update(request.responseText);new Effect.Highlight($$('div#comments div.errors')[0]); return false;", :success => "new Insertion.#{commentable.class.to_s.eql?('User') ? 'After': 'After' }('newest_comment', request.responseText); tinyMCE.activeEditor.setContent(\'\'); scrollToNewestComment();$('emptycomments').hide();", :complete => "$('comment_spinner').hide(); if($('dynamic_recaptcha')){Recaptcha.create('#{AppConfig.recaptcha_pub_key}', $('dynamic_recaptcha') )}", :html => {:class => "MainForm"}) do |f|
+  - form_remote_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(commentable.class.to_s.underscore, commentable.id ), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
     %label
       %em="(2000 character limit)".l :comment_character_limit
     = text_area :comment, :comment, {:size => "86x5", :class => "rich_text_editor"}
     
-    -unless logged_in?
-      
+    - if !logged_in? && AppConfig.recaptcha_pub_key && AppConfig.recaptcha_priv_key 
       .right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
-      
       %label{"for"=>"comment[author_name"}
         ="Name:".l
         %em="(#{'Optional'.l})"
@@ -39,5 +39,5 @@
       = image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner'
 - else
   = link_to "Log in to leave a comment".l, new_comment_path(commentable.class, commentable.id)
-  or
+  = :or.l
   = link_to "Create an account".l, signup_path

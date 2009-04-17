@@ -1,3 +1,5 @@
+require "RMagick"
+
 class UsersController < BaseController
   include Viewable
   cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
@@ -19,18 +21,23 @@ class UsersController < BaseController
   # Filters
   before_filter :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about, 
                                           :welcome_invite, :return_admin, :assume, :featured,
-                                          :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard, :deactivate]
-  before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics, :deactivate ]
+                                          :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard, :deactivate, 
+                                          :crop_profile_photo, :upload_profile_photo]
+  before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics, :deactivate, 
+                                      :crop_profile_photo, :upload_profile_photo ]
   before_filter :require_current_user, :only => [:edit, :update, :update_account,
                                                 :edit_pro_details, :update_pro_details,
-                                                :welcome_photo, :welcome_about, :welcome_invite, :deactivate]
+                                                :welcome_photo, :welcome_about, :welcome_invite, :deactivate, 
+                                                :crop_profile_photo, :upload_profile_photo]
   before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator]
   before_filter :admin_or_current_user_required, :only => [:statistics]  
 
   def activate
-    @user = User.find_by_activation_code(params[:id])
+    redirect_to signup_path and return if params[:id].blank?
+    @user = User.find_by_activation_code(params[:id]) 
     if @user and @user.activate
       self.current_user = @user
+      current_user.track_activity(:joined_the_site)      
       redirect_to welcome_photo_user_path(@user)
       flash[:notice] = :thanks_for_activating_your_account.l 
       return
@@ -81,6 +88,8 @@ class UsersController < BaseController
     @clippings      = @user.clippings.find(:all, :limit => 5)
     @photos         = @user.photos.find(:all, :limit => 5)
     @comment        = Comment.new(params[:comment])
+    
+    @my_activity = Activity.recent.by_users([@user.id]).find(:all, :limit => 10) 
 
     update_view_count(@user) unless current_user && current_user.eql?(@user)
   end
@@ -100,7 +109,7 @@ class UsersController < BaseController
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
       create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
-      redirect_to signup_completed_user_path(@user.activation_code)
+      redirect_to signup_completed_user_path(@user)
     else
       render :action => 'new'
     end
@@ -171,6 +180,38 @@ class UsersController < BaseController
     @metro_areas, @states = setup_locations_for(@user)
     render :action => 'edit'
   end
+  
+  def crop_profile_photo    
+    unless @photo = @user.avatar   
+      flash[:notice] = :no_profile_photo.l
+      redirect_to upload_profile_photo_user_path(@user) and return
+    end
+    return unless request.put?
+    
+    if @photo
+      if params[:x1]
+        img = Magick::Image::read(@photo.path_or_s3_url_for_image).first.crop(params[:x1].to_i, params[:y1].to_i,params[:width].to_i, params[:height].to_i, true)
+        img.format = @photo.content_type.split('/').last
+        crop = {'tempfile' => StringIO.new(img.to_blob), 'content_type' => @photo.content_type, 'filename' => "custom_#{@photo.filename}"}
+        @photo.uploaded_data = crop
+        @photo.save!
+      end
+    end
+
+    redirect_to user_path(@user)
+  end
+  
+  def upload_profile_photo
+    @avatar       = Photo.new(params[:avatar])
+    return unless request.put?
+    
+    @avatar.user  = @user
+    if @avatar.save
+      @user.avatar  = @avatar 
+      @user.save
+      redirect_to crop_profile_photo_user_path(@user)
+    end
+  end
     
   def edit_account
     @user             = current_user
@@ -181,12 +222,18 @@ class UsersController < BaseController
     @user             = current_user
     @user.attributes  = params[:user]
 
-    if @user.save!
+    if @user.save
       flash[:notice] = :your_changes_were_saved.l
-      redirect_to user_path(@user)
+      respond_to do |format|
+        format.html {redirect_to user_path(@user)}
+        format.js
+      end      
+    else
+      respond_to do |format|
+        format.html {render :action => 'edit_account'}
+        format.js
+      end
     end
-  rescue ActiveRecord::RecordInvalid
-    render :action => 'edit_account'
   end
 
   def edit_pro_details
@@ -237,7 +284,7 @@ class UsersController < BaseController
   end
   
   def signup_completed
-    @user = User.find_by_activation_code(params[:id])
+    @user = User.find(params[:id])
     redirect_to home_path and return unless @user
     render :action => 'signup_completed', :layout => 'beta' if AppConfig.closed_beta_mode    
   end
@@ -293,9 +340,9 @@ class UsersController < BaseController
   def resend_activation
     return unless request.post?       
 
-    @user = User.find_by_email(params[:email])    
+    @user = User.find(params[:id])    
     if @user && !@user.active?
-      flash[:notice] = :activation_email_resent_message.l :admin_email => AppConfig.support_email
+      flash[:notice] = :activation_email_resent_message.l
       UserNotifier.deliver_signup_notification(@user)    
       redirect_to login_path and return
     else
@@ -321,8 +368,7 @@ class UsersController < BaseController
   end
 
   def metro_area_update
-    return unless request.xhr?
-    
+  
     country = Country.find(params[:country_id]) unless params[:country_id].blank?
     state   = State.find(params[:state_id]) unless params[:state_id].blank?
     states  = country ? country.states.sort_by{|s| s.name} : []
@@ -333,12 +379,16 @@ class UsersController < BaseController
       metro_areas = country ? country.metro_areas : []
     end
 
-    render :partial => 'shared/location_chooser', :locals => {
-      :states => states, 
-      :metro_areas => metro_areas, 
-      :selected_country => params[:country_id].to_i, 
-      :selected_state => params[:state_id].to_i, 
-      :selected_metro_area => nil }
+    respond_to do |format|
+      format.js {
+        render :partial => 'shared/location_chooser', :locals => {
+          :states => states, 
+          :metro_areas => metro_areas, 
+          :selected_country => params[:country_id].to_i, 
+          :selected_state => params[:state_id].to_i, 
+          :selected_metro_area => nil }        
+      }
+    end
   end
   
   def toggle_featured

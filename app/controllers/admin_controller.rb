@@ -27,6 +27,10 @@ class AdminController < BaseController
     @users = User.recent.find(:all, :page => {:current => params[:page], :size => 100}, :conditions => cond.to_sql)      
   end
   
+  def comments
+    @comments = Comment.find(:all, :page => {:current => params[:page], :size => 100}, :order => 'created_at DESC')
+  end
+  
   def activate_user
     user = User.find(params[:id])
     user.activate

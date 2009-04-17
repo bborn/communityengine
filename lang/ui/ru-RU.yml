@@ -1,4 +1,19 @@
 ru-RU:
+  date:
+    formats:
+      published_date: "%Y/%m/%d"
+      date_ago: "%B %d"
+
+  time:
+    formats:
+      published_date: "%Y/%m/%d"      
+      time_ago: "%l:%M%p"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "created at: "
+
   #en: about: About
   about: "\xD0\x9E \xD0\xBD\xD0\xB0\xD1\x81"
   #en: about_me: About Me

@@ -51,7 +51,7 @@ class MessagesController < BaseController
         }
         flash[:notice] = :messages_deleted.l
       end
-      redirect_to user_message_path(@user, @messages)
+      redirect_to user_messages_path(@user)
     end
   end
   

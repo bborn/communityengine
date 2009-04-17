@@ -18,12 +18,11 @@
 
       = error_messages_for :post
       - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
-        - unless @post.category || @post.contest 
+        - unless @post.category || @post.contest || @categories.empty?
           %label
             =:category.l
-            \:
           %select{:id=>"post_category_id", :name=>"post[category_id]"}
-            -for category in Category.find(:all)
+            -for category in @categories
               %option{:value=>"#{category.id}"}= h(category.name)
         -else
           = f.hidden_field :category_id
@@ -31,17 +30,17 @@
 
         %label
           =:title.l
-          %em="(required)".l
+          %em="(#{:required.l})"
         = f.text_field :title
 
         %label
           =:body_text.l
-          %em= '('+:required.l+')'
+          %em="(#{:required.l})"
         = f.text_area :raw_post, :style => "width:95%;"
 
         %label
           =:tags.l
-          %em='('+:optional_keywords_describing_this_post_separated_by_commas.l+')'
+          %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
         = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35}
         .auto_complete#tag_list_auto_complete
           = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
@@ -59,7 +58,7 @@
         %p
           = submit_tag :save.l
         %p
-          or 
+          =:or.l 
           = link_to :cancel_and_go_back_to_my_posts.l, user_posts_path(@user)
 
   = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}

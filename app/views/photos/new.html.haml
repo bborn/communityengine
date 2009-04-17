@@ -52,6 +52,7 @@
     
     - session_key = (ActionController::Base.session.first[:session_key] || '_session_id').to_sym
     %p.centered
+      
       %script{:type=>'text/javascript'}
         var uploader;
         window.onload = function (){
@@ -61,10 +62,8 @@
       %div{:style=>"margin: 0px 10px;"}
         %div
           %form.MainForm
-            %p
-              %button{:id=>"btnBrowse", :type=>"button", :style=>"padding: 5px;", :onclick=>"uploader.swfu.selectFiles(); this.blur();"}
-                =image_tag '/icons/add.png', :plugin => 'community_engine'
-                =:select_images_to_upload.l
+            %div{:style=>"display: inline; border: solid 1px #7FAAFF; background: #C5D9FF; padding: 10px 0 0 0;"}
+              %span{:id=>"SWFUploadButton"}
             %label
               %em
                 =:you_can_select_up_to_5_files_at_a_time.l

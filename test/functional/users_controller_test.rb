@@ -70,7 +70,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_get_signup_completed
     login_as :quentin
     
-    get :signup_completed, :id => users(:quentin).activation_code
+    get :signup_completed, :id => users(:quentin)
     assert_response :success
   end
   
@@ -135,6 +135,11 @@ class UsersControllerTest < ActionController::TestCase
       assert_response :success
     end
   end
+  
+  def test_should_render_new_form_when_signing_up_without_required_attributes
+    create_user(:user => {:password => nil})
+    assert_response :success
+  end
 
   def test_should_deactivate_and_logout
     login_as :quentin
@@ -151,9 +156,13 @@ class UsersControllerTest < ActionController::TestCase
   
   def test_should_activate_user
     users(:quentin).activated_at = nil
-    users(:quentin).activation_code = nil
+    users(:quentin).activation_code = ':quentin_activation_code'
     users(:quentin).save!
     assert_nil User.authenticate('quentin', 'test')
+    
+    users(:quentin).activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    users(:quentin).save!
+    
     get :activate, :id => users(:quentin).activation_code
     assert_equal users(:quentin), User.authenticate('quentin', 'test')
   end  
@@ -271,6 +280,28 @@ class UsersControllerTest < ActionController::TestCase
     assert users(:quentin).reload.avatar.filename, "library.jpg"
   end
   
+  def test_should_crop_profile_photo
+    login_as :quentin
+    avatar = Photo.new(:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg'))
+    avatar.user = users(:quentin)
+    avatar.save!
+
+    users(:quentin).avatar = avatar
+    users(:quentin).save
+    
+    put :crop_profile_photo, :id => users(:quentin).id, :x1 => 0, :y1 => 0, :width => 290, :height => 320
+    
+    assert_redirected_to user_path(users(:quentin))
+  end
+  
+  def test_should_upload_profile_photo
+    login_as :quentin
+
+    put :upload_profile_photo, :id => users(:quentin), :avatar => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    
+    assert_redirected_to crop_profile_photo_user_path(users(:quentin))    
+  end
+  
   def test_create_friendship_with_invited_user
     assert_difference User, :count do
       assert_difference Friendship, :count, 2 do
@@ -307,22 +338,22 @@ class UsersControllerTest < ActionController::TestCase
     users(:quentin).save!
     
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      post :resend_activation, :email => users(:quentin).email
+      post :resend_activation, :id => users(:quentin).to_param
       assert_redirected_to login_path    
     end    
   end
   
   def test_should_not_resend_activation_for_active_user
     assert_no_difference ActionMailer::Base.deliveries, :length do
-      post :resend_activation, :email => users(:quentin).email
+      post :resend_activation, :id => users(:quentin).to_param
       assert_response :success
       assert_equal :activation_email_not_sent_message.l, flash[:notice]
     end    
   end
 
-  def test_should_not_resend_activation_for_nonexistent_email
+  def test_should_not_resend_activation_for_nonexistent_user
     assert_no_difference ActionMailer::Base.deliveries, :length do
-      post :resend_activation, :email => "foo@bar.com"
+      post :resend_activation, :id => "nonexistant"
       assert_response :success
       assert_equal :activation_email_not_sent_message.l, flash[:notice]
     end    
@@ -422,10 +453,11 @@ class UsersControllerTest < ActionController::TestCase
   
   protected
     def create_user(options = {})
-      post :create, {:user => { :login => 'quire', :email => 'quire@example.com', 
-        :password => 'quire123', :password_confirmation => 'quire123',
-        :birthday => 15.years.ago
-         }.merge(options[:user] || {}) }.merge(options || {})
+      params = {:user => {:login => 'quire', :email => 'quire@example.com', :password => 'quire123', :password_confirmation => 'quire123', :birthday => 15.years.ago}}
+      user_opts = options.delete(:user)
+      params[:user].merge!(user_opts) if user_opts
+    
+      post :create, params.merge(options)
     end
         
 end

@@ -7,6 +7,7 @@ I18n.default_locale = "en"
 
 
 
+
 #patch, because Rails date_select is broken
 #see: http://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/1389-error-with-date_select-when-a-default_locale-is-set
 
