@@ -55,7 +55,7 @@
             = "</strong>" if topic.sticky?
             - if topic.paged? 
               %small= link_to :last.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page)
-          %td.ca.inv.stat= topic.sb_posts_count-1
+          %td.ca.inv.stat= topic.sb_posts_count
           %td.ca.inv.stat= number_with_delimiter(topic.views)
           %td.lp
             %abbr.updated{:title=>"#{topic.replied_at.xmlschema}"}= time_ago_in_words(topic.replied_at)
