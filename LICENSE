@@ -1,6 +1,6 @@
 The "CommunityEngine" plugin is distributed under the MIT license (which
 is the same license that Ruby on Rails is distributed under). This license
-does not include any code found in the "engine_plugins" directory. Those plugins
+does not include any code found in the "community_engine/plugins" directory. Those plugins
 are each licensed individually and their licenses should be reviewed before
 you use this application. Most plugins are also licensed under the MIT
 license, but some may not be. If a plugin does not

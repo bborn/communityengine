@@ -6,9 +6,9 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 Requirements:
 
 	- RAILS VERSION 2.3.2
-	- The engines plugin for Rails 2.2.2
 	- ImageMagick (>6.4) 
 	- Several gems:
+	  desert
 	  rmagick
 	  hpricot
 	  htmlentities
@@ -22,10 +22,9 @@ Getting CommunityEngine Running
 
 		$ rails site_name (create a rails app if you don't have one already)    
 
-    
-2. Install the engines plugin:
+2. Install desert:
 
-		$ script/plugin install git://github.com/lazyatom/engines.git
+		$ sudo gem install desert
 	
 3. Put the community engine plugin into plugins directory (use one of the following methods):
 
@@ -56,17 +55,18 @@ Getting CommunityEngine Running
 		## environment.rb should look something like this:
 		RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 		require File.join(File.dirname(__FILE__), 'boot')
-		require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
+
+        require 'desert'
 
 		Rails::Initializer.run do |config|
 		  #resource_hacks required here to ensure routes like /:login_slug work
-		  config.plugins = [:engines, :community_engine, :white_list, :all]
-		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
+		  config.plugins = [:community_engine, :white_list, :all]
+		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
 
 		  ... Your stuff here ...
 		end
 		# Include your application configuration below
-		require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
+		require "#{RAILS_ROOT}/vendor/plugins/community_engine/config/boot.rb"
 
 7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
 
@@ -114,7 +114,7 @@ Optional Configuration
 
 To override the default configuration, create an `application.yml` file in `RAILS_ROOT/config` 
 
-The application configuration defined in this file overrides the one defined in `/community_engine/engine_config/application.yml`
+The application configuration defined in this file overrides the one defined in `/community_engine/config/application.yml`
 
 This is where you can change commonly used configuration variables, like `AppConfig.community_name`, etc.
 

@@ -26,7 +26,7 @@ module ApplicationConfiguration
     file = File.join(RAILS_ROOT, 'config', 'application.yml')
     users_app_config = YAML.load_file file
   end
-  default_app_config = YAML.load_file(File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine', 'engine_config', 'application.yml'))
+  default_app_config = YAML.load_file(File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine', 'config', 'application.yml'))
   
   config_hash = (users_app_config||{}).reverse_merge!(default_app_config)
 
