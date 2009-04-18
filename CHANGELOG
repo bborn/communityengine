@@ -1,3 +1,9 @@
+= TODO
+* finish desert integration
+* haml/sass propagation (desert)
+* multiple photo uploading
+* upgrade documentation/rake tasks to fix old migrations
+
 = 1.0.2
 * Rails 2.3 compatibility
 * RedCloth no longer required
