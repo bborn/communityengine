@@ -140,7 +140,7 @@ module BaseHelper
             title += params[:type] ? params[:type].pluralize : :posts_photos_and_bookmarks.l
             title += ' (Related: ' + @related_tags.join(', ') + ')' if @related_tags
             title += ' | ' + app_base    
-            @canonical_url = tag_url(URI::encode(@tags_raw, /[\/.?#]/)) if @tags_raw
+            @canonical_url = tag_url(URI.escape(@tags_raw, /[\/.?#]/)) if @tags_raw
           else
           title = 'Showing tags &raquo; ' + app_base + tagline            
 			  end
