@@ -13,7 +13,7 @@ module Ziya::Charts
     HELPERS_DIR = "#{File.dirname(__FILE__)}/../helpers"    
     
     HELPERS_DIR = "#{RAILS_ROOT}/vendor/plugins/community_engine/plugins/ziya/lib/ziya/helpers" if defined? RAILS_ROOT
-    # hacked by BBORN to work with rails engine
+    # hacked by BBORN to work with community_engine
     # HELPERS_DIR = "#{RAILS_ROOT}/vendor/plugins/ziya/lib/ziya/helpers" if defined? RAILS_ROOT
     
     # Defines the user customizable helpers to be accessed in the chart styles
@@ -21,7 +21,7 @@ module Ziya::Charts
     
     THEMES_DIR = "#{File.dirname(__FILE__)}/../../../artifacts/themes"
 
-    # also hacked by BBORN to work with rails engines
+    # also hacked by BBORN to work with community_engine
     THEMES_DIR = "#{RAILS_ROOT}/public/assets/community_engine/charts/themes/"
     # THEMES_DIR = "#{RAILS_ROOT}/public/charts/themes" if defined? RAILS_ROOT
                 
