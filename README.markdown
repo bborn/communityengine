@@ -59,9 +59,13 @@ Getting CommunityEngine Running
         require 'desert'
 
 		Rails::Initializer.run do |config|
-		  #resource_hacks required here to ensure routes like /:login_slug work
 		  config.plugins = [:community_engine, :white_list, :all]
 		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
+		  
+          config.action_controller.session = {
+            :key    => '_your_app_session',
+            :secret => 'secret'
+          }
 
 		  ... Your stuff here ...
 		end
@@ -76,7 +80,7 @@ Getting CommunityEngine Running
 8. Modify your routes.rb as indicated below:
 
 		# Add this after any of your own existing routes, but before the default rails routes: 
-		map.from_plugin :community_engine
+		map.routes_from_plugin :community_engine
 		# Install the default routes as the lowest priority.
 		map.connect ':controller/:action/:id'
 		map.connect ':controller/:action/:id.:format'     

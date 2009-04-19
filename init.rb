@@ -1,3 +1,10 @@
+#some more hacks
+
+Desert::Rails::RouteSet.module_eval do
+  alias_method :from_plugin, :routes_from_plugin  
+end
+
+
 #hack the desert plugin to allow generating plugin migrations
 Desert::Plugin.class_eval do
   def latest_migration
