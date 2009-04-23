@@ -353,7 +353,7 @@ class User < ActiveRecord::Base
   end
 
   def update_last_login
-    self.track_activity(:logged_in) if (self.last_login_at < Time.now.beginning_of_day)
+    self.track_activity(:logged_in) if self.last_login_at.nil? || (self.last_login_at < Time.now.beginning_of_day)
     self.update_attribute(:last_login_at, Time.now)
   end
   
