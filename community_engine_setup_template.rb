@@ -5,7 +5,7 @@ end
 
 def checkout_ce_branch(branch)
   inside 'vendor/plugins/community_engine' do
-    say "Checking out the desert branch"
+    say "Checking out the #{branch} branch"
     run "git checkout --track -b #{branch} origin/#{branch}"
   end  
 end
@@ -72,7 +72,7 @@ plugin 'community_engine', :git => ce_git_repo, :submodule => true
 # Initialize submodules
 git :submodule => "init" 
 git :submodule => "update"   
-checkout_ce_branch('desert')
+checkout_ce_branch('edge')
 
 # Add CE routes 
 route "map.routes_from_plugin :community_engine"
