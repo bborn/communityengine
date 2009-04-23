@@ -18,6 +18,13 @@ Requirements:
 
 Getting CommunityEngine Running
 --------------------------------
+
+SHORT VERSION: 
+
+        rails your_app_name -m http://www.communityengine.org/install_template.rb
+
+LONG VERSION:
+
 1. From the command line
 
 		$ rails site_name (create a rails app if you don't have one already)    
