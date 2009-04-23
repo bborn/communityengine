@@ -104,7 +104,7 @@ class PostsControllerTest < ActionController::TestCase
   end
   
   def test_should_not_destroy_post
-    login_as :quentin
+    login_as :aaron
     assert_difference Post, :count, 0 do
       delete :destroy, :id => posts(:funny_post), :user_id => users(:aaron).id
     end
@@ -168,9 +168,18 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal 1, posts(:funny_post).reload.view_count      
   end
+  
+  def test_should_not_view_another_users_manage_page
+    login_as :aaron
+    get :manage, :user_id => users(:quentin)
+    assert_redirected_to login_path
+  end
+  
     
   def create_post(options = {})
     post :create, {:user_id => users(:quentin).id, :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk) }.merge(options[:post] || {}) }.merge(options || {})
   end
+  
+  
   
 end

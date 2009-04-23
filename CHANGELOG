@@ -7,6 +7,8 @@
 * RedCloth no longer required
 * fixed swfupload to work with 2.3 and use Rack middleware
 * use Desert plugin for code mixing and plugin migrations instead of Engines
+* allow moderators/activity owners to delete activities
+* only track login activity once per day
 
 = 1.0.1
 * fixed error when cropping photos using file system storage

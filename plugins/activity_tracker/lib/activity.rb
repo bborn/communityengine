@@ -30,5 +30,11 @@ class Activity < ActiveRecord::Base
   def self.by(user)
     Activity.count(:all, :conditions => ["user_id = ?", user.id])
   end
+  
+  def can_be_deleted_by?(user)
+    return false if user.nil?
+    return false unless user.admin? || user.moderator? || self.user_id.eql?(user.id)
+    true
+  end
     
 end

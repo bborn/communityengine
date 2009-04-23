@@ -1,0 +1,1 @@
+page.select("##{dom_id(@activity)}").invoke('hide')
