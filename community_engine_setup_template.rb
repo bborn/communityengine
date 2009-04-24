@@ -67,6 +67,15 @@ config/database.yml
 db/*.sqlite3
 END
 
+# Install all gems
+gem 'desert', :lib => 'desert'
+gem 'rmagick', :lib => 'rmagick'  
+gem 'hpricot', :lib => 'hpricot'    
+gem 'htmlentities', :lib => 'htmlentities'      
+gem 'haml', :lib => 'htmlentities'        
+gem "aws-s3", :lib => "aws/s3" 
+rake('gems:install', :sudo => true)
+
 plugin 'community_engine', :git => ce_git_repo, :submodule => true
 
 # Initialize submodules
@@ -79,15 +88,6 @@ route "map.routes_from_plugin :community_engine"
  
 modify_environment_files
 add_application_yml(app_name)
-
-# Install all gems
-gem 'desert', :lib => 'desert'
-gem 'rmagick', :lib => 'rmagick'  
-gem 'hpricot', :lib => 'hpricot'    
-gem 'htmlentities', :lib => 'htmlentities'      
-gem 'haml', :lib => 'htmlentities'        
-gem "aws-s3", :lib => "aws/s3" 
-rake('gems:install', :sudo => true)
 
 in_root do
   run_ruby_script "script/generate plugin_migration"
