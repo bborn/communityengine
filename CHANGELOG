@@ -9,6 +9,7 @@
 * use Desert plugin for code mixing and plugin migrations instead of Engines
 * allow moderators/activity owners to delete activities
 * only track login activity once per day
+* allow anonymous commenters to choose whether they want to receive follow-up comment notices by e-mail
 
 = 1.0.1
 * fixed error when cropping photos using file system storage

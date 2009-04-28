@@ -28,10 +28,15 @@
         ="#{'E-mail'.l}:"
         %em="(#{"Required; won't be shown on site".l})"
       = f.text_field :author_email, :size => 35        
-      %label{"for"=>"comment[author_email"}
+      %br
+      %label 
+        =f.check_box :notify_by_email
+        =:notify_me_of_follow_ups_via_email.l
+      
+      %label{"for"=>"comment[author_url"}
         ="Web site (include http://):".l
         %em="(#{'Optional'.l})"
-      = f.text_field :author_url, :size => 35        
+      = f.text_field :author_url, :size => 35
 
     
     %p
