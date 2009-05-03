@@ -1308,25 +1308,25 @@ en:
   #en: you_can_browse_all_content_and_users_on: You can browse all content and users on
   you_can_browse_all_content_and_users_on: You can browse all content and users on
   #en: you_cant_delete_that_user: You can't delete that user.
-  you_cant_delete_that_user: You can't delete that user.
+  you_cant_delete_that_user: Du kan inte ta bort den användaren.
   #en: you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
-  you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
+  you_can_select_up_to_5_files_at_a_time: Du kan markera upp till fem filer åt gången.
   #en: you_could_tag_yourself: You could tag yourself
-  you_could_tag_yourself: You could tag yourself
+  you_could_tag_yourself: Sätt en etikett på dig själv
   #en: you_have: You have
-  you_have: You have
+  you_have: Du har
   #en: you_have_already_voted: You have already voted.
-  you_have_already_voted: You have already voted.
+  you_have_already_voted: Du har redan röstat.
   #en: you_have_created: You have created
-  you_have_created: You have created
+  you_have_created: Du har skapat
   #en: you_have_left: You have left
-  you_have_left: You have left
+  you_have_left: Du har kvar
   #en: you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
-  you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
+  you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: Du har inga urklipp. Använd bokmärkesfunktionen till höger om du vill lägga till några.
   #en: you_have_no_network_activity_yet: You have no network activity yet.
-  you_have_no_network_activity_yet: You have no network activity yet.
+  you_have_no_network_activity_yet: Det är ingen aktivitet i ditt nätverk ännu.
   #en: you_have_pending_friendship_requests: You have pending friendship requests.
-  you_have_pending_friendship_requests: You have pending friendship requests.
+  you_have_pending_friendship_requests: Du har utestående kompisförfrågningar.
   #en: you_have_uploaded: You have uploaded
   you_have_uploaded: Du har laddat upp
   #en: you_have_written: You have written
@@ -1334,24 +1334,24 @@ en:
   #en: you_last_logged_in_on: You last logged in on
   you_last_logged_in_on: Du loggade senast in
   #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
-  you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
+  you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "Använd din företagslogo eller logon för någon av dina produkter. "
   #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
-  you_must_vote_to_see_the_results: You must vote to see the resuts.
+  you_must_vote_to_see_the_results: Du måste rösta för att se resultaten.
   #en: your_about_text_goes_here: Your About Text Goes Here
-  your_about_text_goes_here: Your About Text Goes Here
+  your_about_text_goes_here: Din "Om"-text ska in här
   #en: your_changes_were_saved: Your changes were saved.
-  your_changes_were_saved: Your changes were saved.
+  your_changes_were_saved: Dina förändringar är sparade.
   #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
-  your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
+  your_password_has_been_reset_and_emailed_to_you: Ditt lösenord är återställt och är mejlat till dig.
   #en: your_post_was_deleted: Your post was deleted.
-  your_post_was_deleted: Your post was deleted.
+  your_post_was_deleted: Ditt inlägg är borttaget.
   #en: your_post_was_successfully_created: Your post was successfully created.
-  your_post_was_successfully_created: Your post was successfully created.
+  your_post_was_successfully_created: Ditt inlägg har skapats.
   #en: your_profile_photo: "Your profile photo:"
   your_profile_photo: "Din profilbild:"
   #en: your_username_was_emailed_to_you: Your username was emailed to you.
-  your_username_was_emailed_to_you: Your username was emailed to you.
+  your_username_was_emailed_to_you: Ditt användarnamn är mejlat till dig.
   #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
-  youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
+  youve_been_logged_out_hope_you_come_back_soon: Du är nu utloggad. Välkommen tillbaka snart igen!
   #en: zippostal_code: "ZIP/Postal code:"
-  zippostal_code: "ZIP/Postal code:"
+  zippostal_code: "Postnr:"
