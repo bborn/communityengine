@@ -180,7 +180,7 @@ en:
   #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
   cancel_and_go_back_to_my_posts: avbryt och gå tillbaka till mina inlägg
   #en: categories: Categories
-  categories: Kategories
+  categories: Kategorier
   #en: category: Category
   category: Kategori
   #en: category_was_successfully_created: Category was successfully created.
@@ -384,7 +384,7 @@ en:
   #en: email_this_story_to_friends: "E-mail this story to friends"
   email_this_story_to_friends: "Mejla den här berättelsen till kompisar"
   #en: email_to_friends: E-mail to friends
-  email_to_friends: Mejl till kompisar
+  email_to_friends: Mejla kompisar
   #en: end: end
   end: slut
   #en: end_date: End date
