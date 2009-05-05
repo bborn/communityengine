@@ -16,6 +16,11 @@ end
 
 namespace :community_engine do   
   
+  desc 'Mirror public assets'
+  task :mirror_assets => :environment do
+    #nothing
+  end
+  
   desc  'Assign admin role to user. Usage: rake community_engine:make_admin email=admin@foo.com'
   task :make_admin => :environment do
     email = ENV["email"]
