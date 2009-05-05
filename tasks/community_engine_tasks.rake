@@ -108,7 +108,7 @@ namespace :community_engine do
         schema_migration_table = ActiveRecord::Migrator.schema_migrations_table_name
           
         unless ActiveRecord::Base.connection.table_exists?(plugin_migration_table)
-          create_table(plugin_migration_table, :id => false) do |schema_migrations_table|
+          ActiveRecord::Migration.create_table(plugin_migration_table, :id => false) do |schema_migrations_table|
             schema_migrations_table.column :version, :string, :null => false
           end
         end
