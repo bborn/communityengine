@@ -26,4 +26,6 @@ Upgrading an Engines-based CE app to use the new Desert-based CE is easy:
 
 Notes
 =====
-If you have old migrations from the Engines-based CE, you may experience some problems if you try to migrate your db from 0. That's because the old plugin migrations used the `Engines.plugins["community_engine"].migrate(version_number)` format. You'll need to replace all those with `migrate_plugin(:community_engine, version_number)`, and also run `rake community_engine:db:migrate:upgrade_desert_plugin_migrations` to ensure your plugin migrations are listed in the correct table.
+If you have old migrations from the Engines-based CE, you may experience some problems if you try to migrate your db from version 0. That's because the old plugin migrations used the `Engines.plugins["community_engine"].migrate(version_number)` format. You'll need to replace all those with `migrate_plugin(:community_engine, version_number)`.
+
+Also, you need to run `rake community_engine:db:migrate:upgrade_desert_plugin_migrations` before you migrate any _new_ CE migrations, to ensure your plugin migrations are listed in the correct table. Please note that you'll have to do this (carefully, and with backups) in production as well. Please post any questions to the CE Google Group.
