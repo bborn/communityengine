@@ -301,10 +301,9 @@ module BaseHelper
 
   def search_user_posts_path(rss = false)
     options = params[:q].blank? ? {} : {:q => params[:q]}
-    prefix = rss ? 'formatted_' : ''
-    options[:format] = 'rss' if rss
+    options[:format] = :rss if rss
     [[:user, :user_id], [:forum, :forum_id]].each do |(route_key, param_key)|
-      return send("#{prefix}#{route_key}_sb_posts_path", options.update(param_key => params[param_key])) if params[param_key]
+      return send("#{route_key}_sb_posts_path", options.update(param_key => params[param_key])) if params[param_key]
     end
     options[:q] ? search_all_sb_posts_path(options) : send("all_#{prefix}sb_posts_path", options)
   end

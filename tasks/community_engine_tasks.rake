@@ -96,13 +96,16 @@ namespace :community_engine do
   
   namespace :db do
     namespace :migrate do 
+            
       desc 'For CE coming from version < 1.0.1 that stored plugin migration info in the normal Rails schema_migrations table. Move that info back into the plugin_schema_migrations table.'
       task :upgrade_desert_plugin_migrations => :environment do
         plugin_migration_table = Desert::PluginMigrations::Migrator.schema_migrations_table_name
         schema_migration_table = ActiveRecord::Migrator.schema_migrations_table_name
           
         unless ActiveRecord::Base.connection.table_exists?(plugin_migration_table)
-          abort "Cannot find plugin migration table #{plugin_migration_table}."
+          create_table(plugin_migration_table, :id => false) do |schema_migrations_table|
+            schema_migrations_table.column :version, :string, :null => false
+          end
         end
 
         def insert_new_version(plugin_name, version, table)
