@@ -25,4 +25,4 @@
   .yui-b.box
     %h3= :browse_content_by_tags.l
     - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
-      = link_to name, tag_url(name), :class => css_class
+      =link_to name, tag_url(URI.escape(name.to_s, /[\/.?#]/)), :class => css_class

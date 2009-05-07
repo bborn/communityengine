@@ -3,7 +3,10 @@ require_dependency File.dirname(__FILE__) + '/../../plugins/acts_as_taggable_on_
 class Tag < ActiveRecord::Base
   
   def to_param
-    URI.escape(self.name, /[\/.?#]/)    
+    param = URI.escape(self.name, /[\/.?#]/)    
+    #quote if needed
+    param = "\"#{param}\"" if param.match(TagList.delimiter)
+    param
   end
 
   def related_tags
