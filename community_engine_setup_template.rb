@@ -69,7 +69,7 @@ END
 
 # Install all gems
 gem 'desert', :lib => 'desert'
-gem 'rmagick', :lib => 'rmagick'  
+gem 'rmagick', :lib => 'RMagick'  
 gem 'hpricot', :lib => 'hpricot'    
 gem 'htmlentities', :lib => 'htmlentities'      
 gem 'haml', :lib => 'htmlentities'        
