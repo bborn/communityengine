@@ -21,7 +21,13 @@
         = @message.created_at.to_s(:long)
 
       %pre.message_body= auto_link(h (@message.body))
-
-      %ul.message_nav
-        - if @message.recipient.eql? @user
-          %li.sent= link_to :reply.l, new_user_message_path(@user, :reply_to => @message)
+      
+      -if @reply    
+        %ul.message_nav
+          - if @message.recipient.eql? @user
+            %li.sent= link_to :reply.l, new_user_message_path(@user, :reply_to => @message), :onclick => "$('reply').toggle(); $('message_body').activate().scrollTo();return false;"
+      
+        %form.MainForm#dummy_reply
+          %textarea{:onclick => "$('reply').toggle(); $('message_body').activate(); $('dummy_reply').hide(); $(this).blur(); return false;", :style => "height: 75px;"}
+      
+        #reply{:style => "display:none;"}=render :partial => 'form', :locals => {:message => @reply, :user => @user}          

@@ -1,6 +1,7 @@
 class TagList < Array
   cattr_accessor :delimiter
-  self.delimiter = ','
+  # self.delimiter = / |\+|,/
+  self.delimiter = /\+|,| /
   
   def initialize(*args)
     add(*args)
@@ -79,10 +80,13 @@ class TagList < Array
     def from(string)
       returning new do |tag_list|
         string = string.to_s.gsub('.', '').dup
-        
-        # Parse the quoted tags
-        string.gsub!(/"(.*?)"\s*#{delimiter}?\s*/) { tag_list << $1; "" }
-        string.gsub!(/'(.*?)'\s*#{delimiter}?\s*/) { tag_list << $1; "" }
+                
+        [
+        /\s*#{delimiter}\s*(['"])(.*?)\1\s*/, 
+        /^\s*(['"])(.*?)\1\s*#{delimiter}?/
+        ].each do |re|
+          string.gsub!(re) { tag_list << $2; "" }
+        end        
         
         tag_list.add(string.split(delimiter))
       end

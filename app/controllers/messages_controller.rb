@@ -1,8 +1,14 @@
 class MessagesController < BaseController
-  before_filter :find_user
+  before_filter :find_user, :except => [:auto_complete_for_username]
   before_filter :login_required
-  before_filter :require_ownership_or_moderator
+  before_filter :require_ownership_or_moderator, :except => [:auto_complete_for_username]
 
+  skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_username]
+  
+  def auto_complete_for_username
+    @users = User.find(:all, :conditions => [ 'LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%' ])
+    render :inline => "<%= auto_complete_result(@users, 'login') %>"
+  end
     
   def index
     if params[:mailbox] == "sent"
@@ -14,19 +20,14 @@ class MessagesController < BaseController
   
   def show
     @message = Message.read(params[:id], current_user)
+    @reply = Message.new_reply(@user, @message, params)    
   end
   
   def new
-    @message = Message.new(params[:message])
-
     if params[:reply_to]
-      @reply_to = @user.received_messages.find(params[:reply_to])
-      unless @reply_to.nil?
-        @message.to = @reply_to.sender.login
-        @message.subject = "Re: #{@reply_to.subject}"
-        @message.body = "\n\n*Original message*\n\n #{@reply_to.body}"
-      end
+      in_reply_to = Message.find_by_id(params[:reply_to])
     end
+    @message = Message.new_reply(@user, in_reply_to, params)
   end
   
   def create
