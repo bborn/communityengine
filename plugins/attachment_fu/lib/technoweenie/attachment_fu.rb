@@ -369,7 +369,7 @@ module Technoweenie # :nodoc:
 
       # Writes the given data to a Tempfile and adds it to the collection of temp files.
       def set_temp_data(data)
-        temp_paths.unshift write_to_temp_file data unless data.nil?
+        temp_paths.unshift write_to_temp_file(data) unless data.nil?
       end
 
       # Copies the given file to a randomly named Tempfile.
