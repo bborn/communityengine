@@ -24,7 +24,10 @@ class MessagesController < BaseController
   end
   
   def new
-    @message = Message.new_reply(@user, params)
+    if params[:reply_to]
+      in_reply_to = Message.find_by_id(params[:reply_to])
+    end
+    @message = Message.new_reply(@user, in_reply_to)
   end
   
   def create

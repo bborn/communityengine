@@ -6,7 +6,6 @@
     %label{:for => 'message_to'} 
       =:to.l
       %em= "(" + :type_a_username.l + ")"
-    =# f.text_field :to
     = text_field_tag 'message[to]', @message.to, {:autocomplete => "off", :size => 35, :id => "message_to"}
     .auto_complete#message_to_auto_complete
       = auto_complete_field 'message_to', {:url => auto_complete_for_username_user_messages_path(@user)}
