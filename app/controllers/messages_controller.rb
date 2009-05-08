@@ -20,7 +20,7 @@ class MessagesController < BaseController
   
   def show
     @message = Message.read(params[:id], current_user)
-    @reply = Message.new_reply(@user, {:reply_to => @message.id})    
+    @reply = Message.new_reply(@user, @message)    
   end
   
   def new

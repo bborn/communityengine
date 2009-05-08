@@ -18,20 +18,19 @@ class Message < ActiveRecord::Base
     UserNotifier.deliver_message_notification(self)
   end
   
-  def self.new_reply(user, params = {})
+  def self.new_reply(sender, in_reply_to, params = {})
     message = new(params[:message])
 
-    if params[:reply_to]
-      reply_to = user.received_messages.find(params[:reply_to])
-      unless reply_to.nil?
-        message.reply_to = reply_to
-        message.to = reply_to.sender.login
-        message.subject = "Re: #{reply_to.subject}"
-        message.body = "\n\n*Original message*\n\n #{reply_to.body}"
-      end
+    if in_reply_to.recipient == sender #can only reply to messages you received
+      message.reply_to = in_reply_to
+      message.to = in_reply_to.sender.login
+      message.subject = "Re: #{in_reply_to.subject}"
+      message.body = "\n\n*Original message*\n\n #{in_reply_to.body}"
+      message.sender = sender
+      message
+    else
+      nil
     end
-    
-    message
   end
   
 end
