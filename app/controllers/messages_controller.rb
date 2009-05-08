@@ -20,14 +20,14 @@ class MessagesController < BaseController
   
   def show
     @message = Message.read(params[:id], current_user)
-    @reply = Message.new_reply(@user, @message)    
+    @reply = Message.new_reply(@user, @message, params)    
   end
   
   def new
     if params[:reply_to]
       in_reply_to = Message.find_by_id(params[:reply_to])
     end
-    @message = Message.new_reply(@user, in_reply_to)
+    @message = Message.new_reply(@user, in_reply_to, params)
   end
   
   def create
