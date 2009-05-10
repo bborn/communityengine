@@ -1,5 +1,6 @@
 class CommentsController < BaseController
   before_filter :login_required, :except => [:index]
+  before_filter :admin_or_moderator_required, :only => [:delete_selected]
 
   if AppConfig.allow_anonymous_commenting
     skip_before_filter :verify_authenticity_token, :only => [:create]   #because the auth token might be cached anyway
@@ -111,6 +112,19 @@ class CommentsController < BaseController
       }
     end
   end
+  
+  def delete_selected
+    if request.post?
+      if params[:delete]
+        params[:delete].each { |id|
+          comment = Comment.find(id)
+          comment.destroy if comment.can_be_deleted_by(current_user)
+        }
+      end
+      flash[:notice] = :comments_deleted.l                
+      redirect_to admin_comments_path
+    end
+  end  
 
 
   private

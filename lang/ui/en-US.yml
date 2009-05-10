@@ -239,6 +239,8 @@ en:
   comment_was_successfully_created: Comment was successfully created.
   #en: comments: Comments
   comments: Comments
+  #en: comments_deleted: Comments deleted
+  comments_deleted: Comments deleted
   #en: comments_rss: Comments RSS
   comments_rss: Comments RSS
   #en: community_tagline: CommunityEngine Rocks!

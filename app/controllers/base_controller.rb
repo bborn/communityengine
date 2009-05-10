@@ -77,6 +77,11 @@ class BaseController < ApplicationController
     current_user && current_user.admin? ? true : access_denied
   end
   
+  def admin_or_moderator_required
+    current_user && (current_user.admin? || current_user.moderator?) ? true : access_denied
+  end
+  
+  
   def find_user
     if @user = User.active.find(params[:user_id] || params[:id])
       @is_current_user = (@user && @user.eql?(current_user))
