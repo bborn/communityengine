@@ -17,7 +17,6 @@ end
 forum_home '/forums', :controller => 'forums', :action => 'index'
 resources :topics
 
-
 connect 'sitemap.xml', :controller => "sitemap", :action => "index", :format => 'xml'
 connect 'sitemap', :controller => "sitemap", :action => "index"
 
