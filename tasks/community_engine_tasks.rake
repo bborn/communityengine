@@ -16,6 +16,11 @@ end
 
 namespace :community_engine do   
   
+  desc 'Mirror public assets'
+  task :mirror_assets => :environment do
+    #nothing
+  end
+  
   desc  'Assign admin role to user. Usage: rake community_engine:make_admin email=admin@foo.com'
   task :make_admin => :environment do
     email = ENV["email"]
@@ -28,13 +33,7 @@ namespace :community_engine do
       puts "There is no user with the e-mail '#{email}'."
     end
   end
-    
-  desc 'Move the community engine assets to application public directory'
-  task :mirror_public_assets => :environment do
-    # actually, no need to do anything here, the mere act of running rake mirrors the plugin assets for everything
-    # Engines::Assets.mirror_files_for(Rails.plugins[:community_engine])
-  end
-  
+      
   desc 'Test the community_engine plugin.'
   Rake::TestTask.new(:test) do |t|         
     t.libs << 'lib'
@@ -99,76 +98,53 @@ namespace :community_engine do
       end
     end
   end
+  
+  namespace :db do
+    namespace :migrate do 
+            
+      desc 'For CE coming from version < 1.0.1 that stored plugin migration info in the normal Rails schema_migrations table. Move that info back into the plugin_schema_migrations table.'
+      task :upgrade_desert_plugin_migrations => :environment do
+        plugin_migration_table = Desert::PluginMigrations::Migrator.schema_migrations_table_name
+        schema_migration_table = ActiveRecord::Migrator.schema_migrations_table_name
+          
+        unless ActiveRecord::Base.connection.table_exists?(plugin_migration_table)
+          ActiveRecord::Migration.create_table(plugin_migration_table, :id => false) do |schema_migrations_table|
+            schema_migrations_table.column :version, :string, :null => false
+            schema_migrations_table.column :plugin_name, :string, :null => false            
+          end
+        end
 
-  desc 'load a bunch of test users RAILS_ENV= NUM_USERS='
-  task :load_test_users => [:environment]  do
-    ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-    num = ENV['NUM_USERS'] || 10000
-    puts "-- LOADING NUM_USERS: #{num}"
-    (0..num.to_i).each do |n|
-       printf "#{n}." if (n.remainder(100) == 0)
-       u= User.new(
-         :login=>"#{Time.now.to_i}.#{n}",
-         :password=>"standard",
-         :password_confirmation=>"standard",
-         :activated_at => Time.now.to_s(:db)
-       )
+        def insert_new_version(plugin_name, version, table)
+          # Check if the row already exists for some reason - maybe run this task more than once.
+          return if ActiveRecord::Base.connection.select_rows("SELECT * FROM #{table} WHERE version = #{version} AND plugin_name = '#{plugin_name}'").size > 0
 
-       u.email = "#{Time.now.to_i}.#{n}@example.com"
-       u.save!
+          puts "Inserting new version #{version} for plugin #{plugin_name} in #{table}."
+          ActiveRecord::Base.connection.insert("INSERT INTO #{table} (plugin_name, version) VALUES ('#{plugin_name}', #{version.to_i})")
+        end
+        
+        def remove_old_version(plugin_name, version, table)
+          puts "Removing old version #{version} for plugin #{plugin_name} in #{table}."          
+          ActiveRecord::Base.connection.execute("DELETE FROM #{table} WHERE version = '#{version}-#{plugin_name}'")
+        end
+
+        existing_migrations = ActiveRecord::Base.connection.select_rows("SELECT * FROM #{schema_migration_table}").uniq
+        migrations = {}
+        existing_migrations.flatten.each do |m|
+          plugin_version, plugin_name = m.split('-')
+          next if plugin_name.blank?
+          migrations[plugin_name] ||= []
+          migrations[plugin_name] << plugin_version
+        end
+        
+        migrations.each do |plugin_name, versions|
+          versions.each do |version|
+            insert_new_version(plugin_name, version, plugin_migration_table)
+            remove_old_version(plugin_name, version, schema_migration_table)
+          end
+        end
+
+      end
     end
-    puts "" 
-  end
-
-  desc 'load a bunch of test posts RAILS_ENV= NUM_USERS='
-  task :load_test_posts=>[:environment]  do
-    ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-    users = User.find(:all, :limit => 10)
-    categories = Category.find(:all)
-
-    num = ENV['NUM_POSTS'] || 20000
-    puts "-- LOADING NUM_POSTS: #{num}"
-
-    (0..num.to_i).each do |n|
-       printf "#{n}." if (n.remainder(1000) == 0)
-
-       p = Post.new(
-       :title=>"This post is Awesome! #{n}",
-       :raw_post=> "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. body",
-       :post=> "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. body",
-       :user => users[rand(users.size-1)],
-       :category => categories[rand(categories.size-1)]
-          )
-          p.save!
-    end
-    puts "" 
-  end
-
-  desc 'load a bunch of test posts RAILS_ENV= NUM_USERS='
-  task :load_test_post_comments=>[:environment]  do
-    ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-    users = User.find(:all)
-    posts = Post.find(:all)
-
-    num = ENV['NUM_COMMENTS'] || 40000
-    puts "-- LOADING NUM_COMMENTS: #{num}"
-
-    (0..num.to_i).each do |n|
-       printf "#{n}." if (n.remainder(1000) == 0)
-
-       commentable = posts[rand(posts.size-1)]
-       user = users[rand(users.size-1)]
-
-       c = Comment.new(
-       :comment=> "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Duis aute irure dolor in reprehenderit cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat ",
-       :commentable => commentable,
-       :commentable_type => commentable.class.to_s,
-       :recipient => commentable.owner,
-       :user => user
-          )
-          c.save!
-    end
-    puts "" 
   end
 
 end

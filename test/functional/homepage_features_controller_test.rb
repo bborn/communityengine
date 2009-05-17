@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'homepage_features_controller'
 
-# Re-raise errors caught by the controller.
-class HomepageFeaturesController; def rescue_action(e) raise e end; end
-
-class HomepageFeaturesControllerTest < Test::Unit::TestCase
+class HomepageFeaturesControllerTest < ActionController::TestCase
   fixtures :all
 
   def setup

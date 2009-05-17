@@ -10,7 +10,7 @@
 
 .box
   %p.subtitle
-    = feed_icon_tag @forum.name, formatted_forum_sb_posts_path(@forum, :rss)
+    = feed_icon_tag @forum.name, forum_sb_posts_path(@forum, :format => :rss)
     = pluralize @forum.topics_count, 'topic'.l 
     , 
     = pluralize @forum.sb_posts_count, 'post'.l

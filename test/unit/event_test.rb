@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class EventTest < Test::Unit::TestCase
+class EventTest < ActiveSupport::TestCase
   
   def test_should_be_invalid_without_name
     assert_no_difference Event, :count do

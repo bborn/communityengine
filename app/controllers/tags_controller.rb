@@ -25,7 +25,7 @@ class TagsController < BaseController
   
   def show
     tag_names = URI::decode(params[:id])
-
+    
     @tags = Tag.find(:all, :conditions => [ 'name IN (?)', TagList.from(tag_names) ] )
     if @tags.nil? || @tags.empty?
       flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_names)

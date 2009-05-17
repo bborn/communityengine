@@ -1,7 +1,10 @@
-%dl{:class => (activity.item_type && activity.item_type.humanize.downcase) }
+%dl{:class => (activity.item_type && activity.item_type.humanize.downcase), :id => dom_id(activity) }
   %dt
     =time_ago_in_words_or_date(activity.created_at)
   %dd
+    -if activity.can_be_deleted_by?(current_user)
+      =link_to_remote image_tag("icons/delete.png", :plugin => 'community_engine'), :url => activity_path(activity), :method => :delete, :html => {:class => 'right'}
+  
     =link_to activity.user.login.capitalize, user_path(activity.user.login_slug)  
     - if activity.item
       - case activity.item_type

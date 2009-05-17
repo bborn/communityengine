@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class CountryTest < Test::Unit::TestCase
+class CountryTest < ActiveSupport::TestCase
   fixtures :countries, :metro_areas
 
   def test_should_find_united_states

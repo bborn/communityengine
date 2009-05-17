@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class HomepageFeatureTest < Test::Unit::TestCase
+class HomepageFeatureTest < ActiveSupport::TestCase
   fixtures :homepage_features
 
   # Replace this with your real tests.

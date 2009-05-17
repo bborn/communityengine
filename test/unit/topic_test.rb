@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TopicTest < Test::Unit::TestCase
+class TopicTest < ActiveSupport::TestCase
   all_fixtures
 
   def test_save_should_update_post_id_for_posts_belonging_to_topic
@@ -53,7 +53,7 @@ class TopicTest < Test::Unit::TestCase
     old = counts.call
     t = forums(:rails).topics.build(:title => 'foo')
     t.user = users(:aaron)
-    assert_valid t
+    assert t.valid?
     t.save
     assert_equal 0, t.sticky
     [forums(:rails), users(:aaron)].each &:reload

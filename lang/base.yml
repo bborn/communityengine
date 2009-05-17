@@ -111,6 +111,7 @@
 #en: comment_save_error: Your comment couldn't be saved.
 #en: comment_was_successfully_created: Comment was successfully created.
 #en: comments: Comments
+#en: comments_deleted: Comments deleted
 #en: comments_rss: Comments RSS
 #en: community_tagline: CommunityEngine Rocks!
 #en: compose: Compose
@@ -368,6 +369,7 @@
 #en: no_profile_photo: "No profile photo?"
 #en: no_recent_activity: No recent activity
 #en: no_tags: No tags
+#en: notify_me_of_follow_ups_via_email: Notify me of follow ups via e-mail  
 #en: notify_email_updates: Notify of community news
 #en: notify_of_comments: Notify of comments
 #en: notify_of_friend_requests: Notify of friend requests

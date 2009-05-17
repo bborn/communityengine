@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'sitemap_controller'
 
-# Re-raise errors caught by the controller.
-class SitemapController; def rescue_action(e) raise e end; end
-
-class SitemapControllerTest < Test::Unit::TestCase
+class SitemapControllerTest < ActionController::TestCase
   def setup
     @controller = SitemapController.new
     @request    = ActionController::TestRequest.new

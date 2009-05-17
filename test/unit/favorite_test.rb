@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FavoriteTest < Test::Unit::TestCase
+class FavoriteTest < ActiveSupport::TestCase
   fixtures :clippings, :users, :roles
   
   def setup

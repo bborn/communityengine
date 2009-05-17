@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FriendshipTest < Test::Unit::TestCase
+class FriendshipTest < ActiveSupport::TestCase
   fixtures :friendships, :users, :roles, :friendship_statuses 
 
   def test_user_and_friend_can_not_be_same

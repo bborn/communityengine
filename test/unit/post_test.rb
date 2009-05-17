@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'hpricot'
     
-class PostTest < Test::Unit::TestCase
+class PostTest < ActiveSupport::TestCase
   fixtures :posts, :users, :comments, :roles
 
   def setup

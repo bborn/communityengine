@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'moderators_controller'
 
-# Re-raise errors caught by the controller.
-class ModeratorsController; def rescue_action(e) raise e end; end
-
-class ModeratorsControllerTest < Test::Unit::TestCase
+class ModeratorsControllerTest < ActionController::TestCase
   all_fixtures
   def setup
     @controller = ModeratorsController.new

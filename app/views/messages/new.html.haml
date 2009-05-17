@@ -6,22 +6,5 @@
       %h3= :compose_message.l
       
       = error_messages_for :message
-      - form_for @message, :url => user_messages_path(@user), :html => {:class => "MainForm"} do |f|
-
-        -if @reply_to
-          =f.hidden_field :to
-        -else
-          %label{:for => 'message_to'} 
-            =:to.l
-            %em= "(" + :type_a_username.l + ")"
-          = f.text_field :to
-
-
-        %label{:for => 'message_subject'}= :subject.l + ":"
-        = f.text_field :subject
-
-        %label{:for => "message_body"}= :message.l + ":"
-        = f.text_area :body
-
-        %p
-          = submit_tag :send.l
+      
+      =render :partial => 'form', :locals => {:message => @message, :user => @user}

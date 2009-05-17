@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class AssetTest < Test::Unit::TestCase
+class AssetTest < ActiveSupport::TestCase
   fixtures :clippings, :users, :roles
   
   def teardown

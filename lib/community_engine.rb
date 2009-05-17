@@ -10,9 +10,9 @@ module CommunityEngine
   class << self
 
     def check_for_pending_migrations
-      newest_ce_migration = Engines.plugins[:community_engine].latest_migration
+      newest_ce_migration = Desert::Manager.find_plugin('community_engine').latest_migration
       current_ce_version  = guess_current_ce_version
-
+    
       pending = newest_ce_migration - current_ce_version
       if pending > 0
         puts "---"        
@@ -38,3 +38,5 @@ module CommunityEngine
 end
 
 ActiveRecord::Base.send(:extend, CommunityEngine::ActiveRecordExtensions)
+
+require 'rails_asset_extensions'

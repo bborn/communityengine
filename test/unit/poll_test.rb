@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class PollTest < Test::Unit::TestCase
+class PollTest < ActiveSupport::TestCase
 
   def test_should_be_invalid_without_question
     p = Poll.new(:question => nil)

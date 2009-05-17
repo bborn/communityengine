@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class InvitationTest < Test::Unit::TestCase
+class InvitationTest < ActiveSupport::TestCase
   fixtures :invitations, :users, :roles
 
   def test_email_addresses_validation

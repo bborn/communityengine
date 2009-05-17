@@ -68,7 +68,7 @@ class SbPostsController < BaseController
       format.html do
         redirect_to forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => @post.dom_id, :page => params[:page] || '1')
       end
-      format.xml { head :created, :location => formatted_sb_user_post_url(:forum_id => params[:forum_id], :topic_id => params[:topic_id], :id => @post, :format => :xml) }
+      format.xml { head :created, :location => sb_user_post_url(:forum_id => params[:forum_id], :topic_id => params[:topic_id], :id => @post, :format => :xml) }
     end
   rescue ActiveRecord::RecordInvalid
     flash[:bad_reply] = :please_post_something_at_least.l
@@ -127,7 +127,7 @@ class SbPostsController < BaseController
     
     def render_posts_or_xml(template_name = action_name)
       respond_to do |format|
-        format.html { render :action => "#{template_name}.html.erb" }
+        format.html { render :action => "#{template_name}" }
         format.rss  { render :action => "#{template_name}.xml.builder", :layout => false }
         format.xml  { render :xml => @posts.to_xml }
       end

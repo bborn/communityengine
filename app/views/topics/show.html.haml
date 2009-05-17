@@ -48,7 +48,7 @@
         $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
 
   %p.subtitle
-    = feed_icon_tag @topic.title, formatted_forum_topic_path(@forum, @topic, :rss)
+    = feed_icon_tag @topic.title, forum_topic_path(@forum, @topic, :format => :rss)
     = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
     = ", Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
   

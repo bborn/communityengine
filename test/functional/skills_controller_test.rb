@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'skills_controller'
 
-# Re-raise errors caught by the controller.
-class SkillsController; def rescue_action(e) raise e end; end
-
-class SkillsControllerTest < Test::Unit::TestCase
+class SkillsControllerTest < ActionController::TestCase
   fixtures :skills, :users, :roles
 
   def setup

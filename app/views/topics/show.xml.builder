@@ -10,7 +10,5 @@ xml.rss "version" => "2.0",
     xml.ttl "60"
     xml.tag! "atom:link", :rel => 'search', :type => 'application/opensearchdescription+xml', :href => "http://#{request.host_with_port}/open_search.xml"
     xml.description @topic.body
-
-    render :partial => "layouts/post", :collection => @posts, :locals => {:xm => xml}
   end
 end

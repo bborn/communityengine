@@ -1,0 +1,13 @@
+class <%= class_name %> < ActiveRecord::Migration
+  def self.up
+  <%- plugins.each do |plugin| -%>
+    migrate_plugin(:<%= plugin.name %>, <%= new_versions[plugin.name] %>)  
+  <%- end -%>
+  end
+
+  def self.down
+  <%- plugins.each do |plugin| -%>
+    migrate_plugin(<%= current_versions[plugin.name] %>, :<%= plugin.name %>)    
+  <%- end -%>
+  end
+end

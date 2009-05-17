@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'posts_controller'
 
-# Re-raise errors caught by the controller.
-class PostsController; def rescue_action(e) raise e end; end
-
-class PostsControllerTest < Test::Unit::TestCase
+class PostsControllerTest < ActionController::TestCase
   fixtures :posts, :users, :categories, :contests, :roles
 
   def setup
@@ -108,7 +104,7 @@ class PostsControllerTest < Test::Unit::TestCase
   end
   
   def test_should_not_destroy_post
-    login_as :quentin
+    login_as :aaron
     assert_difference Post, :count, 0 do
       delete :destroy, :id => posts(:funny_post), :user_id => users(:aaron).id
     end
@@ -172,9 +168,18 @@ class PostsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_equal 1, posts(:funny_post).reload.view_count      
   end
+  
+  def test_should_not_view_another_users_manage_page
+    login_as :aaron
+    get :manage, :user_id => users(:quentin)
+    assert_redirected_to login_path
+  end
+  
     
   def create_post(options = {})
     post :create, {:user_id => users(:quentin).id, :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk) }.merge(options[:post] || {}) }.merge(options || {})
   end
+  
+  
   
 end

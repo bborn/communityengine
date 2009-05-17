@@ -1,16 +1,17 @@
 .box
   %h3=:admin.l
 
-  %ul.list.checks
-    %li= link_to :features.l, homepage_features_path
+  %ul.list
+    %li= link_to_unless_current :features.l, homepage_features_path
     - if feature_enabled?('categories')
-      %li= link_to :categories.l, categories_path
+      %li= link_to_unless_current :categories.l, categories_path
     - if feature_enabled?('contests')
-      %li= link_to :contests.l, contests_path
-    %li= link_to :metro_areas.l, metro_areas_path
+      %li= link_to_unless_current :contests.l, contests_path
+    %li= link_to_unless_current :metro_areas.l, metro_areas_path
     - if feature_enabled?('skills')
-      %li= link_to :skills.l, new_skill_path 
+      %li= link_to_unless_current :skills.l, new_skill_path 
     - if feature_enabled?('events')
-      %li= link_to :events.l, events_path
-    %li= link_to :statistics.l, statistics_path
-    %li= link_to :ads.l, ads_path 
+      %li= link_to_unless_current :events.l, events_path
+    %li= link_to_unless_current :statistics.l, statistics_path
+    %li= link_to_unless_current :ads.l, ads_path 
+    %li= link_to_unless_current :comments.l, admin_comments_path 

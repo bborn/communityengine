@@ -351,7 +351,8 @@ class User < ActiveRecord::Base
   end
 
   def update_last_login
-     self.update_attribute(:last_login_at, Time.now)
+    self.track_activity(:logged_in) if self.last_login_at.nil? || (self.last_login_at && self.last_login_at < Time.now.beginning_of_day)
+    self.update_attribute(:last_login_at, Time.now)
   end
 
   def add_offerings(skills)

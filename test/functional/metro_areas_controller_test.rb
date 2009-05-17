@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'metro_areas_controller'
 
-# Re-raise errors caught by the controller.
-class MetroAreasController; def rescue_action(e) raise e end; end
-
-class MetroAreasControllerTest < Test::Unit::TestCase
+class MetroAreasControllerTest < ActionController::TestCase
   fixtures :metro_areas, :users, :countries, :roles
 
   def setup
