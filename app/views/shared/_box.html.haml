@@ -1,7 +1,3 @@
-- content_class ||= ''
-- box_class     ||= ''
-
--box do 
-:class => box_class}
-  %div{:class => "content #{content_class}"}
+.box{html_options}
+  %div{:class => "#{content_class}"}
     =body
