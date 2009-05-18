@@ -13,16 +13,16 @@
 
 
 .yui-b
-  .box
+  -box do 
     = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
 
   - if @user.description
-    #about_me.box
+    -box :id => "about_me" do
       %h3
         =:about_me.l
       %p= @user.description
 
-  #friends.box.alt
+  -box :class => 'alt', :id => 'friends' do
     %h3
       =:my_friends.l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
@@ -38,7 +38,7 @@
         =link_to :see_all.l, accepted_user_friendships_path(@user)
 
   - unless @users_comments.empty?
-    #photo_comments.yui-g.box.alt
+    -box :class => 'yui-g alt', :id => 'photo_comments' do
       %h3=:my_recent_comments.l
       - @users_comments.each do |comment|
         %dl.vcard
@@ -55,7 +55,7 @@
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
 
   - unless @photo_comments.empty?
-    #photo_comments.yui-g.box.alt
+    -box :class => 'yui-g alt', :id => 'photo_comments' do
       %h3=:photo_comments.l
       - @photo_comments.each do |comment|
         %dl.vcard
@@ -70,11 +70,11 @@
 #yui-main
   .yui-b
     - if @photos.empty? and @recent_posts.empty?
-      .box.alt.first_alt
+      -box :class => "alt first_alt" do 
         %h3= :small_profile.l :user => @user.login
 
     - unless @photos.empty?
-      #photos.box
+      -box :id => "photos" do
         %h3=:photos.l
         - @photos.each do |photo|
           = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
@@ -83,20 +83,20 @@
         = "#{link_to(:add_a_photo.l, new_user_photo_path(@user))}" if @is_current_user
 
     - unless @recent_posts.empty?
-      #posts.box
+      -box :id => "posts" do
         %h3=:recent_blog_posts.l
         = render :partial => 'posts/post', :collection => @recent_posts
         %h6.right.all= link_to :view_my_blog.l, user_posts_path(@user)
 
     - unless @clippings.empty?
-      #clippings.box
+      -box :id => "clippings" do
         %h3=:clippings.l
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(@user, clipping)}"}
             %img.clipping.polaroid{"src"=>"#{h clipping.image_uri(:thumb)}", :width => '100', :height => '100'}
         %h6.all.right= link_to :view_all_my_clippings.l, user_clippings_path(@user)
 
-    #comments.box.hfeed.comments
+    -box :class => 'hfeed comments', :id => 'comments' do
       %h3=:profile_comments.l
       %h2=:add_your_comment.l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @user}

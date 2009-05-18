@@ -7,7 +7,7 @@
 
 #yui-main
   .yui-b
-    .box.hfeed
+    -box :class => 'hfeed' do  
       %h3=:users_blog.l :user=>  @user.login
       .hentry.main
         %h4.entry-title= link_to @post.title, user_post_path(@user, @post), :rel => 'bookmark'
@@ -51,7 +51,7 @@
                 %li=link_to( t.name, tag_url(t), :rel => 'tag')
         / entry-content
       / ends hentry
-    #comments.box.hfeed.comments
+    -box :class => 'hfeed comments', :id => 'comments' do      
       %h3= :post_comments.l 
       %h2= :add_your_comment.l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @post}
@@ -66,14 +66,14 @@
   =render :partial => 'author_profile', :locals => {:user => @user}
 
   - unless @related.empty?
-    .box.alt
+    -box :class => 'alt' do
       %h3=:related_posts.l
       %ul.list.page
         - @related.each do |post|
           %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)      
 
   - unless @popular_posts.empty?
-    .box.alt
+    -box :class => 'alt' do
       %h3=:popular_posts.l
       %ul.list.page
         - @popular_posts.each do |post|

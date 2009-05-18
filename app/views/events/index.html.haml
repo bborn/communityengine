@@ -2,16 +2,16 @@
 
 .yui-b
   - if @is_admin_user
-    .box.alt.first_alt
+    -box :class => "alt first_alt" do 
       = link_to :post_an_event.l, new_event_path
 
-  .box
+  -box do 
     %h3= :events.l
     = :find_out_where_to_be_and_when_to_be_there.l
 
 #yui-main
   .yui-b
-    .box
+    -box do 
     
       .pagination=paginating_links @events if @events.page_count > 1      
 

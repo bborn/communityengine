@@ -1,5 +1,5 @@
 .yui-b
-  .box
+  -box do 
     %h3= :what_are_tags.l
     %p
       %strong= :tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on.l+" #{AppConfig.community_name}."
@@ -10,7 +10,7 @@
       = link_to :faq.l, faq_url
       =:page.l
       
-  .box.alt
+  -box :class => "alt" do 
     %h3= :search.l
     %form.MainForm{"action"=>"/search/tags/", "method"=>"get"}
       %label= :tag_name.l+":"
@@ -22,7 +22,7 @@
 
 
 #yui-main
-  .yui-b.box
+  -box :class => "yui-b" do
     %h3= :browse_content_by_tags.l
     - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
       =link_to name, tag_url(URI.escape(name.to_s, /[\/.?#]/)), :class => css_class

@@ -51,13 +51,12 @@ module BaseHelper
     concat('<br class="clear" /><div class="box_bottom"></div></div>')
   end
   
-  def block_to_partial(partial_name, options = {}, &block)
-    options.merge!(:body => capture(&block))
-    concat(render(:partial => partial_name, :locals => options), block.binding)
+  def block_to_partial(partial_name, html_options = {}, &block)
+    concat(render(:partial => partial_name, :locals => {:body => capture(&block), :html_options => html_options}))
   end
 
-  def box(options = {}, &block)
-    block_to_partial('shared/box', options, &block)
+  def box(html_options = {}, &block)
+    block_to_partial('shared/box', html_options, &block)
   end  
   
   def tag_cloud(tags, classes)

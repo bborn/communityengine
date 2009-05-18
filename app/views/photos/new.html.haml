@@ -1,15 +1,16 @@
 .yui-b
-  .box
+  -box do 
     %h3 Tips
     %p 
       =:photo_tip_1.l
     %p 
       =:photo_tip_2.l
 
-  .box.alt= link_to "&raquo; " + :back_to_my_photos.l, user_photos_path(@user)
+  -box :class => 'alt' do
+    = link_to "&raquo; " + :back_to_my_photos.l, user_photos_path(@user)
 
 #yui-main
-  #single_upload.yui-b.box
+  -box :id => "single_upload.yui-b" do
     %h3 
       =:new_photo.l
 
@@ -43,7 +44,7 @@
         = :or.l
         = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)
 
-  #multiple_upload.yui-b.box{"style"=>"display:none;"}
+  -box :class => 'yui-b', :id => 'multiple_upload', :style => "display:none;" do
     %h3 
       =:new_photos_multiple_uploader.l
 
