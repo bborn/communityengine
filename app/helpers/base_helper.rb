@@ -50,8 +50,16 @@ module BaseHelper
     yield(content)
     concat('<br class="clear" /><div class="box_bottom"></div></div>')
   end
+  
+  def block_to_partial(partial_name, options = {}, &block)
+    options.merge!(:body => capture(&block))
+    concat(render(:partial => partial_name, :locals => options), block.binding)
+  end
 
-
+  def box(options = {}, &block)
+    block_to_partial('shared/box', options, &block)
+  end  
+  
   def tag_cloud(tags, classes)
     max, min = 0, 0
     tags.each { |t|
