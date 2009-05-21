@@ -1,5 +1,4 @@
 CommunityEngine [v1.0.3]
-================
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
