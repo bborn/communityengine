@@ -1,4 +1,4 @@
-CommunityEngine [v1.0.0]
+CommunityEngine [v1.0.0]: Modifications to  edge branch
 ================
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
