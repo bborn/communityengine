@@ -6,8 +6,8 @@ class StatisticsController < BaseController
   def index
     @total_users = User.count(:conditions => ['activated_at IS NOT NULL'])
     @unactivated_users = User.count(:conditions => ['activated_at IS NULL'])
-    @yesterday_new_users = find_new_users(1.day.ago.midnight, Time.today.midnight)
-    @today_new_users = find_new_users(Time.today.midnight, Time.today.tomorrow.midnight)  
+    @yesterday_new_users = find_new_users(1.day.ago.midnight, Date.today.midnight)
+    @today_new_users = find_new_users(Date.today.midnight, Date.today.tomorrow.midnight)  
 #    @active_users_count = Activity.find(:all, :group => "user_id", :conditions => ["created_at > ?", 1.month.ago]).size
     @active_users_count = Activity.count(:all, :group => "user_id", :conditions => ["created_at > ?", 1.month.ago]).size
 
