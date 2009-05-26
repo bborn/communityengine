@@ -266,7 +266,11 @@ module BaseHelper
     	end
     end
     
-    content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + (links || '')
+    if options[:show_info].eql?(false)
+      (links || '')
+    else
+      content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + (links || '')
+    end
   end  
   
   def pagination_info_for(paginator, options = {})

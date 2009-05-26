@@ -1,7 +1,11 @@
-#Reload CE in development
-if RAILS_ENV == 'development'
-  ActiveSupport::Dependencies.load_once_paths = ActiveSupport::Dependencies.load_once_paths.select {|path| (path =~ /(community_engine)/).nil? }  
-end
+#reload CE in development
+config.after_initialize do
+  if RAILS_ENV == 'development'
+    ActiveSupport::Dependencies.load_once_paths = ActiveSupport::Dependencies.load_once_paths.select {|path| (path =~ /(community_engine)/).nil? }  
+  end
+end 
+
+
 
 #Alias Desert's routing method to preserve compatibility with Engine's
 Desert::Rails::RouteSet.module_eval do
