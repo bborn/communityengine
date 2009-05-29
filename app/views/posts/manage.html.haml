@@ -1,5 +1,5 @@
 .yui-b.sidebar
-  .box
+  -box do 
     %h3=:links.l
     %ul.checks
       %li=link_to :view_my_blog.l, user_posts_path(current_user)
@@ -7,7 +7,7 @@
 
 #yui-main
   .yui-b
-    .box
+    -box do 
       %h3 
         =:manage_posts.l
       %p=:posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them.l

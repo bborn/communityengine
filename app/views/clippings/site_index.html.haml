@@ -2,7 +2,7 @@
 
 #yui-main
   .yui-b    
-    .box
+    -box do 
       %h3
         = params[:recent] ? :recent.l : :popular.l
         Clippings
@@ -21,7 +21,7 @@
       %br
           
 .yui-b  
-  .box
+  -box do 
     %h3 &nbsp;
     
     =:clippings_let_you_to_save_cool_images_from_around_the_web.l
@@ -30,5 +30,5 @@
     -else
       =:to_get_started_with_clippings_first.l+" " 
       =link_to :create_an_account.l, signup_path
-  .box.alt
+  -box :class => "alt" do 
     =link_to :view.l+" #{params[:recent] ? :popular.l : :recent.l} "+:clippings.l, site_clippings_path(:recent => !params[:recent])

@@ -1,11 +1,11 @@
 .yui-b
-  .box
+  -box do 
     %h3= :help.l
     %p= :clippings_are_a_way_to_save_images_you_like_from_around_the_web.l
 
 #yui-main
   .yui-b
-    .box
+    -box do 
       %h3= :new_clipping.l
       %img{"src"=>"#{h @clipping.image_uri}"}
       - form_for(:clipping, :url => user_clippings_path(@user), :html => { :class => "MainForm" }) do |f|

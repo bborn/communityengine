@@ -2,13 +2,13 @@
 - @section = 'forums'
 - @page_title = @forum.name
 
-.box.alt.first_alt
+-box :class => "alt first_alt" do 
   = link_to :forums.l, forum_home_path
   %span.arrow
     &rarr;
   = h @forum.name   
 
-.box
+-box do 
   %p.subtitle
     = feed_icon_tag @forum.name, forum_sb_posts_path(@forum, :format => :rss)
     = pluralize @forum.topics_count, 'topic'.l 

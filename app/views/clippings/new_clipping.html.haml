@@ -40,7 +40,7 @@
     #doc3
       #bd
         .yui-g
-          .yui-u.first.box
+          -box :class => "yui-u first" do
             %h3 
               =:create_a_clipping.l
             %p
@@ -86,7 +86,7 @@
             }
             return;
             });
-          .yui-u.box
+          -box :class => "yui-u" do
             %h3=:create_a_post.l
             - form_for(:post, :url => user_posts_path(current_user), :html => {:class => "MainForm"}) do |f|
               = hidden_field_tag 'post[published_as]', 'live'

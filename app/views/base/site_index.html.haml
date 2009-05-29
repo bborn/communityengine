@@ -5,13 +5,13 @@
 
 #yui-main
   .yui-b
-    .box.hfeed
+    -box :class => "hfeed" do 
       %h3
         =:recent_posts.l
       = render :partial => 'posts/post', :collection => @posts
 
 .yui-b  
-  .box
+  -box do 
     %h3= :explore_site.l :site => AppConfig.community_name
     %ul.list.checks
       - Category.find(:all).each do |c|
@@ -19,7 +19,7 @@
       %li= link_to :whats_popular.l, popular_url, {:class => 'popular'}
       %li= link_to :find_an_expert.l, skills_path, {:class => 'users'}
 
-  .box.alt
+  -box :class => "alt" do 
     %h3
       = :whats_hot.l
       
@@ -29,13 +29,13 @@
     %h6.all
       %a{:href=>"/popular"}= :see_all.l
 
-  .box.alt
+  -box :class => "alt" do 
     %h3
       =:featured_writer.l
     -@featured_writers.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
 
-  .box.alt
+  -box :class => "alt" do 
     %h3= :active_users.l
     -@active_users.each do |user|    
       =render :partial => "users/sidebar_user", :locals => {:user => user}      

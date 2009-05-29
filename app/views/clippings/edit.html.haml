@@ -1,11 +1,11 @@
 .yui-b
-  .box
+  -box do 
     %h3= :help.l
     %p= :tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas.l
 
 #yui-main
   .yui-b
-    .box
+    -box do 
       %h3= :editing_clipping.l
       %img{"src"=>"#{h @clipping.image_uri}"}
       - form_for(:clipping, :url => user_clipping_path(@user, @clipping), :html => { :method => :put, :class => "MainForm" }) do |f|

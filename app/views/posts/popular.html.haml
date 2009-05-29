@@ -2,7 +2,7 @@
 - @section = 'popular'
 
 .yui-b
-  .box
+  -box do 
     - if logged_in?
       %h3.signup= :get_popular.l
       %ul.list.checks
@@ -19,7 +19,7 @@
                 &raquo;
                 =:log_in.l
 
-  .box.alt
+  -box :class => "alt" do 
     %h3= :this_month_best.l 
     %ul.list.page    
       - @monthly_popular_posts.each do |post|
@@ -27,7 +27,7 @@
 
 #yui-main
   .yui-b
-    .box.hfeed
+    -box :class => "hfeed" do 
       %h3 
         =:what_is_popular.l
         %ul.subnav

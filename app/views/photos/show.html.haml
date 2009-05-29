@@ -3,12 +3,12 @@
     = render :partial => 'posts/author_profile', :locals => {:user => @user}
 
     - if @previous || @next
-      .photo_nav.box.alt
+      -box :class => 'photo_nav alt' do
         = link_to "<img src='#{@previous.public_filename(:thumb)}' /><br />&laquo; " + :previous.l, user_photo_path(@user, @previous), :class => 'left' if @previous
         = link_to "<img src='#{@next.public_filename(:thumb)}' /><br />" + :next.l + "&raquo;", user_photo_path(@user, @next), :class => 'right' if @next
 
     - if @related.any?
-      .box.alt
+      -box :class => "alt" do 
         %h3=:related_photos_all_members.l
         .centered
           - @related.each do |photo|
@@ -16,13 +16,13 @@
 
   #yui-main
     .yui-b
-      .box.hfeed
+      -box :class => "hfeed" do 
         %h3
           = link_to :users_photos.l_with_args(:user => @user.login), user_photos_path(@user)
           \:
           = link_to h(@photo.display_name), user_photo_path(@user, @photo)
         - if @is_current_user
-          .box.alt
+          -box :class => "alt" do 
             = link_to :make_this_my_profile_photo.l, change_profile_photo_user_path({:id => @user, :photo_id => @photo}), :method => :put
             |
             = link_to :edit_this_photo_details.l, edit_user_photo_path(@user, @photo) if @is_current_user
@@ -33,7 +33,7 @@
         %p= h @photo.description
         %p= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")
 
-      #comments.box.hfeed.comments
+      -box :class => "hfeed comments", :id => 'comments' do
         %h3=:photo_comments.l
         %h2=:add_your_comment.l
         %p= render :partial => 'comments/comment_form', :locals => {:commentable => @photo}

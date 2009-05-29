@@ -2,14 +2,14 @@
 
 .yui-b
 
-  .box.alt.first_alt
+  -box :class => "alt first_alt" do 
     %h3= :featured_writers.l
     - @featured_writers.each do |user|
       = render :partial => "users/sidebar_user", :locals => {:user => user}
 
 #yui-main
   .yui-b
-    .box.hfeed
+    -box :class => "hfeed" do 
       %h3=:featured_posts.l
 
       .pagination=paginating_links @posts if @posts.page_count > 1

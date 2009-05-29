@@ -1,11 +1,18 @@
-#some more hacks
+#reload CE in development
+config.after_initialize do
+  if RAILS_ENV == 'development'
+    ActiveSupport::Dependencies.load_once_paths = ActiveSupport::Dependencies.load_once_paths.select {|path| (path =~ /(community_engine)/).nil? }  
+  end
+end 
 
+
+
+#Alias Desert's routing method to preserve compatibility with Engine's
 Desert::Rails::RouteSet.module_eval do
   alias_method :from_plugin, :routes_from_plugin  
 end
 
-
-#hack the desert plugin to allow generating plugin migrations
+#Hack Desert to allow generating plugin migrations
 Desert::Plugin.class_eval do
   def latest_migration
     migrations.last
@@ -17,6 +24,7 @@ Desert::Plugin.class_eval do
     migrations.map { |p| File.basename(p).match(/0*(\d+)\_/)[1].to_i }.sort
   end    
 end
+
 # Fix Desert's 'current_version' which tries to order by version desc, but version is a string type column, so it breaks
 # sort the rows in ruby instead to make sure we get the highest numbered version
 Desert::PluginMigrations::Migrator.class_eval do

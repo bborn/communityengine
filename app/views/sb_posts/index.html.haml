@@ -1,13 +1,13 @@
 -@section = 'forums'
 - @page_title = search_posts_title
 
-.box.alt.first_alt
+-box :class => "alt first_alt" do 
   = link_to :forums.l, forum_home_path
   %span.arrow
     &rarr;
   = h @page_title
 
-.box
+-box do 
 
   .right=link_to :forums.l, forums_path
   %h3

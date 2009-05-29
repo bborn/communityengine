@@ -6,7 +6,7 @@
   
 #yui-main
   .yui-b
-    .box
+    -box do 
       %h3= random_greeting(@user)
     
       -if @user.pending_friendships.any?
@@ -29,7 +29,7 @@
     
       -unless @network_activity.empty?
         %h2=:activity_from_your_network.l
-        .box.fresh
+        -box :class => "fresh" do 
           =render :partial => "activities/activity", :collection => @network_activity
           %h6.all= link_to :see_all_activity.l, network_user_activities_path(current_user)
 

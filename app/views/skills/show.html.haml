@@ -2,7 +2,7 @@
   = render :partial => "skills/sidebar_menu"
 
 #yui-main
-  .yui-b.box.user_list
+  -box :class => "yui-b user_list" do
     %h3
       = AppConfig.community_name
       =:pros_skilled_in.l

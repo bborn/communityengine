@@ -2,7 +2,7 @@
 - @section = @category.name
 
 .yui-b
-  .box
+  -box do 
     - if logged_in?
       %h3.signup=:have_something_to_contribute.l
       %ul.list.checks
@@ -17,12 +17,12 @@
               =:have_an_account.l
               %a{:href=>"/login", :title=>:log_in_to_your.l+" #{AppConfig.community_name} "+:account.l}="&raquo; " + :login.l
 
-  .box.alt
+  -box :class => "alt" do 
     %h3=:top_writers.l
     - @active_users.each do |user|
       = render :partial => "users/sidebar_user", :locals => {:user => user} 
       
-  .box.alt
+  -box :class => "alt" do 
     %h3=:popular_catgory.l(:name => @category.name)
     %ul.list.page    
       - @popular_posts.each do |post|
@@ -31,7 +31,7 @@
 
 #yui-main
   .yui-b
-    .box.hfeed
+    -box :class => "hfeed" do 
       %h3      
         =:show_category.l :category => @category.name
         %ul.subnav

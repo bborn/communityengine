@@ -2,7 +2,7 @@
   =render :partial => 'users/dashboard_nav'
   
 #yui-main
-  .yui-b.box.fresh
+  -box :class => 'yui-b fresh' do
     -unless @activities.empty?
       %h3=:activity_from_your_network.l
       %table{:width => "100%"}

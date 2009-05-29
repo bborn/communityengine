@@ -1,6 +1,6 @@
 - @section = 'posts'
 .yui-b
-  .box
+  -box do 
     - if logged_in?
       %h3= :get_popular.l
       %ul.list.checks
@@ -18,7 +18,7 @@
                 =:log_in.l
 #yui-main
   .yui-b
-    .box.hfeed
+    -box :class => "hfeed" do 
       %h3
         =:recent_posts.l
         %ul.subnav

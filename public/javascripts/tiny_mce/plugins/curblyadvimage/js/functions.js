@@ -27,7 +27,7 @@ function formElement() {
         return document.forms[1];
         }
 function ts_onload(){
-        $('dynamic_images_list').update("Uploading...<br /><img src='/images/spinner.gif'>");
+        $('dynamic_images_list').update("Uploading...<br /><img src='/plugin_assets/community_engine/images/spinner.gif'>");
         mcTabs.displayTab('dynamic_select_tab','dynamic_select_panel');
 
         var iframe1=ts_ce('iframe','html_editor_image_upload_frame');

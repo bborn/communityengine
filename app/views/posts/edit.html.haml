@@ -1,5 +1,5 @@
 .yui-b
-  .box#category_tips
+  -box :id => 'category_tips' do
     - if @post.contest
       = render :partial => "contest"
     - elsif @post.category
@@ -9,7 +9,7 @@
 
 #yui-main
   .yui-b
-    .box
+    -box do 
       %h3=:editing_post.l
 
       = error_messages_for :post

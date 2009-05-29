@@ -5,12 +5,12 @@
   =render :partial => 'posts/author_profile', :locals => {:user => @user}
 
   - if @previous || @next
-    .box.alt
+    -box :class => "alt" do 
       = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ", user_clipping_path(@user, @previous), :class => 'left' if @previous
       = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next
 
   - if @related.any?
-    .box.alt
+    -box :class => "alt" do 
       %h3=:related_clippings_all_members.l
       .centered
         - @related.each do |clipping|
@@ -18,7 +18,7 @@
 
 #yui-main
   .yui-b
-    .box.hfeed
+    -box :class => "hfeed" do 
       %h3= link_to :user_clippings.l(:user =>@user.login)
       .hentry.main
         - if @is_current_user
@@ -47,7 +47,7 @@
           - @clipping.tags.each do |t|
             %li=link_to( t.name, tag_url(t), :rel => 'tag')
 
-    #comments.box.hfeed.comments
+    -box :class => 'hfeed comments', :id => 'comments' do
       %h3=:clipping_comments.l
       %h2=:add_your_comment.l
       %p= render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}

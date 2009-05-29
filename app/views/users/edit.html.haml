@@ -1,5 +1,5 @@
 - form_tag user_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
-  .box.alt.first_alt
+  -box :class => "alt first_alt" do 
     %h3=:you_are_editing_your_profile.l
     = link_to "&raquo; " + :edit_your_account_settings_instead.l, edit_account_user_path(@user)
   
@@ -7,7 +7,7 @@
 
   %p= submit_tag :save_changes.l  
   .yui-b
-    #profile_details.box
+    -box :id => "profile_details" do
       %h3=:profile_photo.l
       = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
       = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
@@ -40,12 +40,12 @@
       
   #yui-main
     .yui-b
-      .box
+      -box do 
         %h3=:about_me.l
         = text_area :user, :description, :class => "rich_text_editor", :style => "width:100%"
         
-      .box.alt
-        =:tips.l + ":"
+      -box :class => "alt" do 
+        =:tips.l
         = render :partial => 'shared/bio_help'
         =:feel_free_to_embed_images_or_videos.l + "("
         %a{"href"=>"/faq#images_and_flash", "target"=>"new"} 
@@ -55,7 +55,7 @@
       - if @user.vendor? 
         = render :partial => 'offerings/chooser'
       
-      .box
+      -box do 
         %h3= :tags.l
         #user_tags
           = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
