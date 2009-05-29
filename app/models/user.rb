@@ -347,7 +347,7 @@ class User < ActiveRecord::Base
 
   # before filter
   def generate_login_slug
-    self.login_slug = self.login.gsub(/[^a-z1-9]+/i, '-') + "-#{User.count}"
+    self.login_slug = self.login.gsub(/[^a-z1-9]+/i, '-') + ( self.id ? "-#{self.id}" : "-#{User.count}")
   end
 
   def update_last_login
