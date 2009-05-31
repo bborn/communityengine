@@ -1,0 +1,28 @@
+<p>
+  <b>Url:</b>
+  <%=h @static_page.url %>
+</p>
+
+<p>
+  <b><%= :title.l %></b>
+  <%=h @static_page.title %>
+</p>
+
+<p>
+  <b><%= :content.l %></b>
+  <%= @static_page.content %>
+</p>
+
+<p>
+  <b><%= :active.l %></b>
+  <%= @static_page.active %>
+</p>
+
+<p>
+  <b><%= :visibility.l %></b>
+  <%= @static_page.visibility	 %>
+</p>
+
+
+<%= link_to :edit.l, edit_static_page_path(@static_page) %> |
+<%= link_to :back.l, static_pages_path %>

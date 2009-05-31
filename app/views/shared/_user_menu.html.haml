@@ -13,7 +13,7 @@
   %ul
     %li= link_to :view_profile.l, user_path(current_user)                    
     %li=link_to :blog.l, user_posts_path(current_user)
-    %li=link_to :photos.l, user_photos_path(current_user)
+    %li=link_to :photo_manager.l, user_photo_manager_index_path(current_user)
     %li=link_to :clippings.l, user_clippings_path(current_user)
     %li=link_to :friends.l, accepted_user_friendships_path(current_user)        
   %hr

@@ -70,6 +70,7 @@ class PhotosController < BaseController
   # GET /photos/1.xml
   def show
     @photo = @user.photos.find(params[:id])
+    update_view_count(@photo) if current_user && current_user.id != @photo.user_id
     
     @is_current_user = @user.eql?(current_user)
     @comment = Comment.new(params[:comment])
@@ -103,10 +104,13 @@ class PhotosController < BaseController
   # POST /photos.xml
   def create
     @user = current_user
-
     @photo = Photo.new(params[:photo])
     @photo.user = @user
     @photo.tag_list = params[:tag_list] || ''
+    
+    @photo.album_id = params[:album_id] || ''    
+    @photo.album_id = params[:album_selected] unless params[:album_selected].blank?
+
 
     respond_to do |format|
       if @photo.save
@@ -114,9 +118,13 @@ class PhotosController < BaseController
         GC.start
         flash[:notice] = :photo_was_successfully_created.l
 
-        format.html {
+        format.html {      
           render :action => 'inline_new', :layout => false and return if params[:inline]
-          redirect_to user_photo_url(:id => @photo, :user_id => @photo.user)
+          if params[:album_id]
+            redirect_to user_album_path(current_user,params[:album_id])
+          else  
+            redirect_to user_photo_url(:id => @photo, :user_id => @photo.user)
+          end
         }
         format.js {
           responds_to_parent do
@@ -145,6 +153,8 @@ class PhotosController < BaseController
     # swfupload action set in routes.rb
     @photo = Photo.new :uploaded_data => params[:Filedata]
     @photo.user = current_user
+    @photo.album_id =  params[:album_id] if params[:album_id]
+    @photo.album_id = params[:album_selected] unless params[:album_selected].blank?
     @photo.save!
 
     # This returns the thumbnail url for handlers.js to use to display the thumbnail
@@ -159,6 +169,7 @@ class PhotosController < BaseController
     @photo = Photo.find(params[:id])
     @user = @photo.user
     @photo.tag_list = params[:tag_list] || ''
+    @photo.album_id = params[:photo][:album_id]
 
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
@@ -168,6 +179,7 @@ class PhotosController < BaseController
       end
     end
   end
+
 
   # DELETE /photos/1
   # DELETE /photos/1.xml

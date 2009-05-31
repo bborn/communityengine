@@ -1,0 +1,73 @@
+<h1 style="font-size:20px;"><%= :photo_manager.l %></h1>
+
+<div class="yui-b">
+ <ul>
+  <li><%= link_to :view_all_my_photos.l, user_photos_path(@user) %>        
+   <li style="padding-top: 10px;">
+     <%= link_to :new_photo.l, new_user_photo_path(current_user) %>
+   </li>
+   <li><%= link_to :new_album.l, new_user_album_path(current_user) %></li>
+  </ul>
+</div>
+
+
+<div id ="yui-main">
+  <h3 style="font-size: 20px; text-decoration: underline;"><%= :albums.l %> </h3>
+  <table>
+    <% for album in @albums %>
+      <tr>
+        <td><%=h album.title %></td>
+          <td style="widht:60px;">
+            <% if album.photos[0] %>
+              <%= link_to image_tag( album.photos[0].public_filename(:thumb), :size => "50x50"),
+                user_photo_path(current_user, album.photos[0])%>
+            <% end %>
+        </td>
+        <td style="widht:60px;">
+          <% if album.photos[1] %>
+            <%= link_to image_tag( album.photos[1].public_filename(:thumb), :size => "50x50"),
+              user_photo_path(current_user, album.photos[1])%>
+          <%end%>
+        </td>
+        <td style="widht:60px;">
+          <% if album.photos[2] %>
+            <%= link_to image_tag( album.photos[2].public_filename(:thumb), :size => "50x50"),
+              user_photo_path(current_user, album.photos[2])%>
+          <%end%>
+        </td>
+        <td>
+          <% if album.photos.size > 3 %>
+            <%= link_to :view_more.l, user_album_path(current_user,album) %>
+          <% end %>
+        </td>
+
+        <td><%= link_to :edit.l, edit_user_album_path(current_user,album) %></td>
+        <td><%= link_to :add_photos.l, new_user_album_photo_path(current_user,album) %></td>
+        <td><%= link_to :destroy.l, user_album_path(current_user,album),
+          :confirm => :delete_album_and_photos.l, :method => :delete %></td>
+       </tr>
+     <% end %>
+   </table>
+
+  <div style="clear:both"></div>
+  <br/><br/>
+
+  <div class="yui-b">
+    <div class="yui-gd">
+      <h3 style="font-size: 20px; text-decoration: underline;">
+        <%= :not_assigned_photos.l %>
+      </h3>
+	  <div id="#photos.yui-u.box">
+        <% for photo in @photos_no_albums %>
+	      <div style="width:200px; float:left; padding-top: 10px; padding-bottom: 10px;">
+  	        <%= link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"),
+            user_photo_path(current_user, photo)%> <br/>
+       	  </div>
+       <% end %>
+      <div class="pagination">
+        <%= paginating_links @photos_no_albums if @photos_no_albums.page_count > 1%></div>
+      </div>
+      </div>
+    </div>
+  </div>
+

@@ -32,7 +32,9 @@
         %p.centered= image_tag( @photo.public_filename, :class => "polaroid" )
         %p= h @photo.description
         %p= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")
-
+        - unless @photo.album.blank?
+          %p= link_to @photo.album.title, user_album_path(@user, @photo.album)
+          
       #comments.box.hfeed.comments
         %h3=:photo_comments.l
         %h2=:add_your_comment.l

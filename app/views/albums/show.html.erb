@@ -1,0 +1,25 @@
+<p>
+  <b><%= :title.l %></b>
+  <%=h @album.title %>
+</p>
+
+<p>
+  <b><%= :description.l %></b>
+  <%=h @album.description %>
+</p>
+
+<h4 style="font-size: 15px; color:purple;"><%= :photos_of_this_album.l %></h4>
+
+<% for photo in @album_photos %>
+	<div style="width:200px; float:left; padding-top: 10px; padding-bottom: 10px;">
+  	<%= link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo)%> <br/>
+	</div>
+<% end %>
+
+<div class="pagination"><%= paginating_links @album_photos if @album_photos.page_count > 1 %></div>
+
+
+<div class="clear"></div>
+
+<%= link_to :back_to_photo_manager.l, user_photo_manager_index_path(@album.user) %>
+
