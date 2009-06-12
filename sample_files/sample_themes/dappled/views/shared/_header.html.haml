@@ -1,6 +1,6 @@
 #hd
   %h1
-    %a{:href=>"/", :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
+    %a{:href=>home_url, :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
 
   - if logged_in?
     = render :partial => 'shared/user_menu'
