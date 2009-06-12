@@ -143,7 +143,7 @@ class CommentsController < BaseController
   end
   
   def full_comment_link
-    "#{APP_URL}#{comment_link}"
+    "#{home_url}#{comment_link}"
   end
   
   def comment_rss_link

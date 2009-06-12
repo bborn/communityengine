@@ -39,7 +39,7 @@ class MetaWeblogService < ActionWebService::Base
     [Blog::Blog.new(
       :blogid => @user.login_slug,
       :blogName => "#{@user.login}'s Blog",
-      :url => "#{APP_URL}/#{@user.login}/posts"
+      :url => "#{home_url}/#{@user.login}/posts"
     )]
   end
   
