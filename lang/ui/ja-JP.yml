@@ -32,13 +32,13 @@ ja:
   #en: accepted: accepted
   accepted: 許可済
   #en: accepted_friendships: Accepted Friendships
-  accepted_friendships: Accepted Friendships
+  accepted_friendships: 友人の承認
   #en: accept_this_request: Accept this request
-  accept_this_request: Accept this request
+  accept_this_request: リクエストの承認
   #en: account: account
   account: アカウント
   #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help.
-  account_activation_error: "Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help."
+  account_activation_error: "アカウントのアクティベーションに失敗しました. あなたのアカウントは既に有効になっている可能性があります. 再度ログインを試みる, もしくは, e-mail {{email}} for help."
   #en: account_settings: Account settings
   account_settings: アカウント設定
   #en: actions: Actions
@@ -46,9 +46,9 @@ ja:
   #en: activate: Activate
   activate: Activate
   #en: activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
-  activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
+  activation_email_not_sent_message: アクティベーションのE-mailが送信できませんでした. そのユーザは既に有効になっているのではないでしょうか?
   #en: activation_email_resent_message: An activation e-mail was resent to the e-mail address you used to sign up.
-  activation_email_resent_message: An activation e-mail was resent to the e-mail address you used to sign up.  
+  activation_email_resent_message: サインアップ時のE-mailアドレスにアクティベーションのE-mailを再度送信しました.  
   #en: active: active
   active: active
   #en: active_users: Active Users
@@ -60,23 +60,23 @@ ja:
   #en: ad_was_successfully_updated: Ad was successfully updated.
   ad_was_successfully_updated: Ad was successfully updated.
   #en: add_a_photo: Add a photo
-  add_a_photo: Add a photo
+  add_a_photo: 写真の追加
   #en: add_a_poll: Add a poll
   add_a_poll: Add a poll
   #en: add_comment: Add Comment
   add_comment: コメントの追加
   #en: add_from_my_address_book: "Add from my address book"
-  add_from_my_address_book: "Add from my address book"
+  add_from_my_address_book: アドレス帳から追加
   #en: add_some_friends_to_get_started: Add some friends to get started!
   add_some_friends_to_get_started: Add some friends to get started!
   #en: add_your_comment: Add Your Comment!
-  add_your_comment: Add Your Comment!
+  add_your_comment: コメントの追加!
   #en: added_a_clipping: "added a clipping:"
   added_a_clipping: "added a clipping:"
   #en: added_to_a_forum_topic: "added to a forum topic:"
   added_to_a_forum_topic: "added to a forum topic:"
   #en: admin: Admin
-  admin: Admin
+  admin: 管理者
   #en: admin_controls: Admin Controls
   admin_controls: Admin Controls
   #en: admin_dashboard: Admin dashboard
@@ -93,18 +93,18 @@ ja:
   all_clippings_tagged: "All clippings tagged {{tag_name}}"
   #en: all_comments: All comments
   all_comments: すべてのコメント
-  #en: all_photos_tagged: All photos tagged {{tag_name}}
-  all_photos_tagged: "All photos tagged {{tag_name}}"
+  #en: all_photos_tagged: "All photos tagged {{tag_name}}"
+  all_photos_tagged: タグ:「{{tag_name}」のすべての写真}
   #en: all_posts_tagged: All posts tagged {{tag_name}}
-  all_posts_tagged: "All posts tagged {{tag_name}}"
+  all_posts_tagged: "タグ:「{{tag_name}」のすべての記事}"
   #en: all_tags: All tags
   all_tags: すべてのタグ
   #en: all_users_tagged: All users tagged {{tag_name}}
-  all_users_tagged: "All users tagged {{tag_name}}"
+  all_users_tagged: "タグ:「{{tag_name}}」のすべてのユーザ"
   #en: already_have_an_account: Already have an account?
-  already_have_an_account: Already have an account?
+  already_have_an_account: 既にアカウントを持っていますか?
   #en: an_error_occurred: An error occurred
-  an_error_occurred: An error occurred
+  an_error_occurred: エラーが発生しました
   #en: are_you_sure: Are you sure?
   are_you_sure: Are you sure?
   #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
@@ -124,7 +124,7 @@ ja:
   #en: audience: Audience
   audience: Audience
   #en: author: Author
-  author: Author
+  author: 投稿者
   #en: back: Back
   back: 戻る
   #en: back_to_all_users: Back to all users
@@ -156,11 +156,11 @@ ja:
   #en: body_text: Body Text
   body_text: Body Text
   #en: body_text_reqiured: Body Text (required)
-  body_text_required: Body Text (required)
+  body_text_required: 本文 (必須)
   #en: bookmarklet: bookmarklet
-  bookmarklet: bookmarklet
+  bookmarklet: ブックマークレット
   #en: browse_all_members: browse all members
-  browse_all_members: browse all members
+  browse_all_members: すべてのメンバを閲覧
   #en: browse_content_by_tags: Browse content by tags
   browse_content_by_tags: Browse content by tags
   #en: by: by
@@ -198,7 +198,7 @@ ja:
   #en: choose_your_location: Choose your location
   choose_your_location: Choose your location
   #en: click_here: click here
-  click_here: click here
+  click_here: ここをクリック
   #en: click_here_to_enter_this_contest: "Click here to enter this contest!"
   click_here_to_enter_this_contest: "Click here to enter this contest!"
   #en: click_here_to_retrieve_it: Click here to retrieve it
@@ -216,7 +216,7 @@ ja:
   #en: click_the_activation_link_in_the_e_mail_to_log_in: Click the activation link in the e-mail to log in.
   click_the_activation_link_in_the_e_mail_to_log_in: Click the activation link in the e-mail to log in.
   #en: click_to_accept_it: Click to accept it!
-  click_to_accept_it: Click to accept it!
+  click_to_accept_it: 承認するためにクリックしてください!
   #en: clipping_comments: Clipping Comments
   clipping_comments: Clipping Comments
   #en: clipping_was_successfully_created: Clipping was successfully created.
@@ -236,17 +236,17 @@ ja:
   #en: comment_character_limit: (2000 character limit)
   comment_character_limit: (最大2000文字)
   #en: comment_could_not_be_deleted: Comment could not be deleted.
-  comment_could_not_be_deleted: Comment could not be deleted.
+  comment_could_not_be_deleted: コメントを削除できませんでした.
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: Your comment couldn't be saved.
+  comment_save_error: コメントを保存できませんでした.
   #en: comment_was_successfully_created: Comment was successfully created.
-  comment_was_successfully_created: Comment was successfully created.
+  comment_was_successfully_created: コメントの投稿が完了しました.
   #en: comments: Comments
   comments: コメント
   #en: comments_deleted: Comments deleted
   comments_deleted: Comments deleted
   #en: comments_rss: Comments RSS
-  comments_rss: Comments RSS
+  comments_rss: コメントRSS
   #en: community_tagline: CommunityEngine Rocks!
   community_tagline: CommunityEngine Rocks!
   #en: compose: Compose
@@ -254,7 +254,7 @@ ja:
   #en: compose_message: Compose message
   compose_message: Compose message
   #en: confirm_password: Confirm Password
-  confirm_password: Confirm Password
+  confirm_password: パスワードの確認
   #en: contest_was_successfully_created: Contest was successfully created.
   contest_was_successfully_created: Contest was successfully created.
   #en: contests: Contests
@@ -266,31 +266,31 @@ ja:
   #en: create: Create
   create: 作成
   #en: create_an_account: Create an account
-  create_an_account: Create an account
+  create_an_account: アカウントの作成
   #en: create_a_clipping: Create a clipping
-  create_a_clipping: Create a clipping
+  create_a_clipping: クリップの作成
   #en: create_a_post: Create a post
-  create_a_post: Create a post
+  create_a_post: 記事の作成
   #en: create_new_forum: Create new forum
-  create_new_forum: Create new forum
+  create_new_forum: 新規フォーラムの作成
   #en: create_your_account: Create Your Account
-  create_your_account: Create Your Account
+  create_your_account: アカウントを作成しよう！
   #en: created_at: Created at
-  created_at: Created at
+  created_at: 作成日
   #en: custom_friendly_local: custom, friendly, local
   custom_friendly_local: "custom, friendly, local"
   #en: dashboard: Dashboard
-  dashboard: Dashboard
+  dashboard: ダッシュボード
   #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
   dashboard_friends: "Once you start adding friends, you'll be able to track their activity on {{site}} here"
-  #en: date: Date
-  date_title: Date
-  #en: date_created: Date Created
+  #en: date_title: Date
+  date_title: 日付
+  #en: date_created: 作成日時
   date_created: Date Created
   #en: date_published: Date Published
   date_published: Date Published
   #en: days_ago: days ago
-  days_ago: days ago
+  days_ago: 日前
   #en: deactivate_link: Click here to deactivate your account
   deactivate_link: Click here to deactivate your account
   #en: deactivate_tip: Deactivating your account will remove your profile from the site. 
@@ -300,7 +300,7 @@ ja:
   #en: deactivate_completed: Thanks. Your account has been deactivated and you have been logged out.
   deactivate_completed: Thanks. Your account has been deactivated and you have been logged out.
   #en: delete: Delete
-  delete: Delete
+  delete: 削除
   #en: delete_selected: Delete selected
   delete_selected: Delete selected
   #en: delete_this_event: Delete this event
@@ -310,13 +310,13 @@ ja:
   #en: delete_this_photo: Delete this photo
   delete_this_photo: Delete this photo
   #en: delete_this_post: Delete this post?
-  delete_this_post: Delete this post?
+  delete_this_post: この記事を削除しますか?
   #en: delete_this_topic_forever: Delete this topic forever?
   delete_this_topic_forever: Delete this topic forever?
   #en: delete_this_user: Delete this user
   delete_this_user: Delete this user
   #en: deny: Deny
-  deny: Deny
+  deny: 拒否
   #en: denied: denied
   denied: denied
   #en: denied_friendships: Denied Friendships
@@ -326,11 +326,11 @@ ja:
   #en: destroy: Destroy
   destroy: Destroy
   #en: dont_have_an_account: Don't have an account?
-  dont_have_an_account: Don't have an account?
+  dont_have_an_account: アカウントを持っていますか?
   #en: dont_wait_its: Don't wait! It's
   dont_wait_its: Don't wait! It's
   #en: draft: draft
-  draft: draft
+  draft: 草稿
   #en: drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
   drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
   #en: drag_the_bookmarklet: Drag the {{site}}-It! bookmarklet to your bookmarks toolbar.
@@ -340,51 +340,51 @@ ja:
   #en: e_mail: E-mail
   e_mail: E-mail
   #en: e_mail_address: E-mail address
-  e_mail_address: E-mail address
+  e_mail_address: E-mailアドレス
   #en: e_mail_notification: E-mail Notification
-  e_mail_notification: E-mail Notification
+  e_mail_notification: E-mail通知
   #en: edit: Edit
   edit: 編集
   #en: edit_account: Edit account
-  edit_account: Edit account
+  edit_account: アカウントの編集
   #en: edit_contest: Edit Contest
   edit_contest: Edit Contest
   #en: edit_event: Edit event
-  edit_event: Edit event
+  edit_event: イベントの編集
   #en: edit_forum: Edit forum
-  edit_forum: Edit forum
+  edit_forum: フォーラムの編集
   #en: edit_post: Edit post
-  edit_post: 記事を編集
+  edit_post: 記事の編集
   #en: edit_profile: Edit profile
-  edit_profile: プロフィールを編集
+  edit_profile: プロフィールの編集
   #en: edit_this_event: Edit this event
   edit_this_event: Edit this event
   #en: edit_this_photo_details: Edit this photo's details
-  edit_this_photo_details: Edit this photo's details
+  edit_this_photo_details: この写真の詳細を編集
   #en: edit_topic: Edit topic
-  edit_topic: Edit topic
+  edit_topic: トピックの編集
   #en: edit_your_account_settings_instead: "Edit your account settings instead?"
   edit_your_account_settings_instead: "Edit your account settings instead?"
   #en: edit_your_user_profile: Edit your user profile?
-  edit_your_user_profile: Edit your user profile?
+  edit_your_user_profile: プロフィールを編集しますか?
   #en: editing_ad: Editing ad
   editing_ad: Editing ad
   #en: editing_category: Editing category
-  editing_category: Editing category
+  editing_category: カテゴリの編集
   #en: editing_clipping: Editing clipping
-  editing_clipping: Editing clipping
+  editing_clipping: クリップの編集
   #en: editing_homepage_feature: Editing homepage feature
   editing_homepage_feature: Editing homepage feature
   #en: editing_metro_area: Editing Metro Area
   editing_metro_area: Editing Metro Area
   #en: editing_photo: Editing photo
-  editing_photo: Editing photo
+  editing_photo: 写真の編集
   #en: editing_post: Editing post
   editing_post: Editing post
   #en: editing_skill: Editing skill
   editing_skill: Editing skill
   #en: email_addresses: Email Addresses
-  email_addresses: Email Addresses
+  email_addresses: Emailアドレス
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}
   email_signup_thanks: "Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}"
   #en: email_this_story_to_friends: "E-mail this story to friends"
@@ -400,7 +400,7 @@ ja:
   #en: end_tome: End time
   end_tome: End time
   #en: enter_a_message: Enter a message
-  enter_a_message: Enter a message
+  enter_a_message: メッセージを入力
   #en: enter_e_mail_addresses: Enter e-mail addresses
   enter_e_mail_addresses: Enter e-mail addresses
   #en: enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
@@ -408,7 +408,7 @@ ja:
   #en: enter_your_email_address: "Enter your email address"
   enter_your_email_address: "Enter your email address"
   #en: error: Error!
-  error: Error!
+  error: エラー!
   #en: estimated_total_for_this_month: Estimated total for this month
   estimated_total_for_this_month: Estimated total for this month
   #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
@@ -470,9 +470,9 @@ ja:
   #en: frequency: Frequency
   frequency: Frequency
   #en: frequent_asked_questions: Frequent Asked Questions
-  frequent_asked_questions: Frequent Asked Questions
+  frequent_asked_questions: よくある質問
   #en: frequently_asked_questions: Frequently Asked Questions
-  frequently_asked_questions: Frequently Asked Questions
+  frequently_asked_questions: よくある質問
   #en: friend: friend
   friend: 友人
   #en: friends: Friends
@@ -530,7 +530,7 @@ ja:
   #en: homepage_features: Homepage Features
   homepage_features: Homepage Features
   #en: hours_ago: hours ago
-  hours_ago: hours ago
+  hours_ago: 時間前
   #en: how_do_i_do_that: How do I do that?
   how_do_i_do_that: How do I do that?
   #en: html: HTML
@@ -544,7 +544,7 @@ ja:
   #en: in_your_favorites: In your favorites
   in_your_favorites: In your favorites
   #en: inactive: inactive
-  inactive: inactive
+  inactive: 無効
   #en: inbox: Inbox
   inbox: Inbox
   #en: insert: Insert
@@ -570,15 +570,15 @@ ja:
   #en: just_uploading_one_photo: Just uploading one photo?
   just_uploading_one_photo: Just uploading one photo?
   #en: keywords: Keywords
-  keywords: Keywords
+  keywords: キーワード
   #en: large: Large
-  large: Large
+  large: 大
   #en: last: last
   last: last
   #en: last_post: Last post
-  last_post: Last post
+  last_post: 最新の記事
   #en: left_a_comment: "left a comment:"
-  left_a_comment: "left a comment:"
+  left_a_comment: "コメントする:"
   #en: links: Links
   links: リンク
   #en: listing_invitations: Listing invitations
@@ -636,7 +636,7 @@ ja:
   #en: manage_posts: Manage Posts
   manage_posts: Manage Posts
   #en: medium: Medium
-  medium: Medium
+  medium: 中
   #en: megabyte_upload_limit: megabyte upload limit
   megabyte_upload_limit: megabyte upload limit
   #en: megabyte_upload_limit_per_file: megabyte upload limit per file.
@@ -1138,7 +1138,7 @@ ja:
   #en: title: Title
   title: "タイトル"
   #en: title_required: "Title (required)"
-  title_required: "Title (required)"
+  title_required: "タイトル (必須)"
   #en: to: To
   to: To
   #en: to_accept: to accept
@@ -1158,9 +1158,9 @@ ja:
   #en: top_writers: Top Writers
   top_writers: Top Writers
   #en: topic: Topics
-  topic: Topics
+  topic: トピックス
   #en: topics: Topics
-  topics: Topics
+  topics: トピックス
   #en: topic_deleted: Topic '{{topic}}' was deleted.
   topic_deleted: "Topic '{{topic}}' was deleted."
   #en: topic_locked: Topic locked
@@ -1170,9 +1170,9 @@ ja:
   #en: total_votes: Total votes
   total_votes: Total votes
   #en: type_a_username: Type a username
-  type_a_username: Type a username
+  type_a_username: ユーザ名を入力してください
   #en: type_your_password: "Type your password:"
-  type_your_password: "Type your password:"
+  type_your_password: "パスワードを入力してください:"
   #en: uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: "Uh oh. We couldn't log you in with the username and password you entered. Try again?"
   uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: Uh oh. We couldn't log you in with the username and password you entered. Try again?
   #en: un_favorite_this: Un-favorite this
@@ -1182,15 +1182,15 @@ ja:
   #en: uncategorized: Uncategorized
   uncategorized: Uncategorized
   #en: update: Update
-  update: Update
+  update: 更新
   #en: update_profile_and_tag_yourself: Update your profile and tag yourself
   update_profile_and_tag_yourself: Update your profile and tag yourself
   #en: update_your_profile: update your profile
-  update_your_profile: update your profile
+  update_your_profile: プロフィールの更新
   #en: updated_at: Updated at
   updated_at: Updated at
   #en: updated_their_profile: updated their profile
-  updated_their_profile: プロフィールを更新
+  updated_their_profile: プロフィールの更新
   #en: upload_an_image_for_your_post: Upload an image for your post
   upload_an_image_for_your_post: Upload an image for your post
   #en: upload_and_continue_to_step_two: Upload, and continue to step two
@@ -1238,9 +1238,9 @@ ja:
   #en: view_my: "View my:"
   view_my: "View my:"
   #en: view_my_blog: View my blog
-  view_my_blog: View my blog
+  view_my_blog: ブログを見る
   #en: view_profile: View profile
-  view_profile: View profile
+  view_profile: プロフィールを見る
   #en: voice: voice
   voice: voice
   #en: voices: Voices
@@ -1278,7 +1278,7 @@ ja:
   #en: welcome_message: Welcome! {{login_link}} or {{signup_link}}
   welcome_message: "Welcome! {{login_link}} or {{signup_link}}"
   #en: what_are_tags: 'What are "Tags"?'
-  what_are_tags: 'What are "Tags"?'
+  what_are_tags: '"タグ"とは?'
   #en: what_is_popular: What's Popular
   what_is_popular: What's Popular
   #en: whats_fresh: What's fresh
@@ -1348,11 +1348,11 @@ ja:
   #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
   your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
   #en: your_post_was_deleted: Your post was deleted.
-  your_post_was_deleted: Your post was deleted.
+  your_post_was_deleted: 記事を削除しました.
   #en: your_post_was_successfully_created: Your post was successfully created.
-  your_post_was_successfully_created: Your post was successfully created.
+  your_post_was_successfully_created: 記事の投稿が完了しました.
   #en: your_profile_photo: "Your profile photo:"
-  your_profile_photo: "Your profile photo:"
+  your_profile_photo: "あなたのプロフィール写真:"
   #en: your_username_was_emailed_to_you: Your username was emailed to you.
   your_username_was_emailed_to_you: Your username was emailed to you.
   #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
