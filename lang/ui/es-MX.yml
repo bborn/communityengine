@@ -5,6 +5,22 @@ es-MX:
     abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
     month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
     abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    formats:
+      published_date: "%Y/%m/%d"
+      date_ago: "%B %d"
+
+  time:
+    formats:
+      published_date: "%Y/%m/%d"      
+      time_ago: "%l:%M%p"
+    pm: PM
+    am: AM
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "creado: "
+
   want_to_post_in_this_category: ¿Desea escribir en esta categoría?
   unactivated_users: Usuarios no activados
   active_users: Usuarios activos
