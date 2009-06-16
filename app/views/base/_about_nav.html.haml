@@ -3,11 +3,11 @@
     %h3=:about_site.l :site => AppConfig.community_name
     %ul.list.checks
       %li
-        %a{:href=>"/faq"}= :frequently_asked_questions.l
+        %a{:href=>faq_url}= :frequently_asked_questions.l
       %li 
-        %a{:href=>"/about"}=:about_site.l(:site => AppConfig.community_name)
+        %a{:href=>about_url}=:about_site.l(:site => AppConfig.community_name)
       %li 
-        %a{:href=>"/advertise"} 
+        %a{:href=>advertise_url} 
           =:advertise.l
   -box :class => "alt" do 
     %h3=:need_to_contact_us.l

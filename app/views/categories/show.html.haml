@@ -11,11 +11,11 @@
       %h3.signup= @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)
       %ul.list.checks
         %li
-          %a{:href=>"/signup", :title=>:sign_up_for_a_.l+" #{AppConfig.community_name} "+:account.l}=:sign_up_for_an_account.l
+          %a{:href=>signup_url, :title=>:sign_up_for_a_.l+" #{AppConfig.community_name} "+:account.l}=:sign_up_for_an_account.l
           %br
             %small
               =:have_an_account.l
-              %a{:href=>"/login", :title=>:log_in_to_your.l+" #{AppConfig.community_name} "+:account.l}="&raquo; " + :login.l
+              %a{:href=>login_url, :title=>:log_in_to_your.l+" #{AppConfig.community_name} "+:account.l}="&raquo; " + :login.l
 
   -box :class => "alt" do 
     %h3=:top_writers.l
