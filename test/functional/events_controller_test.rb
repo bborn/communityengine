@@ -65,4 +65,17 @@ class EventsControllerTest < ActionController::TestCase
     assert_redirected_to events_path
   end
 
+  def test_index_should_show_link_to_past_only
+    login_as :admin
+    get :index
+    assert_tag :tag=>'a', :attributes=>{:href=>'/events/past'}
+    assert_no_tag :tag=>'a', :attributes=>{:href=>'/events'}
+  end
+
+  def test_past_should_show_link_to_index_only
+    login_as :admin
+    get :past
+    assert_no_tag :tag=>'a', :attributes=>{:href=>'/events/past'}
+    assert_tag :tag=>'a', :attributes=>{:href=>'/events'}
+  end
 end

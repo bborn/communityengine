@@ -12,6 +12,12 @@ class EventsController < BaseController
     @events = Event.upcoming.find(:all, :page => {:current => params[:page]})
   end
 
+  def past
+    @is_admin_user = (current_user && current_user.admin?)
+    @events = Event.past.find(:all, :page => {:current => params[:page]})
+    render :template => 'events/index'
+  end
+
   def new
     @event = Event.new(params[:event])
   end

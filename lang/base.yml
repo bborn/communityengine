@@ -414,6 +414,8 @@
 #en: posts: Posts
 #en: post_a_new_topic: Post a new topic
 #en: post_an_event: Post an event
+#en: upcoming_events: Upcoming Events
+#en: past_events: Past Events
 #en: post_created_for_category: Your '{{category}}' post was successfully created.
 #en: post_comments: Post Comments
 #en: postal_code: "Postal code:"

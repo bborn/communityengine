@@ -79,7 +79,7 @@ search_tags '/search/tags', :controller => 'tags', :action => 'show'
 
 resources :categories
 resources :skills
-resources :events
+resources :events, :collection => { :past => :get }
 resources :favorites, :path_prefix => '/:favoritable_type/:favoritable_id'
 resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
 delete_selected_comments 'comments/delete_selected', :controller => "comments", :action => 'delete_selected'

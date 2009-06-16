@@ -4,6 +4,8 @@
   - if @is_admin_user
     -box :class => "alt first_alt" do 
       = link_to :post_an_event.l, new_event_path
+      = link_to_unless_current :upcoming_events.l, events_path
+      
 
   -box do 
     %h3= :events.l
