@@ -96,7 +96,7 @@ class UserNotifier < ActionMailer::Base
   def activation(user)
     setup_email(user)
     @subject    += "Your #{AppConfig.community_name} account has been activated!"
-    @body[:url]  = application_url
+    @body[:url]  = home_url
   end
   
   def reset_password(user)
