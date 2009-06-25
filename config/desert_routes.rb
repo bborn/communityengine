@@ -26,6 +26,7 @@ if AppConfig.closed_beta_mode
 else
   home '', :controller => "base", :action => "site_index"
 end
+application '', :controller => "base", :action => "site_index"
 
 # admin routes
 admin_dashboard   '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
