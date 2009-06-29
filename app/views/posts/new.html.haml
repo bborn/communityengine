@@ -1,5 +1,5 @@
 .yui-b
-  .box#category_tips
+  -box :id => 'category_tips' do
     -if @post.contest
       = render :partial => "contest"
     -elsif @post.category
@@ -7,12 +7,12 @@
     - else 
       = render :partial => "/categories/tips", :locals => {:category => nil}
 
-  .box.alt
+  -box :class => "alt" do 
     %a.button.positive{:href => '#', :onclick => "tinyMCE.execCommand('mceCurblyAdvImage');return false;"}="Upload an image for your post".l
     
 #yui-main
   .yui-b
-    .box
+    -box do 
       %h3
         =@post.category ? (:new_post_for_category.l :category => @post.category.name) : :new_post.l
 

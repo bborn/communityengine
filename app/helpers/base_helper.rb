@@ -50,8 +50,15 @@ module BaseHelper
     yield(content)
     concat('<br class="clear" /><div class="box_bottom"></div></div>')
   end
+  
+  def block_to_partial(partial_name, html_options = {}, &block)
+    concat(render(:partial => partial_name, :locals => {:body => capture(&block), :html_options => html_options}))
+  end
 
-
+  def box(html_options = {}, &block)
+    block_to_partial('shared/box', html_options, &block)
+  end  
+  
   def tag_cloud(tags, classes)
     max, min = 0, 0
     tags.each { |t|
@@ -259,7 +266,11 @@ module BaseHelper
     	end
     end
     
-    content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + (links || '')
+    if options[:show_info].eql?(false)
+      (links || '')
+    else
+      content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + (links || '')
+    end
   end  
   
   def pagination_info_for(paginator, options = {})

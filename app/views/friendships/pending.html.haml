@@ -2,6 +2,6 @@
 
 #yui-main
   .yui-b
-    #friends.box
+    -box :id => "friends" do
       %h3= :pending_friendships.l
       .user_list= render :partial => "friendships/friendship", :collection => @friendships

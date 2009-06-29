@@ -4,7 +4,7 @@
 
 - form_tag delete_selected_comments_path, :id => 'comments' do
   #yui-main
-    .yui-b.box
+    -box :class => "yui-b" do
       %h3
         = AppConfig.community_name
         = :comments.l

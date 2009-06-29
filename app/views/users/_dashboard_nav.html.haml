@@ -1,5 +1,5 @@
 .yui-b
-  .box
+  -box do 
     %h3=:dashboard.l
     .yui-g
       .yui-u.first
@@ -22,7 +22,7 @@
             %li=link_to :admin_dashboard.l, admin_dashboard_path
                
   
-  .box.alt
+  -box :class => "alt" do 
     %h3=:stats.l
     %ul
       %li=:you_last_logged_in_on.l+" #{@user.last_login_at && @user.last_login_at.strftime("%m/%d/%y")}"

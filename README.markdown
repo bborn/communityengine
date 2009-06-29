@@ -1,5 +1,4 @@
-CommunityEngine [v1.0.0]: Modifications to  edge branch
-================
+CommunityEngine [v1.0.3]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
@@ -21,7 +20,7 @@ Getting CommunityEngine Running
 
 SHORT VERSION: 
 
-        rails your_app_name -m http://www.communityengine.org/install_template.rb
+        rails your_app_name -m http://www.communityengine.org/edge_install_template.rb
 
 LONG VERSION:
 

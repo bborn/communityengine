@@ -1,7 +1,7 @@
 - @user_skills = @user.offerings.collect{|o| o.skill}
 - @skills = Skill.find(:all) - @user_skills
 
-.yui-g.box
+-box :class => "yui-g" do
   %h3= :my_skills
   .yui-u.first
     %ul#skills.sortable

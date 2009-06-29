@@ -1,11 +1,11 @@
 - form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
-  .box.alt.first_alt
+  -box :class => "alt first_alt" do 
     %h3=:you_are_editing_your_account.l
     = link_to :edit_your_user_profile.l, edit_user_path(@user)
 
   = error_messages_for :user
 
-  .yui-b.box
+  -box :class => "yui-b" do
     %h3=:username.l
     = text_field :user, :login, :size => "28"
 
@@ -19,7 +19,7 @@
     = password_field :user, :password_confirmation, :size => "28"
 
   #yui-main
-    .yui-b.box
+    -box :class => "yui-b" do
       %h3=:e_mail_notification.l
 
       %fieldset

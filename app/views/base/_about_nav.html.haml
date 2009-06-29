@@ -1,5 +1,5 @@
 .yui-b
-  .box
+  -box do 
     %h3=:about_site.l :site => AppConfig.community_name
     %ul.list.checks
       %li
@@ -9,7 +9,7 @@
       %li 
         %a{:href=>"/advertise"} 
           =:advertise.l
-  .box.alt
+  -box :class => "alt" do 
     %h3=:need_to_contact_us.l
     %p
       =:dont_wait_its.l

@@ -125,12 +125,7 @@ module AssetHelpers
 end
 
 module ::ActionView::Helpers::AssetTagHelper
-  include AssetHelpers
+  if !self.included_modules.include? AssetHelpers
+    include AssetHelpers
+  end
 end
-
-
-EnginesHelper::Assets.propagate if EnginesHelper.autoload_assets
- 
-# # If the app is using Haml/Sass, propagate sass directories too
-# EnginesHelper::Assets.update_sass_directories
-

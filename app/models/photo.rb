@@ -61,6 +61,16 @@ class Photo < ActiveRecord::Base
     self.user.photos.find(:first, :conditions => ['created_at > ?', created_at], :order => 'created_at ASC')
   end
 
+  def previous_in_album
+    return nil unless self.album
+    self.user.photos.find(:first, :conditions => ['created_at < ? and album_id = ?', created_at, self.album.id], :order => 'created_at DESC')
+  end
+  def next_in_album
+    return nil unless self.album    
+    self.user.photos.find(:first, :conditions => ['created_at > ? and album_id = ?', created_at, self.album_id], :order => 'created_at ASC')
+  end
+
+
   def self.find_recent(options = {:limit => 3})
     self.new_this_week.find(:all, :limit => options[:limit])
   end

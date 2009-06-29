@@ -1,13 +1,13 @@
 - @section = 'events'
 
 .yui-b
-  .box.alt.first_alt
+  -box :class => "alt first_alt" do 
     - if @is_admin_user
       = link_to :new_event.l, new_event_path
     = link_to :see_all_events.l, events_path
 
 #yui-main
-  .yui-b.box
+  -box :class => "yui-b" do
     %h3= @event.name
     - if @event.user.eql?(current_user)
       = link_to :edit_this_event.l, edit_event_path(@event)
