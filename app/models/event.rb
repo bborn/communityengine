@@ -9,8 +9,9 @@ class Event < ActiveRecord::Base
 
   attr_protected :user_id
   
-  named_scope :upcoming, :order => 'start_time', :conditions => ['end_time > ?' , Time.now ]
-  named_scope :past, :order => 'start_time DESC', :conditions => ['end_time <= ?' , Time.now ]
+  #Procs used to make sure time is calculated at runtime
+  named_scope :upcoming, lambda { { :order => 'start_time', :conditions => ['end_time > ?' , Time.now ] } }
+  named_scope :past, lambda { { :order => 'start_time DESC', :conditions => ['end_time <= ?' , Time.now ] } }  
   
   
   acts_as_commentable    
