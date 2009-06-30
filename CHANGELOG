@@ -3,6 +3,7 @@
 * upgrade documentation/rake tasks to fix old migrations
 
 = 1.0.3
+* complete private messages integration, allow sending messages to multiple recipients
 
 = 1.0.2
 * Rails 2.3 compatibility

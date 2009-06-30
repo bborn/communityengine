@@ -251,7 +251,8 @@ Contributors - Thanks! :)
 - David Fugere - French localization
 - Barry Paul - routes refactoring
 - [Andrei Erdoss](http://github.com/cauta) localization
-
+- [Errol Siegel](http://github.com/eksatx) simple private messages integration, documentation help
+- Carl Fyffe - documentation, misc.
 
 To Do
 ----

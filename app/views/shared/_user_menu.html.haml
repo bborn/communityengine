@@ -7,7 +7,8 @@
       %li=link_to :admin_dashboard.l, admin_dashboard_path
     %li= link_to :edit_profile.l, edit_user_path(current_user) 
     %li= link_to :edit_account.l, edit_account_user_path(current_user)          
-    %li= link_to :manage_posts.l, manage_user_posts_path(current_user)          
+    %li= link_to :manage_posts.l, manage_user_posts_path(current_user)
+    %li= link_to :inbox.l, user_messages_path(current_user)          
 
   %hr
   %ul
