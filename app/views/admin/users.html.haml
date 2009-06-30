@@ -6,7 +6,7 @@
     %h3
       = AppConfig.community_name
       = :members.l
-    - form_tag '/admin/users', :class => 'MainForm' do
+    - form_tag admin_users_url, :class => 'MainForm' do
       %label= :user_login.l
       = text_field_tag 'login', params['login']
       %label= :user_e_mail.l

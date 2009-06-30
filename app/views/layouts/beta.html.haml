@@ -1,7 +1,7 @@
 !!!
 %html
 %head
-  %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
+  %link{:rel=>"shortcut icon", :href=>"#{application_url}favicon.ico"}
   %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
 
   %title
@@ -15,7 +15,7 @@
     #doc2.yui-t6
       #hd
         %h1
-          %a{:href=>"/", :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
+          %a{:href=>application_url, :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
 
         #NavBar
           %ul

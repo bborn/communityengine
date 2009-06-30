@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
+    %link{:rel=>"shortcut icon", :href=>"#{application_url}favicon.ico"}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
 
     %title= page_title
@@ -34,19 +34,19 @@
       #CommunityFooter
         %ul
           %li
-            %a{:href=>"/", :title=>"#{AppConfig.community_name} " + :home.l}= :home.l
+            %a{:href=>application_url, :title=>"#{AppConfig.community_name} " + :home.l}= :home.l
           - if !logged_in?
             %li
               = link_to :log_in.l , login_path 
           - else
             %li
-              %a{:href=>"/logout", :title=>:log_out_of_your.l + " #{AppConfig.community_name} " + :account.l}
+              %a{:href=>logout_url, :title=>:log_out_of_your.l + " #{AppConfig.community_name} " + :account.l}
                 =:log_out.l
           %li
-            %a{:href=>"/about", :title=>:what_is.l + " #{AppConfig.community_name}?"}
+            %a{:href=>about_url, :title=>:what_is.l + " #{AppConfig.community_name}?"}
               =:about.l
           %li
-            %a{:href=>"/faq", :title=>:frequent_asked_questions.l}
+            %a{:href=>faq_url, :title=>:frequent_asked_questions.l}
               =:faq.l
               
           - if @rss_title && @rss_url
