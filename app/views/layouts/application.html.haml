@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %link{:rel=>"shortcut icon", :href=>"#{home_url}favicon.ico"}
+    %link{:rel=>"shortcut icon", :href=>"#{application_url}favicon.ico"}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
 
     %title= page_title
@@ -34,7 +34,7 @@
       #CommunityFooter
         %ul
           %li
-            %a{:href=>home_url, :title=>"#{AppConfig.community_name} " + :home.l}= :home.l
+            %a{:href=>application_url, :title=>"#{AppConfig.community_name} " + :home.l}= :home.l
           - if !logged_in?
             %li
               = link_to :log_in.l , login_path 

@@ -68,7 +68,7 @@ class UserNotifier < ActionMailer::Base
   def signup_notification(user)
     setup_email(user)
     @subject    += "Please activate your new #{AppConfig.community_name} account"
-    @body[:url]  = "#{home_url}users/activate/#{user.activation_code}"
+    @body[:url]  = "#{application_url}users/activate/#{user.activation_code}"
   end
   
   def message_notification(message)
