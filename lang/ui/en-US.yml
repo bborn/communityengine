@@ -379,6 +379,8 @@ en:
   editing_post: Editing post
   #en: editing_skill: Editing skill
   editing_skill: Editing skill
+  #en: editing_tag: Editing tag
+  editing_tag: Editing tag
   #en: email_addresses: Email Addresses
   email_addresses: Email Addresses
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}
@@ -1083,6 +1085,12 @@ en:
   tag_yourself: tag yourself
   #en: tags: Tags
   tags: Tags
+  #en: taggings: Taggings
+  taggings: Taggings
+  #en: tag_was_successfully_updated: Tag was successfully updated
+  tag_was_successfully_updated: Tag was successfully updated
+  #en: tag_was_successfully_deleted: Tag was successfully deleted
+  tag_was_successfully_deleted: Tag was successfully deleted
   #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
   tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
   #en: tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Tags are keywords you use to organize your clippings. Separate multiple tags with commas.
