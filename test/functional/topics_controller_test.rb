@@ -88,7 +88,7 @@ class TopicsControllerTest < ActionController::TestCase
     old = counts.call
     
     login_as :aaron
-    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :body => 'foo' }, :tag_list => 'tag1 tag2'
+    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :body => 'foo' }, :tag_list => 'tag1, tag2'
     assert assigns(:topic)
     assert assigns(:post)
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
@@ -173,7 +173,7 @@ class TopicsControllerTest < ActionController::TestCase
   
   def test_should_update_own_post
     login_as :sam
-    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { }, :tag_list => 'tagX tagY'
+    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { }, :tag_list => 'tagX, tagY'
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
     assert_equal ['tagX', 'tagY'], topics(:ponies).reload.tag_list
   end

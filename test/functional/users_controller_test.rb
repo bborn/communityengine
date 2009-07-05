@@ -230,7 +230,7 @@ class UsersControllerTest < ActionController::TestCase
     login_as :quentin
     users(:quentin).tag_list = ''
     users(:quentin).save
-    put :update, :id => users(:quentin), :tag_list => 'tag1 tag2'
+    put :update, :id => users(:quentin), :tag_list => 'tag1, tag2'
     assert_redirected_to user_path(users(:quentin).reload)
     assert_equal users(:quentin).tag_list, ['tag1', 'tag2']
   end
@@ -434,7 +434,7 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_get_dashboard_with_no_recommended_posts
     login_as :quentin
-    users(:aaron).tag_list = 'hansel gretel'
+    users(:aaron).tag_list = 'hansel, gretel'
     users(:aaron).save
     assert !users(:aaron).tags.empty?
 
