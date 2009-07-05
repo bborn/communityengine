@@ -24,8 +24,8 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def location
-    metro_area ? metro_area.name : ''
+  def evt_location
+    location ? location : metro_area.to_s
   end
   
   def spans_days?

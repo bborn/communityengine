@@ -25,9 +25,15 @@
           = link_to :edit_this_event.l, edit_event_path(event)
           |
           = link_to(:delete_this_event.l, event_path(event), {:method => :delete, :confirm => :permanently_delete_this_event.l})
-        %strong= h event.time_and_date
         %br
-        %strong= h event.location
+        %strong
+          %b When:
+          =h event.time_and_date
+        %br
+        %strong
+          %b Where:
+          =h event.evt_location
+          = link_to :map_it.l, "http://www.google.com/maps?q=#{URI::encode(event.evt_location)}", :title=>:map_it.l, :target=>'_blank'
         %p= event.description
 
       .pagination=paginating_links @events if @events.page_count > 1      
