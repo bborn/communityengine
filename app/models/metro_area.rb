@@ -9,4 +9,8 @@ class MetroArea < ActiveRecord::Base
 
 	acts_as_commentable
 
+  def to_s
+    name
+  end
+
 end
