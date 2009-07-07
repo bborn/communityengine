@@ -1,3 +1,7 @@
+=javascript_include_tag 'calendarview', :plugin => 'community_engine'
+=stylesheet_link_tag  'calendarview', :plugin => 'community_engine'
+
+
 -box do
   %h3= :edit_event.l
   = error_messages_for :event
@@ -7,12 +11,16 @@
     
     %label= :description.l
     = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
-    
+
     %label= :start_time.l
-    = datetime_select(:event, :start_time)
+
+    = f.text_field :start_time, :class => 'date_input'
+    = f.time_select(:start_time, :time_separator => ':')
     
     %label= :end_time.l
-    = datetime_select(:event, :end_time)
+    = f.text_field :end_time, :class => 'date_input'
+    = f.time_select(:end_time, :time_separator => ':')
+
     
     %label= :location.l
     = f.text_field :location
@@ -22,3 +30,16 @@
       = submit_tag :save.l
 
   = link_to :back.l, events_path
+
+
+%script{:type => 'text/javascript'}
+  :plain
+    Event.observe(window, 'load', function() { 
+      Calendar.setup(
+        {  dateField: 'event_start_time' }
+      )    
+
+      Calendar.setup(
+        {  dateField: 'event_end_time' }
+      )    
+    })

@@ -395,8 +395,8 @@ en:
   end_date: End date
   #en: end_required: end (required)
   end_required: end (required)
-  #en: end_tome: End time
-  end_tome: End time
+  #en: end_time: End time
+  end_time: End time
   #en: enter_a_message: Enter a message
   enter_a_message: Enter a message
   #en: enter_e_mail_addresses: Enter e-mail addresses
