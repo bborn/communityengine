@@ -1,0 +1,14 @@
+%label 
+  =:title.l + ":"
+= f.text_field :title, :size => 35
+
+%label
+  =:description.l + ":"
+= f.text_area :description, :size => "58x5"
+
+= hidden_field_tag :go_to
+
+%p
+  = f.submit button1
+  = :or.l
+  =  f.submit button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'"

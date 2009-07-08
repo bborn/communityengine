@@ -3,12 +3,15 @@ class AlbumsController < BaseController
   before_filter :login_required, :except => [:show]
   before_filter :find_user, :only => [:new, :edit, :index]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
+  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
+
+
   # GET /albums/1
   # GET /albums/1.xml
   def show
     @album = Album.find(params[:id])
     update_view_count(@album) if current_user && current_user.id != @album.user_id
-    @album_photos = Photo.find(:all, :page => { :start => 1, :current => params[:page], :size => 8 },
+    @album_photos = Photo.find(:all, :page => { :start => 1, :current => params[:page], :size => 10 },
      :conditions => ['album_id = ? AND parent_id IS NULL', params[:id]])
    
     respond_to do |format|
@@ -62,9 +65,12 @@ class AlbumsController < BaseController
 
     respond_to do |format|
       if @album.update_attributes(params[:album])
-        flash[:notice] = :album_updated.l
-        format.html { redirect_to(user_album_path(current_user, @album)) }
-        format.xml  { head :ok }
+        if params[:go_to] == 'only_create'
+          flash[:notice] = :album_updated.l
+          format.html { redirect_to(user_album_path(current_user, @album)) }
+        else
+          format.html { redirect_to(new_user_album_photo_path(current_user,@album)) }
+        end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @album.errors, :status => :unprocessable_entity }
