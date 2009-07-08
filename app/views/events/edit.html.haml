@@ -1,3 +1,4 @@
+=calendar_date_select_includes
 -box do
   %h3= :edit_event.l
   = error_messages_for :event
@@ -9,10 +10,10 @@
     = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
     
     %label= :start_time.l
-    = datetime_select(:event, :start_time)
+    = f.calendar_date_select :start_time, :time => true 
     
     %label= :end_time.l
-    = datetime_select(:event, :end_time)
+    = f.calendar_date_select :end_time, :time => true 
     
     %label= :location.l
     = f.text_field :location
