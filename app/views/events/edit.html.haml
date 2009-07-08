@@ -16,8 +16,10 @@
     
     %label= :location.l
     = f.text_field :location
-    - #= render :partial => 'shared/location_chooser', :locals => {:selected_country => nil, :selected_state => nil, :selected_metro_area => @event.metro_area_id, :states => [], :metro_areas => MetroArea.find(:all)}
-    - #= render :partial => 'shared/location_chooser', :locals => {:selected_metro_area => @event.metro_area_id, }
+
+    %h3= :metro_area.l
+    = render :partial => 'shared/location_chooser', :locals => {:selected_country => @country_id, :selected_state => @state_id, :selected_metro_area => @metro_area_id, :states => @states, :metro_areas => @metro_areas}
+
     %p
       = submit_tag :save.l
 
