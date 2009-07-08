@@ -687,8 +687,13 @@
 #en: your_username_was_emailed_to_you: Your username was emailed to you.
 #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
 #en: zippostal_code: "ZIP/Postal code:"
-#en: photo_manager: "Photo manager"
+#en: photo_manaer: "Photo manager"
 #en: albums: "Albums"
+# en album_updated: "Album updated"
+#en: album_comments: "Comentarios de álbum"
+#en: album_tip: "Albums let you organize yout photos. Share whole experiencies with other {{community_name}} users"
+#en: delete_album_and_photos: Delete album and its associated photos?
+#en: album_was_successfully_created: "Album was successfully created"  
 #en: album: "Album"
 #en: view_more: "View more"
 #en: assign_album: "Assign album"
@@ -699,12 +704,17 @@
 #en: photos_of_this_album: "Photos of this album"
 #en: not_assigned_photos: "Photos not assigned to an album"
 #en: create_and_add_photos: "Create and add photos to this album"
+#en: edit_and_add_photos: "Edit and add photos to this album"
 #en: create_album: "Create album"
+#en: edit_album: "Edit album"
 #en; cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
 #en: back_to_photo_manager: "Back to photo manager"
+#en: static_page_active: Active
 #en: static_pages: "Static pages"
 #en: new_static_page: "New static page"
 #en: visibility: "Visibility"
 #en: everyone: "Everyone"
 #en: content: "Content"
-
+#en: static_page_tip: "Static pages let you announce special events in pages created by ad admin with a specific URL"
+#en: back_to_static_pages: "Back to static pages"
+#en: static_page_content: "Content"
