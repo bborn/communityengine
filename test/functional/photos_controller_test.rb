@@ -15,7 +15,7 @@ class PhotosControllerTest < ActionController::TestCase
       post :create,
         :photo => { :uploaded_data => fixture_file_upload('files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
-        :tag_list => 'tag1 tag2',
+        :tag_list => 'tag1, tag2',
         :album_id => '1'
       photo = Photo.find(assigns(:photo).id)
       assert_equal users(:quentin), photo.user
@@ -44,7 +44,7 @@ class PhotosControllerTest < ActionController::TestCase
      post :create,
         :photo => { :uploaded_data => fixture_file_upload('files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
-        :tag_list => 'tag1 tag2',
+        :tag_list => 'tag1, tag2',
         :album_id => '1'
     end
   end
