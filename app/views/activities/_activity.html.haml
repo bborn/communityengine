@@ -14,6 +14,9 @@
         - when 'Photo'
           =:uploaded_a_photo.l
           = link_to image_tag(activity.item.public_filename(:thumb), :width => '50px'), user_photo_path(activity.item.user, activity.item)
+        - when 'Album'
+          =:created_an_album.l
+          = link_to activity.item.title, user_album_path(activity.item.user, activity.item)
         - when 'Topic'
           =:started_a_topic.l
           -topic = activity.item

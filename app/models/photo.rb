@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
   acts_as_commentable
+  belongs_to :album
   
   has_attachment prepare_options_for_attachment_fu(AppConfig.photo['attachment_fu_options'])
   # attr_accessor :cropped_size
@@ -20,8 +21,8 @@ class Photo < ActiveRecord::Base
 
   acts_as_taggable
 
-  acts_as_activity :user, :if => Proc.new{|record| record.parent.nil?}
-
+  acts_as_activity :user, :if => Proc.new{|record| record.parent.nil? && record.album_id.nil?}
+  
   validates_presence_of :size
   validates_presence_of :content_type
   validates_presence_of :filename
@@ -59,6 +60,16 @@ class Photo < ActiveRecord::Base
   def next_photo
     self.user.photos.find(:first, :conditions => ['created_at > ?', created_at], :order => 'created_at ASC')
   end
+
+  def previous_in_album
+    return nil unless self.album
+    self.user.photos.find(:first, :conditions => ['created_at < ? and album_id = ?', created_at, self.album.id], :order => 'created_at DESC')
+  end
+  def next_in_album
+    return nil unless self.album    
+    self.user.photos.find(:first, :conditions => ['created_at > ? and album_id = ?', created_at, self.album_id], :order => 'created_at ASC')
+  end
+
 
   def self.find_recent(options = {:limit => 3})
     self.new_this_week.find(:all, :limit => options[:limit])

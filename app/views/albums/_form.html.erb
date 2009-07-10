@@ -1,0 +1,19 @@
+<%= f.error_messages %>
+<p>
+  <%= f.label :title.l %><br />
+  <%= f.text_field :title %>
+</p>
+<p>
+  <%= f.label :description.l %><br />
+  <%= f.text_area :description %>
+</p>
+
+		<%= hidden_field_tag :go_to %>
+<p>
+  <%= f.submit :create_and_add_photos.l %>
+</p>
+
+<p>
+		<%= f.submit :create_album.l, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'" %>
+</p>
+

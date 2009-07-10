@@ -27,6 +27,8 @@
       = f.text_field :name, :size => 35
       %label= :description.l + ":"
       = f.text_area :description, :size => "58x5"
+      %label= :album.l + ":"
+      = f.select(:album_id, current_user.albums.collect {|album| [album.title, album.id ] }, { :include_blank => true })
 
       %p
         = submit_tag :update.l

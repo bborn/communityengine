@@ -23,16 +23,3 @@
       = submit_tag :create.l
 
   = link_to :back.l, events_path
-
-
-%script{:type => 'text/javascript'}
-  :plain
-    Event.observe(window, 'load', function() { 
-      Calendar.setup(
-        {  dateField: 'event_start_time' }
-      )    
-
-      Calendar.setup(
-        {  dateField: 'event_end_time' }
-      )    
-    })

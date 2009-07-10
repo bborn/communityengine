@@ -11,10 +11,9 @@
 
 = javascript_include_tag "AC_RunActiveContent", :plugin => "community_engine" if current_page?(:controller => 'photos', :action => 'new') or current_page?(:controller => 'statistics', :action => 'index')		
 
-- if current_page?(:controller => 'photos', :action => 'new')
+- if (controller_name == 'photos' && action_name == 'new')
   = javascript_include_tag 'swfupload', :plugin => "community_engine"
   = javascript_include_tag 'uploader', :plugin => "community_engine"
-
 
 = stylesheet_link_tag 'reset-fonts-grids.css', :plugin => :community_engine
 = stylesheet_link_tag 'screen', :plugin => :community_engine

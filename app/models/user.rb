@@ -1,6 +1,8 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  has_many :albums
+  
   MALE    = 'M'
   FEMALE  = 'F'
   attr_accessor :password

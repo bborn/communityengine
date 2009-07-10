@@ -1,0 +1,22 @@
+one:
+    id: 1
+    url: url_test_1
+    active: true
+    visibility: Everyone
+
+two:
+    id: 2
+    url: url_test_2
+    active: true
+    visibility: Users
+
+three:
+    id: 3
+    url: url_test_3
+    active: true
+    visibility: Admin
+    
+four:
+    id: 4
+    url: url_test_4
+    active: false

@@ -1,0 +1,41 @@
+<%= error_messages_for :static_page %>
+
+<% form_for @static_page do |f| %>
+  <p>
+    <b>Url</b><br />
+    <%= f.text_field :url %>
+  </p>
+
+  <p>
+    <b><%= :title.l %></b><br/>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <b><%= :content.l %></b><br/>
+    <%= f.text_area :content, :size => "69x10", :class => "rich_text_editor" %>
+  </p>
+
+	<p>
+		<b><%= :active.l %></b><br/>
+    <%= f.check_box :active %>
+	</p>
+
+	<p>
+		<b><%= :visibility.l %></b>
+		<ul>
+			<li><%= :everyone.l %> <%= f.radio_button(:visibility, "Everyone") %></li>
+			<li><%= :users.l %> 	 <%= f.radio_button(:visibility, "Users") %></li>
+			<li><%= :admin.l %> 	 <%= f.radio_button(:visibility, "Admin") %></li>
+		</ul>
+	</p>
+
+  <p>
+    <% if action_name == 'new'%>
+			<%= submit_tag :create.l %> 
+  	<% else %>
+			<%= submit_tag :update.l %>
+		<% end %>
+		<%= :or.l %> <%= link_to :cancel.l, static_pages_path %>
+  </p>
+<% end %>

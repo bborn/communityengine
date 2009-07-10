@@ -1,0 +1,5 @@
+<% form_for @album, :url => user_albums_path(current_user) , :method => :post do |f| %>
+	<%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<%= link_to :back_to_photo_manager.l, user_photo_manager_index_path(@album.user) %>

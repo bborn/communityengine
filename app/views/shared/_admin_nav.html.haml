@@ -12,6 +12,7 @@
       %li= link_to_unless_current :skills.l, new_skill_path 
     - if feature_enabled?('events')
       %li= link_to_unless_current :events.l, events_path
+    %li= link_to :static_pages.l, static_pages_path
     %li= link_to_unless_current :statistics.l, statistics_path
     %li= link_to_unless_current :ads.l, ads_path 
     %li= link_to_unless_current :comments.l, admin_comments_path 

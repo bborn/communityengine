@@ -1,0 +1,31 @@
+.yui-b
+  = render :partial => 'shared/admin_nav'
+  
+#yui-main
+  .yui-b
+    .box
+      %h3= :static_pages.l
+      = link_to :new_static_page.l, new_static_page_path 
+      %br
+      %br
+
+      %table{:width=>"120%"}
+        %tr
+          %th{:width=>"10%"}= :title.l
+          %th url 
+          %th= :active.l 
+          %th= :visibility.l 
+          %th= :actions.l
+
+        - for static_page in @static_pages
+          %tr
+            %td=h static_page.title
+            %td=h static_page.url
+            %td=h static_page.active
+            %td=h static_page.visibility
+            %td
+              = link_to :show.l, static_page_path(static_page)
+              %br
+              = link_to :edit.l, edit_static_page_path(static_page)
+              %br
+              = link_to :destroy.l, static_page_path(static_page), :confirm => :are_you_sure.l, :method => :delete

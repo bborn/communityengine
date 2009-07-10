@@ -20,7 +20,7 @@
         = :date_title.l + ":"
         = @message.created_at.to_s(:long)
 
-      %pre.message_body= auto_link(h (@message.body))
+      %pre.message_body= auto_link(h(@message.body))
       
       -if @reply    
         %ul.message_nav

@@ -18,7 +18,7 @@
     %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
       =:want_to_upload_multiple_files_at_once.l
 
-    - form_for(:photo, :url => user_photos_path, :html => {:multipart =>true, :class => "MainForm"} ) do |f|
+    - form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
       = f.file_field :uploaded_data
       %label
         %em
@@ -39,10 +39,15 @@
         =:description.l + ":"
       = f.text_area :description, :size => "58x5"
 
+      - unless params[:album_id]
+        %label
+          =:assign_album.l + ":"
+        = select_tag 'album_selected', options_for_select([''] +current_user.albums.collect{ |album| [album.title, album.id] })
+
       %p
         = submit_tag :create.l
         = :or.l
-        = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)
+        = link_to :cancel_and_go_back_to_photo_manager.l, user_photo_manager_index_path(current_user)
 
   -box :class => 'yui-b', :id => 'multiple_upload', :style => "display:none;" do
     %h3 
@@ -57,7 +62,10 @@
         var uploader;
         window.onload = function (){
         - session_key = ActionController::Base.session_options[:key]
-        ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, session_key => cookies[session_key], request_forgery_protection_token => form_authenticity_token)}');"        
+        - if params[:album_id]
+          ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, :album_id => params[:album_id], session_key => cookies[session_key], request_forgery_protection_token => form_authenticity_token)}');"
+        - else
+          ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, session_key => cookies[session_key], request_forgery_protection_token => form_authenticity_token)}');"        
         };
         
       %div{:style=>"margin: 0px 10px;"}
@@ -73,3 +81,10 @@
                 = :megabyte_upload_limit_per_file.l
         #divFileProgressContainer{:style=>"height: 75px;"}
         #thumbnails
+      %p
+        - if params[:album_id]
+          = link_to :view_my_album.l, user_album_path(current_user,params[:album_id])
+        - else
+          = link_to :view_my_photos.l, user_photos_path(current_user)
+        = :or.l
+        = link_to :back_to_photo_manager.l, user_photo_manager_index_path(current_user)
