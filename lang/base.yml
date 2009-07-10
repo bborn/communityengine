@@ -191,7 +191,7 @@
 #en: end: end
 #en: end_date: End date
 #en: end_required: end (required)
-#en: end_tome: End time
+#en: end_time: End time
 #en: enter_a_message: Enter a message
 #en: enter_e_mail_addresses: Enter e-mail addresses
 #en: enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
@@ -659,6 +659,8 @@
 #en: whats_fresh: What's fresh
 #en: whats_hot: What's Hot
 #en: whats_popular: What's Popular
+#en: when: When
+#en: where: Where
 #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
 #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
 #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}

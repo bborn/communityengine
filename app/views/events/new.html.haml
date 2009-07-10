@@ -1,3 +1,4 @@
+=calendar_date_select_includes
 -box do
   %h3= :new_event.l
   = error_messages_for :event
@@ -9,15 +10,15 @@
     = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
     
     %label= :start_time.l
-    = datetime_select(:event, :start_time)
-    
+    = f.calendar_date_select :start_time, :time => true 
     %label= :end_time.l
-    = datetime_select(:event, :end_time)
+    = f.calendar_date_select :end_time, :time => true 
     
     %label= :location.l
     = f.text_field :location
-    - #= render :partial => 'shared/location_chooser', :locals => {:selected_country => nil, :selected_state => nil, :selected_metro_area => @event.metro_area_id, :states => [], :metro_areas => MetroArea.find(:all)}
-    - #= render :partial => 'shared/location_chooser', :locals => {:selected_metro_area => @event.metro_area_id, }
+
+    %h3= :metro_area.l   
+    = render :partial => 'shared/location_chooser', :locals => {:selected_country => @country_id, :selected_state => @state_id, :selected_metro_area => @metro_area_id, :states => @states, :metro_areas => @metro_areas}
     %p
       = submit_tag :create.l
 

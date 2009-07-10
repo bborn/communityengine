@@ -395,8 +395,8 @@ en:
   end_date: End date
   #en: end_required: end (required)
   end_required: end (required)
-  #en: end_tome: End time
-  end_tome: End time
+  #en: end_time: End time
+  end_time: End time
   #en: enter_a_message: Enter a message
   enter_a_message: Enter a message
   #en: enter_e_mail_addresses: Enter e-mail addresses
@@ -1301,6 +1301,10 @@ en:
   whats_hot: What's Hot
   #en: whats_popular: What's Popular
   whats_popular: What's Popular
+  #en: when: When
+  when: When
+  #en: where: Where
+  where: Where
   #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
   when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
   #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
