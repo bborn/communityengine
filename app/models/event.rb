@@ -24,10 +24,6 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def evt_location
-    location ? location : metro_area.to_s
-  end
-  
   def spans_days?
     (end_time - start_time) >= 86400
   end
