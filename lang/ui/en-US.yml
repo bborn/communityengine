@@ -411,6 +411,8 @@ en:
   estimated_total_for_this_month: Estimated total for this month
   #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
   estimated_writers_costs_this_month: "Estimated writers' costs this month"
+  #en: event_details: Event Details
+  event_details: Event Details
   #en: event_was_successfully_created: Event was successfully created.
   event_was_successfully_created: Event was successfully created.
   #en: events: Events
