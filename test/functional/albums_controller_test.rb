@@ -42,8 +42,10 @@ class AlbumsControllerTest < ActionController::TestCase
 
   test "should update album" do
     login_as :quentin
-    put :update, :id => albums(:one).id, :album => { }
+    put :update, :id => albums(:one).id, :album => { }, :go_to => 'only_create'
     assert_redirected_to user_album_path(users(:quentin), albums(:one))
+    put :update, :id => albums(:one).id, :album => { }, :go_to => ''
+    assert_redirected_to new_user_album_photo_path(users(:quentin),albums(:one))
   end
 
   test "should destroy album" do

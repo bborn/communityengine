@@ -9,23 +9,23 @@
       %br
       %br
 
-      %table{:width=>"120%"}
+      %table{:border => 0, :width => '100%'}
         %tr
-          %th{:width=>"10%"}= :title.l
-          %th url 
-          %th= :active.l 
+          %th= :title.l
+          %th URL 
+          %th= :static_page_active.l 
           %th= :visibility.l 
+          %th= :created_at.l 
           %th= :actions.l
 
         - for static_page in @static_pages
           %tr
-            %td=h static_page.title
-            %td=h static_page.url
-            %td=h static_page.active
-            %td=h static_page.visibility
+            %td= link_to static_page.title, static_page_path(static_page)
+            %td= link_to static_page.url, {:action => 'show_web', :url => static_page.url}
+            %td= h static_page.active
+            %td= h static_page.visibility
+            %td= h static_page.created_at.strftime("%Y/%m/%d")
             %td
-              = link_to :show.l, static_page_path(static_page)
-              %br
-              = link_to :edit.l, edit_static_page_path(static_page)
-              %br
+              = link_to :edit.l, edit_static_page_path(static_page) 
+              = "|"        
               = link_to :destroy.l, static_page_path(static_page), :confirm => :are_you_sure.l, :method => :delete

@@ -1,0 +1,12 @@
+.yui-b
+  -box do 
+    %h3 Tips
+    %p 
+      =:static_page_tip.l :community_name => AppConfig.community_name
+
+  -box :class => 'alt' do
+    = link_to :back_to_static_pages.l, static_pages_path
+
+= render :partial => 'form', :locals => {:form_button => :create.l }
+
+
