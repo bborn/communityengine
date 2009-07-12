@@ -254,6 +254,8 @@ Contributors - Thanks! :)
 - [Andrei Erdoss](http://github.com/cauta) localization
 - [Errol Siegel](http://github.com/eksatx) simple private messages integration, documentation help
 - Carl Fyffe - documentation, misc.
+- [Juan De Frías](http://github.com/juafrlo) static pages, photo albums
+
 
 To Do
 ----
