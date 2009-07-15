@@ -22,7 +22,7 @@ ja:
   #en: about: About
   about: About
   #en: about_me: About Me
-  about_me: About Me
+  about_me: 自己紹介
   #en: about_site: About {{site}}
   about_site: "{{site}}について"
   #en: about_you: About You
@@ -202,9 +202,9 @@ ja:
   #en: click_here_to_enter_this_contest: "Click here to enter this contest!"
   click_here_to_enter_this_contest: "Click here to enter this contest!"
   #en: click_here_to_retrieve_it: Click here to retrieve it
-  click_here_to_retrieve_it: Click here to retrieve it
+  click_here_to_retrieve_it: 検索するにはここをクリック
   #en: click_here_to_sign_up: Click here to sign up
-  click_here_to_sign_up: Click here to sign up
+  click_here_to_sign_up: サインアップするにはここをクリック
   #en: click_here_to_sign_up_for_an_account_and_enter: Click here to sign up for an account and enter
   click_here_to_sign_up_for_an_account_and_enter: Click here to sign up for an account and enter
   #en: click_here_to_upload_one: Click here to upload one!
@@ -228,7 +228,7 @@ ja:
   #en: clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
   clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
   #en: close_this_message: Close this message
-  close_this_message: Close this message
+  close_this_message: このメッセージを閉じる
   #en: comma_separated: (comma separated)
   comma_separated: (comma separated)
   #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
@@ -304,17 +304,17 @@ ja:
   #en: delete_selected: Delete selected
   delete_selected: Delete selected
   #en: delete_this_event: Delete this event
-  delete_this_event: Delete this event
+  delete_this_event: このイベントを削除します
   #en: delete_this_forum: Delete this forum
-  delete_this_forum: Delete this forum
+  delete_this_forum: このフォーラムを削除します
   #en: delete_this_photo: Delete this photo
-  delete_this_photo: Delete this photo
+  delete_this_photo: この写真を削除します
   #en: delete_this_post: Delete this post?
   delete_this_post: この記事を削除しますか?
   #en: delete_this_topic_forever: Delete this topic forever?
   delete_this_topic_forever: Delete this topic forever?
   #en: delete_this_user: Delete this user
-  delete_this_user: Delete this user
+  delete_this_user: このユーザを削除します
   #en: deny: Deny
   deny: 拒否
   #en: denied: denied
@@ -358,7 +358,7 @@ ja:
   #en: edit_profile: Edit profile
   edit_profile: プロフィールの編集
   #en: edit_this_event: Edit this event
-  edit_this_event: Edit this event
+  edit_this_event: このイベントの編集
   #en: edit_this_photo_details: Edit this photo's details
   edit_this_photo_details: この写真の詳細を編集
   #en: edit_topic: Edit topic
@@ -394,11 +394,11 @@ ja:
   #en: end: end
   end: end
   #en: end_date: End date
-  end_date: End date
+  end_date: 終了日時
   #en: end_required: end (required)
   end_required: end (required)
   #en: end_tome: End time
-  end_tome: End time
+  end_tome: 終了時刻
   #en: enter_a_message: Enter a message
   enter_a_message: メッセージを入力
   #en: enter_e_mail_addresses: Enter e-mail addresses
@@ -406,7 +406,7 @@ ja:
   #en: enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
   enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
   #en: enter_your_email_address: "Enter your email address"
-  enter_your_email_address: "Enter your email address"
+  enter_your_email_address: "E-mailアドレスを入力してください"
   #en: error: Error!
   error: エラー!
   #en: estimated_total_for_this_month: Estimated total for this month
@@ -424,7 +424,7 @@ ja:
   #en: failed: failed
   failed: failed
   #en: faq: FAQ
-  faq: FAQ
+  faq: よくある質問
   #en: faq_section: FAQ section
   faq_section: FAQ section
   #en: favorites: Favorites
@@ -458,9 +458,9 @@ ja:
   #en: for_more_information_on_tags_check_out_the: For more information on tags check out the
   for_more_information_on_tags_check_out_the: For more information on tags check out the
   #en: forgot_your_password: Forgot your password?
-  forgot_your_password: Forgot your password?
+  forgot_your_password: パスワードを忘れましたか?
   #en: forgot_your_username: Forgot your username?
-  forgot_your_username: Forgot your username?
+  forgot_your_username: ユーザ名を忘れましたか?
   #en: forum: Forum
   forum: フォーラム
   #en: forums: Forums
@@ -566,7 +566,7 @@ ja:
   #en: items: Items
   items: Items
   #en: joined: joined
-  joined: joined
+  joined: 参加
   #en: just_uploading_one_photo: Just uploading one photo?
   just_uploading_one_photo: Just uploading one photo?
   #en: keywords: Keywords
@@ -594,11 +594,11 @@ ja:
   #en: log_in_to_create_a_new_topic: Log in to create a new topic
   log_in_to_create_a_new_topic: Log in to create a new topic
   #en: log_in_to_leave_a_comment: Log in to leave a comment
-  log_in_to_leave_a_comment: Log in to leave a comment
+  log_in_to_leave_a_comment: ログインしてコメントする
   #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
   log_in_to_reply_to_this_topic: Log in to reply to this topic
   #en: log_in_to_site: Log in to {{site}}
-  log_in_to_site: "Log in to {{site}}"
+  log_in_to_site: "{{site}}にログイン"
   #en: log_in_to_vote: Log in to vote
   log_in_to_vote: Log in to vote
   #en: log_in_to_your: Log in to your
@@ -610,7 +610,7 @@ ja:
   #en: logged_in: "Logged in:"
   logged_in: "ログイン中:"
   #en: logged_into_the_site: logged into the site
-  logged_into_the_site: logged into the site
+  logged_into_the_site: サイトにログイン
   #en: login: Login
   login: ログイン
   #en: logins: Logins
@@ -670,7 +670,7 @@ ja:
   #en: monitored_topics: Monitored Topics
   monitored_topics: Monitored Topics
   #en: month: Month
-  month: Month
+  month: 月
   #en: more: More
   more: More
   #en: more_about_you: More about you
@@ -678,19 +678,19 @@ ja:
   #en: most_active_1_month: Most active (1 month)
   most_active_1_month: Most active (1 month)
   #en: my_details: My Details
-  my_details: My Details
+  my_details: 詳細
   #en: my_friends: My Friends
-  my_friends: My Friends
+  my_friends: 私の友人
   #en: my_profile: My Profile
-  my_profile: My Profile
+  my_profile: 私のプロフィール
   #en: my_recent_comments: My recent comments
   my_recent_comments: My recent comments
   #en: my_skills: My Skills
   my_skills: My Skills
   #en: my_tags: My tags
-  my_tags: My tags
+  my_tags: タグ
   #en: name: Name
-  name: Name
+  name: 名前
   #en: navigation_menu_text: Navigation menu text
   navigation_menu_text: Navigation menu text
   #en: need_some_help_contact_our: Need some help?  Check out our
@@ -732,7 +732,7 @@ ja:
   #en: new_today: New today
   new_today: New today
   #en: new_topic: New topic
-  new_topic: New topic
+  new_topic: 新しいトピック
   #en: new_yesterday: New yesterday
   new_yesterday: New yesterday
   #en: next: next
@@ -818,7 +818,7 @@ ja:
   #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
   photo_tip_2: Use tags to organize your photos. Separate tags with commas.
   #en: please_log_in: Please log in.
-  please_log_in: Please log in.
+  please_log_in: ログインしてください.
   #en: please_post_something_at_least: Please post something at least...
   please_post_something_at_least: Please post something at least...
   #en: plural_posts: "{{count}} posts"
@@ -870,11 +870,11 @@ ja:
   #en: profile: Profile
   profile: プロフィール
   #en: profile_comments: Profile Comments
-  profile_comments: Profile Comments
+  profile_comments: プロフィールへのコメント
   #en: profile_photo: Profile Photo
-  profile_photo: Profile Photo
+  profile_photo: プロフィール写真
   #en: profile_photo_change: Change profile photo
-  profile_photo_change: Change profile photo
+  profile_photo_change: プロフィール写真を変更
   #en: profile_photo_crop: Crop profile photo
   profile_photo_crop: Crop profile photo
   #en: profile_privacy: Profile Privacy
@@ -944,7 +944,7 @@ ja:
   #en: resend_your_activation_e_mail: Resend your activation e-mail
   resend_your_activation_e_mail: Resend your activation e-mail
   #en: reset_my_password: Reset my password
-  reset_my_password: Reset my password
+  reset_my_password: パスワードをリセット
   #en: rss: RSS
   rss: RSS
   #en: rss_feed: RSS feed
@@ -990,9 +990,9 @@ ja:
   #en: send_invitations: Send Invitations!
   send_invitations: Send Invitations!
   #en: send_me_my_username: Send me my username
-  send_me_my_username: Send me my username
+  send_me_my_username: ユーザ名をメールに送信
   #en: sent_messages: Sent messages
-  sent_messages: Sent messages
+  sent_messages: メッセージを送信
   #en: send_this_story_to_friends: Send this message to friends
   send_this_story_to_friends: Send this message to friends
   #en: service_could_not_be_deleted: Service could not be deleted.
