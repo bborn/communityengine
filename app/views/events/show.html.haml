@@ -10,3 +10,11 @@
   -box :class => "yui-b" do
     = render :partial=>'event', :locals=>{:event=>@event, :show_details_link=>false}
     = @event.description
+    - unless @event.attendees.blank?
+      %p
+        %b=:attendees.l+':'
+        - @event.attendees.each do |user|
+          = link_to h(user.display_name), user_path(user)
+          - if (count = @event.attendees_for_user(user)) > 1
+            = "(+#{count-1})"
+
