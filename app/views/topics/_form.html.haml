@@ -10,13 +10,14 @@
       = form.check_box :locked
       = :locked.l
 
+%label
+  = :tags.l
+  %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
+= text_field_tag 'tag_list', @topic.tag_list, {:autocomplete => "off", :size => 35}
+.auto_complete#tag_list_auto_complete
+  = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
 - if @topic.new_record?
-  %label= :tags.l+":"
-
-  = text_field_tag 'tag_list', @topic.tag_list, {:autocomplete => "off", :size => 35}
-  #tag_list_auto_complete.auto_complete
-  = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
 
   %label{"for"=>"topic_body"}= :body_text.l
   = form.text_area :body, :rows => 12
