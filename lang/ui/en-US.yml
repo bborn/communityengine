@@ -791,8 +791,16 @@ en:
   one_minute_ago: one minute ago
   #en: optional: optional
   optional: optional
+  #en: optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  #en: optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  #en: optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
+  optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
   #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   optional_keywords_describing_this_post_separated_by_commas: "optional keywords describing this post, separated by commas"
+  #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
+  optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
   #en: or: or
   or: or
   #en: page: page

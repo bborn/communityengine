@@ -54,7 +54,7 @@
             %h3= :tag_yourself.l
             = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
             #tag_list_auto_complete.auto_complete/
-            = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
+            = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
             %br
             %small
               =:comma_separated_keywords_that_describe_you.l
