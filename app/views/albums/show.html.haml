@@ -1,0 +1,32 @@
+.profile
+  .yui-b
+    = render :partial => 'posts/author_profile', :locals => {:user => @album.user}
+    = link_to :back_to_photo_manager.l, user_photo_manager_index_path(@album.user) 
+
+  #yui-main
+    .yui-b
+      -box :class => "hfeed" do 
+        %h3= h @album.title
+        %p= h @album.description
+
+
+        %h3= :photos_of_this_album.l
+        #photos.yui-u.box
+          - @album_photos.each do |photo|
+            = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), | 
+              user_photo_path(photo.user, photo) |
+          .pagination= paginating_links @album_photos if @album_photos.page_count > 1
+
+
+      -box :class => "hfeed comments", :id => 'comments' do
+        %h3=:album_comments.l
+        %h2=:add_your_comment.l
+        %p= render :partial => 'comments/comment_form', :locals => {:commentable => @album}
+        %a#newest_comment
+        = render :partial => 'comments/comment', :collection => @album.comments
+        %span#more_comments_links= more_comments_links(@album)
+
+
+
+
+

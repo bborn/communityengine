@@ -1,0 +1,24 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+message_from_kevin_to_aaron:
+  id: 1
+  sender_id: 3
+  recipient_id: 2
+  sender_deleted: false
+  recipient_deleted: false
+  subject: Test message
+  body: Test body
+  read_at: nil
+  created_at: <%= 2.days.ago.to_s :db %>
+  updated_at: <%= 2.days.ago.to_s :db %>
+message_from_aaron_to_kevin:
+  id: 2
+  sender_id: 6
+  recipient_id: 3
+  sender_deleted: false
+  recipient_deleted: true
+  subject: Test message
+  body: Test body
+  read_at: nil
+  created_at: <%= 2.days.ago.to_s :db %>
+  updated_at: <%= 2.days.ago.to_s :db %>
+

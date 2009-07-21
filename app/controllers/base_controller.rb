@@ -2,7 +2,6 @@ require 'hpricot'
 require 'open-uri'
 require 'pp'
 
-#TESTING BRANCH
 class BaseController < ApplicationController
   include AuthenticatedSystem
   include LocalizedApplication
