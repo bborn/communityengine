@@ -10,9 +10,9 @@ message_from_kevin_to_aaron:
   read_at: nil
   created_at: <%= 2.days.ago.to_s :db %>
   updated_at: <%= 2.days.ago.to_s :db %>
-message_from_aaron_to_kevin:
+message_from_aaron_to_leopoldo:
   id: 2
-  sender_id: 2
+  sender_id: 6
   recipient_id: 3
   sender_deleted: false
   recipient_deleted: true

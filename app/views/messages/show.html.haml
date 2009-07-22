@@ -30,4 +30,4 @@
         %form.MainForm#dummy_reply
           %textarea{:onclick => "$('reply').toggle(); $('message_body').activate(); $('dummy_reply').hide(); $(this).blur(); return false;", :style => "height: 75px;"}
       
-        #reply{:style => "display:none;"}=render :partial => 'form', :locals => {:message => @reply, :user => @user}          
+        #reply{:style => "display:none;"}=render :partial => 'form', :locals => {:message => @reply, :user => @user}
