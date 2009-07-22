@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
     has_many :photos, :order => "created_at desc", :dependent => :destroy
     has_many :invitations, :dependent => :destroy
     has_many :offerings, :dependent => :destroy
+    has_many :rsvps, :dependent => :destroy
 
     #friendship associations
     has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy

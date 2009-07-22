@@ -101,6 +101,10 @@ en:
   already_have_an_account: Already have an account?
   #en: an_error_occurred: An error occurred
   an_error_occurred: An error occurred
+  #en: are_attending_this_event: are attending this event
+  are_attending_this_event: are attending this event
+  #en: is_attending_this_event: is attending this event
+  is_attending_this_event: is attending this event
   #en: are_you_sure: Are you sure?
   are_you_sure: Are you sure?
   #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
@@ -117,6 +121,8 @@ en:
   assume_user_id: "Assume this user's ID"
   #en: assign_role: Assign role
   assign_role: Assign role
+  #en: attendees: Attendees
+  attendees: Attendees
   #en: audience: Audience
   audience: Audience
   #en: author: Author
@@ -179,6 +185,8 @@ en:
   cancel_and_go_back_to_my_photos: cancel and go back to my photos
   #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
   cancel_and_go_back_to_my_posts: cancel and go back to my posts
+  #en: cannot_rsvp_for_an_event_that_has_already_happened: Cannot RSVP for an event that has already happened.
+  cannot_rsvp_for_an_event_that_has_already_happened: Cannot RSVP for an event that has already happened.
   #en: categories: Categories
   categories: Categories
   #en: category: Category
@@ -353,6 +361,8 @@ en:
   edit_post: Edit post
   #en: edit_profile: Edit profile
   edit_profile: Edit profile
+  #en: edit_rsvp_for: Edit RSVP for
+  edit_rsvp_for: Edit RSVP for
   #en: edit_this_event: Edit this event
   edit_this_event: Edit this event
   #en: edit_this_photo_details: Edit this photo's details
@@ -411,6 +421,8 @@ en:
   estimated_total_for_this_month: Estimated total for this month
   #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
   estimated_writers_costs_this_month: "Estimated writers' costs this month"
+  #en: event_details: Event Details
+  event_details: Event Details
   #en: event_was_successfully_created: Event was successfully created.
   event_was_successfully_created: Event was successfully created.
   #en: events: Events
@@ -763,6 +775,8 @@ en:
   notify_of_comments: Notify of comments
   #en: notify_of_friend_requests: Notify of friend requests
   notify_of_friend_requests: Notify of friend requests
+  #en: number_of_attendees: Number of attendees (including you)
+  number_of_attendees: Number of attendees (including you)
   #en: of: of
   of: of
   #en: offering_was_successfully_created: Offering was successfully created.
@@ -777,8 +791,16 @@ en:
   one_minute_ago: one minute ago
   #en: optional: optional
   optional: optional
+  #en: optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  #en: optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  #en: optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
+  optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
   #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   optional_keywords_describing_this_post_separated_by_commas: "optional keywords describing this post, separated by commas"
+  #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
+  optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
   #en: or: or
   or: or
   #en: page: page
@@ -845,6 +867,8 @@ en:
   post_a_new_topic: Post a new topic
   #en: post_an_event: Post an event
   post_an_event: Post an event
+  #en: posted_an_event: "posted an event:"
+  posted_an_event: "posted an event:"
   #en: upcoming_events: Upcoming Events
   upcoming_events: Upcoming Events
   #en: past_events: Past Events
@@ -951,10 +975,20 @@ en:
   resend_your_activation_e_mail: Resend your activation e-mail
   #en: reset_my_password: Reset my password
   reset_my_password: Reset my password
+  #en: retract_rsvp: Retract RSVP
+  retract_rsvp: Retract RSVP
   #en: rss: RSS
   rss: RSS
   #en: rss_feed: RSS feed
   rss_feed: RSS feed
+  #en: rsvp_for: RSVP for
+  rsvp_for: RSVP for
+  #en: rsvped_for_an_event: "RSVPed for an event:"
+  rsvped_for_an_event: "RSVPed for an event:"
+  #en: rsvp: RSVP  
+  rsvp: RSVP
+  #en: rsvps: RSVPs
+  rsvps: RSVPs
   #en: run: Run
   run: Run
   #en: save: Save
@@ -1197,6 +1231,8 @@ en:
   uncategorized: Uncategorized
   #en: update: Update
   update: Update
+  #en: update_rsvp: Update RSVP
+  update_rsvp: Update RSVP
   #en: update_profile_and_tag_yourself: Update your profile and tag yourself
   update_profile_and_tag_yourself: Update your profile and tag yourself
   #en: update_your_profile: update your profile
@@ -1293,6 +1329,8 @@ en:
   welcome_message: "Welcome! {{login_link}} or {{signup_link}}"
   #en: what_are_tags: 'What are "Tags"?'
   what_are_tags: 'What are "Tags"?'
+  #en: what_is: What is
+  what_is: What is
   #en: what_is_popular: What's Popular
   what_is_popular: What's Popular
   #en: whats_fresh: What's fresh
@@ -1337,6 +1375,8 @@ en:
   you_could_tag_yourself: You could tag yourself
   #en: you_have: You have
   you_have: You have
+  #en: you_have_already_rsvped_for_this_event: You have already RSVPed for this event.
+  you_have_already_rsvped_for_this_event: You have already RSVPed for this event.
   #en: you_have_already_voted: You have already voted.
   you_have_already_voted: You have already voted.
   #en: you_have_created: You have created
@@ -1371,6 +1411,12 @@ en:
   your_post_was_successfully_created: Your post was successfully created.
   #en: your_profile_photo: "Your profile photo:"
   your_profile_photo: "Your profile photo:"
+  #en: your_rsvp_has_been_retracted: Your RSVP has been retracted.
+  your_rsvp_has_been_retracted: Your RSVP has been retracted.
+  #en: your_rsvp_was_successfully_created: Your RSVP was successfully created.
+  your_rsvp_was_successfully_created: Your RSVP was successfully created.
+  #en: your_rsvp_was_successfully_updated: Your RSVP was successfully updated.
+  your_rsvp_was_successfully_updated: Your RSVP was successfully updated.
   #en: your_username_was_emailed_to_you: Your username was emailed to you.
   your_username_was_emailed_to_you: Your username was emailed to you.
   #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!

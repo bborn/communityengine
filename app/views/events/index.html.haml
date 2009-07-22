@@ -19,24 +19,6 @@
     
       .pagination=paginating_links @events if @events.page_count > 1      
 
-      - @events.each do |event|
-        %h3
-          = event.name
-          = "(#{event.metro_area.to_s})" unless event.metro_area.blank?
-        - if (logged_in? && event.user.eql?(current_user))
-          = link_to :edit_this_event.l, edit_event_path(event)
-          |
-          = link_to(:delete_this_event.l, event_path(event), {:method => :delete, :confirm => :permanently_delete_this_event.l})
-          %br
-        %strong
-          %b= :when.l+":"
-          =h event.time_and_date
-        %br
-        %strong
-          - unless event.location.blank?
-            %b= :where.l+":"
-            =h event.location
-            = link_to :map_it.l, "http://www.google.com/maps?q=#{URI::encode(event.location)}", :title=>:map_it.l, :target=>'_blank'
-        %p= event.description
+      = render :partial=>'event', :collection=>@events, :locals=>{:show_details_link=>true}
 
       .pagination=paginating_links @events if @events.page_count > 1      

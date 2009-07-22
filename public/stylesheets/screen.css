@@ -633,8 +633,7 @@ margin-left:  12.3846em; /* about 200px - 3em*/
 .fresh .updated_profile dt {background-image: url(/plugin_assets/community_engine/images/icons/user_edit.png);}
 .fresh .favorite dt {background-image: url(/plugin_assets/community_engine/images/icons/heart_add.png);}
 .fresh .post dt, .fresh .sb_post dt, .fresh .topic dt{background-image: url(/plugin_assets/community_engine/images/icons/post.png);}
-
-
+.fresh .rsvp dt, .fresh .event dt {background-image: url(/plugin_assets/community_engine/images/icons/date.png);}
 
 /* =============================================== */
 /* 8. COMMUNITY FOOTER                             */
