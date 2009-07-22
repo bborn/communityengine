@@ -5,8 +5,7 @@
 = 1.0.3
 * complete private messages integration, allow sending messages to multiple recipients
 * upgrades to Event functionality, including RSVPs (eksatx)
-* Photo albums (juafrlo)
-* Static pages (juafrlo)
+* Photo albums, Static pages and messages controller test (juafrlo)
 * calendar_date_select gem is now required
 
 = 1.0.2
