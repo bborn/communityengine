@@ -33,6 +33,12 @@
           = link_to image_tag( activity.item.image_uri(:thumb), :width => '50px'), user_clipping_path(activity.item.user, activity.item)        
         - when 'Invitation'
           =:invited_friends.l
+        - when 'Event'
+          =:posted_an_event.l
+          = link_to activity.item.name, event_path(activity.item)
+        - when 'Rsvp'
+          =:rsvped_for_an_event.l
+          = link_to activity.item.event.name, event_path(activity.item.event)
         -else
           =render :partial => 'activities/unhandled_item', :locals => {:activity => activity}
     - else

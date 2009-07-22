@@ -8,14 +8,13 @@
 
 #yui-main
   -box :class => "yui-b" do
-    %h3= @event.name
-    - if @event.user.eql?(current_user)
-      = link_to :edit_this_event.l, edit_event_path(@event)
-      |
-      = link_to(:delete_this_event.l, event_path(@event), {:method => :delete, :confirm => :permanently_delete_this_event.l})
-      %br
+    = render :partial=>'event', :locals=>{:event=>@event, :show_details_link=>false}
+    = @event.description
+    - unless @event.attendees.blank?
+      %p
+        %b=:attendees.l+':'
+        - @event.attendees.each do |user|
+          = link_to h(user.display_name), user_path(user)
+          - if (count = @event.attendees_for_user(user)) > 1
+            = "(+#{count-1})"
 
-    %strong= h @event.time_and_date
-    %br
-    %strong= h @event.location
-    %p= @event.description
