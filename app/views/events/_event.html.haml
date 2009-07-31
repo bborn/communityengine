@@ -18,7 +18,7 @@
       = link_to :map_it.l, "http://www.google.com/maps?q=#{URI::encode(event.location)}", :title=>:map_it.l, :target=>'_blank'
   %br
   %strong
-    %b=:rsvps.l+' :'
+    %b=:rsvps.l+':'
     - attending = event.attendees_count == 1 ? :is_attending_this_event.l : :are_attending_this_event.l
     = pluralize(event.attendees_count, 'person') + ' ' + attending
   - if event.end_time > Time.now
