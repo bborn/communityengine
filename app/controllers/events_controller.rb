@@ -1,11 +1,13 @@
 class EventsController < BaseController
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit, :create, :update ])
+  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
 
   before_filter :admin_required, :except => [:index, :show]
 
   def show
     @is_admin_user = (current_user && current_user.admin?)
     @event = Event.find(params[:id])
+    @comments = @event.comments.find(:all, :limit => 20, :order => 'created_at DESC', :include => :user)
   end
 
   def index

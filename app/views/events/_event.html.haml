@@ -23,6 +23,5 @@
     - else
       = link_to :rsvp.l, new_event_rsvp_url(event)
 - if show_details_link
-  - unless event.description.blank?
-    %p= link_to :event_details.l, event_url(event)
+  %p= link_to :event_details.l, event_url(event)
 
