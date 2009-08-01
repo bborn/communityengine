@@ -1,11 +1,6 @@
 %h3
   = event.name
   = "(#{event.metro_area.to_s})" unless event.metro_area.blank?
-- if (logged_in? && (event.user.eql?(current_user) || admin?))
-  = link_to :edit_this_event.l, edit_event_path(event)
-  |
-  = link_to(:delete_this_event.l, event_path(event), {:method => :delete, :confirm => :permanently_delete_this_event.l})
-  %br
 %p
   %strong
     %b= :when.l+":"

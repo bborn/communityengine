@@ -77,6 +77,8 @@ en:
   admin_controls: Admin Controls
   #en: admin_dashboard: Admin dashboard
   admin_dashboard: Admin dashboard
+  #en: administer_events: Administer events
+  administer_events: Administer events
   #en: ads: Ads
   ads: Ads
   #en: advertise: Advertise

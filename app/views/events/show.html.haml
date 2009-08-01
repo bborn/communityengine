@@ -3,7 +3,7 @@
 .yui-b
   -box :class => "alt first_alt" do 
     - if @is_admin_user
-      = link_to :new_event.l, new_event_path
+      = link_to :administer_events.l, admin_events_path
     = link_to :see_all_events.l, events_path
 
 #yui-main

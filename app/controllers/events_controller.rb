@@ -4,6 +4,7 @@ class EventsController < BaseController
   before_filter :admin_required, :except => [:index, :show]
 
   def show
+    @is_admin_user = (current_user && current_user.admin?)
     @event = Event.find(params[:id])
   end
 
@@ -42,7 +43,7 @@ class EventsController < BaseController
       if @event.save
         flash[:notice] = :event_was_successfully_created.l
         
-        format.html { redirect_to events_path }
+        format.html { redirect_to event_path(@event) }
       else
         format.html { 
           @metro_areas, @states = setup_metro_area_choices_for(@event)
@@ -67,7 +68,7 @@ class EventsController < BaseController
         
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to events_path }
+        format.html { redirect_to event_path(@event) }
       else
         format.html { 
           @metro_areas, @states = setup_metro_area_choices_for(@event)
@@ -89,7 +90,7 @@ class EventsController < BaseController
     @event.destroy
     
     respond_to do |format|
-      format.html { redirect_to events_path }
+      format.html { redirect_to :back }
     end
   end
 
