@@ -32,8 +32,8 @@ class BaseController < ApplicationController
     render :layout => false
   end
 
-  def site_index    
-    @posts = Post.find_recent(:limit => 20)
+  def site_index
+    @posts = Post.find_recent(:page => {:current => params[:page], :size => 5})
 
     @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
     @rss_url = rss_url
