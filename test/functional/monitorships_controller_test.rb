@@ -3,11 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class MonitorshipsControllerTest < ActionController::TestCase
 
   all_fixtures
-  def setup
-    @controller = MonitorshipsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
 
   def test_should_require_login
     post :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => users(:aaron).id, :format => 'js'
