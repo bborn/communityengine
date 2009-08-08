@@ -1,11 +1,6 @@
 %h3
   = event.name
   = "(#{event.metro_area.to_s})" unless event.metro_area.blank?
-- if (logged_in? && (event.user.eql?(current_user) || admin?))
-  = link_to :edit_this_event.l, edit_event_path(event)
-  |
-  = link_to(:delete_this_event.l, event_path(event), {:method => :delete, :confirm => :permanently_delete_this_event.l})
-  %br
 %p
   %strong
     %b= :when.l+":"
@@ -18,7 +13,7 @@
       = link_to :map_it.l, "http://www.google.com/maps?q=#{URI::encode(event.location)}", :title=>:map_it.l, :target=>'_blank'
   %br
   %strong
-    %b=:rsvps.l+' :'
+    %b=:rsvps.l+':'
     - attending = event.attendees_count == 1 ? :is_attending_this_event.l : :are_attending_this_event.l
     = pluralize(event.attendees_count, 'person') + ' ' + attending
   - if event.end_time > Time.now
@@ -28,6 +23,5 @@
     - else
       = link_to :rsvp.l, new_event_rsvp_url(event)
 - if show_details_link
-  - unless event.description.blank?
-    %p= link_to :event_details.l, event_url(event)
+  %p= link_to :event_details.l, event_url(event)
 

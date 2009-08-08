@@ -17,7 +17,12 @@ class Event < ActiveRecord::Base
   named_scope :past, lambda { { :order => 'start_time DESC', :conditions => ['end_time <= ?' , Time.now ] } }  
   
   
-  acts_as_commentable    
+  acts_as_commentable
+
+  # Used by acts_as_commentable
+  def owner
+    self.user
+  end    
   
   def rsvped?(user)
     self.rsvps.find_by_user_id(user)
