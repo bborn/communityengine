@@ -9,6 +9,10 @@ class AdminController < BaseController
       format.xml  { render :xml => @contests.to_xml }
     end    
   end
+
+  def events
+    @events = Event.find(:all, :order => 'start_time DESC', :page => {:current => params[:page]})
+  end
   
   def messages
     @user = current_user

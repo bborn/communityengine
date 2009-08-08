@@ -3,7 +3,7 @@
 .yui-b
   -box :class => "alt first_alt" do 
     - if @is_admin_user
-      = link_to :new_event.l, new_event_path
+      = link_to :administer_events.l, admin_events_path
     = link_to :see_all_events.l, events_path
 
 #yui-main
@@ -17,4 +17,12 @@
           = link_to h(user.display_name), user_path(user)
           - if (count = @event.attendees_for_user(user)) > 1
             = "(+#{count-1})"
+    -box :class => 'hfeed comments', :id => 'comments' do      
+      %h3= :event_comments.l 
+      %h2= :add_your_comment.l
+      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @event}
+      %a#newest_comment
+      = render :partial => 'comments/comment', :collection => @comments
+      %span#more_comments_links= more_comments_links(@event)
+    / ends box
 

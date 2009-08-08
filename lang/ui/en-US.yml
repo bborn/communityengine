@@ -77,6 +77,8 @@ en:
   admin_controls: Admin Controls
   #en: admin_dashboard: Admin dashboard
   admin_dashboard: Admin dashboard
+  #en: administer_events: Administer events
+  administer_events: Administer events
   #en: ads: Ads
   ads: Ads
   #en: advertise: Advertise
@@ -423,6 +425,8 @@ en:
   estimated_writers_costs_this_month: "Estimated writers' costs this month"
   #en: event_details: Event Details
   event_details: Event Details
+  #en: event_comments: Event Comments
+  event_comments: Event Comments
   #en: event_was_successfully_created: Event was successfully created.
   event_was_successfully_created: Event was successfully created.
   #en: events: Events
