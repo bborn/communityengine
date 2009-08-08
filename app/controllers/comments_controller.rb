@@ -131,7 +131,7 @@ class CommentsController < BaseController
     @comment = Comment.find(params[:comment_id])
     if @comment.token.eql?(params[:token])
       @comment.unsubscribe_notifications
-      flash[:notice] = :comment_unsubscribe_succeeded
+      flash[:notice] = :comment_unsubscribe_succeeded.l
     end
     redirect_to commentable_url(@comment)
   end
