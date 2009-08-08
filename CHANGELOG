@@ -7,6 +7,7 @@
 * upgrades to Event functionality, including RSVPs (eksatx)
 * Photo albums, Static pages and messages controller test (juafrlo)
 * calendar_date_select gem is now required
+* added ability to unsubscribe from comment notifications for anonymous comments
 
 = 1.0.2
 * Rails 2.3 compatibility

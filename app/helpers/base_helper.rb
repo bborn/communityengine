@@ -10,8 +10,7 @@ module BaseHelper
       user_url(comment.recipient)+"#comment_#{comment.id}"
     end
   end
-
-
+  
   def forum_page?
     %w(forums topics sb_posts).include?(@controller.controller_name)
   end
