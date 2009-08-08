@@ -106,13 +106,12 @@ class Comment < ActiveRecord::Base
     self.notify_previous_anonymous_commenters if AppConfig.allow_anonymous_commenting
   end
   
-  def token
-    Digest::SHA1.hexdigest("#{id}--#{(user && user.email) || author_email}--#{created_at}")                
+  def token_for(email)
+    Digest::SHA1.hexdigest("#{id}--#{email}--#{created_at}")                
   end
   
-  def unsubscribe_notifications
-    update_attribute :notify_by_email, false
-    commentable.comments.find_all_by_author_email(author_email).each do |previous_comment|
+  def unsubscribe_notifications(email)
+    commentable.comments.find_all_by_author_email(email).each do |previous_comment|
       previous_comment.update_attribute :notify_by_email, false
     end
   end

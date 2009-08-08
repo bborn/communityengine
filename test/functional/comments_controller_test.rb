@@ -154,7 +154,7 @@ class CommentsControllerTest < ActionController::TestCase
     comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
     AppConfig.allow_anonymous_commenting = false
         
-    post :unsubscribe, :comment_id => comment.id, :token => comment.token 
+    post :unsubscribe, :comment_id => comment.id, :token => comment.token_for('bar@foo.com'), :email => 'bar@foo.com'
     assert comment.reload.notify_by_email.eql?(false)
   end
   

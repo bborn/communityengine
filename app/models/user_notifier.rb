@@ -55,9 +55,8 @@ class UserNotifier < ActionMailer::Base
     @subject     += "#{comment.username} has commented on a #{comment.commentable_type} that you also commented on."
     @body[:url]  = commentable_url(comment)
     @body[:comment] = comment
-    if comment.notify_by_email
-      @body[:unsubscribe_link] = url_for(:controller => 'comments', :action => 'unsubscribe', :comment_id => comment.id, :token => comment.token)
-    end    
+
+    @body[:unsubscribe_link] = url_for(:controller => 'comments', :action => 'unsubscribe', :comment_id => comment.id, :token => comment.token_for(email), :email => email)
   end
 
   def new_forum_post_notice(user, post)

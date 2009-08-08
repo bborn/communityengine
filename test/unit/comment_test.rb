@@ -81,7 +81,7 @@ class CommentTest < ActiveSupport::TestCase
     assert_equal comment.notify_by_email, true
     AppConfig.allow_anonymous_commenting = false    
     
-    comment.unsubscribe_notifications
+    comment.unsubscribe_notifications('alicia@foo.com')
     assert comment.reload.notify_by_email.eql?(false)
     assert first_comment.reload.notify_by_email.eql?(false)
   end
