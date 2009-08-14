@@ -1,6 +1,7 @@
 require 'pp'
 
 class PhotosController < BaseController
+  include Viewable  
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :swfupload]
   before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow, :swfupload]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
