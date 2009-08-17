@@ -147,17 +147,17 @@ class MessagesControllerTest < ActionController::TestCase
   end
   
   private
-  def create_message(sender,recipient)
-     Message.create(:sender_id => sender.id, :recipient_id => recipient.id,
-        :body => 'Some content', :subject => 'A subject').save!
-  end
+    def create_message(sender,recipient)
+       Message.create(:sender_id => sender.id, :recipient_id => recipient.id,
+          :body => 'Some content', :subject => 'A subject').save!
+    end
   
-  def should_mark_deleted(user)
-    @request.env['HTTP_REFERER'] = "#{user.login}/messages"
-    create_message(users(:leopoldo),users(:florian))
-    post :delete_selected, :delete => [Message.last.id], :user_id => user.id
-    assert_redirected_to "#{user.login}/messages"
-  end
+    def should_mark_deleted(user)
+      @request.env['HTTP_REFERER'] = "#{user.login}/messages"
+      create_message(users(:leopoldo),users(:florian))
+      post :delete_selected, :delete => [Message.last.id], :user_id => user.id
+      assert_redirected_to "#{user.login}/messages"
+    end
   
 
 end
