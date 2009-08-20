@@ -43,16 +43,17 @@
       - @users_comments.each do |comment|
         %dl.vcard
           %dt.photo
-            = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url(comment)
+            - if comment.recipient
+              = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url(comment)
           %dd.fn
-            - if comment.recipient.eql?(comment.commentable)
+            - if comment.commentable.eql?(comment.recipient)
               %strong= :to.l + ": #{link_to comment.recipient.login, commentable_url(comment)}"
             - else
-              %strong= :to.l + ": #{link_to comment.recipient.login, user_path(comment.recipient)}"
               %br
               %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type})"
           %dd
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
+
 
   - unless @photo_comments.empty?
     -box :class => 'yui-g alt', :id => 'photo_comments' do

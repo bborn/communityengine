@@ -1,4 +1,6 @@
 class TagsController < BaseController
+  before_filter :login_required, :only => [:manage, :edit, :update, :destroy]
+  before_filter :admin_required, :only => [:manage, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => 'auto_complete_for_tag_name'
 
   caches_action :show, :cache_path => Proc.new { |controller| controller.send(:tag_url, controller.params[:id]) }, :if => Proc.new{|c| c.cache_action? }
@@ -22,7 +24,43 @@ class TagsController < BaseController
 
     @clipping_tags = popular_tags(75, ' count DESC', 'Clipping')  
   end
-  
+
+  def manage
+    @tags = Tag.find(:all, :order => :name, :page => {:current => params[:page], :size => 20})
+  end
+
+  def edit
+    @tag = Tag.find_by_name(URI::decode(params[:id]))
+  end
+
+  def update
+    @tag = Tag.find_by_name(URI::decode(params[:id]))
+    
+    respond_to do |format|
+      if @tag.update_attributes(params[:tag])
+        flash[:notice] = :tag_was_successfully_updated.l
+        format.html { redirect_to admin_tags_url }
+        format.xml  { render :nothing => true }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @tag.errors.to_xml }        
+      end
+    end
+  end
+
+  def destroy
+    @tag = Tag.find_by_name(URI::decode(params[:id]))
+    @tag.destroy
+    
+    respond_to do |format|
+      format.html { 
+        flash[:notice] = :tag_was_successfully_deleted.l
+        redirect_to admin_tags_url
+      }
+      format.xml  { render :nothing => true }
+    end
+  end
+
   def show
     tag_names = URI::decode(params[:id])
     

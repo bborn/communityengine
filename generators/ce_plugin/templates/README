@@ -1,0 +1,13 @@
+<%= class_name %>
+<%= "=" * class_name.size %>
+ 
+This is a CommunityEngine plugin. It's designed to work with the CommunityEngine social networking platform, and won't work unless CE is properly installed.
+ 
+ 
+How To Build Your CE Plugin
+===========================
+ 
+Start building the functionality of your plugin by adding models and controllers in the plugin's app directory. This plugin will be loaded after the rest of CE, so you can override CE models and controllers here.
+ 
+ 
+Copyright (c) <%= Date.today.year %> [name of plugin creator], released under the MIT license

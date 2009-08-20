@@ -2,8 +2,13 @@
   .yui-b
     = render :partial => 'posts/author_profile', :locals => {:user => @user}
 
-    - if @previous || @next
-      -box :class => 'photo_nav alt' do
+    - if @photo.album
+      -box :class => "photo_nav alt" do
+        %h3= "#{:album.l}: #{link_to @photo.album.title, user_album_path(@user, @photo.album)}"
+        = link_to "<img src='#{@photo.previous_in_album.public_filename(:thumb)}' /><br />&laquo; " + :previous.l, user_photo_path(@user, @photo.previous_in_album), :class => 'left' if @photo.previous_in_album
+        = link_to "<img src='#{@photo.next_in_album.public_filename(:thumb)}' /><br />" + :next.l + "&raquo;", user_photo_path(@user, @photo.next_in_album), :class => 'right' if @photo.next_in_album    
+    - elsif @previous || @next
+      -box :class => "photo_nav alt" do
         = link_to "<img src='#{@previous.public_filename(:thumb)}' /><br />&laquo; " + :previous.l, user_photo_path(@user, @previous), :class => 'left' if @previous
         = link_to "<img src='#{@next.public_filename(:thumb)}' /><br />" + :next.l + "&raquo;", user_photo_path(@user, @next), :class => 'right' if @next
 

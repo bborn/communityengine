@@ -11,6 +11,9 @@ library_pic:
   height: 45
   created_at: <%= Time.now.to_s :db %>
   updated_at: <%= Time.now.to_s :db %>
+  album_id: 1
+  view_count: 0
+  
 another_pic:
   id: 2
   name: another
@@ -23,4 +26,4 @@ another_pic:
   height: 45
   created_at: <%= 1.days.ago.to_s :db %>
   created_at: <%= 1.days.ago.to_s :db %>
-  
+  view_count: 0

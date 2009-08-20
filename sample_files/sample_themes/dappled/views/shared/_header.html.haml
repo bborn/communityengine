@@ -1,6 +1,6 @@
 #hd
   %h1
-    %a{:href=>"/", :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
+    %a{:href=>application_url, :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
 
   - if logged_in?
     = render :partial => 'shared/user_menu'
@@ -22,17 +22,17 @@
       
     / SiteSearch Google 
     %form{:method=>"get", :action=>"http://www.google.com/custom", :target=>"_top"}
-      %input{ :type=>"hidden", :name=>"domains", :value=>"#{APP_URL}"}
+      %input{ :type=>"hidden", :name=>"domains", :value=>"#{application_url}"}
       %label{ :for=>"search",  :style=>"display: none"}
         = "Search #{AppConfig.community_name}"
       %input{ :type=>"text",:name=>"q", :size=>"17", :maxlength=>"255", :id=>"search"}
-      %input{ :type=>"hidden", :name=>"sitesearch", :value=>"#{APP_URL}", :id=>"ss1"}
+      %input{ :type=>"hidden", :name=>"sitesearch", :value=>"#{application_url}", :id=>"ss1"}
       %input{ :type=>"hidden", :name=>"client", :value=>"pub-9113954708528841"}
       %input{ :type=>"hidden", :name=>"forid", :value=>"1"}
       %input{ :type=>"hidden", :name=>"channel", :value=>"1842224655"}
       %input{ :type=>"hidden", :name=>"ie", :value=>"ISO-8859-1"}
       %input{ :type=>"hidden", :name=>"oe", :value=>"ISO-8859-1"}
-      %input{ :type=>"hidden", :name=>"cof", :value=>"GALT:#008000;GL:1;DIV:#FFFFFF;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0066CC;LC:0066CC;T:000000;GFNT:0000FF;GIMP:0000FF;LH:50;LW:90;S:http://#{APP_URL};FORID:1"}
+      %input{ :type=>"hidden", :name=>"cof", :value=>"GALT:#008000;GL:1;DIV:#FFFFFF;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0066CC;LC:0066CC;T:000000;GFNT:0000FF;GIMP:0000FF;LH:50;LW:90;S:http://#{application_url};FORID:1"}
       %input{ :type=>"hidden", :name=>"hl", :value=>"en"}
       
   / NavBar 

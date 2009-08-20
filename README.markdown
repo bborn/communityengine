@@ -13,6 +13,7 @@ Requirements:
 	  htmlentities
 	  rake 0.8.3
 	  haml 2.0.5
+	  calendar_date_select
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
@@ -251,6 +252,9 @@ Contributors - Thanks! :)
 - David Fugere - French localization
 - Barry Paul - routes refactoring
 - [Andrei Erdoss](http://github.com/cauta) localization
+- [Errol Siegel](http://github.com/eksatx) simple private messages integration, documentation help
+- Carl Fyffe - documentation, misc.
+- [Juan de Frías](http://github.com/juafrlo) static pages, photo albums, message_controller tests
 
 
 To Do

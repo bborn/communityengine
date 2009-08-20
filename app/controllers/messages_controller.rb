@@ -27,22 +27,36 @@ class MessagesController < BaseController
     if params[:reply_to]
       in_reply_to = Message.find_by_id(params[:reply_to])
     end
-    @message = Message.new_reply(@user, in_reply_to, params)
+    @message = Message.new_reply(@user, in_reply_to, params)    
   end
   
   def create
-    @message = Message.new(params[:message])
-    @message.sender = @user
-    @message.recipient = User.find_by_login(params[:message][:to])
+    messages = []
 
-    if @message.save
-      flash[:notice] = :message_sent.l
-      redirect_to user_messages_path(@user)
+    if params[:message][:to].blank?
+      # If 'to' field is empty, call validations to catch other
+      @message = Message.new(params[:message])        
+      @message.valid?
+      render :action => :new and return
     else
-      render :action => :new
+      # If 'to' field isn't empty then make sure each recipient is valid
+      params[:message][:to].split(',').uniq.each do |to|
+        @message = Message.new(params[:message])          
+        @message.recipient = User.find_by_login(to.strip)
+        @message.sender = @user
+        unless @message.valid?
+          render :action => :new and return        
+        else
+          messages << @message
+        end
+      end
+      # If all messages are valid then send messages
+      messages.each {|msg| msg.save!}
+      flash[:notice] = :message_sent.l
+      redirect_to user_messages_path(@user) and return
     end
   end
-  
+
   def delete_selected
     if request.post?
       if params[:delete]

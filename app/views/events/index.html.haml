@@ -3,7 +3,9 @@
 .yui-b
   - if @is_admin_user
     -box :class => "alt first_alt" do 
-      = link_to :post_an_event.l, new_event_path
+      = link_to_unless_current :past_events.l, past_events_path
+      = link_to_unless_current :upcoming_events.l, events_path
+      
 
   -box do 
     %h3= :events.l
@@ -15,15 +17,6 @@
     
       .pagination=paginating_links @events if @events.page_count > 1      
 
-      - @events.each do |event|
-        %h3= event.name
-        - if (logged_in? && event.user.eql?(current_user))
-          = link_to :edit_this_event.l, edit_event_path(event)
-          |
-          = link_to(:delete_this_event.l, event_path(event), {:method => :delete, :confirm => :permanently_delete_this_event.l})
-        %strong= h event.time_and_date
-        %br
-        %strong= h event.location
-        %p= event.description
+      = render :partial=>'event', :collection=>@events, :locals=>{:show_details_link=>true}
 
       .pagination=paginating_links @events if @events.page_count > 1      

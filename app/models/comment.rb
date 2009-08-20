@@ -106,6 +106,16 @@ class Comment < ActiveRecord::Base
     self.notify_previous_anonymous_commenters if AppConfig.allow_anonymous_commenting
   end
   
+  def token_for(email)
+    Digest::SHA1.hexdigest("#{id}--#{email}--#{created_at}")                
+  end
+  
+  def unsubscribe_notifications(email)
+    commentable.comments.find_all_by_author_email(email).each do |previous_comment|
+      previous_comment.update_attribute :notify_by_email, false
+    end
+  end
+  
   protected
   def whitelist_attributes
     self.comment = white_list(self.comment)

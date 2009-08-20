@@ -20,7 +20,7 @@
         = :date_title.l + ":"
         = @message.created_at.to_s(:long)
 
-      %pre.message_body= auto_link(h (@message.body))
+      %pre.message_body= auto_link(h(@message.body))
       
       -if @reply    
         %ul.message_nav
@@ -30,4 +30,4 @@
         %form.MainForm#dummy_reply
           %textarea{:onclick => "$('reply').toggle(); $('message_body').activate(); $('dummy_reply').hide(); $(this).blur(); return false;", :style => "height: 75px;"}
       
-        #reply{:style => "display:none;"}=render :partial => 'form', :locals => {:message => @reply, :user => @user}          
+        #reply{:style => "display:none;"}=render :partial => 'form', :locals => {:message => @reply, :user => @user}

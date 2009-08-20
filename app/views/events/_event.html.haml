@@ -1,0 +1,27 @@
+%h3
+  = event.name
+  = "(#{event.metro_area.to_s})" unless event.metro_area.blank?
+%p
+  %strong
+    %b= :when.l+":"
+    =h event.time_and_date
+  - unless event.location.blank?
+    %br
+    %strong
+      %b= :where.l+":"
+      =h event.location
+      = link_to :map_it.l, "http://www.google.com/maps?q=#{URI::encode(event.location)}", :title=>:map_it.l, :target=>'_blank'
+  %br
+  %strong
+    %b=:rsvps.l+':'
+    - attending = event.attendees_count == 1 ? :is_attending_this_event.l : :are_attending_this_event.l
+    = pluralize(event.attendees_count, 'person') + ' ' + attending
+  - if event.end_time > Time.now
+    - if rsvp = event.rsvped?(current_user)
+      = link_to :retract_rsvp.l, [event, rsvp], :confirm => :are_you_sure.l, :method=>:delete
+      = link_to :update_rsvp.l, edit_event_rsvp_url(event, rsvp)
+    - else
+      = link_to :rsvp.l, new_event_rsvp_url(event)
+- if show_details_link
+  %p= link_to :event_details.l, event_url(event)
+

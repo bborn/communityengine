@@ -27,7 +27,7 @@ class EventsControllerTest < ActionController::TestCase
     assert_difference Event, :count, 1 do
       post :create, :event => {:name => 'New event', :start_time => 1.day.ago, :end_time => Time.now, :description => "A great event" } 
     end
-    assert_redirected_to events_path
+    assert_redirected_to event_path(assigns(:event))
   end
 
   def test_should_fail_to_create_event
@@ -47,7 +47,7 @@ class EventsControllerTest < ActionController::TestCase
   def test_should_update_event
     login_as :admin
     put :update, :id => 1, :event => {:name => 'changed name' }
-    assert_redirected_to events_path
+    assert_redirected_to event_path(assigns(:event))
   end
 
   def test_should_fail_to_update_event
@@ -58,11 +58,25 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   def test_should_destroy_event
+    @request.env["HTTP_REFERER"] = 'http://test.host/admin/events'
     login_as :admin
     assert_difference Event, :count, -1 do
       delete :destroy, :id => 1
     end
-    assert_redirected_to events_path
+    assert_redirected_to admin_events_path
   end
 
+  def test_index_should_show_link_to_past_only
+    login_as :admin
+    get :index
+    assert_tag :tag=>'a', :attributes=>{:href=>'/events/past'}, :content=>:past_events.l
+    assert_no_tag :tag=>'a', :attributes=>{:href=>'/events'}, :content=>:upcoming_events.l
+  end
+
+  def test_past_should_show_link_to_index_only
+    login_as :admin
+    get :past
+    assert_no_tag :tag=>'a', :attributes=>{:href=>'/events/past'}, :content=>:past_events.l
+    assert_tag :tag=>'a', :attributes=>{:href=>'/events'}, :content=>:upcoming_events.l
+  end
 end

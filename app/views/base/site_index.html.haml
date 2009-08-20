@@ -27,7 +27,7 @@
       -@popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
     %h6.all
-      %a{:href=>"/popular"}= :see_all.l
+      %a{:href=>popular_url}= :see_all.l
 
   -box :class => "alt" do 
     %h3

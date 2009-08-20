@@ -10,8 +10,7 @@ module BaseHelper
       user_url(comment.recipient)+"#comment_#{comment.id}"
     end
   end
-
-
+  
   def forum_page?
     %w(forums topics sb_posts).include?(@controller.controller_name)
   end
@@ -248,7 +247,7 @@ module BaseHelper
   end
   
   def clippings_link
-    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{APP_URL}/new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
+    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{application_url}new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
   end
   
   def paginating_links(paginator, options = {}, html_options = {})
