@@ -61,13 +61,7 @@ class BaseController < ApplicationController
     render :partial => 'homepage_feature', :collection => @homepage_features and return
   end
     
-  def about
-  end
-  
   def advertise
-  end
-  
-  def faq
   end
   
   def css_help

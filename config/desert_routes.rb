@@ -28,7 +28,12 @@ else
 end
 application '', :controller => "base", :action => "site_index"
 
+# Pages
+resources :pages, :path_prefix => '/admin', :name_prefix => 'admin_', :except => :show, :member => { :preview => :get }
+pages "pages/:id", :controller => 'pages', :action => 'show'
+
 # admin routes
+
 admin_dashboard   '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
 admin_users       '/admin/users', :controller => 'admin', :action => 'users'
 admin_messages    '/admin/messages', :controller => 'admin', :action => 'messages'
@@ -61,9 +66,7 @@ recent_rss '/recent.rss', :controller => 'posts', :action => 'recent', :format =
 rss_redirect '/rss', :controller => 'base', :action => 'rss_site_index'
 rss '/site_index.rss', :controller => 'base', :action => 'site_index', :format => 'rss'
 
-about '/about', :controller => 'base', :action => 'about'
 advertise '/advertise', :controller => 'base', :action => 'advertise'
-faq '/faq', :controller => 'base', :action => 'faq'
 css_help '/css_help', :controller => 'base', :action => 'css_help'  
 
 edit_account_from_email '/account/edit', :controller => 'users', :action => 'edit_account'

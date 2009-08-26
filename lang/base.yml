@@ -3,6 +3,7 @@
 #en: about_me: About Me
 #en: about_site: About {{site}}
 #en: about_you: About You
+#en: admin_pages: Pages
 #en: accept: Accept
 #en: accepted: accepted
 #en: accepted_friendships: Accepted Friendships
@@ -47,6 +48,7 @@
 #en: is_attending_this_event: is attending this event
 #en: are_you_sure: Are you sure?
 #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
+#en: are_you_sure_you_want_to_delete_this_page: "Are you sure you want to delete this page?"
 #en: are_you_sure_you_want_to_delete_this_post: "Are you sure you want to delete this post?"
 #en: are_you_sure_you_want_to_permanently_delete_this_comment: "Are you sure you want to permanently delete this comment?"
 #en: are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
@@ -85,6 +87,7 @@
 #en: cancel_and_go_back_to_my_contests: cancel and go back to my contests
 #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
 #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
+#en: cancel_and_go_back_to_pages: cancel and go back to pages
 #en: cannot_rsvp_for_an_event_that_has_already_happened: Cannot RSVP for an event that has already happened.
 #en: categories: Categories
 #en: category: Category
@@ -151,6 +154,7 @@
 #en: delete_this_event: Delete this event
 #en: delete_this_forum: Delete this forum
 #en: delete_this_photo: Delete this photo
+#en: delete_this_page: Delete this page
 #en: delete_this_post: Delete this post?
 #en: delete_this_topic_forever: Delete this topic forever?
 #en: delete_this_user: Delete this user
@@ -173,6 +177,7 @@
 #en: edit_contest: Edit Contest
 #en: edit_event: Edit event
 #en: edit_forum: Edit forum
+#en: edit_page: Edit page
 #en: edit_post: Edit post
 #en: edit_profile: Edit profile
 #en: edit_rsvp_for: Edit RSVP for
@@ -314,10 +319,12 @@
 #en: look_for_a_message_from: "Look for a message from: {{from}}"
 #en: looking_for_most_x: Looking for {{link}}
 #en: make_moderator: Make moderator
+#en: make_page_public: Make this page public
 #en: make_my_profile_public: Make my profile public
 #en: make_this_my_profile_photo: Make this my profile photo
 #en: male: Male
 #en: manage_my: "Manage my:"
+#en: manage_pages: Manage Pages
 #en: manage_posts: Manage Posts
 #en: map_it: Map It!
 #en: medium: Medium
@@ -361,6 +368,7 @@
 #en: new_invitation: New Invitation
 #en: new_invitation_from: New Invitation from
 #en: new_metro_area: New Metro Area
+#en: new_page: New Page
 #en: new_photo: New photo.
 #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
 #en: new_post: New post
@@ -398,7 +406,12 @@
 #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
 #en: or: or
 #en: page: page
+#en: page_not_found: The page you are trying to view has been moved or no longer exists.
+#en: page_was_successfully_created: Page was successfully created.
+#en: page_was_successfully_deleted: Page was successfully deleted.
+#en: page_was_successfully_updated: Page was successfully updated.
 #en: pages: "Pages:"
+#en: page_tips: "Pages are a good place to put static content that you would rather not post to the blog or the forums."
 #en: password: Password
 #en: pending: pending
 #en: pending_friendships: Pending Friendships
@@ -438,7 +451,9 @@
 #en: posting_tips: "Posting Tips"
 #en: post_topic: Post topic
 #en: posts_photos_and_bookmarks: posts, photos and bookmarks
+#en: pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
 #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
+#en: public: Public
 #en: preview: Preview
 #en: previewing_your_post: Previewing your post
 #en: previous: previous
@@ -493,6 +508,7 @@
 #en: save_and_continue_to_step_three: Save, and continue to step three
 #en: save_changes: Save Changes
 #en: save_forum: Save Forum
+#en: save_page_as: "Save page as:"
 #en: save_post_as: "Save post as:"
 #en: save_reply: Save reply
 #en: says: says
@@ -682,7 +698,9 @@
 #en: whats_popular: What's Popular
 #en: when: When
 #en: where: Where
+#en: when_checked_this_page_will_be_visible_to_anyone: "When checked, this page will be visible to anyone."
 #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
+#en: when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
 #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
 #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
 #en: why_sign_up: Why Sign up?
@@ -710,7 +728,8 @@
 #en: you_last_logged_in_on: You last logged in on
 #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
 #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
-#en: your_about_text_goes_here: Your About Text Goes Here
+#en: your_about_text_goes_here: Your About text goes here.
+#en: your_faq_text_goes_here: Your FAQ text goes here.
 #en: your_changes_were_saved: Your changes were saved.
 #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
 #en: your_post_was_deleted: Your post was deleted.

@@ -11,13 +11,7 @@
       = render :partial => 'posts/post', :collection => @posts
 
 .yui-b  
-  -box do 
-    %h3= :explore_site.l :site => AppConfig.community_name
-    %ul.list.checks
-      - Category.find(:all).each do |c|
-        %li= link_to c.name, category_path(c)
-      %li= link_to :whats_popular.l, popular_url, {:class => 'popular'}
-      %li= link_to :find_an_expert.l, skills_path, {:class => 'users'}
+  =render :partial => 'shared/explore'
 
   -box :class => "alt" do 
     %h3

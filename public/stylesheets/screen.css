@@ -302,6 +302,9 @@ margin-left:  10.4769em; /* about 140px */
 *margin-left:  10.5em; /* for IE */
 }
 
+.page-content{
+margin-left: 0px; /* Use formatting for blog post except for left margin */
+}
 
 .hentry .vcard h5{
 float: left;
