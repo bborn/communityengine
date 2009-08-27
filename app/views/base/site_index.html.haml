@@ -9,7 +9,7 @@
       %h3
         =:recent_posts.l
       = render :partial => 'posts/post', :collection => @posts
-
+      %h6.all= link_to :see_all_recent_posts.l, recent_path
 .yui-b  
   =render :partial => 'shared/explore'
 
