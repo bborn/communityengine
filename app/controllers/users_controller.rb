@@ -340,7 +340,12 @@ class UsersController < BaseController
   def resend_activation
     return unless request.post?       
 
-    @user = User.find(params[:id])    
+    if params[:email]
+      @user = User.find_by_email(params[:email])    
+    else
+      @user = User.find(params[:id])
+    end
+    
     if @user && !@user.active?
       flash[:notice] = :activation_email_resent_message.l
       UserNotifier.deliver_signup_notification(@user)    
