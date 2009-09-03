@@ -7,16 +7,17 @@
     = link_to :see_all_events.l, events_path
 
 #yui-main
-  -box :class => "yui-b" do
-    = render :partial=>'event', :locals=>{:event=>@event, :show_details_link=>false}
-    = @event.description
-    - unless @event.attendees.blank?
-      %p
-        %b=:attendees.l+':'
-        - @event.attendees.each do |user|
-          = link_to h(user.display_name), user_path(user)
-          - if (count = @event.attendees_for_user(user)) > 1
-            = "(+#{count-1})"
+  .yui-b
+    -box :class=>'entry-content event-content' do 
+      = render :partial=>'event', :locals=>{:event=>@event, :show_details_link=>false}
+      = @event.description
+      - unless @event.attendees.blank?
+        %p
+          %b=:attendees.l+':'
+          - @event.attendees.each do |user|
+            = link_to h(user.display_name), user_path(user)
+            - if (count = @event.attendees_for_user(user)) > 1
+              = "(+#{count-1})"
     -box :class => 'hfeed comments', :id => 'comments' do      
       %h3= :event_comments.l 
       %h2= :add_your_comment.l

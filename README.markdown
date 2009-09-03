@@ -7,7 +7,7 @@ Requirements:
 	- RAILS VERSION 2.3.2
 	- ImageMagick (>6.4) 
 	- Several gems:
-	  desert
+      desert 0.5.2
 	  rmagick
 	  hpricot
 	  htmlentities
