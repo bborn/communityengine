@@ -1,9 +1,10 @@
 class EventsController < BaseController
 
- caches_page :ical
- cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
+  require 'htmlentities'
+  caches_page :ical
+  cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
  
- #These two methods make it easy to use helpers in the controller.
+  #These two methods make it easy to use helpers in the controller.
   #This could be put in application_controller.rb if we want to use
   #helpers in many controllers
   def help
@@ -29,7 +30,8 @@ class EventsController < BaseController
       ical_event.start = event.start_time.strftime("%Y%m%dT%H%M%S")
       ical_event.end = event.end_time.strftime("%Y%m%dT%H%M%S")
       ical_event.summary = event.name + (event.metro_area.blank? ? '' : " (#{event.metro_area})")
-      ical_event.description = (event.description.blank? ? '' : help.strip_tags(event.description).to_s + "\n\n") + event_url(event)
+      coder = HTMLEntities.new
+      ical_event.description = (event.description.blank? ? '' : coder.decode(help.strip_tags(event.description).to_s) + "\n\n") + event_url(event)
       ical_event.location = event.location unless event.location.blank?
       @calendar.add ical_event
    end
