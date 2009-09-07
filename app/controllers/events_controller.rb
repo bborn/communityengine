@@ -1,5 +1,9 @@
 class EventsController < BaseController
-  #These two methods make it easy to use helpers in the controller.
+
+ caches_page :ical
+ cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
+ 
+ #These two methods make it easy to use helpers in the controller.
   #This could be put in application_controller.rb if we want to use
   #helpers in many controllers
   def help
