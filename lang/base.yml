@@ -567,6 +567,7 @@
 #en: sticky: Sticky
 #en: subject: Subject
 #en: subscribe_to: Subscribe to
+#en: subscribe_events_instructions:  Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.).
 #en: tag_does_not_exists: The tag {{tag}} does not exist
 #en: tag_name: Tag name
 #en: tag_yourself: tag yourself

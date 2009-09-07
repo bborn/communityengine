@@ -85,7 +85,7 @@ search_tags '/search/tags', :controller => 'tags', :action => 'show'
 
 resources :categories
 resources :skills
-resources :events, :collection => { :past => :get } do |event|
+resources :events, :collection => { :past => :get, :ical => :get } do |event|
   event.resources :rsvps, :except => [:index, :show]
 end
 resources :favorites, :path_prefix => '/:favoritable_type/:favoritable_id'
