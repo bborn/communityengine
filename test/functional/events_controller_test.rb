@@ -79,4 +79,10 @@ class EventsControllerTest < ActionController::TestCase
     assert_no_tag :tag=>'a', :attributes=>{:href=>'/events/past'}, :content=>:past_events.l
     assert_tag :tag=>'a', :attributes=>{:href=>'/events'}, :content=>:upcoming_events.l
   end
+
+  def test_should_get_ical
+    get :ical, :format => 'ics'
+    assert_response :success
+    assert assigns(:calendar)
+  end
 end
