@@ -1034,3 +1034,11 @@ table.poll {
 #user-menu:hover {
 	background: url(/plugin_assets/community_engine/images/icons/bullet_arrow_down.png) no-repeat right;	
 }
+
+.icon_row a {
+   margin-right:5px;
+}
+.icon_row a img {
+   border:0;
+   vertical-align:middle;
+}

@@ -5,7 +5,7 @@
     - if @is_admin_user
       = link_to :administer_events.l, admin_events_path
     = link_to :see_all_events.l, events_path
-
+  =render :partial=>'subscribe'
 #yui-main
   .yui-b
     -box :class=>'entry-content event-content' do 

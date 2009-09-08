@@ -14,6 +14,7 @@ Requirements:
 	  rake 0.8.3
 	  haml 2.0.5
 	  calendar_date_select
+	  icalendar
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running

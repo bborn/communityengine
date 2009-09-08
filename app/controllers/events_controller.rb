@@ -1,8 +1,44 @@
 class EventsController < BaseController
+
+  require 'htmlentities'
+  caches_page :ical
+  cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
+ 
+  #These two methods make it easy to use helpers in the controller.
+  #This could be put in application_controller.rb if we want to use
+  #helpers in many controllers
+  def help
+    Helper.instance
+  end
+
+  class Helper
+    include Singleton
+    include ActionView::Helpers::SanitizeHelper
+    extend ActionView::Helpers::SanitizeHelper::ClassMethods
+  end
+
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit, :create, :update ])
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
 
-  before_filter :admin_required, :except => [:index, :show]
+  before_filter :admin_required, :except => [:index, :show, :ical]
+
+  def ical
+    @calendar = Icalendar::Calendar.new
+    @calendar.custom_property('x-wr-caldesc',"#{AppConfig.community_name} #{:events.l}")
+    Event.find(:all).each do |event|
+      ical_event = Icalendar::Event.new
+      ical_event.start = event.start_time.strftime("%Y%m%dT%H%M%S")
+      ical_event.end = event.end_time.strftime("%Y%m%dT%H%M%S")
+      ical_event.summary = event.name + (event.metro_area.blank? ? '' : " (#{event.metro_area})")
+      coder = HTMLEntities.new
+      ical_event.description = (event.description.blank? ? '' : coder.decode(help.strip_tags(event.description).to_s) + "\n\n") + event_url(event)
+      ical_event.location = event.location unless event.location.blank?
+      @calendar.add ical_event
+   end
+   @calendar.publish
+   headers['Content-Type'] = "text/calendar; charset=UTF-8"
+   render :text => @calendar.to_ical, :layout => false
+  end
 
   def show
     @is_admin_user = (current_user && current_user.admin?)
