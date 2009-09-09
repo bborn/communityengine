@@ -16,7 +16,7 @@ class MonitorshipsControllerTest < ActionController::TestCase
       assert_response :success
     end
     
-    assert topics(:pdi).monitors(true).include?(users(:joe))
+    assert topics(:pdi).monitors.include?(users(:joe))
   end
   
   def test_should_activate_monitorship
