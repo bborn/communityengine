@@ -556,7 +556,7 @@
 #en: sorry_there_was_an_error_requesting_friendship: Sorry, there was an error requesting friendship.
 #en: sorry_there_was_an_error_uploading_the_photo: Sorry, there was an error uploading the photo.
 #en: sorry_we_dont_have_any_pros_in_this_skill_category_yet: Sorry, we don't have any pros in this skill category yet.
-#en: sorry_we_dont_recognize_that_email_address: Sorry. We don't recognize that email address.
+#en: sorry_we_dont_recognize_that_email_address: "Sorry. That e-mail address is not associated with an active account. Are you sure you typed it correctly? Have you signed up and activated your account?"
 #en: spread_the_word: Spread the word
 #en: start_date: Start date
 #en: start_time: Start time
