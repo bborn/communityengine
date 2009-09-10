@@ -76,15 +76,16 @@ class CommentsController < BaseController
 
   def create
     @commentable = comment_type.constantize.find(comment_id)
-    @comment = Comment.new(params[:comment])
-    @comment.recipient = @commentable.owner
 
+    @comment = Comment.new(params[:comment])
+
+    @comment.commentable = @commentable
+    @comment.recipient = @commentable.owner
     @comment.user_id = current_user.id if current_user
     @comment.author_ip = request.remote_ip #save the ip address for everyone, just because
 
     respond_to do |format|
       if (logged_in? || verify_recaptcha(@comment)) && @comment.save
-        @commentable.add_comment @comment
         @comment.send_notifications
 
         flash.now[:notice] = :comment_was_successfully_created.l

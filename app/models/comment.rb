@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to :recipient, :class_name => "User", :foreign_key => "recipient_id"
   
   validates_presence_of :comment
-  validates_presence_of :commentable
+  validates_presence_of :commentable_id, :commentable_type
   
   validates_length_of :comment, :maximum => 2000
   
