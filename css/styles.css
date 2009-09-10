@@ -183,6 +183,29 @@ background-position: 0 5px;
   padding: 5px 0 0 10px;
 }
 
+#content ul.features {
+  font-size: 14px;
+}
+#content ul.features li p {
+  font-size: 12px;
+}
+#content ul.features li {
+  padding: 12px 0 12px 45px;
+}
+#content li.users {background-image: url(../imgs/icons/users.png);}
+#content li.blogs {background-image: url(../imgs/icons/blogs.png);}
+#content li.photos {background-image: url(../imgs/icons/photos.png);}
+#content li.clippings {background-image: url(../imgs/icons/clippings.png);}
+#content li.pages {background-image: url(../imgs/icons/pages.png);}
+#content li.comments {background-image: url(../imgs/icons/comments.png);}
+#content li.messaging {background-image: url(../imgs/icons/messaging.png);}
+#content li.forums {background-image: url(../imgs/icons/forums.png);}
+#content li.events {background-image: url(../imgs/icons/events.png);}
+#content li.friendships {background-image: url(../imgs/icons/friendships.png);}
+#content li.activity {background-image: url(../imgs/icons/activity.png);}
+#content li.customizable {background-image: url(../imgs/icons/customizable.png);}
+#content li.localization {background-image: url(../imgs/icons/localization.png);}
+#content li.plugins {background-image: url(../imgs/icons/plugins.png);}
 
 /*Buy plugin*/
 p.buy span {
