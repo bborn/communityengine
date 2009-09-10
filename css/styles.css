@@ -102,6 +102,11 @@ font-weight: normal;
 font-size: 14px;
 color: #7c7764;
 }
+.width h2 {
+  float:left;
+  line-height: 72px;
+  margin: 0 0 0 10px;
+}
 
 /* =============================================== */
 /* 3. HEADER                                       */
