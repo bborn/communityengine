@@ -5,8 +5,8 @@ class MonitorshipsControllerTest < ActionController::TestCase
   all_fixtures
 
   def test_should_require_login
-    post :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => users(:aaron).id, :format => 'js'
-    assert_js_redirected_to login_path
+    post :create, :forum_id => forums(:rails).id, :topic_id => topics(:pdi).id, :id => users(:aaron).id
+    assert_redirected_to login_path
   end
   
   def test_should_add_monitorship
