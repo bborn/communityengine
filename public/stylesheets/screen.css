@@ -302,6 +302,9 @@ margin-left:  10.4769em; /* about 140px */
 *margin-left:  10.5em; /* for IE */
 }
 
+.page-content, .event-content{
+margin-left: 0px; /* Use formatting for blog post except for left margin */
+}
 
 .hentry .vcard h5{
 float: left;
@@ -1030,4 +1033,12 @@ table.poll {
 	}
 #user-menu:hover {
 	background: url(/plugin_assets/community_engine/images/icons/bullet_arrow_down.png) no-repeat right;	
+}
+
+.icon_row a {
+   margin-right:5px;
+}
+.icon_row a img {
+   border:0;
+   vertical-align:middle;
 }

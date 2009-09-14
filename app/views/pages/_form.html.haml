@@ -1,0 +1,25 @@
+%label
+  =:title.l
+  %em="(#{:required.l})"
+= f.text_field :title
+
+%label
+  =:body_text.l
+  %em="(#{:required.l})"
+= f.text_area :body, :style => "width:95%;"
+
+%label
+  = f.check_box :page_public
+  =:make_page_public.l
+  %br
+  %em
+    =:when_checked_this_page_will_be_visible_to_anyone.l
+  %br
+  %em
+    =:when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to.l
+    = "#{AppConfig.community_name}."
+
+%label
+  =:save_page_as.l
+= f.select(:published_as, [[:published.l, 'live'], [:draft.l, 'draft']])
+

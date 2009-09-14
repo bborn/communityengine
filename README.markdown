@@ -7,13 +7,14 @@ Requirements:
 	- RAILS VERSION 2.3.2
 	- ImageMagick (>6.4) 
 	- Several gems:
-	  desert
+      desert 0.5.2
 	  rmagick
 	  hpricot
 	  htmlentities
 	  rake 0.8.3
 	  haml 2.0.5
 	  calendar_date_select
+	  icalendar
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running

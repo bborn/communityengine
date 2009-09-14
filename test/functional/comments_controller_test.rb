@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
-# class CommentsControllerTest < ActiveSupport::TestCase
   fixtures :users, :photos, :posts, :comments, :roles
 
   def setup

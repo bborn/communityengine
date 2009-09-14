@@ -185,8 +185,8 @@ function FileProgress(fileObj, target_id) {
 		FadeIn(this.fileProgressWrapper, 0);
 
 	} else {
-		this.fileProgressElement = this.fileProgressWrapper.down('div');
-		this.fileProgressElement.childNodes[1].firstChild.nodeValue = fileObj.name;
+    this.fileProgressElement = $(this.fileProgressWrapper).down('div');
+    this.fileProgressElement.childNodes[1].firstChild.nodeValue = fileObj.name;
 	}
 
 	this.height = this.fileProgressWrapper.offsetHeight;

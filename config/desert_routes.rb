@@ -28,7 +28,12 @@ else
 end
 application '', :controller => "base", :action => "site_index"
 
+# Pages
+resources :pages, :path_prefix => '/admin', :name_prefix => 'admin_', :except => :show, :member => { :preview => :get }
+pages "pages/:id", :controller => 'pages', :action => 'show'
+
 # admin routes
+
 admin_dashboard   '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
 admin_users       '/admin/users', :controller => 'admin', :action => 'users'
 admin_messages    '/admin/messages', :controller => 'admin', :action => 'messages'
@@ -61,10 +66,11 @@ recent_rss '/recent.rss', :controller => 'posts', :action => 'recent', :format =
 rss_redirect '/rss', :controller => 'base', :action => 'rss_site_index'
 rss '/site_index.rss', :controller => 'base', :action => 'site_index', :format => 'rss'
 
-about '/about', :controller => 'base', :action => 'about'
 advertise '/advertise', :controller => 'base', :action => 'advertise'
-faq '/faq', :controller => 'base', :action => 'faq'
 css_help '/css_help', :controller => 'base', :action => 'css_help'  
+about '/about', :controller => 'base', :action => 'about'
+faq '/faq', :controller => 'base', :action => 'faq'
+
 
 edit_account_from_email '/account/edit', :controller => 'users', :action => 'edit_account'
 
@@ -82,7 +88,7 @@ search_tags '/search/tags', :controller => 'tags', :action => 'show'
 
 resources :categories
 resources :skills
-resources :events, :collection => { :past => :get } do |event|
+resources :events, :collection => { :past => :get, :ical => :get } do |event|
   event.resources :rsvps, :except => [:index, :show]
 end
 resources :favorites, :path_prefix => '/:favoritable_type/:favoritable_id'
@@ -94,10 +100,6 @@ resources :metro_areas
 resources :ads
 resources :contests, :collection => { :current => :get }
 resources :activities
-
-# Static pages
-resources :static_pages, :as => 'pages'
-connect 'view_page/:url', :controller => 'static_pages', :action => 'show_web'
 
 resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :member => { 
     :dashboard => :get,

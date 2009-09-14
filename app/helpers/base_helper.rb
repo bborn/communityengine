@@ -116,6 +116,10 @@ module BaseHelper
 		case @controller.controller_name
 			when 'base'
 					title += tagline
+                        when 'pages'
+                          if @page and @page.title
+                            title = @page.title + ' &raquo; ' + app_base + tagline
+                          end
 			when 'posts'
         if @post and @post.title
           title = @post.title + ' &raquo; ' + app_base + tagline
