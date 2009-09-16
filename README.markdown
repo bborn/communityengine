@@ -69,6 +69,8 @@ LONG VERSION:
 		Rails::Initializer.run do |config|
 		  config.plugins = [:community_engine, :white_list, :all]
 		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
+		  config.gem 'calendar_date_select'
+		  config.gem 'icalendar'		
 		  
           config.action_controller.session = {
             :key    => '_your_app_session',
