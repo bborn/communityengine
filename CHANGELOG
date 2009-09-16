@@ -5,8 +5,8 @@
 = 1.0.3
 * complete private messages integration, allow sending messages to multiple recipients
 * upgrades to Event functionality, including RSVPs (eksatx)
-* Photo albums, Static pages and messages controller test (juafrlo)
-* calendar_date_select gem is now required
+* Photo albums, Static pages and messages controller tests (juafrlo, eksatx)
+* calendar_date_select, icalendar gems now required
 * added ability to unsubscribe from comment notifications for anonymous comments
 * ical format output for Events to allow subscriptions
 
