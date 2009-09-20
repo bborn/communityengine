@@ -418,6 +418,11 @@ class User < ActiveRecord::Base
   def female
     gender && gender.eql?(FEMALE)    
   end
+
+  def update_last_seen_at
+    User.update_all ['sb_last_seen_at = ?', Time.now.utc], ['id = ?', self.id]
+    self.sb_last_seen_at = Time.now.utc
+  end
   
   ## End Instance Methods
   
