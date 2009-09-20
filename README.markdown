@@ -15,6 +15,7 @@ Requirements:
 	  haml 2.0.5
 	  calendar_date_select
 	  icalendar
+          authlogic
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
