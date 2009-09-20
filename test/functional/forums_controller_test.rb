@@ -5,8 +5,6 @@ class ForumsControllerTest < ActionController::TestCase
 
   def setup
     @controller = ForumsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_get_index

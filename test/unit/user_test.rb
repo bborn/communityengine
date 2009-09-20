@@ -86,32 +86,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_should_reset_password
+    activate_authlogic
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    assert_equal users(:quentin), User.authenticate('quentin', 'new password')
+    assert_equal users(:quentin), UserSession.create(:login => 'quentin', :password => 'new password').record
   end
 
   def test_should_not_rehash_password
+    activate_authlogic
     users(:quentin).update_attributes(:login => 'quentin_two')
-    assert_equal users(:quentin), User.authenticate('quentin_two', 'test')
+    assert_equal users(:quentin), UserSession.create(:login => 'quentin_two', :password => 'test').record
   end
 
-  def test_should_authenticate_user
-    assert_equal users(:quentin), User.authenticate('quentin', 'test')
-  end
-
-  def test_should_set_remember_token
-    users(:quentin).remember_me
-    assert_not_nil users(:quentin).remember_token
-    assert_not_nil users(:quentin).remember_token_expires_at
-  end
-
-  def test_should_unset_remember_token
-    users(:quentin).remember_me
-    assert_not_nil users(:quentin).remember_token
-    users(:quentin).forget_me
-    assert_nil users(:quentin).remember_token
-  end
-  
   def test_should_show_location
     assert_equal users(:quentin).location, metro_areas(:twincities).name
   end

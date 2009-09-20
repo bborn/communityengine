@@ -1,11 +1,15 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../../../../config/environment")
 require 'test_help'
+require "authlogic/test_case"
 require 'action_view/test_case'
 require 'pp'
 ActiveSupport::TestCase.fixture_path = (RAILS_ROOT + "/vendor/plugins/community_engine/test/fixtures/")
 ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
+class ActionController::TestCase
+  setup :activate_authlogic
+end
 
 class ActiveSupport::TestCase
   include AuthenticatedTestHelper
@@ -15,7 +19,7 @@ class ActiveSupport::TestCase
   end  
   
   def teardown
-    @request.session[:user] = nil if @request
+    UserSession.find && UserSession.find.destroy
   end
 
   # Add more helper methods to be used by all tests here...

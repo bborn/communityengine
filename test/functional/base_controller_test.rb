@@ -5,8 +5,6 @@ class BaseControllerTest < ActionController::TestCase
 
   def setup
     @controller = BaseController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     Asset.destroy_all    
   end
     

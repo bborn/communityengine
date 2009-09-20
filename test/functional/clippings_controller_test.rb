@@ -5,8 +5,6 @@ class ClippingsControllerTest < ActionController::TestCase
 
   def setup
     @controller = ClippingsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     Asset.destroy_all    
   end
   

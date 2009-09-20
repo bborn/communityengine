@@ -37,7 +37,7 @@ class UsersController < BaseController
     @user = User.find_by_activation_code(params[:id]) 
     if @user and @user.activate
       self.current_user = @user
-      current_user.track_activity(:joined_the_site)      
+      @user.track_activity(:joined_the_site)
       redirect_to welcome_photo_user_path(@user)
       flash[:notice] = :thanks_for_activating_your_account.l 
       return
@@ -48,9 +48,7 @@ class UsersController < BaseController
   
   def deactivate
     @user.deactivate
-    self.current_user.forget_me if logged_in?
-    cookies.delete :auth_token
-    reset_session
+    current_user_session.destroy if current_user_session
     flash[:notice] = :deactivate_completed.l
     redirect_to login_path
   end
@@ -356,20 +354,12 @@ class UsersController < BaseController
   end
   
   def assume
-    self.current_user = User.find(params[:id])
+    self.assume_user(User.find(params[:id]))
     redirect_to user_path(current_user)
   end
 
   def return_admin
-    unless session[:admin_id].nil? or current_user.admin?
-      admin = User.find(session[:admin_id])
-      if admin.admin?
-        self.current_user = admin
-        redirect_to user_path(admin)
-      end
-    else
-      redirect_to login_path
-    end
+    return_to_admin
   end
 
   def metro_area_update
