@@ -72,6 +72,7 @@ LONG VERSION:
 		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
 		  config.gem 'calendar_date_select'
 		  config.gem 'icalendar'		
+		  config.gem 'authlogic'
 		  
           config.action_controller.session = {
             :key    => '_your_app_session',
