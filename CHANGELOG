@@ -3,7 +3,8 @@
 * upgrade documentation/rake tasks to fix old migrations
 
 = 1.0.4
-* changes to Japanese language translations
+* Changes to Japanese language translations
+* Use authlogic instead of restful_authentication (augthlogic gem now required, new migrations required) (thanks jnimety!)
 
 
 = 1.0.3

@@ -15,7 +15,7 @@ Requirements:
 	  haml 2.0.5
 	  calendar_date_select
 	  icalendar
-          authlogic
+      authlogic
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
@@ -259,6 +259,7 @@ Contributors - Thanks! :)
 - [Errol Siegel](http://github.com/eksatx) simple private messages integration, documentation help
 - Carl Fyffe - documentation, misc.
 - [Juan de Frías](http://github.com/juafrlo) static pages, photo albums, message_controller tests
+- [Joel Nimety](http://github.com/jnimety) authlogic authentication
 
 
 To Do
