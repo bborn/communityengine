@@ -5,8 +5,6 @@ class RsvpsControllerTest < ActionController::TestCase
 
   def setup
     @controller = RsvpsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_route_rsvp_of_event

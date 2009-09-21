@@ -5,8 +5,6 @@ class OfferingsControllerTest < ActionController::TestCase
 
   def setup
     @controller = OfferingsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_replace_offerings

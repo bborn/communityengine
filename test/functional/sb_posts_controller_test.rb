@@ -4,8 +4,6 @@ class SbPostsControllerTest < ActionController::TestCase
   all_fixtures
   def setup
     @controller = SbPostsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_create_reply

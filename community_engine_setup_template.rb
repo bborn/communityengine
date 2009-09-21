@@ -76,6 +76,7 @@ gem 'haml', :lib => 'htmlentities'
 gem "aws-s3", :lib => "aws/s3" 
 gem 'calendar_date_select'
 gem 'icalendar'
+gem 'authlogic'
 rake('gems:install', :sudo => true)
 
 
@@ -84,7 +85,7 @@ plugin 'community_engine', :git => ce_git_repo, :submodule => true
 # Initialize submodules
 git :submodule => "init" 
 git :submodule => "update"   
-checkout_ce_branch('edge')
+# checkout_ce_branch('edge')
 
 # Add CE routes 
 route "map.routes_from_plugin :community_engine"

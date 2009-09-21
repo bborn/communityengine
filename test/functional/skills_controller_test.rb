@@ -5,8 +5,6 @@ class SkillsControllerTest < ActionController::TestCase
 
   def setup
     @controller = SkillsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_get_index

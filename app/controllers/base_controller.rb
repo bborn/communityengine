@@ -6,7 +6,6 @@ class BaseController < ApplicationController
   include AuthenticatedSystem
   include LocalizedApplication
   around_filter :set_locale  
-  before_filter :login_from_cookie  
   skip_before_filter :verify_authenticity_token, :only => :footer_content
   helper_method :commentable_url
 

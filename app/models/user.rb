@@ -5,16 +5,27 @@ class User < ActiveRecord::Base
   
   MALE    = 'M'
   FEMALE  = 'F'
-  attr_accessor :password
   attr_protected :admin, :featured, :role_id
   
+  acts_as_authentic do |c|
+    c.crypto_provider = CommunityEngineSha1CryptoMethod
+
+    c.validates_length_of_password_field_options = { :within => 6..20, :if => :password_required? }
+    c.validates_length_of_password_confirmation_field_options = { :within => 6..20, :if => :password_required? }
+
+    c.validates_length_of_login_field_options = { :within => 5..20 }
+    c.validates_format_of_login_field_options = { :with => /^[\sA-Za-z0-9_-]+$/ }
+
+    c.validates_length_of_email_field_options = { :within => 3..100 }
+    c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/ }
+  end
   acts_as_taggable  
   acts_as_commentable
   has_private_messages
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
-  before_save   :encrypt_password, :whitelist_attributes
+  before_save   :whitelist_attributes
   before_create :make_activation_code
   after_create  :update_last_login
   after_create  :deliver_signup_notification
@@ -25,17 +36,7 @@ class User < ActiveRecord::Base
 
 
   #validation
-  validates_presence_of     :login, :email
-  validates_presence_of     :password,                   :if => :password_required?
-  validates_presence_of     :password_confirmation,      :if => :password_required?
-  validates_length_of       :password, :within => 6..20, :if => :password_required?
-  validates_confirmation_of :password,                   :if => :password_required?
   validates_presence_of     :metro_area,                 :if => Proc.new { |user| user.state }
-  validates_length_of       :login,    :within => 5..20
-  validates_length_of       :email,    :within => 3..100
-  validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/
-  validates_format_of       :login, :with => /^[\sA-Za-z0-9_-]+$/
-  validates_uniqueness_of   :login, :email, :case_sensitive => false
   validates_uniqueness_of   :login_slug
   validates_exclusion_of    :login, :in => AppConfig.reserved_logins
   validates_date :birthday, :before => 13.years.ago.to_date  
@@ -169,18 +170,6 @@ class User < ActiveRecord::Base
     self.featured
   end
   
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)
-    # hide records with a nil activated_at
-    u = find :first, :conditions => ['login = ? and activated_at IS NOT NULL', login]
-    u = find :first, :conditions => ['email = ? and activated_at IS NOT NULL', login] if u.nil?
-    u && u.authenticated?(password) && u.update_last_login ? u : nil
-  end
-  
-  def self.encrypt(password, salt)
-    Digest::SHA1.hexdigest("--#{salt}--#{password}--")
-  end
-
   def self.paginated_users_conditions_with_search(params)
     search = prepare_params_for_search(params)
 
@@ -272,36 +261,11 @@ class User < ActiveRecord::Base
   end
   
   def active?
-    activation_code.nil?
+    activation_code.nil? && !activated_at.nil?
   end
 
   def recently_activated?
     @activated
-  end
-  
-  def encrypt(password)
-    self.class.encrypt(password, salt)
-  end
-
-  def authenticated?(password)
-    crypted_password == encrypt(password)
-  end
-
-  def remember_token?
-    remember_token_expires_at && Time.now.utc < remember_token_expires_at 
-  end
-
-  # These create and unset the fields required for remembering users between browser closes
-  def remember_me
-    self.remember_token_expires_at = 2.weeks.from_now.utc
-    self.remember_token            = encrypt("#{email}--#{remember_token_expires_at}")
-    save(false)
-  end
-
-  def forget_me
-    self.remember_token_expires_at = nil
-    self.remember_token            = nil
-    save(false)
   end
   
   def valid_invite_code?(code)
@@ -309,7 +273,7 @@ class User < ActiveRecord::Base
   end
   
   def invite_code
-    Digest::SHA1.hexdigest("#{self.id}--#{self.email}--#{self.salt}")
+    Digest::SHA1.hexdigest("#{self.id}--#{self.email}--#{self.password_salt}")
   end
   
   def location
@@ -454,6 +418,11 @@ class User < ActiveRecord::Base
   def female
     gender && gender.eql?(FEMALE)    
   end
+
+  def update_last_seen_at
+    User.update_all ['sb_last_seen_at = ?', Time.now.utc], ['id = ?', self.id]
+    self.sb_last_seen_at = Time.now.utc
+  end
   
   ## End Instance Methods
   
@@ -465,18 +434,12 @@ class User < ActiveRecord::Base
     end
 
     # before filters
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
-      self.crypted_password = encrypt(password)
-    end
-
     def whitelist_attributes
       self.login = self.login.strip
       self.description = white_list(self.description )
       self.stylesheet = white_list(self.stylesheet )
     end
-  
+
     def password_required?
       crypted_password.blank? || !password.blank?
     end

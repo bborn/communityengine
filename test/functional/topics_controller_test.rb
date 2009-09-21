@@ -5,8 +5,6 @@ class TopicsControllerTest < ActionController::TestCase
 
   def setup
     @controller = TopicsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_get_index

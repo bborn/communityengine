@@ -5,8 +5,6 @@ class ActivitiesControllerTest < ActionController::TestCase
 
   def setup
     @controller = ActivitiesController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_get_network

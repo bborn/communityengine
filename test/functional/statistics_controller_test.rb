@@ -5,8 +5,6 @@ class StatisticsControllerTest < ActionController::TestCase
   
   def setup
     @controller = StatisticsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_get_index

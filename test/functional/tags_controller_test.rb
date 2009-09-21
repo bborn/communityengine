@@ -5,8 +5,6 @@ class TagsControllerTest < ActionController::TestCase
 
   def setup
     @controller = TagsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_autocomplete_tags

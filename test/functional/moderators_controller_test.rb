@@ -4,8 +4,6 @@ class ModeratorsControllerTest < ActionController::TestCase
   all_fixtures
   def setup
     @controller = ModeratorsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
 
   def test_should_delete_moderatorship

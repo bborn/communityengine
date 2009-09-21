@@ -5,8 +5,6 @@ class CommentsControllerTest < ActionController::TestCase
 
   def setup
     @controller = CommentsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
   end
   
   def test_should_create_user_comment_with_notification
