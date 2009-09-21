@@ -2,8 +2,8 @@ class AuthlogicCompatibilityChanges < ActiveRecord::Migration
   def self.up
 
     # Remove varchar(40) so users can specify alternate encryption methods without schema changes
-    change_column :users, :crypted_password, :string, :null => false
-    change_column :users, :salt, :string, :null => false
+    change_column :users, :crypted_password, :string, :limit => 255, :null => false
+    change_column :users, :salt, :string, :limit => 255, :null => false
 
     rename_column :users, :salt, :password_salt
     rename_column :users, :remember_token, :persistence_token
