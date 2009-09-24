@@ -9,7 +9,7 @@ show_advertising: false
 closed_beta_mode: false
 # Comment this out if you want to infer the locale
 # off of the http headers
-community_locale: "en"
+community_locale: "fr"
 
 # The label you use for 'staff' writers (featured writer, staff, pro, etc.)
 allow_anonymous_commenting: false
@@ -26,12 +26,16 @@ robots_meta_list_content: 'noindex,follow'
 # when links are included and they point to external sites, the robot should not follow
 robots_meta_show_content: 'index,nofollow'
 
+# min and max age for users to use the site
+min_age: 16
+max_age: 90
+
 photo:
   missing_thumb: '/plugin_assets/community_engine/images/icon_missing_thumb.gif'
   missing_medium: "/plugin_assets/community_engine/images/icon_missing_medium.gif"
   attachment_fu_options:
     resize_to: "465>"
-    min_size: 1    
+    min_size: 1
     #size in megabytes
     max_size: 3
     thumbnails: {thumb: "c100x100!", medium: "c290x320!", large: "664>"}
@@ -44,7 +48,7 @@ feature:
   dimensions: [150, 635]
   attachment_fu_options:
     resize_to: "465>"
-    min_size: 1    
+    min_size: 1
     max_size: 1
     thumbnails: {thumb: 'c45x45!', large: 'c635x150!'}    
     storage: 'file_system'

@@ -132,11 +132,12 @@
 #en: dashboard: Dashboard
 #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
 #en: date:formats:published_date: "%Y/%m/%d"
+#en: date:formats:short_date: "%y/%m/%d"
 #en: date:formats:date_ago: "%B %d"
 #en: date: Date
 #en: date_created: Date Created
 #en: date_published: Date Published
-#en: days_ago: days ago
+#en: days_ago: {{days}} days ago
 #en: deactivate_link: Click here to deactivate your account
 #en: deactivate_tip: Deactivating your account will remove your profile from the site. 
 #en: deactivate_confirmation: Are you sure you want to deactivate your account?
@@ -248,6 +249,7 @@
 #en: go_to_the_forums: go to the forums
 #en: go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
 #en: go_to_your_profile: Go to your profile
+#en: greetings: ['Hello', 'Hola', 'Hi ', 'Yo', 'Welcome back,', 'Greetings', 'Wassup', 'Aloha', 'Halloo']
 #en: have_an_account: "Have an account? "
 #en: have_something_to_contribute: Have something to contribute?
 #en: help: Help
@@ -256,7 +258,7 @@
 #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
 #en: homepage_banner_signup_prompt: See how it works
 #en: homepage_features: Homepage Features
-#en: hours_ago: hours ago
+#en: hours_ago: {{hours}} hours ago
 #en: how_do_i_do_that: How do I do that?
 #en: html: HTML
 #en: image: Image
@@ -275,6 +277,7 @@
 #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
 #en: items: Items
 #en: joined: joined
+#en: joined_the_site: joined {{site}}
 #en: just_uploading_one_photo: Just uploading one photo?
 #en: keywords: Keywords
 #en: large: Large
@@ -311,8 +314,8 @@
 #en: manage_my: "Manage my:"
 #en: manage_posts: Manage Posts
 #en: medium: Medium
-#en: megabyte_upload_limit: megabyte upload limit
-#en: megabyte_upload_limit_per_file: megabyte upload limit per file.
+#en: megabyte_upload_limit: {{size}} megabyte upload limit
+#en: megabyte_upload_limit_per_file: {{size}} megabyte upload limit per file.
 #en: member: Member
 #en: members: Members
 #en: member_since: Member since
@@ -323,7 +326,7 @@
 #en: metro_area: Metro Area
 #en: metro_areas: Metro Areas
 #en: metro_area_was_successfully_created: MetroArea was successfully created.
-#en: minutes_ago: minutes ago
+#en: minutes_ago: {{minutes}} minutes ago
 #en: moderator: Moderator
 #en: moderators: Moderators
 #en: monitored_topics: Monitored Topics
@@ -639,8 +642,6 @@
 #en: want_to_list_your_services_on: Want to list your services on
 #en: want_to_post_in_this_category: Want to post in this category?
 #en: want_to_upload_multiple_files_at_once: Want to upload multiple files at once?
-#en: watch: Watch
-#en: watch_ing: ing
 #en: watch_topic: Watch topic
 #en: watching_topic: Watching topic
 #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: {{email}}"

@@ -315,11 +315,11 @@ module BaseHelper
   
     case distance_in_minutes
       when 0..1           then (distance_in_minutes==0) ? :a_few_seconds_ago.l : :one_minute_ago.l
-      when 2..59          then "#{distance_in_minutes} "+:minutes_ago.l
+      when 2..59          then :minutes_ago.l(:minutes => distance_in_minutes)
       when 60..90         then :one_hour_ago.l
-      when 90..1440       then "#{(distance_in_minutes.to_f / 60.0).round} "+:hours_ago.l
+      when 90..1440       then :hours_ago.l(:hours => (distance_in_minutes.to_f / 60.0).round)
       when 1440..2160     then :one_day_ago.l # 1 day to 1.5 days
-      when 2160..2880     then "#{(distance_in_minutes.to_f / 1440.0).round} "+:days_ago.l # 1.5 days to 2 days
+      when 2160..2880     then :days_ago.l(:days => (distance_in_minutes.to_f / 1440.0).round) # 1.5 days to 2 days
       else from_time.strftime("%b %e, %Y  %l:%M%p").gsub(/([AP]M)/) { |x| x.downcase }
     end
   end

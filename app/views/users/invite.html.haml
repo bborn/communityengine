@@ -6,9 +6,7 @@
   .box.alt.first_alt
     %h3=:spread_the_word.l
     %p
-      =:the_more_people_you_invite_the_better.l
-      = AppConfig.community_name
-      =:becomes.l
+      =:invite_message.l(:site => AppConfig.community_name)
     %p
       =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends.l
 

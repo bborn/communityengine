@@ -1,6 +1,7 @@
 .yui-b
   .box
-    %h3 Tips
+    %h3
+      =:tips.l
     %p 
       =:photo_tip_1.l
     %p 
@@ -14,15 +15,15 @@
       =:new_photo.l
 
     = error_messages_for :photo
-    %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-      =:want_to_upload_multiple_files_at_once.l
+    %p
+      %a{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
+        = :want_to_upload_multiple_files_at_once.l
 
     - form_for(:photo, :url => user_photos_path, :html => {:multipart =>true, :class => "MainForm"} ) do |f|
       = f.file_field :uploaded_data
       %label
         %em
-          = (AppConfig.photo['attachment_fu_options']['max_size']) 
-          = " " + :megabyte_upload_limit.l
+          = " " + :megabyte_upload_limit.l(:size => AppConfig.photo['attachment_fu_options']['max_size'])
       %label 
         =:tags.l + ":"
       = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
@@ -47,8 +48,9 @@
     %h3 
       =:new_photos_multiple_uploader.l
 
-    %a.right{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-      =:just_uploading_one_photo.l
+    %p
+      %a{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
+        =:just_uploading_one_photo.l
     
     %p.centered
       
@@ -59,7 +61,7 @@
         ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, session_key => cookies[session_key], request_forgery_protection_token => form_authenticity_token)}');"        
         };
         
-      %div{:style=>"margin: 0px 10px;"}
+      %div
         %div
           %form.MainForm
             %div{:style=>"display: inline; border: solid 1px #7FAAFF; background: #C5D9FF; padding: 10px 0 0 0;"}
@@ -68,7 +70,6 @@
               %em
                 =:you_can_select_up_to_5_files_at_a_time.l
                 %br
-                = (AppConfig.photo['attachment_fu_options']['max_size'])
-                = :megabyte_upload_limit_per_file.l
+                = :megabyte_upload_limit_per_file.l(:size => AppConfig.photo['attachment_fu_options']['max_size'])
         #divFileProgressContainer{:style=>"height: 75px;"}
         #thumbnails

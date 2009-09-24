@@ -7,6 +7,7 @@ sv:
   time:
     formats:
       published_date: "%Y-%m-%d"      
+      short_date: "%y-%m-%d"
       time_ago: "%l:%M%p"
 
   activerecord:
@@ -931,8 +932,8 @@ sv:
   required: obligatorisk
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Obligatoriskt: Vi skickar ett bekräftelsemejl till adressen du anger.)"
-  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
-  required_you_must_be_at_least_years_old_to_sign_up: "(Obligatoriskt: Du måste vara minst 13 år gammal för att registrera dig.)"
+  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least {{min_age}} years old to sign up.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Obligatoriskt: Du måste vara minst {{min_age}} år gammal för att registrera dig.)"
   #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
   required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Obligatoriskt: Ditt användarnamn får inte innehålla siffror, blanksteg eller specialtecken.)"
   #en: resend_my_activation_e_mail: Resend my activation e-mail

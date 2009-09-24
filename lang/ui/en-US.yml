@@ -2,6 +2,7 @@ en:
   date:
     formats:
       published_date: "%Y/%m/%d"
+      short_date: "%y/%m/%d"
       date_ago: "%B %d"
 
   time:
@@ -13,6 +14,9 @@ en:
     attributes:
       photo:
         created_at: "created at: "
+
+  greetings: ['Hello', 'Hola', 'Hi ', 'Yo', 'Welcome back,', 'Greetings', 'Wassup', 'Aloha', 'Halloo']
+
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  a few seconds ago
   #en: about: About
@@ -133,8 +137,6 @@ en:
   banner_subtitle_required: "Banner subtitle (required):"
   #en: banner_title_required: "Banner title (required):"
   banner_title_required: "Banner title (required):"
-  #en: becomes: becomes.
-  becomes: becomes.
   #en: begin: begin
   begin: begin
   #en: begin_required: begin (required)
@@ -285,8 +287,8 @@ en:
   date_created: Date Created
   #en: date_published: Date Published
   date_published: Date Published
-  #en: days_ago: days ago
-  days_ago: days ago
+  #en: days_ago: {{days}} days ago
+  days_ago: "{{days}} days ago"
   #en: deactivate_link: Click here to deactivate your account
   deactivate_link: Click here to deactivate your account
   #en: deactivate_tip: Deactivating your account will remove your profile from the site. 
@@ -525,8 +527,8 @@ en:
   homepage_banner_signup_prompt: See how it works
   #en: homepage_features: Homepage Features
   homepage_features: Homepage Features
-  #en: hours_ago: hours ago
-  hours_ago: hours ago
+  #en: hours_ago: {{hours}} hours ago
+  hours_ago: "{{hours}} hours ago"
   #en: how_do_i_do_that: How do I do that?
   how_do_i_do_that: How do I do that?
   #en: html: HTML
@@ -563,6 +565,8 @@ en:
   items: Items
   #en: joined: joined
   joined: joined
+  #en: joined_the_site: joined {{site}}
+  joined_the_site: joined {{site}}
   #en: just_uploading_one_photo: Just uploading one photo?
   just_uploading_one_photo: Just uploading one photo?
   #en: keywords: Keywords
@@ -635,10 +639,10 @@ en:
   manage_posts: Manage Posts
   #en: medium: Medium
   medium: Medium
-  #en: megabyte_upload_limit: megabyte upload limit
-  megabyte_upload_limit: megabyte upload limit
-  #en: megabyte_upload_limit_per_file: megabyte upload limit per file.
-  megabyte_upload_limit_per_file: megabyte upload limit per file.
+  #en: megabyte_upload_limit: {{size}} megabyte(s) upload limit
+  megabyte_upload_limit: "{{size}} megabyte(s) upload limit"
+  #en: megabyte_upload_limit_per_file: {{size}} megabyte(s) upload limit per file.
+  megabyte_upload_limit_per_file: "{{size}} megabyte(s) upload limit per file."
   #en: member: Member
   member: Member
   #en: members: Members
@@ -659,8 +663,8 @@ en:
   metro_areas: Metro Areas
   #en: metro_area_was_successfully_created: MetroArea was successfully created.
   metro_area_was_successfully_created: MetroArea was successfully created.
-  #en: minutes_ago: minutes ago
-  minutes_ago: minutes ago
+  #en: minutes_ago: {{minutes}} minutes ago
+  minutes_ago: "{{minutes}} minutes ago"
   #en: moderator: Moderator
   moderator: Moderator
   #en: moderators: Moderators
@@ -933,8 +937,8 @@ en:
   required: required
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
-  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
-  required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
+  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least {{min_age}} years old to sign up.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least {{min_age}} years old to sign up.)"
   #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
   required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
   #en: resend_my_activation_e_mail: Resend my activation e-mail
@@ -1261,10 +1265,6 @@ en:
   want_to_post_in_this_category: Want to post in this category?
   #en: want_to_upload_multiple_files_at_once: Want to upload multiple files at once?
   want_to_upload_multiple_files_at_once: Want to upload multiple files at once?
-  #en: watch: Watch
-  watch: Watch
-  #en: watch_ing: ing
-  watch_ing: ing
   #en: watch_topic: Watch topic
   watch_topic: Watch topic
   #en: watching_topic: Watching topic
