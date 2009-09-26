@@ -98,7 +98,7 @@ module AuthenticatedSystem
           render :text => "Could't authenticate you", :status => '401 Unauthorized'
         end
         accepts.js do
-          store_location        
+          store_location 
           render :update do |page|
             page.redirect_to login_path and return false
           end
