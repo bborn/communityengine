@@ -48,3 +48,14 @@ further_past_event:
   user_id: 4
   metro_area_id: 1
 
+no_rsvp_event:
+  id: 6
+  name: An event that does not allow RSVPs
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 5.days.ago.to_s :db %>  
+  start_time: <%= 13.days.from_now.to_s :db %>
+  end_time:   <%= (13.days.from_now + 1.hour).to_s :db %>  
+  user_id: 4
+  metro_area_id: 1
+  allow_rsvp: false
+

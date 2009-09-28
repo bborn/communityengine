@@ -42,6 +42,7 @@
 #en: all_posts_tagged: All posts tagged {{tag_name}}
 #en: all_tags: All tags
 #en: all_users_tagged: All users tagged {{tag_name}}
+#en: allow_rsvp: Allow RSVPs
 #en: already_have_an_account: Already have an account?
 #en: an_error_occurred: An error occurred
 #en: are_attending_this_event: are attending this event
@@ -212,6 +213,7 @@
 #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
 #en: event_details: Event Details
 #en: event_comments: Event Comments
+#en: event_does_not_allow_rsvp: This event does not allow RSVPs.
 #en: event_was_successfully_created: Event was successfully created.
 #en: events: Events
 #en: every_person_has_something_to_say: "Every single person has something to say, something to give, something that will help someone else.  Join in!"
@@ -701,6 +703,7 @@
 #en: when: When
 #en: where: Where
 #en: when_checked_this_page_will_be_visible_to_anyone: "When checked, this page will be visible to anyone."
+#en: when_checked_users_will_be_able_to_rsvp_for_this_event: "When checked, logged in users will be able to RSVP for this event."
 #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
 #en: when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
 #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to

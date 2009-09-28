@@ -14,6 +14,13 @@
     
     %label= :end_time.l
     = f.calendar_date_select :end_time, :time => true 
+
+    %label
+      = f.check_box :allow_rsvp
+      =:allow_rsvp.l
+      %br
+      %em
+        =:when_checked_users_will_be_able_to_rsvp_for_this_event.l
     
     %label= :location.l
     = f.text_field :location

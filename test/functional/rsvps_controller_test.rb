@@ -53,6 +53,14 @@ class RsvpsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  def test_should_fail_to_create_rsvp_for_event_that_does_not_allow_rsvps
+    login_as :quentin
+    assert_no_difference Rsvp, :count do
+      post :create, :event_id => "6", :rsvp => {:attendees_count=>1} 
+    end
+    assert_response :success
+  end
+
   def test_should_get_edit
     login_as :quentin
     get :edit, :event_id => "2", :id => 1

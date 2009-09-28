@@ -85,4 +85,19 @@ class EventsControllerTest < ActionController::TestCase
     assert_response :success
     assert assigns(:calendar)
   end
+
+  def test_should_show_rsvp
+    login_as :admin
+    get :show, :id=>2
+    assert_tag :tag=>'a', :content=>:rsvp.l
+    assert_tag :tag=>'b', :content=>"#{:rsvps.l}:"
+  end
+
+  def test_should_not_show_rsvp
+    login_as :admin
+    get :show, :id=>6
+    assert_no_tag :tag=>'a', :content=>:rsvp.l
+    assert_no_tag :tag=>'b', :content=>"#{:rsvps.l}:"
+  end
+
 end
