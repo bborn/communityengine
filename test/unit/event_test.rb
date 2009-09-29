@@ -38,7 +38,7 @@ class EventTest < ActiveSupport::TestCase
 
   def test_upcoming_event_scope_should_only_find_future_events
     future_events = Event.upcoming.all
-    assert_equal future_events.size, 2
+    assert_equal future_events.size, 3
     future_events.each {|e| assert e.end_time > Time.now}
   end
 

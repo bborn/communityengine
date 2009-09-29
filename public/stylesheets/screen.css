@@ -514,6 +514,10 @@ width: 250px;
 background: #f8f8f8;
 }
 
+.MainForm input[type=checkbox] {
+	width: auto;
+}
+
 .MainForm input:focus, .MainForm textarea:focus{
 color: #777;
 border-color: #777;
