@@ -36,7 +36,7 @@
       %li.update
         %a{:href=>"#{user_path(@user)}", :rel=>"bookmark"}
           %abbr.published{:title=>"#{@user.created_at}"}
-            =:member_since.l+" #{I18n.l(@user.created_at, :format => :short_date)}"
+            =:member_since.l+" #{I18n.l(@user.created_at, :format => :short_published_date)}"
       %li.view
         =:profile_views.l
         = "(#{@user.view_count})"

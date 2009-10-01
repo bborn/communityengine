@@ -174,7 +174,7 @@ module BaseHelper
 				{:update => "friend_request_#{user.id}",
 					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
-          500 => "alert('"+:sorry_there_was_an_error_requesting_friendship.l+"')",
+          500 => "alert('"+:sorry_there_was_an_error_requesting_friendship.l.gsub(/'/, "\\\\'")+"')",
 					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
 					:method => :post }, {:class => "add_friend button"}
 		html +=	"<span style='display:none;' class='spinner'>"
@@ -308,19 +308,17 @@ module BaseHelper
     options[:q] ? search_all_sb_posts_path(options) : send("all_#{prefix}sb_posts_path", options)
   end
 
-  def distance_of_time_in_words(from_time, to_time = 0, include_seconds = false)
+  def time_ago_in_words(from_time, to_time = Time.now, include_seconds = false)
     from_time = from_time.to_time if from_time.respond_to?(:to_time)
     to_time = to_time.to_time if to_time.respond_to?(:to_time)
     distance_in_minutes = (((to_time - from_time).abs)/60).round
   
     case distance_in_minutes
-      when 0..1           then (distance_in_minutes==0) ? :a_few_seconds_ago.l : :one_minute_ago.l
-      when 2..59          then :minutes_ago.l(:minutes => distance_in_minutes)
-      when 60..90         then :one_hour_ago.l
-      when 90..1440       then :hours_ago.l(:hours => (distance_in_minutes.to_f / 60.0).round)
-      when 1440..2160     then :one_day_ago.l # 1 day to 1.5 days
-      when 2160..2880     then :days_ago.l(:days => (distance_in_minutes.to_f / 1440.0).round) # 1.5 days to 2 days
-      else from_time.strftime("%b %e, %Y  %l:%M%p").gsub(/([AP]M)/) { |x| x.downcase }
+      when 0              then :a_few_seconds_ago.l
+      when 1..59          then :minutes_ago.l(:count => distance_in_minutes)
+      when 60..1440       then :hours_ago.l(:count => (distance_in_minutes.to_f / 60.0).round)
+      when 1440..2880     then :days_ago.l(:count => (distance_in_minutes.to_f / 1440.0).round) # 1.5 days to 2 days
+      else I18n.l(from_time, :format => :time_ago)
     end
   end
 

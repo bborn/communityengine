@@ -65,7 +65,7 @@
 #en: birthday: Birthday
 #en: birthday_gender: Birthday & Gender
 #en: blog: Blog
-#en: blog_posts: Blog posts
+#en: blog_posts: {{count}} blog posts
 #en: body_text: Body Text
 #en: body_text_reqiured: Body Text (required)
 #en: bookmarklet: bookmarklet
@@ -84,6 +84,7 @@
 #en: categories: Categories
 #en: category: Category
 #en: category_was_successfully_created: Category was successfully created.
+#en: check_out_this_story_on: Check out this story on {{site}}
 #en: choices: Choices
 #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
 #en: choose_a_photo_to_upload: "Choose a photo to upload:"
@@ -132,12 +133,14 @@
 #en: dashboard: Dashboard
 #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
 #en: date:formats:published_date: "%Y/%m/%d"
-#en: date:formats:short_date: "%y/%m/%d"
+#en: date:formats:short_published_date: "%y/%m/%d"
+#en: date:formats:literal_date: "%B %d, %Y"
+#en: date:formats:short_literal_date: "%b %d, %Y"
 #en: date:formats:date_ago: "%B %d"
 #en: date: Date
 #en: date_created: Date Created
 #en: date_published: Date Published
-#en: days_ago: {{days}} days ago
+#en: days_ago: {{count}} days ago
 #en: deactivate_link: Click here to deactivate your account
 #en: deactivate_tip: Deactivating your account will remove your profile from the site. 
 #en: deactivate_confirmation: Are you sure you want to deactivate your account?
@@ -225,13 +228,14 @@
 #en: forgot_your_username: Forgot your username?
 #en: forum: Forum
 #en: forums: Forums
-#en: found: found
+#en: post_found: {{count}} posts found
 #en: frequency: Frequency
 #en: frequent_asked_questions: Frequent Asked Questions
 #en: frequently_asked_questions: Frequently Asked Questions
 #en: friend: friend
 #en: friends: Friends
 #en: friendship_could_not_be_created: Friendship could not be created
+#en: friendship_request_accepted: Friendship request accepted!
 #en: friendship_request_detail: Friendship request detail
 #en: friendship_requested: Requested friendship with {{friend}}.
 #en: from: From
@@ -250,6 +254,9 @@
 #en: go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
 #en: go_to_your_profile: Go to your profile
 #en: greetings: ['Hello', 'Hola', 'Hi ', 'Yo', 'Welcome back,', 'Greetings', 'Wassup', 'Aloha', 'Halloo']
+#en: has_commented_on_something_that_you_also_commented_on: {{user}} has commented on a {{item}} that you also commented on.
+#en: has_posted_in_a_thread_you_are_monitoring: {{user}} has posted in a thread you are monitoring.
+#en: has_something_to_say_to_you_on: {{user}} has something to say to you on {{site}}!
 #en: have_an_account: "Have an account? "
 #en: have_something_to_contribute: Have something to contribute?
 #en: help: Help
@@ -258,7 +265,7 @@
 #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
 #en: homepage_banner_signup_prompt: See how it works
 #en: homepage_features: Homepage Features
-#en: hours_ago: {{hours}} hours ago
+#en: hours_ago: {{count}} hours ago
 #en: how_do_i_do_that: How do I do that?
 #en: html: HTML
 #en: image: Image
@@ -314,8 +321,8 @@
 #en: manage_my: "Manage my:"
 #en: manage_posts: Manage Posts
 #en: medium: Medium
-#en: megabyte_upload_limit: {{size}} megabyte upload limit
-#en: megabyte_upload_limit_per_file: {{size}} megabyte upload limit per file.
+#en: megabyte_upload_limit: {{count}} megabytes upload limit
+#en: megabyte_upload_limit_per_file: {{count}} megabytes upload limit per file.
 #en: member: Member
 #en: members: Members
 #en: member_since: Member since
@@ -326,7 +333,7 @@
 #en: metro_area: Metro Area
 #en: metro_areas: Metro Areas
 #en: metro_area_was_successfully_created: MetroArea was successfully created.
-#en: minutes_ago: {{minutes}} minutes ago
+#en: minutes_ago: {{count}} minutes ago
 #en: moderator: Moderator
 #en: moderators: Moderators
 #en: monitored_topics: Monitored Topics
@@ -379,9 +386,6 @@
 #en: of: of
 #en: offering_was_successfully_created: Offering was successfully created.
 #en: on_commentable: On
-#en: one_day_ago: one day ago
-#en: one_hour_ago: one hour ago
-#en: one_minute_ago: one minute ago
 #en: optional: optional
 #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
 #en: or: or
@@ -404,11 +408,12 @@
 #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
 #en: photo_tip_1: Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.
 #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
+#en: please_activate_your_new_account: Please activate your new {{site}} account
 #en: please_log_in: Please log in.
 #en: please_post_something_at_least: Please post something at least...
 #en: plural_posts: "{{count}} posts"
 #en: popular: Popular
-#en: popular_catgory: Popular {{name}}
+#en: popular_category: Popular {{name}}
 #en: popular_posts: Popular Posts
 #en: popular_posts_on: Popular Posts on
 #en: popular_polls: Popular Polls
@@ -491,8 +496,10 @@
 #en: send_me_my_username: Send me my username
 #en: sent_messages: Sent messages
 #en: send_this_story_to_friends: Send this message to friends
+#en: sent_you_a_private_message: {{user}} sent you a private message!
 #en: service_could_not_be_deleted: Service could not be deleted.
 #en: share_the_love: Share the love
+#en: sharethis: ShareThis
 #en: show: Show
 #en: show_category: "{{category}}"
 #en: show_this_photo: Show this photo
@@ -548,6 +555,7 @@
 #en: the_more_people_you_invite_the_better: The more people you invite, the better
 #en: the_service_was_deleted: The service was deleted.
 #en: the_slideshow_is_disabled: The slideshow is disabled.
+#en: the_team: The {{site}} Team <{{email}}>
 #en: the_user_was_activated: The user was activated
 #en: the_user_was_deleted: The user was deleted.
 #en: this_contest_is_closed: This contest is closed
@@ -598,6 +606,7 @@
 #en: user_e_mail: "User e-mail:"
 #en: username: Username
 #en: user: User
+#en: user_information: {{site}} User information
 #en: users: Users
 #en: users_blog: "{{user}}'s Blog"
 #en: user_clippings: Clippings of {{user}}
@@ -656,6 +665,8 @@
 #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
 #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
 #en: why_sign_up: Why Sign up?
+#en: would_like_to_be_friends_with_you: {{user}} would like to be friends with you!
+#en: would_like_you_to_join: {{user}} would like you to join {{site}}!
 #en: write_a_blog_post: Write a blog post!
 #en: write_a_message: "Write a message:"
 #en: write_new_post: Write a '{{category}}' post
@@ -680,6 +691,7 @@
 #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
 #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
 #en: your_about_text_goes_here: Your About Text Goes Here
+#en: your_account_has_been_activated: Your {{site}} account has been activated!
 #en: your_changes_were_saved: Your changes were saved.
 #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
 #en: your_post_was_deleted: Your post was deleted.

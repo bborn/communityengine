@@ -15,7 +15,7 @@
           %ul
             %li.update
               %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
-                %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display("%B %d, %Y")
+                %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display(:literal_date)
             %li.view= :views.l+" (#{@post.view_count})"
             %li.comments= link_to :comments.l+" (#{@post.comments.size})", user_post_path(@user, @post)+'#comments'      
             - if current_user and current_user.can_request_friendship_with(@post.user)
@@ -25,7 +25,7 @@
             %li.email
               %a{:href=>"#", :onclick=>"showSendTo_friend(); return false;", :title=>:email_this_story_to_friends.l}= :email_to_friends.l
             %li.share
-              %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358"}
+              %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;buttonText=#{:sharethis.l}"}
             -if @is_current_user || admin? || moderator?
               %li.edit= link_to :edit.l, edit_user_post_path(@post.user, @post)
               %li.delete= link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}

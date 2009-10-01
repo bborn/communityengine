@@ -17,7 +17,7 @@
         %ul
           %li=link_to :profile.l, edit_user_path(@user)
           %li=link_to :account_settings.l, edit_account_user_path(@user)
-          %li=link_to :blog_posts.l, manage_user_posts_path(@user)     
+          %li=link_to :blog_posts.l(:count => 0), manage_user_posts_path(@user)     
           -if current_user.admin?
             %li=link_to :admin_dashboard.l, admin_dashboard_path
                
@@ -28,7 +28,7 @@
       %li=:you_last_logged_in_on.l+" #{@user.last_login_at && I18n.l(@user.last_login_at, :format => :published_date)}"
       %li=:member_since.l+" #{I18n.l(@user.created_at, :format => :published_date)}"
       -unless @user.posts.empty?
-        %li=:you_have_written.l+" #{@user.posts.count} "+:blog_posts.l+"."
+        %li=:you_have_written.l + " " + :blog_posts.l(:count => @user.posts.count) + "."
       -unless @user.photos.empty?
         %li=:you_have_uploaded.l+" #{@user.photos.count} "+:photos.l.downcase+"."
       -unless @user.clippings.empty?

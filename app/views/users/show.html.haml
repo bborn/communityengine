@@ -50,7 +50,7 @@
             - else
               %strong= :to.l + ": #{link_to comment.recipient.login, user_path(comment.recipient)}"
               %br
-              %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type})"
+              %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type.l})"
           %dd
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
 

@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   #validation
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
-  validates_presence_of     :password_confirmation,      :if => :password_required?
+#  validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 6..20, :if => :password_required?
   validates_confirmation_of :password,                   :if => :password_required?
   validates_presence_of     :metro_area,                 :if => Proc.new { |user| user.state }

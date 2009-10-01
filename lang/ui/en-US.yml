@@ -2,12 +2,14 @@ en:
   date:
     formats:
       published_date: "%Y/%m/%d"
-      short_date: "%y/%m/%d"
       date_ago: "%B %d"
 
   time:
     formats:
       published_date: "%Y/%m/%d"      
+      short_published_date: "%y/%m/%d"
+      literal_date: "%B %d, %Y"
+      short_literal_date: "%b %d, %Y"
       time_ago: "%l:%M%p"
 
   activerecord:
@@ -149,8 +151,10 @@ en:
   birthday_gender: "Birthday & Gender"
   #en: blog: Blog
   blog: Blog
-  #en: blog_posts: Blog posts
-  blog_posts: Blog posts
+  #en: blog_posts: {{count}} blog posts
+  blog_posts:
+    one: 1 blog post
+    other: "{{count}} blog posts"
   #en: body_text: Body Text
   body_text: Body Text
   #en: body_text_reqiured: Body Text (required)
@@ -187,6 +191,8 @@ en:
   category: Category
   #en: category_was_successfully_created: Category was successfully created.
   category_was_successfully_created: Category was successfully created.
+  #en: check_out_this_story_on: Check out this story on {{site}}
+  check_out_this_story_on: Check out this story on {{site}}
   #en: choices: Choices
   choices: Choices
   #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
@@ -287,8 +293,10 @@ en:
   date_created: Date Created
   #en: date_published: Date Published
   date_published: Date Published
-  #en: days_ago: {{days}} days ago
-  days_ago: "{{days}} days ago"
+  #en: days_ago: {{count}} days ago
+  days_ago: 
+    one: "one day ago"
+    other: "{{count}} days ago"
   #en: deactivate_link: Click here to deactivate your account
   deactivate_link: Click here to deactivate your account
   #en: deactivate_tip: Deactivating your account will remove your profile from the site. 
@@ -463,8 +471,10 @@ en:
   forum: Forum
   #en: forums: Forums
   forums: Forums
-  #en: found: found
-  found: found
+  #en: post_found: {{count}} posts found
+  post_found:
+    one: 1 Post found
+    other: "{{count}} Posts found"
   #en: frequency: Frequency
   frequency: Frequency
   #en: frequent_asked_questions: Frequent Asked Questions
@@ -477,6 +487,8 @@ en:
   friends: Friends
   #en: friendship_could_not_be_created: Friendship could not be created
   friendship_could_not_be_created: Friendship could not be created
+  #en: friendship_request_accepted: Friendship request accepted!
+  friendship_request_accepted: Friendship request accepted!
   #en: friendship_request_detail: Friendship request detail
   friendship_request_detail: Friendship request detail
   #en: friendship_requested: Requested friendship with {{friend}}.
@@ -511,6 +523,12 @@ en:
   go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
   #en: go_to_your_profile: Go to your profile
   go_to_your_profile: Go to your profile
+  #en: has_commented_on_something_that_you_also_commented_on: {{user}} has commented on a {{item}} that you also commented on.
+  has_commented_on_something_that_you_also_commented_on: "{{user}} has commented on a {{item}} that you also commented on."
+  #en: has_posted_in_a_thread_you_are_monitoring: {{user}} has posted in a thread you are monitoring.
+  has_posted_in_a_thread_you_are_monitoring: "{{user}} has posted in a thread you are monitoring."
+  #en: has_something_to_say_to_you_on: {{user}} has something to say to you on {{site}}!
+  has_something_to_say_to_you_on: "{{user}} has something to say to you on {{site}}!"
   #en: have_an_account: "Have an account? "
   have_an_account: "Have an account? "
   #en: have_something_to_contribute: Have something to contribute?
@@ -527,8 +545,10 @@ en:
   homepage_banner_signup_prompt: See how it works
   #en: homepage_features: Homepage Features
   homepage_features: Homepage Features
-  #en: hours_ago: {{hours}} hours ago
-  hours_ago: "{{hours}} hours ago"
+  #en: hours_ago: {{count}} hours ago
+  hours_ago:
+    one: "one hour ago"
+    other: "{{count}} hours ago"
   #en: how_do_i_do_that: How do I do that?
   how_do_i_do_that: How do I do that?
   #en: html: HTML
@@ -639,10 +659,14 @@ en:
   manage_posts: Manage Posts
   #en: medium: Medium
   medium: Medium
-  #en: megabyte_upload_limit: {{size}} megabyte(s) upload limit
-  megabyte_upload_limit: "{{size}} megabyte(s) upload limit"
-  #en: megabyte_upload_limit_per_file: {{size}} megabyte(s) upload limit per file.
-  megabyte_upload_limit_per_file: "{{size}} megabyte(s) upload limit per file."
+  #en: megabyte_upload_limit: {{count}} megabytes upload limit
+  megabyte_upload_limit:
+    one: "1 megabyte upload limit"
+    other: "{{count}} megabytes upload limit"
+  #en: megabyte_upload_limit_per_file: {{count}} megabytes upload limit per file.
+  megabyte_upload_limit_per_file:
+    one: "1 megabyte upload limit per file."
+    other: "{{count}} megabytes upload limit per file."
   #en: member: Member
   member: Member
   #en: members: Members
@@ -663,8 +687,10 @@ en:
   metro_areas: Metro Areas
   #en: metro_area_was_successfully_created: MetroArea was successfully created.
   metro_area_was_successfully_created: MetroArea was successfully created.
-  #en: minutes_ago: {{minutes}} minutes ago
-  minutes_ago: "{{minutes}} minutes ago"
+  #en: minutes_ago: {{count}} minutes ago
+  minutes_ago:
+    one: "one minute ago"
+    other: "{{count}} minutes ago"
   #en: moderator: Moderator
   moderator: Moderator
   #en: moderators: Moderators
@@ -757,7 +783,7 @@ en:
   no_tags: No tags
   #en: notify_email_updates: Notify of community news
   notify_email_updates: Notify of community news
-  #en: notify_me_of_follow_ups_via_email: Notify me of follow ups via e-mail  
+  #en: notify_me_of_follow_ups_via_email: Notify me of follow ups via e-mail
   notify_me_of_follow_ups_via_email: Notify me of follow ups via e-mail  
   #en: notify_of_comments: Notify of comments
   notify_of_comments: Notify of comments
@@ -769,12 +795,6 @@ en:
   offering_was_successfully_created: Offering was successfully created.
   #en: on_commentable: On
   on_commentable: 'On'
-  #en: one_day_ago: one day ago
-  one_day_ago: one day ago
-  #en: one_hour_ago: one hour ago
-  one_hour_ago: one hour ago
-  #en: one_minute_ago: one minute ago
-  one_minute_ago: one minute ago
   #en: optional: optional
   optional: optional
   #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
@@ -819,6 +839,8 @@ en:
   photo_tip_1: "Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions."
   #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
   photo_tip_2: Use tags to organize your photos. Separate tags with commas.
+  #en: please_activate_your_new_account: Please activate your new {{site}} account
+  please_activate_your_new_account: "Please activate your new {{site}} account"
   #en: please_log_in: Please log in.
   please_log_in: Please log in.
   #en: please_post_something_at_least: Please post something at least...
@@ -827,8 +849,8 @@ en:
   plural_posts: "{{count}} posts"
   #en: popular: Popular
   popular: Popular
-  #en: popular_catgory: Popular {{name}}
-  popular_catgory: "Popular {{name}}"
+  #en: popular_category: Popular {{name}}
+  popular_category: "Popular {{name}}"
   #en: popular_posts: Popular Posts
   popular_posts: Popular Posts
   #en: popular_posts_on: Popular Posts on
@@ -993,14 +1015,18 @@ en:
   send_invitations: Send Invitations!
   #en: send_me_my_username: Send me my username
   send_me_my_username: Send me my username
-  #en: sent_messages: Sent messages
-  sent_messages: Sent messages
   #en: send_this_story_to_friends: Send this message to friends
   send_this_story_to_friends: Send this message to friends
+  #en: sent_messages: Sent messages
+  sent_messages: Sent messages
+  #en: sent_you_a_private_message: {{user}} sent you a private message!
+  sent_you_a_private_message: "{{user}} sent you a private message!"
   #en: service_could_not_be_deleted: Service could not be deleted.
   service_could_not_be_deleted: Service could not be deleted.
   #en: share_the_love: Share the love
   share_the_love: Share the love
+  #en: sharethis: ShareThis
+  sharethis: ShareThis
   #en: show: Show
   show: Show
   #en: show_category: {{category}}
@@ -1111,6 +1137,8 @@ en:
   the_service_was_deleted: The service was deleted.
   #en: the_slideshow_is_disabled: The slideshow is disabled.
   the_slideshow_is_disabled: The slideshow is disabled.
+  #en: the_team: The {{site}} Team <{{email}}>
+  the_team: "The {{site}} Team <{{email}}>"
   #en: the_user_was_activated: The user was activated
   the_user_was_activated: The user was activated
   #en: the_user_was_deleted: The user was deleted.
@@ -1209,6 +1237,8 @@ en:
   username: Username
   #en: user: User
   user: User
+  #en: user_information: {{site}} User information
+  user_information: "{{site}} User information"
   #en: users: Users
   users: Users
   #en: users_blog: "{{user}}'s Blog"
@@ -1293,6 +1323,10 @@ en:
   when_you_see_an_image_you_like_on_the_web: "When you see an image you like on the Web, click the bookmarklet to save it to {{site}}"
   #en: why_sign_up: Why Sign up?
   why_sign_up: Why Sign up?
+  #en: would_like_to_be_friends_with_you: {{user}} would like to be friends with you!
+  would_like_to_be_friends_with_you: "{{user}} would like to be friends with you!"
+  #en: would_like_you_to_join: {{user}} would like you to join {{site}}!
+  would_like_you_to_join: "{{user}} would like you to join {{site}}!"
   #en: write_a_blog_post: Write a blog post!
   write_a_blog_post: Write a blog post!
   #en: write_a_message: "Write a message:"
@@ -1341,6 +1375,8 @@ en:
   you_must_vote_to_see_the_results: You must vote to see the resuts.
   #en: your_about_text_goes_here: Your About Text Goes Here
   your_about_text_goes_here: Your About Text Goes Here
+  #en: your_account_has_been_activated: Your {{site}} account has been activated!
+  your_account_has_been_activated: "Your {{site}} account has been activated!"
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Your changes were saved.
   #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
