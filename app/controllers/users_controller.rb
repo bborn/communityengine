@@ -315,7 +315,7 @@ class UsersController < BaseController
     @user = User.active.find_by_email(params[:email])  
     if @user && @user.reset_password
       UserNotifier.deliver_reset_password(@user)
-      @user.save
+      @user.save_without_session_maintenance
       redirect_to login_url
       flash[:info] = :your_password_has_been_reset_and_emailed_to_you.l      
     else
