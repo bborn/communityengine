@@ -319,6 +319,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       post :forgot_password, :email => users(:quentin).email
       assert_redirected_to login_path    
+      assert_nil UserSession.find
     end
   end
 
