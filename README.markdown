@@ -1,21 +1,21 @@
-CommunityEngine [v1.0.4]
+CommunityEngine [v1.0.4.1]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.3.2
+	- RAILS VERSION 2.3.2 (higher versions are not yet supported)
 	- ImageMagick (>6.4) 
 	- Several gems:
-      desert 0.5.2
+    desert 0.5.2
 	  rmagick
 	  hpricot
 	  htmlentities
 	  rake 0.8.3
 	  haml 2.0.5
 	  calendar_date_select
-	  icalendar
-      authlogic
+	  ri_cal
+    authlogic
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
