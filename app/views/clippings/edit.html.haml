@@ -20,6 +20,5 @@
 
         %p
           = submit_tag :save.l
-
-          or
+          = :or.l
           = link_to :cancel_and_go_back_to_my_clippings.l, user_clippings_path(@user)

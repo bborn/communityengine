@@ -15,7 +15,7 @@
 #yui-main
   .yui-b
     .box.user_list
-      %h3= "#{AppConfig.community_name} "+:pros.l
+      %h3= "#{AppConfig.community_name} &raquo; "+:pros.l
 
       .pagination= paginating_links @users if @users.page_count > 1
 

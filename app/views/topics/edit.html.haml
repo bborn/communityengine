@@ -4,4 +4,7 @@
 = error_messages_for :topic
 - form_for :topic,:url  => forum_topic_path(@forum, @topic), :html => { :method => :put, :class => "MainForm" } do |f|
   = render :partial => "form", :object => f 
-  %p= submit_tag :save_changes.l, :or => link_to(:cancel.l, forum_topic_path(@forum, @topic))
+  %p
+    = submit_tag :save_changes.l
+    = :or.l
+    = link_to(:cancel.l, forum_topic_path(@forum, @topic))

@@ -800,8 +800,10 @@ sv:
   permanently_delete_this_post: Ta bort det här inlägget permanent?
   #en: photo_comments: Photo Comments
   photo_comments: Bildkommentarer
-  #en: photo_from_user: "{{photo_description}} from {{user}}"
-  photo_from_user: "{{photo_description}} från {{user}}"
+  #en: photo_from_user: "Photo from {{user}}"
+  photo_from_user: "Bild från {{user}}"
+  #en: photo_description_from_user: "{{photo_description}} from {{user}}"
+  photo_description_from_user: "{{photo_description}} från {{user}}"
   #en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
   photo_message: "Din profilbild representerar dig på {{site}}. Du kan ändra den senare."
   #en: photo_was_successfully_created: Photo was successfully created.
@@ -850,8 +852,8 @@ sv:
   posting_tips: "Tips för inlägg"
   #en: post_topic: Post topic
   post_topic: Spara ämne
-  #en: posts_photos_and_bookmarks: posts, photos and bookmarks
-  posts_photos_and_bookmarks: inlägg, bilder och bokmärken
+  #en: posts_photos_and_bookmarks: {{name}} posts, photos and bookmarks
+  posts_photos_and_bookmarks: "{{name}} inlägg, bilder och bokmärken"
   #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Inlägg sparade som 'utkast' kommer inte att synas i din blogg förrän du publicerat dem."
   #en: preview: Preview

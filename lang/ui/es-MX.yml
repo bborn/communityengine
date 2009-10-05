@@ -564,7 +564,7 @@ es-MX:
   get_started_banner: ¡Iniciate con <a href="/">{{site}}</a> hoy mismo!
   invite_a_friend: Invita un amigo
   new_yesterday: Nuevo Ayer
-  posts_photos_and_bookmarks: publicaciones, fotos y favvoritos
+  posts_photos_and_bookmarks: "{{name}} publicaciones, fotos y favvoritos"
   go_to_the_forums: ir a los foros
   your_post_was_successfully_created: Tu publicación fue creada con éxito.
   this_friendship_is_pending: Esta amistad está pendiente.

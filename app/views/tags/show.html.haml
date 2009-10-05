@@ -2,10 +2,13 @@
   .yui-u
     .box.alt.first_alt
       %h3
-        = params[:type] ? h((params[:type]+'s').l) : :items.l
-        =:tagged.l+":"
+        - if params[:type]
+          = (params[:type].downcase.pluralize + '_tagged').l
+        - else
+          = :items_tagged.l
         - @tags.each do |tag|
           = link_to h(tag.name), tag_path(tag)
+       
         
     .box
       %h3.tags=:related_tags.l
@@ -36,7 +39,7 @@
 
     - if @photos.any?
       %br.clear
-      %h3=:photos.l
+      %h3=:photos.l(:count => @photos.size)
       - @photos.each do |photo|
         = link_to image_tag(photo.public_filename(:thumb), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})", :class => "polaroid"), user_photo_path(photo.user, photo)
       %h6.all= link_to :all_photos_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Photo') unless params[:type]

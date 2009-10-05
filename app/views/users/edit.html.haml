@@ -13,7 +13,7 @@
       = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
       %label
         =:choose_a_photo_for_your_profile.l
-      = file_field :avatar, :uploaded_data, :size => "20"
+      = file_field :avatar, :uploaded_data, :size => "20", :value => "parcourir"
       
       %h3= :location.l
       = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}

@@ -17,7 +17,7 @@ module BaseHelper
   end
   
   def is_current_user_and_featured?(u)
-     u && u.eql?(current_user) && u.featured_writer?
+    u && u.eql?(current_user) && u.featured_writer?
   end
   
   def resize_img(classname, width=90, height=135)
@@ -102,51 +102,56 @@ module BaseHelper
     end
   end
 
-	def page_title
-		app_base = AppConfig.community_name
-		tagline = " | #{AppConfig.community_tagline}"
-	
-		title = app_base
-		case @controller.controller_name
-			when 'base'
-					title += tagline
-			when 'posts'
+  def page_title
+    app_base = AppConfig.community_name
+    tagline = " | #{AppConfig.community_tagline}"
+
+    title = app_base
+    case @controller.controller_name
+      when 'base'
+        title += tagline
+      when 'posts'
         if @post and @post.title
           title = @post.title + ' &raquo; ' + app_base + tagline
           title += (@post.tags.empty? ? '' : " &laquo; "+:keywords.l+": " + @post.tags[0...4].join(', ') )
           @canonical_url = user_post_url(@post.user, @post)
         end
-			when 'users'
+      when 'users'
         if @user && !@user.new_record? && @user.login 
           title = @user.login
-          title += ', expert in ' + @user.offerings.collect{|o| o.skill.name }.join(', ') if @user.vendor? and !@user.offerings.empty?
+          title += ', ' + :expert_in.l + ' ' + @user.offerings.collect{|o| o.skill.name }.join(', ') if @user.vendor? and !@user.offerings.empty?
           title += ' &raquo; ' + app_base + tagline
           @canonical_url = user_url(@user)          
         else
           title = :showing_users.l+' &raquo; ' + app_base + tagline
         end
-			when 'photos'
+      when 'photos'
         if @user and @user.login
-          title = @user.login + '\'s '+:photos.l+' &raquo; ' + app_base + tagline
+          title = :users_photos.l(:user => @user.login)+' &raquo; ' + app_base + tagline
         end
-			when 'clippings'
+      when 'clippings'
         if @user and @user.login
-          title = @user.login + '\'s '+:clippings.l+' &raquo; ' + app_base + tagline
+          title = :user_clippings.l(:user => @user.login) + ' &raquo; ' + app_base + tagline
         end
-			when 'tags'
-				case @controller.action_name
-			    when 'show'
-            title = @tags.map(&:name).join(', ') + ' '
-            title += params[:type] ? params[:type].pluralize : :posts_photos_and_bookmarks.l
-            title += ' (Related: ' + @related_tags.join(', ') + ')' if @related_tags
+      when 'tags'
+        case @controller.action_name
+          when 'show'
+            if params[:type]
+#              title = (params[:type].downcase.pluralize + '_tagged').l
+              title = I18n.translate('all_' + params[:type].downcase.pluralize + '_tagged', :tag_name => @tags.map(&:name).join(', '))
+            else
+              title = :posts_photos_and_bookmarks.l(:name => @tags.map(&:name).join(', '))
+            end
+#            title += ' ' + @tags.map(&:name).join(', ')
+            title += ' (' + :related_tags.l + ': ' + @related_tags.join(', ') + ')' if @related_tags
             title += ' | ' + app_base    
             @canonical_url = tag_url(URI.escape(@tags_raw, /[\/.?#]/)) if @tags_raw
           else
-          title = 'Showing tags &raquo; ' + app_base + tagline            
-			  end
+            title = 'Showing tags &raquo; ' + app_base + tagline            
+          end
       when 'categories'
         if @category and @category.name
-          title = @category.name + ' '+:posts_photos_and_bookmarks.l+' &raquo; ' + app_base + tagline
+          title = :posts_photos_and_bookmarks.l(:name => @category.name) + ' &raquo; ' + app_base + tagline
         else
           title = :showing_categories.l+' &raquo; ' + app_base + tagline            
         end
@@ -158,15 +163,16 @@ module BaseHelper
         end
       when 'sessions'
         title = :login.l+' &raquo; ' + app_base + tagline            
-		end
+    end
 
     if @page_title
       title = @page_title + ' &raquo; ' + app_base + tagline
     elsif title == app_base          
-		  title = :showing.l+' ' + @controller.controller_name + ' &raquo; ' + app_base + tagline
-    end	
-		title
-	end
+		  title = :showing.l+' ' + @controller.controller_name.l + ' &raquo; ' + app_base + tagline
+    end
+
+    title
+  end
 
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
@@ -334,11 +340,11 @@ module BaseHelper
   
   def profile_completeness(user)
     segments = [
-      {:val => 2, :action => link_to('Add a profile photo', edit_user_path(user, :anchor => 'profile_details')), :test => !user.avatar.nil? },
-      {:val => 1, :action => link_to('Fill in your about me', edit_user_path(user, :anchor => 'user_description')), :test => !user.description.blank?},      
-      {:val => 2, :action => link_to('Select your city', edit_user_path(user, :anchor => 'location_chooser')), :test => !user.metro_area.nil? },            
-      {:val => 1, :action => link_to('Tag yourself', edit_user_path(user, :anchor => "user_tags")), :test => user.tags.any?},                  
-      {:val => 1, :action => link_to('Invite some friends', new_invitation_path), :test => user.invitations.any?}
+      {:val => 2, :action => link_to(:upload_a_profile_photo.l, edit_user_path(user, :anchor => 'profile_details')), :test => !user.avatar.nil? },
+      {:val => 1, :action => link_to(:tell_us_about_yourself.l, edit_user_path(user, :anchor => 'user_description')), :test => !user.description.blank?},      
+      {:val => 2, :action => link_to(:select_your_city.l, edit_user_path(user, :anchor => 'location_chooser')), :test => !user.metro_area.nil? },            
+      {:val => 1, :action => link_to(:tag_yourself.l, edit_user_path(user, :anchor => "user_tags")), :test => user.tags.any?},                  
+      {:val => 1, :action => link_to(:invite_some_friends.l, new_invitation_path), :test => user.invitations.any?}
     ]
     
     completed_score = segments.select{|s| s[:test].eql?(true)}.sum{|s| s[:val]}

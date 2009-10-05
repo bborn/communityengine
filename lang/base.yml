@@ -5,11 +5,10 @@
 #en: about_you: About You
 #en: accept: Accept
 #en: accepted: accepted
-#en: accepted_friendships: Accepted Friendships
+#en: accepted_friendships: {{count}} Accepted Friendships
 #en: accept_this_request: Accept this request
 #en: account: account
 #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help.
-#en: account_settings: Account settings
 #en: actions: Actions
 #en: activate: Activate
 #en: activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
@@ -65,7 +64,6 @@
 #en: birthday: Birthday
 #en: birthday_gender: Birthday & Gender
 #en: blog: Blog
-#en: blog_posts: {{count}} blog posts
 #en: body_text: Body Text
 #en: body_text_reqiured: Body Text (required)
 #en: bookmarklet: bookmarklet
@@ -100,10 +98,12 @@
 #en: click_the_activation_link_in_the_e_mail_to_log_in: Click the activation link in the e-mail to log in.
 #en: click_to_accept_it: Click to accept it!
 #en: clipping_comments: Clipping Comments
+#en: clipping_from_user: Clipping from {{user}}
 #en: clipping_was_successfully_created: Clipping was successfully created.
 #en: clippings: Clippings
 #en: clippings_are_a_way_to_save_images_you_like_from_around_the_web: Clippings are a way to save images you like from around the Web
 #en: clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
+#en: clippings_tagged: Clippings tagged
 #en: close_this_message: Close this message
 #en: comma_separated: (comma separated)
 #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
@@ -205,6 +205,7 @@
 #en: event_was_successfully_created: Event was successfully created.
 #en: events: Events
 #en: every_person_has_something_to_say: "Every single person has something to say, something to give, something that will help someone else.  Join in!"
+#en: expert_in: expert in
 #en: explore_site: Explore {{site}}
 #en: failed: failed
 #en: faq: FAQ
@@ -243,10 +244,8 @@
 #en: gender: Gender
 #en: get_help_from_someone_who_knows: Get help from someone who knows
 #en: get_popular: Get popular.
+#en: get_started: "Get started:"
 #en: get_started_banner: Get started with <a href="/">{{site}}</a> today!
-#en: get_started_invite_some_friends: "Get Started: Invite some friends!"
-#en: get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
-#en: get_started_upload_a_profile_photo: "Get Started: Upload a profile photo"
 #en: go: Go
 #en: go2: Go
 #en: go_check_your_e_mail: Go check your e-mail!
@@ -279,10 +278,12 @@
 #en: invitation_was_successfully_created: Invitation was successfully created.
 #en: invite_message: The more people you invite the better {{site}} becomes.
 #en: invite_some_customers: Invite some customers!
+#en: invite_some_friends: "Invite some friends!"
 #en: invite_your_friends_to_join: Invite Your Friends To Join!
 #en: invited_friends: invited some friends to join!
 #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
 #en: items: Items
+#en: items_tagged: Items tagged
 #en: joined: joined
 #en: joined_the_site: joined {{site}}
 #en: just_uploading_one_photo: Just uploading one photo?
@@ -318,7 +319,7 @@
 #en: make_my_profile_public: Make my profile public
 #en: make_this_my_profile_photo: Make this my profile photo
 #en: male: Male
-#en: manage_my: "Manage my:"
+#en: manage: "Manage:"
 #en: manage_posts: Manage Posts
 #en: medium: Medium
 #en: megabyte_upload_limit: {{count}} megabytes upload limit
@@ -341,8 +342,13 @@
 #en: more: More
 #en: more_about_you: More about you
 #en: most_active_1_month: Most active (1 month)
+#en: my_account: My Account
+#en: my_blog: My Blog
+#en: my_blog_posts: My Blog Posts
+#en: my_clippings: My Clippings
 #en: my_details: My Details
 #en: my_friends: My Friends
+#en: my_photos: My Photos
 #en: my_profile: My Profile
 #en: my_recent_comments: My recent comments
 #en: my_skills: My Skills
@@ -401,11 +407,13 @@
 #en: permanently_delete_this_event: Permanently delete this event?
 #en: permanently_delete_this_post: Permanently delete this post?
 #en: photo_comments: Photo Comments
-#en: photo_from_user: "{{photo_description}} from {{user}}"
+#en: photo_description_from_user: "{{photo_description}} from {{user}}"
+#en: photo_from_user: "Photo from {{user}}"
 #en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
 #en: photo_was_successfully_created: Photo was successfully created.
 #en: photos: Photos
 #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
+#en: photos_tagged: Photos tagged
 #en: photo_tip_1: Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.
 #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
 #en: please_activate_your_new_account: Please activate your new {{site}} account
@@ -427,8 +435,9 @@
 #en: postal_code: "Postal code:"
 #en: posting_tips: "Posting Tips"
 #en: post_topic: Post topic
-#en: posts_photos_and_bookmarks: posts, photos and bookmarks
+#en: posts_photos_and_bookmarks: {{name}} posts, photos and bookmarks
 #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
+#en: posts_tagged: Posts tagged
 #en: preview: Preview
 #en: previewing_your_post: Previewing your post
 #en: previous: previous
@@ -467,7 +476,7 @@
 #en: required: required
 #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
 #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
-#en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
+#en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain spaces or special characters.)"
 #en: resend_my_activation_e_mail: Resend my activation e-mail
 #en: resend_your_activation_e_mail: Resend your activation e-mail
 #en: reset_my_password: Reset my password
@@ -491,6 +500,7 @@
 #en: see_all_events: See all events
 #en: see_you_back_here_in_a_short_while: See you back here in a short while.
 #en: select_images_to_upload: Select Images to Upload
+#en: select_your_city: Select your city
 #en: send: "Send"
 #en: send_invitations: Send Invitations!
 #en: send_me_my_username: Send me my username
@@ -538,7 +548,7 @@
 #en: subscribe_to: Subscribe to
 #en: tag_does_not_exists: The tag {{tag}} does not exist
 #en: tag_name: Tag name
-#en: tag_yourself: tag yourself
+#en: tag_yourself: Tag yourself
 #en: tags: Tags
 #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
 #en: tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Tags are keywords you use to organize your clippings. Separate multiple tags with commas.
@@ -546,6 +556,7 @@
 #en: tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Tags are one-word descriptors user assign to blog posts, pictures and clippings on
 #en: tagged: tagged
 #en: tags_page: tags page
+#en: tell_us_about_yourself: "Tell us about yourself"
 #en: thanks_for_activating_your_account: Thanks for activating your account!
 #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
 #en: the_comment_was_deleted: The comment was deleted.
@@ -598,6 +609,7 @@
 #en: update_your_profile: update your profile
 #en: updated_at: Updated at
 #en: updated_their_profile: updated their profile
+#en: upload_a_profile_photo: "Upload a profile photo"
 #en: upload_an_image_for_your_post: Upload an image for your post
 #en: upload_and_continue_to_step_two: Upload, and continue to step two
 #en: uploaded_a_photo: "uploaded a photo:"
@@ -605,6 +617,7 @@
 #en: url: Url
 #en: user_e_mail: "User e-mail:"
 #en: username: Username
+#en: users_profile: {{user}}'s profile
 #en: user: User
 #en: user_information: {{site}} User information
 #en: users: Users
@@ -613,6 +626,7 @@
 #en: user_login: User login
 #en: users_online: Users online
 #en: users_photos: "{{user}}'s Photos"
+#en: users_tagged: "Users tagged"
 #en: user_notifier_change_email_preferences: "\n\n---------------------------------------------------------------------------------\n\nIf you don't want to receive e-mails like this one from {{community_name}}, you can change your e-mail preferences here:\n\n\t {{change_account_here}}"
 #en: user_notifier_thanks: "\n\nThanks,\nThe {{community}} team"
 #en: user_notifier_report_abuse: "\n---------------------------------------\n\n\t{{community_introduction}}\n\nFor support, or to report abuse, please contact {{support}}."
@@ -637,9 +651,7 @@
 #en: view_all_my_friend_requests: View all my friend requests
 #en: view_all_my_photos: View all my photos
 #en: view_comment: View Comment
-#en: view_my: "View my:"
 #en: view_my_blog: View my blog
-#en: view_profile: View profile
 #en: voice: voice
 #en: voices: Voices
 #en_ vote: Vote
@@ -678,15 +690,16 @@
 #en: you_cant_delete_that_user: You can't delete that user.
 #en: you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
 #en: you_could_tag_yourself: You could tag yourself
-#en: you_have: You have
+#en: you_have_friends: You have {{count}} friends
+#en: you_have_added_clippings: You have added {{count}} clippings
 #en: you_have_already_voted: You have already voted.
 #en: you_have_created: You have created
-#en: you_have_left: You have left
+#en: you_have_left_comments: You have left {{count}} comments
 #en: you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
 #en: you_have_no_network_activity_yet: You have no network activity yet.
 #en: you_have_pending_friendship_requests: You have pending friendship requests.
-#en: you_have_uploaded: You have uploaded
-#en: you_have_written: You have written
+#en: you_have_uploaded_photos: You have uploaded {{count}} photos
+#en: you_have_written_blog_posts: You have written {{count}} blog posts
 #en: you_last_logged_in_on: You last logged in on
 #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
 #en: you_must_vote_to_see_the_results: You must vote to see the resuts.

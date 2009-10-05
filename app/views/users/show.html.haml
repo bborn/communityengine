@@ -75,7 +75,7 @@
 
     - unless @photos.empty?
       #photos.box
-        %h3=:photos.l
+        %h3=:my_photos.l
         - @photos.each do |photo|
           = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
 
@@ -90,7 +90,7 @@
 
     - unless @clippings.empty?
       #clippings.box
-        %h3=:clippings.l
+        %h3=:my_clippings.l
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(@user, clipping)}"}
             %img.clipping.polaroid{"src"=>"#{h clipping.image_uri(:thumb)}", :width => '100', :height => '100'}

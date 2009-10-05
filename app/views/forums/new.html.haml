@@ -2,5 +2,8 @@
   %h3= :new_forum.l
   - form_for :forum, :url => forums_path, :html => {:class => "MainForm"} do |f|
     = render :partial => "form", :object => f
-    %p= submit_tag :create.l, :or => link_to(:cancel.l, forums_path)
+    %p
+      = submit_tag :create.l
+      = :or.l
+      = link_to(:cancel.l, forums_path)
 

@@ -11,11 +11,11 @@
 
   %hr
   %ul
-    %li= link_to :view_profile.l, user_path(current_user)                    
-    %li=link_to :blog.l, user_posts_path(current_user)
-    %li=link_to :photos.l, user_photos_path(current_user)
-    %li=link_to :clippings.l, user_clippings_path(current_user)
-    %li=link_to :friends.l, accepted_user_friendships_path(current_user)        
+    %li= link_to :my_profile.l, user_path(current_user)                    
+    %li=link_to :my_blog.l, user_posts_path(current_user)
+    %li=link_to :my_photos.l, user_photos_path(current_user)
+    %li=link_to :my_clippings.l, user_clippings_path(current_user)
+    %li=link_to :my_friends.l, accepted_user_friendships_path(current_user)        
   %hr
   =link_to :log_out.l, logout_path
 

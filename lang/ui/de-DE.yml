@@ -814,8 +814,8 @@ de-DE:
   posting_tips: "Tip zum Schreiben eines Beitrags"
   #en: post_topic: Post topic
   post_topic: Thema speichern
-  #en: posts_photos_and_bookmarks: posts, photos and bookmarks
-  posts_photos_and_bookmarks: Beiträge, Fotos und Bookmarks
+  #en: posts_photos_and_bookmarks: {{name}} posts, photos and bookmarks
+  posts_photos_and_bookmarks: "{{name}} Beiträge, Fotos und Bookmarks"
   #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Einträge, die als Entwurf gespeichert wurden, erscheinen erst in deinem Blog, wenn du sie veröffentlichst."
   #en: preview: Preview

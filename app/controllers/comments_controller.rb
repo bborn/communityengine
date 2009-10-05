@@ -161,9 +161,9 @@ class CommentsController < BaseController
       when 'post'
         @commentable.title
       when 'clipping'
-        @commentable.description || "Clipping from #{@user.login}"
+        @commentable.description || :clipping_from_user.l(@user.login)
       when 'photo'
-        @commentable.description || "Photo from #{@user.login}"
+        @commentable.description || :photo_from_user.l(@user.login)
       else 
         @commentable.class.to_s.humanize
     end  
