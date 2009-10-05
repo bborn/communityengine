@@ -23,6 +23,8 @@
               | 
               = link_to :edit.l, edit_event_path(event)
               |
+              = link_to :clone.l, clone_event_path(event)
+              |
               = link_to :destroy.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete
 
     %p

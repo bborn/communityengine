@@ -17,7 +17,7 @@ class EventsController < BaseController
     extend ActionView::Helpers::SanitizeHelper::ClassMethods
   end
 
-  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit, :create, :update ])
+  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit, :create, :update, :clone ])
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
 
   before_filter :admin_required, :except => [:index, :show, :ical]
@@ -131,6 +131,16 @@ class EventsController < BaseController
     respond_to do |format|
       format.html { redirect_to :back }
     end
+  end
+
+  def clone
+    event_to_clone = Event.find(params[:id])
+    attributes = event_to_clone.attributes
+    attributes.delete('id')
+    @event = Event.new(attributes)
+    @metro_areas, @states = setup_metro_area_choices_for(@event)
+    @metro_area_id, @state_id, @country_id = setup_location_for(@event)
+    render :template => 'events/new'
   end
 
   protected
