@@ -174,7 +174,7 @@ class UsersControllerTest < ActionController::TestCase
   end  
 
   def test_should_show_user
-    get :show, :id => users(:quentin).id
+    get :show, :id => users(:quentin)
     assert_response :success
   end
   
@@ -336,7 +336,7 @@ class UsersControllerTest < ActionController::TestCase
     users(:quentin).save!
     
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      post :resend_activation, :id => users(:quentin).to_param
+      post :resend_activation, :id => users(:quentin)
       assert_redirected_to login_path    
     end    
   end
