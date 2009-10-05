@@ -55,8 +55,6 @@ class UserTest < ActiveSupport::TestCase
     u = create_user(:login => 'user-name')
     u2 = create_user(:login => 'user_name')    
     
-    puts u.login_slug
-    puts u2.login_slug
     assert u.login_slug != u2.login_slug
   end
   
