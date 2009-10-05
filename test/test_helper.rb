@@ -12,6 +12,8 @@ class ActionController::TestCase
 end
 
 class ActiveSupport::TestCase
+  setup :activate_authlogic
+    
   include AuthenticatedTestHelper
   
   def self.all_fixtures
