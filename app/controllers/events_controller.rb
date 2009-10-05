@@ -134,10 +134,7 @@ class EventsController < BaseController
   end
 
   def clone
-    event_to_clone = Event.find(params[:id])
-    attributes = event_to_clone.attributes
-    attributes.delete('id')
-    @event = Event.new(attributes)
+    @event = Event.find(params[:id]).clone
     @metro_areas, @states = setup_metro_area_choices_for(@event)
     @metro_area_id, @state_id, @country_id = setup_location_for(@event)
     render :template => 'events/new'

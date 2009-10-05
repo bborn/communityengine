@@ -97,5 +97,12 @@ class EventsControllerTest < ActionController::TestCase
     assert_no_tag :tag=>'a', :content=>:rsvp.l
     assert_no_tag :tag=>'b', :content=>"#{:rsvps.l}:"
   end
+  
+  def test_should_clone_event
+    login_as :admin
+    get :clone, :id => events(:cool_event)
+        
+    assert_equal assigns(:event).attributes.only(:name, :start_time, :end_time, :description), events(:cool_event).attributes.only(:name, :start_time, :end_time, :description)    
+  end
 
 end
