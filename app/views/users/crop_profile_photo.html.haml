@@ -3,16 +3,16 @@
       
 .yui-b
 
-  .box.alt.first_alt
+  -box :class => "alt first_alt" do 
     = link_to :profile_photo_change.l, upload_profile_photo_user_path(@user)
     
-  .box
+  -box do 
     %h3=:profile_photo.l
     #previewWrap
     
 
 #yui-main
-  .yui-b.box
+  -box :class => "yui-b" do
     %h3= :profile_photo_crop.l  
 
     = image_tag( @photo.public_filename, :id => 'photo' )

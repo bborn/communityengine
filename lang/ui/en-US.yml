@@ -29,6 +29,8 @@ en:
   about_site: "About {{site}}"
   #en: about_you: About You
   about_you: About You
+  #en: admin_pages: Pages
+  admin_pages: Pages
   #en: accept: Accept
   accept: Accept
   #en: accepted: accepted
@@ -83,6 +85,8 @@ en:
   admin_controls: Admin Controls
   #en: admin_dashboard: Admin dashboard
   admin_dashboard: Admin dashboard
+  #en: administer_events: Administer events
+  administer_events: Administer events
   #en: ads: Ads
   ads: Ads
   #en: advertise: Advertise
@@ -107,9 +111,15 @@ en:
   already_have_an_account: Already have an account?
   #en: an_error_occurred: An error occurred
   an_error_occurred: An error occurred
+  #en: are_attending_this_event: are attending this event
+  are_attending_this_event: are attending this event
+  #en: is_attending_this_event: is attending this event
+  is_attending_this_event: is attending this event
   #en: are_you_sure: Are you sure?
   are_you_sure: Are you sure?
   #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
+  #en: are_you_sure_you_want_to_delete_this_page: "Are you sure you want to delete this page?"
+  are_you_sure_you_want_to_delete_this_page: "Are you sure you want to delete this page?"
   are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
   #en: are_you_sure_you_want_to_delete_this_post: "Are you sure you want to delete this post?"
   are_you_sure_you_want_to_delete_this_post: "Are you sure you want to delete this post?"
@@ -123,6 +133,8 @@ en:
   assume_user_id: "Assume this user's ID"
   #en: assign_role: Assign role
   assign_role: Assign role
+  #en: attendees: Attendees
+  attendees: Attendees
   #en: audience: Audience
   audience: Audience
   #en: author: Author
@@ -181,6 +193,10 @@ en:
   cancel_and_go_back_to_my_photos: cancel and go back to my photos
   #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
   cancel_and_go_back_to_my_posts: cancel and go back to my posts
+  #en: cancel_and_go_back_to_pages: cancel and go back to pages
+  cancel_and_go_back_to_pages: cancel and go back to pages
+  #en: cannot_rsvp_for_an_event_that_has_already_happened: Cannot RSVP for an event that has already happened.
+  cannot_rsvp_for_an_event_that_has_already_happened: Cannot RSVP for an event that has already happened.
   #en: categories: Categories
   categories: Categories
   #en: category: Category
@@ -253,6 +269,8 @@ en:
   comments_rss: Comments RSS
   #en: community_tagline: CommunityEngine Rocks!
   community_tagline: CommunityEngine Rocks!
+  #en: comment_unsubscribe_succeeded: Thanks, you have been unsubscribed from notifications on this comment.  
+  comment_unsubscribe_succeeded: "Thanks, you have been unsubscribed from notifications on this comment."
   #en: compose: Compose
   compose: Compose
   #en: compose_message: Compose message
@@ -315,6 +333,8 @@ en:
   delete_this_forum: Delete this forum
   #en: delete_this_photo: Delete this photo
   delete_this_photo: Delete this photo
+  #en: delete_this_page: Delete this page
+  delete_this_page: Delete this page
   #en: delete_this_post: Delete this post?
   delete_this_post: Delete this post?
   #en: delete_this_topic_forever: Delete this topic forever?
@@ -359,10 +379,14 @@ en:
   edit_event: Edit event
   #en: edit_forum: Edit forum
   edit_forum: Edit forum
+  #en: edit_page: Edit page
+  edit_page: Edit page
   #en: edit_post: Edit post
   edit_post: Edit post
   #en: edit_profile: Edit profile
   edit_profile: Edit profile
+  #en: edit_rsvp_for: Edit RSVP for
+  edit_rsvp_for: Edit RSVP for
   #en: edit_this_event: Edit this event
   edit_this_event: Edit this event
   #en: edit_this_photo_details: Edit this photo's details
@@ -389,6 +413,8 @@ en:
   editing_post: Editing post
   #en: editing_skill: Editing skill
   editing_skill: Editing skill
+  #en: editing_tag: Editing tag
+  editing_tag: Editing tag
   #en: email_addresses: Email Addresses
   email_addresses: Email Addresses
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}
@@ -403,8 +429,8 @@ en:
   end_date: End date
   #en: end_required: end (required)
   end_required: end (required)
-  #en: end_tome: End time
-  end_tome: End time
+  #en: end_time: End time
+  end_time: End time
   #en: enter_a_message: Enter a message
   enter_a_message: Enter a message
   #en: enter_e_mail_addresses: Enter e-mail addresses
@@ -419,6 +445,10 @@ en:
   estimated_total_for_this_month: Estimated total for this month
   #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
   estimated_writers_costs_this_month: "Estimated writers' costs this month"
+  #en: event_details: Event Details
+  event_details: Event Details
+  #en: event_comments: Event Comments
+  event_comments: Event Comments
   #en: event_was_successfully_created: Event was successfully created.
   event_was_successfully_created: Event was successfully created.
   #en: events: Events
@@ -653,6 +683,8 @@ en:
   looking_for_most_x: "Looking for {{link}}"
   #en: make_moderator: Make moderator
   make_moderator: Make moderator
+  #en: make_page_public: Make this page public
+  make_page_public: Make this page public
   #en: make_my_profile_public: Make my profile public
   make_my_profile_public: Make my profile public
   #en: make_this_my_profile_photo: Make this my profile photo
@@ -661,9 +693,15 @@ en:
   male: Male
   #en: manage: "Manage:"
   manage: "Manage:"
+  #en: manage_my: "Manage my:"
+  manage_my: "Manage my:"
+  #en: manage_pages: Manage Pages
+  manage_pages: Manage Pages
   #en: manage_posts: Manage Posts
   manage_posts: Manage Posts
   #en: medium: Medium
+  #en: map_it: Map It!
+  map_it: Map It!
   medium: Medium
   #en: megabyte_upload_limit: {{count}} megabytes upload limit
   megabyte_upload_limit:
@@ -761,6 +799,8 @@ en:
   new_invitation_from: New Invitation from
   #en: new_metro_area: New Metro Area
   new_metro_area: New Metro Area
+  #en: new_page: New Page
+  new_page: New Page
   #en: new_photo: New photo.
   new_photo: New photo.
   #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
@@ -805,6 +845,8 @@ en:
   notify_of_comments: Notify of comments
   #en: notify_of_friend_requests: Notify of friend requests
   notify_of_friend_requests: Notify of friend requests
+  #en: number_of_attendees: Number of attendees (including you)
+  number_of_attendees: Number of attendees (including you)
   #en: of: of
   of: of
   #en: offering_was_successfully_created: Offering was successfully created.
@@ -813,14 +855,32 @@ en:
   on_commentable: 'On'
   #en: optional: optional
   optional: optional
+  #en: optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  #en: optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  #en: optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
+  optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
   #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   optional_keywords_describing_this_post_separated_by_commas: "optional keywords describing this post, separated by commas"
+  #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
+  optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
   #en: or: or
   or: or
   #en: page: page
   page: page
+  #en: page_not_found: The page you are trying to view has been moved or no longer exists.
+  page_not_found: The page you are trying to view has been moved or no longer exists.
+  #en: page_was_successfully_created: Page was successfully created.
+  page_was_successfully_created: Page was successfully created.
+  #en: page_was_successfully_deleted: Page was successfully deleted.
+  page_was_successfully_deleted: Page was successfully deleted.
+  #en: page_was_successfully_updated: Page was successfully updated.
+  page_was_successfully_updated: Page was successfully updated.
   #en: pages: "Pages:"
   pages: "Pages:"
+  #en: page_tips: "Pages are a good place to put static content that you would rather not post to the blog or the forums."
+  page_tips: "Pages are a good place to put static content that you would rather not post to the blog or the forums."
   #en: password: Password
   password: Password
   #en: pending: pending
@@ -889,6 +949,12 @@ en:
   post_a_new_topic: Post a new topic
   #en: post_an_event: Post an event
   post_an_event: Post an event
+  #en: posted_an_event: "posted an event:"
+  posted_an_event: "posted an event:"
+  #en: upcoming_events: Upcoming Events
+  upcoming_events: Upcoming Events
+  #en: past_events: Past Events
+  past_events: Past Events
   #en: post_created_for_category: Your '{{category}}' post was successfully created.
   post_created_for_category: "Your '{{category}}' post was successfully created."
   #en: post_comments: Post Comments
@@ -905,6 +971,10 @@ en:
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
   #en: posts_tagged: Posts tagged
   posts_tagged: "Posts tagged"
+  #en: pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
+  pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
+  #en: public: Public
+  public: Public
   #en: preview: Preview
   preview: Preview
   #en: previewing_your_post: Previewing your post
@@ -993,10 +1063,20 @@ en:
   resend_your_activation_e_mail: Resend your activation e-mail
   #en: reset_my_password: Reset my password
   reset_my_password: Reset my password
+  #en: retract_rsvp: Retract RSVP
+  retract_rsvp: Retract RSVP
   #en: rss: RSS
   rss: RSS
   #en: rss_feed: RSS feed
   rss_feed: RSS feed
+  #en: rsvp_for: RSVP for
+  rsvp_for: RSVP for
+  #en: rsvped_for_an_event: "RSVPed for an event:"
+  rsvped_for_an_event: "RSVPed for an event:"
+  #en: rsvp: RSVP  
+  rsvp: RSVP
+  #en: rsvps: RSVPs
+  rsvps: RSVPs
   #en: run: Run
   run: Run
   #en: save: Save
@@ -1007,6 +1087,8 @@ en:
   save_changes: Save Changes
   #en: save_forum: Save Forum
   save_forum: Save Forum
+  #en: save_page_as: "Save page as:"
+  save_page_as: "Save page as:"
   #en: save_post_as: "Save post as:"
   save_post_as: "Save post as:"
   #en: save_reply: Save reply
@@ -1029,6 +1111,8 @@ en:
   see_all_activity: See all activity
   #en: see_all_events: See all events
   see_all_events: See all events
+  #en: see_all_recent_posts: See all recent posts
+  see_all_recent_posts: See all recent posts
   #en: see_you_back_here_in_a_short_while: See you back here in a short while.
   see_you_back_here_in_a_short_while: See you back here in a short while.
   #en: select_images_to_upload: Select Images to Upload
@@ -1037,6 +1121,8 @@ en:
   select_your_city: Select your city
   #en: send: "Send"
   send: "Send"
+  #en: send_me_a_message: "Send me a message"
+  send_me_a_message: "Send me a message"
   #en: send_invitations: Send Invitations!
   send_invitations: Send Invitations!
   #en: send_me_my_username: Send me my username
@@ -1101,8 +1187,8 @@ en:
   sorry_there_was_an_error_uploading_the_photo: "Sorry, there was an error uploading the photo."
   #en: sorry_we_dont_have_any_pros_in_this_skill_category_yet: "Sorry, we don't have any pros in this skill category yet."
   sorry_we_dont_have_any_pros_in_this_skill_category_yet: "Sorry, we don't have any pros in this skill category yet."
-  #en: sorry_we_dont_recognize_that_email_address: "Sorry. We don't recognize that email address."
-  sorry_we_dont_recognize_that_email_address: "Sorry. We don't recognize that email address."
+  #en: sorry_we_dont_recognize_that_email_address: "Sorry. That e-mail address is not associated with an active account. Are you sure you typed it correctly? Have you signed up and activated your account?"
+  sorry_we_dont_recognize_that_email_address: "Sorry. That e-mail address is not associated with an active account. Are you sure you typed it correctly? Have you signed up and activated your account?"
   #en: spread_the_word: Spread the word
   spread_the_word: Spread the word
   #en: start_date: Start date
@@ -1125,6 +1211,8 @@ en:
   subject: Subject
   #en: subscribe_to: Subscribe to
   subscribe_to: Subscribe to
+  #en: subscribe_events_instructions:  Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.).
+  subscribe_events_instructions:  Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.).
   #en: tag_does_not_exists: The tag {{tag}} does not exist
   tag_does_not_exists: "The tag {{tag}} does not exist"
   #en: tag_name: Tag name
@@ -1133,6 +1221,12 @@ en:
   tag_yourself: Tag yourself
   #en: tags: Tags
   tags: Tags
+  #en: taggings: Taggings
+  taggings: Taggings
+  #en: tag_was_successfully_updated: Tag was successfully updated
+  tag_was_successfully_updated: Tag was successfully updated
+  #en: tag_was_successfully_deleted: Tag was successfully deleted
+  tag_was_successfully_deleted: Tag was successfully deleted
   #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
   tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
   #en: tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Tags are keywords you use to organize your clippings. Separate multiple tags with commas.
@@ -1225,8 +1319,8 @@ en:
   total_users: Total users
   #en: total_votes: Total votes
   total_votes: Total votes
-  #en: type_a_username: Type a username
-  type_a_username: Type a username
+  #en: type_a_username: Type usernames separated by commas
+  type_a_username: Type usernames separated by commas
   #en: type_your_password: "Type your password:"
   type_your_password: "Type your password:"
   #en: uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: "Uh oh. We couldn't log you in with the username and password you entered. Try again?"
@@ -1239,6 +1333,8 @@ en:
   uncategorized: Uncategorized
   #en: update: Update
   update: Update
+  #en: update_rsvp: Update RSVP
+  update_rsvp: Update RSVP
   #en: update_profile_and_tag_yourself: Update your profile and tag yourself
   update_profile_and_tag_yourself: Update your profile and tag yourself
   #en: update_your_profile: update your profile
@@ -1333,6 +1429,8 @@ en:
   welcome_message: "Welcome! {{login_link}} or {{signup_link}}"
   #en: what_are_tags: 'What are "Tags"?'
   what_are_tags: 'What are "Tags"?'
+  #en: what_is: What is
+  what_is: What is
   #en: what_is_popular: What's Popular
   what_is_popular: What's Popular
   #en: whats_fresh: What's fresh
@@ -1341,8 +1439,17 @@ en:
   whats_hot: What's Hot
   #en: whats_popular: What's Popular
   whats_popular: What's Popular
+  #en: when: When
+  when: When
+  #en: where: Where
+  where: Where
+  #en: when_checked_this_page_will_be_visible_to_anyone: "When checked, this page will be visible to anyone."
+  when_checked_this_page_will_be_visible_to_anyone: "When checked, this page will be visible to anyone."
   #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
   when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
+  #en: when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
+  when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
+
   #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
   when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "When unchecked, your profile will only be visible to people who are logged in to"
   #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
@@ -1383,6 +1490,10 @@ en:
   you_have_added_clippings:
     one: You have added 1 clipping.
     other: "You have added {{count}} clippings."
+  #en: you_have: You have
+  you_have: You have
+  #en: you_have_already_rsvped_for_this_event: You have already RSVPed for this event.
+  you_have_already_rsvped_for_this_event: You have already RSVPed for this event.
   #en: you_have_already_voted: You have already voted.
   you_have_already_voted: You have already voted.
   #en: you_have_created: You have created
@@ -1415,6 +1526,8 @@ en:
   your_about_text_goes_here: Your About Text Goes Here
   #en: your_account_has_been_activated: Your {{site}} account has been activated!
   your_account_has_been_activated: "Your {{site}} account has been activated!"
+  #en: your_faq_text_goes_here: Your FAQ text goes here.
+  your_faq_text_goes_here: Your FAQ text goes here.
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Your changes were saved.
   #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
@@ -1425,9 +1538,62 @@ en:
   your_post_was_successfully_created: Your post was successfully created.
   #en: your_profile_photo: "Your profile photo:"
   your_profile_photo: "Your profile photo:"
+  #en: your_rsvp_has_been_retracted: Your RSVP has been retracted.
+  your_rsvp_has_been_retracted: Your RSVP has been retracted.
+  #en: your_rsvp_was_successfully_created: Your RSVP was successfully created.
+  your_rsvp_was_successfully_created: Your RSVP was successfully created.
+  #en: your_rsvp_was_successfully_updated: Your RSVP was successfully updated.
+  your_rsvp_was_successfully_updated: Your RSVP was successfully updated.
   #en: your_username_was_emailed_to_you: Your username was emailed to you.
   your_username_was_emailed_to_you: Your username was emailed to you.
   #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
   youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
   #en: zippostal_code: "ZIP/Postal code:"
   zippostal_code: "ZIP/Postal code:"
+
+
+  #This stuff needs to be checked
+  #en: photo_manaer: "Photo manager"
+  photo_manager: "Photo manager"
+  #en: albums: "Albums"
+  albums: "Albums"
+  # en album_updated: "Album updated"
+  album_updated: "Album updated"
+  #en: album_comments: "Comentarios de álbum"
+  album_comments: "Album comments"
+  #en: album_tip: "Albums let you organize yout photos. Share whole experiencies with other {{community_name}} users"
+  album_tip: "Albums let you organize yout photos. Share whole experiencies with other {{community_name}} users"  
+  #en: delete_album_and_photos: Delete album and its associated photos?
+  delete_album_and_photos: "Delete album and its associated photos?"
+  #en: album_was_successfully_created: "Album was successfully created"
+  album_was_successfully_created: "Album was successfully created"    
+  #en: album: "Album"
+  album: "Album"
+  #en: view_more: "View more"
+  view_more: "View more"
+  #en: assign_album: "Assign album"
+  assign_album: "Assign album" 
+  #en: new_album: "New album"
+  new_album: "New album"
+  #en: created_an_album: "Created an album"
+  created_an_album: "Created an album"
+  #en: add_photos: "Add photos"
+  add_photos: "Add photos"
+  #en: view_my_album: "View my album"
+  view_my_album: "View my album"
+  #en: photos_of_this_album: "Photos from this album"
+  photos_of_this_album: "Photos from this album"
+  #en: not_assigned_photos: "Photos not assigned to an album"
+  not_assigned_photos: "Photos not assigned to an album"
+  #en: create_and_add_photos: "Create and add photos to this album"
+  create_and_add_photos: "Create and add photos to this album"
+  #en: edit_and_add_photos: "Edit and add photos to this album"
+  edit_and_add_photos: "Edit and add photos to this album"
+  #en: create_album: "Create album"
+  create_album: "Create album"
+  #en: edit_album: "Edit album"
+  edit_album: "Edit album"
+  #en; cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
+  cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
+  #en: back_to_photo_manager: "Back to photo manager"
+  back_to_photo_manager: "Back to photo manager"

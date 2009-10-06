@@ -1,8 +1,6 @@
 class TagList < Array
   cattr_accessor :delimiter
-  # self.delimiter = / |\+|,/
-  self.delimiter = /\+|,| /
-  
+  self.delimiter = ','
   def initialize(*args)
     add(*args)
   end

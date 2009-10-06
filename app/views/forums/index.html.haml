@@ -2,11 +2,11 @@
 -@section = 'forums'
 
 -if admin?
-  .box.alt.first_alt
+  -box :class => "alt first_alt" do 
     %h3= :admin.l
     %p= link_to :create_new_forum.l, new_forum_path, :class => "utility"
 
-.box
+-box do 
 
   .right=link_to :recent_posts.l, recent_forum_posts_path
   %h3= :forums.l

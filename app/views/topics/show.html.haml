@@ -12,7 +12,7 @@
   }}
 
 
-.box.alt.first_alt
+-box :class => "alt first_alt" do 
   - if logged_in?
     - form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
       #monitor_topic
@@ -30,7 +30,7 @@
   
     
     
-.box.forum
+-box :class => "forum" do 
   %h3#topic-title
     = h @topic.title
     - if @topic.locked?
@@ -124,7 +124,7 @@
   - else
     %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
 
-.box.alt
+-box :class => "alt" do 
   = link_to :forums.l, forum_home_path
   %span.arrow &rarr;
   = link_to h(@topic.forum.name), forum_path(@topic.forum)

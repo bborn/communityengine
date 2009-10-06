@@ -311,7 +311,7 @@ sv:
   #en: delete_this_user: Delete this user
   delete_this_user: Ta bort den här användaren
   #en: deny: Deny
-  deny: Avly
+  deny: Avslå
   #en: denied: denied
   denied: avslagen
   #en: denied_friendships: Denied Friendships
@@ -389,7 +389,7 @@ sv:
   #en: end: end
   end: slut
   #en: end_date: End date
-  end_date: Sluttdatum
+  end_date: Slutdatum
   #en: end_required: end (required)
   end_required: slut (obligatoriskt)
   #en: end_tome: End time

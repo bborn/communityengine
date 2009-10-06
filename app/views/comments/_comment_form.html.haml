@@ -30,7 +30,7 @@
       = f.text_field :author_email, :size => 35        
       %br
       %label 
-        =f.check_box :notify_by_email
+        =f.check_box :notify_by_email, :style => 'width: 10px;'
         =:notify_me_of_follow_ups_via_email.l
       
       %label{"for"=>"comment[author_url"}

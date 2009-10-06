@@ -2,7 +2,7 @@
   = render :partial => 'author_profile', :locals => {:user => @user}
 
   - unless @popular_posts.empty?
-    #posts.box.alt
+    -box :id => "posts", :class => 'alt' do
       %h3=:popular_posts.l
       %ul.list.page
         - @popular_posts.each do |post|
@@ -10,7 +10,7 @@
 
 #yui-main
   .yui-b
-    .box.posts.hfeed
+    -box :class => "posts hfeed" do 
       %h3
         = link_to :users_blog.l(:user => @user.login), user_posts_path(@user)
         = @category ? "&raquo; " + link_to(@category.name.upcase, users_posts_in_category_path(@user, @category.name)) : ''

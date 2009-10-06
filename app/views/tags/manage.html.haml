@@ -1,0 +1,28 @@
+.yui-b
+  = render :partial => 'shared/admin_nav'
+
+#yui-main
+  .yui-b
+    -box do 
+      %h3=:tags.l
+
+      %table{:width=>"100%"}
+        %tr 
+          %th=:name.l
+          %th 
+            \# 
+            =:taggings.l
+          %th=:actions.l
+
+        - for tag in @tags
+          %tr
+            %td= tag.name
+            %td= tag.taggings.size	
+            %td
+              = link_to :show.l, tag_path(tag)
+              | 
+              = link_to :edit.l, edit_tag_path(tag)
+              |
+              = link_to :destroy.l, tag_path(tag), :confirm => :are_you_sure.l, :method => :delete
+    .pagination=paginating_links @tags if @tags.page_count > 1
+

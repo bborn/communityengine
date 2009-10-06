@@ -1,5 +1,5 @@
 .col_full.sitemap
-  -rounded do 
+  -box do
     %h2= "#{AppConfig.community_name} Sitemap"
     
     .yui-g
@@ -13,8 +13,9 @@
         %ul
           %li=link_to :home.l, '/'
           %li= link_to :users.l, users_path
-          %li= link_to :about.l, about_path
-          %li= link_to :faq.l, faq_path
+          - Page.find(:all).each do |page|
+            - if (logged_in? || page.page_public)
+              %li= link_to page.title, pages_path(page)
           %li=link_to :log_in.l, '/login'
           
 

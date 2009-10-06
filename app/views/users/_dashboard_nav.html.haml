@@ -1,5 +1,5 @@
 .yui-b
-  .box
+  -box do 
     %h3=:dashboard.l
     .yui-g
       .yui-u.first
@@ -8,9 +8,11 @@
         %ul
           %li=link_to :my_profile.l, user_path(@user)  
           %li=link_to :my_blog.l, user_posts_path(@user)
-          %li=link_to :my_photos.l, user_photos_path(@user)
+#          %li=link_to :my_photos.l, user_photos_path(@user)
+          %li=link_to :photo_manager.l, user_photo_manager_index_path(@user)
           %li=link_to :my_clippings.l, user_clippings_path(@user)
           %li=link_to :my_friends.l, accepted_user_friendships_path(@user)
+          %li=link_to :inbox.l, user_messages_path(@user)
       .yui-u
         = image_tag 'icons/wrench.png', :plugin => 'community_engine'
         =:manage.l
@@ -20,8 +22,7 @@
           %li=link_to :my_blog_posts.l, manage_user_posts_path(@user)
           -if current_user.admin?
             %li=link_to :admin_dashboard.l, admin_dashboard_path
-
-  .box.alt
+  -box :class => "alt" do 
     %h3=:stats.l
     %ul
       - if @user.last_login_at

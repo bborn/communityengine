@@ -2,6 +2,14 @@
 * haml/sass propagation (desert)
 * upgrade documentation/rake tasks to fix old migrations
 
+= 1.0.3
+* complete private messages integration, allow sending messages to multiple recipients
+* upgrades to Event functionality, including RSVPs (eksatx)
+* Photo albums, Static pages and messages controller test (juafrlo)
+* calendar_date_select gem is now required
+* added ability to unsubscribe from comment notifications for anonymous comments
+* ical format output for Events to allow subscriptions
+
 = 1.0.2
 * Rails 2.3 compatibility
 * RedCloth no longer required
@@ -10,6 +18,7 @@
 * allow moderators/activity owners to delete activities
 * only track login activity once per day
 * allow anonymous commenters to choose whether they want to receive follow-up comment notices by e-mail
+* refactor views to use 'box' helper for logical content modules, allowing better flexibility when trying to customize layouts
 
 = 1.0.1
 * fixed error when cropping photos using file system storage

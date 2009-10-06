@@ -1,5 +1,5 @@
 - if current_user && current_user.admin?
-  .box.first_alt.alt
+  -box :class => "first_alt alt" do 
     %h3
       =:admin_controls.l
     = link_to( "&raquo; #{:assume_user_id.l}", assume_user_path(@user) )
@@ -10,7 +10,7 @@
     %br/
     = link_to( "&raquo; #{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}", toggle_moderator_user_path(@user), {:method => :put} )
 
-#profile_details.box.hentry
+-box :class => 'hentry', :id => 'profile_details' do
   %h3
     = link_to @user.login, user_path(@user)
     = " <small>(#{:featured_writer.l})</small>" if @user.featured_writer?
@@ -46,5 +46,6 @@
         %li.tags= :my_tags.l+": #{@user.tags.collect{|t| link_to t.name, tag_url(t) }.join(", ")}"
       - if @user.metro_area
         %li.geo= link_to( @user.full_location, users_path(:metro_area_id => @user.metro_area_id, :state_id => @user.state_id, :country_id => @user.country_id ) ) 
-
+      - if current_user
+        %li.compose= link_to(:send_me_a_message.l, new_user_message_path(current_user, :to=>@user))
   .clear

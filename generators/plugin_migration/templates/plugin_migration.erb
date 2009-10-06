@@ -7,7 +7,7 @@ class <%= class_name %> < ActiveRecord::Migration
 
   def self.down
   <%- plugins.each do |plugin| -%>
-    migrate_plugin(<%= current_versions[plugin.name] %>, :<%= plugin.name %>)    
+    migrate_plugin(:<%= plugin.name %>, <%= current_versions[plugin.name] %>)    
   <%- end -%>
   end
 end

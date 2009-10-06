@@ -26,12 +26,20 @@ if AppConfig.closed_beta_mode
 else
   home '', :controller => "base", :action => "site_index"
 end
+application '', :controller => "base", :action => "site_index"
+
+# Pages
+resources :pages, :path_prefix => '/admin', :name_prefix => 'admin_', :except => :show, :member => { :preview => :get }
+pages "pages/:id", :controller => 'pages', :action => 'show'
 
 # admin routes
+
 admin_dashboard   '/admin/dashboard', :controller => 'homepage_features', :action => 'index'
 admin_users       '/admin/users', :controller => 'admin', :action => 'users'
 admin_messages    '/admin/messages', :controller => 'admin', :action => 'messages'
 admin_comments    '/admin/comments', :controller => 'admin', :action => 'comments'
+admin_tags        'admin/tags/:action', :controller => 'tags', :defaults => {:action=>:manage}
+admin_events      'admin/events', :controller => 'admin', :action=>'events'
 
 # sessions routes
 teaser '', :controller=>'base', :action=>'teaser'
@@ -58,10 +66,11 @@ recent_rss '/recent.rss', :controller => 'posts', :action => 'recent', :format =
 rss_redirect '/rss', :controller => 'base', :action => 'rss_site_index'
 rss '/site_index.rss', :controller => 'base', :action => 'site_index', :format => 'rss'
 
-about '/about', :controller => 'base', :action => 'about'
 advertise '/advertise', :controller => 'base', :action => 'advertise'
-faq '/faq', :controller => 'base', :action => 'faq'
 css_help '/css_help', :controller => 'base', :action => 'css_help'  
+about '/about', :controller => 'base', :action => 'about'
+faq '/faq', :controller => 'base', :action => 'faq'
+
 
 edit_account_from_email '/account/edit', :controller => 'users', :action => 'edit_account'
 
@@ -79,7 +88,9 @@ search_tags '/search/tags', :controller => 'tags', :action => 'show'
 
 resources :categories
 resources :skills
-resources :events
+resources :events, :collection => { :past => :get, :ical => :get } do |event|
+  event.resources :rsvps, :except => [:index, :show]
+end
 resources :favorites, :path_prefix => '/:favoritable_type/:favoritable_id'
 resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
 delete_selected_comments 'comments/delete_selected', :controller => "comments", :action => 'delete_selected'
@@ -117,6 +128,7 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :friendships, :member => { :accept => :put, :deny => :put }, :collection => { :accepted => :get, :pending => :get, :denied => :get }
   user.resources :photos, :collection => {:swfupload => :post, :slideshow => :get}
   user.resources :posts, :collection => {:manage => :get}, :member => {:contest => :get, :send_to_friend => :any, :update_views => :any}
+  user.resources :events # Needed this to make comments work
   user.resources :clippings
   user.resources :activities, :collection => {:network => :get}
   user.resources :invitations
@@ -124,6 +136,10 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :favorites, :name_prefix => 'user_'
   user.resources :messages, :collection => { :delete_selected => :post, :auto_complete_for_username => :any }  
   user.resources :comments
+  user.resources :photo_manager, :only => ['index']
+  user.resources :albums, :path_prefix => ':user_id/photo_manager', :member => {:add_photos => :get, :photos_added => :post}, :collection => {:paginate_photos => :get}  do |album| 
+    album.resources :photos, :collection => {:swfupload => :post, :slideshow => :get}
+  end
 end
 resources :votes
 resources :invitations

@@ -20,6 +20,7 @@ class Message < ActiveRecord::Base
   
   def self.new_reply(sender, in_reply_to = nil, params = {})
     message = new(params[:message])
+    message.to ||= params[:to] if params[:to]
 
     if in_reply_to
       return nil if in_reply_to.recipient != sender #can only reply to messages you received

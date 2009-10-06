@@ -3,7 +3,7 @@
   
 #yui-main
   .yui-b.main_column
-    .box
+    -box do
       %h3
         =:log_in_to_site.l(:site => AppConfig.community_name)
       - form_tag sessions_path, :class => 'MainForm' do

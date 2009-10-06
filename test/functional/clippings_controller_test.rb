@@ -62,7 +62,7 @@ class ClippingsControllerTest < ActionController::TestCase
       post :create,
         :user_id => users(:quentin),
         :clipping => {:url => 'http://www.google.com', :image_url => 'http://www.google.com/intl/en/images/logo.gif' },
-        :tag_list => 'tag1 tag2'
+        :tag_list => 'tag1, tag2'
       assert_redirected_to user_clipping_path(users(:quentin), assigns(:clipping))
 
       clipping = Clipping.find(assigns(:clipping).id)
@@ -96,7 +96,7 @@ class ClippingsControllerTest < ActionController::TestCase
       :id => 1,
       :clipping => {:url => 'changed url' },
       :user_id => users(:quentin),
-      :tag_list => 'tagX tagY'
+      :tag_list => 'tagX, tagY'
     assert_redirected_to user_clipping_path(users(:quentin), assigns(:clipping))
 
     clipping = Clipping.find(assigns(:clipping).id)

@@ -1,7 +1,7 @@
 #welcome
   .yui-gc
     .yui-u.first
-      .box
+      -box do 
         %h2
           =:get_started_banner.l :site=>AppConfig.community_name
         %p
@@ -10,7 +10,7 @@
           %a{:href=>"http://www.missingmethod.com/projects/community_engine"}
             =:homepage_banner_download_msg.l
     .yui-u
-      .box
+      -box do 
         %h2
           =:homepage_banner_signup_prompt.l
         %p

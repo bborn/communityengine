@@ -3,7 +3,7 @@
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
 
 .yui-b
-  .box.alt.first_alt
+  -box :class => "alt first_alt" do 
     %h3=:spread_the_word.l
     %p
       =:invite_message.l(:site => AppConfig.community_name)
@@ -12,7 +12,7 @@
 
 #yui-main
   .yui-b
-    .box
+    -box do 
       %h3=:invite_your_friends_to_join.l
       - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "MainForm"} ) do |f|
         .right

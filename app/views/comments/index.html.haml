@@ -4,7 +4,7 @@
 #yui-main
   - if @comments.empty?
     #emptycomments= :no_comments_found.l_with_args(:type => @commentable.class.to_s.underscore)
-  .yui-b#comments.box.hfeed.comments
+  -box :class => 'yui-b hfeed comments', :id => 'comments' do
     %h3
       = :comments.l + " -"
       = link_to @title, @back_url

@@ -1,5 +1,6 @@
 class CommentsController < BaseController
-  before_filter :login_required, :except => [:index]
+  helper :comments
+  before_filter :login_required, :except => [:index, :unsubscribe]
   before_filter :admin_or_moderator_required, :only => [:delete_selected]
 
   if AppConfig.allow_anonymous_commenting
@@ -75,15 +76,16 @@ class CommentsController < BaseController
 
   def create
     @commentable = comment_type.constantize.find(comment_id)
-    @comment = Comment.new(params[:comment])
-    @comment.recipient = @commentable.owner
 
+    @comment = Comment.new(params[:comment])
+
+    @comment.commentable = @commentable
+    @comment.recipient = @commentable.owner
     @comment.user_id = current_user.id if current_user
     @comment.author_ip = request.remote_ip #save the ip address for everyone, just because
 
     respond_to do |format|
       if (logged_in? || verify_recaptcha(@comment)) && @comment.save
-        @commentable.add_comment @comment
         @comment.send_notifications
 
         flash.now[:notice] = :comment_was_successfully_created.l
@@ -125,34 +127,43 @@ class CommentsController < BaseController
       redirect_to admin_comments_path
     end
   end  
+  
+  def unsubscribe
+    @comment = Comment.find(params[:comment_id])
+    if @comment.token_for(params[:email]).eql?(params[:token])
+      @comment.unsubscribe_notifications(params[:email])
+      flash[:notice] = :comment_unsubscribe_succeeded.l
+    end
+    redirect_to commentable_url(@comment)
+  end
 
 
   private
+    
+    def comment_type
+      return "User" unless params[:commentable_type]
+      params[:commentable_type].camelize
+    end
   
-  def comment_type
-    return "User" unless params[:commentable_type]
-    params[:commentable_type].camelize
-  end
+    def comment_id
+      params[:commentable_id] || params[:user_id]
+    end
   
-  def comment_id
-    params[:commentable_id] || params[:user_id]
-  end
+    def comment_link
+      params[:commentable_id] ? comments_path(@commentable.class.to_s.underscore, @commentable.id) : user_comments_path(@user)
+    end
   
-  def comment_link
-    params[:commentable_id] ? comments_path(@commentable.class.to_s.underscore, @commentable.id) : user_comments_path(@user)
-  end
+    def full_comment_link
+      "#{application_url}#{comment_link}"
+    end
   
-  def full_comment_link
-    "#{APP_URL}#{comment_link}"
-  end
+    def comment_rss_link
+      params[:commentable_id] ? comments_path(@commentable.class.to_s.underscore, @commentable.id, :format => :rss) : user_comments_path(@user, :format => :rss)
+    end
   
-  def comment_rss_link
-    params[:commentable_id] ? comments_path(@commentable.class.to_s.underscore, @commentable.id, :format => :rss) : user_comments_path(@user, :format => :rss)
-  end
-  
-  def comment_title
+    def comment_title
 
-    return @comments.first.commentable_name if @comments.first
+      return @comments.first.commentable_name if @comments.first
   
     type = comment_type.underscore
     case type
@@ -169,17 +180,17 @@ class CommentsController < BaseController
     end  
   end
   
-  def render_comments_rss_feed_for(comments, title)
-    render_rss_feed_for(comments,
-      { :class => @commentable.class,
-        :feed => {  :title => title,
-                    :link => full_comment_link },
-        :item => { :title => :title_for_rss,
-                   :description => :comment,
-                   :link => Proc.new {|comment| commentable_url(comment)},
-                   :pub_date => :created_at
-                   }
-      })
-  end
+    def render_comments_rss_feed_for(comments, title)
+      render_rss_feed_for(comments,
+        { :class => @commentable.class,
+          :feed => {  :title => title,
+                      :link => full_comment_link },
+          :item => { :title => :title_for_rss,
+                     :description => :comment,
+                     :link => Proc.new {|comment| commentable_url(comment)},
+                     :pub_date => :created_at
+                     }
+        })
+    end
   
 end

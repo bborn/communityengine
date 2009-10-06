@@ -8,3 +8,43 @@ cool_event:
   user_id: 4
   metro_area_id: 1
   
+future_event:
+  id: 2
+  name: A Future Event
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 5.days.ago.to_s :db %>  
+  start_time: <%= 3.days.from_now.to_s :db %>
+  end_time:   <%= (3.days.from_now + 1.hour).to_s :db %>  
+  user_id: 4
+  metro_area_id: 1
+
+further_future_event:
+  id: 3
+  name: An event even further in the future 
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 5.days.ago.to_s :db %>  
+  start_time: <%= 13.days.from_now.to_s :db %>
+  end_time:   <%= (13.days.from_now + 1.hour).to_s :db %>  
+  user_id: 4
+  metro_area_id: 1
+
+past_event:
+  id: 4
+  name: A Past Event
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 5.days.ago.to_s :db %>  
+  start_time: <%= 3.days.ago.to_s :db %>
+  end_time:   <%= (3.days.ago + 1.hour).to_s :db %>  
+  user_id: 4
+  metro_area_id: 1
+
+further_past_event:
+  id: 5
+  name: An event even further in the past
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 5.days.ago.to_s :db %>  
+  start_time: <%= 13.days.ago.to_s :db %>
+  end_time:   <%= (13.days.ago + 1.hour).to_s :db %>  
+  user_id: 4
+  metro_area_id: 1
+

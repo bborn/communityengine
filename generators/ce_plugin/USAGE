@@ -1,0 +1,7 @@
+Description:
+    The ce_plugin generator creates the basic structure for creating a CommunityEngine plugin.
+
+    The generator takes one argument which will be the name of the plugin.
+
+Examples:
+    ./script/generate ce_plugin plugin_name

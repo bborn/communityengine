@@ -1,6 +1,8 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  has_many :albums
+  
   MALE    = 'M'
   FEMALE  = 'F'
   attr_accessor :password
@@ -15,8 +17,8 @@ class User < ActiveRecord::Base
   before_save   :encrypt_password, :whitelist_attributes
   before_create :make_activation_code
   after_create  :update_last_login
-  after_create {|user| UserNotifier.deliver_signup_notification(user) }
-  after_save   {|user| UserNotifier.deliver_activation(user) if user.recently_activated? }  
+  after_create  :deliver_signup_notification
+  after_save    :deliver_activation
   before_save   :generate_login_slug
   after_save    :recount_metro_area_users
   after_destroy :recount_metro_area_users
@@ -44,6 +46,7 @@ class User < ActiveRecord::Base
     has_many :photos, :order => "created_at desc", :dependent => :destroy
     has_many :invitations, :dependent => :destroy
     has_many :offerings, :dependent => :destroy
+    has_many :rsvps, :dependent => :destroy
 
     #friendship associations
     has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
@@ -349,7 +352,15 @@ class User < ActiveRecord::Base
   
   # before filter
   def generate_login_slug
-    self.login_slug = self.login.gsub(/[^a-z1-9]+/i, '-')
+    self.login_slug = self.login.gsub(/[^a-z0-9]+/i, '-')
+  end
+  
+  def deliver_activation
+    UserNotifier.deliver_activation(self) if self.recently_activated?
+  end
+  
+  def deliver_signup_notification
+    UserNotifier.deliver_signup_notification(self)    
   end
 
   def update_last_login

@@ -65,6 +65,15 @@ class SessionsControllerTest < ActionController::TestCase
     get :new
     assert !@controller.send(:logged_in?)
   end
+  
+  def test_should_login_with_reset_password
+    quentin = users(:quentin)
+    quentin.reset_password
+    newpass = quentin.password
+    quentin.save!
+    post :create, :login => 'quentin', :password => newpass
+    assert session[:user]
+  end
 
   protected
     def auth_token(token)

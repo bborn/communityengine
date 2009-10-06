@@ -1,5 +1,5 @@
 .yui-b
-  .box
+  -box do 
     %h3= :help.l
     %p
       = :tags_are_keywords_you_use_to_organize_your_photos.l
@@ -7,10 +7,11 @@
     |
     = link_to :back_to_my_photos.l, user_photos_path(@user)
 
-  .box.alt= link_to :delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_photo.l
+  -box :class => 'alt' do
+    = link_to :delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_photo.l
 
 #yui-main
-  .yui-b.box
+  -box :class => "yui-b" do
     %h3= :editing_photo.l  
 
     = error_messages_for :photo
@@ -18,14 +19,18 @@
       
       = image_tag( @photo.public_filename(:medium), :id => 'photo', :class => 'polaroid' )
       
-      %label= :tags.l + ":"
+      %label 
+        = :tags.l
+        %em="(#{:optional_keywords_describing_this_photo_separated_by_commas.l})"
       = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
       #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"} 
-      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
+      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
       %label= :title.l + ":"
       = f.text_field :name, :size => 35
       %label= :description.l + ":"
       = f.text_area :description, :size => "58x5"
+      %label= :album.l + ":"
+      = f.select(:album_id, current_user.albums.collect {|album| [album.title, album.id ] }, { :include_blank => true })
 
       %p
         = submit_tag :update.l

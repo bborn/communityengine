@@ -1,11 +1,11 @@
-.box.alt.first_alt
+-box :class => 'alt first_alt' do
   = link_to :forums.l, forum_home_path
   %span.arrow &rarr;
   = link_to h(@forum.name), forum_path(@forum)
   %span.arrow &rarr;
   = :new_topic.l
 
-.box
+-box do 
   %h3#new_topic= :new_topic.l
   %p.subtitle
     = :by.l

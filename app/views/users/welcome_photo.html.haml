@@ -1,5 +1,5 @@
 .yui-b
-  .box.alt.first_alt
+  -box :class => "alt first_alt" do 
     %h3=:get_started.l + ' ' + :upload_a_profile_photo.l
     %p
       =:photo_message.l :site => AppConfig.community_name
@@ -9,7 +9,7 @@
 
 #yui-main
   .yui-b
-    .box
+    -box do 
       - form_tag( user_path(:welcome => 'about'), :method => 'put', :multipart =>true, :class => "MainForm") do
         %h3=:profile_photo.l
         %p.centered

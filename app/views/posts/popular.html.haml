@@ -2,7 +2,7 @@
 - @section = 'popular'
 
 .yui-b
-  .box
+  -box do 
     - if logged_in?
       %h3.signup= :get_popular.l
       %ul.list.checks
@@ -11,15 +11,15 @@
       %h3.signup= :want_to_be_popular.l 
       %ul.list.checks
         %li
-          %a{:href=>"/signup", :title=>:sign_up_for_a_.l+" #{AppConfig.community_name} "+:account.l}=:sign_up_for_an_account.l
+          %a{:href=>signup_url, :title=>:sign_up_for_a_.l+" #{AppConfig.community_name} "+:account.l}=:sign_up_for_an_account.l
           %br
             %small
               =:have_an_account.l
-              %a{:href=>"/login", :title=>:log_in_to_your.l+" #{AppConfig.community_name} "+:account.l}
+              %a{:href=>login_url, :title=>:log_in_to_your.l+" #{AppConfig.community_name} "+:account.l}
                 &raquo;
                 =:log_in.l
 
-  .box.alt
+  -box :class => "alt" do 
     %h3= :this_month_best.l 
     %ul.list.page    
       - @monthly_popular_posts.each do |post|
@@ -27,7 +27,7 @@
 
 #yui-main
   .yui-b
-    .box.hfeed
+    -box :class => "hfeed" do 
       %h3 
         =:what_is_popular.l
         %ul.subnav

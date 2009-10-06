@@ -10,8 +10,7 @@ module BaseHelper
       user_url(comment.recipient)+"#comment_#{comment.id}"
     end
   end
-
-
+  
   def forum_page?
     %w(forums topics sb_posts).include?(@controller.controller_name)
   end
@@ -50,8 +49,15 @@ module BaseHelper
     yield(content)
     concat('<br class="clear" /><div class="box_bottom"></div></div>')
   end
+  
+  def block_to_partial(partial_name, html_options = {}, &block)
+    concat(render(:partial => partial_name, :locals => {:body => capture(&block), :html_options => html_options}))
+  end
 
-
+  def box(html_options = {}, &block)
+    block_to_partial('shared/box', html_options, &block)
+  end  
+  
   def tag_cloud(tags, classes)
     max, min = 0, 0
     tags.each { |t|
@@ -106,11 +112,15 @@ module BaseHelper
     app_base = AppConfig.community_name
     tagline = " | #{AppConfig.community_tagline}"
 
-    title = app_base
-    case @controller.controller_name
-      when 'base'
-        title += tagline
-      when 'posts'
+		title = app_base
+		case @controller.controller_name
+			when 'base'
+					title += tagline
+                        when 'pages'
+                          if @page and @page.title
+                            title = @page.title + ' &raquo; ' + app_base + tagline
+                          end
+			when 'posts'
         if @post and @post.title
           title = @post.title + ' &raquo; ' + app_base + tagline
           title += (@post.tags.empty? ? '' : " &laquo; "+:keywords.l+": " + @post.tags[0...4].join(', ') )
@@ -247,7 +257,7 @@ module BaseHelper
   end
   
   def clippings_link
-    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{APP_URL}/new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
+    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{application_url}new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
   end
   
   def paginating_links(paginator, options = {}, html_options = {})
@@ -265,7 +275,11 @@ module BaseHelper
     	end
     end
     
-    content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + (links || '')
+    if options[:show_info].eql?(false)
+      (links || '')
+    else
+      content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + (links || '')
+    end
   end  
   
   def pagination_info_for(paginator, options = {})

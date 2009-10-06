@@ -1,11 +1,12 @@
 .yui-u.first
-  .box.fresh
+  -box :class => "fresh" do 
     %h3=:whats_fresh.l
     - @recent_activity.each do |activity|
       =render :partial => "activities/activity", :locals => {:activity => activity }
+    %h6.all= link_to :see_all_activity.l, activities_path
 
 .yui-u
-  .box
+  -box do 
     %h3=:tags.l
     - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
       = link_to name, tag_path(URI.escape(name, /[\/.?#]/)), :class => css_class

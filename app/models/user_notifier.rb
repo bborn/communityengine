@@ -55,6 +55,8 @@ class UserNotifier < ActionMailer::Base
     @subject     += "#{:has_commented_on_something_that_you_also_commented_on.l(:user => comment.username, :item => comment.commentable_type)}"
     @body[:url]  = commentable_url(comment)
     @body[:comment] = comment
+
+    @body[:unsubscribe_link] = url_for(:controller => 'comments', :action => 'unsubscribe', :comment_id => comment.id, :token => comment.token_for(email), :email => email)
   end
 
   def new_forum_post_notice(user, post)
@@ -68,7 +70,7 @@ class UserNotifier < ActionMailer::Base
   def signup_notification(user)
     setup_email(user)
     @subject    += "#{:please_activate_your_new_account.l(:site => AppConfig.community_name)}"
-    @body[:url]  = "#{APP_URL}/users/activate/#{user.activation_code}"
+    @body[:url]  = "#{application_url}users/activate/#{user.activation_code}"
   end
   
   def message_notification(message)
@@ -87,7 +89,7 @@ class UserNotifier < ActionMailer::Base
     @body[:name] = name  
     @body[:title]  = post.title
     @body[:post] = post
-    @body[:signup_link] = (current_user ?  signup_by_id_url(current_user, current_user.invite_code) : "#{APP_URL}/signup" )
+    @body[:signup_link] = (current_user ?  signup_by_id_url(current_user, current_user.invite_code) : signup_url )
     @body[:message]  = message
     @body[:url]  = user_post_url(post.user, post)
     @body[:description] = truncate_words(post.post, 100, @body[:url] )     
@@ -96,7 +98,7 @@ class UserNotifier < ActionMailer::Base
   def activation(user)
     setup_email(user)
     @subject    += "#{:your_account_has_been_activated.l(:site => AppConfig.community_name)}"
-    @body[:url]  = "#{APP_URL}"
+    @body[:url]  = home_url
   end
   
   def reset_password(user)

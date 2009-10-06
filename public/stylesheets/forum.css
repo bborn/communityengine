@@ -123,7 +123,6 @@ ul.talking li span {
 ul.flat li {
 	display:block;
 	float: left;
-	background:url(/plugin_assets/community_engine/images/small_circle.gif) no-repeat 5px 6px;
 	padding-left:15px;
 	}
 	ul.flat li.label {
