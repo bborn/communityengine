@@ -26,11 +26,9 @@
     %h3
       =:my_friends.l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
-    = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user
-    %br
-    = link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
-    %br
-    %br
+    %p
+      = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user
+      %br= link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
     - @accepted_friendships.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
