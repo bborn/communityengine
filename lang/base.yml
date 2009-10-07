@@ -350,6 +350,8 @@
 #en: messages_deleted: Messages deleted
 #en: messages_sent: Messages sent!
 #en: message_sent: Message sent!
+#en: read: read
+#en: unread: unread
 #en: metro_area: Metro Area
 #en: metro_areas: Metro Areas
 #en: metro_area_was_successfully_created: MetroArea was successfully created.
@@ -361,6 +363,8 @@
 #en: more: More
 #en: more_about_you: More about you
 #en: most_active_1_month: Most active (1 month)
+#en: most_recent: most recent
+#en: most_popular: most popular
 #en: my_account: My Account
 #en: my_blog: My Blog
 #en: my_blog_posts: My Blog Posts
@@ -651,6 +655,7 @@
 #en: un_favorite_this: Un-favorite this
 #en: unactivated_users: Unactivated users
 #en: uncategorized: Uncategorized
+#en: unread_messages: {{count}} unread messages
 #en: update: Update
 #en: update_rsvp: Update RSVP
 #en: update_profile_and_tag_yourself: Update your profile and tag yourself
@@ -772,7 +777,7 @@
 #en: your_username_was_emailed_to_you: Your username was emailed to you.
 #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
 #en: zippostal_code: "ZIP/Postal code:"
-#en: photo_manaer: "Photo manager"
+#en: photo_manager: "Photo manager"
 #en: albums: "Albums"
 # en album_updated: "Album updated"
 #en: album_comments: "Comentarios de álbum"
@@ -794,3 +799,6 @@
 #en: edit_album: "Edit album"
 #en; cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
 #en: back_to_photo_manager: "Back to photo manager"
+#en: yes_status: yes
+#en: no_status: no
+

@@ -90,6 +90,8 @@ fr:
   admin_controls: "Commandes d'administration"
   #en: admin_dashboard: Admin dashboard
   admin_dashboard: "Administration du site"
+  #en: admin_pages: Pages
+  admin_pages: Pages
   #en: ads: Ads
   ads: "Publicités"
   #en: advertise: Advertise
@@ -109,7 +111,7 @@ fr:
   #en: all_tags: All tags
   all_tags: Tous les tags
   #en: all_users_tagged: All users tagged {{tag_name}}
-  all_users_tagged: "Tous les utilisateurs taggés {{tag_name}}"
+  all_users_tagged: "Tous les membres taggés {{tag_name}}"
   #en: already_have_an_account: Already have an account?
   already_have_an_account: "Déjà inscrit ?"
   #en: an_error_occurred: An error occurred
@@ -137,7 +139,7 @@ fr:
   #en: back: Back
   back: Retour
   #en: back_to_all_users: Back to all users
-  back_to_all_users: Retour aux utilisateurs
+  back_to_all_users: Retour aux membres
   #en: back_to_my_photos: Back to my photos
   back_to_my_photos: Retour à mes photos
   #en: back_to_all_statistics: Back to all statistics
@@ -184,10 +186,14 @@ fr:
   cancel_and_go_back_to_my_clippings: annuler et retourner à mon pêle-mêle
   #en: cancel_and_go_back_to_my_contests: cancel and go back to my contests
   cancel_and_go_back_to_my_contests: annuler et retourner à mes concours
+  #en: cancel_and_go_back_to_pages: cancel and go back to pages
+  cancel_and_go_back_to_pages: annuler et retourner aux pages
   #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
   cancel_and_go_back_to_my_photos: annuler et retourner à mes photos
   #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
   cancel_and_go_back_to_my_posts: annuler et retourner à mes messages
+  #en: cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
+  cancel_and_go_back_to_photo_manager: "Annuler et revenir à mes photos"
   #en: categories: Categories
   categories: Catégories
   #en: category: Category
@@ -320,6 +326,8 @@ fr:
   delete_this_event: Supprimer cet évènement
   #en: delete_this_forum: Delete this forum
   delete_this_forum: Supprimer ce forum
+  #en: delete_this_page: Delete this page
+  delete_this_page: Supprimer cette page
   #en: delete_this_photo: Delete this photo
   delete_this_photo: Supprimer cette photo
   #en: delete_this_post: Delete this post?
@@ -358,7 +366,7 @@ fr:
   e_mail_notification: Alerte par mail
   #en: edit: Edit
   edit: Editer
-#  #en: edit_account: Edit account
+  #en: edit_account: Edit account
   edit_account: Editer mon compte
   #en: edit_contest: Edit Contest
   edit_contest: Editer le concours
@@ -366,9 +374,10 @@ fr:
   edit_event: Editer l'évènement
   #en: edit_forum: Edit forum
   edit_forum: Editer le forum
+  #en: edit_page: Edit page
+  edit_page: Editer la page
   #en: edit_post: Edit post
-  edit_post: Editer le message
-#  #en: edit_profile: Edit profile
+  edit_post: Editer le message # #en: edit_profile: Edit profile
   edit_profile: Editer mon profil
   #en: edit_this_event: Edit this event
   edit_this_event: "Editer cet évènement"
@@ -376,7 +385,7 @@ fr:
   edit_this_photo_details: Editer les détails de cette photo
   #en: edit_topic: Edit topic
   edit_topic: Editer la discussion
-#  #en: edit_your_account_settings_instead: "Edit your account settings instead?"
+  #en: edit_your_account_settings_instead: "Edit your account settings instead?"
   edit_your_account_settings_instead: "Modifier la configuration de votre compte ?"
   #en: edit_your_user_profile: Edit your user profile?
   edit_your_user_profile: Modifier votre profil ?
@@ -505,7 +514,7 @@ fr:
   #en: from: From
   from: De
   #en: from2: From
-  from2: De
+  from2: Fe
   #en: gender: Gender
   gender: Genre
 #  #en: get_help_from_someone_who_knows: Get help from someone who knows
@@ -614,7 +623,7 @@ fr:
   left_a_comment: "a fait un commentaire :"
   #en: links: Links
   links: Liens
-#  #en: listing_invitations: Listing invitations
+  #en: listing_invitations: Listing invitations
   listing_invitations: Liste des invitations
   #en: loading_images: Loading images
   loading_images: Chargement des photos
@@ -654,18 +663,26 @@ fr:
   locked2: (verrouillé)
   #en: look_for_a_message_from: Look for a message from: {{from}}
   look_for_a_message_from: "Cherchez un message de {{from}}"
-#  #en: looking_for_most_x: Looking for {{link}}
-  looking_for_most_x: "Chercher {{link}}"
+  #en: looking_for_most_x: Looking for {{link}}
+  looking_for_most_x: "voir {{link}}"
+  #en: most_recent: most recent
+  most_recent: les plus récents
+  #en: most_popular: most popular
+  most_popular: les plus populaires
   #en: make_moderator: Make moderator
   make_moderator: Elire modérateur
+  #en: make_page_public: Make page public
+  make_page_public: Rendre cette page publique
   #en: make_my_profile_public: Make my profile public
   make_my_profile_public: Rendre mon profil public
-#  #en: make_this_my_profile_photo: Make this my profile photo
+  #en: make_this_my_profile_photo: Make this my profile photo
   make_this_my_profile_photo: Faire de cette photo ma photo de profil
   #en: male: Male
   male: Homme
 #  #en: manage: "Manage:"
   manage: "Gérer :"
+  #en: manage_pages: Manage Pages
+  manage_pages: Gérer les Pages
   #en: manage_posts: Manage Posts
   manage_posts: Gérer mes messages
   #en: medium: Medium
@@ -692,6 +709,14 @@ fr:
   messages_sent: Messages envoyés !
   #en: message_sent: Message sent!
   message_sent: Message envoyé !
+  #en: read: read
+  read: lu
+  #en: unread: unread
+  unread: non lu
+  #en: unread_messages: {{count}} unread messages
+  unread_messages:
+    one: 1 nouveau message
+    other: "{{count}} nouveaux messages"
 #  #en: metro_area: Metro Area
   metro_area: Zone de métro
 #  #en: metro_areas: Metro Areas
@@ -767,7 +792,7 @@ fr:
 #  #en: new_metro_area: New Metro Area
   new_metro_area: Nouvelle zone de métro
   #en: new_photo: New photo.
-  new_photo: Nouvelle photo
+  new_photo: Ajouter une photo
   #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   new_photos_multiple_uploader: "Ajout de nouvelles photos &raquo; Téléchargement multiple"
   #en: new_post: New post
@@ -818,14 +843,36 @@ fr:
   on_commentable: "sur"
   #en: optional: optional
   optional: facultatif
+  #en: optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  optional_keywords_describing_this_clipping_separated_by_commas: "mots clefs décrivant cette photo de pême-mêle, séparés par une virgule"
+  #en: optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  optional_keywords_describing_this_forum_separated_by_commas: "mots clefs décrivant ce forum, séparés par une virgule"
+  #en: optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
+  optional_keywords_describing_this_photo_separated_by_commas: "mots clefs décrivant cette photo, séparés par une virgule"
   #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   optional_keywords_describing_this_post_separated_by_commas: "mots clefs décrivant ce message, séparés par une virgule"
+  #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
+  optional_keywords_describing_this_topic_separated_by_commas: "mots clefs décrivant cette discussion, séparés par une virgule"
+  #en: yes_status: yes
+  yes_status: "oui"
+  #en: no_status: no
+  no_status: "non"
   #en: or: or
-  or: ou
+  or: "ou"
   #en: page: page
   page: page
+  #en: page_not_found: The page you are trying to view has been moved or no longer exists.
+  page_not_found: La page que vous essayez de consulter à été déplacée ou supprimée.
+  #en: page_was_successfully_created: Page was successfully created.
+  page_was_successfully_created: La page a été créée avec succès.
+  #en: page_was_successfully_deleted: Page was successfully deleted.
+  page_was_successfully_deleted: La page a été supprimée avec succès.
+  #en: page_was_successfully_updated: Page was successfully updated.
+  page_was_successfully_updated: La page a été mise à jour avec succès.
   #en: pages: "Pages:"
-  pages: "Pages :"
+  pages: "Pages:"
+  #en: page_tips: "Pages are a good place to put static content that you would rather not post to the blog or the forums."
+  page_tips: "Les pages vous permettent de publier du contenu statique que vous ne souhaitez pas publier dans les blogs ou les forums."
   #en: password: Password
   password: Mot de passe
   #en: pending: pending
@@ -833,7 +880,7 @@ fr:
   #en: pending_friendships: Pending Friendships
   pending_friendships: Invitations en attente
   #en: people: People
-  people: Utilisateurs
+  people: Membres
   #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends
   people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: "Les membres qui s'inscrivent grâce à votre invitation seront automatiquement ajoutés à vos amis."
   #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
@@ -908,12 +955,16 @@ fr:
   post_topic: Proposer une discussion
   #en: posts_photos_and_bookmarks: {{name}} posts, photos and bookmarks
   posts_photos_and_bookmarks: "Eléments taggés {{name}}"
+  #en: pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
+  pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: "Les pages sauvegardées en mode &laquo;brouillon&raquo; n'apparaîtront pas sur le site tant que vous ne les aurez pas publiées."
   #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Les messages sauvegardés en mode &laquo;brouillon&raquo; n'apparaîtront pas dans votre blog tant que vous ne les aurez pas publiés."
   #en: posts_tagged: Posts tagged
   posts_tagged: "Les messages taggés"
+  #en: public: Public
+  public: Public
   #en: preview: Preview
-  preview: Prévisualisation
+  preview: Aperçu
   #en: previewing_your_post: Previewing your post
   previewing_your_post: Prévisualiser votre message
   #en: previous: previous
@@ -949,7 +1000,7 @@ fr:
   #en: read_more: read more
   read_more: en savoir plus
   #en: recent: Recent
-  recent: Récent
+  recent: récents
   #en: recent_activity: Recent activity
   recent_activity: Activité récente
 #  #en: recent_blog_posts: Recent Blog Posts
@@ -1014,8 +1065,10 @@ fr:
   save_changes: Enregistrer les modifications
   #en: save_forum: Save Forum
   save_forum: Enregistrer le forum
+  #en: save_page_as: "Save page as:"
+  save_page_as: "Cette page a le statut :"
   #en: save_post_as: "Save post as:"
-  save_post_as: "Enregistrer le message en tant que :"
+  save_post_as: "Ce message a le statut :"
   #en: save_reply: Save reply
   save_reply: Enregistrer la réponse
   #en: says: says
@@ -1044,6 +1097,8 @@ fr:
   select_your_city: Sélectionner ma ville
   #en: send: "Send"
   send: "Envoyer"
+  #en: send_me_a_message: "Send me a message"
+  send_me_a_message: "Laisse moi un message"
   #en: send_invitations: Send Invitations!
   send_invitations: Envoyer les invitations !
   #en: send_me_my_username: Send me my username
@@ -1131,7 +1186,7 @@ fr:
   #en: sticky: Sticky
   sticky: Epinglé
   #en: subject: Subject
-  subject: Discussion
+  subject: Sujet
   #en: subscribe_to: Subscribe to
   subscribe_to: Inscrivez vous à
   #en: tag_does_not_exists: The tag {{tag}} does not exist
@@ -1152,7 +1207,7 @@ fr:
   tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: "Les tags sont des mots clefs que vous pouvez associer à vos messages, vos images ou toute autre information. Si vous souhaitez saisir plusieurs tags, séparez les par une virgule."
   #en: tagged: tagged
   tagged: taggés
-#  #en: tags_page: tags page
+  #en: tags_page: tags page
   tags_page: page de tags
   #en: thanks_for_activating_your_account: Thanks for activating your account!
   thanks_for_activating_your_account: "Merci d'avoir activé votre compte !"
@@ -1203,7 +1258,7 @@ fr:
   #en: title_required: "Title (required)"
   title_required: "Titre (obligatoire)"
   #en: to: To
-  to: pour
+  to: Pour
   #en: to_accept: to accept
   to_accept: accepter
   #en: to_get_recommended_content_on_your_dashboard: to start getting recommended content on your dashboard.
@@ -1270,7 +1325,7 @@ fr:
   username: Pseudo
   #en: user: User
   user: Membre
-#  #en: user_information: {{site}} User information
+  #en: user_information: {{site}} User information
   user_information: "Vos informations de connexion sur {{site}}"
   #en: users: Users
   users: Membres
@@ -1341,17 +1396,21 @@ fr:
   #en: what_are_tags: 'What are "Tags"?'
   what_are_tags: "A quoi servent les &laquo;Tags&raquo; ?"
 #  #en: what_is_popular: "What's Popular"
-  what_is_popular: "Les messages les plus lus"
+  what_is_popular: "A la Une"
 #  #en: whats_fresh: "What's fresh"
   whats_fresh: "Quoi de neuf ?"
 #  #en: whats_hot: What's Hot
   whats_hot: "C'est chaud !"
 #  #en: whats_popular: What's Popular
   whats_popular: "Les messages les plus lus"
+  #en: when_checked_this_page_will_be_visible_to_anyone: "When checked, this page will be visible to anyone."
+  when_checked_this_page_will_be_visible_to_anyone: "Si vous cochez cette case, cette page sera publique."
   #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
   when_checked_your_profile_will_be_visible_to_anyone: "Si vous cochez cette case, votre profil sera public."
+  #en: when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
+  when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: "Sinon, cette page ne sera visible que par les membres"
   #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
-  when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "Si vous ne cochez pas cette case, votre profil ne sera visible que par les membres"
+  when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "Sinon, votre profil ne sera visible que par les membres"
   #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
   when_you_see_an_image_you_like_on_the_web: "Lorsque vous trouvez une image sympa sur le web, cliquez sur le lien {{site}}-It! pour la sauvegarder sur {{site}}"
   #en: why_sign_up: Why Sign up?
@@ -1438,4 +1497,48 @@ fr:
   youve_been_logged_out_hope_you_come_back_soon: Vous avez été deconnecté. A bientôt !
   #en: zippostal_code: "ZIP/Postal code:"
   zippostal_code: "Code Postal"
+  #en: photo_manager: "Photo manager"
+  photo_manager: "Mes photos"
+  #en: albums: "Albums"
+  albums: "Albums"
+  #en: album_updated: "Album updated"
+  album_updated: "Album mis à jour"
+  #en: album_comments: "Album comments"
+  album_comments: "Commentaires sur l'album"
+  #en: album_tip: "Albums let you organize yout photos. Share whole experiencies with other {{community_name}} users"
+  album_tip: "Les albums vous permettent d'organiser vos photos et de partager vos expériences avec les membres {{community_name}}"
+  #en: delete_album_and_photos: Delete album and its associated photos?
+  delete_album_and_photos: "Supprimer l'album et les photos qu'il contient ?"
+  #en: album_was_successfully_created: "Album was successfully created"  
+  album_was_successfully_created: "L'album a été créé avec succès"
+  #en: album: "Album"
+  album: "Album"
+  #en: view_more: "View more"
+  view_more: "En voir plus"
+  #en: assign_album: "Assign album"
+  assign_album: "Ajouter à l'album"
+  #en: new_album: "New album"
+  new_album: "Nouvel album"
+  #en: new_page: New Page
+  new_page: Nouvelle page
+  #en: created_an_album: "Created an album"
+  created_an_album: "a créé l'album"
+  #en: add_photos: "Add photos"
+  add_photos: "Ajouter des photos"
+  #en: view_my_album: "View my album"
+  view_my_album: "Consulter mon album"
+  #en: photos_of_this_album: "Photos of this album"
+  photos_of_this_album: "Photos de cet album"
+  #en: not_assigned_photos: "Photos not assigned to an album"
+  not_assigned_photos: "Photos non classées"
+  #en: create_and_add_photos: "Create and add photos to this album"
+  create_and_add_photos: "Créer un album et y ajouter des photos"
+  #en: edit_and_add_photos: "Edit and add photos to this album"
+  edit_and_add_photos: "Editer cet album et y ajouter des photos"
+  #en: create_album: "Create album"
+  create_album: "Créer un album"
+  #en: edit_album: "Edit album"
+  edit_album: "Editer l'album"
+  #en: back_to_photo_manager: "Back to photo manager"
+  back_to_photo_manager: "Retour à mes photos"
 

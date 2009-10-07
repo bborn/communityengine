@@ -8,7 +8,6 @@
         %ul
           %li=link_to :my_profile.l, user_path(@user)  
           %li=link_to :my_blog.l, user_posts_path(@user)
-#          %li=link_to :my_photos.l, user_photos_path(@user)
           %li=link_to :photo_manager.l, user_photo_manager_index_path(@user)
           %li=link_to :my_clippings.l, user_clippings_path(@user)
           %li=link_to :my_friends.l, accepted_user_friendships_path(@user)

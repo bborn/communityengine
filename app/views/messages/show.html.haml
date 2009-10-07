@@ -9,7 +9,7 @@
 
       %p
         = :from.l + ":"
-        = @message.sender.eql?(@user) ? link_to("You", user_path(@user)) : link_to(h(@message.sender.login), user_path(@message.sender))
+        = @message.sender.eql?(@user) ? link_to(:to_you.l, user_path(@user)) : link_to(h(@message.sender.login), user_path(@message.sender))
 
       %p
         = :to.l + ":"
@@ -18,7 +18,7 @@
       
       %p
         = :date_title.l + ":"
-        = @message.created_at.to_s(:long)
+        = h I18n.l(@message.created_at, :format => :time_ago)
 
       %pre.message_body= auto_link(h(@message.body))
       

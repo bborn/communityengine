@@ -5,7 +5,7 @@
     = render :partial => 'shared/user_menu'
     - if current_user.unread_messages?
       %h2#newmail
-        = link_to pluralize(current_user.unread_message_count, 'unread message'), user_messages_path(current_user)
+        = link_to :unread_messages.l(:count => current_user.unread_message_count), user_messages_path(current_user)
   - else
     %h2
       =:welcome_message.l(:login_link => (link_to :log_in.l, login_path), :signup_link => (link_to :sign_up.l, signup_path))

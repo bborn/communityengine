@@ -681,6 +681,10 @@ en:
   look_for_a_message_from: "Look for a message from: {{from}}"
   #en: looking_for_most_x: Looking for {{link}}
   looking_for_most_x: "Looking for {{link}}"
+  #en: most_recent: most recent
+  most_recent: most recent
+  #en: most_popular: most popular
+  most_popular: most popular
   #en: make_moderator: Make moderator
   make_moderator: Make moderator
   #en: make_page_public: Make this page public
@@ -725,6 +729,14 @@ en:
   messages_sent: Messages sent!
   #en: message_sent: Message sent!
   message_sent: Message sent!
+  #en: read: read
+  read: read
+  #en: unread: unread
+  unread: unread
+  #en: unread_messages: {{count}} unread messages
+  unread_messages:
+    one: 1 unread message
+    other: "{{count}} unread messages"
   #en: metro_area: Metro Area
   metro_area: Metro Area
   #en: metro_areas: Metro Areas
@@ -865,6 +877,10 @@ en:
   optional_keywords_describing_this_post_separated_by_commas: "optional keywords describing this post, separated by commas"
   #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
   optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
+  #en: yes_status: yes
+  yes_status: yes
+  #en: no_status: no
+  no_status: no
   #en: or: or
   or: or
   #en: page: page
@@ -1449,7 +1465,6 @@ en:
   when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
   #en: when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
   when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
-
   #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
   when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "When unchecked, your profile will only be visible to people who are logged in to"
   #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
@@ -1553,7 +1568,7 @@ en:
 
 
   #This stuff needs to be checked
-  #en: photo_manaer: "Photo manager"
+  #en: photo_manager: "Photo manager"
   photo_manager: "Photo manager"
   #en: albums: "Albums"
   albums: "Albums"
@@ -1597,3 +1612,4 @@ en:
   cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
   #en: back_to_photo_manager: "Back to photo manager"
   back_to_photo_manager: "Back to photo manager"
+
