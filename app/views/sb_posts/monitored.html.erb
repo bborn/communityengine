@@ -10,7 +10,7 @@
 <h1><%= @page_title %></h1>
 <p class="subtitle">
   <%= feed_icon_tag @page_title, monitored_all_sb_posts_path(:user_id => @user, :format => 'rss') %>
-  <%= pluralize(@posts.size,"post") %> <%= :found.l %>
+  <%= :post_found.l(:count => @posts.size) %>
 </p>
 
 <% if @posts.page_count > 1 -%>

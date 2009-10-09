@@ -1,6 +1,6 @@
 .yui-b
   -box :class => "alt first_alt" do 
-    %h3=:get_started_upload_a_profile_photo.l
+    %h3=:get_started.l + ' ' + :upload_a_profile_photo.l
     %p
       =:photo_message.l :site => AppConfig.community_name
     = link_to "&raquo; " + :skip_this_step.l, welcome_about_user_path(@user)

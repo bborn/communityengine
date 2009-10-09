@@ -17,17 +17,17 @@
                 %td{:width => '10px'}
                   %fieldset.inline= check_box_tag "delete[]", message.id
                 %td{:width => '60px'}
-                  .photo= link_to image_tag( message.sender.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.sender.login}", "width"=>"50px" ), user_path(message.sender), :title => "#{message.sender.login}'s " + :profile.l
+                  .photo= link_to image_tag( message.sender.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.sender.login}", "width"=>"50px" ), user_path(message.sender), :title => :users_profile.l(:user => message.sender.login)
 
                 %td
                   = link_to h(message.subject), user_message_path(@user, message)                  
                   %br
-                  from:
+                  = :from.l + ":"
                   = link_to h(message.sender.login), user_path(message.sender)                  
                 %td{:width => '20px'}
                   %em
-                    = message.read? ? 'read' : 'unread'
-                %td.meta{:width => '150px'}= h message.created_at.to_s(:long)
+                    = message.read? ? :read.l : :unread.l
+                %td.meta{:width => '150px'}= h I18n.l(message.created_at, :format => :time_ago)
         %tfoot
           %tr
             %td{ :colspan => "5" }

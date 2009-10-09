@@ -6,7 +6,7 @@
 #en: admin_pages: Pages
 #en: accept: Accept
 #en: accepted: accepted
-#en: accepted_friendships: Accepted Friendships
+#en: accepted_friendships: {{count}} Accepted Friendships
 #en: accept_this_request: Accept this request
 #en: account: account
 #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help.
@@ -72,7 +72,6 @@
 #en: birthday: Birthday
 #en: birthday_gender: Birthday & Gender
 #en: blog: Blog
-#en: blog_posts: Blog posts
 #en: body_text: Body Text
 #en: body_text_reqiured: Body Text (required)
 #en: bookmarklet: bookmarklet
@@ -93,6 +92,7 @@
 #en: categories: Categories
 #en: category: Category
 #en: category_was_successfully_created: Category was successfully created.
+#en: check_out_this_story_on: Check out this story on {{site}}
 #en: choices: Choices
 #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
 #en: choose_a_photo_to_upload: "Choose a photo to upload:"
@@ -108,11 +108,13 @@
 #en: click_the_activation_link_in_the_e_mail_to_log_in: Click the activation link in the e-mail to log in.
 #en: click_to_accept_it: Click to accept it!
 #en: clipping_comments: Clipping Comments
+#en: clipping_from_user: Clipping from {{user}}
 #en: clipping_was_successfully_created: Clipping was successfully created.
 #en: clippings: Clippings
 #en: clippings_are_a_way_to_save_images_you_like_from_around_the_web: Clippings are a way to save images you like from around the Web
 #en: clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
 #en: clone: Clone
+#en: clippings_tagged: Clippings tagged
 #en: close_this_message: Close this message
 #en: comma_separated: (comma separated)
 #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
@@ -143,11 +145,14 @@
 #en: dashboard: Dashboard
 #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
 #en: date:formats:published_date: "%Y/%m/%d"
+#en: date:formats:short_published_date: "%y/%m/%d"
+#en: date:formats:literal_date: "%B %d, %Y"
+#en: date:formats:short_literal_date: "%b %d, %Y"
 #en: date:formats:date_ago: "%B %d"
 #en: date: Date
 #en: date_created: Date Created
 #en: date_published: Date Published
-#en: days_ago: days ago
+#en: days_ago: {{count}} days ago
 #en: deactivate_link: Click here to deactivate your account
 #en: deactivate_tip: Deactivating your account will remove your profile from the site. 
 #en: deactivate_confirmation: Are you sure you want to deactivate your account?
@@ -219,6 +224,7 @@
 #en: event_was_successfully_created: Event was successfully created.
 #en: events: Events
 #en: every_person_has_something_to_say: "Every single person has something to say, something to give, something that will help someone else.  Join in!"
+#en: expert_in: expert in
 #en: explore_site: Explore {{site}}
 #en: failed: failed
 #en: faq: FAQ
@@ -242,13 +248,14 @@
 #en: forgot_your_username: Forgot your username?
 #en: forum: Forum
 #en: forums: Forums
-#en: found: found
+#en: post_found: {{count}} posts found
 #en: frequency: Frequency
 #en: frequent_asked_questions: Frequent Asked Questions
 #en: frequently_asked_questions: Frequently Asked Questions
 #en: friend: friend
 #en: friends: Friends
 #en: friendship_could_not_be_created: Friendship could not be created
+#en: friendship_request_accepted: Friendship request accepted!
 #en: friendship_request_detail: Friendship request detail
 #en: friendship_requested: Requested friendship with {{friend}}.
 #en: from: From
@@ -256,6 +263,7 @@
 #en: gender: Gender
 #en: get_help_from_someone_who_knows: Get help from someone who knows
 #en: get_popular: Get popular.
+#en: get_started: "Get started:"
 #en: get_started_banner: Get started with <a href="/">{{site}}</a> today!
 #en: get_started_invite_some_friends: "Get Started: Invite some friends!"
 #en: get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
@@ -266,6 +274,10 @@
 #en: go_to_the_forums: go to the forums
 #en: go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
 #en: go_to_your_profile: Go to your profile
+#en: greetings: ['Hello', 'Hola', 'Hi ', 'Yo', 'Welcome back,', 'Greetings', 'Wassup', 'Aloha', 'Halloo']
+#en: has_commented_on_something_that_you_also_commented_on: {{user}} has commented on a {{item}} that you also commented on.
+#en: has_posted_in_a_thread_you_are_monitoring: {{user}} has posted in a thread you are monitoring.
+#en: has_something_to_say_to_you_on: {{user}} has something to say to you on {{site}}!
 #en: have_an_account: "Have an account? "
 #en: have_something_to_contribute: Have something to contribute?
 #en: help: Help
@@ -274,7 +286,7 @@
 #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
 #en: homepage_banner_signup_prompt: See how it works
 #en: homepage_features: Homepage Features
-#en: hours_ago: hours ago
+#en: hours_ago: {{count}} hours ago
 #en: how_do_i_do_that: How do I do that?
 #en: html: HTML
 #en: image: Image
@@ -288,11 +300,14 @@
 #en: invitation_was_successfully_created: Invitation was successfully created.
 #en: invite_message: The more people you invite the better {{site}} becomes.
 #en: invite_some_customers: Invite some customers!
+#en: invite_some_friends: "Invite some friends!"
 #en: invite_your_friends_to_join: Invite Your Friends To Join!
 #en: invited_friends: invited some friends to join!
 #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
 #en: items: Items
+#en: items_tagged: Items tagged
 #en: joined: joined
+#en: joined_the_site: joined {{site}}
 #en: just_uploading_one_photo: Just uploading one photo?
 #en: keywords: Keywords
 #en: large: Large
@@ -327,13 +342,14 @@
 #en: make_my_profile_public: Make my profile public
 #en: make_this_my_profile_photo: Make this my profile photo
 #en: male: Male
+#en: manage: "Manage:"
 #en: manage_my: "Manage my:"
 #en: manage_pages: Manage Pages
 #en: manage_posts: Manage Posts
 #en: map_it: Map It!
 #en: medium: Medium
-#en: megabyte_upload_limit: megabyte upload limit
-#en: megabyte_upload_limit_per_file: megabyte upload limit per file.
+#en: megabyte_upload_limit: {{count}} megabytes upload limit
+#en: megabyte_upload_limit_per_file: {{count}} megabytes upload limit per file.
 #en: member: Member
 #en: members: Members
 #en: member_since: Member since
@@ -341,10 +357,12 @@
 #en: messages_deleted: Messages deleted
 #en: messages_sent: Messages sent!
 #en: message_sent: Message sent!
+#en: read: read
+#en: unread: unread
 #en: metro_area: Metro Area
 #en: metro_areas: Metro Areas
 #en: metro_area_was_successfully_created: MetroArea was successfully created.
-#en: minutes_ago: minutes ago
+#en: minutes_ago: {{count}} minutes ago
 #en: moderator: Moderator
 #en: moderators: Moderators
 #en: monitored_topics: Monitored Topics
@@ -352,8 +370,15 @@
 #en: more: More
 #en: more_about_you: More about you
 #en: most_active_1_month: Most active (1 month)
+#en: most_recent: most recent
+#en: most_popular: most popular
+#en: my_account: My Account
+#en: my_blog: My Blog
+#en: my_blog_posts: My Blog Posts
+#en: my_clippings: My Clippings
 #en: my_details: My Details
 #en: my_friends: My Friends
+#en: my_photos: My Photos
 #en: my_profile: My Profile
 #en: my_recent_comments: My recent comments
 #en: my_skills: My Skills
@@ -399,9 +424,6 @@
 #en: of: of
 #en: offering_was_successfully_created: Offering was successfully created.
 #en: on_commentable: On
-#en: one_day_ago: one day ago
-#en: one_hour_ago: one hour ago
-#en: one_minute_ago: one minute ago
 #en: optional: optional
 #en: optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
 #en: optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
@@ -426,18 +448,21 @@
 #en: permanently_delete_this_event: Permanently delete this event?
 #en: permanently_delete_this_post: Permanently delete this post?
 #en: photo_comments: Photo Comments
-#en: photo_from_user: "{{photo_description}} from {{user}}"
+#en: photo_description_from_user: "{{photo_description}} from {{user}}"
+#en: photo_from_user: "Photo from {{user}}"
 #en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
 #en: photo_was_successfully_created: Photo was successfully created.
 #en: photos: Photos
 #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
+#en: photos_tagged: Photos tagged
 #en: photo_tip_1: Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.
 #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
+#en: please_activate_your_new_account: Please activate your new {{site}} account
 #en: please_log_in: Please log in.
 #en: please_post_something_at_least: Please post something at least...
 #en: plural_posts: "{{count}} posts"
 #en: popular: Popular
-#en: popular_catgory: Popular {{name}}
+#en: popular_category: Popular {{name}}
 #en: popular_posts: Popular Posts
 #en: popular_posts_on: Popular Posts on
 #en: popular_polls: Popular Polls
@@ -454,9 +479,10 @@
 #en: postal_code: "Postal code:"
 #en: posting_tips: "Posting Tips"
 #en: post_topic: Post topic
-#en: posts_photos_and_bookmarks: posts, photos and bookmarks
-#en: pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
+#en: posts_photos_and_bookmarks: {{name}} posts, photos and bookmarks
 #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
+#en: posts_tagged: Posts tagged
+#en: pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
 #en: public: Public
 #en: preview: Preview
 #en: previewing_your_post: Previewing your post
@@ -496,7 +522,7 @@
 #en: required: required
 #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
 #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
-#en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
+#en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain spaces or special characters.)"
 #en: resend_my_activation_e_mail: Resend my activation e-mail
 #en: resend_your_activation_e_mail: Resend your activation e-mail
 #en: reset_my_password: Reset my password
@@ -527,14 +553,17 @@
 #en: see_all_recent_posts: See all recent posts
 #en: see_you_back_here_in_a_short_while: See you back here in a short while.
 #en: select_images_to_upload: Select Images to Upload
+#en: select_your_city: Select your city
 #en: send: "Send"
 #en: send_me_a_message: "Send me a message"
 #en: send_invitations: Send Invitations!
 #en: send_me_my_username: Send me my username
 #en: sent_messages: Sent messages
 #en: send_this_story_to_friends: Send this message to friends
+#en: sent_you_a_private_message: {{user}} sent you a private message!
 #en: service_could_not_be_deleted: Service could not be deleted.
 #en: share_the_love: Share the love
+#en: sharethis: ShareThis
 #en: show: Show
 #en: show_category: "{{category}}"
 #en: show_this_photo: Show this photo
@@ -574,7 +603,7 @@
 #en: subscribe_events_instructions:  Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.).
 #en: tag_does_not_exists: The tag {{tag}} does not exist
 #en: tag_name: Tag name
-#en: tag_yourself: tag yourself
+#en: tag_yourself: Tag yourself
 #en: tags: Tags
 #en: taggings: Taggings
 #en: tag_was_successfully_updated: Tag was successfully updated
@@ -585,6 +614,7 @@
 #en: tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Tags are one-word descriptors user assign to blog posts, pictures and clippings on
 #en: tagged: tagged
 #en: tags_page: tags page
+#en: tell_us_about_yourself: "Tell us about yourself"
 #en: thanks_for_activating_your_account: Thanks for activating your account!
 #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
 #en: the_comment_was_deleted: The comment was deleted.
@@ -594,6 +624,7 @@
 #en: the_more_people_you_invite_the_better: The more people you invite, the better
 #en: the_service_was_deleted: The service was deleted.
 #en: the_slideshow_is_disabled: The slideshow is disabled.
+#en: the_team: The {{site}} Team <{{email}}>
 #en: the_user_was_activated: The user was activated
 #en: the_user_was_deleted: The user was deleted.
 #en: this_contest_is_closed: This contest is closed
@@ -631,12 +662,14 @@
 #en: un_favorite_this: Un-favorite this
 #en: unactivated_users: Unactivated users
 #en: uncategorized: Uncategorized
+#en: unread_messages: {{count}} unread messages
 #en: update: Update
 #en: update_rsvp: Update RSVP
 #en: update_profile_and_tag_yourself: Update your profile and tag yourself
 #en: update_your_profile: update your profile
 #en: updated_at: Updated at
 #en: updated_their_profile: updated their profile
+#en: upload_a_profile_photo: "Upload a profile photo"
 #en: upload_an_image_for_your_post: Upload an image for your post
 #en: upload_and_continue_to_step_two: Upload, and continue to step two
 #en: uploaded_a_photo: "uploaded a photo:"
@@ -644,13 +677,16 @@
 #en: url: Url
 #en: user_e_mail: "User e-mail:"
 #en: username: Username
+#en: users_profile: {{user}}'s profile
 #en: user: User
+#en: user_information: {{site}} User information
 #en: users: Users
 #en: users_blog: "{{user}}'s Blog"
 #en: user_clippings: Clippings of {{user}}
 #en: user_login: User login
 #en: users_online: Users online
 #en: users_photos: "{{user}}'s Photos"
+#en: users_tagged: "Users tagged"
 #en: user_notifier_change_email_preferences: "\n\n---------------------------------------------------------------------------------\n\nIf you don't want to receive e-mails like this one from {{community_name}}, you can change your e-mail preferences here:\n\n\t {{change_account_here}}"
 #en: user_notifier_thanks: "\n\nThanks,\nThe {{community}} team"
 #en: user_notifier_report_abuse: "\n---------------------------------------\n\n\t{{community_introduction}}\n\nFor support, or to report abuse, please contact {{support}}."
@@ -675,9 +711,7 @@
 #en: view_all_my_friend_requests: View all my friend requests
 #en: view_all_my_photos: View all my photos
 #en: view_comment: View Comment
-#en: view_my: "View my:"
 #en: view_my_blog: View my blog
-#en: view_profile: View profile
 #en: voice: voice
 #en: voices: Voices
 #en_ vote: Vote
@@ -689,8 +723,6 @@
 #en: want_to_list_your_services_on: Want to list your services on
 #en: want_to_post_in_this_category: Want to post in this category?
 #en: want_to_upload_multiple_files_at_once: Want to upload multiple files at once?
-#en: watch: Watch
-#en: watch_ing: ing
 #en: watch_topic: Watch topic
 #en: watching_topic: Watching topic
 #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: {{email}}"
@@ -711,6 +743,8 @@
 #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
 #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
 #en: why_sign_up: Why Sign up?
+#en: would_like_to_be_friends_with_you: {{user}} would like to be friends with you!
+#en: would_like_you_to_join: {{user}} would like you to join {{site}}!
 #en: write_a_blog_post: Write a blog post!
 #en: write_a_message: "Write a message:"
 #en: write_new_post: Write a '{{category}}' post
@@ -722,20 +756,23 @@
 #en: you_cant_delete_that_user: You can't delete that user.
 #en: you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
 #en: you_could_tag_yourself: You could tag yourself
+#en: you_have_friends: You have {{count}} friends
+#en: you_have_added_clippings: You have added {{count}} clippings
 #en: you_have: You have
 #en: you_have_already_rsvped_for_this_event: You have already RSVPed for this event.
 #en: you_have_already_voted: You have already voted.
 #en: you_have_created: You have created
-#en: you_have_left: You have left
+#en: you_have_left_comments: You have left {{count}} comments
 #en: you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
 #en: you_have_no_network_activity_yet: You have no network activity yet.
 #en: you_have_pending_friendship_requests: You have pending friendship requests.
-#en: you_have_uploaded: You have uploaded
-#en: you_have_written: You have written
+#en: you_have_uploaded_photos: You have uploaded {{count}} photos
+#en: you_have_written_blog_posts: You have written {{count}} blog posts
 #en: you_last_logged_in_on: You last logged in on
 #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
 #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
-#en: your_about_text_goes_here: Your About text goes here.
+#en: your_about_text_goes_here: Your About Text Goes Here
+#en: your_account_has_been_activated: Your {{site}} account has been activated!
 #en: your_faq_text_goes_here: Your FAQ text goes here.
 #en: your_changes_were_saved: Your changes were saved.
 #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
@@ -748,7 +785,7 @@
 #en: your_username_was_emailed_to_you: Your username was emailed to you.
 #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
 #en: zippostal_code: "ZIP/Postal code:"
-#en: photo_manaer: "Photo manager"
+#en: photo_manager: "Photo manager"
 #en: albums: "Albums"
 # en album_updated: "Album updated"
 #en: album_comments: "Comentarios de álbum"
@@ -770,3 +807,6 @@
 #en: edit_album: "Edit album"
 #en; cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
 #en: back_to_photo_manager: "Back to photo manager"
+#en: yes_status: yes
+#en: no_status: no
+

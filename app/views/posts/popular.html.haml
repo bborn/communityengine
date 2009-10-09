@@ -31,5 +31,5 @@
       %h3 
         =:what_is_popular.l
         %ul.subnav
-          %li= :looking_for_most_x.l :link => link_to("#{:recent.l}?", recent_path)
+          %li= :looking_for_most_x.l :link => link_to("#{:most_recent.l}?", recent_path)
       = render :partial => 'posts/post', :collection => @posts
