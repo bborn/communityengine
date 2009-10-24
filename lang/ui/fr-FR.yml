@@ -1349,6 +1349,8 @@ fr:
   user_vendor_offer: "<p>Décrivez le produit ou le service que vous proposez :<ul><li>Expliquez aux gens ce que vous faites</li><li>Expliquez pourquoi vous aimez ce que vous faites</li><li>Comment pouvez vous être contacté ? Avez vous un site web ?</li></ul></p>"
   #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
   user_bio_help: "<p>Votre biographie est la première chose que les autres découvrent sur votre profil. Quelques bonnes idées :<ul><li> Décrivez votre style.</li><li> Présentez ce que vous aimez dans la vie.</li><li> Quelle est la dernière chose que vous ayez offerte à un ami ?</li></ul></p>"
+  #en: vendor_avatar_hint: "You may want to use your company logo, or a photo of one of your products. "
+  vendor_avatar_hint: "Vous souhaitez peut être utiliser le logo de votre société, ou une photo d'un de vos produits. "
   #en: view: View
   view: Consulter
   #en: views: Views
@@ -1474,9 +1476,7 @@ fr:
     one: Vous avez écrit 1 article de blog.
     other: "Vous avez écrit {{count}} articles de blog."
   #en: you_last_logged_in_on: You last logged in on
-  you_last_logged_in_on: Dernière connexion le
-  #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
-  you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "Vous souhaitez peut être utiliser le logo de votre société, ou une photo d'un de vos produits. "
+  you_last_logged_in_on: Dernière connexion le  
   #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
   you_must_vote_to_see_the_results: Vous devez voter pour voir les résultats.
   #en: your_about_text_goes_here: Your About Text Goes Here
