@@ -261,6 +261,7 @@ Contributors - Thanks! :)
 - Carl Fyffe - documentation, misc.
 - [Juan de Frías](http://github.com/juafrlo) static pages, photo albums, message_controller tests
 - [Joel Nimety](http://github.com/jnimety) authlogic authentication
+- [Stephane Decleire](http://github.com/sdecleire) i18n, fr-FR locale
 
 
 To Do
