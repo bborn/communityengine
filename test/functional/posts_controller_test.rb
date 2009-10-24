@@ -40,6 +40,14 @@ class PostsControllerTest < ActionController::TestCase
     end
   end
 
+  def test_should_not_create_invalid_post_without_category
+    login_as :quentin
+    assert_difference Post, :count, 0 do
+      create_invalid_post_without_category
+      assert_response :success
+    end
+  end
+
   def test_should_create_contest_post
     login_as :quentin
     assert_difference Post, :count, 1 do
@@ -173,10 +181,15 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to login_path
   end
   
-    
-  def create_post(options = {})
-    post :create, {:user_id => users(:quentin).id, :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk) }.merge(options[:post] || {}) }.merge(options || {})
-  end
+  
+  private
+    def create_invalid_post_without_category(options = {})
+      post :create, {:user_id => users(:quentin).id, :post => { :raw_post => 'rawness' }.merge(options[:post] || {}) }.merge(options || {})
+    end
+      
+    def create_post(options = {})
+      post :create, {:user_id => users(:quentin).id, :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk) }.merge(options[:post] || {}) }.merge(options || {})
+    end
   
   
   
