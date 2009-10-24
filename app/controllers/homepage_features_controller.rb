@@ -40,7 +40,7 @@ class HomepageFeaturesController < BaseController
     
     respond_to do |format|
       if @homepage_feature.save
-        flash[:notice] = :homepage_feature_was_successfully_created.l
+        flash[:notice] = :homepage_feature_created.l
         
         format.html { redirect_to homepage_feature_url(@homepage_feature) }
       else

@@ -901,8 +901,10 @@ fr:
   photo_message: "Votre photo de profil vous représente sur {{site}}. Vous pourrez la modifier plus tard."
   #en: photo_was_successfully_created: Photo was successfully created.
   photo_was_successfully_created: Votre photo a été ajoutée avec succès.
-  #en: photos: {{count}} Photos
-  photos:
+  #en: photos: Photos
+  photos: Photos
+  #en: plural_photos: {{count}} Photos
+  plural_photos:
     one: 1 Photo
     other: "{{count}} Photos"
   #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.

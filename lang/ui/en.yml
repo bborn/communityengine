@@ -267,8 +267,16 @@ en:
   comment_save_error: Your comment couldn't be saved.
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: Comment was successfully created.
+  #en: comment_author_email_required: Required, won't be shown on the site.
+  comment_author_email_required: "Required, won't be shown on the site."
+  #en: comment_web_site_label: "Web site (include http://)"
+  comment_web_site_label: "Web site (include http://)"  
   #en: comments: Comments
   comments: Comments
+  #en: comments_count: {{count}} comments
+  comments_count: 
+    one: One comment
+    other: "{{count}} comments"
   #en: comments_deleted: Comments deleted
   comments_deleted: Comments deleted
   #en: comments_rss: Comments RSS
@@ -473,6 +481,8 @@ en:
   faq: FAQ
   #en: faq_section: FAQ section
   faq_section: FAQ section
+  #en: favorited: favorited
+  favorited: favorited
   #en: favorites: Favorites
   favorites: Favorites
   #en: favorite_this: Favorite this
@@ -575,6 +585,10 @@ en:
   have_an_account: "Have an account? "
   #en: have_something_to_contribute: Have something to contribute?
   have_something_to_contribute: Have something to contribute?
+  #en: his: his
+  his: his
+  #en: her: her
+  her: her
   #en: help: Help
   help: Help
   #en: home: Home
@@ -587,6 +601,8 @@ en:
   homepage_banner_signup_prompt: See how it works
   #en: homepage_features: Homepage Features
   homepage_features: Homepage Features
+  #en: homepage_feature_created: Homepage feature created
+  homepage_feature_created: Homepage feature created  
   #en: hours_ago: {{count}} hours ago
   hours_ago:
     one: "one hour ago"
@@ -847,6 +863,8 @@ en:
   no_activation_email: No activation e-mail?
   #en: no_comments_found_for_that_item: Sorry, we couldn't find any comments for that {{type}}
   no_comments_found: "Sorry, we couldn't find any comments for that {{type}}"
+  #en: no_clippings_yet: No clippings saved yet.
+  no_clippings_yet: No clippings saved yet.
   #en: no_images_uploaded_yet: No images uploaded yet.
   no_images_uploaded_yet: No images uploaded yet.
   #en: no_messages: no messages
@@ -895,14 +913,16 @@ en:
   page: page
   #en: page_not_found: The page you are trying to view has been moved or no longer exists.
   page_not_found: The page you are trying to view has been moved or no longer exists.
+  #en: page_not_public_warning: This page is not public, you'll need to create an account and log in to access it
+  page_not_public_warning: "This page is not public, you'll need to create an account and log in to access it"
   #en: page_was_successfully_created: Page was successfully created.
   page_was_successfully_created: Page was successfully created.
   #en: page_was_successfully_deleted: Page was successfully deleted.
   page_was_successfully_deleted: Page was successfully deleted.
   #en: page_was_successfully_updated: Page was successfully updated.
   page_was_successfully_updated: Page was successfully updated.
-  #en: pages: "Pages:"
-  pages: "Pages:"
+  #en: pages: Pages
+  pages: Pages
   #en: page_tips: "Pages are a good place to put static content that you would rather not post to the blog or the forums."
   page_tips: "Pages are a good place to put static content that you would rather not post to the blog or the forums."
   #en: password: Password
@@ -933,8 +953,10 @@ en:
   photo_message: "Your profile photo represents you on {{site}}. You can change it later."
   #en: photo_was_successfully_created: Photo was successfully created.
   photo_was_successfully_created: Photo was successfully created.
-  #en: photos: {{count}} Photos
-  photos:
+  #en: photos: Photos
+  photos: Photos
+  #en: plural_photos: {{count}} Photos
+  plural_photos:
     one: 1 Photo
     other: "{{count}} Photos"
   #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
@@ -1041,6 +1063,8 @@ en:
   recent_activity: Recent activity
   #en: recent_blog_posts: Recent Blog Posts
   recent_blog_posts: Recent Blog Posts
+  #en: recent_photos: Recent Photos
+  recent_photos: Recent Photos
   #en: recent_posts: Recent Posts
   recent_posts: Recent Posts
   #en: recommended_posts: Recommended Posts
@@ -1236,7 +1260,7 @@ en:
   #en: subscribe_to: Subscribe to
   subscribe_to: Subscribe to
   #en: subscribe_events_instructions:  Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.).
-  subscribe_events_instructions:  Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.).
+  subscribe_events_instructions:  "Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.)."
   #en: tag_does_not_exists: The tag {{tag}} does not exist
   tag_does_not_exists: "The tag {{tag}} does not exist"
   #en: tag_name: Tag name
@@ -1285,8 +1309,12 @@ en:
   the_team: "The {{site}} Team <{{email}}>"
   #en: the_user_was_activated: The user was activated
   the_user_was_activated: The user was activated
+  #en: the_user_was_deactivated: The user was deactivated
+  the_user_was_deactivated: The user was deactivated  
   #en: the_user_was_deleted: The user was deleted.
   the_user_was_deleted: The user was deleted.
+  #en: their: their
+  their: their
   #en: this_contest_is_closed: This contest is closed
   this_contest_is_closed: This contest is closed
   #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
@@ -1405,6 +1433,8 @@ en:
   user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
   #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
   user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
+  #en: vendor_avatar_hint: "You may want to use your company logo, or a photo of one of your products. "
+  vendor_avatar_hint: "You may want to use your company logo, or a photo of one of your products. "
   #en: view: View
   view: View
   #en: views: Views
@@ -1453,8 +1483,8 @@ en:
   welcome_message: "Welcome! {{login_link}} or {{signup_link}}"
   #en: what_are_tags: 'What are "Tags"?'
   what_are_tags: 'What are "Tags"?'
-  #en: what_is: What is
-  what_is: What is
+  #en: what_is: What is {{site}}
+  what_is_site: "What is {{site}}"
   #en: what_is_popular: What's Popular
   what_is_popular: What's Popular
   #en: whats_fresh: What's fresh
@@ -1481,8 +1511,8 @@ en:
   when_you_see_an_image_you_like_on_the_web: "When you see an image you like on the Web, click the bookmarklet to save it to {{site}}"
   #en: why_sign_up: Why Sign up?
   why_sign_up: Why Sign up?
-  #en: would_like_to_be_friends_with_you: {{user}} would like to be friends with you!
-  would_like_to_be_friends_with_you: "{{user}} would like to be friends with you!"
+  #en: would_like_to_be_friends_with_you_on: {{user}} would like to be friends with you on {{site}}!
+  would_like_to_be_friends_with_you_on: "{{user}} would like to be friends with you on {{site}}!"
   #en: would_like_you_to_join: {{user}} would like you to join {{site}}!
   would_like_you_to_join: "{{user}} would like you to join {{site}}!"
   #en: write_a_blog_post: Write a blog post!
@@ -1543,8 +1573,6 @@ en:
     other: "You have written {{count}} blog posts."
   #en: you_last_logged_in_on: You last logged in on
   you_last_logged_in_on: You last logged in on
-  #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
-  you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
   #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
   you_must_vote_to_see_the_results: You must vote to see the resuts.
   #en: your_about_text_goes_here: Your About Text Goes Here
@@ -1580,8 +1608,12 @@ en:
   #This stuff needs to be checked
   #en: photo_manager: "Photo manager"
   photo_manager: "Photo manager"
+  #en: album: "Album"
+  album: "Album"  
   #en: albums: "Albums"
   albums: "Albums"
+  #en: album_added_photos: Photos added to album
+  album_added_photos: Photos added to album
   # en album_updated: "Album updated"
   album_updated: "Album updated"
   #en: album_comments: "Comentarios de álbum"
@@ -1592,8 +1624,6 @@ en:
   delete_album_and_photos: "Delete album and its associated photos?"
   #en: album_was_successfully_created: "Album was successfully created"
   album_was_successfully_created: "Album was successfully created"    
-  #en: album: "Album"
-  album: "Album"
   #en: view_more: "View more"
   view_more: "View more"
   #en: assign_album: "Assign album"
@@ -1622,4 +1652,3 @@ en:
   cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
   #en: back_to_photo_manager: "Back to photo manager"
   back_to_photo_manager: "Back to photo manager"
-

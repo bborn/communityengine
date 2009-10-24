@@ -5,6 +5,7 @@
 = 1.0.4
 * Changes to Japanese language translations
 * Use authlogic instead of restful_authentication (augthlogic gem now required, new migrations required) (thanks jnimety!)
+* Big overhaul of i18n by sdecleire, more international-friendly translation tokens. `en` is now the default locale (instead of `en-US`)
 
 
 = 1.0.3

@@ -23,7 +23,7 @@ class PagesController < BaseController
   def show
     @page = Page.live.find(params[:id])
     unless logged_in? || @page.page_public
-      flash[:error] = :this_page_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
+      flash[:error] = :page_not_public_warning.l
       redirect_to :controller => 'sessions', :action => 'new'      
     end
   rescue

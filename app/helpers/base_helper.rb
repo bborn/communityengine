@@ -147,12 +147,10 @@ module BaseHelper
         case @controller.action_name
           when 'show'
             if params[:type]
-#              title = (params[:type].downcase.pluralize + '_tagged').l
               title = I18n.translate('all_' + params[:type].downcase.pluralize + '_tagged', :tag_name => @tags.map(&:name).join(', '))
             else
               title = :posts_photos_and_bookmarks.l(:name => @tags.map(&:name).join(', '))
             end
-#            title += ' ' + @tags.map(&:name).join(', ')
             title += ' (' + :related_tags.l + ': ' + @related_tags.join(', ') + ')' if @related_tags
             title += ' | ' + app_base    
             @canonical_url = tag_url(URI.escape(@tags_raw, /[\/.?#]/)) if @tags_raw
@@ -163,22 +161,22 @@ module BaseHelper
         if @category and @category.name
           title = :posts_photos_and_bookmarks.l(:name => @category.name) + ' &raquo; ' + app_base + tagline
         else
-          title = :showing_categories.l+' &raquo; ' + app_base + tagline            
+          title = :showing_categories.l + ' &raquo; ' + app_base + tagline            
         end
       when 'skills'
         if @skill and @skill.name
-          title = :find_an_expert_in.l+' ' + @skill.name + ' &raquo; ' + app_base + tagline
+          title = :find_an_expert_in.l + ' ' + @skill.name + ' &raquo; ' + app_base + tagline
         else
-          title = :find_experts.l+' &raquo; ' + app_base + tagline            
+          title = :find_experts.l + ' &raquo; ' + app_base + tagline            
         end
       when 'sessions'
-        title = :login.l+' &raquo; ' + app_base + tagline            
+        title = :login.l + ' &raquo; ' + app_base + tagline            
     end
 
     if @page_title
       title = @page_title + ' &raquo; ' + app_base + tagline
     elsif title == app_base          
-		  title = :showing.l+' ' + @controller.controller_name.l + ' &raquo; ' + app_base + tagline
+		  title = :showing.l + ' ' + @controller.controller_name.l + ' &raquo; ' + app_base + tagline
     end
 
     title
@@ -285,7 +283,7 @@ module BaseHelper
   def pagination_info_for(paginator, options = {})
     options = {:prefix => :showing.l, :connector => '-', :suffix => ""}.merge(options)
     window = paginator.first_item.to_s + options[:connector] + paginator.last_item.to_s
-    options[:prefix] + " <strong>#{window}</strong> " + 'of'.l + " #{paginator.size} " + options[:suffix]
+    options[:prefix] + " <strong>#{window}</strong> " + :of.l + " #{paginator.size} " + options[:suffix]
   end
   
   
@@ -293,12 +291,6 @@ module BaseHelper
     session[:last_active] ||= Time.now.utc
   end
     
-  def submit_tag(value = :save_changes.l, options={} )
-    or_option = options.delete(:or)
-    return super + "<span class='button_or'>or " + or_option + "</span>" if or_option
-    super
-  end
-
   def ajax_spinner_for(id, spinner="spinner.gif")
     "<img src='/plugin_assets/community_engine/images/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> "
   end

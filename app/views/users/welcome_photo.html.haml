@@ -18,7 +18,7 @@
           =:choose_a_photo_to_upload.l
           %em          
             - if @user.vendor?
-              =:you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products.l
+              =:vendor_avatar_hint.l
             =:photos_should_be_x_pixels.l
         = file_field :avatar, :uploaded_data, :size => "20"
 

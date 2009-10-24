@@ -23,7 +23,7 @@
       = render :partial => "users/sidebar_user", :locals => {:user => user} 
       
   -box :class => "alt" do 
-    %h3=:popular_catgory.l(:name => @category.name)
+    %h3=:popular_category.l(:name => @category.name)
     %ul.list.page    
       - @popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
