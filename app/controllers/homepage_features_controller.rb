@@ -1,5 +1,7 @@
 class HomepageFeaturesController < BaseController
-  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit ])
+  uses_tiny_mce(:only => [:new, :edit ]) do
+    AppConfig.default_mce_options
+  end
 
   before_filter :login_required
   before_filter :admin_required
