@@ -14,9 +14,12 @@ class UsersController < BaseController
     end
   end    
 
-  uses_tiny_mce(:options => AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"}), 
-    :only => [:new, :create, :update, :edit, :welcome_about])
-  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
+  uses_tiny_mce(:only => [:new, :create, :update, :edit, :welcome_about]) do
+    AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"})
+  end
+  uses_tiny_mce(:only => [:show]) do
+    AppConfig.simple_mce_options
+  end
 
   # Filters
   before_filter :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about, 

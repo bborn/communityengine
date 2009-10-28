@@ -1,9 +1,17 @@
 module TinyMCE
   module ClassMethods
-    def uses_tiny_mce(options = {})
+    def uses_tiny_mce(options = {}, &block)
       tiny_mce_options = options.delete(:options) || nil
       proc = Proc.new do |c|
         c.instance_variable_set(:@tiny_mce_options, tiny_mce_options)
+
+        # This allows us to pass in a block instead of just a hash, which is important since we want to lazy-evaluate 
+        # AppConfig.default_mce_options to avoid errors when overriding controllers
+        if block_given?
+          c.instance_variable_set(:@tiny_mce_options, block.call)
+        else
+          c.instance_variable_set(:@tiny_mce_options, tiny_mce_options)
+        end
         c.instance_variable_set(:@uses_tiny_mce, true)
       end
       before_filter(proc, options)
