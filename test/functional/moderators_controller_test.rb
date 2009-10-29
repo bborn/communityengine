@@ -2,9 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ModeratorsControllerTest < ActionController::TestCase
   all_fixtures
-  def setup
-    @controller = ModeratorsController.new
-  end
+
 
   def test_should_delete_moderatorship
     assert users(:sam).moderator_of?(forums(:rails))

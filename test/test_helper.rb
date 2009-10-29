@@ -73,8 +73,23 @@ class ActiveSupport::TestCase
       end
     end
   end
-  
    
+end
+
+# Redefining this so we don't have to go out to the interwebs everytime we create a clipping
+# file paramater must equal http://www.google.com/intl/en_ALL/images/logo.gif; all other strings are considered an invalid URL
+module UrlUpload
+  include ActionController::TestProcess  
+  attr_accessor :data 
+  
+  def data_from_url(uri)
+    data ||= ActionController::TestUploadedFile.new(RAILS_ROOT+"/vendor/plugins/community_engine/test/fixtures/files/library.jpg", 'image/jpg', false)    
+    if ['http://www.google.com/intl/en_ALL/images/logo.gif', 'http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif'].include?(uri)
+      data
+    else
+      nil
+    end
+  end      
 end
 
 class Hash

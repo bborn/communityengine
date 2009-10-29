@@ -1,9 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ThemeControllerTest < ActionController::TestCase
-  def setup
-    @controller = ThemeController.new
-  end
 
   def test_malicious_path
     AppConfig.theme = 'test'

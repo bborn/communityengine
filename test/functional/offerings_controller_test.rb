@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class OfferingsControllerTest < ActionController::TestCase
   fixtures :offerings, :skills, :users, :roles
 
-  def setup
-    @controller = OfferingsController.new
-  end
-
   def test_replace_offerings
     login_as :dwr
     assert_difference Offering, :count, 2 do

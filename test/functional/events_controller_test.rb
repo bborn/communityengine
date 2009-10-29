@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class EventsControllerTest < ActionController::TestCase
   fixtures :users, :events, :states, :roles
 
-  def setup
-    @controller = EventsController.new
-  end
-
   def test_should_get_index
     login_as :admin
     get :index

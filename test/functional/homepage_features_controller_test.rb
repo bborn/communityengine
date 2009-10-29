@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class HomepageFeaturesControllerTest < ActionController::TestCase
   fixtures :all
 
-  def setup
-    @controller = HomepageFeaturesController.new
-  end
-
   def test_should_get_index
     login_as :admin
     get :index

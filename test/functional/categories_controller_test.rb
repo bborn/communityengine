@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class CategoriesControllerTest < ActionController::TestCase
   fixtures :categories, :users, :roles
 
-  def setup
-    @controller = CategoriesController.new
-  end
-
   def test_should_get_index
     login_as :admin
     get :index

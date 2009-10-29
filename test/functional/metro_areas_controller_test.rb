@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class MetroAreasControllerTest < ActionController::TestCase
   fixtures :metro_areas, :users, :countries, :roles
 
-  def setup
-    @controller = MetroAreasController.new
-  end
-
   def test_should_get_index
     login_as :admin
     get :index
