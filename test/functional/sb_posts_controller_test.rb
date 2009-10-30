@@ -2,9 +2,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class SbPostsControllerTest < ActionController::TestCase
   all_fixtures
-  def setup
-    @controller = SbPostsController.new
-  end
 
   def test_should_create_reply
     counts = lambda { [SbPost.count, forums(:rails).sb_posts_count, users(:aaron).sb_posts_count, topics(:pdi).sb_posts_count] }

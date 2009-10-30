@@ -6,7 +6,7 @@ module TinyMCEHelper
     !@uses_tiny_mce.nil?
   end
   
-  def tiny_mce_init(options = @tiny_mce_options)
+  def tiny_mce_init(options = @tiny_mce_options )
     options ||= {}
     default_options = {:mode => 'textareas',
                        :theme => 'simple'}

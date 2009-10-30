@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class UsersControllerTest < ActionController::TestCase
   fixtures :users, :roles, :tags, :states, :metro_areas, :countries, :skills, :friendship_statuses, :friendships, :categories
 
-  def setup
-    @controller = UsersController.new
-  end
-
   def test_should_get_index
     get :index
     assert_response :success

@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class SkillsControllerTest < ActionController::TestCase
   fixtures :skills, :users, :roles
 
-  def setup
-    @controller = SkillsController.new
-  end
-
   def test_should_get_index
     get :index
     assert_response :success

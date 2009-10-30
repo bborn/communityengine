@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class InvitationsControllerTest < ActionController::TestCase
   fixtures :invitations, :users, :roles
 
-  def setup
-    @controller = InvitationsController.new
-  end
-
   def test_should_get_index
     login_as :quentin
     get :index, :user_id => users(:quentin).id

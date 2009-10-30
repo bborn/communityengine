@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PostsControllerTest < ActionController::TestCase
   fixtures :posts, :users, :categories, :contests, :roles
 
-  def setup
-    @controller = PostsController.new
-  end
-
   def test_should_get_index
     get :index, :user_id => users(:quentin).id
     assert_response :success
@@ -157,11 +153,10 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  def test_should_get_recent
+  def test_should_get_recent_rss
     get :recent, :format => "rss"
     assert_response :success
   end
-
   
   def test_should_get_featured
     get :featured

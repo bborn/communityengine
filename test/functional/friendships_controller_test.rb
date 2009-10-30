@@ -4,11 +4,6 @@ class FriendshipsControllerTest < ActionController::TestCase
   include UsersHelper
   fixtures :friendships, :friendship_statuses, :users, :roles
 
-
-  def setup
-    @controller = FriendshipsController.new
-  end
-
   def test_should_get_accepted_friends_list
     login_as :quentin
     get :accepted, :user_id => users(:quentin).id

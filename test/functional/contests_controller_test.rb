@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class ContestsControllerTest < ActionController::TestCase
   fixtures :contests, :users, :roles
 
-  def setup
-    @controller = ContestsController.new
-  end
-
   def test_should_get_index
     login_as :admin
     get :index

@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class RsvpsControllerTest < ActionController::TestCase
   fixtures :users, :events, :rsvps
 
-  def setup
-    @controller = RsvpsController.new
-  end
-
   def test_should_route_rsvp_of_event
     login_as :quentin
     options = {:controller => 'rsvps', :action => 'new', :event_id => "2"}

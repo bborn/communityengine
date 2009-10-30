@@ -4,7 +4,6 @@ class AdsControllerTest < ActionController::TestCase
   fixtures :ads, :users, :categories, :roles
 
   def setup
-    @controller = AdsController.new
     login_as :admin
   end
 

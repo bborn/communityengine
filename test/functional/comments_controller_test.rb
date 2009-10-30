@@ -2,11 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
   fixtures :users, :photos, :posts, :comments, :roles
-
-  def setup
-    @controller = CommentsController.new
-  end
-  
+    
   def test_should_create_user_comment_with_notification
     login_as :aaron
     assert_difference Comment, :count, 1 do

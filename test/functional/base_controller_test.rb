@@ -4,7 +4,6 @@ class BaseControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :photos, :homepage_features, :taggings, :tags, :posts, :categories, :roles
 
   def setup
-    @controller = BaseController.new
     Asset.destroy_all    
   end
     

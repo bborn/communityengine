@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class TagsControllerTest < ActionController::TestCase
   fixtures :tags, :taggings, :photos, :roles, :posts
 
-  def setup
-    @controller = TagsController.new
-  end
-
   def test_should_autocomplete_tags
     get :auto_complete_for_tag_name, :id => 'mis', :format => 'js'
     assert_response :success
