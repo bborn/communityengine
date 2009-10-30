@@ -1,3 +1,5 @@
+require 'hpricot'
+
 module PostsHelper
 
   def post_with_ad_in_content(post)
