@@ -9,12 +9,8 @@ module PostsHelper
     paragraphs = doc.search("p")
     
     if paragraphs.length > 4
-      paragraphs.each_with_index do |p,i|
-        if i.eql?(2)
-          p.before string 
-          p[:id] = "jump"
-        end
-      end
+      graph_html = paragraphs[2].inner_html
+      paragraphs[2].swap(string + "<p id='jump'>#{graph_html}</p>")
     end
     
     doc.to_html

@@ -2,8 +2,8 @@ class AuthlogicCompatibilityChanges < ActiveRecord::Migration
   def self.up
 
     # Remove varchar(40) so users can specify alternate encryption methods without schema changes
-    change_column :users, :crypted_password, :string, :limit => 255, :null => false
-    change_column :users, :salt, :string, :limit => 255, :null => false
+    change_column :users, :crypted_password, :string, :limit => 255
+    change_column :users, :salt, :string, :limit => 255
 
     rename_column :users, :salt, :password_salt
     rename_column :users, :remember_token, :persistence_token
@@ -15,8 +15,8 @@ class AuthlogicCompatibilityChanges < ActiveRecord::Migration
       t.column :perishable_token, :string
 
       # Magic columns, just like ActiveRecord's created_at and updated_at. These are automatically maintained by Authlogic if they are present.
-      t.column :login_count,         :integer, :null => false, :default => 0 # optional, see Authlogic::Session::MagicColumns
-      t.column :failed_login_count,  :integer, :null => false, :default => 0 # optional, see Authlogic::Session::MagicColumns
+      t.column :login_count,         :integer, :default => 0 # optional, see Authlogic::Session::MagicColumns
+      t.column :failed_login_count,  :integer, :default => 0 # optional, see Authlogic::Session::MagicColumns
       t.column :last_request_at,     :datetime                               # optional, see Authlogic::Session::MagicColumns
       t.column :current_login_at,    :datetime                               # optional, see Authlogic::Session::MagicColumns
       t.column :current_login_ip,    :string                                 # optional, see Authlogic::Session::MagicColumns
@@ -44,8 +44,8 @@ class AuthlogicCompatibilityChanges < ActiveRecord::Migration
     rename_column :users, :password_salt, :salt
 
     # DANGEROUS! if passwords were migrated to a longer than 40 char crypt then this is a bad idea!
-    change_column :users, :crypted_password, :string, :limit => 40, :null => false
-    change_column :users, :salt, :string, :limit => 40, :null => false
+    change_column :users, :crypted_password, :string, :limit => 40
+    change_column :users, :salt, :string, :limit => 40
   end
 
 end

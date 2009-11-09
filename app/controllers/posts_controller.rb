@@ -78,10 +78,11 @@ class PostsController < BaseController
     @related = Post.find_related_to(@post)
     @most_commented = Post.find_most_commented
     
-    respond_to do |format|
-      format.html
-      format.any
-    end
+    
+    # respond_to do |format|
+    #   format.html
+    #   format.any
+    # end
   end
   
   def update_views
