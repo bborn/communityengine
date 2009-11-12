@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead.
   # Then, you can remove it from this and the functional test.
   fixtures :all
+  
 
   def test_should_create_user
     assert_difference User, :count do
@@ -130,6 +131,16 @@ class UserTest < ActiveSupport::TestCase
     users(:quentin).update_attribute(:avatar_id, 1) #just pretend
     assert !User.find_by_activity.empty?    
   end
+  
+  def test_should_not_include_inactive_users_in_find_by_activity
+    inactive_user = create_user
+    assert !inactive_user.active?
+    Activity.create(:user => inactive_user)
+    assert_nothing_raised do
+      User.find_by_activity({:limit => 5, :require_avatar => false})
+    end
+  end  
+  
   
   def test_should_update_activities_counter_on_user
     #make sure the initial count is right
