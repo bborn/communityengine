@@ -2,6 +2,9 @@
 * haml/sass propagation (desert)
 * upgrade documentation/rake tasks to fix old migrations
 
+= 1.0.4.2
+* Rails 2.3.4 compatibility (all tests pass, Takk)
+
 = 1.0.4
 * Changes to Japanese language translations
 * Use authlogic instead of restful_authentication (augthlogic gem now required, new migrations required) (thanks jnimety!)

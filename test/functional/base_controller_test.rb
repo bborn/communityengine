@@ -15,7 +15,7 @@ class BaseControllerTest < ActionController::TestCase
   
   def test_should_get_index_rss
     get :site_index, :format => 'rss'
-    assert_generates("/site_index.rss", :controller => "base", :action => "site_index", :format => 'rss')    
+    assert_recognizes({:controller => 'base', :action => 'site_index', :format => 'rss'}, '/site_index.rss')
     assert_response :success
   end
 

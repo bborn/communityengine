@@ -1,10 +1,10 @@
-CommunityEngine [v1.0.4.1]
+CommunityEngine [v1.0.4.2]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.3.2 (higher versions are not yet supported)
+	- RAILS VERSION 2.3.4 (higher versions are not yet supported)
 	- ImageMagick (>6.4) 
 	- Several gems:
     desert 0.5.2
@@ -62,7 +62,7 @@ LONG VERSION:
 6. Modify your environment.rb as indicated below:
 
 		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+		RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 		require File.join(File.dirname(__FILE__), 'boot')
 
         require 'desert'
