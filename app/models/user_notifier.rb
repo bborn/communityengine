@@ -122,7 +122,7 @@ class UserNotifier < ActionMailer::Base
   end
   
   def setup_sender_info
-    from    "#{:the_team.l(:site => AppConfig.community_name, :email => AppConfig.support_email)}>" 
+    from    "#{:the_team.l(:site => AppConfig.community_name, :email => AppConfig.support_email)}" 
     headers "Reply-to" => "#{AppConfig.support_email}"
     @content_type = "text/plain"           
   end
