@@ -18,6 +18,7 @@ class SessionsController < BaseController
     @user_session = UserSession.new(:login => params[:login], :password => params[:password], :remember_me => params[:remember_me])
     if @user_session.save
       flash[:notice] = :thanks_youre_now_logged_in.l
+      raise current_user.inspect
       redirect_back_or_default(dashboard_user_path(current_user))
     else
       flash[:notice] = :uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again.l
