@@ -98,6 +98,7 @@ in_root do
   run_ruby_script "script/generate plugin_migration"
 end
 
+rake('db:create:all')
 rake('db:migrate')
 
 capify!
