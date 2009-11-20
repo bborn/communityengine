@@ -77,6 +77,7 @@ gem "aws-s3", :lib => "aws/s3"
 gem 'calendar_date_select'
 gem 'ri_cal'
 gem 'authlogic'
+gem 'searchlogic'
 rake('gems:install', :sudo => true)
 
 

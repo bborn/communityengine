@@ -4,6 +4,7 @@
 
 = 1.0.4.2
 * Rails 2.3.4 compatibility (all tests pass, Takk)
+* Add searchlogic gem dependency (searchlogic is awesome, will be using it more in the future, currently just using on admin_controller#comments)
 
 = 1.0.4
 * Changes to Japanese language translations

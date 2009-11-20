@@ -259,6 +259,10 @@ en:
   comma_separated: (comma separated)
   #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
   comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
+  #en: commentable_type: "Commentable Type (Post, User, etc.)"
+  commentable_type: "Commentable Type (Post, User, etc.)"
+  #en: commentable_id: "Commentable ID"
+  commentable_id: "Commentable ID"
   #en: comment_character_limit: (2000 character limit)
   comment_character_limit: (2000 character limit)
   #en: comment_could_not_be_deleted: Comment could not be deleted.
@@ -429,6 +433,8 @@ en:
   editing_skill: Editing skill
   #en: editing_tag: Editing tag
   editing_tag: Editing tag
+  #en: email: Email
+  email: Email
   #en: email_addresses: Email Addresses
   email_addresses: Email Addresses
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}

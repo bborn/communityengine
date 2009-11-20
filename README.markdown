@@ -16,6 +16,7 @@ Requirements:
 	  calendar_date_select
 	  ri_cal
     authlogic
+    searchlogic
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
@@ -73,11 +74,12 @@ LONG VERSION:
 		  config.gem 'calendar_date_select'
 		  config.gem 'icalendar'		
 		  config.gem 'authlogic'
+		  config.gem 'searchlogic'
 		  
-          config.action_controller.session = {
-            :key    => '_your_app_session',
-            :secret => 'secret'
-          }
+      config.action_controller.session = {
+        :key    => '_your_app_session',
+        :secret => 'secret'
+      }
 
 		  ... Your stuff here ...
 		end
