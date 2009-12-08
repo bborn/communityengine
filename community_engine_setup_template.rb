@@ -94,10 +94,9 @@ route "map.routes_from_plugin :community_engine"
 modify_environment_files
 add_application_yml(app_name)
 
-in_root do
-  run_ruby_script "script/generate plugin_migration"
-end
+generate :plugin_migration
 
+rake('db:create:all')
 rake('db:migrate')
 
 capify!

@@ -28,9 +28,5 @@ class BaseControllerTest < ActionController::TestCase
     get :teaser
     assert_response :success
   end
-
-  def test_should_get_additional_homepage_data
-    assert @controller.get_additional_homepage_data
-  end
   
 end
