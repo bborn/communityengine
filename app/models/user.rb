@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   attr_protected :admin, :featured, :role_id
   
   acts_as_authentic do |c|
-    c.act_like_restful_authentication = true
     c.crypto_provider = CommunityEngineSha1CryptoMethod
 
     c.validates_length_of_password_field_options = { :within => 6..20, :if => :password_required? }
