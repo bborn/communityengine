@@ -23,9 +23,8 @@ class PostsController < BaseController
   skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages 
   
   def manage
-    @posts = @user.posts.find_without_published_as(:all, 
-      :page => {:current => params[:page], :size => 10}, 
-      :order => 'created_at DESC')
+    @search = Post.search(params[:search])
+    @posts = @search.find_without_published_as(:all, :conditions => {:user_id => @user.id}, :page => {:current => params[:page], :size => (params[:size] ? params[:size].to_i : 10) }, :order => 'created_at DESC')    
   end
 
   def index
