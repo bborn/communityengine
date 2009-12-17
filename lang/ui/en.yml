@@ -240,7 +240,7 @@ en:
   #en: clipping_comments: Clipping Comments
   clipping_comments: Clipping Comments
   #en: clipping_from_user: Clipping from {{user}}
-  clipping_from_user: Clipping from {{user}}
+  clipping_from_user: "Clipping from {{user}}"
   #en: clipping_was_successfully_created: Clipping was successfully created.
   clipping_was_successfully_created: Clipping was successfully created.
   #en: clippings: Clippings
