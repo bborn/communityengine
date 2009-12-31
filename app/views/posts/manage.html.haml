@@ -4,6 +4,28 @@
     %ul.checks
       %li=link_to :view_my_blog.l, user_posts_path(current_user)
       %li=link_to :new_post.l, new_user_post_path(current_user)    
+      
+  -box do
+    %h3=:search.l
+    - form_for @search, :html => {:class => "MainForm"} do |f|
+      %p
+        = f.label :title.l
+        = f.text_field :title_like
+
+      %p
+        = f.label :category.l
+        = f.select :category_id_equals, Category.all.collect{|c| [c.name, c.id]}, :include_blank => true
+
+      %p
+        =f.label :status.l
+        = f.select :published_as_equals, [['Published','live'], ['Draft','draft']], :include_blank => true
+
+      %p
+        = f.label :show.l
+        = select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
+
+      = f.submit :search.l
+  
 
 #yui-main
   .yui-b
@@ -19,8 +41,10 @@
       %table{:border => 0, :width => '100%'}
         %thead
           %tr
-            %th=:date_created.l
-            %th=:date_published.l            
+            %th
+              =order @search, :by => :created_at, :as => :date_created.l
+            %th
+              =order @search, :by => :published_at, :as => :date_published.l
             %th=:title.l
             %th=:category.l
             %th=:tags.l

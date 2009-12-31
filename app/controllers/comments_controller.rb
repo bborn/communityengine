@@ -164,23 +164,22 @@ class CommentsController < BaseController
     end
   
     def comment_title
-
       return @comments.first.commentable_name if @comments.first
   
-    type = comment_type.underscore
-    case type
-      when 'user'
-        @commentable.login
-      when 'post'
-        @commentable.title
-      when 'clipping'
-        @commentable.description || :clipping_from_user.l(@user.login)
-      when 'photo'
-        @commentable.description || :photo_from_user.l(@user.login)
-      else 
-        @commentable.class.to_s.humanize
-    end  
-  end
+      type = comment_type.underscore
+      case type
+        when 'user'
+          @commentable.login
+        when 'post'
+          @commentable.title
+        when 'clipping'
+          @commentable.description || :clipping_from_user.l(:user => @user.login)
+        when 'photo'
+          @commentable.description || :photo_from_user.l(:user => @user.login)
+        else 
+          @commentable.class.to_s.humanize
+      end  
+    end
   
     def render_comments_rss_feed_for(comments, title)
       render_rss_feed_for(comments,

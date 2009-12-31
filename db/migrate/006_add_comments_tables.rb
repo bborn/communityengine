@@ -1,6 +1,6 @@
 class AddCommentsTables < ActiveRecord::Migration
   def self.up
-    create_table :comments, :force => true do |t|
+    create_table :comments do |t|
       t.column :title, :string, :limit => 50, :default => ""
       t.column :comment, :string, :default => ""
       t.column :created_at, :datetime, :null => false
