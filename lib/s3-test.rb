@@ -13,9 +13,6 @@ require 'test/unit'
 require 'time' # for httpdate
 require 's3'
 
-AWS_ACCESS_KEY_ID = '1MDCWZHGB8F98EBAHV82'
-AWS_SECRET_ACCESS_KEY = 'In7gs33pyYzVOUEfN+PZVwlweRoykF98PhLnt+MF'
-
 BUCKET_NAME = "%s-test" % AWS_ACCESS_KEY_ID
 
 class TC_AWSAuthConnectionTest < Test::Unit::TestCase
