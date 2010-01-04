@@ -33,8 +33,8 @@ class AdminController < BaseController
   
   def comments
     @search = Comment.search(params[:search])
-    
-    @comments = @search.find(:all, :page => {:current => params[:page], :size => 100}, :order => 'created_at DESC')
+    @search.order ||= :descend_by_created_at        
+    @comments = @search.find(:all, :page => {:current => params[:page], :size => 100})
   end
   
   def activate_user

@@ -24,7 +24,8 @@ class PostsController < BaseController
   
   def manage
     @search = Post.search(params[:search])
-    @posts = @search.find_without_published_as(:all, :conditions => {:user_id => @user.id}, :page => {:current => params[:page], :size => (params[:size] ? params[:size].to_i : 10) }, :order => 'created_at DESC')    
+    @search.order ||= :descend_by_created_at    
+    @posts = @search.find_without_published_as(:all, :conditions => {:user_id => @user.id}, :page => {:current => params[:page], :size => (params[:size] ? params[:size].to_i : 10) })    
   end
 
   def index

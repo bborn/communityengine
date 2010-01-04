@@ -1,6 +1,15 @@
-.yui-b
+.yui-b.sidebar
   = render :partial => 'shared/admin_nav'
+  
+  -box do
+    %h3=:search.l
+    - form_for @search, :html => {:class => "MainForm"} do |f|
 
+      = f.label :name.l
+      = f.text_field :name_begins_with
+
+      %p= f.submit :search.l
+  
 #yui-main
   .yui-b
     -box do 
@@ -8,10 +17,10 @@
 
       %table{:width=>"100%"}
         %tr 
-          %th=:name.l
+          %th
+            =order @search, :by => :name, :as => :name.l            
           %th 
-            \# 
-            =:taggings.l
+            =order @search, :by => :taggings_count, :as => "##{:taggings.l}"
           %th=:actions.l
 
         - for tag in @tags
