@@ -1,19 +1,20 @@
 .yui-b.sidebar
   = render :partial => 'shared/admin_nav'
-  
-  - form_for @search, :html => {:class => "MainForm"} do |f|
-    %p
+
+  -box do
+    - form_for @search, :html => {:class => "MainForm"} do |f|
+    
       = f.label :commentable_type.l
       = f.text_field :commentable_type_like
-    %p
+
       =f.label :commentable_id.l
       =f.text_field :commentable_id
-    %p
+
       =f.label :email.l
       =f.text_field :author_email_or_user_email_like
 
-    
-    = f.submit :search.l
+
+      %p= f.submit :search.l
   
 
 
