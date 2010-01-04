@@ -8,9 +8,9 @@
   -box do
     %h3=:search.l
     - form_for @search, :html => {:class => "MainForm"} do |f|
-      %p
-        = f.label :title.l
-        = f.text_field :title_like
+    
+      = f.label :title.l
+      = f.text_field :title_like
 
       %p
         = f.label :category.l
@@ -24,7 +24,7 @@
         = f.label :show.l
         = select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
 
-      = f.submit :search.l
+      %p= f.submit :search.l
   
 
 #yui-main
