@@ -37,7 +37,7 @@ class BaseController < ApplicationController
 
     @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
     @rss_url = rss_url
-    respond_to do |format|     
+    respond_to do |format|
       format.html { get_additional_homepage_data }
       format.rss do
         render_rss_feed_for(@posts, { :feed => {:title => "#{AppConfig.community_name} "+:recent_posts.l, :link => recent_url},
