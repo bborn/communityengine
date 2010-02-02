@@ -75,7 +75,9 @@ gem 'htmlentities', :lib => 'htmlentities'
 gem 'haml', :lib => 'htmlentities'        
 gem "aws-s3", :lib => "aws/s3" 
 gem 'calendar_date_select'
-gem 'icalendar'
+gem 'ri_cal'
+gem 'authlogic'
+gem 'searchlogic'
 rake('gems:install', :sudo => true)
 
 
@@ -84,7 +86,7 @@ plugin 'community_engine', :git => ce_git_repo, :submodule => true
 # Initialize submodules
 git :submodule => "init" 
 git :submodule => "update"   
-# checkout_ce_branch('edge')
+checkout_ce_branch('edge')
 
 # Add CE routes 
 route "map.routes_from_plugin :community_engine"
@@ -92,10 +94,9 @@ route "map.routes_from_plugin :community_engine"
 modify_environment_files
 add_application_yml(app_name)
 
-in_root do
-  run_ruby_script "script/generate plugin_migration"
-end
+generate :plugin_migration
 
+rake('db:create:all')
 rake('db:migrate')
 
 capify!

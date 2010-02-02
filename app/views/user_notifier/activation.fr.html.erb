@@ -1,0 +1,12 @@
+Bonjour <%= @user.login %>, 
+
+Juste un petit message pour vous signaler que votre compte <%= AppConfig.community_name %> a été activé. La communauté <%= AppConfig.community_name %> évolue en permanence, venez découvrir les nouveautés :
+
+<%= @url %>
+
+* En tant que membre de <%= AppConfig.community_name %>, vous revevrez ponctuellement des messages de notre part (nouveautés, concours, mises à jour). Si vous ne le souhaitez pas, vous pouvez modifier vos préférences :
+
+<%= edit_account_user_url(@user) %>
+
+Merci d'avoir rejoint <%= AppConfig.community_name %> !
+L'Equipe <%= AppConfig.community_name %>

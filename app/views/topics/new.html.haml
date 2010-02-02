@@ -14,6 +14,9 @@
   = error_messages_for :topic
   - form_for :topic, :url  => forum_topics_path(@forum), :html => {:class => "MainForm"} do |f|
     = render :partial => "form", :object => f
-    %p= submit_tag :post_topic.l, :or => link_to(:cancel.l, forum_path(@forum))
+    %p
+      = submit_tag :post_topic.l
+      = :or.l
+      = link_to(:cancel.l, forum_path(@forum))
 
   = javascript_tag "$('topic_title').focus();"

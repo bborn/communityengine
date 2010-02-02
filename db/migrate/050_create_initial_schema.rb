@@ -1,6 +1,6 @@
 class CreateInitialSchema < ActiveRecord::Migration
   def self.up
-    create_table "forums", :force => true do |t|
+    create_table "forums" do |t|
       t.column "name",             :string
       t.column "description",      :string
       t.column "topics_count",     :integer, :default => 0
@@ -11,20 +11,20 @@ class CreateInitialSchema < ActiveRecord::Migration
       t.column "owner_id",         :integer
     end
 
-    create_table "moderatorships", :force => true do |t|
+    create_table "moderatorships" do |t|
       t.column "forum_id", :integer
       t.column "user_id",  :integer
     end
 
     add_index "moderatorships", ["forum_id"], :name => "index_moderatorships_on_forum_id"
 
-    create_table "monitorships", :force => true do |t|
+    create_table "monitorships" do |t|
       t.column "topic_id", :integer
       t.column "user_id",  :integer
       t.column "active",   :boolean, :default => true
     end
 
-    create_table "sb_posts", :force => true do |t|
+    create_table "sb_posts" do |t|
       t.column "user_id",    :integer
       t.column "topic_id",   :integer
       t.column "body",       :text
@@ -37,7 +37,7 @@ class CreateInitialSchema < ActiveRecord::Migration
     add_index "sb_posts", ["forum_id", "created_at"], :name => "index_sb_posts_on_forum_id"
     add_index "sb_posts", ["user_id", "created_at"], :name => "index_sb_posts_on_user_id"
 
-    create_table "topics", :force => true do |t|
+    create_table "topics" do |t|
       t.column "forum_id",     :integer
       t.column "user_id",      :integer
       t.column "title",        :string

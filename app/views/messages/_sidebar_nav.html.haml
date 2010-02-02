@@ -3,7 +3,7 @@
     %h3= :links.l
     %ul.message_nav
       %li{:class => "inbox#{@user.unread_messages? ? '_new': ''}"}
-        = link_to "Inbox", user_messages_path(@user)
+        = link_to :inbox.l, user_messages_path(@user)
         = "(#{@user.unread_message_count})" if @user.unread_messages?
       %li.sent= link_to :sent_messages.l, user_messages_path(@user, :mailbox => :sent)
       %li.compose= link_to :compose.l, new_user_message_path(@user)

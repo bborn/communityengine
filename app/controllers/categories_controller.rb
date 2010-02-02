@@ -21,7 +21,7 @@ class CategoriesController < BaseController
     
     cond = Caboose::EZ::Condition.new
     cond.category_id  == @category.id
-    order = (params[:popular] ? "view_count #{params[:popular]}": "published_at DESC")
+    order = (params[:popular] ? "view_count #{params[:popular].eql?('DESC') ? 'DESC' : 'ASC'}": "published_at DESC")
 
     @posts = Post.find :all, :page => {:current => params[:page]}, :order => order, :conditions => cond.to_sql, :include => :tags
     

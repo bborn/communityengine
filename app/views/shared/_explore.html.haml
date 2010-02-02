@@ -1,4 +1,4 @@
--box do 
+-box do
   %h3 Explore
   %ul.list.checks
     - Category.find(:all).each do |c|
@@ -8,4 +8,3 @@
     - Page.find(:all).each do |page|
       - if (logged_in? || page.page_public)
         %li= link_to page.title, pages_path(page)
-

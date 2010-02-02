@@ -13,11 +13,11 @@
   %p.subtitle
     = feed_icon_tag :recent_posts.l, all_sb_posts_path(:format => 'rss')
     = number_with_delimiter(Topic.count) 
-    = "#{'topics'.l},"
+    = "#{:topics.l},"
     = number_with_delimiter(SbPost.count)
-    = "#{'posts'.l},"
+    = "#{:posts.l},"
     = number_with_delimiter(User.count(:conditions => "sb_posts_count>0"))
-    = 'voices'.l
+    = :voices.l
 
   %table{:border=>"0", :cellspacing=>"0", :cellpadding=>"0", :class=>"wide forums"}
     %tr

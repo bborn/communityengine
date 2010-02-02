@@ -286,7 +286,7 @@ es-MX:
   admin_dashboard: Panel de Control del Administrador
   banner_title_required: "Título del Anúncio (required):"
   email_signup_thanks: "¡Gracias por registrarte! Deberías recibir la confirmación de un correo electrónico dentro de poco en {{email}}"
-  required_you_must_be_at_least_years_old_to_sign_up: "(Requerido: debes tener mínimo 13 años para registarte.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Requerido: debes tener mínimo {{min_age}} años para registarte.)"
   create_a_clipping: Crear un Recorte
   activation_email_not_sent_message: El e-mail de activación no pudo ser enviado. ¿Tal vez el usuario ya ha sido activado?
   post_a_new_topic: Publicar un nuevo Tema
@@ -580,7 +580,7 @@ es-MX:
   get_started_banner: ¡Iniciate con <a href="/">{{site}}</a> hoy mismo!
   invite_a_friend: Invita un amigo
   new_yesterday: Nuevo Ayer
-  posts_photos_and_bookmarks: publicaciones, fotos y favvoritos
+  posts_photos_and_bookmarks: "{{name}} publicaciones, fotos y favvoritos"
   go_to_the_forums: ir a los foros
   your_post_was_successfully_created: Tu publicación fue creada con éxito.
   this_friendship_is_pending: Esta amistad está pendiente.

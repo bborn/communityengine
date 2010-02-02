@@ -3,12 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class EventsControllerTest < ActionController::TestCase
   fixtures :users, :events, :states, :roles
 
-  def setup
-    @controller = EventsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
   def test_should_get_index
     login_as :admin
     get :index
@@ -85,4 +79,26 @@ class EventsControllerTest < ActionController::TestCase
     assert_response :success
     assert assigns(:calendar)
   end
+
+  def test_should_show_rsvp
+    login_as :admin
+    get :show, :id=>2
+    assert_tag :tag=>'a', :content=>:rsvp.l
+    assert_tag :tag=>'b', :content=>"#{:rsvps.l}:"
+  end
+
+  def test_should_not_show_rsvp
+    login_as :admin
+    get :show, :id=>6
+    assert_no_tag :tag=>'a', :content=>:rsvp.l
+    assert_no_tag :tag=>'b', :content=>"#{:rsvps.l}:"
+  end
+  
+  def test_should_clone_event
+    login_as :admin
+    get :clone, :id => events(:cool_event)
+        
+    assert_equal assigns(:event).attributes.only(:name, :start_time, :end_time, :description), events(:cool_event).attributes.only(:name, :start_time, :end_time, :description)    
+  end
+
 end

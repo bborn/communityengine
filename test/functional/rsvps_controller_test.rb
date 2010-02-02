@@ -3,12 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class RsvpsControllerTest < ActionController::TestCase
   fixtures :users, :events, :rsvps
 
-  def setup
-    @controller = RsvpsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
   def test_should_route_rsvp_of_event
     login_as :quentin
     options = {:controller => 'rsvps', :action => 'new', :event_id => "2"}
@@ -49,6 +43,14 @@ class RsvpsControllerTest < ActionController::TestCase
     login_as :quentin
     assert_no_difference Rsvp, :count do
       post :create, :event_id => "2", :rsvp => {:attendees_count=>1} 
+    end
+    assert_response :success
+  end
+
+  def test_should_fail_to_create_rsvp_for_event_that_does_not_allow_rsvps
+    login_as :quentin
+    assert_no_difference Rsvp, :count do
+      post :create, :event_id => "6", :rsvp => {:attendees_count=>1} 
     end
     assert_response :success
   end

@@ -4,9 +4,6 @@ class VotesControllerTest < ActionController::TestCase
   fixtures :users, :posts, :roles
 
   def setup
-    @controller = VotesController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     Vote.destroy_all
     Poll.destroy_all
   end

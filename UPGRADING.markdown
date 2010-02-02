@@ -1,4 +1,34 @@
-Upgrading from CE v1.0.0 to v1.0.2 (desert)
+Upgrading to v1.0.4.2
+=====================
+Run `rake gems:install`
+Run `ruby script/generate plugin_migration`
+Run `rake db:migrate`
+Run `rake test && rake community_engine:test`
+That's it!
+
+Note: this version adds a counter_cache to taggings, so you may need to update the counter on your existing tags by doing something like:
+
+Tag.all.each do |tag|
+  Tag.update_counters tag.id, :taggings_count => tag.taggings.length
+end
+
+If you have many tags, this could take a while, though.
+
+Upgrading to v1.0.4
+===================
+Run `ruby script/generate plugin_migration`
+Make sure you have the following in your `environment.rb`:
+
+        config.gem 'authlogic'
+        config.gem 'icalendar'
+        config.gem 'calendar_date_select'
+        
+Run `rake db:migrate`
+That's it!
+
+
+
+Upgrading v1.0.2
 ================
 
 Beginning with CE v.1.0.2, we have started using the Desert gem instead of the Engines plugin. Desert does many of the things the Engines plugin did, but also allows model code mixing. Also, in light of Engine's inclusion into Rails core, it appeared many of the features CE loves about Engines (plugin migrations, asset helpers, code mixing) were going to be dropped. 

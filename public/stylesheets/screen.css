@@ -306,6 +306,10 @@ margin-left:  10.4769em; /* about 140px */
 margin-left: 0px; /* Use formatting for blog post except for left margin */
 }
 
+.event-edit-link{
+float: right;
+}
+
 .hentry .vcard h5{
 float: left;
 width: 66px;
@@ -512,6 +516,10 @@ font-weight: bold;
 color: #777;
 width: 250px;
 background: #f8f8f8;
+}
+
+.MainForm input[type=checkbox] {
+	width: auto;
 }
 
 .MainForm input:focus, .MainForm textarea:focus{

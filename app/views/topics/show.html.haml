@@ -18,9 +18,7 @@
       #monitor_topic
         %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
         %label#monitor_label{"for"=>"monitor_checkbox"}
-          
-          = :watch.l+"#{@monitoring ? :watch_ing.l : ''}"
-          = :topic.l
+          = @monitoring ? :watching_topic.l : :watch_topic.l
         = hidden_field_tag '_method', 'delete' if @monitoring
         = submit_tag :Set, :id => 'monitor_submit', :style => "display:none"
         
@@ -49,11 +47,11 @@
 
   %p.subtitle
     = feed_icon_tag @topic.title, forum_topic_path(@forum, @topic, :format => :rss)
-    = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l},"
-    = "Tagged: #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
+    = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
+    = ", #{:tags.l} : #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
   
   %ul.flat.talking
-    %li.label= :voices.l+":"
+    %li.label= :voices.l + ":"
     - @voices.each do |user|
       %li= link_to h(user.display_name), user_path(user)
 

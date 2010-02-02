@@ -8,7 +8,9 @@ class CommentsController < BaseController
     skip_before_filter :login_required, :only => [:create]
   end
 
-  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:index])
+  uses_tiny_mce(:only => [:index]) do
+    AppConfig.simple_mce_options
+  end
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
 
@@ -162,7 +164,6 @@ class CommentsController < BaseController
     end
   
     def comment_title
-
       return @comments.first.commentable_name if @comments.first
   
       type = comment_type.underscore
@@ -172,9 +173,9 @@ class CommentsController < BaseController
         when 'post'
           @commentable.title
         when 'clipping'
-          @commentable.description || "Clipping from #{@user.login}"
+          @commentable.description || :clipping_from_user.l(:user => @user.login)
         when 'photo'
-          @commentable.description || "Photo from #{@user.login}"
+          @commentable.description || :photo_from_user.l(:user => @user.login)
         else 
           @commentable.class.to_s.humanize
       end  
