@@ -324,6 +324,7 @@ class User < ActiveRecord::Base
   
   def deliver_activation
     UserNotifier.deliver_activation(self) if self.recently_activated?
+    @activated = false
   end
   
   def deliver_signup_notification
