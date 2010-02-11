@@ -1,6 +1,7 @@
 = TODO
-* haml/sass propagation (desert)
-* upgrade documentation/rake tasks to fix old migrations
+
+=1.1.0
+* fixed time_ago formatting problem on user/index
 
 
 = 1.0.4.2
