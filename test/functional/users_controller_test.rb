@@ -188,7 +188,7 @@ class UsersControllerTest < ActionController::TestCase
   
   def test_should_fill_states_on_detroit_search
     #state drop down not being enabled
-    get :index, :metro_area_id => metro_areas(:Detroit).id
+    get :index, :metro_area_id => metro_areas(:detroit).id
     assert_equal assigns(:states).size, State.count
     assert_response :success
   end
@@ -391,19 +391,19 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_decrement_metro_area_count
     initial_count = metro_areas(:twincities).users_count
     quentin = users(:quentin)
-    quentin.metro_area = metro_areas(:Detroit)
+    quentin.metro_area = metro_areas(:detroit)
     quentin.save
     assert_equal(metro_areas(:twincities).reload.users_count, metro_areas(:twincities).reload.users.size )
-    assert_equal(metro_areas(:Detroit).reload.users_count, metro_areas(:Detroit).reload.users.size )
+    assert_equal(metro_areas(:detroit).reload.users_count, metro_areas(:detroit).reload.users.size )
   end  
   
   def test_should_increment_metro_area_count
-    initial_count = metro_areas(:Detroit).users_count
+    initial_count = metro_areas(:detroit).users_count
     aaron = users(:aaron)
-    aaron.metro_area = metro_areas(:Detroit)
-    aaron.save
-    assert_equal metro_areas(:Detroit).reload.users_count, initial_count + 1
-    assert_equal(metro_areas(:Detroit).reload.users_count, metro_areas(:Detroit).reload.users.size )
+    aaron.metro_area = metro_areas(:detroit)
+    aaron.save!
+    assert_equal metro_areas(:detroit).reload.users_count, initial_count + 1
+    assert_equal(metro_areas(:detroit).reload.users_count, metro_areas(:detroit).reload.users.size )
   end  
   
   def test_should_get_stats_if_admin
