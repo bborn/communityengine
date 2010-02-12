@@ -1,3 +1,7 @@
+Upgrading to v1.1.0
+=====================
+
+
 Upgrading to v1.0.4.2
 =====================
 Run `rake gems:install`
@@ -8,7 +12,7 @@ That's it!
 
 Note: this version adds a counter_cache to taggings, so you may need to update the counter on your existing tags by doing something like:
 
-Tag.all(:limit => 2).each do |tag|
+Tag.all.each do |tag|
   Tag.update_counters tag.id, :taggings_count => tag.taggings.length
 end
 

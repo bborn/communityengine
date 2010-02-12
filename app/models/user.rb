@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
 
   #validation
-  validates_presence_of     :metro_area,                 :if => Proc.new { |user| user.state }
+  validates_presence_of     :metro_area, :if => Proc.new { |user| user.state }
   validates_uniqueness_of   :login_slug
   validates_exclusion_of    :login, :in => AppConfig.reserved_logins
   validates_date :birthday, :before => 13.years.ago.to_date  
@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
     has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
 
     belongs_to  :avatar, :class_name => "Photo", :foreign_key => "avatar_id"
-    belongs_to  :metro_area
+    belongs_to  :metro_area, :counter_cache => true
     belongs_to  :state
     belongs_to  :country
     has_many    :comments_as_author, :class_name => "Comment", :foreign_key => "user_id", :order => "created_at desc", :dependent => :destroy
@@ -324,6 +324,7 @@ class User < ActiveRecord::Base
   
   def deliver_activation
     UserNotifier.deliver_activation(self) if self.recently_activated?
+    @activated = false
   end
   
   def deliver_signup_notification
