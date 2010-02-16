@@ -2,7 +2,7 @@ de-DE:
   date:
     formats:
       published_date: "%d.%m.%Y"
-      date_ago: "%e. %b"
+      date_ago: "%b %Y"
 
   time:
     formats:

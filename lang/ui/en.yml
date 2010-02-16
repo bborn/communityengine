@@ -1,13 +1,13 @@
 en:
   date:
     formats:
-      published_date: "%Y/%m/%d"
-      date_ago: "%B %d"
+      published_date: "%m/%d/%Y"
+      date_ago: "%b %Y"
 
   time:
     formats:
-      published_date: "%Y/%m/%d"      
-      short_published_date: "%y/%m/%d"
+      published_date: "%m/%d/%Y"      
+      short_published_date: "%m/%d/%y"
       literal_date: "%B %d, %Y"
       short_literal_date: "%b %d, %Y"
       time_ago: "%l:%M%p"

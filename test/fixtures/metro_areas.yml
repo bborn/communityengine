@@ -4,9 +4,9 @@ twincities:
   name: Minneapolis / St. Paul
   state_id: 1
   country_id: 1
-Detroit:
+detroit:
   id: 2
-  name: Detroit
+  name: detroit
   state_id: 2
   country_id: 1
 rochester:

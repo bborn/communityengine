@@ -1,3 +1,7 @@
+Upgrading to v1.1.0
+=====================
+
+
 Upgrading to v1.0.4.2
 =====================
 Run `rake gems:install`
