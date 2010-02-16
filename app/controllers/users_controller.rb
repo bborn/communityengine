@@ -357,8 +357,8 @@ class UsersController < BaseController
   end
   
   def assume
-    self.assume_user(User.find(params[:id]))
-    redirect_to user_path(current_user)
+    user = User.find(params[:id])
+    redirect_to user_path(self.assume_user(user).record)
   end
 
   def return_admin
