@@ -24,10 +24,6 @@ class TagsController < BaseController
 
     @clipping_tags = popular_tags(75, ' count DESC', 'Clipping')  
   end
-
-  def manage
-    @tags = Tag.find(:all, :order => :name, :page => {:current => params[:page], :size => 20})
-  end
   
   def manage
     @search = Tag.search(params[:search])

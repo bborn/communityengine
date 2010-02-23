@@ -5,7 +5,9 @@ class AdsController < BaseController
   # GET /ads
   # GET /ads.xml
   def index
-    @ads = Ad.find(:all)
+    @search = Ad.search(params[:search])
+    @search.order ||= :ascend_by_name
+    @ads = @search.find(:all, :page => {:current => params[:page], :size => 100})
 
     respond_to do |format|
       format.html # index.rhtml

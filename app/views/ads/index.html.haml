@@ -1,5 +1,18 @@
 .yui-b
   = render :partial => 'shared/admin_nav'
+  
+  -box do
+    %h3=:search.l
+    - form_for @search, :html => {:class => "MainForm"} do |f|
+
+      = f.label :name.l
+      = f.text_field :name_begins_with
+      
+      = f.label :location.l
+      = f.text_field :location_contains
+
+      %p= f.submit :search.l
+  
 
 #yui-main
   -box :class => "yui-b" do
