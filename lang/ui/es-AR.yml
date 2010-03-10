@@ -145,7 +145,7 @@ es-AR:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: Comentario no pudo ser borrada.
   #en: comment_save_error: Su comentario no se ha podido guardar.
-  comment_save_error: Su comentario no se ha podido guardar.
+  comment_save_error: "Su comentario no se ha podido guardar: {{error}}"
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: Comentario se ha creado correctamente.
   #en: comments: Comments

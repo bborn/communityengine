@@ -235,7 +235,7 @@ sv:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: Kommentaren kunde inte tas bort.
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: Din kommentar kunde inte sparas.
+  comment_save_error: 'Din kommentar kunde inte sparas: {{error}}'
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: Kommentaren skapad.
   #en: comments: Comments

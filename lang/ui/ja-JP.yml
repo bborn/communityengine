@@ -238,7 +238,7 @@ ja:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: コメントを削除できませんでした.
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: コメントを保存できませんでした.
+  comment_save_error: "コメントを保存できませんでした: {{error}}"
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: コメントの投稿が完了しました.
   #en: comments: Comments

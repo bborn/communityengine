@@ -255,7 +255,7 @@ fr:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: "Le commentaire n'a pas pu être supprimé."
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: "Votre commentaire n'a pas pu être enregistré."
+  comment_save_error: "Votre commentaire n'a pas pu être enregistré: {{error}}"
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: Le commentaire à été créé avec succès.
   #en: comments: Comments

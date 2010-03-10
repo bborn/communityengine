@@ -233,7 +233,7 @@ de-DE:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: "Kommentar kann nicht gel\xC3\xB6scht werden."
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: Fehler beim Speichern des Kommentars.
+  comment_save_error: 'Fehler beim Speichern des Kommentars: {{error}}'
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: Kommentar wurde erfolgreich angelegt.
   #en: comments: Comments

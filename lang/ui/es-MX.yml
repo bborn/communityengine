@@ -327,7 +327,7 @@ es-MX:
   user_login: Nombre de Usuario
   re_type_your_password_to_confirm: "Re-escribe tu password para confirmar:"
   denied: denegado
-  comment_save_error: No se pudo guardar tu comentario. {{error}}
+  comment_save_error: "No se pudo guardar tu comentario. {{error}}"
   send: Enviar
   left_a_comment: "dejó un comentario:"
   have_an_account: "¿Tienes una cuenta? "
