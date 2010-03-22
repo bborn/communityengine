@@ -311,14 +311,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal assigns(:user).login, 'changed_login'
   end
   
-  def test_should_reset_password
-    assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      post :forgot_password, :email => users(:quentin).email
-      assert_redirected_to login_path    
-      assert_nil UserSession.find
-    end
-  end
-
   def test_should_remind_username
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       post :forgot_username, :email => users(:quentin).email

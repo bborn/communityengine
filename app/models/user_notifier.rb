@@ -101,9 +101,11 @@ class UserNotifier < ActionMailer::Base
     @body[:url]  = home_url
   end
   
-  def reset_password(user)
+  def password_reset_instructions(user)
     setup_email(user)
     @subject    += "#{:user_information.l(:site => AppConfig.community_name)}"
+    sent_on       Time.now
+    body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)    
   end
 
   def forgot_username(user)

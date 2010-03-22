@@ -89,9 +89,10 @@ class UserNotifierTest < ActiveSupport::TestCase
     end    
   end
   
-  def test_should_deliver_reset_password
+  def test_should_deliver_password_reset_instructions
+    activate_authlogic
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      UserNotifier.deliver_reset_password(users(:aaron))
+      UserNotifier.deliver_password_reset_instructions(users(:aaron))
     end    
   end
 
