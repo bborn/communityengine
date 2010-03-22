@@ -690,8 +690,8 @@ es-AR:
   your_about_text_goes_here: "Tu texto de \"Acerca\" va ac\xC3\xA1"
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Tus cambios fueron guardados.
-  #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
-  your_password_has_been_reset_and_emailed_to_you: "Tu contrase\xC3\xB1a fue reseteada y mandada por email."
+  #en: your_password_reset_instructions_have_been_emailed_to_you: Your password has been reset and emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: "Tu contrase\xC3\xB1a fue reseteada y mandada por email."
   #en: your_post_was_deleted: Your post was deleted.
   your_post_was_deleted: Tu post fue borrado.
   #en: your_post_was_successfully_created: Your post was successfully created.
