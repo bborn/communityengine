@@ -12,18 +12,19 @@
               %td{ :colspan => "5" }
                 = :no_messages.l
           -else
-            - @messages.each do |message|
+            - @messages.each do |message_thread|
+              - message = message_thread.message
+              - children = message_thread.parent_message.children              
               %tr
                 %td{:width => '10px'}
                   %fieldset.inline= check_box_tag "delete[]", message.id
-                %td{:width => '60px'}
-                  .photo= link_to image_tag( message.sender.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.sender.login}", "width"=>"50px" ), user_path(message.sender), :title => :users_profile.l(:user => message.sender.login)
-
                 %td
-                  = link_to h(message.subject), user_message_path(@user, message)                  
+                  %em="#{message_thread.creator_name}: "
+                  ="#{link_to h(message_thread.subject), user_message_path(@user, message)}"
+                  =children.any? ? "(#{children.size} messages)" : ''
                   %br
-                  = :from.l + ":"
-                  = link_to h(message.sender.login), user_path(message.sender)                  
+                  ="<em>#{message.sender.login}</em>: #{truncate(message.body)}"
+                
                 %td{:width => '20px'}
                   %em
                     = message.read? ? :read.l : :unread.l

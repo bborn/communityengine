@@ -1,5 +1,8 @@
 = TODO
 
+=1.2.0
+* Threaded private messages
+
 =1.1.0
 * fixed time_ago formatting problem on user/index
 * user Authlogic's perishable token for doing password resets (instead of sending them a password)

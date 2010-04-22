@@ -14,13 +14,14 @@ class MessagesController < BaseController
     if params[:mailbox] == "sent"
       @messages = @user.sent_messages.find(:all, :page => {:current => params[:page], :size => 20})
     else
-      @messages = @user.received_messages.find(:all, :page => {:current => params[:page], :size => 20})
+      @messages = @user.message_threads_as_recipient.find(:all, :page => {:current => params[:page], :size => 20})
     end
   end
   
   def show
     @message = Message.read(params[:id], current_user)
-    @reply = Message.new_reply(@user, @message, params)    
+    @message_thread = MessageThread.for(@message, current_user)
+    @reply = Message.new_reply(@user, @message_thread, params)    
   end
   
   def new

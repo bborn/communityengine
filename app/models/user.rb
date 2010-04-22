@@ -21,7 +21,9 @@ class User < ActiveRecord::Base
   end
   acts_as_taggable  
   acts_as_commentable
-  has_private_messages
+  has_private_messages  
+  has_many :message_threads_as_recipient, :class_name => "MessageThread", :foreign_key => "recipient_id"  
+  
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
@@ -432,6 +434,10 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     UserNotifier.deliver_password_reset_instructions(self)
   end  
+  
+  def unread_message_count
+    message_threads_as_recipient.count(:conditions => ["messages.recipient_id = ? AND messages.recipient_deleted = ? AND read_at IS NULL", self.id, false], :include => :message)
+  end
   
   ## End Instance Methods
   
