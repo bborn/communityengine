@@ -48,7 +48,9 @@ signup '/signup', :controller => 'users', :action => 'new'
 logout '/logout', :controller => 'sessions', :action => 'destroy'
 signup_by_id '/signup/:inviter_id/:inviter_code', :controller => 'users', :action => 'new'
 
-forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
+forgot_password '/forgot_password', :controller => 'password_resets', :action => 'new'
+resources :password_resets, :only => [ :new, :create, :edit, :update]
+
 forgot_username '/forgot_username', :controller => 'users', :action => 'forgot_username'  
 resend_activation '/resend_activation', :controller => 'users', :action => 'resend_activation'  
 
@@ -112,7 +114,6 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
     :update_account => :put,
     :edit_pro_details => :get,
     :update_pro_details => :put,      
-    :forgot_password => [:get, :post],
     :signup_completed => :get,
     :invite => :get,
     :welcome_photo => :get, 

@@ -27,7 +27,8 @@
                 %td{:width => '20px'}
                   %em
                     = message.read? ? :read.l : :unread.l
-                %td.meta{:width => '150px'}= h I18n.l(message.created_at, :format => :time_ago)
+                %td.meta{:width => '150px'}
+                  =time_ago_in_words_or_date(message.created_at)                
         %tfoot
           %tr
             %td{ :colspan => "5" }

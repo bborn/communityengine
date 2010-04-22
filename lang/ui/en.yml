@@ -1589,8 +1589,8 @@ en:
   your_faq_text_goes_here: Your FAQ text goes here.
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Your changes were saved.
-  #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
-  your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
+  #en:   your_password_reset_instructions_have_been_emailed_to_you: Instructions to reset your password have been emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: Instructions to reset your password have been emailed to you.
   #en: your_post_was_deleted: Your post was deleted.
   your_post_was_deleted: Your post was deleted.
   #en: your_post_was_successfully_created: Your post was successfully created.

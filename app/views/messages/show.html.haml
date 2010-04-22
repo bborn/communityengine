@@ -18,7 +18,7 @@
       
       %p
         = :date_title.l + ":"
-        = h I18n.l(@message.created_at, :format => :time_ago)
+        = h I18n.l(@message.created_at, :format => :literal_date)
 
       %pre.message_body= auto_link(h(@message.body))
       

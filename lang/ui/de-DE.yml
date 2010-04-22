@@ -1294,8 +1294,8 @@ de-DE:
   your_about_text_goes_here: "Der Über-uns-Text kommt hier hin"
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: "Die Änderungen wurden gespeichert."
-  #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
-  your_password_has_been_reset_and_emailed_to_you: "Dein Passwort wurde zurückgesetzt und dir per E-Mail zugesendet."
+  #en:   your_password_reset_instructions_have_been_emailed_to_you: Your password has been reset and emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: "Dein Passwort wurde zurückgesetzt und dir per E-Mail zugesendet."
   #en: your_post_was_deleted: Your post was deleted.
   your_post_was_deleted: "Dein Eintrag wurde gelöscht."
   #en: your_post_was_successfully_created: Your post was successfully created.

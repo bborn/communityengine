@@ -311,20 +311,6 @@ class UsersController < BaseController
     flash[:notice] = :walkthrough_complete.l_with_args(:site => AppConfig.community_name) 
     redirect_to user_path
   end
-  
-  def forgot_password  
-    return unless request.post?   
-
-    @user = User.active.find_by_email(params[:email])  
-    if @user && @user.reset_password
-      UserNotifier.deliver_reset_password(@user)
-      @user.save_without_session_maintenance
-      redirect_to login_url
-      flash[:info] = :your_password_has_been_reset_and_emailed_to_you.l      
-    else
-      flash[:error] = :sorry_we_dont_recognize_that_email_address.l
-    end 
-  end
 
   def forgot_username  
     return unless request.post?   
