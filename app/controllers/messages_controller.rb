@@ -27,8 +27,9 @@ class MessagesController < BaseController
   def new
     if params[:reply_to]
       in_reply_to = Message.find_by_id(params[:reply_to])
+      message_thread = MessageThread.for(in_reply_to, current_user)
     end
-    @message = Message.new_reply(@user, in_reply_to, params)    
+    @message = Message.new_reply(@user, message_thread, params)    
   end
   
   def create

@@ -48,10 +48,7 @@ class MessagesControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal assigns(:message).to, m.sender.login
     assert_tag :tag=>'input', :attributes=>{:name=>'message[to]', :value=> m.sender.login}
-    assert_equal assigns(:message).subject, "Re: #{m.subject}"
-    assert_equal assigns(:message).body, "\n\n*Original message*\n\n #{m.body}"
-    assert_tag :tag=>'textarea', :attributes=>{:name=>'message[body]'},
-     :content => '&#x000A;&#x000A;*Original message*&#x000A;&#x000A; Some content'
+    assert_equal assigns(:message).subject, "#{m.subject}"
   end
   
   def test_should_create
