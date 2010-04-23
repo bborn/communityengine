@@ -4,7 +4,6 @@
   .yui-b
     -box do 
       %h3
-        .right= h I18n.l(@message.created_at, :format => :literal_date)      
         -if @message_thread
           %em="#{link_to @message_thread.parent_message.sender.login, @message_thread.parent_message.sender}: "        
           =h @message_thread.parent_message.subject
@@ -12,9 +11,11 @@
           =h @message.subject
 
       -unless @message_thread
-        %pre.message_body= auto_link @message.body      
+        .right= h I18n.l(@message.created_at, :format => :literal_date)            
+        %pre.clear.message_body= auto_link @message.body      
       -else
-        %pre.message_body= auto_link @message_thread.parent_message.body
+        .right= h I18n.l(@message_thread.parent_message.created_at, :format => :literal_date)                  
+        %pre.clear.message_body= auto_link @message_thread.parent_message.body
         %br
       
         - children = @message_thread.parent_message.children
