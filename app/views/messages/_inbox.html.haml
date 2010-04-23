@@ -15,22 +15,19 @@
             - @messages.each do |message_thread|
               - message = message_thread.message
               - children = message_thread.parent_message.children              
-              %tr
+              %tr{:class => message_thread.read? ? :read.l : :unread.l}
                 %td{:width => '10px'}
                   %fieldset.inline
                     = check_box_tag "delete[]", message_thread.id
                 %td
-                  %em="#{message_thread.creator_name}: "
                   ="#{link_to h(message_thread.subject), user_message_path(@user, message)}"
                   =children.any? ? "(#{children.size} messages)" : ''
                   %br
                   ="<em>#{message.sender.login}</em>: #{truncate(message.body)}"
                 
-                %td{:width => '20px'}
-                  %em
-                    = message.read? ? :read.l : :unread.l
                 %td.meta{:width => '150px'}
-                  =time_ago_in_words_or_date(message.created_at)                
+                  =time_ago_in_words_or_date(message_thread.updated_at)                
+                  
         %tfoot
           %tr
             %td{ :colspan => "5" }

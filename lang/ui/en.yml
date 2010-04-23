@@ -1377,8 +1377,8 @@ en:
   total_users: Total users
   #en: total_votes: Total votes
   total_votes: Total votes
-  #en: type_a_username: Type usernames separated by commas
-  type_a_username: Type usernames separated by commas
+  #en: type_a_username: Type a username
+  type_a_username: Type a username
   #en: type_your_password: "Type your password:"
   type_your_password: "Type your password:"
   #en: uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: "Uh oh. We couldn't log you in with the username and password you entered. Try again?"

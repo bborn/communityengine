@@ -14,7 +14,7 @@ class MessagesController < BaseController
     if params[:mailbox] == "sent"
       @messages = @user.sent_messages.find(:all, :page => {:current => params[:page], :size => 20})
     else
-      @messages = @user.message_threads_as_recipient.find(:all, :page => {:current => params[:page], :size => 20})
+      @messages = @user.message_threads_as_recipient.find(:all, :page => {:current => params[:page], :size => 20}, :order => 'updated_at DESC')
     end
   end
   
@@ -35,24 +35,19 @@ class MessagesController < BaseController
     messages = []
 
     if params[:message][:to].blank?
-      # If 'to' field is empty, call validations to catch other
+      # If 'to' field is empty, call validations to catch other errors
       @message = Message.new(params[:message])        
       @message.valid?
       render :action => :new and return
     else
-      # If 'to' field isn't empty then make sure each recipient is valid
-      params[:message][:to].split(',').uniq.each do |to|
-        @message = Message.new(params[:message])          
-        @message.recipient = User.find_by_login(to.strip)
-        @message.sender = @user
-        unless @message.valid?
-          render :action => :new and return        
-        else
-          messages << @message
-        end
+      @message = Message.new(params[:message])          
+      @message.recipient = User.find_by_login(params[:message][:to].strip)
+      @message.sender = @user
+      unless @message.valid?
+        render :action => :new and return        
+      else
+        @message.save!
       end
-      # If all messages are valid then send messages
-      messages.each {|msg| msg.save!}
       flash[:notice] = :message_sent.l
       redirect_to user_messages_path(@user) and return
     end

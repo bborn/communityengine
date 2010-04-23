@@ -25,5 +25,9 @@ class MessageThread < ActiveRecord::Base
     end
   end
   
+  def read?
+    message.recipient.eql?(recipient) ? message.read? : 'read'
+  end
+  
   
 end

@@ -9,6 +9,7 @@ class AddThreadingToMessages < ActiveRecord::Migration
       t.integer :parent_message_id
       t.timestamps
     end
+        
   end
   
   def self.down

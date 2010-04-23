@@ -84,6 +84,14 @@ namespace :community_engine do
     task :clobber_rcov do |t|
       rm_r OUTPUT_DIR, :force => true
     end
+    
+  end
+  
+  desc 'When upgrading to threaded messages, add thread to existing ones'
+  task :add_threads_to_existing_messages => :environment do
+    Message.all.each do |message|
+      message.update_message_threads
+    end
   end
 
   namespace :db do
