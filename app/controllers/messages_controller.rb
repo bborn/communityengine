@@ -71,6 +71,20 @@ class MessagesController < BaseController
     end
   end
   
+  def delete_message_threads
+    if request.post?
+      if params[:delete]
+        params[:delete].each { |id|
+          message_thread = MessageThread.find_by_id_and_recipient_id(id, @user.id)
+          message_thread.destroy if message_thread
+        }
+        flash[:notice] = :messages_deleted.l
+      end
+      redirect_to user_messages_path(@user)
+    end
+
+  end
+  
   private
     def find_user
       @user = User.find(params[:user_id])

@@ -135,7 +135,7 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :invitations
   user.resources :offerings, :collection => {:replace => :put}
   user.resources :favorites, :name_prefix => 'user_'
-  user.resources :messages, :collection => { :delete_selected => :post, :auto_complete_for_username => :any }  
+  user.resources :messages, :collection => { :delete_message_threads => :post, :delete_selected => :post, :auto_complete_for_username => :any }  
   user.resources :comments
   user.resources :photo_manager, :only => ['index']
   user.resources :albums, :path_prefix => ':user_id/photo_manager', :member => {:add_photos => :get, :photos_added => :post}, :collection => {:paginate_photos => :get}  do |album| 
