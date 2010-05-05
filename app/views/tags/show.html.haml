@@ -34,6 +34,9 @@
       -else 
         -box :class => 'first_alt hfeed' do
           = render :partial => 'posts/post', :collection => @posts      
+          - if @pages
+            .pagination= paginating_links @pages, :params => params if @pages.page_count > 1
+          
 
     - if @photos.any?
       %br.clear
@@ -58,5 +61,5 @@
             %img.polaroid.clipping{"src"=>"#{h clipping.image_uri}", "style"=>"width:108px"}
         %h6.all= link_to :all_clippings_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Clipping') unless params[:type]
 
-    - if @pages
+    - if @pages && !params[:type].eql?('Post')
       .pagination= paginating_links @pages, :params => params if @pages.page_count > 1
