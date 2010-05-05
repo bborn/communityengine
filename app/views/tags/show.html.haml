@@ -20,8 +20,7 @@
       %h6.all= link_to :all_tags.l, tags_path
 
 #yui-main
-  -box :class => "yui-b" do
-
+  .yui-b
     - if @posts.any?
       -unless params[:type]
         #posts        
