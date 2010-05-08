@@ -20,7 +20,7 @@ class MessagesController < BaseController
   
   def show
     @message = Message.read(params[:id], current_user)
-    @message_thread = MessageThread.for(@message, current_user)
+    @message_thread = MessageThread.for(@message, (admin? ? @message.recipient : current_user ))
     @reply = Message.new_reply(@user, @message_thread, params)    
   end
   
