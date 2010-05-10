@@ -38,8 +38,9 @@ admin_dashboard   '/admin/dashboard', :controller => 'homepage_features', :actio
 admin_users       '/admin/users', :controller => 'admin', :action => 'users'
 admin_messages    '/admin/messages', :controller => 'admin', :action => 'messages'
 admin_comments    '/admin/comments', :controller => 'admin', :action => 'comments'
-admin_tags        'admin/tags/:action', :controller => 'tags', :defaults => {:action=>:manage}
-admin_events      'admin/events', :controller => 'admin', :action=>'events'
+admin_tags        '/admin/tags/:action', :controller => 'tags', :defaults => {:action=>:manage}
+admin_events      '/admin/events', :controller => 'admin', :action=>'events'
+admin_clear_cache '/admin/clear_cache', :controller => 'admin', :action => 'clear_cache'
 
 # sessions routes
 teaser '', :controller=>'base', :action=>'teaser'

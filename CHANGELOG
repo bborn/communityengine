@@ -2,6 +2,7 @@
 
 =1.2.0
 * Threaded private messages
+* Clear cache link in admin dashboard
 
 =1.1.0
 * fixed time_ago formatting problem on user/index

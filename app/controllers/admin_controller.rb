@@ -1,6 +1,21 @@
 class AdminController < BaseController
   before_filter :admin_required
   
+  def clear_cache
+    case Rails.cache
+      when ActiveSupport::Cache::FileStore
+        dir = Rails.cache.cache_path
+        unless dir == Rails.public_path
+          FileUtils.rm_r(Dir.glob(dir+"/*")) rescue Errno::ENOENT
+          Rails.logger.info("Cache directory fully swept.")
+        end
+        flash[:notice] = :cache_cleared.l
+        redirect_to admin_dashboard_path and return
+      else
+        raise 'Override this method to support your cache store'
+    end
+  end
+  
   def contests
     @contests = Contest.find(:all)
 

@@ -121,9 +121,9 @@ en:
   is_attending_this_event: is attending this event
   #en: are_you_sure: Are you sure?
   are_you_sure: Are you sure?
-  #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
   #en: are_you_sure_you_want_to_delete_this_page: "Are you sure you want to delete this page?"
   are_you_sure_you_want_to_delete_this_page: "Are you sure you want to delete this page?"
+  #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"  
   are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
   #en: are_you_sure_you_want_to_delete_this_post: "Are you sure you want to delete this post?"
   are_you_sure_you_want_to_delete_this_post: "Are you sure you want to delete this post?"
@@ -181,6 +181,10 @@ en:
   by: by
   #en: by_looking_at_the: by looking at the
   by_looking_at_the: by looking at the
+  #en: cache_cleared: The cache was cleared
+  cache_cleared: The cache was cleared
+  #en: cache_clear_link: Clear the cache
+  cache_clear_link: Clear the cache  
   #en: cancel: Cancel
   cancel: Cancel
   #en: cancel_and_go_back_to: cancel and go back to
