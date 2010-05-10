@@ -13,8 +13,8 @@
 
 
 .yui-b
-  -box do 
-    = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
+
+  = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
 
   - if @user.description
     -box :id => "about_me" do
