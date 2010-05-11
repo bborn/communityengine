@@ -22,7 +22,7 @@ class Comment < ActiveRecord::Base
   named_scope :recent, :order => 'created_at DESC'
 
   def self.find_photo_comments_for(user)
-    Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC')
+    Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC', :limit => 10)
   end
   
   # Helper class method to lookup all comments assigned
