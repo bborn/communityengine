@@ -21,7 +21,7 @@
     -box :class => 'hfeed comments', :id => 'comments' do      
       %h3= :event_comments.l 
       %h2= :add_your_comment.l
-      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @event}
+      = render :partial => 'comments/comment_form', :locals => {:commentable => @event}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments
       %span#more_comments_links= more_comments_links(@event)

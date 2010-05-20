@@ -50,7 +50,7 @@
     -box :class => 'hfeed comments', :id => 'comments' do
       %h3=:clipping_comments.l
       %h2=:add_your_comment.l
-      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
+      = render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @clipping.comments
       %span#more_comments_links= more_comments_links(@clipping)

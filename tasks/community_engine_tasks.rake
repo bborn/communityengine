@@ -90,7 +90,7 @@ namespace :community_engine do
   desc 'When upgrading to threaded messages, add thread to existing ones'
   task :add_threads_to_existing_messages => :environment do
     Message.all.each do |message|
-      # message.update_message_threads
+      message.update_message_threads
       message.message_threads.update_all(["updated_at = ?", message.created_at])      
     end
   end
