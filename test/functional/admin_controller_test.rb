@@ -41,7 +41,7 @@ class AdminControllerTest < ActionController::TestCase
   test "should clear cache" do
     login_as :admin
     get :clear_cache
-    assert_redirected_to '/homepage_features'
+    assert_redirected_to admin_dashboard_path
   end
 
 end
