@@ -12,8 +12,9 @@ class AdminController < BaseController
         flash[:notice] = :cache_cleared.l
         redirect_to admin_dashboard_path and return
       else
-        raise 'Override this method to support your cache store'
+        Rails.logger.warn("Cache not swept: you must override AdminController#clear_cache to support #{Rails.cache}") 
     end
+    redirect_to admin_dashboard_path and return    
   end
   
   def contests
