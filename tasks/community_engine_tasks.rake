@@ -24,7 +24,6 @@ namespace :community_engine do
   desc "Create user with admin role."
   task :create_admin do
     Rake::Task['environment'].invoke
-    # require 'authlogic'     
     require File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine', 'db', 'sample', 'users.rb')
   end
 

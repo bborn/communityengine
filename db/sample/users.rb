@@ -27,7 +27,6 @@ def create_admin_user
   else
     require 'highline/import' 
     puts "Create the admin user (press enter for defaults)."
-    #name = prompt_for_admin_name unless name
     login = prompt_for_admin_login 
     password = prompt_for_admin_password 
   end
