@@ -15,29 +15,30 @@
   
 
 #yui-main
-  -box :class => "yui-b" do
-    %h3= :ads.l
-    %table{"width"=>"100%"}
-      %tr
-        %th=order @search, :by => :name, :as => :name.l                    
-        %th 
-          =order @search, :by => :published, :as => :published.l                              
-          \?
-        %th
-          =order @search, :by => :location, :as => :location.l                              
-        %th &nbsp;
-
-      - for ad in @ads
+  .yui-b  
+    -box do
+      %h3= :ads.l
+      %table{"width"=>"100%"}
         %tr
-          %td= link_to h(ad.name), ad_path(ad)
-          %td= h ad.published?
-          %td= h ad.location
-          %td{:colspan => 3}
-            = link_to :edit.l, edit_ad_path(ad)
-            |
-            = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
+          %th=order @search, :by => :name, :as => :name.l                    
+          %th 
+            =order @search, :by => :published, :as => :published.l                              
+            \?
+          %th
+            =order @search, :by => :location, :as => :location.l                              
+          %th &nbsp;
+
+        - for ad in @ads
+          %tr
+            %td= link_to h(ad.name), ad_path(ad)
+            %td= h ad.published?
+            %td= h ad.location
+            %td{:colspan => 3}
+              = link_to :edit.l, edit_ad_path(ad)
+              |
+              = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
             
-    .pagination=paginating_links @ads if @ads.page_count > 1
+      .pagination=paginating_links @ads if @ads.page_count > 1
       
-    %br
-    = link_to :new_ad.l, new_ad_path
+      %br
+      = link_to :new_ad.l, new_ad_path
