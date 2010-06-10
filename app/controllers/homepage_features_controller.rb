@@ -1,5 +1,5 @@
 class HomepageFeaturesController < BaseController
-  uses_tiny_mce(:only => [:new, :edit ]) do
+  uses_tiny_mce(:only => [:new, :edit, :create, :update ]) do
     AppConfig.default_mce_options
   end
 
