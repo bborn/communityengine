@@ -176,7 +176,7 @@ module BaseHelper
     if @page_title
       title = @page_title + ' &raquo; ' + app_base + tagline
     elsif title == app_base          
-		  title = :showing.l + ' ' + @controller.controller_name.l + ' &raquo; ' + app_base + tagline
+		  title = :showing.l + ' ' + @controller.controller_name + ' &raquo; ' + app_base + tagline
     end
 
     title
