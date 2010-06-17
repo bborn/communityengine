@@ -279,6 +279,8 @@ en:
   comment_author_email_required: "Required, won't be shown on the site."
   #en: comment_web_site_label: "Web site (include http://)"
   comment_web_site_label: "Web site (include http://)"  
+  #en: comment_spam_error: "Comment was flagged as spam. Please make sure you aren't including any spammy words or links and try again."  
+  comment_spam_error: "Comment was flagged as spam. Make sure you don't include spammy words or links and try again"  
   #en: comments: Comments
   comments: Comments
   #en: comments_count: {{count}} comments
