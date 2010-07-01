@@ -405,8 +405,14 @@ class UsersController < BaseController
     @estimated_payment = @posts.sum do |p| 
       7
     end
-  end  
-  
+
+    respond_to do |format|
+      format.html
+      format.xml {
+        render :xml => @posts.to_xml(:include => :category)
+      }
+    end
+  end    
 
   protected  
     def setup_metro_areas_for_cloud
