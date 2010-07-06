@@ -85,7 +85,7 @@ class AdminController < BaseController
     
     respond_to do |format|
       format.xml {
-        render :xml => @users.to_xml(:except => [ :password, :crypted_password, :single_access_token, :perishable_token, :password_salt, :persistence_token ])
+        render :xml => @users.to_xml(:only => [:login, :email])
       }
     end
     
