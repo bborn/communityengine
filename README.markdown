@@ -17,7 +17,7 @@ Requirements:
 	  ri_cal
     authlogic
     searchlogic
-    rakismet (if using akismet for spam protection)
+    rakismet
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
