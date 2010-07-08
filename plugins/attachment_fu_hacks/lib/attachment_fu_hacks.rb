@@ -23,8 +23,6 @@ Technoweenie::AttachmentFu::InstanceMethods.module_eval do
   
   def detect_mimetype(file_data)
     if file_data.content_type.strip == "application/octet-stream"
-      puts file_data.original_filename.inspect
-      puts File.mime_type?(file_data.original_filename).inspect
       return File.mime_type?(file_data.original_filename)
     else
       return file_data.content_type
