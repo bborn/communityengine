@@ -3,12 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class AdminControllerTest < ActionController::TestCase
   fixtures :users, :categories, :roles
 
-  def setup
-    @controller = AdminController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
   def test_should_get_index
     login_as :admin
     get :users
@@ -42,6 +36,12 @@ class AdminControllerTest < ActionController::TestCase
     put :deactivate_user, :id => users(:quentin).id
     assert_response :redirect    
     assert !users(:quentin).reload.active?    
+  end
+  
+  test "should clear cache" do
+    login_as :admin
+    get :clear_cache
+    assert_redirected_to admin_dashboard_path
   end
 
 end

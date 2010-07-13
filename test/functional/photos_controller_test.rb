@@ -3,12 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PhotosControllerTest < ActionController::TestCase
   fixtures :photos, :users, :roles, :albums
 
-  def setup
-    @controller = PhotosController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
   def test_should_create_photo
     login_as :quentin 
     assert_difference Photo, :count, 4 do

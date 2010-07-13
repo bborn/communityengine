@@ -4,9 +4,6 @@ class FavoritesControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :roles
 
   def setup
-    @controller = FavoritesController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     Favorite.destroy_all
   end
   

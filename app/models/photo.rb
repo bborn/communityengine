@@ -3,21 +3,6 @@ class Photo < ActiveRecord::Base
   belongs_to :album
   
   has_attachment prepare_options_for_attachment_fu(AppConfig.photo['attachment_fu_options'])
-  # attr_accessor :cropped_size
-  # before_thumbnail_saved do |thumbnail|
-  #   raise thumbnail.inspect
-  #   # thumbnail.send(:'attributes=', {:thumbnail_resize_options => cropped_size}, false) if thumbnail.parent.cropped_size
-  #   if thumbnail.parent.cropped_size[:x1]
-  #     # img = Magick::Image::read(@photo.public_filename).first
-  #     thumbnail.crop!(::Magick::CenterGravity, parent.cropped_size[:x1].to_i, parent.cropped_size[:y1].to_i, parent.cropped_size[:width].to_i, parent.cropped_size[:height].to_i, true)
-  #     raise thumbnail.inspect
-  #     # size = AppConfig.photo['attachment_fu_options']['thumbnails']['medium']
-  #     # dimensions = size[1..size.size].split("x")
-  #     # img.crop_resized!(dimensions[0].to_i, dimensions[1].to_i)
-  #     # img.write @settings.header_image_file
-  #   end
-  # end
-
 
   acts_as_taggable
 
@@ -42,9 +27,8 @@ class Photo < ActiveRecord::Base
   attr_accessible :name, :description
 
   def display_name
-    self.name ? self.name : "#{:created_at.l.downcase}: #{I18n.localize(self.created_at.to_date)}"
+    (self.name && self.name.length>0) ? self.name : "#{:created_at.l.downcase}: #{I18n.l(self.created_at, :format => :published_date)}"
   end
-  
 
   def description_for_rss
     "<a href='#{self.link_for_rss}' title='#{self.name}'><img src='#{self.public_filename(:large)}' alt='#{self.name}' /><br />#{self.description}</a>"

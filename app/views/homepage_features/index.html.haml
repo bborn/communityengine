@@ -17,7 +17,7 @@
 
         - for homepage_feature in @homepage_features
           %tr
-            %td=h homepage_feature.created_at.strftime("%m/%d/%y")
+            %td=h I18n.l(homepage_feature.created_at, :format => :short_published_date)
             %td
               %a{:href=>"#{h homepage_feature.url}"}=h homepage_feature.title
             %td=h truncate(homepage_feature.description, :length => 250)

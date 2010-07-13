@@ -1,12 +1,31 @@
 = TODO
-* haml/sass propagation (desert)
-* upgrade documentation/rake tasks to fix old migrations
+
+=1.2.0
+* Threaded private messages
+* Clear cache link in admin dashboard
+* Add support for using rakismet gem to check comments for spam (see README for instructions)
+
+=1.1.0
+* fixed time_ago formatting problem on user/index
+* user Authlogic's perishable token for doing password resets (instead of sending them a password)
+
+
+= 1.0.4.2
+* Rails 2.3.4 compatibility (all tests pass, Takk)
+* Add searchlogic gem dependency (searchlogic is awesome, will be using it more in the future, currently just using on admin_controller#comments)
+* Add searchlogic to manage tags page, add taggings_count to tags (new migration)
+
+= 1.0.4
+* Changes to Japanese language translations
+* Use authlogic instead of restful_authentication (augthlogic gem now required, new migrations required) (thanks jnimety!)
+* Big overhaul of i18n by sdecleire, more international-friendly translation tokens. `en` is now the default locale (instead of `en-US`)
+
 
 = 1.0.3
 * complete private messages integration, allow sending messages to multiple recipients
 * upgrades to Event functionality, including RSVPs (eksatx)
-* Photo albums, Static pages and messages controller test (juafrlo)
-* calendar_date_select gem is now required
+* Photo albums, Static pages and messages controller tests (juafrlo, eksatx)
+* calendar_date_select, icalendar gems now required
 * added ability to unsubscribe from comment notifications for anonymous comments
 * ical format output for Events to allow subscriptions
 

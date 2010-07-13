@@ -2,11 +2,12 @@ ru-RU:
   date:
     formats:
       published_date: "%Y/%m/%d"
-      date_ago: "%B %d"
+      date_ago: "%b %Y"
 
   time:
     formats:
       published_date: "%Y/%m/%d"      
+      short_date: "%y/%m/%d"
       time_ago: "%l:%M%p"
 
   activerecord:

@@ -7,7 +7,7 @@ es-MX:
     abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
     formats:
       published_date: "%Y/%m/%d"
-      date_ago: "%B %d"
+      date_ago: "%b %Y"
 
   time:
     formats:
@@ -286,7 +286,7 @@ es-MX:
   admin_dashboard: Panel de Control del Administrador
   banner_title_required: "Título del Anúncio (required):"
   email_signup_thanks: "¡Gracias por registrarte! Deberías recibir la confirmación de un correo electrónico dentro de poco en {{email}}"
-  required_you_must_be_at_least_years_old_to_sign_up: "(Requerido: debes tener mínimo 13 años para registarte.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Requerido: debes tener mínimo {{min_age}} años para registarte.)"
   create_a_clipping: Crear un Recorte
   activation_email_not_sent_message: El e-mail de activación no pudo ser enviado. ¿Tal vez el usuario ya ha sido activado?
   post_a_new_topic: Publicar un nuevo Tema
@@ -309,7 +309,7 @@ es-MX:
   clippings_let_you_to_save_cool_images_from_around_the_web: Los recortes le dejan guardar imagenes de toda la Web.
   you_last_logged_in_on: Ingresaste la última vez el 
   moderator: Moderador
-  your_password_has_been_reset_and_emailed_to_you: Tu password ha sido reiniciado y enviado por correo a tu e-mail.
+  your_password_reset_instructions_have_been_emailed_to_you: Tu password ha sido reiniciado y enviado por correo a tu e-mail.
   to_get_started_with_clippings_first: Para iniciar con tus recortes, primero
   sorry_we_dont_recognize_that_email_address: Lo sentimos. No reconocemos ese e-mail.
   recent_activity: Actividad Reciente
@@ -327,7 +327,7 @@ es-MX:
   user_login: Nombre de Usuario
   re_type_your_password_to_confirm: "Re-escribe tu password para confirmar:"
   denied: denegado
-  comment_save_error: No se pudo guardar tu comentario. {{error}}
+  comment_save_error: "No se pudo guardar tu comentario. {{error}}"
   send: Enviar
   left_a_comment: "dejó un comentario:"
   have_an_account: "¿Tienes una cuenta? "
@@ -580,7 +580,7 @@ es-MX:
   get_started_banner: ¡Iniciate con <a href="/">{{site}}</a> hoy mismo!
   invite_a_friend: Invita un amigo
   new_yesterday: Nuevo Ayer
-  posts_photos_and_bookmarks: publicaciones, fotos y favvoritos
+  posts_photos_and_bookmarks: "{{name}} publicaciones, fotos y favvoritos"
   go_to_the_forums: ir a los foros
   your_post_was_successfully_created: Tu publicación fue creada con éxito.
   this_friendship_is_pending: Esta amistad está pendiente.

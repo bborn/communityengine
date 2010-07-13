@@ -14,44 +14,41 @@ class MessagesController < BaseController
     if params[:mailbox] == "sent"
       @messages = @user.sent_messages.find(:all, :page => {:current => params[:page], :size => 20})
     else
-      @messages = @user.received_messages.find(:all, :page => {:current => params[:page], :size => 20})
+      @messages = @user.message_threads_as_recipient.find(:all, :page => {:current => params[:page], :size => 20}, :order => 'updated_at DESC')
     end
   end
   
   def show
     @message = Message.read(params[:id], current_user)
-    @reply = Message.new_reply(@user, @message, params)    
+    @message_thread = MessageThread.for(@message, (admin? ? @message.recipient : current_user ))
+    @reply = Message.new_reply(@user, @message_thread, params)    
   end
   
   def new
     if params[:reply_to]
       in_reply_to = Message.find_by_id(params[:reply_to])
+      message_thread = MessageThread.for(in_reply_to, current_user)
     end
-    @message = Message.new_reply(@user, in_reply_to, params)    
+    @message = Message.new_reply(@user, message_thread, params)    
   end
   
   def create
     messages = []
 
     if params[:message][:to].blank?
-      # If 'to' field is empty, call validations to catch other
+      # If 'to' field is empty, call validations to catch other errors
       @message = Message.new(params[:message])        
       @message.valid?
       render :action => :new and return
     else
-      # If 'to' field isn't empty then make sure each recipient is valid
-      params[:message][:to].split(',').uniq.each do |to|
-        @message = Message.new(params[:message])          
-        @message.recipient = User.find_by_login(to.strip)
-        @message.sender = @user
-        unless @message.valid?
-          render :action => :new and return        
-        else
-          messages << @message
-        end
+      @message = Message.new(params[:message])          
+      @message.recipient = User.find_by_login(params[:message][:to].strip)
+      @message.sender = @user
+      unless @message.valid?
+        render :action => :new and return        
+      else
+        @message.save!
       end
-      # If all messages are valid then send messages
-      messages.each {|msg| msg.save!}
       flash[:notice] = :message_sent.l
       redirect_to user_messages_path(@user) and return
     end
@@ -68,6 +65,20 @@ class MessagesController < BaseController
       end
       redirect_to user_messages_path(@user)
     end
+  end
+  
+  def delete_message_threads
+    if request.post?
+      if params[:delete]
+        params[:delete].each { |id|
+          message_thread = MessageThread.find_by_id_and_recipient_id(id, @user.id)
+          message_thread.destroy if message_thread
+        }
+        flash[:notice] = :messages_deleted.l
+      end
+      redirect_to user_messages_path(@user)
+    end
+
   end
   
   private

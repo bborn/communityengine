@@ -1,6 +1,6 @@
 class HomepageFeature < ActiveRecord::Base  
   has_attachment prepare_options_for_attachment_fu(AppConfig.feature['attachment_fu_options'])
-  attr_accessible :url, :title, :description
+  attr_accessible :url, :title, :description, :position
 
   validates_presence_of :content_type
   validates_presence_of :filename

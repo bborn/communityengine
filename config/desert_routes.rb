@@ -38,8 +38,9 @@ admin_dashboard   '/admin/dashboard', :controller => 'homepage_features', :actio
 admin_users       '/admin/users', :controller => 'admin', :action => 'users'
 admin_messages    '/admin/messages', :controller => 'admin', :action => 'messages'
 admin_comments    '/admin/comments', :controller => 'admin', :action => 'comments'
-admin_tags        'admin/tags/:action', :controller => 'tags', :defaults => {:action=>:manage}
-admin_events      'admin/events', :controller => 'admin', :action=>'events'
+admin_tags        '/admin/tags/:action', :controller => 'tags', :defaults => {:action=>:manage}
+admin_events      '/admin/events', :controller => 'admin', :action=>'events'
+admin_clear_cache '/admin/clear_cache', :controller => 'admin', :action => 'clear_cache'
 
 # sessions routes
 teaser '', :controller=>'base', :action=>'teaser'
@@ -48,7 +49,9 @@ signup '/signup', :controller => 'users', :action => 'new'
 logout '/logout', :controller => 'sessions', :action => 'destroy'
 signup_by_id '/signup/:inviter_id/:inviter_code', :controller => 'users', :action => 'new'
 
-forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
+forgot_password '/forgot_password', :controller => 'password_resets', :action => 'new'
+resources :password_resets, :only => [ :new, :create, :edit, :update]
+
 forgot_username '/forgot_username', :controller => 'users', :action => 'forgot_username'  
 resend_activation '/resend_activation', :controller => 'users', :action => 'resend_activation'  
 
@@ -88,7 +91,7 @@ search_tags '/search/tags', :controller => 'tags', :action => 'show'
 
 resources :categories
 resources :skills
-resources :events, :collection => { :past => :get, :ical => :get } do |event|
+resources :events, :collection => { :past => :get, :ical => :get }, :member => { :clone => :get } do |event|
   event.resources :rsvps, :except => [:index, :show]
 end
 resources :favorites, :path_prefix => '/:favoritable_type/:favoritable_id'
@@ -112,7 +115,6 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
     :update_account => :put,
     :edit_pro_details => :get,
     :update_pro_details => :put,      
-    :forgot_password => [:get, :post],
     :signup_completed => :get,
     :invite => :get,
     :welcome_photo => :get, 
@@ -134,7 +136,7 @@ resources :users, :member_path => '/:id', :nested_member_path => '/:user_id', :m
   user.resources :invitations
   user.resources :offerings, :collection => {:replace => :put}
   user.resources :favorites, :name_prefix => 'user_'
-  user.resources :messages, :collection => { :delete_selected => :post, :auto_complete_for_username => :any }  
+  user.resources :messages, :collection => { :delete_message_threads => :post, :delete_selected => :post, :auto_complete_for_username => :any }  
   user.resources :comments
   user.resources :photo_manager, :only => ['index']
   user.resources :albums, :path_prefix => ':user_id/photo_manager', :member => {:add_photos => :get, :photos_added => :post}, :collection => {:paginate_photos => :get}  do |album| 

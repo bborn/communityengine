@@ -9,7 +9,7 @@ class TagsController < BaseController
   end  
 
   def auto_complete_for_tag_name
-    @tags = Tag.find(:all, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
+    @tags = Tag.find(:all, :limit => 10, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
     render :inline => "<%= auto_complete_result(@tags, 'name') %>"
   end
   
@@ -24,10 +24,13 @@ class TagsController < BaseController
 
     @clipping_tags = popular_tags(75, ' count DESC', 'Clipping')  
   end
-
+  
   def manage
-    @tags = Tag.find(:all, :order => :name, :page => {:current => params[:page], :size => 20})
+    @search = Tag.search(params[:search])
+    @search.order ||= :ascend_by_name
+    @tags = @search.find(:all, :page => {:current => params[:page], :size => 100})
   end
+  
 
   def edit
     @tag = Tag.find_by_name(URI::decode(params[:id]))

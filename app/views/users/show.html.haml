@@ -13,8 +13,8 @@
 
 
 .yui-b
-  -box do 
-    = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
+
+  = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
 
   - if @user.description
     -box :id => "about_me" do
@@ -26,11 +26,9 @@
     %h3
       =:my_friends.l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
-    = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user
-    %br
-    = link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
-    %br
-    %br
+    %p
+      = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user
+      %br= link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
     - @accepted_friendships.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
@@ -49,8 +47,7 @@
             - if comment.commentable.eql?(comment.recipient)
               %strong= :to.l + ": #{link_to comment.recipient.login, commentable_url(comment)}"
             - else
-              %br
-              %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type})"
+              %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type.l})"
           %dd
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
 
@@ -76,7 +73,7 @@
 
     - unless @photos.empty?
       -box :id => "photos" do
-        %h3=:photos.l
+        %h3=:my_photos.l
         - @photos.each do |photo|
           = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
 
@@ -91,7 +88,7 @@
 
     - unless @clippings.empty?
       -box :id => "clippings" do
-        %h3=:clippings.l
+        %h3=:my_clippings.l
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(@user, clipping)}"}
             %img.clipping.polaroid{"src"=>"#{h clipping.image_uri(:thumb)}", :width => '100', :height => '100'}
@@ -100,7 +97,7 @@
     -box :class => 'hfeed comments', :id => 'comments' do
       %h3=:profile_comments.l
       %h2=:add_your_comment.l
-      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @user}
+      = render :partial => 'comments/comment_form', :locals => {:commentable => @user}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments
       %span#more_comments_links= more_user_comments_links

@@ -1,5 +1,5 @@
 class Tagging < ActiveRecord::Base #:nodoc:
-  belongs_to :tag
+  belongs_to :tag, :counter_cache => true
   belongs_to :taggable, :polymorphic => true
   
   def after_destroy

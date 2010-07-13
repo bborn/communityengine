@@ -8,7 +8,9 @@ class PhotosController < BaseController
 
   skip_before_filter :verify_authenticity_token, :only => [:create] #because the TinyMCE image uploader can't provide the auth token
 
-  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
+  uses_tiny_mce(:only => [:show]) do
+    AppConfig.simple_mce_options
+  end
 
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
 
@@ -27,7 +29,7 @@ class PhotosController < BaseController
       cond.append ['tags.name = ?', params[:tag_name]]
     end
 
-    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page]})
+    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page], :size => 30})
 
     @tags = Photo.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
 

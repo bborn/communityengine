@@ -2,11 +2,12 @@ es-AR:
   date:
     formats:
       published_date: "%Y/%m/%d"
-      date_ago: "%B %d"
+      date_ago: "%b %Y"
 
   time:
     formats:
       published_date: "%Y/%m/%d"      
+      short_date: "%y/%m/%d"
       time_ago: "%l:%M%p"
 
   activerecord:
@@ -144,7 +145,7 @@ es-AR:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: Comentario no pudo ser borrada.
   #en: comment_save_error: Su comentario no se ha podido guardar.
-  comment_save_error: Su comentario no se ha podido guardar.
+  comment_save_error: "Su comentario no se ha podido guardar: {{error}}"
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: Comentario se ha creado correctamente.
   #en: comments: Comments
@@ -467,8 +468,8 @@ es-AR:
   required: (requerido)
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Requerido: te vamos a mandar un mail de confirmaci\xC3\xB3n a la direcci\xC3\xB3n que ingreses.)"
-  #en: required_you_must_be_at_least__years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
-  required_you_must_be_at_least__years_old_to_sign_up: "(Requerido: ten\xC3\xA9s que tener al menos 13 a\xC3\xB1o para suscribirte,)"
+  #en: required_you_must_be_at_least__years_old_to_sign_up: "(Required: you must be at least {{min_age}} years old to sign up.)"
+  required_you_must_be_at_least__years_old_to_sign_up: "(Requerido: ten\xC3\xA9s que tener al menos {{min_age}} a\xC3\xB1o para suscribirte,)"
   #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
   required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Requerido: tu nombre de usuario no debe contener numerales, espacios o caracteres especiales.)"
   #en: reset_my_password: Reset my password
@@ -689,8 +690,8 @@ es-AR:
   your_about_text_goes_here: "Tu texto de \"Acerca\" va ac\xC3\xA1"
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Tus cambios fueron guardados.
-  #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
-  your_password_has_been_reset_and_emailed_to_you: "Tu contrase\xC3\xB1a fue reseteada y mandada por email."
+  #en: your_password_reset_instructions_have_been_emailed_to_you: Your password has been reset and emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: "Tu contrase\xC3\xB1a fue reseteada y mandada por email."
   #en: your_post_was_deleted: Your post was deleted.
   your_post_was_deleted: Tu post fue borrado.
   #en: your_post_was_successfully_created: Your post was successfully created.

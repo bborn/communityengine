@@ -15,7 +15,7 @@
           %ul
             %li.update
               %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
-                %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display("%B %d, %Y")
+                %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display(:literal_date)
             %li.view= :views.l+" (#{@post.view_count})"
             %li.comments= link_to :comments.l+" (#{@post.comments.size})", user_post_path(@user, @post)+'#comments'      
             - if current_user and current_user.can_request_friendship_with(@post.user)
@@ -55,7 +55,7 @@
     -box :class => 'hfeed comments', :id => 'comments' do      
       %h3= :post_comments.l 
       %h2= :add_your_comment.l
-      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @post}
+      = render :partial => 'comments/comment_form', :locals => {:commentable => @post}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments
       %span#more_comments_links= more_comments_links(@post)

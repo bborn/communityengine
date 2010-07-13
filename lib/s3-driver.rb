@@ -12,10 +12,6 @@
 require 's3'
 require 'time' # for httpdate
 
-AWS_ACCESS_KEY_ID = '1MDCWZHGB8F98EBAHV82'
-AWS_SECRET_ACCESS_KEY = 'In7gs33pyYzVOUEfN+PZVwlweRoykF98PhLnt+MF'
-# remove these next two lines as well, when you've updated your credentials.
-
 BUCKET_NAME = AWS_ACCESS_KEY_ID + '-test-bucket'
 KEY_NAME = 'test-key'
 

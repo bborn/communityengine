@@ -2,11 +2,12 @@ es-ES:
   date:
     formats:
       published_date: "%Y/%m/%d"
-      date_ago: "%B %d"
+      date_ago: "%b %Y"
 
   time:
     formats:
       published_date: "%Y/%m/%d"      
+      short_date: "%y/%m/%d"
       time_ago: "%l:%M%p"
 
   activerecord:
@@ -166,7 +167,7 @@ es-ES:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: "No se pudo borrar el comentario."
   #en: comment_save_error: Your comment couldn't be saved. {{error}}
-  comment_save_error: No se pudo guardar tu comentario. {{error}}
+  comment_save_error: "No se pudo guardar tu comentario. {{error}}"
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: "El comentario se cre\xC3\xB3 satisfactoriamente."
   #en: comments: Comments

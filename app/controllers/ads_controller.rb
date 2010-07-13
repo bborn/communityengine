@@ -1,11 +1,14 @@
 class AdsController < BaseController
+  
   before_filter :login_required
   before_filter :admin_required  
 
   # GET /ads
   # GET /ads.xml
   def index
-    @ads = Ad.find(:all)
+    @search = Ad.search(params[:search])
+    @search.order ||= :descend_by_created_at
+    @ads = @search.find(:all, :page => {:current => params[:page], :size => 15})
 
     respond_to do |format|
       format.html # index.rhtml

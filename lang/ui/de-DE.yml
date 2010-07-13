@@ -2,11 +2,12 @@ de-DE:
   date:
     formats:
       published_date: "%d.%m.%Y"
-      date_ago: "%e. %b"
+      date_ago: "%b %Y"
 
   time:
     formats:
       published_date: "%d.%m.%Y"      
+      short_date: "%d.%m.%y"
       time_ago: "%H:%M"
 
   activerecord:
@@ -232,7 +233,7 @@ de-DE:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: "Kommentar kann nicht gel\xC3\xB6scht werden."
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: Fehler beim Speichern des Kommentars.
+  comment_save_error: 'Fehler beim Speichern des Kommentars: {{error}}'
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: Kommentar wurde erfolgreich angelegt.
   #en: comments: Comments
@@ -813,8 +814,8 @@ de-DE:
   posting_tips: "Tip zum Schreiben eines Beitrags"
   #en: post_topic: Post topic
   post_topic: Thema speichern
-  #en: posts_photos_and_bookmarks: posts, photos and bookmarks
-  posts_photos_and_bookmarks: Beiträge, Fotos und Bookmarks
+  #en: posts_photos_and_bookmarks: {{name}} posts, photos and bookmarks
+  posts_photos_and_bookmarks: "{{name}} Beiträge, Fotos und Bookmarks"
   #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Einträge, die als Entwurf gespeichert wurden, erscheinen erst in deinem Blog, wenn du sie veröffentlichst."
   #en: preview: Preview
@@ -889,8 +890,8 @@ de-DE:
   required: (erforderlich)
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Erforderlich: Wir senden eine Bestätigungsmail an die eingegebene Adresse.)"
-  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
-  required_you_must_be_at_least_years_old_to_sign_up: "(Erfoderlich: Du musst mindestens 13 Jahre alt sein, um dich zu registrieren.)"
+  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least {{min_age}} years old to sign up.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Erfoderlich: Du musst mindestens {{min_age}} Jahre alt sein, um dich zu registrieren.)"
   #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
   required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Erforderlich: Dein Benutzername sollte keine Zahlen, Leer- oder Sonderzeichen enthalten.)"
   #en: resend_my_activation_e_mail: Resend my activation e-mail
@@ -1293,8 +1294,8 @@ de-DE:
   your_about_text_goes_here: "Der Über-uns-Text kommt hier hin"
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: "Die Änderungen wurden gespeichert."
-  #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
-  your_password_has_been_reset_and_emailed_to_you: "Dein Passwort wurde zurückgesetzt und dir per E-Mail zugesendet."
+  #en:   your_password_reset_instructions_have_been_emailed_to_you: Your password has been reset and emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: "Dein Passwort wurde zurückgesetzt und dir per E-Mail zugesendet."
   #en: your_post_was_deleted: Your post was deleted.
   your_post_was_deleted: "Dein Eintrag wurde gelöscht."
   #en: your_post_was_successfully_created: Your post was successfully created.

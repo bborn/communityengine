@@ -50,7 +50,6 @@ app_name    = ask("Please enter the application's name: ")
   
 # Delete unnecessary files
 run "rm public/index.html"
-run "rm public/favicon.ico"
  
 # Set up git repository
 git :init
@@ -72,10 +71,14 @@ gem 'desert', :lib => 'desert'
 gem 'rmagick', :lib => 'RMagick'  
 gem 'hpricot', :lib => 'hpricot'    
 gem 'htmlentities', :lib => 'htmlentities'      
-gem 'haml', :lib => 'htmlentities'        
+gem 'haml', :lib => 'haml'        
 gem "aws-s3", :lib => "aws/s3" 
 gem 'calendar_date_select'
-gem 'icalendar'
+gem 'ri_cal'
+gem 'authlogic'
+gem 'searchlogic'
+gem 'akismet'
+
 rake('gems:install', :sudo => true)
 
 
@@ -92,10 +95,9 @@ route "map.routes_from_plugin :community_engine"
 modify_environment_files
 add_application_yml(app_name)
 
-in_root do
-  run_ruby_script "script/generate plugin_migration"
-end
+generate :plugin_migration
 
+rake('db:create:all')
 rake('db:migrate')
 
 capify!

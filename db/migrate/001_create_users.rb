@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   class User < ActiveRecord::Base  
   end
   def self.up
-    create_table "users", :force => true do |t|
+    create_table "users" do |t|
       t.column :login,                     :string
       t.column :email,                     :string
       t.column :description,               :text

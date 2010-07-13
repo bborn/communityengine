@@ -2,10 +2,13 @@
   .yui-u
     -box :class => "alt first_alt" do 
       %h3
-        = params[:type] ? h((params[:type]+'s').l) : :items.l
-        =:tagged.l+":"
+        - if params[:type]
+          = (params[:type].downcase.pluralize + '_tagged').l
+        - else
+          = :items_tagged.l
         - @tags.each do |tag|
           = link_to h(tag.name), tag_path(tag)
+       
         
     -box do 
       %h3.tags=:related_tags.l
@@ -17,8 +20,7 @@
       %h6.all= link_to :all_tags.l, tags_path
 
 #yui-main
-  -box :class => "yui-b" do
-
+  .yui-b
     - if @posts.any?
       -unless params[:type]
         #posts        
@@ -32,10 +34,13 @@
       -else 
         -box :class => 'first_alt hfeed' do
           = render :partial => 'posts/post', :collection => @posts      
+          - if @pages
+            .pagination= paginating_links @pages, :params => params if @pages.page_count > 1
+          
 
     - if @photos.any?
       %br.clear
-      %h3=:photos.l
+      %h3=:photos.l(:count => @photos.size)
       - @photos.each do |photo|
         = link_to image_tag(photo.public_filename(:thumb), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})", :class => "polaroid"), user_photo_path(photo.user, photo)
       %h6.all= link_to :all_photos_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Photo') unless params[:type]
@@ -56,5 +61,5 @@
             %img.polaroid.clipping{"src"=>"#{h clipping.image_uri}", "style"=>"width:108px"}
         %h6.all= link_to :all_clippings_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Clipping') unless params[:type]
 
-    - if @pages
+    - if @pages && !params[:type].eql?('Post')
       .pagination= paginating_links @pages, :params => params if @pages.page_count > 1

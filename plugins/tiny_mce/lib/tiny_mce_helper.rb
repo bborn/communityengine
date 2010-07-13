@@ -6,7 +6,7 @@ module TinyMCEHelper
     !@uses_tiny_mce.nil?
   end
   
-  def tiny_mce_init(options = @tiny_mce_options)
+  def tiny_mce_init(options = @tiny_mce_options )
     options ||= {}
     default_options = {:mode => 'textareas',
                        :theme => 'simple'}
@@ -22,7 +22,11 @@ module TinyMCEHelper
       when String, Symbol, Fixnum
         tinymce_js += "'#{value}'"
       when Array
-        tinymce_js += '"' + value.join(',') + '"'
+        if value.first.is_a?(Hash)
+          tinymce_js += '[' + value.map{|h| h.to_json}.join(',') + ']'
+        else
+          tinymce_js += '"' + value.join(',') + '"'          
+        end
       when TrueClass
         tinymce_js += 'true'
       when FalseClass

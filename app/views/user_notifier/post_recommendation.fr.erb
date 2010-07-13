@@ -1,0 +1,32 @@
+## <%= AppConfig.community_name %>&trade; &#8211; <%= AppConfig.community_tagline %> ##
+
+
+<%= @name %> souhaite partager l'article suivant avec vous :
+
+<%= @title %>
+[<%= @url %>]
+
+Description:
+
+<%= @description %>
+
+Message personnel :
+
+<%= @message %>
+
+
+---------------------------------------	
+
+Connectez vous sur votre compte <%= AppConfig.community_name %> : 
+
+[<%= @signup_link %>]
+
+
+Merci,
+<%= @name.eql?('Someone') ? "L'Equipe #{AppConfig.community_name}" : @name %></p>
+
+---------------------------------------	
+
+<%= AppConfig.community_description %>
+
+Pour toute information, ou pour signaler un problème, merci de contacter <%= AppConfig.support_email %>.	

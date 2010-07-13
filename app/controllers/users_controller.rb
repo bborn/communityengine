@@ -14,9 +14,12 @@ class UsersController < BaseController
     end
   end    
 
-  uses_tiny_mce(:options => AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"}), 
-    :only => [:new, :create, :update, :edit, :welcome_about])
-  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
+  uses_tiny_mce(:only => [:new, :create, :update, :edit, :welcome_about]) do
+    AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"})
+  end
+  uses_tiny_mce(:only => [:show]) do
+    AppConfig.simple_mce_options
+  end
 
   # Filters
   before_filter :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about, 
@@ -37,7 +40,7 @@ class UsersController < BaseController
     @user = User.find_by_activation_code(params[:id]) 
     if @user and @user.activate
       self.current_user = @user
-      current_user.track_activity(:joined_the_site)      
+      @user.track_activity(:joined_the_site)
       redirect_to welcome_photo_user_path(@user)
       flash[:notice] = :thanks_for_activating_your_account.l 
       return
@@ -48,9 +51,7 @@ class UsersController < BaseController
   
   def deactivate
     @user.deactivate
-    self.current_user.forget_me if logged_in?
-    cookies.delete :auth_token
-    reset_session
+    current_user_session.destroy if current_user_session
     flash[:notice] = :deactivate_completed.l
     redirect_to login_path
   end
@@ -310,20 +311,6 @@ class UsersController < BaseController
     flash[:notice] = :walkthrough_complete.l_with_args(:site => AppConfig.community_name) 
     redirect_to user_path
   end
-  
-  def forgot_password  
-    return unless request.post?   
-
-    @user = User.active.find_by_email(params[:email])  
-    if @user && @user.reset_password
-      UserNotifier.deliver_reset_password(@user)
-      @user.save
-      redirect_to login_url
-      flash[:info] = :your_password_has_been_reset_and_emailed_to_you.l      
-    else
-      flash[:error] = :sorry_we_dont_recognize_that_email_address.l
-    end 
-  end
 
   def forgot_username  
     return unless request.post?   
@@ -356,20 +343,12 @@ class UsersController < BaseController
   end
   
   def assume
-    self.current_user = User.find(params[:id])
-    redirect_to user_path(current_user)
+    user = User.find(params[:id])
+    redirect_to user_path(self.assume_user(user).record)
   end
 
   def return_admin
-    unless session[:admin_id].nil? or current_user.admin?
-      admin = User.find(session[:admin_id])
-      if admin.admin?
-        self.current_user = admin
-        redirect_to user_path(admin)
-      end
-    else
-      redirect_to login_path
-    end
+    return_to_admin
   end
 
   def metro_area_update
@@ -426,8 +405,14 @@ class UsersController < BaseController
     @estimated_payment = @posts.sum do |p| 
       7
     end
-  end  
-  
+
+    respond_to do |format|
+      format.html
+      format.xml {
+        render :xml => @posts.to_xml(:include => :category)
+      }
+    end
+  end    
 
   protected  
     def setup_metro_areas_for_cloud

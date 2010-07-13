@@ -11,7 +11,7 @@
         =:manage_pages.l
       %p=:pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them.l
       %p=link_to :new_page.l, new_admin_page_path
-      
+
       %table{:border => 0, :width => '100%'}
         %thead
           %tr
@@ -20,9 +20,9 @@
             %th=:status.l
         %tbody
           - @pages.each do |page|
-            %tr            
+            %tr
               %td
                 = link_to page.title, edit_admin_page_path(page)
                 = link_to("(#{:preview.l})", preview_admin_page_path(page), :target => '_blank') unless page.is_live?
-              %td= page.page_public ? 'Yes' : 'No'
+              %td= page.page_public ? :yes_status.l : :no_status.l
               %td= page.is_live? ? link_to(:published.l, pages_path(page)) : :draft.l

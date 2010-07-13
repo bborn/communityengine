@@ -2,6 +2,7 @@
 
   -if message.reply_to
     =f.hidden_field :to
+    =f.hidden_field :parent_id
   -else
     %label{:for => 'message_to'} 
       =:to.l
@@ -10,8 +11,11 @@
     .auto_complete#message_to_auto_complete
       = auto_complete_field 'message_to', {:url => auto_complete_for_username_user_messages_path(@user), :tokens=>','}
 
-  %label{:for => 'message_subject'}= :subject.l + ":"
-  = f.text_field :subject
+  -if @reply  
+    = f.hidden_field :subject  
+  -else
+    %label{:for => 'message_subject'}= :subject.l + ":"
+    = f.text_field :subject
 
   %label{:for => "message_body"}= :message.l + ":"
   = f.text_area :body

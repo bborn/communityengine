@@ -16,7 +16,7 @@ module BaseHelper
   end
   
   def is_current_user_and_featured?(u)
-     u && u.eql?(current_user) && u.featured_writer?
+    u && u.eql?(current_user) && u.featured_writer?
   end
   
   def resize_img(classname, width=90, height=135)
@@ -108,10 +108,10 @@ module BaseHelper
     end
   end
 
-	def page_title
-		app_base = AppConfig.community_name
-		tagline = " | #{AppConfig.community_tagline}"
-	
+  def page_title
+    app_base = AppConfig.community_name
+    tagline = " | #{AppConfig.community_tagline}"
+
 		title = app_base
 		case @controller.controller_name
 			when 'base'
@@ -126,57 +126,61 @@ module BaseHelper
           title += (@post.tags.empty? ? '' : " &laquo; "+:keywords.l+": " + @post.tags[0...4].join(', ') )
           @canonical_url = user_post_url(@post.user, @post)
         end
-			when 'users'
+      when 'users'
         if @user && !@user.new_record? && @user.login 
           title = @user.login
-          title += ', expert in ' + @user.offerings.collect{|o| o.skill.name }.join(', ') if @user.vendor? and !@user.offerings.empty?
+          title += ', ' + :expert_in.l + ' ' + @user.offerings.collect{|o| o.skill.name }.join(', ') if @user.vendor? and !@user.offerings.empty?
           title += ' &raquo; ' + app_base + tagline
           @canonical_url = user_url(@user)          
         else
           title = :showing_users.l+' &raquo; ' + app_base + tagline
         end
-			when 'photos'
+      when 'photos'
         if @user and @user.login
-          title = @user.login + '\'s '+:photos.l+' &raquo; ' + app_base + tagline
+          title = :users_photos.l(:user => @user.login)+' &raquo; ' + app_base + tagline
         end
-			when 'clippings'
+      when 'clippings'
         if @user and @user.login
-          title = @user.login + '\'s '+:clippings.l+' &raquo; ' + app_base + tagline
+          title = :user_clippings.l(:user => @user.login) + ' &raquo; ' + app_base + tagline
         end
-			when 'tags'
-				case @controller.action_name
-			    when 'show'
-            title = @tags.map(&:name).join(', ') + ' '
-            title += params[:type] ? params[:type].pluralize : :posts_photos_and_bookmarks.l
-            title += ' (Related: ' + @related_tags.join(', ') + ')' if @related_tags
+      when 'tags'
+        case @controller.action_name
+          when 'show'
+            if params[:type]
+              title = I18n.translate('all_' + params[:type].downcase.pluralize + '_tagged', :tag_name => @tags.map(&:name).join(', '))
+            else
+              title = :posts_photos_and_bookmarks.l(:name => @tags.map(&:name).join(', '))
+            end
+            title += ' (' + :related_tags.l + ': ' + @related_tags.join(', ') + ')' if @related_tags
             title += ' | ' + app_base    
             @canonical_url = tag_url(URI.escape(@tags_raw, /[\/.?#]/)) if @tags_raw
           else
-          title = 'Showing tags &raquo; ' + app_base + tagline            
-			  end
+            title = 'Showing tags &raquo; ' + app_base + tagline            
+          end
       when 'categories'
         if @category and @category.name
-          title = @category.name + ' '+:posts_photos_and_bookmarks.l+' &raquo; ' + app_base + tagline
+          title = :posts_photos_and_bookmarks.l(:name => @category.name) + ' &raquo; ' + app_base + tagline
         else
-          title = :showing_categories.l+' &raquo; ' + app_base + tagline            
+          title = :showing_categories.l + ' &raquo; ' + app_base + tagline            
         end
       when 'skills'
         if @skill and @skill.name
-          title = :find_an_expert_in.l+' ' + @skill.name + ' &raquo; ' + app_base + tagline
+          title = :find_an_expert_in.l + ' ' + @skill.name + ' &raquo; ' + app_base + tagline
         else
-          title = :find_experts.l+' &raquo; ' + app_base + tagline            
+          title = :find_experts.l + ' &raquo; ' + app_base + tagline            
         end
       when 'sessions'
-        title = :login.l+' &raquo; ' + app_base + tagline            
-		end
+        title = :login.l + ' &raquo; ' + app_base + tagline            
+    end
 
     if @page_title
       title = @page_title + ' &raquo; ' + app_base + tagline
     elsif title == app_base          
-		  title = :showing.l+' ' + @controller.controller_name + ' &raquo; ' + app_base + tagline
-    end	
-		title
-	end
+		  title = :showing.l + ' ' + @controller.controller_name + ' &raquo; ' + app_base + tagline
+    end
+
+    title
+  end
 
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
@@ -184,7 +188,7 @@ module BaseHelper
 				{:update => "friend_request_#{user.id}",
 					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
-          500 => "alert('"+:sorry_there_was_an_error_requesting_friendship.l+"')",
+          500 => "alert('"+:sorry_there_was_an_error_requesting_friendship.l.gsub(/'/, "\\\\'")+"')",
 					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
 					:method => :post }, {:class => "add_friend button"}
 		html +=	"<span style='display:none;' class='spinner'>"
@@ -279,7 +283,7 @@ module BaseHelper
   def pagination_info_for(paginator, options = {})
     options = {:prefix => :showing.l, :connector => '-', :suffix => ""}.merge(options)
     window = paginator.first_item.to_s + options[:connector] + paginator.last_item.to_s
-    options[:prefix] + " <strong>#{window}</strong> " + 'of'.l + " #{paginator.size} " + options[:suffix]
+    options[:prefix] + " <strong>#{window}</strong> " + :of.l + " #{paginator.size} " + options[:suffix]
   end
   
   
@@ -287,12 +291,6 @@ module BaseHelper
     session[:last_active] ||= Time.now.utc
   end
     
-  def submit_tag(value = :save_changes.l, options={} )
-    or_option = options.delete(:or)
-    return super + "<span class='button_or'>or " + or_option + "</span>" if or_option
-    super
-  end
-
   def ajax_spinner_for(id, spinner="spinner.gif")
     "<img src='/plugin_assets/community_engine/images/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> "
   end
@@ -322,19 +320,17 @@ module BaseHelper
     options[:q] ? search_all_sb_posts_path(options) : send("all_#{prefix}sb_posts_path", options)
   end
 
-  def distance_of_time_in_words(from_time, to_time = 0, include_seconds = false)
+  def time_ago_in_words(from_time, to_time = Time.now, include_seconds = false)
     from_time = from_time.to_time if from_time.respond_to?(:to_time)
     to_time = to_time.to_time if to_time.respond_to?(:to_time)
     distance_in_minutes = (((to_time - from_time).abs)/60).round
   
     case distance_in_minutes
-      when 0..1           then (distance_in_minutes==0) ? :a_few_seconds_ago.l : :one_minute_ago.l
-      when 2..59          then "#{distance_in_minutes} "+:minutes_ago.l
-      when 60..90         then :one_hour_ago.l
-      when 90..1440       then "#{(distance_in_minutes.to_f / 60.0).round} "+:hours_ago.l
-      when 1440..2160     then :one_day_ago.l # 1 day to 1.5 days
-      when 2160..2880     then "#{(distance_in_minutes.to_f / 1440.0).round} "+:days_ago.l # 1.5 days to 2 days
-      else from_time.strftime("%b %e, %Y  %l:%M%p").gsub(/([AP]M)/) { |x| x.downcase }
+      when 0              then :a_few_seconds_ago.l
+      when 1..59          then :minutes_ago.l(:count => distance_in_minutes)
+      when 60..1440       then :hours_ago.l(:count => (distance_in_minutes.to_f / 60.0).round)
+      when 1440..2880     then :days_ago.l(:count => (distance_in_minutes.to_f / 1440.0).round) # 1.5 days to 2 days
+      else I18n.l(from_time, :format => :time_ago)
     end
   end
 
@@ -350,11 +346,11 @@ module BaseHelper
   
   def profile_completeness(user)
     segments = [
-      {:val => 2, :action => link_to('Add a profile photo', edit_user_path(user, :anchor => 'profile_details')), :test => !user.avatar.nil? },
-      {:val => 1, :action => link_to('Fill in your about me', edit_user_path(user, :anchor => 'user_description')), :test => !user.description.blank?},      
-      {:val => 2, :action => link_to('Select your city', edit_user_path(user, :anchor => 'location_chooser')), :test => !user.metro_area.nil? },            
-      {:val => 1, :action => link_to('Tag yourself', edit_user_path(user, :anchor => "user_tags")), :test => user.tags.any?},                  
-      {:val => 1, :action => link_to('Invite some friends', new_invitation_path), :test => user.invitations.any?}
+      {:val => 2, :action => link_to(:upload_a_profile_photo.l, edit_user_path(user, :anchor => 'profile_details')), :test => !user.avatar.nil? },
+      {:val => 1, :action => link_to(:tell_us_about_yourself.l, edit_user_path(user, :anchor => 'user_description')), :test => !user.description.blank?},      
+      {:val => 2, :action => link_to(:select_your_city.l, edit_user_path(user, :anchor => 'location_chooser')), :test => !user.metro_area.nil? },            
+      {:val => 1, :action => link_to(:tag_yourself.l, edit_user_path(user, :anchor => "user_tags")), :test => user.tags.any?},                  
+      {:val => 1, :action => link_to(:invite_some_friends.l, new_invitation_path), :test => user.invitations.any?}
     ]
     
     completed_score = segments.select{|s| s[:test].eql?(true)}.sum{|s| s[:val]}

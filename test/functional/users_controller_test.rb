@@ -3,12 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class UsersControllerTest < ActionController::TestCase
   fixtures :users, :roles, :tags, :states, :metro_areas, :countries, :skills, :friendship_statuses, :friendships, :categories
 
-  def setup
-    @controller = UsersController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
   def test_should_get_index
     get :index
     assert_response :success
@@ -154,26 +148,29 @@ class UsersControllerTest < ActionController::TestCase
     users(:quentin).activated_at = nil
     users(:quentin).activation_code = ':quentin_activation_code'
     users(:quentin).save!
-    assert_nil User.authenticate('quentin', 'test')
+    login_as :quentin
+    assert_nil UserSession.find
     
     users(:quentin).activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
     users(:quentin).save!
     
     get :activate, :id => users(:quentin).activation_code
-    assert_equal users(:quentin), User.authenticate('quentin', 'test')
+    assert_equal users(:quentin), UserSession.find.record
   end  
 
   def test_should_fail_to_activate_user
     users(:quentin).activated_at = nil
     users(:quentin).activation_code = nil
     users(:quentin).save!
-    assert_nil User.authenticate('quentin', 'test')
+    login_as :quentin
+    assert_nil UserSession.find
+
     get :activate, :id => 'bad_activation_code'
-    assert_equal nil, User.authenticate('quentin', 'test')
+    assert_nil UserSession.find
   end  
 
   def test_should_show_user
-    get :show, :id => users(:quentin).id
+    get :show, :id => users(:quentin)
     assert_response :success
   end
   
@@ -191,7 +188,7 @@ class UsersControllerTest < ActionController::TestCase
   
   def test_should_fill_states_on_detroit_search
     #state drop down not being enabled
-    get :index, :metro_area_id => metro_areas(:Detroit).id
+    get :index, :metro_area_id => metro_areas(:detroit).id
     assert_equal assigns(:states).size, State.count
     assert_response :success
   end
@@ -314,13 +311,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal assigns(:user).login, 'changed_login'
   end
   
-  def test_should_reset_password
-    assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      post :forgot_password, :email => users(:quentin).email
-      assert_redirected_to login_path    
-    end
-  end
-
   def test_should_remind_username
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       post :forgot_username, :email => users(:quentin).email
@@ -334,7 +324,7 @@ class UsersControllerTest < ActionController::TestCase
     users(:quentin).save!
     
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      post :resend_activation, :id => users(:quentin).to_param
+      post :resend_activation, :id => users(:quentin)
       assert_redirected_to login_path    
     end    
   end
@@ -355,12 +345,11 @@ class UsersControllerTest < ActionController::TestCase
     end    
   end
 
-  
   def test_assume_should_assume_users_id
     login_as :admin
     post :assume, :id => users(:quentin).id
     assert_response :redirect
-    assert_equal session[:user], users(:quentin).id
+    assert_equal UserSession.find.record, users(:quentin)
     assert_not_nil session[:admin_id]
     assert_equal users(:admin).id, session[:admin_id]
   end
@@ -369,7 +358,7 @@ class UsersControllerTest < ActionController::TestCase
     login_as :quentin
     post :assume, :id => users(:aaron).id
     assert_response :redirect
-    assert_not_equal session[:user], users(:aaron).id
+    assert_not_equal UserSession.find.record, users(:aaron)
     assert_nil session[:admin_id]
   end
   
@@ -379,7 +368,7 @@ class UsersControllerTest < ActionController::TestCase
     post :return_admin
     assert_response :redirect
     assert_nil session[:admin_id]
-    assert_equal users(:admin).id, session[:user]
+    assert_equal users(:admin), UserSession.find.record
   end
   
   def test_only_admin_can_return_to_admin
@@ -388,25 +377,25 @@ class UsersControllerTest < ActionController::TestCase
     post :return_admin
     assert_response :redirect
     assert_nil session[:admin_id]
-    assert_equal users(:admin).id, session[:user]    
+    assert_equal users(:admin), UserSession.find.record
   end
   
   def test_should_decrement_metro_area_count
     initial_count = metro_areas(:twincities).users_count
     quentin = users(:quentin)
-    quentin.metro_area = metro_areas(:Detroit)
+    quentin.metro_area = metro_areas(:detroit)
     quentin.save
     assert_equal(metro_areas(:twincities).reload.users_count, metro_areas(:twincities).reload.users.size )
-    assert_equal(metro_areas(:Detroit).reload.users_count, metro_areas(:Detroit).reload.users.size )
+    assert_equal(metro_areas(:detroit).reload.users_count, metro_areas(:detroit).reload.users.size )
   end  
   
   def test_should_increment_metro_area_count
-    initial_count = metro_areas(:Detroit).users_count
+    initial_count = metro_areas(:detroit).users_count
     aaron = users(:aaron)
-    aaron.metro_area = metro_areas(:Detroit)
-    aaron.save
-    assert_equal metro_areas(:Detroit).reload.users_count, initial_count + 1
-    assert_equal(metro_areas(:Detroit).reload.users_count, metro_areas(:Detroit).reload.users.size )
+    aaron.metro_area = metro_areas(:detroit)
+    aaron.save!
+    assert_equal metro_areas(:detroit).reload.users_count, initial_count + 1
+    assert_equal(metro_areas(:detroit).reload.users_count, metro_areas(:detroit).reload.users.size )
   end  
   
   def test_should_get_stats_if_admin

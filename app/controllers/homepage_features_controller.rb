@@ -1,5 +1,7 @@
 class HomepageFeaturesController < BaseController
-  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit ])
+  uses_tiny_mce(:only => [:new, :edit, :create, :update ]) do
+    AppConfig.default_mce_options
+  end
 
   before_filter :login_required
   before_filter :admin_required
@@ -40,7 +42,7 @@ class HomepageFeaturesController < BaseController
     
     respond_to do |format|
       if @homepage_feature.save
-        flash[:notice] = :homepage_feature_was_successfully_created.l
+        flash[:notice] = :homepage_feature_created.l
         
         format.html { redirect_to homepage_feature_url(@homepage_feature) }
       else

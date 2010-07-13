@@ -1,20 +1,23 @@
-CommunityEngine [v1.0.3]
+CommunityEngine [v1.2.0]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.3.2
+	- RAILS VERSION 2.3.4 (higher versions are not yet supported)
 	- ImageMagick (>6.4) 
 	- Several gems:
-      desert 0.5.2
+    desert 0.5.2
 	  rmagick
 	  hpricot
 	  htmlentities
 	  rake 0.8.3
 	  haml 2.0.5
 	  calendar_date_select
-	  icalendar
+	  ri_cal
+    authlogic
+    searchlogic
+    rakismet
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
@@ -61,7 +64,7 @@ LONG VERSION:
 6. Modify your environment.rb as indicated below:
 
 		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+		RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 		require File.join(File.dirname(__FILE__), 'boot')
 
         require 'desert'
@@ -69,11 +72,16 @@ LONG VERSION:
 		Rails::Initializer.run do |config|
 		  config.plugins = [:community_engine, :white_list, :all]
 		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
+		  config.gem 'calendar_date_select'
+		  config.gem 'icalendar'		
+		  config.gem 'authlogic'
+		  config.gem 'searchlogic'
+		  config.gem 'rakismet'		  
 		  
-          config.action_controller.session = {
-            :key    => '_your_app_session',
-            :secret => 'secret'
-          }
+      config.action_controller.session = {
+        :key    => '_your_app_session',
+        :secret => 'secret'
+      }
 
 		  ... Your stuff here ...
 		end
@@ -220,6 +228,29 @@ Note, this will affect the look and feel of buttons. You can highlight what is l
 For more, see /lang/readme.txt.
 
 
+Spam Control
+------------
+
+Spam sucks. Most likely, you'll need to implement some custom solution to control spam on your site, but CE offers a few tools to help with the basics. 
+
+ReCaptcha: to allow non-logged-in commenting and use [ReCaptcha](http://recaptcha.net/) to ensure robots aren't submitting comments to your site, just add the following lines to your `application.yml`:
+
+    allow_anonymous_commenting: true
+    recaptcha_pub_key: YOUR_PUBLIC_KEY
+    recaptcha_priv_key: YOUR_PRIVATE_KEY
+    
+You can also require recaptcha on signup (to prevent automated signups) by adding this in your `application.yml` (you'll still need to add your ReCaptcha keys):
+
+    require_captcha_on_signup: true
+    
+Akismet: Unfortunately, bots aren't the only ones submitting spam; humans do it to. [Akismet](http://akismet.com/) is a great collaborative spam filter from the makers of Wordpress, and you can use it to check for spam comments by adding one line to your `application.yml`:
+
+    akismet_key: 4bfd15b0ea46
+  
+(If you do this, make sure you are requiring the `rakismet` gem in `environment.rb`)
+    
+
+
 Other notes
 -----------
 
@@ -256,6 +287,8 @@ Contributors - Thanks! :)
 - [Errol Siegel](http://github.com/eksatx) simple private messages integration, documentation help
 - Carl Fyffe - documentation, misc.
 - [Juan de Frías](http://github.com/juafrlo) static pages, photo albums, message_controller tests
+- [Joel Nimety](http://github.com/jnimety) authlogic authentication
+- [Stephane Decleire](http://github.com/sdecleire) i18n, fr-FR locale
 
 
 To Do

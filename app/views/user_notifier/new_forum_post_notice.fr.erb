@@ -1,0 +1,13 @@
+Bonjour <%= @user.login %> !
+
+<%= @author.login %> a posté un message dans une discussion que vous surveillez ! Lisez son message à l'adresse suivante :
+
+<%= @url %> 
+
+Merci,
+L'Equipe <%= AppConfig.community_name %>
+
+---------------------------------------------------------------------------------
+Si vous ne souhaitez plus recevoir d'email comme celui-ci de <%= AppConfig.community_name %>, Vous pouvez modifier vos préférences :
+
+<%= APP_URL %>/<%= @user.login_slug %>/edit_account
