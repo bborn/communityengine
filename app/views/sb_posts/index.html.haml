@@ -18,7 +18,7 @@
 
   %p.subtitle
     = feed_icon_tag @page_title, all_sb_posts_path(:format => 'rss')
-    = pluralize(@posts.size, "post")+' '+:found.l
+    = :post_found.l(:count => @posts.size)
 
   - if @posts.page_count > 1
     .pagination= paginating_links @posts
@@ -33,17 +33,13 @@
         %td.author.vcard
           .date
             %abbr.updated{ :title => post.created_at.xmlschema }
-              - if post.created_at > Time.now.utc-24.hours
-                = time_ago_in_words(post.created_at).sub(/about /, '')
-                ago
-              - else
-                = post.created_at.strftime("%b %e, %Y")
+              = time_ago_in_words(post.created_at)
 
           = avatar_for @users[post.user_id]
           %span.fn
             = link_to truncate(h(@users[post.user_id].display_name), :length => 15), user_path(post.user)
           %span.posts
-            = pluralize @users[post.user_id].sb_posts_count, 'post'
+            = pluralize @users[post.user_id].sb_posts_count, :post.l
         %td.body.entry-content
           %p.topic
             = link_to(h(post.forum_name), forum_path(post.forum))
@@ -53,7 +49,7 @@
         
   - if @posts and @posts.next_page
     %p{ :style => "float:right;" }
-    = link_to 'Next page'.l, { :page => @posts.next_page }.merge(params.reject{|k,v| k=="page"})
+    = link_to :next_page.l, { :page => @posts.next_page }.merge(params.reject{|k,v| k=="page"})
 
 
   - if @posts.page_count > 1

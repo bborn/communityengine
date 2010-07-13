@@ -17,27 +17,33 @@ class EventsController < BaseController
     extend ActionView::Helpers::SanitizeHelper::ClassMethods
   end
 
-  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit, :create, :update ])
-  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
+  uses_tiny_mce(:only => [:new, :edit, :create, :update, :clone ]) do
+    AppConfig.default_mce_options
+  end
+  
+  uses_tiny_mce(:only => [:show]) do
+    AppConfig.simple_mce_options
+  end
 
   before_filter :admin_required, :except => [:index, :show, :ical]
 
   def ical
-    @calendar = Icalendar::Calendar.new
-    @calendar.custom_property('x-wr-caldesc',"#{AppConfig.community_name} #{:events.l}")
-    Event.find(:all).each do |event|
-      ical_event = Icalendar::Event.new
-      ical_event.start = event.start_time.strftime("%Y%m%dT%H%M%S")
-      ical_event.end = event.end_time.strftime("%Y%m%dT%H%M%S")
-      ical_event.summary = event.name + (event.metro_area.blank? ? '' : " (#{event.metro_area})")
-      coder = HTMLEntities.new
-      ical_event.description = (event.description.blank? ? '' : coder.decode(help.strip_tags(event.description).to_s) + "\n\n") + event_url(event)
-      ical_event.location = event.location unless event.location.blank?
-      @calendar.add ical_event
-   end
-   @calendar.publish
-   headers['Content-Type'] = "text/calendar; charset=UTF-8"
-   render :text => @calendar.to_ical, :layout => false
+    @calendar = RiCal.Calendar
+    @calendar.add_x_property 'X-WR-CALNAME', AppConfig.community_name
+    @calendar.add_x_property 'X-WR-CALDESC', "#{AppConfig.community_name} #{:events.l}"
+    Event.find(:all).each do |ce_event|
+      rical_event = RiCal.Event do |event|
+        event.dtstart = ce_event.start_time
+        event.dtend = ce_event.end_time
+        event.summary = ce_event.name + (ce_event.metro_area.blank? ? '' : " (#{ce_event.metro_area})")
+        coder = HTMLEntities.new
+        event.description = (ce_event.description.blank? ? '' : coder.decode(help.strip_tags(ce_event.description).to_s) + "\n\n") + event_url(ce_event)
+        event.location = ce_event.location unless ce_event.location.blank?
+      end
+      @calendar.add_subcomponent rical_event
+    end
+    headers['Content-Type'] = "text/calendar; charset=UTF-8"
+    render :text => @calendar.export_to, :layout => false
   end
 
   def show
@@ -130,6 +136,13 @@ class EventsController < BaseController
     respond_to do |format|
       format.html { redirect_to :back }
     end
+  end
+
+  def clone
+    @event = Event.find(params[:id]).clone
+    @metro_areas, @states = setup_metro_area_choices_for(@event)
+    @metro_area_id, @state_id, @country_id = setup_location_for(@event)
+    render :template => 'events/new'
   end
 
   protected

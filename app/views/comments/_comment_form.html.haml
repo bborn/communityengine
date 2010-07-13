@@ -15,34 +15,34 @@
   .errors
   - form_remote_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(commentable.class.to_s.underscore, commentable.id ), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
     %label
-      %em="(2000 character limit)".l :comment_character_limit
+      %em=:comment_character_limit.l
     = text_area :comment, :comment, {:size => "86x5", :class => "rich_text_editor"}
     
     - if !logged_in? && AppConfig.recaptcha_pub_key && AppConfig.recaptcha_priv_key 
       .right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
       %label{"for"=>"comment[author_name"}
-        ="Name:".l
-        %em="(#{'Optional'.l})"
+        =:name.l
+        %em="(#{:optional.l})"
       = f.text_field :author_name, :size => 35
       %label{"for"=>"comment[author_email"}
-        ="#{'E-mail'.l}:"
-        %em="(#{"Required; won't be shown on site".l})"
+        ="#{:email.l}:"
+        %em="(#{:comment_author_email_required.l})"
       = f.text_field :author_email, :size => 35        
       %br
       %label 
-        =f.check_box :notify_by_email
+        =f.check_box :notify_by_email, :style => 'width: 10px;'
         =:notify_me_of_follow_ups_via_email.l
       
       %label{"for"=>"comment[author_url"}
-        ="Web site (include http://):".l
-        %em="(#{'Optional'.l})"
+        =:comment_web_site_label.l
+        %em="(#{:optional.l})"
       = f.text_field :author_url, :size => 35
 
     
     %p
-      = submit_tag "Add Comment".l
+      = submit_tag :add_comment.l
       = image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner'
 - else
-  = link_to "Log in to leave a comment".l, new_comment_path(commentable.class, commentable.id)
+  = link_to :log_in_to_leave_a_comment.l, new_comment_path(commentable.class, commentable.id)
   = :or.l
-  = link_to "Create an account".l, signup_path
+  = link_to :create_an_account.l, signup_path

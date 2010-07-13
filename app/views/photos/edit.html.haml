@@ -25,7 +25,7 @@
       = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
       #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"} 
       = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-      %label= :name.l + ":"
+      %label= :title.l + ":"
       = f.text_field :name, :size => 35
       %label= :description.l + ":"
       = f.text_area :description, :size => "58x5"
@@ -34,8 +34,6 @@
 
       %p
         = submit_tag :update.l
-        or
+        = :or.l
         = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)
-
-
 

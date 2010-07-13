@@ -36,7 +36,7 @@
         = f.select(:published_as, [[:published.l, 'live'], [:draft.l, 'draft']])
         %p
           = submit_tag :update.l
-          or
+          = :or.l
           =link_to :cancel.l, user_post_path(current_user, @post)
         %p
           =link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} "+:delete_this_post.l, user_post_path(current_user, @post), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l

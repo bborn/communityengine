@@ -17,4 +17,15 @@ class RsvpTest < ActiveSupport::TestCase
     end    
   end
 
+  def test_should_be_invalid_with_event_that_does_not_allow_rsvp
+    e = events(:no_rsvp_event)
+    u = users(:quentin)
+    assert_no_difference Rsvp, :count do
+      r = e.rsvps.build(:attendees_count=>1)
+      r.user = u
+      r.save
+      assert r.errors.on(:base)
+    end    
+  end
+
 end

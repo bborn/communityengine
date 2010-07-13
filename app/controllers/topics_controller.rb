@@ -1,8 +1,10 @@
 class TopicsController < BaseController
   before_filter :find_forum_and_topic, :except => :index
   before_filter :login_required, :except => [:index, :show]
-  before_filter :update_last_seen_at, :only => :show
-  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:show, :new])
+
+  uses_tiny_mce(:only => [:show, :new]) do
+    AppConfig.default_mce_options
+  end
 
   def index
     @forum = Forum.find(params[:forum_id])    
@@ -24,7 +26,7 @@ class TopicsController < BaseController
     respond_to do |format|
       format.html do
         # see notes in base_controller.rb on how this works
-        update_last_seen_at
+        current_user.update_last_seen_at if logged_in?
         # keep track of when we last viewed this topic for activity indicators
         (session[:topics] ||= {})[@topic.id] = Time.now.utc if logged_in?
         # authors of topics don't get counted towards total hits

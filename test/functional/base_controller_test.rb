@@ -4,9 +4,6 @@ class BaseControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :photos, :homepage_features, :taggings, :tags, :posts, :categories, :roles
 
   def setup
-    @controller = BaseController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     Asset.destroy_all    
   end
     
@@ -18,7 +15,7 @@ class BaseControllerTest < ActionController::TestCase
   
   def test_should_get_index_rss
     get :site_index, :format => 'rss'
-    assert_generates("/site_index.rss", :controller => "base", :action => "site_index", :format => 'rss')    
+    assert_recognizes({:controller => 'base', :action => 'site_index', :format => 'rss'}, '/site_index.rss')
     assert_response :success
   end
 
@@ -30,10 +27,6 @@ class BaseControllerTest < ActionController::TestCase
   def test_should_get_teaser
     get :teaser
     assert_response :success
-  end
-
-  def test_should_get_additional_homepage_data
-    assert @controller.get_additional_homepage_data
   end
   
 end

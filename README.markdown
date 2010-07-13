@@ -1,20 +1,22 @@
-CommunityEngine [v1.0.3]
+CommunityEngine [v1.0.4.2]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.3.2
+	- RAILS VERSION 2.3.4 (higher versions are not yet supported)
 	- ImageMagick (>6.4) 
 	- Several gems:
-      desert 0.5.2
+    desert 0.5.2
 	  rmagick
 	  hpricot
 	  htmlentities
 	  rake 0.8.3
 	  haml 2.0.5
 	  calendar_date_select
-	  icalendar
+	  ri_cal
+    authlogic
+    searchlogic
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
@@ -22,7 +24,7 @@ Getting CommunityEngine Running
 
 SHORT VERSION: 
 
-        rails your_app_name -m http://www.communityengine.org/edge_install_template.rb
+        rails your_app_name -m http://www.communityengine.org/install_template.rb
 
 LONG VERSION:
 
@@ -61,7 +63,7 @@ LONG VERSION:
 6. Modify your environment.rb as indicated below:
 
 		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+		RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 		require File.join(File.dirname(__FILE__), 'boot')
 
         require 'desert'
@@ -69,11 +71,15 @@ LONG VERSION:
 		Rails::Initializer.run do |config|
 		  config.plugins = [:community_engine, :white_list, :all]
 		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
+		  config.gem 'calendar_date_select'
+		  config.gem 'icalendar'		
+		  config.gem 'authlogic'
+		  config.gem 'searchlogic'
 		  
-          config.action_controller.session = {
-            :key    => '_your_app_session',
-            :secret => 'secret'
-          }
+      config.action_controller.session = {
+        :key    => '_your_app_session',
+        :secret => 'secret'
+      }
 
 		  ... Your stuff here ...
 		end
@@ -256,6 +262,8 @@ Contributors - Thanks! :)
 - [Errol Siegel](http://github.com/eksatx) simple private messages integration, documentation help
 - Carl Fyffe - documentation, misc.
 - [Juan de Frías](http://github.com/juafrlo) static pages, photo albums, message_controller tests
+- [Joel Nimety](http://github.com/jnimety) authlogic authentication
+- [Stephane Decleire](http://github.com/sdecleire) i18n, fr-FR locale
 
 
 To Do

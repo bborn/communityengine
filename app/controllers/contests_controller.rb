@@ -2,8 +2,10 @@ class ContestsController < BaseController
   before_filter :login_required, :except => [:show, :current]
   before_filter :admin_required, :except => [:show, :current, :index]
 
-  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit ])
-
+  uses_tiny_mce(:only => [:new, :edit ]) do
+    AppConfig.default_mce_options
+  end
+  
   def current
     @contest = Contest.current
     redirect_to :action => "index" and return unless @contest    

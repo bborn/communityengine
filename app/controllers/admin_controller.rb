@@ -32,7 +32,9 @@ class AdminController < BaseController
   end
   
   def comments
-    @comments = Comment.find(:all, :page => {:current => params[:page], :size => 100}, :order => 'created_at DESC')
+    @search = Comment.search(params[:search])
+    @search.order ||= :descend_by_created_at        
+    @comments = @search.find(:all, :page => {:current => params[:page], :size => 100})
   end
   
   def activate_user
@@ -45,7 +47,7 @@ class AdminController < BaseController
   def deactivate_user
     user = User.find(params[:id])
     user.deactivate
-    flash[:notice] = "The user was deactivated".l
+    flash[:notice] = :the_user_was_deactivated.l
     redirect_to :action => :users
   end  
   

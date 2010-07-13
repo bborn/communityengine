@@ -1,6 +1,22 @@
 .yui-b.sidebar
   = render :partial => 'shared/admin_nav'
 
+  -box do
+    - form_for @search, :html => {:class => "MainForm"} do |f|
+    
+      = f.label :commentable_type.l
+      = f.text_field :commentable_type_like
+
+      =f.label :commentable_id.l
+      =f.text_field :commentable_id
+
+      =f.label :email.l
+      =f.text_field :author_email_or_user_email_like
+
+
+      %p= f.submit :search.l
+  
+
 
 - form_tag delete_selected_comments_path, :id => 'comments' do
   #yui-main

@@ -4,9 +4,6 @@ class ClippingsControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :roles
 
   def setup
-    @controller = ClippingsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     Asset.destroy_all    
   end
   
@@ -61,7 +58,7 @@ class ClippingsControllerTest < ActionController::TestCase
     assert_difference Clipping, :count, 1 do
       post :create,
         :user_id => users(:quentin),
-        :clipping => {:url => 'http://www.google.com', :image_url => 'http://www.google.com/intl/en/images/logo.gif' },
+        :clipping => {:url => 'http://www.google.com', :image_url => 'http://www.google.com/intl/en_ALL/images/logo.gif'},
         :tag_list => 'tag1, tag2'
       assert_redirected_to user_clipping_path(users(:quentin), assigns(:clipping))
 

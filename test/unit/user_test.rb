@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead.
   # Then, you can remove it from this and the functional test.
   fixtures :all
+  
 
   def test_should_create_user
     assert_difference User, :count do
@@ -50,7 +51,14 @@ class UserTest < ActiveSupport::TestCase
     assert !u.errors.on(:login)
     assert_equal u, User.find("2foo-and-bar")
   end
-
+  
+  def test_login_slug_should_be_unique
+    u = create_user(:login => 'user-name')
+    u2 = create_user(:login => 'user_name')    
+    
+    assert u.login_slug != u2.login_slug
+  end
+  
   def test_should_require_password
     assert_no_difference User, :count do
       u = create_user(:password => nil)
@@ -86,32 +94,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_should_reset_password
+    activate_authlogic
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    assert_equal users(:quentin), User.authenticate('quentin', 'new password')
+    assert_equal users(:quentin), UserSession.create(:login => 'quentin', :password => 'new password').record
   end
 
   def test_should_not_rehash_password
+    activate_authlogic
     users(:quentin).update_attributes(:login => 'quentin_two')
-    assert_equal users(:quentin), User.authenticate('quentin_two', 'test')
+    assert_equal users(:quentin), UserSession.create(:login => 'quentin_two', :password => 'test').record
   end
 
-  def test_should_authenticate_user
-    assert_equal users(:quentin), User.authenticate('quentin', 'test')
-  end
-
-  def test_should_set_remember_token
-    users(:quentin).remember_me
-    assert_not_nil users(:quentin).remember_token
-    assert_not_nil users(:quentin).remember_token_expires_at
-  end
-
-  def test_should_unset_remember_token
-    users(:quentin).remember_me
-    assert_not_nil users(:quentin).remember_token
-    users(:quentin).forget_me
-    assert_nil users(:quentin).remember_token
-  end
-  
   def test_should_show_location
     assert_equal users(:quentin).location, metro_areas(:twincities).name
   end
@@ -138,6 +131,16 @@ class UserTest < ActiveSupport::TestCase
     users(:quentin).update_attribute(:avatar_id, 1) #just pretend
     assert !User.find_by_activity.empty?    
   end
+  
+  def test_should_not_include_inactive_users_in_find_by_activity
+    inactive_user = create_user
+    assert !inactive_user.active?
+    Activity.create(:user => inactive_user)
+    assert_nothing_raised do
+      User.find_by_activity({:limit => 5, :require_avatar => false})
+    end
+  end  
+  
   
   def test_should_update_activities_counter_on_user
     #make sure the initial count is right

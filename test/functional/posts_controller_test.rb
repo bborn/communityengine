@@ -3,12 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PostsControllerTest < ActionController::TestCase
   fixtures :posts, :users, :categories, :contests, :roles
 
-  def setup
-    @controller = PostsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
   def test_should_get_index
     get :index, :user_id => users(:quentin).id
     assert_response :success
@@ -39,6 +33,14 @@ class PostsControllerTest < ActionController::TestCase
     assert_difference Post, :count, 1 do
       create_post
       assert_response :redirect
+    end
+  end
+
+  def test_should_not_create_invalid_post_without_category
+    login_as :quentin
+    assert_difference Post, :count, 0 do
+      create_invalid_post_without_category
+      assert_response :success
     end
   end
 
@@ -151,11 +153,10 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  def test_should_get_recent
+  def test_should_get_recent_rss
     get :recent, :format => "rss"
     assert_response :success
   end
-
   
   def test_should_get_featured
     get :featured
@@ -175,10 +176,15 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to login_path
   end
   
-    
-  def create_post(options = {})
-    post :create, {:user_id => users(:quentin).id, :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk) }.merge(options[:post] || {}) }.merge(options || {})
-  end
+  
+  private
+    def create_invalid_post_without_category(options = {})
+      post :create, {:user_id => users(:quentin).id, :post => { :raw_post => 'rawness' }.merge(options[:post] || {}) }.merge(options || {})
+    end
+      
+    def create_post(options = {})
+      post :create, {:user_id => users(:quentin).id, :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk) }.merge(options[:post] || {}) }.merge(options || {})
+    end
   
   
   
