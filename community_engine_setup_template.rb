@@ -77,7 +77,7 @@ gem 'calendar_date_select'
 gem 'ri_cal'
 gem 'authlogic'
 gem 'searchlogic'
-gem 'akismet'
+gem 'rakismet'
 
 rake('gems:install', :sudo => true)
 
