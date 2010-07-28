@@ -8,5 +8,3 @@
       %br
       = truncate_words(post.post, 7, '...' )
       = link_to( '<small>&raquo;'+:more.l+'</small>', user_post_path(post.user, post))
-
-    =render :partial => 'posts/meta', :locals => {:post => post}

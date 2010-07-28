@@ -1,13 +1,22 @@
 es-AR:
   date:
+    order: [ :day, :month, :year ]
+    day_names: [Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
     formats:
       published_date: "%Y/%m/%d"
       date_ago: "%b %Y"
 
   time:
+    am: AM
+    pm: PM
     formats:
       published_date: "%Y/%m/%d"      
-      short_date: "%y/%m/%d"
+      short_published_date: "%d/%m/%y"
+      literal_date: "%d %B, %Y"
+      short_literal_date: "%d %b, %Y"
       time_ago: "%l:%M%p"
 
   activerecord:
@@ -156,6 +165,12 @@ es-AR:
   community_tagline: CommunityEngine es genial!
   #en: contest_was_successfully_created: Contest was successfully created.
   contest_was_successfully_created: Concurso se ha creado correctamente.
+  #en: comment_author_email_required: Required, won't be shown on the site.
+  comment_author_email_required: "Obligatorio, no se mostrará en el sitio."
+  #en: comment_web_site_label: "Web site (include http://)"
+  comment_web_site_label: "Sitio Web (incluyendo http://)"  
+  #en: comment_spam_error: "Comment was flagged as spam. Please make sure you aren't including any spammy words or links and try again."  
+  comment_spam_error: "El comentario ha sido marcado como spam. Asegúrese de que no incluyen palabras spam o enlaces y vuelva a intentarlo"    
   #en: contests: Contests
   contests: Concursos
   #en: country: Country
@@ -193,7 +208,7 @@ es-AR:
   #en: drag_this_to_your_bookmarks_toolbar: 
   drag_this_to_your_bookmarks_toolbar: "Arrastra esto a la barra de marcadores:"
   #en: e_mail: E-mail
-  e_mail: E-mail
+  email: E-mail
   #en: e_mail_address: E-mail address
   e_mail_address: "direcci\xC3\xB3n de E-mail"
   #en: email_to_friends: E-mail to friends
@@ -376,12 +391,14 @@ es-AR:
   no_comments_found: "Lo sentimos, pero no se pudo encontrar ning\xC3\xBAn comentario para ese {{type}}"
   #en: no_tags: No tags
   no_tags: Sin tags
+  #notify_me_of_follow_ups_via_email: Notify me of comments via e-mail
+  notify_me_of_follow_ups_via_email: Notificarme cuando hay nuevos commentarios    
   #en: offering_was_successfully_created: Offering was successfully created.
   offering_was_successfully_created: Oferta creada satisfactoriamente.
   #en: on_commentable: On
   on_commentable: sobre
   #en: optional: (optional)
-  optional: (opcional)
+  optional: opcional
   #en: optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
   optional_keywords_describing_this_post_separated_by_commas: (palabras opcionales que describen este post, separadas por comas)
   #en: password: Password
@@ -448,6 +465,8 @@ es-AR:
   recent: reciente
   #en: recent_blog_posts: Recent Blog Posts
   recent_blog_posts: "Posts m\xC3\xA1s recientes"
+  #en: recent_activity: Recent activity
+  recent_activity: Actividad reciente  
   #en: recent_posts: Recent Posts
   recent_posts: Entradas recientes
   #en: recommended_posts: Recommended Posts
@@ -490,6 +509,7 @@ es-AR:
   save_post_as: "Guardar post como:"
   #en: sb_post_was_deleted: Post '{{title}}' was deleted.
   sb_post_was_deleted: La entrada '{{title}}' fue suprimida.
+  search: Search
   #en: search_users: Search Users
   search_users: "B\xC3\xBAsqueda de usuarios"
   #en: see_all: SEE ALL
@@ -550,6 +570,8 @@ es-AR:
   tag_does_not_exists: Etiquetta {{tag}} no existe
   #en: tags: Tags
   tags: Etiquetas
+  #en: tagged: Tagged
+  tagged: Etiquetado
   #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
   tags_are_comma_separated_keywords_that_describe_you: Los tags son una lista de palabras separadas por coma que te describen
   #en: thanks_for_activating_your_account: Thanks for activating your account!

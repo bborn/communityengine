@@ -1,5 +1,10 @@
 es-ES:
   date:
+    order: [ :day, :month, :year ]
+    day_names: [Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]    
     formats:
       published_date: "%Y/%m/%d"
       date_ago: "%b %Y"
@@ -7,7 +12,9 @@ es-ES:
   time:
     formats:
       published_date: "%Y/%m/%d"      
-      short_date: "%y/%m/%d"
+      short_published_date: "%m/%d/%y"
+      literal_date: "%B %d, %Y"
+      short_literal_date: "%b %d, %Y"
       time_ago: "%l:%M%p"
 
   activerecord:
