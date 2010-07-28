@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
     c.validates_length_of_email_field_options = { :within => 3..100 }
     c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/ }
+    c.perishable_token_valid_for = 2.hours
   end
   acts_as_taggable  
   acts_as_commentable
