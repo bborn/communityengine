@@ -29,7 +29,7 @@ class CategoriesController < BaseController
     @popular_posts = @category.posts.find(:all, :limit => 10, :order => "view_count DESC")
     @popular_polls = Poll.find_popular_in_category(@category)
 
-    @rss_title = "#{AppConfig.community_name}: #{@category.name} "+:posts.l
+    @rss_title = "#{AppConfig.community_name}: #{@category.name} " + :posts.l
     @rss_url = category_path(@category, :format => :rss)
 
     @active_users = User.find(:all,
