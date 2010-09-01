@@ -25,7 +25,7 @@ Getting CommunityEngine Running
 
 SHORT VERSION: 
 
-        rails your_app_name -m http://github.com/bborn/communityengine/raw/master/community_engine_setup_template.rb
+        rails your_app_name -m http://github.com/bborn/communityengine/raw/edge/community_engine_setup_template.rb
 
 LONG VERSION:
 
