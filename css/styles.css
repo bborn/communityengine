@@ -220,11 +220,12 @@ background-position: 0 5px;
 #content li.readmore {background-image: none;}
 
 /*Buy plugin*/
-p.buy span {
+.buy span {
   font-size: 14px;
 }
-p.buy img {
+.buy img {
   vertical-align: top;
+  
 }
 
 
