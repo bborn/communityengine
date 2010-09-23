@@ -23,8 +23,8 @@ ja:
   about: About
   #en: about_me: About Me
   about_me: 自己紹介
-  #en: about_site: About {{site}}
-  about_site: "{{site}}について"
+  #en: about_site: About %{site}
+  about_site: "%{site}について"
   #en: about_you: About You
   about_you: About You
   #en: accept: Accept
@@ -37,8 +37,8 @@ ja:
   accept_this_request: リクエストの承認
   #en: account: account
   account: アカウント
-  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help.
-  account_activation_error: "アカウントのアクティベーションに失敗しました. あなたのアカウントは既に有効になっている可能性があります. 再度ログインを試みる, もしくは, e-mail {{email}} for help."
+  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.
+  account_activation_error: "アカウントのアクティベーションに失敗しました. あなたのアカウントは既に有効になっている可能性があります. 再度ログインを試みる, もしくは, e-mail %{email} for help."
   #en: account_settings: Account settings
   account_settings: アカウント設定
   #en: actions: Actions
@@ -89,18 +89,18 @@ ja:
   advertise_on: Advertise on
   #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
   after_signing_up_youll_receive_an_e_mail_confirmation_message: "After signing up, you'll receive an e-mail confirmation message."
-  #en: all_clippings_tagged: All clippings tagged {{tag_name}}
-  all_clippings_tagged: "All clippings tagged {{tag_name}}"
+  #en: all_clippings_tagged: All clippings tagged %{tag_name}
+  all_clippings_tagged: "All clippings tagged %{tag_name}"
   #en: all_comments: All comments
   all_comments: すべてのコメント
-  #en: all_photos_tagged: "All photos tagged {{tag_name}}"
+  #en: all_photos_tagged: "All photos tagged %{tag_name}"
   all_photos_tagged: タグ:「{{tag_name}」のすべての写真}
-  #en: all_posts_tagged: All posts tagged {{tag_name}}
+  #en: all_posts_tagged: All posts tagged %{tag_name}
   all_posts_tagged: "タグ:「{{tag_name}」のすべての記事}"
   #en: all_tags: All tags
   all_tags: すべてのタグ
-  #en: all_users_tagged: All users tagged {{tag_name}}
-  all_users_tagged: "タグ:「{{tag_name}}」のすべてのユーザ"
+  #en: all_users_tagged: All users tagged %{tag_name}
+  all_users_tagged: "タグ:「%{tag_name}」のすべてのユーザ"
   #en: already_have_an_account: Already have an account?
   already_have_an_account: 既にアカウントを持っていますか?
   #en: an_error_occurred: An error occurred
@@ -238,7 +238,7 @@ ja:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: コメントを削除できませんでした.
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: "コメントを保存できませんでした: {{error}}"
+  comment_save_error: "コメントを保存できませんでした: %{error}"
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: コメントの投稿が完了しました.
   #en: comments: Comments
@@ -281,8 +281,8 @@ ja:
   custom_friendly_local: "custom, friendly, local"
   #en: dashboard: Dashboard
   dashboard: ダッシュボード
-  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
-  dashboard_friends: "Once you start adding friends, you'll be able to track their activity on {{site}} here"
+  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on %{site} here
+  dashboard_friends: "Once you start adding friends, you'll be able to track their activity on %{site} here"
   #en: date_title: Date
   date_title: 日付
   #en: date_created: 作成日時
@@ -333,8 +333,8 @@ ja:
   draft: 草稿
   #en: drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
   drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
-  #en: drag_the_bookmarklet: Drag the {{site}}-It! bookmarklet to your bookmarks toolbar.
-  drag_the_bookmarklet: "Drag the {{site}}-It! bookmarklet to your bookmarks toolbar."
+  #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
+  drag_the_bookmarklet: "Drag the %{site}-It! bookmarklet to your bookmarks toolbar."
   #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
   drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
   #en: e_mail: E-mail
@@ -385,8 +385,8 @@ ja:
   editing_skill: Editing skill
   #en: email_addresses: Email Addresses
   email_addresses: Emailアドレス
-  #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}
-  email_signup_thanks: "Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}"
+  #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
+  email_signup_thanks: "Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}"
   #en: email_this_story_to_friends: "E-mail this story to friends"
   email_this_story_to_friends: "E-mail this story to friends"
   #en: email_to_friends: E-mail to friends
@@ -419,8 +419,8 @@ ja:
   events: Events
   #en: every_person_has_something_to_say: Every single person has something to say, something to give, something that will help someone else.  Join in!
   every_person_has_something_to_say: "Every single person has something to say, something to give, something that will help someone else.  Join in!"
-  #en: explore_site: Explore {{site}}
-  explore_site: "Explore {{site}}"
+  #en: explore_site: Explore %{site}
+  explore_site: "Explore %{site}"
   #en: failed: failed
   failed: failed
   #en: faq: FAQ
@@ -481,8 +481,8 @@ ja:
   friendship_could_not_be_created: Friendship could not be created
   #en: friendship_request_detail: Friendship request detail
   friendship_request_detail: Friendship request detail
-  #en: friendship_requested: Requested friendship with {{friend}}.
-  friendship_requested: "Requested friendship with {{friend}}."
+  #en: friendship_requested: Requested friendship with %{friend}.
+  friendship_requested: "Requested friendship with %{friend}."
   #en: from: From
   from: From
   #en: from2: From
@@ -493,8 +493,8 @@ ja:
   get_help_from_someone_who_knows: Get help from someone who knows
   #en: get_popular: Get popular.
   get_popular: Get popular.
-  #en: get_started_banner: Get started with <a href="/">{{site}}</a> today!
-  get_started_banner: "Get started with <a href='/'>{{site}}</a> today!"
+  #en: get_started_banner: Get started with <a href="/">%{site}</a> today!
+  get_started_banner: "Get started with <a href='/'>%{site}</a> today!"
   #en: get_started_invite_some_friends: "Get Started: Invite some friends!"
   get_started_invite_some_friends: "Get Started: Invite some friends!"
   #en: get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
@@ -553,8 +553,8 @@ ja:
   invite_a_friend: Invite a friend
   #en: invitation_was_successfully_created: Invitation was successfully created.
   invitation_was_successfully_created: Invitation was successfully created.
-  #en: invite_message: The more people you invite the better {{site}} becomes.
-  invite_message: "The more people you invite the better {{site}} becomes."
+  #en: invite_message: The more people you invite the better %{site} becomes.
+  invite_message: "The more people you invite the better %{site} becomes."
   #en: invite_some_customers: Invite some customers!
   invite_some_customers: Invite some customers!
   #en: invite_your_friends_to_join: Invite Your Friends To Join!
@@ -597,8 +597,8 @@ ja:
   log_in_to_leave_a_comment: ログインしてコメントする
   #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
   log_in_to_reply_to_this_topic: Log in to reply to this topic
-  #en: log_in_to_site: Log in to {{site}}
-  log_in_to_site: "{{site}}にログイン"
+  #en: log_in_to_site: Log in to %{site}
+  log_in_to_site: "%{site}にログイン"
   #en: log_in_to_vote: Log in to vote
   log_in_to_vote: Log in to vote
   #en: log_in_to_your: Log in to your
@@ -619,10 +619,10 @@ ja:
   locked: Locked
   #en: locked2: (locked)
   locked2: (locked)
-  #en: look_for_a_message_from: "Look for a message from: {{from}}"
-  look_for_a_message_from: "Look for a message from: {{from}}"
-  #en: looking_for_most_x: Looking for {{link}}
-  looking_for_most_x: "Looking for {{link}}"
+  #en: look_for_a_message_from: "Look for a message from: %{from}"
+  look_for_a_message_from: "Look for a message from: %{from}"
+  #en: looking_for_most_x: Looking for %{link}
+  looking_for_most_x: "Looking for %{link}"
   #en: make_moderator: Make moderator
   make_moderator: Make moderator
   #en: make_my_profile_public: Make my profile public
@@ -723,8 +723,8 @@ ja:
   new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   #en: new_post: New post
   new_post: New post
-  #en: new_post_for_category: New {{category}}
-  new_post_for_category: "New {{category}}"
+  #en: new_post_for_category: New %{category}
+  new_post_for_category: "New %{category}"
   #en: new_post_text: New Post text
   new_post_text: New Post text
   #en: new_skill: New skill
@@ -741,8 +741,8 @@ ja:
   next_page: 次のページ
   #en: no_activation_email: No activation e-mail?
   no_activation_email: No activation e-mail?
-  #en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
-  no_comments_found: "Sorry, we couldn't find any comments for that {{type}}"
+  #en: no_comments_found: Sorry, we couldn't find any comments for that %{type}
+  no_comments_found: "Sorry, we couldn't find any comments for that %{type}"
   #en: no_images_uploaded_yet: No images uploaded yet.
   no_images_uploaded_yet: No images uploaded yet.
   #en: no_messages: no messages
@@ -803,10 +803,10 @@ ja:
   permanently_delete_this_post: Permanently delete this post?
   #en: photo_comments: Photo Comments
   photo_comments: Photo Comments
-  #en: photo_from_user: "{{photo_description}} from {{user}}"
-  photo_from_user: "{{photo_description}} from {{user}}"
-  #en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
-  photo_message: "Your profile photo represents you on {{site}}. You can change it later."
+  #en: photo_from_user: "%{photo_description} from %{user}"
+  photo_from_user: "%{photo_description} from %{user}"
+  #en: photo_message: Your profile photo represents you on %{site}. You can change it later.
+  photo_message: "Your profile photo represents you on %{site}. You can change it later."
   #en: photo_was_successfully_created: Photo was successfully created.
   photo_was_successfully_created: Photo was successfully created.
   #en: photos: Photos
@@ -821,12 +821,12 @@ ja:
   please_log_in: ログインしてください.
   #en: please_post_something_at_least: Please post something at least...
   please_post_something_at_least: Please post something at least...
-  #en: plural_posts: "{{count}} posts"
-  plural_posts: "{{count}} posts"
+  #en: plural_posts: "%{count} posts"
+  plural_posts: "%{count} posts"
   #en: popular: Popular
   popular: 人気
-  #en: popular_catgory: Popular {{name}}
-  popular_catgory: "Popular {{name}}"
+  #en: popular_catgory: Popular %{name}
+  popular_catgory: "Popular %{name}"
   #en: popular_posts: Popular Posts
   popular_posts: Popular Posts
   #en: popular_posts_on: Popular Posts on
@@ -843,8 +843,8 @@ ja:
   post_a_new_topic: Post a new topic
   #en: post_an_event: Post an event
   post_an_event: Post an event
-  #en: post_created_for_category: Your '{{category}}' post was successfully created.
-  post_created_for_category: "Your '{{category}}' post was successfully created."
+  #en: post_created_for_category: Your '%{category}' post was successfully created.
+  post_created_for_category: "Your '%{category}' post was successfully created."
   #en: post_comments: Post Comments
   post_comments: Post Comments
   #en: postal_code: "Postal code:"
@@ -965,8 +965,8 @@ ja:
   save_reply: Save reply
   #en: says: says
   says: says
-  #en: sb_post_was_deleted: Post '{{title}}' was deleted.
-  sb_post_was_deleted: "Post '{{title}}' was deleted."
+  #en: sb_post_was_deleted: Post '%{title}' was deleted.
+  sb_post_was_deleted: "Post '%{title}' was deleted."
   #en: scrapbook: Scrapbook
   scrapbook: Scrapbook
   #en: search: Search
@@ -1001,8 +1001,8 @@ ja:
   share_the_love: Share the love
   #en: show: Show
   show: Show
-  #en: show_category: {{category}}
-  show_category: "{{category}}"
+  #en: show_category: %{category}
+  show_category: "%{category}"
   #en: show_this_photo: Show this photo
   show_this_photo: Show this photo
   #en: showing: Showing
@@ -1025,10 +1025,10 @@ ja:
   sign_up_reason_1: Some reason to sign up
   #en: sign_up_reason_2: Some reason to sign up
   sign_up_reason_2: Some reason to sign up
-  #en: singular_posts: "{{count}} post"
-  singular_posts: "{{count}} post"
-  #en: site_members: "{{site}} members"
-  site_members: "{{site}}メンバ"
+  #en: singular_posts: "%{count} post"
+  singular_posts: "%{count} post"
+  #en: site_members: "%{site} members"
+  site_members: "%{site}メンバ"
   #en: skill_was_successfully_created: Skill was successfully created.
   skill_was_successfully_created: Skill was successfully created.
   #en: skills: Skills
@@ -1037,8 +1037,8 @@ ja:
   skip_this_and_go_to_your_profile: Skip this and go to your profile
   #en: skip_this_step: Skip this step
   skip_this_step: Skip this step
-  #en: small_profile: "{{user}} doesn't have much here yet. Stay tuned."
-  small_profile: "{{user}} doesn't have much here yet. Stay tuned."
+  #en: small_profile: "%{user} doesn't have much here yet. Stay tuned."
+  small_profile: "%{user} doesn't have much here yet. Stay tuned."
   #en: sorry_there_was_an_error: "Sorry, there was an error."
   sorry_there_was_an_error: "Sorry, there was an error."
   #en: sorry_there_was_an_error_requesting_friendship: "Sorry, there was an error requesting friendship."
@@ -1071,8 +1071,8 @@ ja:
   subject: Subject
   #en: subscribe_to: Subscribe to
   subscribe_to: Subscribe to
-  #en: tag_does_not_exists: The tag {{tag}} does not exist
-  tag_does_not_exists: "The tag {{tag}} does not exist"
+  #en: tag_does_not_exists: The tag %{tag} does not exist
+  tag_does_not_exists: "The tag %{tag} does not exist"
   #en: tag_name: Tag name
   tag_name: タグ名
   #en: tag_yourself: tag yourself
@@ -1097,8 +1097,8 @@ ja:
   thanks_youre_now_logged_in: Thanks! You're now logged in.
   #en: the_comment_was_deleted: The comment was deleted.
   the_comment_was_deleted: The comment was deleted.
-  #en: the_community_team: "The {{community}} team"
-  the_community_team: "The {{community}} team"
+  #en: the_community_team: "The %{community} team"
+  the_community_team: "The %{community} team"
   #en: the_friendship_was_accepted: The friendship was accepted.
   the_friendship_was_accepted: The friendship was accepted.
   #en: the_friendship_was_denied: The friendship was denied.
@@ -1161,8 +1161,8 @@ ja:
   topic: トピックス
   #en: topics: Topics
   topics: トピックス
-  #en: topic_deleted: Topic '{{topic}}' was deleted.
-  topic_deleted: "Topic '{{topic}}' was deleted."
+  #en: topic_deleted: Topic '%{topic}' was deleted.
+  topic_deleted: "Topic '%{topic}' was deleted."
   #en: topic_locked: Topic locked
   topic_locked: Topic locked
   #en: total_users: Total users
@@ -1209,16 +1209,16 @@ ja:
   user: ユーザ
   #en: users: Users
   users: Users
-  #en: users_blog: "{{user}}'s Blog"
-  users_blog: "{{user}}'s Blog"
-  #en: user_clippings: Clippings of {{user}}
-  user_clippings: "Clippings of {{user}}"
+  #en: users_blog: "%{user}'s Blog"
+  users_blog: "%{user}'s Blog"
+  #en: user_clippings: Clippings of %{user}
+  user_clippings: "Clippings of %{user}"
   #en: user_login: User login
   user_login: User login
   #en: users_online: Users online
   users_online: Users online
-  #en: users_photos: "{{user}}'s Photos"
-  users_photos: "{{user}}の写真"
+  #en: users_photos: "%{user}'s Photos"
+  users_photos: "%{user}の写真"
   #en: user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
   user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
   #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
@@ -1253,8 +1253,8 @@ ja:
   votes: votes
   #en: waiting_for: Waiting for
   waiting_for: Waiting for
-  #en: walkthrough_complete: You've completed the {{site}} walk-through. Now you can continue exploring!
-  walkthrough_complete: "You've completed the {{site}} walk-through. Now you can continue exploring!"
+  #en: walkthrough_complete: You've completed the %{site} walk-through. Now you can continue exploring!
+  walkthrough_complete: "You've completed the %{site} walk-through. Now you can continue exploring!"
   #en: want_to_be_popular: Want to be popular?
   want_to_be_popular: Want to be popular?
   #en: want_to_list_your_services_on: Want to list your services on
@@ -1271,12 +1271,12 @@ ja:
   watch_topic: Watch topic
   #en: watching_topic: Watching topic
   watching_topic: Watching topic
-  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: {{email}}"
-  we_just_sent_an_e_mail_to: "We just sent an e-mail to: {{email}}"
+  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: %{email}"
+  we_just_sent_an_e_mail_to: "We just sent an e-mail to: %{email}"
   #en: we_need_you: We need you
   we_need_you: We need you
-  #en: welcome_message: Welcome! {{login_link}} or {{signup_link}}
-  welcome_message: "Welcome! {{login_link}} or {{signup_link}}"
+  #en: welcome_message: Welcome! %{login_link} or %{signup_link}
+  welcome_message: "Welcome! %{login_link} or %{signup_link}"
   #en: what_are_tags: 'What are "Tags"?'
   what_are_tags: '"タグ"とは?'
   #en: what_is_popular: What's Popular
@@ -1291,16 +1291,16 @@ ja:
   when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
   #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
   when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "When unchecked, your profile will only be visible to people who are logged in to"
-  #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
-  when_you_see_an_image_you_like_on_the_web: "When you see an image you like on the Web, click the bookmarklet to save it to {{site}}"
+  #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to %{site}
+  when_you_see_an_image_you_like_on_the_web: "When you see an image you like on the Web, click the bookmarklet to save it to %{site}"
   #en: why_sign_up: Why Sign up?
   why_sign_up: Why Sign up?
   #en: write_a_blog_post: Write a blog post!
   write_a_blog_post: Write a blog post!
   #en: write_a_message: "Write a message:"
   write_a_message: "Write a message:"
-  #en: write_new_post: Write a '{{category}}' post
-  write_new_post: "Write a '{{category}}' post"
+  #en: write_new_post: Write a '%{category}' post
+  write_new_post: "Write a '%{category}' post"
   #en: wrote_a_post: "wrote a post:"
   wrote_a_post: "wrote a post:"
   #en: yesterday: Yesterday
