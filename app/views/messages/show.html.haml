@@ -11,16 +11,16 @@
           =h @message.subject
 
       -unless @message_thread
-        .right= h I18n.l(@message.created_at, :format => :literal_date)            
+        .right= h I18n.t(@message.created_at, :format => :literal_date)            
         %pre.clear.message_body= auto_link @message.body      
       -else
-        .right= h I18n.l(@message_thread.parent_message.created_at, :format => :literal_date)                  
+        .right= h I18n.t(@message_thread.parent_message.created_at, :format => :literal_date)                  
         %pre.clear.message_body= auto_link @message_thread.parent_message.body
         %br
       
         - children = @message_thread.parent_message.children
         - children.each do |child|      
-          .right=h I18n.l(child.created_at, :format => :literal_date)
+          .right=h I18n.t(child.created_at, :format => :literal_date)
           ="<em>#{child.sender.login}</em>:"
           %br
           %pre.message_body= auto_link child.body

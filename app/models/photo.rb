@@ -27,7 +27,7 @@ class Photo < ActiveRecord::Base
   attr_accessible :name, :description
 
   def display_name
-    (self.name && self.name.length>0) ? self.name : "#{:created_at.l.downcase}: #{I18n.l(self.created_at, :format => :published_date)}"
+    (self.name && self.name.length>0) ? self.name : "#{:created_at.l.downcase}: #{I18n.t(self.created_at, :format => :published_date)}"
   end
 
   def description_for_rss

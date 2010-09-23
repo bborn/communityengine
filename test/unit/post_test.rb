@@ -168,7 +168,7 @@ class PostTest < ActiveSupport::TestCase
   
   def test_should_show_published_at_display
     post = posts(:funny_post)
-    assert_equal post.published_at_display, I18n.l(post.published_at, :format => 'published_date')
+    assert_equal post.published_at_display, I18n.t(post.published_at, :format => 'published_date')
   end
 
   def test_should_show_published_at_display_for_draft

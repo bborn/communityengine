@@ -10,7 +10,7 @@
     - if user.description
       = truncate_words( user.description, 12, '...')
     %dd.member
-      =:member_since.l+" #{I18n.l(user.created_at, :format => :short_published_date)}"
+      =:member_since.l+" #{I18n.t(user.created_at, :format => :short_published_date)}"
     %dd.post
       - if user.posts.count == 1
         = link_to :singular_posts.l(:count => user.posts.count), user_posts_path(user)
