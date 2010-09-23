@@ -18,11 +18,11 @@
 
         - for contest in @contests
           %tr
-            %td=h I18n.t(contest.created_at, :format => :short_published_date)
+            %td=h I18n.l(contest.created_at, :format => :short_published_date)
             %td=h contest.title
             %td=h truncate(contest.post, :length => 250)
-            %td=h I18n.t(contest.begin_date, :format => :short_published_date)
-            %td=h I18n.t(contest.end_date, :format => :short_published_date)
+            %td=h I18n.l(contest.begin_date, :format => :short_published_date)
+            %td=h I18n.l(contest.end_date, :format => :short_published_date)
             %td
               = link_to :show.l, contest_path(contest)
               %br

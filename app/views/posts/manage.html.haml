@@ -54,7 +54,7 @@
           - @posts.each do |post|
             %tr            
               %td
-                %abbr{:title=>"#{post.created_at}"}= I18n.t(post.created_at, :format => :published_date)
+                %abbr{:title=>"#{post.created_at}"}= I18n.l(post.created_at, :format => :published_date)
               %td
                 %abbr{:title=>"#{post.published_at}"}= post.published_at_display
               %td

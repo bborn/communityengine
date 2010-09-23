@@ -25,8 +25,8 @@
     %h3=:stats.l
     %ul
       - if @user.last_login_at
-        %li=:you_last_logged_in_on.l+" #{I18n.t(@user.last_login_at, :format => :published_date)}"
-      %li=:member_since.l+" #{I18n.t(@user.created_at, :format => :published_date)}"
+        %li=:you_last_logged_in_on.l+" #{I18n.l(@user.last_login_at, :format => :published_date)}"
+      %li=:member_since.l+" #{I18n.l(@user.created_at, :format => :published_date)}"
       -unless @user.posts.empty?
         %li=:you_have_written_blog_posts.l(:count => @user.posts.count)
       -unless @user.photos.empty?
