@@ -49,9 +49,9 @@ es-MX:
   delete: Eliminar
   deactivate_tip: Desactivar su cuenta, removerá su perfil del sitio.
   keywords: Palabras Claves
-  post_created_for_category: Su publicación de '%{category}' fué creado exitosamente.
+  post_created_for_category: Su publicación de '{{category}}' fué creado exitosamente.
   confirm_password: "Confirma la Contraseña"
-  log_in_to_site: Ingresar a %{site}
+  log_in_to_site: Ingresar a {{site}}
   favorited: favorito
   to_you: a tí
   spread_the_word: Pasa la voz
@@ -78,7 +78,7 @@ es-MX:
   find_out_where_to_be_and_when_to_be_there: Descubre cuando y donde estar.
   add_comment: "Añadir Comentario"
   photo_tip_2: Utiliza las etiquetas para organizar tus fotos. Separalas con comas.
-  welcome_message: Bienvenido! %{login_link} o %{signup_link}
+  welcome_message: Bienvenido! {{login_link}} o {{signup_link}}
   see_all_activity: Ver toda la actividad
   banner_subtitle_required: "Subtítulo del Anúncio (requerido):"
   click_here: click aquí
@@ -93,7 +93,7 @@ es-MX:
   loading_recent_content: Cargando contenido reciente ...
   estimated_total_for_this_month: Total estimado para este mes
   cancel: cancelar
-  account_activation_error: "Activación de cuenta falló. Tal vez ya está activa. Intenta conectarte o manda un correo electrónico a %{email} para obtener ayuda."
+  account_activation_error: "Activación de cuenta falló. Tal vez ya está activa. Intenta conectarte o manda un correo electrónico a {{email}} para obtener ayuda."
   more_about_you: Más sobre tí
   email_addresses: Direcciones de Correo Electrónico
   my_skills: Mis Habilidades
@@ -118,7 +118,7 @@ es-MX:
   post_an_event: Publicar un evento
   friend: amigo
   you_have_pending_friendship_requests: Usted tiene solicitudes de amistad pendientes.
-  user_clippings: Recortes de %{user}
+  user_clippings: Recortes de {{user}}
   thanks_youre_now_logged_in: ¡Gracias! Ha sido ingresado.
   start_date: Fecha de inicio
   contest_was_successfully_created: "El concurso fue creado con éxito."
@@ -164,13 +164,13 @@ es-MX:
   the_slideshow_is_disabled: El visor de diapositivas está deshabilitado.
   previewing_your_post: Vista previa de su publicación
   accepted: aceptado
-  drag_the_bookmarklet: Arrastre el bookmarklet %{site}-Me! a su barra de herramientas de favoritos.
+  drag_the_bookmarklet: Arrastre el bookmarklet {{site}}-Me! a su barra de herramientas de favoritos.
   invitation_was_successfully_created: La invitación fué creada exitosamente.
   filename: Nombre de archivo
   says: dice
   e_mail_notification: "Notificación de correo electrónico"
   are_you_sure_you_want_to_delete_this_photo: ¿Está seguro que desea eliminar esta foto??
-  all_photos_tagged: Todas las fotos marcadas con la etiqueta %{tag_name}
+  all_photos_tagged: Todas las fotos marcadas con la etiqueta {{tag_name}}
   event_was_successfully_created: "El evento se creó con éxito"
   new_photos_multiple_uploader: Nuevas Fotos &raquo; Subir Archivos Multiples
   delete_this_post_forever: "¿Suprimir esta publicación para siempre?"
@@ -180,7 +180,7 @@ es-MX:
   view_all_my_friend_requests: Ver todas mis solicitudes de amistad
   the_service_was_deleted: El servicio fué eliminado.
   skills: Habilidades
-  all_clippings_tagged: Todos los recortes marcados con la etiqueta %{tag_name}
+  all_clippings_tagged: Todos los recortes marcados con la etiqueta {{tag_name}}
   delete_this_forum: Suprimir este foro
   e_mail: "Correo electrónico"
   log_out_of_your: Salir de su
@@ -191,7 +191,7 @@ es-MX:
   print_this_story: Imprimir esta historia
   invite_your_friends_to_join: Invita a tus amigos a unirse al sitio!
   blog: "Blog"
-  we_just_sent_an_e_mail_to: "Enviamos un e-mail a: %{email}"
+  we_just_sent_an_e_mail_to: "Enviamos un e-mail a: {{email}}"
   resend_my_activation_e_mail: Re-enviar mi e-mail de activación
   offering_was_successfully_created: La Oferta fué creada exitosamente.
   click_on_an_image_below_to_clip_it: Haz click en una imágen para recortarla.
@@ -219,13 +219,13 @@ es-MX:
   when_checked_your_profile_will_be_visible_to_anyone: Cuando está activado, su perfil es visible a todos.
   this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: El perfil de este usuario no es público. usted necesita crear una cuenta e ingrsar para poder verlo.
   state: Estado
-  singular_posts: "%{count} publicación"
+  singular_posts: "{{count}} publicación"
   your_post_was_deleted: Su publicación fue eliminada.
   votes: votos
   to_get_recommended_content_on_your_dashboard: para empezar a recibir contenido recomendado en su panel.
   editing_ad: Editando anuncio
   activate: Activar
-  topic_deleted: El tema '%{topic}' fué eliminado.
+  topic_deleted: El tema '{{topic}}' fué eliminado.
   top_pros: Mejores Profesionales
   editing_post: "Editando publicación"
   deactivate_completed: Gracias. Tu cuenta ha sido desactivada y has salido del sitio.
@@ -233,11 +233,11 @@ es-MX:
   write_a_message: "Escribe tu mensaje:"
   thumb: Muestra
   preview: Vista Previa
-  look_for_a_message_from: "Busca un mensaje de: %{from}"
-  friendship_requested: Se pidió la amistad de %{friend}.
+  look_for_a_message_from: "Busca un mensaje de: {{from}}"
+  friendship_requested: Se pidió la amistad de {{friend}}.
   photo_was_successfully_created: Foto creada exitosamente.
   no_recent_activity: No hay actividad reciente
-  write_new_post: Escribir una poublicación sobre '%{category}'
+  write_new_post: Escribir una poublicación sobre '{{category}}'
   watch_ing: ando
   get_started_tell_us_about_yourself: "¡Iniciate!: Cuentanos sobre tí"
   back_to_all_statistics: Regresar a todas las estadísticas
@@ -246,8 +246,8 @@ es-MX:
   male: Hombre
   inactive: inactivo
   please_log_in: Por favor ingresa.
-  users_blog: "Blog de %{user}"
-  photo_message: Tu foto de perfil te representa en %{site}. Puedes cambiarla más tarde.
+  users_blog: "Blog de {{user}}"
+  photo_message: Tu foto de perfil te representa en {{site}}. Puedes cambiarla más tarde.
   create_new_forum: Crear Nuevo Foro
   new_contest: Nuevo concurso
   to_start_adding_friends: Para empezar a añadir amigos, puedes
@@ -255,7 +255,7 @@ es-MX:
   search: Buscar
   comments: Comentarios
   community_tagline: "¡Prueba CommunityEngine!"
-  plural_posts: "%{count} publicaciones"
+  plural_posts: "{{count}} publicaciones"
   in_the_forums: En los foros
   your_changes_were_saved: Tus cambios han sido guardados.
   thanks_for_activating_your_account: !Gracias por activar su cuenta!
@@ -285,8 +285,8 @@ es-MX:
   edit_contest: Editar Concurso
   admin_dashboard: Panel de Control del Administrador
   banner_title_required: "Título del Anúncio (required):"
-  email_signup_thanks: "¡Gracias por registrarte! Deberías recibir la confirmación de un correo electrónico dentro de poco en %{email}"
-  required_you_must_be_at_least_years_old_to_sign_up: "(Requerido: debes tener mínimo %{min_age} años para registarte.)"
+  email_signup_thanks: "¡Gracias por registrarte! Deberías recibir la confirmación de un correo electrónico dentro de poco en {{email}}"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Requerido: debes tener mínimo {{min_age}} años para registarte.)"
   create_a_clipping: Crear un Recorte
   activation_email_not_sent_message: El e-mail de activación no pudo ser enviado. ¿Tal vez el usuario ya ha sido activado?
   post_a_new_topic: Publicar un nuevo Tema
@@ -327,7 +327,7 @@ es-MX:
   user_login: Nombre de Usuario
   re_type_your_password_to_confirm: "Re-escribe tu password para confirmar:"
   denied: denegado
-  comment_save_error: "No se pudo guardar tu comentario. %{error}"
+  comment_save_error: "No se pudo guardar tu comentario. {{error}}"
   send: Enviar
   left_a_comment: "dejó un comentario:"
   have_an_account: "¿Tienes una cuenta? "
@@ -339,7 +339,7 @@ es-MX:
   service_could_not_be_deleted: El servicio no pudo ser eliminado.
   read_more: leer mas
   you_are_editing_your_account: Ested está editando su cuenta.
-  tag_does_not_exists: La etiqueta %{tag} no existe
+  tag_does_not_exists: La etiqueta {{tag}} no existe
   password: Contraseña
   are_you_sure_you_want_to_permanently_delete_this_comment: ¿Está seguro que desea eliminar permanentemente este comentario?
   the_comment_was_deleted: El comentario fué suprimido.
@@ -356,7 +356,7 @@ es-MX:
   cancel_and_go_back_to_all_contests: cancelar y regresar a todos los concursos
   add_from_my_address_book: Agregar desde mi libreta de direcciones
   you_have: Tu tienes
-  sb_post_was_deleted: La publicación '%{title}' fué eliminada.
+  sb_post_was_deleted: La publicación '{{title}}' fué eliminada.
   requested: pedido
   moderators: Moderadores
   error: Error!
@@ -380,7 +380,7 @@ es-MX:
   post: Publicación
   name: Nombre
   find_an_expert: Buscar un Experto
-  comments_count: comentarios %{count} %{count}
+  comments_count: comentarios {{count}} {{count}}
   view_all_my_photos: Ver todas mis fotos
   tags_are_comma_separated_keywords_that_describe_you: Las etiquetas son palabras clave separadas por comas que te describen.
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Publicaciones guardadas como 'borrador' no blog hasta que las publiques.
@@ -405,7 +405,7 @@ es-MX:
   homepage_banner_msg: CommunityEngine es la mejor forma de is de cero a 100 en un momento
   get_help_from_someone_who_knows: Obtén ayuda de alguien que sabe
   tags: Etiquetas
-  about_site: Acerca de %{site}
+  about_site: Acerca de {{site}}
   drag_and_drop_up_to_three_skills_into_gray_area_above: Arrastra y tira hasta tres habilidades en el área gris arriba.
   one_minute_ago: hace un minuto
   request_friendship: Solicitar amistad
@@ -472,12 +472,12 @@ es-MX:
   optional_keywords_describing_this_post_separated_by_commas: palabras clave opcionales describiendo esta publicación, separadas por comas
   whats_hot: Lo Mejor
   new_invitation: Nueva Invitación
-  explore_site: Explora %{site}
-  users_photos: "Fotos de %{user}"
+  explore_site: Explora {{site}}
+  users_photos: "Fotos de {{user}}"
   time_constrained: Restringido por Tiempo
   tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Las etiquetas son descripciones de una sola palabra que los usuarios asignan a las publicaciones de su blog, fotos y recortes en
-  small_profile: "%{user} no tiene mucho aquí aún. ¡Espera un poco más y ponte atento!."
-  all_users_tagged: Todos los usuarios marcados con la etiqueta %{tag_name}
+  small_profile: "{{user}} no tiene mucho aquí aún. ¡Espera un poco más y ponte atento!."
+  all_users_tagged: Todos los usuarios marcados con la etiqueta {{tag_name}}
   create_an_account: Crear una cuenta
   days_ago: dias atras
   notify_email_updates: Email de Noticias de la Comunidad
@@ -485,7 +485,7 @@ es-MX:
   last_post: Última publicación
   you_must_vote_to_see_the_results: Debe votar para ver los resultados.
   more: Más
-  all_posts_tagged: Todas las publicaciones marcadas con la etiqueta %{tag_name}
+  all_posts_tagged: Todas las publicaciones marcadas con la etiqueta {{tag_name}}
   end_date: Fecha final
   assume_this_users_id: "Asumir esta identificación de usuario"
   whats_popular: Lo Popular
@@ -498,7 +498,7 @@ es-MX:
   destroy: Destruir
   activity_from_your_network: Actividad de tu red
   advertise: Anunciarse
-  no_comments_found: Lo sentimos, no encontramos ningún comentario sobre %{type}
+  no_comments_found: Lo sentimos, no encontramos ningún comentario sobre {{type}}
   send_invitations: ¡Enviar Invitaciones!
   rss_feed: RSS feed
   page: página
@@ -564,7 +564,7 @@ es-MX:
   comments_rss: Comentarios en RSS
   view_profile: Ver Perfil
   topic_locked: Tema Cerrado
-  looking_for_most_x: Buscando por %{link}
+  looking_for_most_x: Buscando por {{link}}
   total_votes: Total de votos
   resend_your_activation_e_mail: Reenviar tu e-mail de activación
   sign_up_for_a_: Registrarse por
@@ -573,21 +573,21 @@ es-MX:
   tips: "Tips:"
   add_your_comment: "¡Añade Tu Comentario!"
   are_you_sure_you_want_to_delete_this_post: ¿Estas seguro que deseas eliminar esta publicación?
-  invite_message: Entre más gente invites, %{site} se vuelve mejor.
+  invite_message: Entre más gente invites, {{site}} se vuelve mejor.
   start_time: Hora de inicio
   save_and_continue_to_step_three: Guardar y continuar al paso tres
   required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Requerido: Tu nombre de usuario no deberá contener números, espacios o caracteres especiales.)"
-  get_started_banner: ¡Iniciate con <a href="/">%{site}</a> hoy mismo!
+  get_started_banner: ¡Iniciate con <a href="/">{{site}}</a> hoy mismo!
   invite_a_friend: Invita un amigo
   new_yesterday: Nuevo Ayer
-  posts_photos_and_bookmarks: "%{name} publicaciones, fotos y favvoritos"
+  posts_photos_and_bookmarks: "{{name}} publicaciones, fotos y favvoritos"
   go_to_the_forums: ir a los foros
   your_post_was_successfully_created: Tu publicación fue creada con éxito.
   this_friendship_is_pending: Esta amistad está pendiente.
   remove_moderator: Eliminar moderador
   advertise_on: Anunciarse en
   on_commentable: "Encendido"
-  popular_catgory: Popular %{name}
+  popular_catgory: Popular {{name}}
   browse_content_by_tags: Navegar contenido por etiquetas
   whats_fresh: Lo Nuevo
   total_users: Total de usuarios
@@ -600,12 +600,12 @@ es-MX:
   view_my_blog: Ver mi blog
   about_you: "Acerca de Tí"
   denied_friendships: Amistades Negadas
-  new_post_for_category: Nueva %{category}
+  new_post_for_category: Nueva {{category}}
   compose_message: Escribir Mensaje
   your_profile_photo: "Foto de tu perfil:"
   you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "Puedes usar el logo de tu negocio, o una foto de uno de tus productos. "
   save: Guardar
-  dashboard_friends: "Una vez que agregas amigos, puedes seguir sus actividades en %{site} aquí"
+  dashboard_friends: "Una vez que agregas amigos, puedes seguir sus actividades en {{site}} aquí"
   listing_invitations: Listado de Invitaciones
   want_to_upload_multiple_files_at_once: ¿Deseas subir múltiples archivos juntos?
   uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: No pudimos ingresarte con ese usuario y contraseña. ¿Quieres intentar de nuevo?
@@ -629,7 +629,7 @@ es-MX:
   my_tags: Mis etiquetas
   choose_your_location: "Elige tu ubicación"
   what_are_tags: ¿Que son las "Etiquetas"?
-  show_category:  "%{category}"
+  show_category:  "{{category}}"
   home: Inicio
   why_sign_up: ¿Por que Registrarme?
   make_this_my_profile_photo: Haz esta la foto de tu perfil
@@ -681,8 +681,8 @@ es-MX:
   create_your_account: Crea Tu Cuenta
   log_in_to_reply_to_this_topic: Ingresar para responder en este tema
   account_settings: "Configuración de cuenta"
-  when_you_see_an_image_you_like_on_the_web: Cuando ves una imagen que te guste en la Web, haz click en el bookmarklet para guardarla en %{site}
-  site_members: "Miembros de %{site}"
+  when_you_see_an_image_you_like_on_the_web: Cuando ves una imagen que te guste en la Web, haz click en el bookmarklet para guardarla en {{site}}
+  site_members: "Miembros de {{site}}"
   showing_ad: Mostrando Anuncio
   pros: Profesionales
   begin_required: inicio (requerido)

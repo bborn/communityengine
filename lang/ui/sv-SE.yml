@@ -20,8 +20,8 @@ sv:
   about: Om
   #en: about_me: About Me
   about_me: Om mig
-  #en: about_site: About %{site}
-  about_site: "Om %{site}"
+  #en: about_site: About {{site}}
+  about_site: "Om {{site}}"
   #en: about_you: About You
   about_you: Om dig
   #en: accept: Accept
@@ -34,8 +34,8 @@ sv:
   accept_this_request: Bekräfta den här begäran
   #en: account: account
   account: konto
-  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.
-  account_activation_error: "Kontoaktiveringen misslyckade. Ditt konto kanske redan är aktiverat? Prova att logga in, eller skicka ett mejl till %{email} så får du hjälp."
+  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help.
+  account_activation_error: "Kontoaktiveringen misslyckade. Ditt konto kanske redan är aktiverat? Prova att logga in, eller skicka ett mejl till {{email}} så får du hjälp."
   #en: account_settings: Account settings
   account_settings: Kontoinställningar
   #en: actions: Actions
@@ -86,18 +86,18 @@ sv:
   advertise_on: Annonsera på
   #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
   after_signing_up_youll_receive_an_e_mail_confirmation_message: "Du kommer att få en bekräftelse via mejl när du har registrerat dig."
-  #en: all_clippings_tagged: All clippings tagged %{tag_name}
-  all_clippings_tagged: "Alla urklipp med etiketten %{tag_name}"
+  #en: all_clippings_tagged: All clippings tagged {{tag_name}}
+  all_clippings_tagged: "Alla urklipp med etiketten {{tag_name}}"
   #en: all_comments: All comments
   all_comments: Alla kommentarer
-  #en: all_photos_tagged: All photos tagged %{tag_name}
-  all_photos_tagged: "Alla bilder med etiketten %{tag_name}"
-  #en: all_posts_tagged: All posts tagged %{tag_name}
-  all_posts_tagged: "Alla inlägg med etiketten %{tag_name}"
+  #en: all_photos_tagged: All photos tagged {{tag_name}}
+  all_photos_tagged: "Alla bilder med etiketten {{tag_name}}"
+  #en: all_posts_tagged: All posts tagged {{tag_name}}
+  all_posts_tagged: "Alla inlägg med etiketten {{tag_name}}"
   #en: all_tags: All tags
   all_tags: Alla etiketter
-  #en: all_users_tagged: All users tagged %{tag_name}
-  all_users_tagged: "Alla användare med etiketten %{tag_name}"
+  #en: all_users_tagged: All users tagged {{tag_name}}
+  all_users_tagged: "Alla användare med etiketten {{tag_name}}"
   #en: already_have_an_account: Already have an account?
   already_have_an_account: Har du redan ett konto?
   #en: an_error_occurred: An error occurred
@@ -235,7 +235,7 @@ sv:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: Kommentaren kunde inte tas bort.
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: 'Din kommentar kunde inte sparas: %{error}'
+  comment_save_error: 'Din kommentar kunde inte sparas: {{error}}'
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: Kommentaren skapad.
   #en: comments: Comments
@@ -276,8 +276,8 @@ sv:
   custom_friendly_local: "custom, friendly, local"
   #en: dashboard: Dashboard
   dashboard: Översikt
-  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on %{site} here
-  dashboard_friends: "När du börjar lägga till kompisar kommer du att kunna se deras aktivitet på %{site} här"
+  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
+  dashboard_friends: "När du börjar lägga till kompisar kommer du att kunna se deras aktivitet på {{site}} här"
   #en: date: Date
   date_title: Datum
   #en: date_created: Date Created
@@ -328,8 +328,8 @@ sv:
   draft: utkast
   #en: drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
   drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
-  #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
-  drag_the_bookmarklet: "Drag the %{site}-It! bookmarklet to your bookmarks toolbar."
+  #en: drag_the_bookmarklet: Drag the {{site}}-It! bookmarklet to your bookmarks toolbar.
+  drag_the_bookmarklet: "Drag the {{site}}-It! bookmarklet to your bookmarks toolbar."
   #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
   drag_this_to_your_bookmarks_toolbar: Dra denna till ditt bokmärkesverktygsfält
   #en: e_mail: E-mail
@@ -380,8 +380,8 @@ sv:
   editing_skill: Redigerar kompetensområde
   #en: email_addresses: Email Addresses
   email_addresses: Mejladresser
-  #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
-  email_signup_thanks: "Tack för att du registrerat dig. Du ska inom kort ha fått ett mejl, till adressen %{email}"
+  #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}
+  email_signup_thanks: "Tack för att du registrerat dig. Du ska inom kort ha fått ett mejl, till adressen {{email}}"
   #en: email_this_story_to_friends: "E-mail this story to friends"
   email_this_story_to_friends: "Mejla den här berättelsen till kompisar"
   #en: email_to_friends: E-mail to friends
@@ -414,8 +414,8 @@ sv:
   events: Händelser
   #en: every_person_has_something_to_say: Every single person has something to say, something to give, something that will help someone else.  Join in!
   every_person_has_something_to_say: "Varje individ har något att säga, något att ge, något som kan hjälpa någon annan. Kom med!"
-  #en: explore_site: Explore %{site}
-  explore_site: "Utforska %{site}"
+  #en: explore_site: Explore {{site}}
+  explore_site: "Utforska {{site}}"
   #en: failed: failed
   failed: misslyckades
   #en: faq: FAQ
@@ -476,8 +476,8 @@ sv:
   friendship_could_not_be_created: Kunde inte knyta upp kompis
   #en: friendship_request_detail: Friendship request detail
   friendship_request_detail: Detaljer för kompisförfrågan
-  #en: friendship_requested: Requested friendship with %{friend}.
-  friendship_requested: "Skickade en kompisförfrågan till %{friend}."
+  #en: friendship_requested: Requested friendship with {{friend}}.
+  friendship_requested: "Skickade en kompisförfrågan till {{friend}}."
   #en: from: From
   from: Från
   #en: from2: From
@@ -488,8 +488,8 @@ sv:
   get_help_from_someone_who_knows: Få hjälp från nån som kan
   #en: get_popular: Get popular.
   get_popular: Bli populär.
-  #en: get_started_banner: Get started with <a href="/">%{site}</a> today!
-  get_started_banner: "Kom igång med <a href='/'>%{site}</a> idag!"
+  #en: get_started_banner: Get started with <a href="/">{{site}}</a> today!
+  get_started_banner: "Kom igång med <a href='/'>{{site}}</a> idag!"
   #en: get_started_invite_some_friends: "Get Started: Invite some friends!"
   get_started_invite_some_friends: "Kom igång: bjud in några kompisar!"
   #en: get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
@@ -548,8 +548,8 @@ sv:
   invite_a_friend: Bjud in en kompis
   #en: invitation_was_successfully_created: Invitation was successfully created.
   invitation_was_successfully_created: Inbjudan är skapad.
-  #en: invite_message: The more people you invite the better %{site} becomes.
-  invite_message: "Ju fler du bjuder in desto bättre blir %{site}."
+  #en: invite_message: The more people you invite the better {{site}} becomes.
+  invite_message: "Ju fler du bjuder in desto bättre blir {{site}}."
   #en: invite_some_customers: Invite some customers!
   invite_some_customers: Bjud in några kunder!
   #en: invite_your_friends_to_join: Invite Your Friends To Join!
@@ -592,8 +592,8 @@ sv:
   log_in_to_leave_a_comment: Logga in för att lämna en kommentar
   #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
   log_in_to_reply_to_this_topic: Logga in för att svara på detta ämne
-  #en: log_in_to_site: Log in to %{site}
-  log_in_to_site: "Logga in på %{site}"
+  #en: log_in_to_site: Log in to {{site}}
+  log_in_to_site: "Logga in på {{site}}"
   #en: log_in_to_vote: Log in to vote
   log_in_to_vote: Logga in för att rösta
   #en: log_in_to_your: Log in to your
@@ -616,10 +616,10 @@ sv:
   locked: Låst
   #en: locked2: (locked)
   locked2: (låst)
-  #en: look_for_a_message_from: "Look for a message from: %{from}"
-  look_for_a_message_from: "Sök efter ett meddelande från: %{from}"
-  #en: looking_for_most_x: Looking for %{link}
-  looking_for_most_x: "Sökte du %{link}"
+  #en: look_for_a_message_from: "Look for a message from: {{from}}"
+  look_for_a_message_from: "Sök efter ett meddelande från: {{from}}"
+  #en: looking_for_most_x: Looking for {{link}}
+  looking_for_most_x: "Sökte du {{link}}"
   #en: make_moderator: Make moderator
   make_moderator: Gör till moderator
   #en: make_my_profile_public: Make my profile public
@@ -720,8 +720,8 @@ sv:
   new_photos_multiple_uploader: "Nya bilder &raquo; multiuppladdare"
   #en: new_post: New post
   new_post: Nytt inlägg
-  #en: new_post_for_category: New %{category}
-  new_post_for_category: "Ny %{category}"
+  #en: new_post_for_category: New {{category}}
+  new_post_for_category: "Ny {{category}}"
   #en: new_post_text: New Post text
   new_post_text: Text i nytt inlägg
   #en: new_skill: New skill
@@ -738,8 +738,8 @@ sv:
   next_page: Nästa sida
   #en: no_activation_email: No activation e-mail?
   no_activation_email: Inget aktiveringsmejl?
-  #en: no_comments_found: Sorry, we couldn't find any comments for that %{type}
-  no_comments_found: "Tyvärr kunde vi inte hitta några kommentarer för %{type}"
+  #en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
+  no_comments_found: "Tyvärr kunde vi inte hitta några kommentarer för {{type}}"
   #en: no_images_uploaded_yet: No images uploaded yet.
   no_images_uploaded_yet: Inga bilder uppladdade ännu.
   #en: no_messages: no messages
@@ -800,12 +800,12 @@ sv:
   permanently_delete_this_post: Ta bort det här inlägget permanent?
   #en: photo_comments: Photo Comments
   photo_comments: Bildkommentarer
-  #en: photo_from_user: "Photo from %{user}"
-  photo_from_user: "Bild från %{user}"
-  #en: photo_description_from_user: "%{photo_description} from %{user}"
-  photo_description_from_user: "%{photo_description} från %{user}"
-  #en: photo_message: Your profile photo represents you on %{site}. You can change it later.
-  photo_message: "Din profilbild representerar dig på %{site}. Du kan ändra den senare."
+  #en: photo_from_user: "Photo from {{user}}"
+  photo_from_user: "Bild från {{user}}"
+  #en: photo_description_from_user: "{{photo_description}} from {{user}}"
+  photo_description_from_user: "{{photo_description}} från {{user}}"
+  #en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
+  photo_message: "Din profilbild representerar dig på {{site}}. Du kan ändra den senare."
   #en: photo_was_successfully_created: Photo was successfully created.
   photo_was_successfully_created: Bilden skapad.
   #en: photos: Photos
@@ -820,12 +820,12 @@ sv:
   please_log_in: Logga in, är du snäll.
   #en: please_post_something_at_least: Please post something at least...
   please_post_something_at_least: Skriv något åtminstone...
-  #en: plural_posts: "%{count} posts"
-  plural_posts: "%{count} inlägg"
+  #en: plural_posts: "{{count}} posts"
+  plural_posts: "{{count}} inlägg"
   #en: popular: Popular
   popular: Populära
-  #en: popular_catgory: Popular %{name}
-  popular_catgory: "Populära %{name}"
+  #en: popular_catgory: Popular {{name}}
+  popular_catgory: "Populära {{name}}"
   #en: popular_posts: Popular Posts
   popular_posts: Populära inlägg
   #en: popular_posts_on: Popular Posts on
@@ -842,8 +842,8 @@ sv:
   post_a_new_topic: Skapa ett nytt ämne
   #en: post_an_event: Post an event
   post_an_event: Posta en händelse
-  #en: post_created_for_category: Your '%{category}' post was successfully created.
-  post_created_for_category: "Ditt inlägg i kategorin '%{category}' har skapats."
+  #en: post_created_for_category: Your '{{category}}' post was successfully created.
+  post_created_for_category: "Ditt inlägg i kategorin '{{category}}' har skapats."
   #en: post_comments: Post Comments
   post_comments: Kommentarer på inlägget
   #en: postal_code: "Postal code:"
@@ -852,8 +852,8 @@ sv:
   posting_tips: "Tips för inlägg"
   #en: post_topic: Post topic
   post_topic: Spara ämne
-  #en: posts_photos_and_bookmarks: %{name} posts, photos and bookmarks
-  posts_photos_and_bookmarks: "%{name} inlägg, bilder och bokmärken"
+  #en: posts_photos_and_bookmarks: {{name}} posts, photos and bookmarks
+  posts_photos_and_bookmarks: "{{name}} inlägg, bilder och bokmärken"
   #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Inlägg sparade som 'utkast' kommer inte att synas i din blogg förrän du publicerat dem."
   #en: preview: Preview
@@ -934,8 +934,8 @@ sv:
   required: obligatorisk
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Obligatoriskt: Vi skickar ett bekräftelsemejl till adressen du anger.)"
-  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least %{min_age} years old to sign up.)"
-  required_you_must_be_at_least_years_old_to_sign_up: "(Obligatoriskt: Du måste vara minst %{min_age} år gammal för att registrera dig.)"
+  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least {{min_age}} years old to sign up.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Obligatoriskt: Du måste vara minst {{min_age}} år gammal för att registrera dig.)"
   #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
   required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Obligatoriskt: Ditt användarnamn får inte innehålla siffror, blanksteg eller specialtecken.)"
   #en: resend_my_activation_e_mail: Resend my activation e-mail
@@ -964,8 +964,8 @@ sv:
   save_reply: Spara svar
   #en: says: says
   says: säger
-  #en: sb_post_was_deleted: Post '%{title}' was deleted.
-  sb_post_was_deleted: "Inlägget '%{title}' togs bort."
+  #en: sb_post_was_deleted: Post '{{title}}' was deleted.
+  sb_post_was_deleted: "Inlägget '{{title}}' togs bort."
   #en: scrapbook: Scrapbook
   scrapbook: Klippbok
   #en: search: Search
@@ -1000,8 +1000,8 @@ sv:
   share_the_love: Dela på nöjet
   #en: show: Show
   show: Visa
-  #en: show_category: %{category}
-  show_category: "%{category}"
+  #en: show_category: {{category}}
+  show_category: "{{category}}"
   #en: show_this_photo: Show this photo
   show_this_photo: Visa den här bilden
   #en: showing: Showing
@@ -1024,10 +1024,10 @@ sv:
   sign_up_reason_1: En anledning att registrera sig
   #en: sign_up_reason_2: Some reason to sign up
   sign_up_reason_2: En till anledning att registrera sig
-  #en: singular_posts: "%{count} post"
-  singular_posts: "%{count} inlägg"
-  #en: site_members: "%{site} members"
-  site_members: "Medlemmar hos %{site}"
+  #en: singular_posts: "{{count}} post"
+  singular_posts: "{{count}} inlägg"
+  #en: site_members: "{{site}} members"
+  site_members: "Medlemmar hos {{site}}"
   #en: skill_was_successfully_created: Skill was successfully created.
   skill_was_successfully_created: Kompetensområdet skapat.
   #en: skills: Skills
@@ -1036,8 +1036,8 @@ sv:
   skip_this_and_go_to_your_profile: Hoppa över det här och gå till din profil
   #en: skip_this_step: Skip this step
   skip_this_step: Hoppa över detta steg
-  #en: small_profile: "%{user} doesn't have much here yet. Stay tuned."
-  small_profile: "%{user} har inte lagt upp mycket här än. Kom snart tillbaka."
+  #en: small_profile: "{{user}} doesn't have much here yet. Stay tuned."
+  small_profile: "{{user}} har inte lagt upp mycket här än. Kom snart tillbaka."
   #en: sorry_there_was_an_error: "Sorry, there was an error."
   sorry_there_was_an_error: "Tyvärr blev det ett fel."
   #en: sorry_there_was_an_error_requesting_friendship: "Sorry, there was an error requesting friendship."
@@ -1070,8 +1070,8 @@ sv:
   subject: Ämne
   #en: subscribe_to: Subscribe to
   subscribe_to: Prenumerera på
-  #en: tag_does_not_exists: The tag %{tag} does not exist
-  tag_does_not_exists: "Etiketten %{tag} finns inte"
+  #en: tag_does_not_exists: The tag {{tag}} does not exist
+  tag_does_not_exists: "Etiketten {{tag}} finns inte"
   #en: tag_name: Tag name
   tag_name: Etikettnamn
   #en: tag_yourself: tag yourself
@@ -1096,8 +1096,8 @@ sv:
   thanks_youre_now_logged_in: Tack! Nu är du inloggad.
   #en: the_comment_was_deleted: The comment was deleted.
   the_comment_was_deleted: Kommentaren är borttagen.
-  #en: the_community_team: "The %{community} team"
-  the_community_team: "%{community}-teamet"
+  #en: the_community_team: "The {{community}} team"
+  the_community_team: "{{community}}-teamet"
   #en: the_friendship_was_accepted: The friendship was accepted.
   the_friendship_was_accepted: Kompisförfrågan bekräftad.
   #en: the_friendship_was_denied: The friendship was denied.
@@ -1160,8 +1160,8 @@ sv:
   topic: Ämne
   #en: topics: Topics
   topics: Ämnen
-  #en: topic_deleted: Topic '%{topic}' was deleted.
-  topic_deleted: "Ämnet '%{topic}' är borttaget."
+  #en: topic_deleted: Topic '{{topic}}' was deleted.
+  topic_deleted: "Ämnet '{{topic}}' är borttaget."
   #en: topic_locked: Topic locked
   topic_locked: Ämnet låst
   #en: total_users: Total users
@@ -1208,16 +1208,16 @@ sv:
   user: Användare
   #en: users: Users
   users: Användare
-  #en: users_blog: "%{user}'s Blog"
-  users_blog: "%{user}s blogg"
-  #en: user_clippings: Clippings of %{user}
-  user_clippings: "Urklipp från %{user}"
+  #en: users_blog: "{{user}}'s Blog"
+  users_blog: "{{user}}s blogg"
+  #en: user_clippings: Clippings of {{user}}
+  user_clippings: "Urklipp från {{user}}"
   #en: user_login: User login
   user_login: Användarnamn
   #en: users_online: Users online
   users_online: Inloggade användare
-  #en: users_photos: "%{user}'s Photos"
-  users_photos: "%{user}s bilder"
+  #en: users_photos: "{{user}}'s Photos"
+  users_photos: "{{user}}s bilder"
   #en: user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
   user_vendor_offer: "<p>Beskriv produkten eller tjänsten du har att erbjuda:<ul><li> Berätta vad du gör</li><li> Förklara varför du älskar ditt jobb</li><li> Hur kan man komma i kontakt med dig? Vad är din webbadress?</li></ul></p>"
   #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
@@ -1252,8 +1252,8 @@ sv:
   votes: röster
   #en: waiting_for: Waiting for
   waiting_for: Väntar på
-  #en: walkthrough_complete: You've completed the %{site} walk-through. Now you can continue exploring!
-  walkthrough_complete: "Du är nu klar med genomgången av %{site}. Nu kan du fortsätta utforska på egen hand!"
+  #en: walkthrough_complete: You've completed the {{site}} walk-through. Now you can continue exploring!
+  walkthrough_complete: "Du är nu klar med genomgången av {{site}}. Nu kan du fortsätta utforska på egen hand!"
   #en: want_to_be_popular: Want to be popular?
   want_to_be_popular: Vill du bli populär?
   #en: want_to_list_your_services_on: Want to list your services on
@@ -1270,12 +1270,12 @@ sv:
   watch_topic: Håll koll på ämnet
   #en: watching_topic: Watching topic
   watching_topic: Håller koll på ämnet
-  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: %{email}"
-  we_just_sent_an_e_mail_to: "Vi skickade just ett mejl till: %{email}"
+  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: {{email}}"
+  we_just_sent_an_e_mail_to: "Vi skickade just ett mejl till: {{email}}"
   #en: we_need_you: We need you
   we_need_you: Vi behöver dig
-  #en: welcome_message: Welcome! %{login_link} or %{signup_link}
-  welcome_message: "Välkommen! %{login_link} eller %{signup_link}"
+  #en: welcome_message: Welcome! {{login_link}} or {{signup_link}}
+  welcome_message: "Välkommen! {{login_link}} eller {{signup_link}}"
   #en: what_are_tags: 'What are "Tags"?'
   what_are_tags: 'Vad är "Etiketter"?'
   #en: what_is_popular: What's Popular
@@ -1290,16 +1290,16 @@ sv:
   when_checked_your_profile_will_be_visible_to_anyone: "När denna är markerad kan alla se din profil."
   #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
   when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "När denna inte är markerad kan din profil bara visas för personer som är inloggad på "
-  #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to %{site}
-  when_you_see_an_image_you_like_on_the_web: "Om du ser en bild på nätet som du tycker om, klicka på bokmärket så sparas det på %{site}"
+  #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to {{site}}
+  when_you_see_an_image_you_like_on_the_web: "Om du ser en bild på nätet som du tycker om, klicka på bokmärket så sparas det på {{site}}"
   #en: why_sign_up: Why Sign up?
   why_sign_up: Varför registrera sig?
   #en: write_a_blog_post: Write a blog post!
   write_a_blog_post: Skriv ett blogginlägg!
   #en: write_a_message: "Write a message:"
   write_a_message: "Skriv ett meddelande:"
-  #en: write_new_post: Write a '%{category}' post
-  write_new_post: "Skriv ett inlägg under '%{category}'"
+  #en: write_new_post: Write a '{{category}}' post
+  write_new_post: "Skriv ett inlägg under '{{category}}'"
   #en: wrote_a_post: "wrote a post:"
   wrote_a_post: "skrev ett inlägg:"
   #en: yesterday: Yesterday
