@@ -346,3 +346,8 @@ width: 230px;
       #ce_nav ul li a:hover {
         background: #666;
         color: #fff; }
+        
+small {
+  font-size: 10px;
+}
+  
