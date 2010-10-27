@@ -1,5 +1,8 @@
 class SbPost < ActiveRecord::Base
   acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user  
+  include Rakismet::Model
+  rakismet_attrs :author => :username, :comment_type => 'comment', :content => :body, :user_ip => :author_ip
+  
   
   belongs_to :forum, :counter_cache => true
   belongs_to :user,  :counter_cache => true
@@ -23,6 +26,7 @@ class SbPost < ActiveRecord::Base
   
   named_scope :with_query_options, :select => 'sb_posts.*, topics.title as topic_title, forums.name as forum_name', :joins => 'inner join topics on sb_posts.topic_id = topics.id inner join forums on topics.forum_id = forums.id', :order => 'sb_posts.created_at desc'
   named_scope :recent, :order => 'sb_posts.created_at'
+  validate :check_spam  
   
   def monitor_topic
     return unless user
@@ -49,4 +53,12 @@ class SbPost < ActiveRecord::Base
   def username
     user ? user.login : (author_name.blank? ? :anonymous.l : author_name)
   end
+  
+  def check_spam
+    if AppConfig.akismet_key && self.spam?
+      self.errors.add_to_base(:comment_spam_error.l) 
+    end
+  end  
+  
+  
 end
