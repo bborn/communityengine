@@ -1,4 +1,4 @@
-CommunityEngine [v1.2.0]
+CommunityEngine [v1.2.1]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 

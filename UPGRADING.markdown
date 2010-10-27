@@ -1,3 +1,10 @@
+Upgrading to v1.2.1
+===================
+Run `ruby script/generate plugin_migration`
+Run `rake db:migrate`
+Run `rake test && rake community_engine:test`
+
+
 Upgrading to v1.2.0
 ===================
 Run `ruby script/generate plugin_migration`
