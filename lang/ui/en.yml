@@ -113,6 +113,8 @@ en:
   allow_rsvp: Allow RSVPs
   #en: already_have_an_account: Already have an account?
   already_have_an_account: Already have an account?
+  #en: anonymous: Anonymous
+  anonymous: Anonymous  
   #en: an_error_occurred: An error occurred
   an_error_occurred: An error occurred
   #en: are_attending_this_event: are attending this event

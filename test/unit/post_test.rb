@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'hpricot'
     
 class PostTest < ActiveSupport::TestCase
-  fixtures :posts, :users, :comments, :roles
+  fixtures :posts, :users, :comments, :roles, :categories
 
   def setup
     Favorite.destroy_all
@@ -156,7 +156,7 @@ class PostTest < ActiveSupport::TestCase
     assert post.published_at
   end
   
-  def test_should_not_set_published_at_if_republishing
+  def test_should_not_set_published_at_if_republishing  
     post = users(:quentin).posts.create!(:raw_post => 'Blog post message', :title => 'Title')
     post.save_as_live #publish
     published_at = post.published_at

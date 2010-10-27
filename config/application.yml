@@ -12,10 +12,11 @@ closed_beta_mode: false
 community_locale: "en"
 
 allow_anonymous_commenting: false
+allow_anonymous_forum_posting: false
 require_captcha_on_signup: false
 #recaptcha_pub_key: YOUR_PUB_KEY
 #recaptcha_priv_key: YOUR_PRIV_KEY
-# uncomment these keys if you turn captcha on for commenting or signup
+# uncomment these keys if you turn captcha on for commenting, forums or signup
 
 #akismet_key: YOUR_KEY
 #uncomment this if you want to use akismet for comment filtering. Go to http://en.wordpress.com/api-keys/

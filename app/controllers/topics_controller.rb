@@ -35,8 +35,8 @@ class TopicsController < BaseController
         @posts = @topic.sb_posts.recent.find(:all, :page => {:current => params[:page], :size => 25}, :include => :user)
 
         @voices = @posts.map(&:user)
-        @voices.uniq!
-        @post   = SbPost.new
+        @voices.compact.uniq!
+        @post   = SbPost.new(params[:post])
       end
       format.xml do
         render :xml => @topic.to_xml
