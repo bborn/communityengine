@@ -173,14 +173,14 @@ class SbPostsControllerTest < ActionController::TestCase
   test "should create anonymous reply" do
     assert_difference SbPost, :count, 1 do
       post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo@bar.com' }
-      assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1')
+      assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param
     end
   end
 
   test "should fail creating an anonymous reply" do
-    assert_difference SbPost, :count, 1 do
+    assert_difference SbPost, :count, 0 do
       post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo' }
-      assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1')
+      assert_redirected
     end
   end
 
