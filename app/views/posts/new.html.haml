@@ -55,6 +55,11 @@
           =:save_post_as.l
         = f.select(:published_as, [[:published.l, 'live'], [:draft.l, 'draft']])
         
+        %label
+          = f.check_box :send_comment_notifications        
+          =:send_comment_notifications.l        
+        
+        
         %p
           = submit_tag :save.l
         %p

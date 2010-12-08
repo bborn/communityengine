@@ -273,6 +273,8 @@ en:
   comment_character_limit: (2000 character limit)
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: Comment could not be deleted.
+  #en: comment_notifications_off: Comment notifications are currently off
+  comment_notifications_off: Comment notifications are currently off  
   #en: comment_save_error: Your comment couldn't be saved.
   comment_save_error: "Your comment couldn't be saved: {{error}}"
   #en: comment_was_successfully_created: Comment was successfully created.
@@ -1183,6 +1185,8 @@ en:
   select_your_city: Select your city
   #en: send: "Send"
   send: "Send"
+  #en: send_comment_notifications: Send comment notifications?
+  send_comment_notifications: Send comment notifications?  
   #en: send_me_a_message: "Send me a message"
   send_me_a_message: "Send me a message"
   #en: send_invitations: Send Invitations!

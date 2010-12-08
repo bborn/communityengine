@@ -31,6 +31,8 @@
       %label 
         =f.check_box :notify_by_email, :style => 'width: 10px;'
         =:notify_me_of_follow_ups_via_email.l
+        -if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
+          %em="(#{:comment_notifications_off.l})"
       
       %label{"for"=>"comment[author_url"}
         =:comment_web_site_label.l

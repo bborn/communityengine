@@ -104,6 +104,7 @@ class Comment < ActiveRecord::Base
   end  
   
   def send_notifications
+    return if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
     UserNotifier.deliver_comment_notice(self) if should_notify_recipient?
     self.notify_previous_commenters
     self.notify_previous_anonymous_commenters if AppConfig.allow_anonymous_commenting

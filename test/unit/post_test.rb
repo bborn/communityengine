@@ -176,6 +176,18 @@ class PostTest < ActiveSupport::TestCase
     post.save_as_draft
     assert_equal post.published_at_display, 'Draft'
   end
+  
+  def test_should_not_notify_for_posts_without_comment_notification_on
+    post = posts(:funny_post)
+    post.send_comment_notifications = false
+    post.save!
+    
+    assert_difference ActionMailer::Base.deliveries, :length, 0 do    
+      comment = Comment.create!(:comment => 'foo', :user => users(:aaron), :commentable => post)
+      comment.send_notifications      
+    end
+    
+  end
 
       
 end
