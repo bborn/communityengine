@@ -180,7 +180,7 @@ class SbPostsControllerTest < ActionController::TestCase
   test "should fail creating an anonymous reply" do
     assert_difference SbPost, :count, 0 do
       post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo' }
-      assert_redirected
+      assert_response :redirect
     end
   end
 
