@@ -12,7 +12,7 @@
     -if post.user
       = avatar_for post.user    
       %span.fn
-        = link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil)
+        = link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)
       %span.posts= pluralize post.user.sb_posts_count, :post.l
       
     -else
