@@ -15,6 +15,6 @@ xml.rss "version" => "2.0",
       xml.tag! "opensearch:itemsPerPage", @post_pages.items_per_page
       xml.tag! "opensearch:Query", :role => 'request', :searchTerms => params[:q], :startPage => (params[:page] || 1)
     end
-    render :partial => "layouts/post.xml", :collection => @posts, :locals => {:xm => xml}
+    render :partial => "sb_posts/post.xml", :collection => @posts, :locals => {:xm => xml}
   end
 end
