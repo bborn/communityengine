@@ -1,0 +1,9 @@
+%user{:type=>"array"}
+  %description= @user.description
+  %friend_count= @friend_count 
+  %pending_friendships_count= @pending_friendships_count if @is_current_user
+  %member_since=@user.created_at:format => :short_published_date
+  %profile_views=@user.view_count
+  %skills= @user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')    
+  %tags= @user.tags.collect{|t| link_to t.name, tag_url(t) }.join(", ")
+  %metro_area= link_to( @user.full_location, users_path(:metro_area_id => @user.metro_area_id, :state_id =>  @user.state_id, :country_id => @user.country_id ) ) 

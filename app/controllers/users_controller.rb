@@ -68,6 +68,12 @@ class UsersController < BaseController
     @tags = User.tag_counts :limit => 10
     
     setup_metro_areas_for_cloud
+    
+     respond_to do |format|
+        format.html # index.html.erb
+        format.xml  #{ render :xml => @users }
+      end
+      
   end
   
   def dashboard
