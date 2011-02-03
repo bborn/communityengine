@@ -37,5 +37,11 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :redirect    
     assert !users(:quentin).reload.active?    
   end
+  
+  test "should clear cache" do
+    login_as :admin
+    get :clear_cache
+    assert_redirected_to admin_dashboard_path
+  end
 
 end

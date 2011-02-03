@@ -4,7 +4,7 @@ module UsersHelper
   end    
   
   def random_greeting(user)
-    "#{:greetings.l.sort_by {rand}.first} #{user.login}!"
+    "#{:greetings.l.sort_by{rand}.first} #{user.login}!"
   end
     
 end

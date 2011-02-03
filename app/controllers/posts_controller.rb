@@ -66,6 +66,7 @@ class PostsController < BaseController
     @rss_url = user_posts_path(@user,:format => :rss)
     
     @post = Post.find(params[:id])
+
     @user = @post.user
     @is_current_user = @user.eql?(current_user)
     @comment = Comment.new(params[:comment])
@@ -77,7 +78,6 @@ class PostsController < BaseController
     @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")    
     @related = Post.find_related_to(@post)
     @most_commented = Post.find_most_commented
-    
     
     # respond_to do |format|
     #   format.html

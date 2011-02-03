@@ -17,9 +17,18 @@
 * asset paths https://github.com/rails/rails/commit/a132229d7b4382d9ffe8847fa58f469cb8f2ecfc#L5L149
 * take out ez where
 
+=1.2.1
+* Anonymous forum replies
+* Turn comment notifications on or off by post
 
-= 1.9.9
-* Experiment upgrading to Rails 3
+=1.2.0
+* Threaded private messages
+* Clear cache link in admin dashboard
+* Add support for using rakismet gem to check comments for spam (see README for instructions)
+
+=1.1.0
+* fixed time_ago formatting problem on user/index
+* user Authlogic's perishable token for doing password resets (instead of sending them a password)
 
 
 = 1.0.4.2

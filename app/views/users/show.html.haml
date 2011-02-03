@@ -13,8 +13,8 @@
 
 
 .yui-b
-  -box do 
-    = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
+
+  = render :partial => 'profile_user_info_sidebar', :locals => {:user => @user}
 
   - if @user.description
     -box :id => "about_me" do
@@ -47,7 +47,6 @@
             - if comment.commentable.eql?(comment.recipient)
               %strong= :to.l + ": #{link_to comment.recipient.login, commentable_url(comment)}"
             - else
-              %br
               %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type.l})"
           %dd
             %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
@@ -98,7 +97,7 @@
     -box :class => 'hfeed comments', :id => 'comments' do
       %h3=:profile_comments.l
       %h2=:add_your_comment.l
-      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @user}
+      = render :partial => 'comments/comment_form', :locals => {:commentable => @user}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments
       %span#more_comments_links= more_user_comments_links

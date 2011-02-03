@@ -29,7 +29,7 @@ class PhotosController < BaseController
       cond.append ['tags.name = ?', params[:tag_name]]
     end
 
-    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page]})
+    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page], :size => 30})
 
     @tags = Photo.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
 

@@ -50,7 +50,6 @@ app_name    = ask("Please enter the application's name: ")
   
 # Delete unnecessary files
 run "rm public/index.html"
-run "rm public/favicon.ico"
  
 # Set up git repository
 git :init
@@ -72,12 +71,14 @@ gem 'desert', :lib => 'desert'
 gem 'rmagick', :lib => 'RMagick'  
 gem 'hpricot', :lib => 'hpricot'    
 gem 'htmlentities', :lib => 'htmlentities'      
-gem 'haml', :lib => 'htmlentities'        
+gem 'haml', :lib => 'haml'        
 gem "aws-s3", :lib => "aws/s3" 
 gem 'calendar_date_select'
 gem 'ri_cal'
 gem 'authlogic'
 gem 'searchlogic'
+gem 'rakismet'
+
 rake('gems:install', :sudo => true)
 
 
@@ -86,7 +87,7 @@ plugin 'community_engine', :git => ce_git_repo, :submodule => true
 # Initialize submodules
 git :submodule => "init" 
 git :submodule => "update"   
-# checkout_ce_branch('edge')
+checkout_ce_branch('edge')
 
 # Add CE routes 
 route "map.routes_from_plugin :community_engine"

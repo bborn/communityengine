@@ -30,8 +30,8 @@ class SbPostsControllerTest < ActionController::TestCase
   def test_should_reply_with_no_body
     assert_difference SbPost, :count, 0 do
       login_as :aaron
-      post :create, :forum_id => forums(:rails).to_param, :topic_id => sb_posts(:pdi).to_param, :post => {}
-      assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => sb_posts(:pdi).to_param, :anchor => 'reply-form', :page => '1')
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => sb_posts(:pdi).to_param, :post => {:body => ''}
+      assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => sb_posts(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge(:post => {:body => ''}))
     end
   end
 
@@ -161,11 +161,28 @@ class SbPostsControllerTest < ActionController::TestCase
   
   def test_disallow_new_post_to_locked_topic
     galactus = topics(:galactus)
-    galactus.locked = 1
-    galactus.save
+    galactus.locked = true
+    galactus.save!
     login_as :aaron
     post :create, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :post => { :body => 'blah' }
-    assert_redirected_to forum_topic_path(:forum_id => forums(:comics).to_param, :id => topics(:galactus).to_param)
+    assert_redirected_to forum_topic_path(forums(:comics).to_param, topics(:galactus).to_param)
     assert_equal :this_topic_is_locked.l, flash[:notice]
   end
+  
+  
+  test "should create anonymous reply" do
+    assert_difference SbPost, :count, 1 do
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo@bar.com' }
+      assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param
+    end
+  end
+
+  test "should fail creating an anonymous reply" do
+    assert_difference SbPost, :count, 0 do
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo' }
+      assert_response :redirect
+    end
+  end
+
+  
 end

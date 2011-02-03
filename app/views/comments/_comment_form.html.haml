@@ -1,3 +1,12 @@
+- if logged_in? || AppConfig.allow_anonymous_commenting
+  :javascript
+    function scrollToNewestComment(){
+      loc = document.location.toString();
+      if (loc.indexOf("#") != -1){
+        parts = loc.split('#')
+        loc = parts[0] + "#newest_comment"
+      } else {
+        loc = loc + "#newest_comment";
 - if logged_in? || configatron.allow_anonymous_commenting
   %script{:type=>"text/javascript"} 
     :plain
@@ -11,6 +20,8 @@
         }
         document.location.href = loc;
       }
+      document.location.href = loc;
+    }
       
   .errors
   - form_remote_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(commentable.class.to_s.underscore, commentable.id ), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
@@ -32,6 +43,8 @@
       %label 
         =f.check_box :notify_by_email, :style => 'width: 10px;'
         =:notify_me_of_follow_ups_via_email.l
+        -if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
+          %em="(#{:comment_notifications_off.l})"
       
       %label{"for"=>"comment[author_url"}
         =:comment_web_site_label.l

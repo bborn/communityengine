@@ -1,3 +1,8 @@
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/util.js"}
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
+
+
 -box do
   %h3
     =:get_started.l + ' ' + :invite_some_friends.l
@@ -6,11 +11,18 @@
     =:invite_message.l(:site=> configatron.community_name)
   %p=:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends.l
     
-  - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id), :html => {:class => "MainForm"} ) do |f|
+  - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id), :html => {:class => "MainForm"} ) do |f|  
+
     %label{"for"=>"email_addresses"} 
+      .left{:style => 'margin-right: 1em'}
+        %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
+          %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/
+    
+    
       =:enter_e_mail_addresses.l
       %em= :comma_separated.l
       \:
+    %br  
     = f.text_area :email_addresses , :size => "83x5"
 
     %label{"for"=>"message"}=:write_a_message.l

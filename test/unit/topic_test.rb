@@ -100,6 +100,15 @@ class TopicTest < ActiveSupport::TestCase
       topics(:pdi).notify_of_new_post( topics(:pdi).sb_posts.last )
     end
   end
+
+  test "should notify for new anonymous post" do
+    AppConfig.allow_anonymous_forum_posting = true
+    assert_difference ActionMailer::Base.deliveries, :length, 2 do
+      post = topics(:pdi).sb_posts.create!(:body => "Anonymous post", :author_email => 'foo@bar.com', :author_ip => '1.2.3.4')
+      topics(:pdi).notify_of_new_post( post )      
+    end    
+    AppConfig.allow_anonymous_forum_posting = false
+  end
   
   def test_topic_creator_should_monitor_automatically
     t = forums(:rails).topics.build(:title => 'foo')

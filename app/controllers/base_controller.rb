@@ -10,6 +10,7 @@ class BaseController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :footer_content
   helper_method :commentable_url
   before_filter :initialize_header_tabs
+  before_filter :initialize_admin_tabs
 
   caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
 
@@ -119,7 +120,7 @@ class BaseController < ApplicationController
       @homepage_features = HomepageFeature.find_features
       @homepage_features_data = @homepage_features.collect {|f| [f.id, f.public_filename(:large) ]  }    
     
-      @active_users = User.active.find_by_activity({:limit => 5, :require_avatar => false})
+      @active_users = User.find_by_activity({:limit => 5, :require_avatar => false})
       @featured_writers = User.find_featured
 
       @featured_posts = Post.find_featured
@@ -156,6 +157,11 @@ class BaseController < ApplicationController
       # This hook allows plugins or host apps to easily add tabs to the header by adding to the @header_tabs array
       # Usage: @header_tabs << {:name => "My tab", :url => my_tab_path, :section => 'my_tab_section' }
       @header_tabs = []      
+    end 
+    def initialize_admin_tabs
+      # This hook allows plugins or host apps to easily add tabs to the admin nav by adding to the @admin_nav_links array
+      # Usage: @admin_nav_links << {:name => "My link", :url => my_link_path,  }
+      @admin_nav_links = []      
     end 
 
 end

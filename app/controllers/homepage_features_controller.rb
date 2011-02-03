@@ -8,8 +8,12 @@ class HomepageFeaturesController < BaseController
   # GET /homepage_features
   # GET /homepage_features.xml
   def index
-    @homepage_features = HomepageFeature.find(:all, :conditions => ["parent_id IS NULL"], :order => "created_at desc")
-
+    
+    @search = HomepageFeature.search(params[:search])
+    @search.order ||= :descend_by_created_at
+    
+    @homepage_features = @search.find(:all, :conditions => ["parent_id IS NULL"], :page => {:current => params[:page], :size => 100})    
+    
     respond_to do |format|
       format.html # index.rhtml
     end

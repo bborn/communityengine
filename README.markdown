@@ -1,4 +1,4 @@
-CommunityEngine [v1.0.4.2]
+CommunityEngine [v1.2.1]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
@@ -17,6 +17,7 @@ Requirements:
 	  ri_cal
     authlogic
     searchlogic
+    rakismet
 	  aws-s3 (if using s3 for photos)
 
 Getting CommunityEngine Running
@@ -24,7 +25,7 @@ Getting CommunityEngine Running
 
 SHORT VERSION: 
 
-        rails your_app_name -m http://github.com/bborn/communityengine/raw/master/community_engine_setup_template.rb
+        rails your_app_name -m http://github.com/bborn/communityengine/raw/edge/community_engine_setup_template.rb
 
 LONG VERSION:
 
@@ -75,6 +76,7 @@ LONG VERSION:
 		  config.gem 'icalendar'		
 		  config.gem 'authlogic'
 		  config.gem 'searchlogic'
+		  config.gem 'rakismet'		  
 		  
       config.action_controller.session = {
         :key    => '_your_app_session',
@@ -224,6 +226,29 @@ To wrap all localized strings in a `<span>` that shows their localization key, p
 Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
 
 For more, see /lang/readme.txt.
+
+
+Spam Control
+------------
+
+Spam sucks. Most likely, you'll need to implement some custom solution to control spam on your site, but CE offers a few tools to help with the basics. 
+
+ReCaptcha: to allow non-logged-in commenting and use [ReCaptcha](http://recaptcha.net/) to ensure robots aren't submitting comments to your site, just add the following lines to your `application.yml`:
+
+    allow_anonymous_commenting: true
+    recaptcha_pub_key: YOUR_PUBLIC_KEY
+    recaptcha_priv_key: YOUR_PRIVATE_KEY
+    
+You can also require recaptcha on signup (to prevent automated signups) by adding this in your `application.yml` (you'll still need to add your ReCaptcha keys):
+
+    require_captcha_on_signup: true
+    
+Akismet: Unfortunately, bots aren't the only ones submitting spam; humans do it to. [Akismet](http://akismet.com/) is a great collaborative spam filter from the makers of Wordpress, and you can use it to check for spam comments by adding one line to your `application.yml`:
+
+    akismet_key: 4bfd15b0ea46
+  
+(If you do this, make sure you are requiring the `rakismet` gem in `environment.rb`)
+    
 
 
 Other notes

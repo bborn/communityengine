@@ -16,11 +16,11 @@ class ActiveSupport::TestCase
   include AuthenticatedTestHelper
   
   def self.all_fixtures
-    fixtures :forums, :users, :sb_posts, :topics, :moderatorships, :monitorships, :categories
+    fixtures :all
   end  
   
   def teardown
-    UserSession.find && UserSession.find.destroy
+    # UserSession.find && UserSession.find.destroy
   end
 
   # Add more helper methods to be used by all tests here...
