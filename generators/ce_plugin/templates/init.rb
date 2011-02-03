@@ -5,4 +5,4 @@ config.after_initialize do
 end 
 
 require_plugin 'community_engine'
-config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine_<%= file_name %>/plugins"]
+config.plugin_paths += ["#{Rails.root}/vendor/plugins/community_engine_<%= file_name %>/plugins"]

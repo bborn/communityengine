@@ -110,8 +110,8 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_should_call_avatar_photo
-    assert_equal users(:quentin).avatar_photo_url, AppConfig.photo['missing_medium']
-    assert_equal users(:quentin).avatar_photo_url(:thumb), AppConfig.photo['missing_thumb']
+    assert_equal users(:quentin).avatar_photo_url, configatron.photo['missing_medium']
+    assert_equal users(:quentin).avatar_photo_url(:thumb), configatron.photo['missing_thumb']
   end
     
   def test_should_find_featured

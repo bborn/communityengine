@@ -3,7 +3,7 @@ class TopicsController < BaseController
   before_filter :login_required, :except => [:index, :show]
 
   uses_tiny_mce(:only => [:show, :new]) do
-    AppConfig.default_mce_options
+    configatron.default_mce_options
   end
 
   def index

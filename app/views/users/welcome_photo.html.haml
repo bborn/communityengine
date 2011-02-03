@@ -2,7 +2,7 @@
   -box :class => "alt first_alt" do 
     %h3=:get_started.l + ' ' + :upload_a_profile_photo.l
     %p
-      =:photo_message.l :site => AppConfig.community_name
+      =:photo_message.l :site => configatron.community_name
     = link_to "&raquo; " + :skip_this_step.l, welcome_about_user_path(@user)
     %br/
     = link_to "&raquo; " + :go_to_your_profile.l, user_path(@user)

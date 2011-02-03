@@ -5,15 +5,15 @@ module LocalizedApplication
   # If none of these works, the Globalite default locale is set (en-*)
   def set_locale
     if RAILS_ENV.eql?('test')
-      AppConfig.community_locale = 'en'
+      configatron.community_locale = 'en'
     end
     # Get the current path and request method (useful in the layout for changing the language)
     @current_path = request.env['PATH_INFO']
     @request_method = request.env['REQUEST_METHOD']
 
-    if AppConfig.community_locale
-        logger.debug "[I18n] loading locale: #{AppConfig.community_locale} from config"
-        I18n.locale = AppConfig.community_locale
+    if configatron.community_locale
+        logger.debug "[I18n] loading locale: #{configatron.community_locale} from config"
+        I18n.locale = configatron.community_locale
     else
         I18n.locale = get_valid_lang_from_accept_header
         logger.debug "[I18n] found a valid http header locale: #{I18n.locale}"

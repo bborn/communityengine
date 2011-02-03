@@ -6,10 +6,10 @@
   -box :class => "alt first_alt" do 
     %h3=:spread_the_word.l
     %p
-      =:invite_message.l(:site => AppConfig.community_name)
+      =:invite_message.l(:site => configatron.community_name)
     %p
       =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on.l
-      = AppConfig.community_name
+      = configatron.community_name
       \.
 
 #yui-main

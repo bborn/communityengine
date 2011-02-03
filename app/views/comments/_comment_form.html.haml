@@ -1,4 +1,4 @@
-- if logged_in? || AppConfig.allow_anonymous_commenting
+- if logged_in? || configatron.allow_anonymous_commenting
   %script{:type=>"text/javascript"} 
     :plain
       function scrollToNewestComment(){
@@ -18,7 +18,7 @@
       %em=:comment_character_limit.l
     = text_area :comment, :comment, {:size => "86x5", :class => "rich_text_editor"}
     
-    - if !logged_in? && AppConfig.recaptcha_pub_key && AppConfig.recaptcha_priv_key 
+    - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key 
       .right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
       %label{"for"=>"comment[author_name"}
         =:name.l

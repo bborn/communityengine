@@ -37,10 +37,10 @@
         %label{"for"=>"user_birthdate"}
           =:birthday.l
           \:
-          %em=:required_you_must_be_at_least_years_old_to_sign_up.l_with_args(:min_age => AppConfig.min_age)
-        = date_select :user, :birthday, {:start_year => (Time.now.year - AppConfig.max_age), :end_year => (Time.now.year - AppConfig.min_age)}
+          %em=:required_you_must_be_at_least_years_old_to_sign_up.l_with_args(:min_age => configatron.min_age)
+        = date_select :user, :birthday, {:start_year => (Time.now.year - configatron.max_age), :end_year => (Time.now.year - configatron.min_age)}
 
-        -if AppConfig.require_captcha_on_signup
+        -if configatron.require_captcha_on_signup
           .right{:style => 'margin-top:2em;'}= recaptcha_tags
 
         %label{"for"=>"user_password"}

@@ -22,7 +22,7 @@
   #yui-main
     -box :class => "yui-b" do
       %h3
-        = AppConfig.community_name
+        = configatron.community_name
         = :comments.l
 
       -if @comments.page_count > 1

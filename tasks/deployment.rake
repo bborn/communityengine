@@ -16,13 +16,13 @@ namespace :community_engine do
     deploy_templates_dir = "#{File.dirname(__FILE__)}/../sample_files/deployment_templates"
     deploy_file = ERB.new(File.read("#{deploy_templates_dir}/deploy.erb"), nil, '>').result(binding)    
 
-    File.open("#{RAILS_ROOT}/config/deploy.rb", 'w+') {|f| 
+    File.open("#{Rails.root}/config/deploy.rb", 'w+') {|f| 
       f.write(deploy_file) 
     }
 
-    `mkdir -p #{RAILS_ROOT}/config/config_templates`
-    `cp -r #{deploy_templates_dir}/* '#{RAILS_ROOT}/config/config_templates'`
-    `rm #{RAILS_ROOT}/config/config_templates/deploy.erb`
+    `mkdir -p #{Rails.root}/config/config_templates`
+    `cp -r #{deploy_templates_dir}/* '#{Rails.root}/config/config_templates'`
+    `rm #{Rails.root}/config/config_templates/deploy.erb`
   end
   
 

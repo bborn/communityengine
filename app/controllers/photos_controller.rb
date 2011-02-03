@@ -9,7 +9,7 @@ class PhotosController < BaseController
   skip_before_filter :verify_authenticity_token, :only => [:create] #because the TinyMCE image uploader can't provide the auth token
 
   uses_tiny_mce(:only => [:show]) do
-    AppConfig.simple_mce_options
+    configatron.simple_mce_options
   end
 
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
@@ -33,7 +33,7 @@ class PhotosController < BaseController
 
     @tags = Photo.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
 
-    @rss_title = "#{AppConfig.community_name}: #{@user.login}'s photos"
+    @rss_title = "#{configatron.community_name}: #{@user.login}'s photos"
     @rss_url = user_photos_path(@user,:format => :rss)
 
     respond_to do |format|

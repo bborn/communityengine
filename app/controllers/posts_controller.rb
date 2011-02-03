@@ -2,11 +2,11 @@ class PostsController < BaseController
   include Viewable
 
   uses_tiny_mce(:only => [:new, :edit, :update, :create ]) do
-    AppConfig.default_mce_options
+    configatron.default_mce_options
   end
 
   uses_tiny_mce(:only => [:show]) do
-    AppConfig.simple_mce_options
+    configatron.simple_mce_options
   end
          
   cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]
@@ -42,7 +42,7 @@ class PostsController < BaseController
 
     @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")
     
-    @rss_title = "#{AppConfig.community_name}: #{@user.login}'s posts"
+    @rss_title = "#{configatron.community_name}: #{@user.login}'s posts"
     @rss_url = user_posts_path(@user,:format => :rss)
         
     respond_to do |format|
@@ -62,7 +62,7 @@ class PostsController < BaseController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @rss_title = "#{AppConfig.community_name}: #{@user.login}'s posts"
+    @rss_title = "#{configatron.community_name}: #{@user.login}'s posts"
     @rss_url = user_posts_path(@user,:format => :rss)
     
     @post = Post.find(params[:id])
@@ -191,7 +191,7 @@ class PostsController < BaseController
       FROM taggings, tags 
       WHERE tags.id = taggings.tag_id GROUP BY tags.id, tags.name");
 
-    @rss_title = "#{AppConfig.community_name} "+:popular_posts.l
+    @rss_title = "#{configatron.community_name} "+:popular_posts.l
     @rss_url = popular_rss_url    
     respond_to do |format|
       format.html # index.rhtml
@@ -209,7 +209,7 @@ class PostsController < BaseController
     @recent_clippings = Clipping.find_recent(:limit => 15)
     @recent_photos = Photo.find_recent(:limit => 10)
     
-    @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
+    @rss_title = "#{configatron.community_name} "+:recent_posts.l
     @rss_url = recent_rss_url
     respond_to do |format|
       format.html 
@@ -225,7 +225,7 @@ class PostsController < BaseController
     @posts = Post.by_featured_writers.recent.find(:all, :page => {:current => params[:page]})
     @featured_writers = User.featured
         
-    @rss_title = "#{AppConfig.community_name} "+:featured_posts.l
+    @rss_title = "#{configatron.community_name} "+:featured_posts.l
     @rss_url = featured_rss_url
     respond_to do |format|
       format.html 

@@ -294,7 +294,7 @@ end
 
   # open a S3 connection 
   def conn
-    @s3_configs ||= YAML::load(ERB.new(IO.read("#{RAILS_ROOT}/config/s3.yml")).result)
+    @s3_configs ||= YAML::load(ERB.new(IO.read("#{Rails.root}/config/s3.yml")).result)
     @conn ||= S3::AWSAuthConnection.new(@s3_configs['aws_access_key'], @s3_configs['aws_secret_access_key'], @s3_configs['options']['use_ssl'])
   end
 
@@ -365,7 +365,7 @@ end
   def retrieve_db_info
     # read the remote database file....
     # there must be a better way to do this...
-    result = File.read "#{RAILS_ROOT}/config/database.yml"
+    result = File.read "#{Rails.root}/config/database.yml"
     result.strip!
     config_file = YAML::load(ERB.new(result).result)
     return [

@@ -25,15 +25,15 @@
       %fieldset
         %label 
           = check_box :user, :notify_friend_requests        
-          =:notify_of_friend_requests.l :site => AppConfig.community_name
+          =:notify_of_friend_requests.l :site => configatron.community_name
           
         %label
           = check_box :user, :notify_comments         
-          = :notify_of_comments.l :site => AppConfig.community_name
+          = :notify_of_comments.l :site => configatron.community_name
           
         %label
           = check_box :user, :notify_community_news
-          =:notify_email_updates.l :site => AppConfig.community_name
+          =:notify_email_updates.l :site => configatron.community_name
           
 
       %h3=:profile_privacy.l
@@ -48,7 +48,7 @@
           %br
           %em
             =:when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to.l
-            = "#{AppConfig.community_name}."
+            = "#{configatron.community_name}."
       %p= submit_tag :save_changes.l  
 
       %p

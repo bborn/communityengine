@@ -3,7 +3,7 @@
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
 
 - @section = (@post.category && @post.category.name)
-- @meta = { :title => "#{@post.title}", :description => "#{truncate_words(@post.post, 75, '...' )}", :keywords => "#{@post.tags.join(", ") unless @post.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
+- @meta = { :title => "#{@post.title}", :description => "#{truncate_words(@post.post, 75, '...' )}", :keywords => "#{@post.tags.join(", ") unless @post.tags.nil?}", :robots => configatron.robots_meta_show_content }
 
 #yui-main
   .yui-b

@@ -1,11 +1,11 @@
--unless AppConfig.closed_beta_mode
+-unless configatron.closed_beta_mode
   .yui-b.sidebar=render :partial => 'shared/login_sidebar'
   
 #yui-main
   .yui-b.main_column
     -box do
       %h3
-        =:log_in_to_site.l(:site => AppConfig.community_name)
+        =:log_in_to_site.l(:site => configatron.community_name)
       - form_tag sessions_path, :class => 'MainForm' do
         %label{"for"=>"login"}=:username.l
         = text_field_tag 'login', nil, :size => 35

@@ -1,4 +1,3 @@
-require 'hpricot'
 
 module PostsHelper
 

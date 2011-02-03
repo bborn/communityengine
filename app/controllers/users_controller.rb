@@ -4,7 +4,7 @@ class UsersController < BaseController
   include Viewable
   cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
   
-  if AppConfig.closed_beta_mode
+  if configatron.closed_beta_mode
     skip_before_filter :beta_login_required, :only => [:new, :create, :activate]
     before_filter :require_invitation, :only => [:new, :create]
     
@@ -15,10 +15,10 @@ class UsersController < BaseController
   end    
 
   uses_tiny_mce(:only => [:new, :create, :update, :edit, :welcome_about]) do
-    AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"})
+    configatron.default_mce_options.merge({:editor_selector => "rich_text_editor"})
   end
   uses_tiny_mce(:only => [:show]) do
-    AppConfig.simple_mce_options
+    configatron.simple_mce_options
   end
 
   # Filters
@@ -45,7 +45,7 @@ class UsersController < BaseController
       flash[:notice] = :thanks_for_activating_your_account.l 
       return
     end
-    flash[:error] = :account_activation_error.l_with_args(:email => AppConfig.support_email) 
+    flash[:error] = :account_activation_error.l_with_args(:email => configatron.support_email) 
     redirect_to signup_path     
   end
   
@@ -100,14 +100,14 @@ class UsersController < BaseController
     @inviter_id   = params[:id]
     @inviter_code = params[:code]
 
-    render :action => 'new', :layout => 'beta' and return if AppConfig.closed_beta_mode    
+    render :action => 'new', :layout => 'beta' and return if configatron.closed_beta_mode    
   end
 
   def create
     @user       = User.new(params[:user])
     @user.role  = Role[:member]
 
-    if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
+    if (!configatron.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
       create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
       redirect_to signup_completed_user_path(@user)
@@ -287,7 +287,7 @@ class UsersController < BaseController
   def signup_completed
     @user = User.find(params[:id])
     redirect_to home_path and return unless @user
-    render :action => 'signup_completed', :layout => 'beta' if AppConfig.closed_beta_mode    
+    render :action => 'signup_completed', :layout => 'beta' if configatron.closed_beta_mode    
   end
   
   def welcome_photo
@@ -308,7 +308,7 @@ class UsersController < BaseController
   end
   
   def welcome_complete
-    flash[:notice] = :walkthrough_complete.l_with_args(:site => AppConfig.community_name) 
+    flash[:notice] = :walkthrough_complete.l_with_args(:site => configatron.community_name) 
     redirect_to user_path
   end
   

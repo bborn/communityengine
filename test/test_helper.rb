@@ -4,7 +4,7 @@ require 'test_help'
 require "authlogic/test_case"
 require 'action_view/test_case'
 require 'pp'
-ActiveSupport::TestCase.fixture_path = (RAILS_ROOT + "/vendor/plugins/community_engine/test/fixtures/")
+ActiveSupport::TestCase.fixture_path = (Rails.root + "/vendor/plugins/community_engine/test/fixtures/")
 ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
 
@@ -83,7 +83,7 @@ module UrlUpload
   attr_accessor :data 
   
   def data_from_url(uri)
-    data ||= ActionController::TestUploadedFile.new(RAILS_ROOT+"/vendor/plugins/community_engine/test/fixtures/files/library.jpg", 'image/jpg', false)    
+    data ||= ActionController::TestUploadedFile.new(Rails.root+"/vendor/plugins/community_engine/test/fixtures/files/library.jpg", 'image/jpg', false)    
     if ['http://www.google.com/intl/en_ALL/images/logo.gif', 'http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif'].include?(uri)
       data
     else

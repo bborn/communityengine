@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
   
   before_save :whitelist_attributes  
 
-  validates_presence_of :user, :unless => Proc.new{|record| AppConfig.allow_anonymous_commenting }
+  validates_presence_of :user, :unless => Proc.new{|record| configatron.allow_anonymous_commenting }
   validates_presence_of :author_email, :unless => Proc.new{|record| record.user }  #require email unless logged in
   validates_presence_of :author_ip, :unless => Proc.new{|record| record.user} #log ip unless logged in
   validates_format_of :author_url, :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :unless => Proc.new{|record| record.user }
@@ -103,7 +103,7 @@ class Comment < ActiveRecord::Base
   def send_notifications
     UserNotifier.deliver_comment_notice(self) if should_notify_recipient?
     self.notify_previous_commenters
-    self.notify_previous_anonymous_commenters if AppConfig.allow_anonymous_commenting
+    self.notify_previous_anonymous_commenters if configatron.allow_anonymous_commenting
   end
   
   def token_for(email)

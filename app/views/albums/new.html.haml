@@ -2,7 +2,7 @@
   -box do 
     %h3 Tips
     %p 
-      =:album_tip.l :community_name => AppConfig.community_name
+      =:album_tip.l :community_name => configatron.community_name
 
   -box :class => 'alt' do
     = link_to :back_to_photo_manager.l, user_photo_manager_index_path(current_user)

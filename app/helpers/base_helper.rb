@@ -109,8 +109,8 @@ module BaseHelper
   end
 
   def page_title
-    app_base = AppConfig.community_name
-    tagline = " | #{AppConfig.community_tagline}"
+    app_base = configatron.community_name
+    tagline = " | #{configatron.community_tagline}"
 
 		title = app_base
 		case @controller.controller_name
@@ -240,7 +240,7 @@ module BaseHelper
   end
 
   def feature_enabled?(feature)
-    AppConfig.sections_enabled.include?(feature)
+    configatron.sections_enabled.include?(feature)
   end  
 
   def show_footer_content?

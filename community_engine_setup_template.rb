@@ -21,11 +21,11 @@ def modify_environment_files
     
     ce_plugins_config = <<EOF
 config.plugins = [:community_engine, :white_list, :all]
-config.plugin_paths += ["\#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
+config.plugin_paths += ["\#{Rails.root}/vendor/plugins/community_engine/plugins"]
 EOF
     environment ce_plugins_config 
 
-    ce_boot_line = "\n require \"\#{RAILS_ROOT}/vendor/plugins/community_engine/config/boot.rb\""
+    ce_boot_line = "\n require \"\#{Rails.root}/vendor/plugins/community_engine/config/boot.rb\""
     append_file 'config/environment.rb', ce_boot_line
 
     say "Modifying environment files ..."

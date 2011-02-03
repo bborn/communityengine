@@ -4,7 +4,7 @@ class ForumsController < BaseController
   helper :application
 
   uses_tiny_mce do
-    AppConfig.default_mce_options
+    configatron.default_mce_options
   end
   
   def index

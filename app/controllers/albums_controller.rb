@@ -5,7 +5,7 @@ class AlbumsController < BaseController
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
 
   uses_tiny_mce(:only => [:show]) do
-    AppConfig.simple_mce_options
+    configatron.simple_mce_options
   end
 
 

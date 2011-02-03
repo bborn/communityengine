@@ -26,7 +26,7 @@
 
       %label
         %em
-          = " " + :megabyte_upload_limit.l(:count => AppConfig.photo['attachment_fu_options']['max_size'])
+          = " " + :megabyte_upload_limit.l(:count => configatron.photo['attachment_fu_options']['max_size'])
       %label 
         =:title.l + ":"
       = f.text_field :name, :size => 35
@@ -84,7 +84,7 @@
               %em
                 =:you_can_select_up_to_5_files_at_a_time.l
                 %br
-                = :megabyte_upload_limit_per_file.l(:count => AppConfig.photo['attachment_fu_options']['max_size'])
+                = :megabyte_upload_limit_per_file.l(:count => configatron.photo['attachment_fu_options']['max_size'])
         #divFileProgressContainer{:style=>"height: 75px;"}
         #thumbnails
       %p

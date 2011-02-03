@@ -3,7 +3,7 @@ class ContestsController < BaseController
   before_filter :admin_required, :except => [:show, :current, :index]
 
   uses_tiny_mce(:only => [:new, :edit ]) do
-    AppConfig.default_mce_options
+    configatron.default_mce_options
   end
   
   def current

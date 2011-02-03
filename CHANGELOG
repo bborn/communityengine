@@ -7,7 +7,15 @@
 	  config.autoload_paths << File.expand_path("../plugins/", __FILE__)    
 	end
 	http://edgeapi.rubyonrails.org/classes/Rails/Engine.html
-
+* replace setup template with something else more sensible
+* fix boot; allow overriding initializers, autoloading assets, etc
+* fix ce plugin loading? config.paths.vendor.plugins << "#{config.root}/vendor/other_plugins"
+* mce_opts initializer, recaptcha constants
+* rip out beta mode and teaser stuff
+* clean up routes
+* remove all the theming stuff
+* asset paths https://github.com/rails/rails/commit/a132229d7b4382d9ffe8847fa58f469cb8f2ecfc#L5L149
+* take out ez where
 
 
 = 1.9.9

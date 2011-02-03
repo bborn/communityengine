@@ -1,6 +1,6 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < BaseController
-  if AppConfig.closed_beta_mode
+  if configatron.closed_beta_mode
     skip_before_filter :beta_login_required
   end  
 
@@ -11,7 +11,7 @@ class SessionsController < BaseController
   def new
     redirect_to user_path(current_user) and return if current_user
     @user_session = UserSession.new
-    render :layout => 'beta' if AppConfig.closed_beta_mode
+    render :layout => 'beta' if configatron.closed_beta_mode
   end
 
   def create
@@ -25,7 +25,7 @@ class SessionsController < BaseController
       redirect_back_or_default(dashboard_user_path(current_user))
     else
       flash[:notice] = :uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again.l
-      redirect_to teaser_path and return if AppConfig.closed_beta_mode        
+      redirect_to teaser_path and return if configatron.closed_beta_mode        
       render :action => :new
     end
   end

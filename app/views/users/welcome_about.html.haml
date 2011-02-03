@@ -63,7 +63,7 @@
               - if @user.vendor?
                 =:custom_friendly_local.l
               - else
-                = AppConfig.meta_keywords.split(",")[0..3].join(', ')
+                = configatron.meta_keywords.split(",")[0..3].join(', ')
 
 
         %p= submit_tag :save_and_continue_to_step_three.l

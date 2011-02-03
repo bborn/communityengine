@@ -2,7 +2,7 @@ class Photo < ActiveRecord::Base
   acts_as_commentable
   belongs_to :album
   
-  has_attachment prepare_options_for_attachment_fu(AppConfig.photo['attachment_fu_options'])
+  has_attachment prepare_options_for_attachment_fu(configatron.photo['attachment_fu_options'])
   # attr_accessor :cropped_size
   # before_thumbnail_saved do |thumbnail|
   #   raise thumbnail.inspect
@@ -11,7 +11,7 @@ class Photo < ActiveRecord::Base
   #     # img = Magick::Image::read(@photo.public_filename).first
   #     thumbnail.crop!(::Magick::CenterGravity, parent.cropped_size[:x1].to_i, parent.cropped_size[:y1].to_i, parent.cropped_size[:width].to_i, parent.cropped_size[:height].to_i, true)
   #     raise thumbnail.inspect
-  #     # size = AppConfig.photo['attachment_fu_options']['thumbnails']['medium']
+  #     # size = configatron.photo['attachment_fu_options']['thumbnails']['medium']
   #     # dimensions = size[1..size.size].split("x")
   #     # img.crop_resized!(dimensions[0].to_i, dimensions[1].to_i)
   #     # img.write @settings.header_image_file

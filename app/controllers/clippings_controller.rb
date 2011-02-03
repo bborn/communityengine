@@ -4,7 +4,7 @@ class ClippingsController < BaseController
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
 
   uses_tiny_mce(:only => [:show,:new_clipping]) do
-    AppConfig.default_mce_options
+    configatron.default_mce_options
   end
 
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
@@ -26,7 +26,7 @@ class ClippingsController < BaseController
       :include => :tags
       )
 
-    @rss_title = "#{AppConfig.community_name}: #{params[:popular] ? :popular.l : :recent.l} "+:clippings.l
+    @rss_title = "#{configatron.community_name}: #{params[:popular] ? :popular.l : :recent.l} "+:clippings.l
     @rss_url = rss_site_clippings_path
     respond_to do |format|
       format.html
@@ -63,7 +63,7 @@ class ClippingsController < BaseController
     @tags = Clipping.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
     @clippings_data = @clippings.collect {|c| [c.id, c.image_url, c.description, c.url ]  }
 
-    @rss_title = "#{AppConfig.community_name}: #{@user.login}'s clippings"
+    @rss_title = "#{configatron.community_name}: #{@user.login}'s clippings"
     @rss_url = user_clippings_path(@user,:format => :rss)
 
     respond_to do |format|

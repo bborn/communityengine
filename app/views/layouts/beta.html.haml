@@ -5,9 +5,9 @@
   %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
 
   %title
-    = AppConfig.community_name
+    = configatron.community_name
     |
-    = AppConfig.community_tagline
+    = configatron.community_tagline
   
   = render :partial => "shared/scripts_and_styles"
     
@@ -15,7 +15,7 @@
     #doc2.yui-t6
       #hd
         %h1
-          %a{:href=>application_url, :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
+          %a{:href=>application_url, :title=>"#{configatron.community_name}"}= configatron.community_name
 
         #NavBar
           %ul
@@ -27,4 +27,4 @@
                             
       #ft
       #CommunityFooter
-        %p= AppConfig.community_tagline
+        %p= configatron.community_tagline

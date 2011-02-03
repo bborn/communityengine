@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@topic.title.capitalize} discussion.",:keywords => "#{@topic.tags.join(', ') if @topic.tags}", :robots => AppConfig.robots_meta_show_content}
+- @meta = { :description => "#{@topic.title.capitalize} discussion.",:keywords => "#{@topic.tags.join(', ') if @topic.tags}", :robots => configatron.robots_meta_show_content}
 - @section = 'forums'
 - @page_title = @topic.title
 - @monitoring = logged_in? && current_user.monitoring_topic?(@topic)

@@ -1,4 +1,4 @@
-## <%= AppConfig.community_name %>&trade; &#8211; <%= AppConfig.community_tagline %> ##
+## <%= configatron.community_name %>&trade; &#8211; <%= configatron.community_tagline %> ##
 
 
 <%= @name %> souhaite partager l'article suivant avec vous :
@@ -17,16 +17,16 @@ Message personnel :
 
 ---------------------------------------	
 
-Connectez vous sur votre compte <%= AppConfig.community_name %> : 
+Connectez vous sur votre compte <%= configatron.community_name %> : 
 
 [<%= @signup_link %>]
 
 
 Merci,
-<%= @name.eql?('Someone') ? "L'Equipe #{AppConfig.community_name}" : @name %></p>
+<%= @name.eql?('Someone') ? "L'Equipe #{configatron.community_name}" : @name %></p>
 
 ---------------------------------------	
 
-<%= AppConfig.community_description %>
+<%= configatron.community_description %>
 
-Pour toute information, ou pour signaler un problème, merci de contacter <%= AppConfig.support_email %>.	
+Pour toute information, ou pour signaler un problème, merci de contacter <%= configatron.support_email %>.	

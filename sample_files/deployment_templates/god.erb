@@ -6,7 +6,7 @@ God.contact(:email) do |c|
   c.email = '<%= crontab_email %>'
 end    
 
-RAILS_ROOT = "<%= "#{deploy_to}" %>/current"
+Rails.root = "<%= "#{deploy_to}" %>/current"
 
 %w{<%= (0..mongrel_servers-1).map{|server| mongrel_start_port+server }.join(' ') %>}.each do |port|
   God.watch do |w|
@@ -14,11 +14,11 @@ RAILS_ROOT = "<%= "#{deploy_to}" %>/current"
     w.group = "<%= "#{application}" %>-dogs"
     w.interval = 30.seconds # default
     w.start = "mongrel_rails cluster::start --only \#{port} \
-      -C \#{RAILS_ROOT}/config/mongrel_cluster.yml && /etc/init.d/<%= "#{web_server}" %> restart"
+      -C \#{Rails.root}/config/mongrel_cluster.yml && /etc/init.d/<%= "#{web_server}" %> restart"
     w.stop = "mongrel_rails cluster::stop --only \#{port} \
-      -C \#{RAILS_ROOT}/config/mongrel_cluster.yml"
+      -C \#{Rails.root}/config/mongrel_cluster.yml"
     w.grace = 10.seconds
-    w.pid_file = File.join(RAILS_ROOT, "log/mongrel.\#{port}.pid")
+    w.pid_file = File.join(Rails.root, "log/mongrel.\#{port}.pid")
 
     w.behavior(:clean_pid_file)
     

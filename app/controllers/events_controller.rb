@@ -18,19 +18,19 @@ class EventsController < BaseController
   end
 
   uses_tiny_mce(:only => [:new, :edit, :create, :update, :clone ]) do
-    AppConfig.default_mce_options
+    configatron.default_mce_options
   end
   
   uses_tiny_mce(:only => [:show]) do
-    AppConfig.simple_mce_options
+    configatron.simple_mce_options
   end
 
   before_filter :admin_required, :except => [:index, :show, :ical]
 
   def ical
     @calendar = RiCal.Calendar
-    @calendar.add_x_property 'X-WR-CALNAME', AppConfig.community_name
-    @calendar.add_x_property 'X-WR-CALDESC', "#{AppConfig.community_name} #{:events.l}"
+    @calendar.add_x_property 'X-WR-CALNAME', configatron.community_name
+    @calendar.add_x_property 'X-WR-CALDESC', "#{configatron.community_name} #{:events.l}"
     Event.find(:all).each do |ce_event|
       rical_event = RiCal.Event do |event|
         event.dtstart = ce_event.start_time

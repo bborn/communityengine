@@ -3,13 +3,13 @@ class CommentsController < BaseController
   before_filter :login_required, :except => [:index, :unsubscribe]
   before_filter :admin_or_moderator_required, :only => [:delete_selected]
 
-  if AppConfig.allow_anonymous_commenting
+  if configatron.allow_anonymous_commenting
     skip_before_filter :verify_authenticity_token, :only => [:create]   #because the auth token might be cached anyway
     skip_before_filter :login_required, :only => [:create]
   end
 
   uses_tiny_mce(:only => [:index]) do
-    AppConfig.simple_mce_options
+    configatron.simple_mce_options
   end
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
@@ -55,7 +55,7 @@ class CommentsController < BaseController
           render :action => 'index' and return
         }
         format.rss {
-          @rss_title = "#{AppConfig.community_name}: #{@commentable.class.to_s.underscore.capitalize} Comments - #{@title}"
+          @rss_title = "#{configatron.community_name}: #{@commentable.class.to_s.underscore.capitalize} Comments - #{@title}"
           @rss_url = comment_rss_link
           render_comments_rss_feed_for(@comments, @title) and return
         }

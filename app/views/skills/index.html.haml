@@ -3,7 +3,7 @@
   
   - unless logged_in?
     -box :class => "alt" do 
-      = :want_to_list_your_services_on.l+" #{AppConfig.community_name}?"
+      = :want_to_list_your_services_on.l+" #{configatron.community_name}?"
       = link_to :sign_up.l, '/signup?user[vendor]=true'
 
   -if @active_users.any?
@@ -15,7 +15,7 @@
 #yui-main
   .yui-b
     -box :class => "user_list" do 
-      %h3= "#{AppConfig.community_name} &raquo; "+:pros.l
+      %h3= "#{configatron.community_name} &raquo; "+:pros.l
 
       .pagination= paginating_links @users if @users.page_count > 1
 

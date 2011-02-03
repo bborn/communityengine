@@ -24,7 +24,7 @@ class ThemeController < BaseController
       return (render :text => "Not Found", :status => 404)
     end
 
-    src = "#{RAILS_ROOT}/themes/#{AppConfig.theme}" + "/#{type}/#{file}"
+    src = "#{Rails.root}/themes/#{configatron.theme}" + "/#{type}/#{file}"
     return (render :text => "Not Found", :status => 404) unless File.exists? src
 
     if perform_caching

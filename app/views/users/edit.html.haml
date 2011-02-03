@@ -65,12 +65,12 @@
               - if @user.vendor?
                 =:custom_friendly_local.l
               - else
-                = AppConfig.meta_keywords.split(",")[0..3].join(", ")
+                = configatron.meta_keywords.split(",")[0..3].join(", ")
               %br
               =:tags_are_comma_separated_keywords_that_describe_you.l
               %br
               =:you_can_browse_all_content_and_users_on.l
-              = AppConfig.community_name
+              = configatron.community_name
               =:by_looking_at_the.l
               = link_to :tags_page.l, tags_path
 

@@ -1,6 +1,6 @@
 class PagesController < BaseController
   uses_tiny_mce(:only => [:new, :edit, :update, :create ]) do
-    AppConfig.default_mce_options
+    configatron.default_mce_options
   end
 
   cache_sweeper :page_sweeper, :only => [:create, :update, :destroy]

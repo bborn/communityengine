@@ -3,6 +3,7 @@ require 'open-uri'
 require 'pp'
 
 class BaseController < ApplicationController
+
   include AuthenticatedSystem
   include LocalizedApplication
   around_filter :set_locale  
@@ -11,18 +12,10 @@ class BaseController < ApplicationController
   before_filter :initialize_header_tabs
 
   caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
+
   def cache_action?
     !logged_in? && controller_name.eql?('base') && params[:format].blank? 
   end  
-  
-  if AppConfig.closed_beta_mode
-    before_filter :beta_login_required, :except => [:teaser]
-  end    
-  
-  def teaser
-    redirect_to home_path and return if logged_in?
-    render :layout => 'beta'
-  end
   
   def rss_site_index
     redirect_to :controller => 'base', :action => 'site_index', :format => 'rss'
@@ -35,12 +28,12 @@ class BaseController < ApplicationController
   def site_index
     @posts = Post.find_recent
 
-    @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
+    @rss_title = "#{configatron.community_name} "+:recent_posts.l
     @rss_url = rss_url
     respond_to do |format|
       format.html { get_additional_homepage_data }
       format.rss do
-        render_rss_feed_for(@posts, { :feed => {:title => "#{AppConfig.community_name} "+:recent_posts.l, :link => recent_url},
+        render_rss_feed_for(@posts, { :feed => {:title => "#{configatron.community_name} "+:recent_posts.l, :link => recent_url},
                               :item => {:title => :title,
                                         :link =>  Proc.new {|post| user_post_url(post.user, post)},
                                          :description => :post,

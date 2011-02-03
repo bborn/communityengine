@@ -92,7 +92,7 @@ namespace :community_engine do
       task :load => :environment do
         require 'active_record/fixtures'
         ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-        Dir.glob(File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine','test','fixtures', '*.{yml,csv}')).each do |fixture_file|
+        Dir.glob(File.join(Rails.root, 'vendor', 'plugins', 'community_engine','test','fixtures', '*.{yml,csv}')).each do |fixture_file|
           Fixtures.create_fixtures('vendor/plugins/community_engine/test/fixtures', File.basename(fixture_file, '.*'))
         end
       end

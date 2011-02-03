@@ -25,14 +25,14 @@ end
 begin
   require "jeweler"
   Jeweler::Tasks.new do |gem|
-    gem.name = "community-engine"
+    gem.name = "community_engine"
     gem.summary = "CommunityEngine for Rails 3"
     gem.email = 'admin@curbly.com'
     gem.authors = ["Bruno Bornsztein"]    
-    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
-    gem.add_dependency("rack-cache", "~> 0.5.2")
+    # gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*", "{plugins}/**/*"]
     gem.version = '1.9.9'
-        
+    # gem.add_dependency 'hpricot'
+    # gem.add_dependency 'configatron'        
     # other fields that would normally go in your gemspec
     # like authors, email and has_rdoc can also be included here
 

@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@user.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
+- @meta = { :description => "#{@user.login}'s profile on #{configatron.community_name}.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}", :robots => configatron.robots_meta_show_content }
 - @section = @user.eql?(current_user) ? 'my_profile' : 'users'
 - @sidebar_left = true
 
@@ -6,7 +6,7 @@
 - if @is_current_user and @user.vendor? and (@user.offerings.empty? or @user.description.nil? )
   %p
     ? Hey, you're a
-    = AppConfig.community_name
+    = configatron.community_name
     Pro! You should
     = link_to :update_your_profile.l, edit_user_path(@user)
     \! Add your skills, contact info and Web site.
@@ -27,7 +27,7 @@
       =:my_friends.l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
     %p
-      = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user
+      = link_to "&raquo; #{:invite_a_friend.l :site => configatron.community_name}", invite_user_path(@user) if @is_current_user
       %br= link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
     - @accepted_friendships.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}

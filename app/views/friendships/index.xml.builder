@@ -1,6 +1,6 @@
 xml.instruct!
 xml.RelationViewerData do 
-  xml.Settings :appTitle=>"#{AppConfig.community_name} Friendships Browser", :WWWLinkTargetFrame=>"_blank", :startID=>"#{application_url}#{@user.login_slug}", 
+  xml.Settings :appTitle=>"#{configatron.community_name} Friendships Browser", :WWWLinkTargetFrame=>"_blank", :startID=>"#{application_url}#{@user.login_slug}", 
     :defaultRadius=>"170", :maxRadius=>"240", :contextRadius=>"130" do 
     xml.RelationTypes do 
       xml.DirectedRelation :color=>"0x999999", :lineSize=>"3"

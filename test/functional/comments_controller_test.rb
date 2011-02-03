@@ -143,18 +143,18 @@ class CommentsControllerTest < ActionController::TestCase
   end
   
   def test_should_unsubscribe_with_token
-    AppConfig.allow_anonymous_commenting = true
+    configatron.allow_anonymous_commenting = true
     comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
-    AppConfig.allow_anonymous_commenting = false
+    configatron.allow_anonymous_commenting = false
         
     post :unsubscribe, :comment_id => comment.id, :token => comment.token_for('bar@foo.com'), :email => 'bar@foo.com'
     assert comment.reload.notify_by_email.eql?(false)
   end
   
   def test_should_no_unsubscribe_with_bad_token
-    AppConfig.allow_anonymous_commenting = true
+    configatron.allow_anonymous_commenting = true
     comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
-    AppConfig.allow_anonymous_commenting = false
+    configatron.allow_anonymous_commenting = false
         
     post :unsubscribe, :commentable_type => 'User', :commentable_id => users(:quentin).to_param, :comment_id => comment.id, :token => 'badtokengoeshere' 
     assert comment.reload.notify_by_email.eql?(true)    

@@ -8,6 +8,6 @@ else
 end
 
 page.select('#comment_spinner').invoke('hide')
-page << "if($('dynamic_recaptcha')){Recaptcha.create('#{AppConfig.recaptcha_pub_key}', $('dynamic_recaptcha') )}"  
+page << "if($('dynamic_recaptcha')){Recaptcha.create('#{configatron.recaptcha_pub_key}', $('dynamic_recaptcha') )}"  
           
 

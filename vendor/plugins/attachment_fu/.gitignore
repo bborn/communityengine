@@ -1,0 +1,3 @@
+test/amazon_s3.yml
+test/rackspace_cloudfiles.yml
+test/debug.log

@@ -70,7 +70,7 @@ LONG VERSION:
 
 		Rails::Initializer.run do |config|
 		  config.plugins = [:community_engine, :white_list, :all]
-		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
+		  config.plugin_paths += ["#{Rails.root}/vendor/plugins/community_engine/plugins"]
 		  config.gem 'calendar_date_select'
 		  config.gem 'icalendar'		
 		  config.gem 'authlogic'
@@ -84,7 +84,7 @@ LONG VERSION:
 		  ... Your stuff here ...
 		end
 		# Include your application configuration below
-		require "#{RAILS_ROOT}/vendor/plugins/community_engine/config/boot.rb"
+		require "#{Rails.root}/vendor/plugins/community_engine/config/boot.rb"
 
 7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
 
@@ -130,13 +130,13 @@ Optional Configuration
 ======================
 
 
-To override the default configuration, create an `application.yml` file in `RAILS_ROOT/config` 
+To override the default configuration, create an `application.yml` file in `Rails.root/config` 
 
 The application configuration defined in this file overrides the one defined in `/community_engine/config/application.yml`
 
-This is where you can change commonly used configuration variables, like `AppConfig.community_name`, etc.
+This is where you can change commonly used configuration variables, like `configatron.community_name`, etc.
 
-This YAML file will get converted into an OpenStruct, giving you things like `AppConfig.community_name`, `AppConfig.support_email`, etc.
+This YAML file will get converted into an OpenStruct, giving you things like `configatron.community_name`, `configatron.support_email`, etc.
 
 Photo Uploading
 ---------------
@@ -150,10 +150,10 @@ You'll need to change your configuration in your `application.yml` to tell Commu
 Finally, you'll need an S3 account for S3 photo uploading.
 
 
-Create an s3.yml file in `RAILS_ROOT/config` 
+Create an s3.yml file in `Rails.root/config` 
 ------------------------------------------------------
 
-CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
+CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `Rails.root/config/s3.yml`. (Sample in `sample_files/s3.yml`)
 
 Roles
 ------
@@ -177,9 +177,9 @@ Themes
 
 To create a theme:
 
-1. Add a 'themes' directory in `RAILS_ROOT` with the following structure:
+1. Add a 'themes' directory in `Rails.root` with the following structure:
 
-		/RAILS_ROOT
+		/Rails.root
 		  /themes
 		    /your_theme_name
 		      /views
@@ -189,7 +189,7 @@ To create a theme:
       
 2. Add `theme: your_theme_name` to your `application.yml` (you'll have to restart your server after doing this)
 
-3. Customize your theme. For example: you can create a `/RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
+3. Customize your theme. For example: you can create a `/Rails.root/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
 
 	To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
 
@@ -213,13 +213,13 @@ And in your language file you'd have:
 
 	welcome: "Welcome {{name}}"
 
-To customize the language, or add a new language create a new yaml file in `RAILS_ROOT/lang/ui`.
+To customize the language, or add a new language create a new yaml file in `Rails.root/lang/ui`.
 The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
 The language only file (`es.yml`) will support all locales.
 
 To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb`:
 
-	AppConfig.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
+	configatron.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
   
 Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
 
@@ -230,7 +230,7 @@ Other notes
 -----------
 
 Any views you create in your app directory will override those in `community_engine/app/views`. 
-For example, you could create `RAILS_ROOT/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
+For example, you could create `Rails.root/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
 
 You can also override CommunityEngine's controllers by creating identically-named controllers in your application's `app/controllers` directory.
 

@@ -51,6 +51,6 @@
         - when 'logged_in'
           =:logged_into_the_site.l
         - when 'joined_the_site'
-          =:joined_the_site.l(:site => AppConfig.community_name)
+          =:joined_the_site.l(:site => configatron.community_name)
         - else
           = " #{activity.action.humanize.downcase }"
