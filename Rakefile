@@ -29,10 +29,21 @@ begin
     gem.summary = "CommunityEngine for Rails 3"
     gem.email = 'admin@curbly.com'
     gem.authors = ["Bruno Bornsztein"]    
-    # gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*", "{plugins}/**/*"]
     gem.version = '1.9.9'
-    # gem.add_dependency 'hpricot'
-    # gem.add_dependency 'configatron'        
+    
+    gem.add_dependency 'rails', '3.1.0.beta'
+    gem.add_dependency 'configatron'
+    gem.add_dependency 'hpricot'
+    gem.add_dependency 'rmagick'
+    gem.add_dependency 'htmlentities'
+    gem.add_dependency 'haml'
+    gem.add_dependency 'calendar_date_select'
+    gem.add_dependency 'ri_cal'
+    gem.add_dependency 'authlogic'
+    gem.add_dependency 'searchlogic'
+    gem.add_dependency 'rakismet'
+    gem.add_dependency 'aws-s3'
+        
     # other fields that would normally go in your gemspec
     # like authors, email and has_rdoc can also be included here
 
