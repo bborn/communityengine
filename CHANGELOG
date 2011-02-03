@@ -1,6 +1,17 @@
 = TODO
-* haml/sass propagation (desert)
-* upgrade documentation/rake tasks to fix old migrations
+* replace paginating find with will paginate
+* replace att_fu and multiple uploader, responds-to-parent
+* replace white_list with something (sanitize?) (preserve stuff from white list initializer)
+* should it be an Engine? 
+	class Engine < Rails::Engine
+	  config.autoload_paths << File.expand_path("../plugins/", __FILE__)    
+	end
+	http://edgeapi.rubyonrails.org/classes/Rails/Engine.html
+
+
+
+= 1.9.9
+* Experiment upgrading to Rails 3
 
 
 = 1.0.4.2

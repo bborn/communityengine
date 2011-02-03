@@ -198,7 +198,7 @@ To create a theme:
 *Note: when running in production mode, theme assets (images, js, and stylesheets) are automatically copied to you public directory (avoiding a Rails request on each image load).*
 
 
-Localization
+Localization [FIX Rails3]
 ------------
 
 Localization is done via Rails native I18n API. We've added some extensions to String and Symbol to allow backwards compatibility (we used to use Globalite).
