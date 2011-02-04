@@ -1,7 +1,8 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  # include 'CommunityEngineSha1CryptoMethod'
+  
+  has_friendly_id :login_slug
   has_many :albums
   
   MALE    = 'M'
@@ -84,18 +85,6 @@ class User < ActiveRecord::Base
     includes(:tags).where("tags.name = ?", tag_name)
   }
   
-
-  ## Class Methods
-
-  # override activerecord's find to allow us to find by name or id transparently
-  def self.find(*args)
-    raise 'test'
-    if args.is_a?(Array) and args.first.is_a?(String) and (args.first.index(/[a-zA-Z\-_]+/) or args.first.to_i.eql?(0) )
-      find_by_login_slug(args)
-    else
-      super
-    end
-  end
   
   def self.find_country_and_state_from_search_params(search)
     search = prepare_params_for_search(search)
