@@ -13,7 +13,7 @@
       %h3=:editing_post.l
 
       = error_messages_for :post
-      - form_for(:post, :url => user_post_path(@user, @post), :html => { :method => :put, :class =>'MainForm' }) do |f|
+      = form_for(:post, :url => user_post_path(@user, @post), :html => { :method => :put, :class =>'MainForm' }) do |f|
         %label 
           =:title.l
           %em= '('+:required.l+')'

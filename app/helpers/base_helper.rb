@@ -1,4 +1,3 @@
-require 'md5'
 
 # Methods added to this helper will be available to all templates in the application.
 module BaseHelper
@@ -12,7 +11,7 @@ module BaseHelper
   end
   
   def forum_page?
-    %w(forums topics sb_posts).include?(@controller.controller_name)
+    %w(forums topics sb_posts).include?(controller.controller_name)
   end
   
   def is_current_user_and_featured?(u)
@@ -109,74 +108,76 @@ module BaseHelper
   end
 
   def page_title
+    divider = " | ".html_safe    
+    
     app_base = configatron.community_name
-    tagline = " | #{configatron.community_tagline}"
-
+    tagline = " #{divider} #{configatron.community_tagline}"
 		title = app_base
-		case @controller.controller_name
+
+		case controller.controller_name
 			when 'base'
-					title += tagline
-                        when 'pages'
-                          if @page and @page.title
-                            title = @page.title + ' &raquo; ' + app_base + tagline
-                          end
+        title += tagline
+      when 'pages'
+        if @page and @page.title
+          title = @page.title + divider + app_base + tagline
+        end
 			when 'posts'
         if @post and @post.title
-          title = @post.title + ' &raquo; ' + app_base + tagline
-          title += (@post.tags.empty? ? '' : " &laquo; "+:keywords.l+": " + @post.tags[0...4].join(', ') )
+          title = @post.title + divider + app_base + tagline
+          title += (@post.tags.empty? ? '' : "#{divider}#{:keywords.l}: " + @post.tags[0...4].join(', ') )
           @canonical_url = user_post_url(@post.user, @post)
         end
       when 'users'
         if @user && !@user.new_record? && @user.login 
           title = @user.login
-          title += ', ' + :expert_in.l + ' ' + @user.offerings.collect{|o| o.skill.name }.join(', ') if @user.vendor? and !@user.offerings.empty?
-          title += ' &raquo; ' + app_base + tagline
+          title += ", #{:expert_in.l} #{@user.offerings.collect{|o| o.skill.name }.join(', ')}" if @user.vendor? and !@user.offerings.empty?
+          title += divider + app_base + tagline
           @canonical_url = user_url(@user)          
         else
-          title = :showing_users.l+' &raquo; ' + app_base + tagline
+          title = :showing_users.l+divider + app_base + tagline
         end
       when 'photos'
         if @user and @user.login
-          title = :users_photos.l(:user => @user.login)+' &raquo; ' + app_base + tagline
+          title = :users_photos.l(:user => @user.login) + divider + app_base + tagline
         end
       when 'clippings'
         if @user and @user.login
-          title = :user_clippings.l(:user => @user.login) + ' &raquo; ' + app_base + tagline
+          title = :user_clippings.l(:user => @user.login) + divider + app_base + tagline
         end
       when 'tags'
-        case @controller.action_name
+        case controller.action_name
           when 'show'
             if params[:type]
               title = I18n.translate('all_' + params[:type].downcase.pluralize + '_tagged', :tag_name => @tags.map(&:name).join(', '))
             else
               title = :posts_photos_and_bookmarks.l(:name => @tags.map(&:name).join(', '))
             end
-            title += ' (' + :related_tags.l + ': ' + @related_tags.join(', ') + ')' if @related_tags
-            title += ' | ' + app_base    
+            title += " (#{:related_tags.l}: #{@related_tags.join(', ')})" if @related_tags
+            title += divider + app_base    
             @canonical_url = tag_url(URI.escape(@tags_raw, /[\/.?#]/)) if @tags_raw
           else
-            title = 'Showing tags &raquo; ' + app_base + tagline            
+            title = "Showing tags #{divider} #{app_base} #{tagline}"
           end
       when 'categories'
         if @category and @category.name
-          title = :posts_photos_and_bookmarks.l(:name => @category.name) + ' &raquo; ' + app_base + tagline
+          title = :posts_photos_and_bookmarks.l(:name => @category.name) + divider + app_base + tagline
         else
-          title = :showing_categories.l + ' &raquo; ' + app_base + tagline            
+          title = :showing_categories.l + divider + app_base + tagline            
         end
       when 'skills'
         if @skill and @skill.name
-          title = :find_an_expert_in.l + ' ' + @skill.name + ' &raquo; ' + app_base + tagline
+          title = :find_an_expert_in.l + ' ' + @skill.name + divider + app_base + tagline
         else
-          title = :find_experts.l + ' &raquo; ' + app_base + tagline            
+          title = :find_experts.l + divider + app_base + tagline            
         end
       when 'sessions'
-        title = :login.l + ' &raquo; ' + app_base + tagline            
+        title = :login.l + divider + app_base + tagline            
     end
 
     if @page_title
-      title = @page_title + ' &raquo; ' + app_base + tagline
+      title = @page_title + divider + app_base + tagline
     elsif title == app_base          
-		  title = :showing.l + ' ' + @controller.controller_name + ' &raquo; ' + app_base + tagline
+		  title = :showing.l + ' ' + controller.controller_name + divider + app_base + tagline
     end
 
     title
@@ -194,14 +195,15 @@ module BaseHelper
 		html +=	"<span style='display:none;' class='spinner'>"
 		html += image_tag 'spinner.gif', :plugin => "community_engine"
 		html += :requesting_friendship.l+" ...</span></span>"
-		html
+		html.html_safe
   end
 
   def topnav_tab(name, options)
     classes = [options.delete(:class)]
     classes << 'current' if options[:section] && (options.delete(:section).to_a.include?(@section))
     
-    "<li class='#{classes.join(' ')}'>" + link_to( "<span>"+name+"</span>", options.delete(:url), options) + "</li>"
+    string = "<li class='#{classes.join(' ')}'>" + link_to( content_tag(:span, name), options.delete(:url), options) + "</li>"
+    string.html_safe
   end
 
   # def format_post_totals(posts)
@@ -212,7 +214,7 @@ module BaseHelper
     html = link_to "&raquo; " + :all_comments.l, comments_url(commentable.class.to_s.underscore, commentable.to_param)
     html += "<br />"
 		html += link_to "&raquo; " + :comments_rss.l, comments_url(commentable.class.to_s.underscore, commentable.to_param, :format => :rss)
-		html
+		html.html_safe
   end
   
   def more_user_comments_links(user = @user)
@@ -244,40 +246,34 @@ module BaseHelper
   end  
 
   def show_footer_content?
-    return true if (
-      current_page?(:controller => 'base', :action => 'site_index') || 
-      current_page?(:controller => 'posts', :action => 'show')  ||
-      current_page?(:controller => 'categories', :action => 'show')  ||    
-      current_page?(:controller => 'users', :action => 'show')
-    ) 
-    
-    return false
+    return true #you can override this in your app
   end
   
   def clippings_link
-    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{application_url}new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
+    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{home_url}new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
   end
   
   def paginating_links(paginator, options = {}, html_options = {})
-    if paginator.page_count > 1
-  		name = options[:name] || PaginatingFind::Helpers::DEFAULT_OPTIONS[:name]
- 
-    	our_params = (options[:params] || params).clone
-      
-      our_params.delete("authenticity_token")
-      our_params.delete("commit")
-
-    	links = paginating_links_each(paginator, options) do |n|
-    	  our_params[name] = n
-    	  link_to(n, our_params, html_options.merge(:class => (paginator.page.eql?(n) ? 'active' : '')))
-    	end
-    end
-    
-    if options[:show_info].eql?(false)
-      (links || '')
-    else
-      content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + (links || '')
-    end
+    will_paginate paginator
+    # if paginator.page_count > 1
+    #       name = options[:name] || PaginatingFind::Helpers::DEFAULT_OPTIONS[:name]
+    #  
+    #   our_params = (options[:params] || params).clone
+    #   
+    #   our_params.delete("authenticity_token")
+    #   our_params.delete("commit")
+    # 
+    #   links = paginating_links_each(paginator, options) do |n|
+    #     our_params[name] = n
+    #     link_to(n, our_params, html_options.merge(:class => (paginator.page.eql?(n) ? 'active' : '')))
+    #   end
+    # end
+    # 
+    # if options[:show_info].eql?(false)
+    #   (links || '')
+    # else
+    #   content_tag(:div, pagination_info_for(paginator), :class => 'pagination_info') + (links || '')
+    # end
   end  
   
   def pagination_info_for(paginator, options = {})
@@ -366,6 +362,5 @@ module BaseHelper
   def possesive(user)
     user.gender ? (user.male? ? :his.l : :her.l)  : :their.l    
   end
-  
 
 end

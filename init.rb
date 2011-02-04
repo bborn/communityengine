@@ -1,7 +1,7 @@
 
 # #reload CE in development
 # config.after_initialize do
-#   if RAILS_ENV == 'development'
+#   if Rails.env == 'development'
 #     config.autoload_paths += %W(#{config.root}/lib/community_engine)    
 #   end
 # end 

@@ -39,7 +39,7 @@
       #photos.yui-u.box
         - @photos_no_albums.each do |photo|
           = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(current_user, photo)
-        .pagination= paginating_links @photos_no_albums if @photos_no_albums.page_count > 1
+        = will_paginate @photos_no_albums
 
 
 

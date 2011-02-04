@@ -19,12 +19,12 @@ sr-CP:
   about: "\xC3\x9Cber"
   #en: about_me: About Me
   about_me: "\xC3\x9Cber mich"
-  #en: about_site: About {{site}}
-  about_site: "\xC3\x9Cber {{site}}"
+  #en: about_site: About %{site}
+  about_site: "\xC3\x9Cber %{site}"
   #en: about_you: About You
   about_you: "\xC3\x9Cber Dich"
-  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help.
-  account_activation_error: "Aktivierung fehlgeschlagen. M\xC3\xB6glicherweise wurde Dein Konto bereits aktiviert. Bitte versuche Dich anzumelden oder schicke uns eine E-Mail {{email}} f\xC3\xBCr weitere Hilfe."
+  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.
+  account_activation_error: "Aktivierung fehlgeschlagen. M\xC3\xB6glicherweise wurde Dein Konto bereits aktiviert. Bitte versuche Dich anzumelden oder schicke uns eine E-Mail %{email} f\xC3\xBCr weitere Hilfe."
   #en: account_settings: Account settings
   account_settings: Konto-Einstellungen
   #en: activate: Activate

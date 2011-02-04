@@ -1,4 +1,4 @@
-- form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
+= form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
   -box :class => "alt first_alt" do 
     %h3=:you_are_editing_your_account.l
     = link_to :edit_your_user_profile.l, edit_user_path(@user)

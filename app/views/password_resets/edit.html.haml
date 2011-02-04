@@ -5,7 +5,7 @@
     -box do
       %h3=:forgot_your_password.l
 
-      - form_tag password_reset_path, :method => :put, :class => "MainForm" do
+      = form_tag password_reset_path, :method => :put, :class => "MainForm" do
         %label=:password.l
         = password_field_tag :password
 

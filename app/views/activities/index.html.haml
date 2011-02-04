@@ -3,7 +3,7 @@
     -box :class => "fresh" do 
       %h3= :whats_fresh.l
       =render :partial => "activities/activity", :collection => @activities
-      .pagination=paginating_links @activities if @activities.page_count > 1      
+      =will_paginate @activities
       
   .yui-u
     -box do 

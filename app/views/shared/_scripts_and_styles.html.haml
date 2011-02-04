@@ -3,26 +3,18 @@
 = javascript_include_tag "effects", :plugin => "community_engine"	
 = javascript_include_tag "event-selectors", :plugin => "community_engine" 		
 
-= javascript_include_tag "controls", :plugin => "community_engine" unless current_page?({:controller => 'application', :action => 'index'})
+= javascript_include_tag "controls", :plugin => "community_engine" unless current_page?({:controller => 'base', :action => 'site_index'})
 
-= javascript_include_tag "dragdrop", :plugin => "community_engine" if @controller.controller_name.eql?('users') && %w(welcome_about edit update).include?(@controller.action_name)
+= javascript_include_tag "dragdrop", :plugin => "community_engine" if controller.controller_name.eql?('users') && %w(welcome_about edit update).include?(controller.action_name)
 
 = javascript_include_tag "application", :plugin => "community_engine"		
-
-= javascript_include_tag "AC_RunActiveContent", :plugin => "community_engine" if current_page?(:controller => 'photos', :action => 'new') or current_page?(:controller => 'statistics', :action => 'index')		
-
-- if (controller_name == 'photos' && action_name == 'new')
-  = javascript_include_tag 'swfupload', :plugin => "community_engine"
-  = javascript_include_tag 'uploader', :plugin => "community_engine"
 
 = stylesheet_link_tag 'reset-fonts-grids.css', :plugin => :community_engine
 = stylesheet_link_tag 'screen', :plugin => :community_engine
 = stylesheet_link_tag 'print', :plugin => :community_engine, :media => 'print'
 
-
-- if current_page?({:controller => 'posts', :action => 'show' })
-  = javascript_include_tag 'lightbox', :plugin => "community_engine"
-  = stylesheet_link_tag 'lightbox', :plugin => "community_engine"	
+= javascript_include_tag 'lightbox', :plugin => "community_engine"
+= stylesheet_link_tag 'lightbox', :plugin => "community_engine"	
   
 = javascript_include_tag "prototip-min", :plugin => "community_engine"
 = stylesheet_link_tag 'prototip', :media => 'screen', :plugin => "community_engine"

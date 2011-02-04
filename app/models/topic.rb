@@ -26,7 +26,7 @@ class Topic < ActiveRecord::Base
 
   def notify_of_new_post(post)
     monitorships.each do |m|
-      UserNotifier.deliver_new_forum_post_notice(m.user, post) if (m.user != post.user) && m.user.notify_comments
+      UserNotifier.new_forum_post_notice(m.user, post) if (m.user != post.user) && m.user.notify_comments
     end
   end
 

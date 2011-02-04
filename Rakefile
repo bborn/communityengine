@@ -32,6 +32,7 @@ begin
     gem.version = '1.9.9'
     
     gem.add_dependency 'rails', '3.1.0.beta'
+    gem.add_dependency 'rack', '1.2.1'    
     gem.add_dependency 'configatron'
     gem.add_dependency 'hpricot'
     gem.add_dependency 'rmagick'
@@ -40,9 +41,13 @@ begin
     gem.add_dependency 'calendar_date_select'
     gem.add_dependency 'ri_cal'
     gem.add_dependency 'authlogic'
-    gem.add_dependency 'searchlogic'
+
+    gem.add_dependency 'rd_searchlogic', '3.0.1'
     gem.add_dependency 'rakismet'
     gem.add_dependency 'aws-s3'
+    gem.add_dependency "will_paginate", "~> 3.0.pre2"
+    gem.add_dependency "dynamic_form"
+    
         
     # other fields that would normally go in your gemspec
     # like authors, email and has_rdoc can also be included here

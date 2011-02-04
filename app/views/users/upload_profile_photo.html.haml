@@ -1,4 +1,4 @@
-- form_tag upload_profile_photo_user_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
+= form_tag upload_profile_photo_user_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
 
   = error_messages_for :avatar
   -box :id => "profile_details" do

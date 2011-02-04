@@ -65,7 +65,7 @@
             %span= link_to :view.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
   
   - if @topics.page_count > 1
-    .pagination= paginating_links @topics  
+    = will_paginate @topics
 
   - if logged_in?
     %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)

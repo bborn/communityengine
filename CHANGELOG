@@ -16,6 +16,22 @@
 * remove all the theming stuff
 * asset paths https://github.com/rails/rails/commit/a132229d7b4382d9ffe8847fa58f469cb8f2ecfc#L5L149
 * take out ez where
+* fix initializers/rakismet, recaptcha etc.
+* take out vendors/offerings crap
+* go back and fix: Rails 3 Fix comments
+* searchlogic broken with rails 3 gem 'searchlogic', :git => git://github.com/railsdog/searchlogic.git
+* copy new migrations from main app back into ce
+* don't allow show_localization_keys_for_debugging
+* remote_form_for is gone
+* remove stylesheet customization
+* rework users index to use searchlogic/metaseach or something
+* use aato instead of aatos
+* authlogic has problems: not sure it's recording last_login magic columns, investigate
+* finding transparently by login is broken
+
+
+GOTCHAS:
+* edge rails needs edge rack? and edge arel
 
 =1.2.1
 * Anonymous forum replies

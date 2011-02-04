@@ -17,8 +17,8 @@ class Clipping < ActiveRecord::Base
   acts_as_taggable
   acts_as_activity :user
     
-  named_scope :recent, :order => 'clippings.created_at DESC'    
-  named_scope :tagged_with, lambda {|tag_name|
+  scope :recent, :order => 'clippings.created_at DESC'    
+  scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
     

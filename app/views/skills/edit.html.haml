@@ -1,7 +1,7 @@
 -box do
   %h3= :editing_skill
 
-  - form_for(:skill, :url => skill_path(@skill), :html => { :method => :put, :class => "MainForm" }) do |f|
+  = form_for(:skill, :url => skill_path(@skill), :html => { :method => :put, :class => "MainForm" }) do |f|
     %label= :name.l
     = f.text_field :name
 

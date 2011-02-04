@@ -2,7 +2,7 @@
   = render :partial => 'shared/admin_nav'
 
   -box do
-    - form_for @search, :html => {:class => "MainForm"} do |f|
+    = form_for @search, :html => {:class => "MainForm"} do |f|
     
       = f.label :commentable_type.l
       = f.text_field :commentable_type_like
@@ -18,7 +18,7 @@
   
 
 
-- form_tag delete_selected_comments_path, :id => 'comments' do
+= form_tag delete_selected_comments_path, :id => 'comments' do
   #yui-main
     -box :class => "yui-b" do
       %h3
@@ -26,7 +26,7 @@
         = :comments.l
 
       -if @comments.page_count > 1
-        .pagination= paginating_links @comments, :link_to_current_page => true
+        = will_paginate @comments
 
       %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%", :style => "table-layout:fixed;"}
         %thead
@@ -66,7 +66,7 @@
 
 
       -if @comments.page_count > 1
-        .pagination= paginating_links @comments, :link_to_current_page => true
+        = will_paginate @comments
 
 %script{:type => 'text/javascript'}
   var form = $('comments');

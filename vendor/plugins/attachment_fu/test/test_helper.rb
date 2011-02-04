@@ -1,6 +1,6 @@
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 
-ENV['RAILS_ENV'] = 'test'
+ENV['Rails.env'] = 'test'
 ENV['Rails.root'] ||= File.dirname(__FILE__) + '/../../../..'
 
 require 'test/unit'

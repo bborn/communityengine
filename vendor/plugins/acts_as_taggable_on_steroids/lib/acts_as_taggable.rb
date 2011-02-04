@@ -110,7 +110,12 @@ module ActiveRecord #:nodoc:
           options.assert_valid_keys :start_at, :end_at, :conditions, :at_least, :at_most, :order, :limit
           options = options.dup
           
-          scope = scope(:find)
+          scope = if ActiveRecord::VERSION::MAJOR >= 3
+            {}
+          else
+            scope(:find) || {}
+          end          
+          
           start_at = sanitize_sql(["#{Tagging.table_name}.created_at >= ?", options.delete(:start_at)]) if options[:start_at]
           end_at = sanitize_sql(["#{Tagging.table_name}.created_at <= ?", options.delete(:end_at)]) if options[:end_at]
           

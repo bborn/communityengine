@@ -27,7 +27,7 @@ module ActivityTracker # :nodoc:
         end
 
         has_many :activities, :as => :item, :dependent => :destroy
-        class_inheritable_accessor :activity_options
+        class_attribute :activity_options
         include InstanceMethods
       end      
       self.activity_options = {:actor => actor}
@@ -42,7 +42,7 @@ module ActivityTracker # :nodoc:
     #
     def tracks_unlinked_activities(actions = [])
       unless included_modules.include? InstanceMethods
-        class_inheritable_accessor :activity_options
+        class_attribute :activity_options
         include InstanceMethods
       end
       self.activity_options = {:actions => actions}    

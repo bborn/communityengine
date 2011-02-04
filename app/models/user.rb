@@ -1,6 +1,7 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  # include 'CommunityEngineSha1CryptoMethod'
   has_many :albums
   
   MALE    = 'M'
@@ -18,13 +19,10 @@ class User < ActiveRecord::Base
 
     c.validates_length_of_email_field_options = { :within => 3..100 }
     c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/ }
-    c.perishable_token_valid_for = 2.hours
   end
   acts_as_taggable  
   acts_as_commentable
-  has_private_messages  
-  has_many :message_threads_as_recipient, :class_name => "MessageThread", :foreign_key => "recipient_id"  
-  
+  has_private_messages
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
@@ -39,7 +37,7 @@ class User < ActiveRecord::Base
 
 
   #validation
-  validates_presence_of     :metro_area, :if => Proc.new { |user| user.state }
+  validates_presence_of     :metro_area,                 :if => Proc.new { |user| user.state }
   validates_uniqueness_of   :login_slug
   validates_exclusion_of    :login, :in => configatron.reserved_logins
   validates_date :birthday, :before => 13.years.ago.to_date  
@@ -69,7 +67,7 @@ class User < ActiveRecord::Base
     has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
 
     belongs_to  :avatar, :class_name => "Photo", :foreign_key => "avatar_id"
-    belongs_to  :metro_area, :counter_cache => true
+    belongs_to  :metro_area
     belongs_to  :state
     belongs_to  :country
     has_many    :comments_as_author, :class_name => "Comment", :foreign_key => "user_id", :order => "created_at desc", :dependent => :destroy
@@ -78,12 +76,12 @@ class User < ActiveRecord::Base
     has_many    :favorites, :order => "created_at desc", :dependent => :destroy
     
   #named scopes
-  named_scope :recent, :order => 'users.created_at DESC'
-  named_scope :featured, :conditions => ["users.featured_writer = ?", true]
-  named_scope :active, :conditions => ["users.activated_at IS NOT NULL"]  
-  named_scope :vendors, :conditions => ["users.vendor = ?", true]
-  named_scope :tagged_with, lambda {|tag_name|
-    {:conditions => ["tags.name = ?", tag_name], :include => :tags}
+  scope :recent, order('users.created_at DESC')
+  scope :featured, where("users.featured_writer = ?", true)
+  scope :active, where("users.activated_at IS NOT NULL")
+  scope :vendors, where("users.vendor = ?", true)
+  scope :tagged_with, lambda {|tag_name|
+    includes(:tags).where("tags.name = ?", tag_name)
   }
   
 
@@ -91,6 +89,7 @@ class User < ActiveRecord::Base
 
   # override activerecord's find to allow us to find by name or id transparently
   def self.find(*args)
+    raise 'test'
     if args.is_a?(Array) and args.first.is_a?(String) and (args.first.index(/[a-zA-Z\-_]+/) or args.first.to_i.eql?(0) )
       find_by_login_slug(args)
     else
@@ -99,6 +98,7 @@ class User < ActiveRecord::Base
   end
   
   def self.find_country_and_state_from_search_params(search)
+    search = prepare_params_for_search(search)
     country     = Country.find(search['country_id']) if !search['country_id'].blank?
     state       = State.find(search['state_id']) if !search['state_id'].blank?
     metro_area  = MetroArea.find(search['metro_area_id']) if !search['metro_area_id'].blank?
@@ -129,30 +129,30 @@ class User < ActiveRecord::Base
     search
   end
   
-  def self.build_conditions_for_search(search)
-    cond = Caboose::EZ::Condition.new
-
-    cond.append ['activated_at IS NOT NULL ']
-    if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
-      cond.append ['country_id = ?', search['country_id'].to_s]
-    end
-    if search['state_id'] && !search['metro_area_id']
-      cond.append ['state_id = ?', search['state_id'].to_s]
-    end
-    if search['metro_area_id']
-      cond.append ['metro_area_id = ?', search['metro_area_id'].to_s]
-    end
-    if search['login']    
-      cond.login =~ "%#{search['login']}%"
-    end
-    if search['vendor']
-      cond.vendor == true
-    end    
-    if search['description']
-      cond.description =~ "%#{search['description']}%"
-    end    
-    cond
-  end  
+  # def self.build_conditions_for_search(search)
+  #   cond = Caboose::EZ::Condition.new
+  # 
+  #   cond.append ['activated_at IS NOT NULL ']
+  #   if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
+  #     cond.append ['country_id = ?', search['country_id'].to_s]
+  #   end
+  #   if search['state_id'] && !search['metro_area_id']
+  #     cond.append ['state_id = ?', search['state_id'].to_s]
+  #   end
+  #   if search['metro_area_id']
+  #     cond.append ['metro_area_id = ?', search['metro_area_id'].to_s]
+  #   end
+  #   if search['login']    
+  #     cond.login =~ "%#{search['login']}%"
+  #   end
+  #   if search['vendor']
+  #     cond.vendor == true
+  #   end    
+  #   if search['description']
+  #     cond.description =~ "%#{search['description']}%"
+  #   end    
+  #   cond
+  # end  
   
   def self.find_by_activity(options = {})
     options.reverse_merge! :limit => 30, :require_avatar => true, :since => 7.days.ago   
@@ -171,39 +171,31 @@ class User < ActiveRecord::Base
   def self.find_featured
     self.featured
   end
-  
-  def self.paginated_users_conditions_with_search(params)
-    search = prepare_params_for_search(params)
-
-    metro_areas, states = find_country_and_state_from_search_params(search)
     
-    cond = build_conditions_for_search(search)
-    return cond, search, metro_areas, states
-  end  
-
-  
   def self.recent_activity(page = {}, options = {})
     page.reverse_merge! :size => 10, :current => 1
-    Activity.recent.find(:all, 
+    Activity.recent.paginate(:all, 
       :select => 'activities.*', 
       :conditions => "users.activated_at IS NOT NULL", 
       :joins => "LEFT JOIN users ON users.id = activities.user_id", 
-      :page => page, *options)    
+      :per_page => page[:size],
+      :page => page[:current])
+      #Rails 3 fix: page, *options
   end
 
   def self.currently_online
     User.find(:all, :conditions => ["sb_last_seen_at > ?", Time.now.utc-5.minutes])
   end
   
-  def self.search(query, options = {})
-    with_scope :find => { :conditions => build_search_conditions(query) } do
-      find :all, options
-    end
-  end
-  
-  def self.build_search_conditions(query)
-    query
-  end  
+  # def self.search(query, options = {})
+  #   with_scope :find => { :conditions => build_search_conditions(query) } do
+  #     find :all, options
+  #   end
+  # end
+  # 
+  # def self.build_search_conditions(query)
+  #   query
+  # end  
   
   ## End Class Methods  
   
@@ -326,12 +318,11 @@ class User < ActiveRecord::Base
   end
   
   def deliver_activation
-    UserNotifier.deliver_activation(self) if self.recently_activated?
-    @activated = false
+    UserNotifier.activation(self) if self.recently_activated?
   end
   
   def deliver_signup_notification
-    UserNotifier.deliver_signup_notification(self)    
+    UserNotifier.signup_notification(self)    
   end
 
   def update_last_login
@@ -370,7 +361,7 @@ class User < ActiveRecord::Base
     
     ids = ((friends_ids | metro_area_people_ids) - [self.id])[0..100] #don't pull TOO much activity for now
     
-    Activity.recent.since(since).by_users(ids).find(:all, :page => page)          
+    Activity.recent.since(since).by_users(ids).paginate(:all, :page => page[:current], :per_page => page[:size])          
   end
 
   def comments_activity(page = {}, since = 1.week.ago)
@@ -429,15 +420,6 @@ class User < ActiveRecord::Base
   def update_last_seen_at
     User.update_all ['sb_last_seen_at = ?', Time.now.utc], ['id = ?', self.id]
     self.sb_last_seen_at = Time.now.utc
-  end
-  
-  def deliver_password_reset_instructions!
-    reset_perishable_token!
-    UserNotifier.deliver_password_reset_instructions(self)
-  end  
-  
-  def unread_message_count
-    message_threads_as_recipient.count(:conditions => ["messages.recipient_id = ? AND messages.recipient_deleted = ? AND read_at IS NULL", self.id, false], :include => :message)
   end
   
   ## End Instance Methods

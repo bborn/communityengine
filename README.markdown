@@ -221,7 +221,7 @@ The language only file (`es.yml`) will support all locales.
 
 To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb`:
 
-	configatron.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
+	configatron.show_localization_keys_for_debugging = true if Rails.env.eql?('development')
   
 Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
 

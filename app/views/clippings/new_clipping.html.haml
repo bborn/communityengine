@@ -55,7 +55,7 @@
                 =:cancel_and_go_back_to.l
                 = @clipping.url
             #form_div{"style"=>"display:none;"}
-              - form_for(:clipping, :url => user_clippings_path(@user), :html => {:class => "MainForm"} ) do |f|
+              = form_for(:clipping, :url => user_clippings_path(@user), :html => {:class => "MainForm"} ) do |f|
                 %label=:url.l
                 = f.text_field :url
 
@@ -90,7 +90,7 @@
             });
           -box :class => "yui-u" do
             %h3=:create_a_post.l
-            - form_for(:post, :url => user_posts_path(current_user), :html => {:class => "MainForm"}) do |f|
+            = form_for(:post, :url => user_posts_path(current_user), :html => {:class => "MainForm"}) do |f|
               = hidden_field_tag 'post[published_as]', 'live'
 
               - unless @post.category || @post.contest

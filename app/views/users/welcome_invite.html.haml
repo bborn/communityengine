@@ -11,7 +11,7 @@
     =:invite_message.l(:site=> configatron.community_name)
   %p=:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends.l
     
-  - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id), :html => {:class => "MainForm"} ) do |f|  
+  = form_for(:invitation, :url => user_invitations_path(:user_id => @user.id), :html => {:class => "MainForm"} ) do |f|  
 
     %label{"for"=>"email_addresses"} 
       .left{:style => 'margin-right: 1em'}

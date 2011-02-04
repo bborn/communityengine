@@ -1,4 +1,3 @@
-require "RMagick"
 
 class UsersController < BaseController
   include Viewable
@@ -56,14 +55,10 @@ class UsersController < BaseController
     redirect_to login_path
   end
 
-  def index
-    cond, @search, @metro_areas, @states = User.paginated_users_conditions_with_search(params)    
+  def index    
+    @users = User.active.paginate(:page => params[:page]) #Rails 3 fix no search!
     
-    @users = User.recent.find(:all,
-      :conditions => cond.to_sql, 
-      :include => [:tags], 
-      :page => {:current => params[:page], :size => 20}
-      )
+    @metro_areas, @states = User.find_country_and_state_from_search_params(params)
     
     @tags = User.tag_counts :limit => 10
     
@@ -316,7 +311,7 @@ class UsersController < BaseController
     return unless request.post?   
     
     if @user = User.active.find_by_email(params[:email])
-      UserNotifier.deliver_forgot_username(@user)
+      UserNotifier.forgot_username(@user)
       redirect_to login_url
       flash[:info] = :your_username_was_emailed_to_you.l      
     else
@@ -335,7 +330,7 @@ class UsersController < BaseController
     
     if @user && !@user.active?
       flash[:notice] = :activation_email_resent_message.l
-      UserNotifier.deliver_signup_notification(@user)    
+      UserNotifier.signup_notification(@user)    
       redirect_to login_path and return
     else
       flash[:notice] = :activation_email_not_sent_message.l

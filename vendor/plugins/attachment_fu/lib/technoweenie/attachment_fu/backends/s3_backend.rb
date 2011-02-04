@@ -12,7 +12,7 @@ module Technoweenie # :nodoc:
       #
       # == Configuration
       #
-      # Configuration is done via <tt>Rails.root/config/amazon_s3.yml</tt> and is loaded according to the <tt>RAILS_ENV</tt>.
+      # Configuration is done via <tt>Rails.root/config/amazon_s3.yml</tt> and is loaded according to the <tt>Rails.env</tt>.
       # The minimum connection options that you must specify are a bucket name, your access key id and your secret access key.
       # If you don't already have your access keys, all you need to sign up for the S3 service is an account at Amazon.
       # You can sign up for S3 and get access keys by visiting http://aws.amazon.com/s3.
@@ -184,7 +184,7 @@ module Technoweenie # :nodoc:
 
           begin
             @@s3_config_path = base.attachment_options[:s3_config_path] || (Rails.root + '/config/amazon_s3.yml')
-            @@s3_config = @@s3_config = YAML.load(ERB.new(File.read(@@s3_config_path)).result)[RAILS_ENV].symbolize_keys
+            @@s3_config = @@s3_config = YAML.load(ERB.new(File.read(@@s3_config_path)).result)[Rails.env].symbolize_keys
           #rescue
           #  raise ConfigFileNotFoundError.new('File %s not found' % @@s3_config_path)
           end

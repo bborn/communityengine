@@ -4,7 +4,7 @@ class Contest < ActiveRecord::Base
 
   validates_presence_of :begin_date, :end_date, :title, :banner_title, :banner_subtitle
   
-  named_scope :active, :conditions => ["begin_date < ? AND end_date > ?", Time.now, Time.now], :order => 'created_at desc'
+  scope :active, :conditions => ["begin_date < ? AND end_date > ?", Time.now, Time.now], :order => 'created_at desc'
 
   def self.current
     active.find(:first)

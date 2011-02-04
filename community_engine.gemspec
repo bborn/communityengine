@@ -366,7 +366,6 @@ Gem::Specification.new do |s|
     "config/application.yml",
     "config/boot.rb",
     "config/initializers/mce_options.rb",
-    "config/initializers/mimes.rb",
     "config/initializers/rakismet.rb",
     "config/initializers/recaptcha_constants.rb",
     "config/initializers/white_list.rb",
@@ -458,22 +457,11 @@ Gem::Specification.new do |s|
     "init.rb",
     "install.rb",
     "lang/TRANSLATION.markdown",
-    "lang/ui/de-DE.yml",
-    "lang/ui/en.yml",
-    "lang/ui/es-AR.yml",
-    "lang/ui/es-ES.yml",
-    "lang/ui/es-MX.yml",
-    "lang/ui/fr-FR.yml",
-    "lang/ui/ja-JP.yml",
-    "lang/ui/ru-RU.yml",
-    "lang/ui/sr-CP.yml",
-    "lang/ui/sv-SE.yml",
     "lib/authenticated_system.rb",
     "lib/authenticated_test_helper.rb",
     "lib/community_engine.rb",
     "lib/community_engine_sha1_crypto_method.rb",
     "lib/engine.rb",
-    "lib/flash_session_cookie_middleware.rb",
     "lib/localized_application.rb",
     "lib/rails_asset_extensions.rb",
     "lib/s3-driver.rb",
@@ -1154,31 +1142,6 @@ Gem::Specification.new do |s|
     "vendor/plugins/mimetype-fu/tasks/mimetype_fu_tasks.rake",
     "vendor/plugins/mimetype-fu/test/mimetype_fu_test.rb",
     "vendor/plugins/mimetype-fu/uninstall.rb",
-    "vendor/plugins/paginating_find/CHANGELOG",
-    "vendor/plugins/paginating_find/README",
-    "vendor/plugins/paginating_find/init.rb",
-    "vendor/plugins/paginating_find/lib/paginating_find.rb",
-    "vendor/plugins/paginating_find/lib/paging_enumerator.rb",
-    "vendor/plugins/paginating_find/lib/paging_helper.rb",
-    "vendor/plugins/paginating_find/test_app/Rakefile",
-    "vendor/plugins/paginating_find/test_app/app/controllers/application.rb",
-    "vendor/plugins/paginating_find/test_app/config/boot.rb",
-    "vendor/plugins/paginating_find/test_app/config/database.yml",
-    "vendor/plugins/paginating_find/test_app/config/environment.rb",
-    "vendor/plugins/paginating_find/test_app/config/environments/test.rb",
-    "vendor/plugins/paginating_find/test_app/config/routes.rb",
-    "vendor/plugins/paginating_find/test_app/db/schema.rb",
-    "vendor/plugins/paginating_find/test_app/script/breakpointer",
-    "vendor/plugins/paginating_find/test_app/script/console",
-    "vendor/plugins/paginating_find/test_app/test/fixtures/articles.yml",
-    "vendor/plugins/paginating_find/test_app/test/fixtures/authors.yml",
-    "vendor/plugins/paginating_find/test_app/test/fixtures/edits.yml",
-    "vendor/plugins/paginating_find/test_app/test/fixtures/models.rb",
-    "vendor/plugins/paginating_find/test_app/test/test_helper.rb",
-    "vendor/plugins/paginating_find/test_app/test/unit/abstract_test.rb",
-    "vendor/plugins/paginating_find/test_app/test/unit/group_test.rb",
-    "vendor/plugins/paginating_find/test_app/test/unit/paginating_find_test.rb",
-    "vendor/plugins/paginating_find/test_app/test/unit/paging_enumerator_test.rb",
     "vendor/plugins/recaptcha/.gitignore",
     "vendor/plugins/recaptcha/LICENSE",
     "vendor/plugins/recaptcha/README.rdoc",
@@ -1816,6 +1779,7 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
+      s.add_runtime_dependency(%q<rack>, ["= 1.2.1"])
       s.add_runtime_dependency(%q<configatron>, [">= 0"])
       s.add_runtime_dependency(%q<hpricot>, [">= 0"])
       s.add_runtime_dependency(%q<rmagick>, [">= 0"])
@@ -1824,23 +1788,14 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<calendar_date_select>, [">= 0"])
       s.add_runtime_dependency(%q<ri_cal>, [">= 0"])
       s.add_runtime_dependency(%q<authlogic>, [">= 0"])
-      s.add_runtime_dependency(%q<searchlogic>, [">= 0"])
+      s.add_runtime_dependency(%q<rd_searchlogic>, ["= 3.0.1"])
       s.add_runtime_dependency(%q<rakismet>, [">= 0"])
       s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
-      s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
-      s.add_runtime_dependency(%q<configatron>, [">= 0"])
-      s.add_runtime_dependency(%q<hpricot>, [">= 0"])
-      s.add_runtime_dependency(%q<rmagick>, [">= 0"])
-      s.add_runtime_dependency(%q<htmlentities>, [">= 0"])
-      s.add_runtime_dependency(%q<haml>, [">= 0"])
-      s.add_runtime_dependency(%q<calendar_date_select>, [">= 0"])
-      s.add_runtime_dependency(%q<ri_cal>, [">= 0"])
-      s.add_runtime_dependency(%q<authlogic>, [">= 0"])
-      s.add_runtime_dependency(%q<searchlogic>, [">= 0"])
-      s.add_runtime_dependency(%q<rakismet>, [">= 0"])
-      s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
+      s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+      s.add_runtime_dependency(%q<dynamic_form>, [">= 0"])
     else
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
+      s.add_dependency(%q<rack>, ["= 1.2.1"])
       s.add_dependency(%q<configatron>, [">= 0"])
       s.add_dependency(%q<hpricot>, [">= 0"])
       s.add_dependency(%q<rmagick>, [">= 0"])
@@ -1849,24 +1804,15 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<calendar_date_select>, [">= 0"])
       s.add_dependency(%q<ri_cal>, [">= 0"])
       s.add_dependency(%q<authlogic>, [">= 0"])
-      s.add_dependency(%q<searchlogic>, [">= 0"])
+      s.add_dependency(%q<rd_searchlogic>, ["= 3.0.1"])
       s.add_dependency(%q<rakismet>, [">= 0"])
       s.add_dependency(%q<aws-s3>, [">= 0"])
-      s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
-      s.add_dependency(%q<configatron>, [">= 0"])
-      s.add_dependency(%q<hpricot>, [">= 0"])
-      s.add_dependency(%q<rmagick>, [">= 0"])
-      s.add_dependency(%q<htmlentities>, [">= 0"])
-      s.add_dependency(%q<haml>, [">= 0"])
-      s.add_dependency(%q<calendar_date_select>, [">= 0"])
-      s.add_dependency(%q<ri_cal>, [">= 0"])
-      s.add_dependency(%q<authlogic>, [">= 0"])
-      s.add_dependency(%q<searchlogic>, [">= 0"])
-      s.add_dependency(%q<rakismet>, [">= 0"])
-      s.add_dependency(%q<aws-s3>, [">= 0"])
+      s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+      s.add_dependency(%q<dynamic_form>, [">= 0"])
     end
   else
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
+    s.add_dependency(%q<rack>, ["= 1.2.1"])
     s.add_dependency(%q<configatron>, [">= 0"])
     s.add_dependency(%q<hpricot>, [">= 0"])
     s.add_dependency(%q<rmagick>, [">= 0"])
@@ -1875,21 +1821,11 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<calendar_date_select>, [">= 0"])
     s.add_dependency(%q<ri_cal>, [">= 0"])
     s.add_dependency(%q<authlogic>, [">= 0"])
-    s.add_dependency(%q<searchlogic>, [">= 0"])
+    s.add_dependency(%q<rd_searchlogic>, ["= 3.0.1"])
     s.add_dependency(%q<rakismet>, [">= 0"])
     s.add_dependency(%q<aws-s3>, [">= 0"])
-    s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
-    s.add_dependency(%q<configatron>, [">= 0"])
-    s.add_dependency(%q<hpricot>, [">= 0"])
-    s.add_dependency(%q<rmagick>, [">= 0"])
-    s.add_dependency(%q<htmlentities>, [">= 0"])
-    s.add_dependency(%q<haml>, [">= 0"])
-    s.add_dependency(%q<calendar_date_select>, [">= 0"])
-    s.add_dependency(%q<ri_cal>, [">= 0"])
-    s.add_dependency(%q<authlogic>, [">= 0"])
-    s.add_dependency(%q<searchlogic>, [">= 0"])
-    s.add_dependency(%q<rakismet>, [">= 0"])
-    s.add_dependency(%q<aws-s3>, [">= 0"])
+    s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+    s.add_dependency(%q<dynamic_form>, [">= 0"])
   end
 end
 

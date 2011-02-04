@@ -52,7 +52,7 @@
 #
 #     task :before_migrate, :roles => [:app, :db, :web] do
 #        # this will back up your svn repository, your code directory, and your mysql db.
-#        run "cd #{current_path} && rake --trace RAILS_ENV=production s3:backup"
+#        run "cd #{current_path} && rake --trace Rails.env=production s3:backup"
 #     end
 #
 # = Future enhancements
@@ -329,7 +329,7 @@ end
 
   def archive_name(name)
     @timestamp ||= Time.now.utc.strftime("%Y%m%d%H%M%S")
-    token(name).sub('_', '.') + ".#{RAILS_ENV}.#{@timestamp}"
+    token(name).sub('_', '.') + ".#{Rails.env}.#{@timestamp}"
   end
 
   # put files in a zipped tar everything that goes to s3
@@ -369,10 +369,10 @@ end
     result.strip!
     config_file = YAML::load(ERB.new(result).result)
     return [
-      config_file[RAILS_ENV]['adapter'],
-      config_file[RAILS_ENV]['database'],
-      config_file[RAILS_ENV]['username'],
-      config_file[RAILS_ENV]['password']
+      config_file[Rails.env]['adapter'],
+      config_file[Rails.env]['database'],
+      config_file[Rails.env]['username'],
+      config_file[Rails.env]['password']
     ]
   end
 

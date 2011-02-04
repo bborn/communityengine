@@ -3,7 +3,7 @@
     -box do 
       %h3= :new_page.l
       = error_messages_for :page
-      - form_for(:page, :url => admin_pages_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|
+      = form_for(:page, :url => admin_pages_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|
 
         =render :partial => 'form', :locals => {:f => f}
         

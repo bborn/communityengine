@@ -8,7 +8,7 @@ class Message < ActiveRecord::Base
   has_many :children, :class_name => "Message", :foreign_key => "parent_id"
   has_many :message_threads
 
-  named_scope :parents, :conditions => "parent_id IS NULL"
+  scope :parents, where("parent_id IS NULL")
 
   validates_presence_of :body, :subject
   validates_presence_of :recipient, :message => "is invalid"
@@ -22,7 +22,7 @@ class Message < ActiveRecord::Base
   end
   
   def notify_recipient
-    UserNotifier.deliver_message_notification(self)
+    UserNotifier.message_notification(self)
   end
   
   def update_message_threads

@@ -14,7 +14,7 @@
 
 -box :class => "alt first_alt" do 
   - if logged_in?
-    - form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
+    = form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
       #monitor_topic
         %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
         %label#monitor_label{"for"=>"monitor_checkbox"}

@@ -1,6 +1,6 @@
 -box do
   %h3= :new_skill.l
-  - form_for(:skill, :url => skills_path, :html => {:class => "MainForm" }) do |f|
+  = form_for(:skill, :url => skills_path, :html => {:class => "MainForm" }) do |f|
     %label= :name.l+":"
     = f.text_field :name
 

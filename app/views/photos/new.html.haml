@@ -24,7 +24,7 @@
     %h3 
       =:new_photo.l
 
-      - form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
+      = form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
         = f.file_field :uploaded_data
     = error_messages_for :photo
     %p
@@ -37,7 +37,7 @@
         %label 
           =:title.l + ":"
         = f.text_field :name, :size => 35
-    - form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
+    = form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
       = f.file_field :uploaded_data
 
         %label 

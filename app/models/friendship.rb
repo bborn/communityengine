@@ -13,7 +13,7 @@ class Friendship < ActiveRecord::Base
   validates_uniqueness_of :friend_id, :scope => :user_id
   
   # named scopes
-  named_scope :accepted, lambda {
+  scope :accepted, lambda {
     #hack: prevents FriendshipStatus[:accepted] from getting called before the friendship_status records are in the db (only matters in testing ENV)
     {:conditions => ["friendship_status_id = ?", FriendshipStatus[:accepted].id]    }
   }
@@ -27,7 +27,7 @@ class Friendship < ActiveRecord::Base
     end
   end  
     
-  before_validation_on_create :set_pending
+  before_validation(:on => :create){:set_pending}
   after_save :notify_requester, :if => Proc.new{|fr| fr.accepted? && fr.initiator }
 
   attr_protected :friendship_status_id
@@ -53,7 +53,7 @@ class Friendship < ActiveRecord::Base
   end
   
   def notify_requester
-    UserNotifier.deliver_friendship_accepted(self)
+    UserNotifier.friendship_accepted(self)
   end
     
   private

@@ -4,20 +4,15 @@ require "community_engine"
 
 module CommunityEngine
   class Engine < Rails::Engine
-  
-    config.autoload_paths << File.expand_path("../plugins/", __FILE__)    
-    config.mount_at = '/'
-  
+    engine_name "community_engine"
+    config.asset_path = "/community_engine%s"
+
     initializer 'community_engine' do |app|
-      
-      raise config.inspect
       configatron.configure_from_yaml(root.join('config','application.yml'))
       configatron.configure_from_yaml(app.root.join('config','application.yml'))
-	    app.plugin_paths += ["#{Rails.root}/vendor/plugins/community_engine/plugins"]      
-      puts configatron.community_name
-      puts configatron.community_tagline
     end
-
+    
+    
     # require 's3_cache_control'
     # 
     # Module.class_eval do

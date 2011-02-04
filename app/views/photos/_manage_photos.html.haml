@@ -1,7 +1,7 @@
 = render :partial => 'show_image_list', :locals => { :photos => photos }
 
 #image_list_pages.clear
-  .pagination= paginating_links @photos if @photos.page_count > 1
+  = will_paginate @photos
 
 %script{:type => 'text/javascript'}
   :plain

@@ -2,7 +2,7 @@
 -box do
   %h3= :edit_event.l
   = error_messages_for :event
-  - form_for(:event, :url => event_path(@event), :html => {:method => :put, :class => "MainForm"} ) do |f|
+  = form_for(:event, :url => event_path(@event), :html => {:method => :put, :class => "MainForm"} ) do |f|
     %label= :name.l
     = f.text_field :name
     

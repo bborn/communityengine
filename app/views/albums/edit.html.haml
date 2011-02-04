@@ -11,6 +11,6 @@
   .yui-b
     -box :id => "single_upload", :class => ".yui-b" do
       %h3= :new_album.l
-      - form_for(@album, :url => user_album_path(current_user, @album),:html => {:class => "MainForm"}) do |f|  
+      = form_for(@album, :url => user_album_path(current_user, @album),:html => {:class => "MainForm"}) do |f|  
         = render :partial => 'form', :locals => {:f => f, :button1 => :edit_and_add_photos.l, :button2 => :edit_album.l }
     

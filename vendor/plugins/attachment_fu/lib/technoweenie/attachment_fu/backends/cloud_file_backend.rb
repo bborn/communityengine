@@ -13,7 +13,7 @@ module Technoweenie # :nodoc:
       #
       # == Configuration
       #
-      # Configuration is done via <tt>Rails.root/config/rackspace_cloudfiles.yml</tt> and is loaded according to the <tt>RAILS_ENV</tt>.
+      # Configuration is done via <tt>Rails.root/config/rackspace_cloudfiles.yml</tt> and is loaded according to the <tt>Rails.env</tt>.
       # The minimum connection options that you must specify are a container name, your Mosso login name and your Mosso API key.
       # You can sign up for Cloud Files and get access keys by visiting https://www.mosso.com/buy.htm 
       #
@@ -117,7 +117,7 @@ module Technoweenie # :nodoc:
 
           begin
             @@cloudfiles_config_path = base.attachment_options[:cloudfiles_config_path] || (Rails.root + '/config/rackspace_cloudfiles.yml')
-            @@cloudfiles_config = @@cloudfiles_config = YAML.load(ERB.new(File.read(@@cloudfiles_config_path)).result)[RAILS_ENV].symbolize_keys
+            @@cloudfiles_config = @@cloudfiles_config = YAML.load(ERB.new(File.read(@@cloudfiles_config_path)).result)[Rails.env].symbolize_keys
           rescue
             #raise ConfigFileNotFoundError.new('File %s not found' % @@cloudfiles_config_path)
           end

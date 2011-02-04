@@ -11,5 +11,5 @@
 
     = render :partial => "users/user", :collection => @users
     %br.clear
-    .pagination= paginating_links @users if @users.page_count > 1
+    = will_paginate @users
     

@@ -1,7 +1,7 @@
 -box do
   %h3=:recent_photos.l
 
-  .pagination= paginating_links @photos if @photos.page_count > 1
+  = will_paginate @photos
 
   %ul
     - @photos.each do |photo|

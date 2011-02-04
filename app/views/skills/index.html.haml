@@ -17,9 +17,9 @@
     -box :class => "user_list" do 
       %h3= "#{configatron.community_name} &raquo; "+:pros.l
 
-      .pagination= paginating_links @users if @users.page_count > 1
+      = will_paginate @users
 
       = render :partial => "users/user", :collection => @users, :locals => {:format => 'full' }
     
       %br.clear
-      .pagination= paginating_links @users if @users.page_count > 1
+      = will_paginate @users

@@ -2,7 +2,22 @@ class Photo < ActiveRecord::Base
   acts_as_commentable
   belongs_to :album
   
-  has_attachment prepare_options_for_attachment_fu(AppConfig.photo['attachment_fu_options'])
+  has_attachment prepare_options_for_attachment_fu(configatron.photo.attachment_fu_options.to_hash)
+  # attr_accessor :cropped_size
+  # before_thumbnail_saved do |thumbnail|
+  #   raise thumbnail.inspect
+  #   # thumbnail.send(:'attributes=', {:thumbnail_resize_options => cropped_size}, false) if thumbnail.parent.cropped_size
+  #   if thumbnail.parent.cropped_size[:x1]
+  #     # img = Magick::Image::read(@photo.public_filename).first
+  #     thumbnail.crop!(::Magick::CenterGravity, parent.cropped_size[:x1].to_i, parent.cropped_size[:y1].to_i, parent.cropped_size[:width].to_i, parent.cropped_size[:height].to_i, true)
+  #     raise thumbnail.inspect
+  #     # size = configatron.photo['attachment_fu_options']['thumbnails']['medium']
+  #     # dimensions = size[1..size.size].split("x")
+  #     # img.crop_resized!(dimensions[0].to_i, dimensions[1].to_i)
+  #     # img.write @settings.header_image_file
+  #   end
+  # end
+
 
   acts_as_taggable
 
@@ -19,9 +34,9 @@ class Photo < ActiveRecord::Base
   has_one :user_as_avatar, :class_name => "User", :foreign_key => "avatar_id"
   
   #Named scopes
-  named_scope :recent, :order => "photos.created_at DESC", :conditions => ["photos.parent_id IS NULL"]
-  named_scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ? AND photos.parent_id IS NULL", 7.days.ago.to_s(:db)]
-  named_scope :tagged_with, lambda {|tag_name|
+  scope :recent, :order => "photos.created_at DESC", :conditions => ["photos.parent_id IS NULL"]
+  scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ? AND photos.parent_id IS NULL", 7.days.ago.to_s(:db)]
+  scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
   attr_accessible :name, :description

@@ -7,7 +7,7 @@
       
   -box do
     %h3=:search.l
-    - form_for @search, :html => {:class => "MainForm"} do |f|
+    = form_for @search, :html => {:class => "MainForm"} do |f|
     
       = f.label :title.l
       = f.text_field :title_like
@@ -36,7 +36,7 @@
       
 
       -if @posts.page_count > 1
-        .pagination= paginating_links @posts, :link_to_current_page => true
+        = will_paginate @posts
 
       %table{:border => 0, :width => '100%'}
         %thead

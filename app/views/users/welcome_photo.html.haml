@@ -10,7 +10,7 @@
 #yui-main
   .yui-b
     -box do 
-      - form_tag( user_path(:welcome => 'about'), :method => 'put', :multipart =>true, :class => "MainForm") do
+      = form_tag( user_path(:welcome => 'about'), :method => 'put', :multipart =>true, :class => "MainForm") do
         %h3=:profile_photo.l
         %p.centered
           = image_tag( @user.avatar_photo_url(:medium), :class => "right" )

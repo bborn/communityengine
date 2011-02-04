@@ -22,11 +22,7 @@ module TinyMCEHelper
       when String, Symbol, Fixnum
         tinymce_js += "'#{value}'"
       when Array
-        if value.first.is_a?(Hash)
-          tinymce_js += '[' + value.map{|h| h.to_json}.join(',') + ']'
-        else
-          tinymce_js += '"' + value.join(',') + '"'          
-        end
+        tinymce_js += '"' + value.join(',') + '"'
       when TrueClass
         tinymce_js += 'true'
       when FalseClass
@@ -43,7 +39,7 @@ module TinyMCEHelper
   alias tiny_mce tiny_mce_init
   
   def javascript_include_tiny_mce
-    javascript_include_tag RAILS_ENV == 'development' ? "tiny_mce/tiny_mce_src" : "tiny_mce/tiny_mce", :plugin => "community_engine"
+    javascript_include_tag Rails.env == 'development' ? "tiny_mce/tiny_mce_src" : "tiny_mce/tiny_mce", :plugin => "community_engine"
   end
   
   def javascript_include_tiny_mce_if_used

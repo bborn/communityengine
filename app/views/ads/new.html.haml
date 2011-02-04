@@ -1,7 +1,7 @@
 -box do
   %h3=:new_ad.l
   = error_messages_for :ad
-  - form_for(:ad, :url => ads_path, :html => {:class => "MainForm" }) do |f|
+  = form_for(:ad, :url => ads_path, :html => {:class => "MainForm" }) do |f|
     %label=:name.l
     = f.text_field :name
 

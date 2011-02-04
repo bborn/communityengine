@@ -3,7 +3,7 @@ class ForumsController < BaseController
   before_filter :find_or_initialize_forum
   helper :application
 
-  uses_tiny_mce do
+  uses_tiny_mce do    
     configatron.default_mce_options
   end
   

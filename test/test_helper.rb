@@ -1,4 +1,4 @@
-ENV["RAILS_ENV"] = "test"
+ENV["Rails.env"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../../../../config/environment")
 require 'test_help'
 require "authlogic/test_case"
@@ -16,11 +16,11 @@ class ActiveSupport::TestCase
   include AuthenticatedTestHelper
   
   def self.all_fixtures
-    fixtures :all
+    fixtures :forums, :users, :sb_posts, :topics, :moderatorships, :monitorships, :categories
   end  
   
   def teardown
-    # UserSession.find && UserSession.find.destroy
+    UserSession.find && UserSession.find.destroy
   end
 
   # Add more helper methods to be used by all tests here...
