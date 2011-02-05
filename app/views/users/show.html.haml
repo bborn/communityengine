@@ -27,8 +27,8 @@
       =:my_friends.l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
     %p
-      = link_to "&raquo; #{:invite_a_friend.l :site => configatron.community_name}", invite_user_path(@user) if @is_current_user
-      %br= link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
+      = link_to "&raquo; #{:invite_a_friend.l :site => configatron.community_name}".html_safe, invite_user_path(@user) if @is_current_user
+      %br= link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})".html_safe, pending_user_friendships_path(@user) if @is_current_user
     - @accepted_friendships.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
@@ -63,7 +63,7 @@
           %dd
             = truncate_words(comment.comment, 10)
             %br
-            = link_to "&raquo; " + :view_comment.l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
+            = link_to "&raquo; ".html_safe + :view_comment.l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
 
 #yui-main
   .yui-b

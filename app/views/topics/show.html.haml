@@ -55,7 +55,7 @@
     - @voices.each do |user|
       %li= link_to h(user.display_name), user_path(user)
 
-  - if logged_in? || AppConfig.allow_anonymous_forum_posting
+  - if logged_in? || configatron.allow_anonymous_forum_posting
     %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
   -else
     %h6.all.right= link_to :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"  
@@ -75,7 +75,7 @@
   - if @posts.page_count > 1
     .pagination= paginating_links @posts
 
-  - if logged_in? || AppConfig.allow_anonymous_forum_posting  
+  - if logged_in? || configatron.allow_anonymous_forum_posting  
     #edit
     - if @topic.locked?
       %p

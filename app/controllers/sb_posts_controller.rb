@@ -2,7 +2,7 @@ class SbPostsController < BaseController
   before_filter :find_post,      :except => [:index, :monitored, :search, :create, :new]
   before_filter :login_required, :except => [:index, :search, :show, :monitored]
 
-  if AppConfig.allow_anonymous_forum_posting
+  if configatron.allow_anonymous_forum_posting
     skip_before_filter :verify_authenticity_token, :only => [:create]   #because the auth token might be cached anyway
     skip_before_filter :login_required, :only => [:create]
   end

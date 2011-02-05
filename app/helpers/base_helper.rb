@@ -211,36 +211,19 @@ module BaseHelper
   # end
   
   def more_comments_links(commentable)
-    html = link_to "&raquo; " + :all_comments.l, comments_url(commentable.class.to_s.underscore, commentable.to_param)
-    html += "<br />"
-		html += link_to "&raquo; " + :comments_rss.l, comments_url(commentable.class.to_s.underscore, commentable.to_param, :format => :rss)
+    html = link_to "&raquo; ".html_safe + :all_comments.l, comments_url(commentable.class.to_s.underscore, commentable.to_param)
+    html += "<br />".html_safe
+		html += link_to "&raquo; ".html_safe + :comments_rss.l, comments_url(commentable.class.to_s.underscore, commentable.to_param, :format => :rss)
 		html.html_safe
   end
   
   def more_user_comments_links(user = @user)
-    html = link_to "&raquo; " + :all_comments.l, user_comments_url(user)
-    html += "<br />"
-		html += link_to "&raquo; " + :comments_rss.l, user_comments_url(user.to_param, :format => :rss)
-		html  
+    html = link_to "&raquo; ".html_safe + :all_comments.l, user_comments_url(user)
+    html += "<br />".html_safe
+		html += link_to "&raquo; ".html_safe + :comments_rss.l, user_comments_url(user.to_param, :format => :rss)
+		html.html_safe
   end
   
-  def activities_line_graph(options = {})
-    line_color = "0x628F6C"
-    prefix  = ''
-    postfix = ''
-    start_at_zero = false
-    swf = "/plugin_assets/community_engine/images/swf/line_grapher.swf?file_name=/statistics.xml;activities&line_color=#{line_color}&prefix=#{prefix}&postfix=#{postfix}&start_at_zero=#{start_at_zero}"
-
-    code = <<-EOF
-    <object width="100%" height="400">
-    <param name="movie" value="#{swf}">
-    <embed src="#{swf}" width="100%" height="400">
-    </embed>
-    </object>
-    EOF
-    code
-  end
-
   def feature_enabled?(feature)
     configatron.sections_enabled.include?(feature)
   end  
@@ -276,19 +259,12 @@ module BaseHelper
     # end
   end  
   
-  def pagination_info_for(paginator, options = {})
-    options = {:prefix => :showing.l, :connector => '-', :suffix => ""}.merge(options)
-    window = paginator.first_item.to_s + options[:connector] + paginator.last_item.to_s
-    options[:prefix] + " <strong>#{window}</strong> " + :of.l + " #{paginator.size} " + options[:suffix]
-  end
-  
-  
   def last_active
     session[:last_active] ||= Time.now.utc
   end
     
   def ajax_spinner_for(id, spinner="spinner.gif")
-    "<img src='/plugin_assets/community_engine/images/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> "
+    "<img src='/plugin_assets/community_engine/images/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> ".html_safe
   end
 
   def avatar_for(user, size=32)

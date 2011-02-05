@@ -100,14 +100,14 @@ class SbPostTest < ActiveSupport::TestCase
   end
   
   test "should not monitor for anonymous posts" do
-    AppConfig.allow_anonymous_forum_posting = true
+    configatron.allow_anonymous_forum_posting = true
     
     assert_difference Monitorship, :count, 0 do
       topic = topics(:pdi)
       topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")      
     end
     
-    AppConfig.allow_anonymous_forum_posting = false    
+    configatron.allow_anonymous_forum_posting = false    
   end
   
   def test_to_xml
@@ -129,14 +129,14 @@ class SbPostTest < ActiveSupport::TestCase
     assert post.errors.on(:user_id)
   end
   
-  test "should allow anonymous posting if AppConfig specifies it's ok" do
-    AppConfig.allow_anonymous_forum_posting = true
+  test "should allow anonymous posting if configatron specifies it's ok" do
+    configatron.allow_anonymous_forum_posting = true
     
     topic = topics(:pdi)
       
     assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
     
-    AppConfig.allow_anonymous_forum_posting = false    
+    configatron.allow_anonymous_forum_posting = false    
   end
   
   protected
