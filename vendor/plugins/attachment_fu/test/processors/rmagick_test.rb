@@ -1,5 +1,4 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'test_helper'))
-
 class RmagickTest < Test::Unit::TestCase
   attachment_model Attachment
 
@@ -181,7 +180,7 @@ class RmagickTest < Test::Unit::TestCase
       assert_not_created do
         use_temp_file "files/rails.png" do |file|
           attachment.filename        = 'rails2.png'
-          attachment.temp_paths.unshift File.join(fixture_path, file)
+          attachment.temp_paths.unshift File.join(FIXTURE_PATH, file)
           attachment.save
           new_filenames = [attachment.reload.full_filename] + attachment.thumbnails.collect { |t| t.reload.full_filename }
           new_filenames.each { |f| assert  File.exists?(f), "#{f} does not exist" }
@@ -224,7 +223,7 @@ class RmagickTest < Test::Unit::TestCase
           # #temp_path calls #full_filename, which is not getting mixed into the attachment.  Maybe we don't need to
           # set temp_path at all?
           #
-          # attachment.temp_paths.unshift File.join(fixture_path, file)
+          # attachment.temp_paths.unshift File.join(FIXTURE_PATH, file)
           attachment.save!
         end
       end

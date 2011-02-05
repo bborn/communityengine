@@ -113,6 +113,7 @@ class UsersController < BaseController
     
   def edit 
     @metro_areas, @states = setup_locations_for(@user)
+
     @skills               = Skill.find(:all)
     @offering             = Offering.new
     @avatar               = Photo.new
@@ -350,12 +351,12 @@ class UsersController < BaseController
   
     country = Country.find(params[:country_id]) unless params[:country_id].blank?
     state   = State.find(params[:state_id]) unless params[:state_id].blank?
-    states  = country ? country.states.sort_by{|s| s.name} : []
+    states  = country ? country.states : []
     
     if states.any?
-      metro_areas = state ? state.metro_areas.all(:order => "name") : []
+      metro_areas = state ? state.metro_areas.order("name ASC").all : []
     else
-      metro_areas = country ? country.metro_areas : []
+      metro_areas = country ? country.metro_areas.order("name ASC").all : []
     end
 
     respond_to do |format|

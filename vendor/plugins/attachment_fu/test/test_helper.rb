@@ -1,12 +1,10 @@
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 
-ENV['Rails.env'] = 'test'
-ENV['Rails.root'] ||= File.dirname(__FILE__) + '/../../../..'
+ENV['RAILS_ENV'] = 'test'
+ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '/../../../..'
 
 require 'test/unit'
-require File.expand_path(File.join(ENV['Rails.root'], 'config/environment.rb'))
-require 'active_record/fixtures'
-require 'action_controller/test_process'
+require File.expand_path(File.join(ENV['RAILS_ROOT'], 'config/environment.rb'))
 
 config = YAML::load(IO.read(File.dirname(__FILE__) + '/database.yml'))
 ActiveRecord::Base.logger = Logger.new(File.dirname(__FILE__) + "/debug.log")
@@ -35,16 +33,16 @@ ActiveRecord::Base.establish_connection(config[db_adapter])
 
 load(File.dirname(__FILE__) + "/schema.rb")
 
-Test::Unit::TestCase.fixture_path = File.dirname(__FILE__) + "/fixtures"
-$LOAD_PATH.unshift(Test::Unit::TestCase.fixture_path)
+FIXTURE_PATH = File.dirname(__FILE__) + "/fixtures"
+$LOAD_PATH.unshift(FIXTURE_PATH)
 
 class Test::Unit::TestCase #:nodoc:
-  include ActionController::TestProcess
+  include ActionDispatch::TestProcess
   def create_fixtures(*table_names)
     if block_given?
-      Fixtures.create_fixtures(Test::Unit::TestCase.fixture_path, table_names) { yield }
+      Fixtures.create_fixtures(FIXTURE_PATH, table_names) { yield }
     else
-      Fixtures.create_fixtures(Test::Unit::TestCase.fixture_path, table_names)
+      Fixtures.create_fixtures(FIXTURE_PATH, table_names)
     end
   end
 
@@ -58,8 +56,8 @@ class Test::Unit::TestCase #:nodoc:
     FileUtils.rm_rf File.join(File.dirname(__FILE__), 'files')
   end
 
-  self.use_transactional_fixtures = true
-  self.use_instantiated_fixtures  = false
+  #self.use_transactional_fixtures = true
+  #self.use_instantiated_fixtures  = false
 
   def self.attachment_model(klass = nil)
     @attachment_model = klass if klass 
@@ -97,11 +95,13 @@ class Test::Unit::TestCase #:nodoc:
     
     def use_temp_file(fixture_filename)
       temp_path = File.join('/tmp', File.basename(fixture_filename))
-      FileUtils.mkdir_p File.join(fixture_path, 'tmp')
-      FileUtils.cp File.join(fixture_path, fixture_filename), File.join(fixture_path, temp_path)
-      yield temp_path
+      temp_dir = File.join(FIXTURE_PATH, 'tmp')
+      use_file = File.join(FIXTURE_PATH, temp_path)
+      FileUtils.mkdir_p temp_dir
+      FileUtils.cp File.join(FIXTURE_PATH, fixture_filename), use_file
+      yield use_file
     ensure
-      FileUtils.rm_rf File.join(fixture_path, 'tmp')
+      FileUtils.rm_rf temp_dir
     end
 
     def assert_created(num = 1)
@@ -115,6 +115,10 @@ class Test::Unit::TestCase #:nodoc:
         end
       end
     end
+
+    def assert_valid(record) 
+      assert record.valid?, record.errors.full_messages.join("\n")
+    end 
     
     def assert_not_created
       assert_created(0) { yield }

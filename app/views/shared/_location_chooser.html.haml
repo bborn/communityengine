@@ -1,12 +1,12 @@
 %span#location_chooser
   = :country.l
   %br
-  = select_tag(:country_id, '<option></option>'+options_from_collection_for_select(Country.find_countries_with_metros, "id", "name", selected_country), {:style => "width:100px"})
+  = select_tag(:country_id, '<option></option>'.html_safe+options_from_collection_for_select(Country.find_countries_with_metros, "id", "name", selected_country).html_safe, {:style => "width:100px"})
 
   %br
   = :state.l 
   %br
-  = select_tag(:state_id, '<option></option>' + options_from_collection_for_select(states, "id", "name", (selected_state rescue nil)), {:style => "width:100px", :disabled => states.empty? })
+  = select_tag(:state_id, '<option></option>'.html_safe + options_from_collection_for_select(states, "id", "name", (selected_state rescue nil)), {:style => "width:100px", :disabled => states.empty? })
 
   = image_tag 'spinner.gif', :plugin => 'community_engine', :style => 'display:none;'
 

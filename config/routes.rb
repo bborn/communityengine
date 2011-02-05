@@ -139,6 +139,7 @@ Rails.application.routes.draw do
       match 'statistics'
       match 'crop_profile_photo'
       match 'upload_profile_photo'
+      match 'metro_area_update'
     end
     
     resources :friendships do
