@@ -39,8 +39,8 @@ min_age: 16
 max_age: 90
 
 photo:
-  missing_thumb: '/plugin_assets/community_engine/images/icon_missing_thumb.gif'
-  missing_medium: "/plugin_assets/community_engine/images/icon_missing_medium.gif"
+  missing_thumb: 'icon_missing_thumb.gif'
+  missing_medium: "icon_missing_medium.gif"
   attachment_fu_options:
     resize_to: "465>"
     min_size: 1

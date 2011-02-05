@@ -229,9 +229,9 @@ class User < ActiveRecord::Base
     else
       case size
         when :thumb
-          configatron.photo['missing_thumb']
+          configatron.photo.missing_thumb.to_s
         else
-          configatron.photo['missing_medium']
+          configatron.photo.missing_medium.to_s
       end
     end
   end
