@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PhotoTest < ActiveSupport::TestCase
-  include ActionController::TestProcess
+  include ActionDispatch::TestProcess
 
   fixtures :all
 

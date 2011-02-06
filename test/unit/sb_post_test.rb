@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class SbPostTest < ActiveSupport::TestCase
   all_fixtures
-  include ActionController::TestProcess
+  include ActionDispatch::TestProcess
 
   def test_should_select_posts
     assert_equal [sb_posts(:pdi), sb_posts(:pdi_reply), sb_posts(:pdi_rebuttal)], topics(:pdi).sb_posts

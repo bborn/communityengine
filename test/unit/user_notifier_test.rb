@@ -6,7 +6,7 @@ class UserNotifierTest < ActiveSupport::TestCase
   FIXTURES_PATH = File.dirname(__FILE__) + '/../fixtures'
   CHARSET = "utf-8"
 
-  include ActionMailer::Quoting
+  # include ActionMailer::Quoting
 
   fixtures :users, :friendships, :friendship_statuses, :comments, :posts, :sb_posts, :topics, :forums, :roles
 

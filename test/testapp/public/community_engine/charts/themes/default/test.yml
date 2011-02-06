@@ -1,0 +1,4 @@
+# Testing override
+<%= chart :base %> 
+  <%=component :axis_category %>
+    size:   50

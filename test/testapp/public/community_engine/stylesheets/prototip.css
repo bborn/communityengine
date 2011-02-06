@@ -1,0 +1,73 @@
+/* prototip.css : http://www.nickstakenburg.com/projects/prototip */
+.prototip { position: absolute; }
+.prototip .effectWrapper { position: relative; }
+.prototip .tooltip { position: relative; }
+.prototip .toolbar {
+	position: relative;
+	display: block;
+	}
+.prototip .toolbar .title {
+	display: block;
+	position: relative;
+	}
+.prototip .content { clear: both; }
+.prototip .toolbar a.close {
+	position: relative;
+	text-decoration: none;
+	float: right;
+	width: 15px;
+	height: 15px;
+	background: transparent url(close.gif);
+	display: block;
+	line-height: 0;
+	font-size: 0px;
+	border: 0;
+	}
+.prototip .toolbar a.close:hover { background: transparent url(close_hover.gif); }
+
+.iframeShim { 
+	position: absolute;
+	border: 0;
+	margin: 0;	
+    padding: 0;
+    background: none;
+}
+
+/* Tooltip styles */
+.prototip .default { width: 150px; color: #fff; }
+.prototip .default .toolbar { background: #0F6788; font: italic 17px Georgia, serif; }
+.prototip .default .title { padding: 5px; }
+.prototip .default .content { background: dodgerblue; font: 11px Arial, Helvetica, sans-serif; padding: 5px;}
+
+.prototip .pinktip { border: 5px solid #a1a1a1; }
+.prototip .pinktip .toolbar { background: #ff1e53; color: #fff; font: italic 17px Georgia, serif; }
+.prototip .pinktip .title { padding: 5px; }
+.prototip .pinktip .content { background: #fff; color: #555555; font: 11px Arial, Helvetica, sans-serif; padding: 5px; }
+
+.prototip .darktip { width: 250px; border: 5px solid #a1a1a1; }
+.prototip .darktip .toolbar { background: #606060; color: #fff; font: italic 17px Georgia, serif; }
+.prototip .darktip .toolbar a.close { background: url(close_hover.gif);}
+.prototip .darktip .toolbar a.close:hover { background: url(close.gif);}
+.prototip .darktip .title { padding: 5px;}
+.prototip .darktip .content { background: #808080; color: #fff; font: 11px Arial, Helvetica, sans-serif; padding: 5px; }
+
+.prototip .silver { 
+	margin:0 10px 0 10px; 
+	border: 2px solid #2a1301; 
+	color: #fff; 
+	font: 12px Verdana, sans-serif; 
+	border-top: none;
+	*width:150px;
+	}
+
+.prototip .silver ul li { list-style-type: none;}
+.prototip .silver .toolbar { background: #2e2e2e; color: #fff; font-weight: bold; }
+.prototip .silver .toolbar a.close:hover { background: url(close_hover_red.gif);}
+.prototip .silver .title { padding: 5px; }
+.prototip .silver .content { background: #fff; color: #666666; padding: 5px;}
+
+.protoClassic { width: 300px; border: 5px solid #8c939c; }
+.protoClassic .toolbar { background: #96b8e2 url(classic_toolbar.gif) top left repeat-y; font-weight: bold; color: #fff;}
+.protoClassic .toolbar a.close:hover { background: url(close_hover_red.gif);}
+.protoClassic .title { padding: 5px; }
+.protoClassic .content { background: #fff; color: #333333; font: 11px Arial, Helvetica, sans-serif; padding: 5px; }

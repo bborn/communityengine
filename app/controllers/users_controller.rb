@@ -274,8 +274,8 @@ class UsersController < BaseController
           :friend_id => friend.id, 
           :friendship_status => accepted )
           
-        @friendship.save
-        reverse_friendship.save
+        @friendship.save!
+        reverse_friendship.save!
       end
     end
   end

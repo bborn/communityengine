@@ -1,5 +1,4 @@
 class StatisticsController < BaseController
-  include Ziya
   before_filter :login_required
   before_filter :admin_required
 
@@ -8,7 +7,7 @@ class StatisticsController < BaseController
     @unactivated_users = User.count(:conditions => ['activated_at IS NULL'])
     @yesterday_new_users = find_new_users(1.day.ago.midnight, Date.today.midnight)
     @today_new_users = find_new_users(Date.today.midnight, Date.today.tomorrow.midnight)  
-#    @active_users_count = Activity.find(:all, :group => "user_id", :conditions => ["created_at > ?", 1.month.ago]).size
+
     @active_users_count = Activity.count(:all, :group => "user_id", :conditions => ["created_at > ?", 1.month.ago]).size
 
     @active_users = User.find_by_activity({:since => 1.month.ago})
@@ -25,48 +24,16 @@ class StatisticsController < BaseController
       :conditions => ['? <= posts.published_at AND posts.published_at <= ? AND users.featured_writer = ?', Time.now.beginning_of_month, (Time.now.end_of_month + 1.day), true], :include => :user)        
     @estimated_payment = @posts.sum do |p| 
       7
-    end
-
-    
+    end  
   end  
 
-  def activities_chart
-    range = (params[:range].blank? ? 10 : params[:range].to_i ) #days
-    
-    chart = Ziya::Charts::Line.new
-    @logins = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'logged_in', range.days.ago ] )
-    @comments = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'comment', range.days.ago ] )    
-    @posts = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'post', range.days.ago ] )        
-    @photos = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'photo', range.days.ago ] )            
-    @clippings = Activity.count(:group => "date(created_at)", :conditions => ["action = ? AND created_at > ?", 'clipping', range.days.ago ] )            
-
-    current = (Time.now.midnight) - ( (range).days + 1.day )
-    days = []
-    labels = []
-    0.upto(range) do |i| 
-      current += 1.day
-      labels << current.to_s(:line_graph)
-      days << current.to_date.to_s(:db)
-    end
-
-    chart.add( :axis_category_text, labels )
-    
-    chart.add( :series, :logins.l, days.collect{|d| @logins[d] || 0 } )
-    chart.add( :series, :comments.l, days.collect{|d| @comments[d] || 0 } )    
-    chart.add( :series, :posts.l, days.collect{|d| @posts[d] || 0 } )        
-    chart.add( :series, :photos.l, days.collect{|d| @photos[d] || 0 } )        
-    chart.add( :series, :clippings.l, days.collect{|d| @clippings[d] || 0 } )            
-    render :xml => chart.to_s    
-  end
-  
-    
+      
   protected
   def find_new_users(from, to, limit= nil)
-    new_user_cond = Caboose::EZ::Condition.new
-    new_user_cond << ["activated_at IS NOT NULL"]
-    new_user_cond.created_at >= from
-    new_user_cond.created_at <= to    
-    return User.find(:all, :conditions => new_user_cond.to_sql, :limit => limit)
+    @users = User.arel_table
+    @users = @users.active
+    @users = @users.where("created_at >= ? AND created_at =< ?", from, to)
+    return @users.all(:limit => limit)
   end
   
 

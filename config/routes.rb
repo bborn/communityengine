@@ -117,11 +117,8 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'dashboard'
-      get 'assume'
-      get 'return_admin'      
       get 'edit_account'
       get 'invite'
-
       get 'signup_completed'      
       
       put 'toggle_moderator'
@@ -135,6 +132,9 @@ Rails.application.routes.draw do
       get 'welcome_about'
       get 'welcome_invite'
       get 'welcome_complete'
+      
+      post 'return_admin'   
+      post 'assume'               
       
       match 'statistics'
       match 'crop_profile_photo'

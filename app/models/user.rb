@@ -27,14 +27,16 @@ class User < ActiveRecord::Base
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
+  before_validation   :generate_login_slug  
   before_create :make_activation_code
   after_create  :update_last_login
   after_create  :deliver_signup_notification
   before_save   :whitelist_attributes  
   after_save    :deliver_activation
-  before_save   :generate_login_slug
   after_save    :recount_metro_area_users
+
   after_destroy :recount_metro_area_users
+
 
 
   #validation
@@ -175,16 +177,6 @@ class User < ActiveRecord::Base
   def self.currently_online
     User.find(:all, :conditions => ["sb_last_seen_at > ?", Time.now.utc-5.minutes])
   end
-  
-  # def self.search(query, options = {})
-  #   with_scope :find => { :conditions => build_search_conditions(query) } do
-  #     find :all, options
-  #   end
-  # end
-  # 
-  # def self.build_search_conditions(query)
-  #   query
-  # end  
   
   ## End Class Methods  
   

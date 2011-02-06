@@ -16,7 +16,7 @@ ActiveSupport::TestCase.fixture_path = File.dirname(__FILE__) + "/fixtures/"
 $LOAD_PATH.unshift(ActiveSupport::TestCase.fixture_path)
 
 class ActiveSupport::TestCase #:nodoc:
-  include ActionController::TestProcess
+  include ActionDispatch::TestProcess
   def create_fixtures(*table_names)
     if block_given?
       Fixtures.create_fixtures(ActiveSupport::TestCase.fixture_path, table_names) { yield }

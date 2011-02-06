@@ -1,10 +1,18 @@
-ENV["Rails.env"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../../../../config/environment")
-require 'test_help'
+# Configure Rails Envinronment
+ENV["RAILS_ENV"] = "test"
+
+require File.expand_path("../testapp/config/environment.rb",  __FILE__)
+require "rails/test_help"
+
+Rails.backtrace_cleaner.remove_silencers!
+
+# Load support files
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+
 require "authlogic/test_case"
-require 'action_view/test_case'
-require 'pp'
-ActiveSupport::TestCase.fixture_path = (Rails.root + "/vendor/plugins/community_engine/test/fixtures/")
+require "authenticated_test_helper"
+ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures/")
 ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
 
@@ -12,11 +20,12 @@ class ActionController::TestCase
   setup :activate_authlogic
 end
 
-class ActiveSupport::TestCase    
+class ActiveSupport::TestCase      
   include AuthenticatedTestHelper
   
   def self.all_fixtures
-    fixtures :forums, :users, :sb_posts, :topics, :moderatorships, :monitorships, :categories
+    # fixtures :forums, :users, :sb_posts, :topics, :moderatorships, :monitorships, :categories
+    fixtures :all
   end  
   
   def teardown
@@ -78,32 +87,32 @@ end
 
 # Redefining this so we don't have to go out to the interwebs everytime we create a clipping
 # file paramater must equal http://www.google.com/intl/en_ALL/images/logo.gif; all other strings are considered an invalid URL
-module UrlUpload
-  include ActionController::TestProcess  
-  attr_accessor :data 
-  
-  def data_from_url(uri)
-    data ||= ActionController::TestUploadedFile.new(Rails.root+"/vendor/plugins/community_engine/test/fixtures/files/library.jpg", 'image/jpg', false)    
-    if ['http://www.google.com/intl/en_ALL/images/logo.gif', 'http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif'].include?(uri)
-      data
-    else
-      nil
-    end
-  end      
-end
+# module UrlUpload
+#   # include ActionDispatch::TestProcess  
+#   attr_accessor :data 
+#   
+#   def data_from_url(uri)
+#     data ||= ActionController::TestUploadedFile.new(Rails.root+"/vendor/plugins/community_engine/test/fixtures/files/library.jpg", 'image/jpg', false)    
+#     if ['http://www.google.com/intl/en_ALL/images/logo.gif', 'http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif'].include?(uri)
+#       data
+#     else
+#       nil
+#     end
+#   end      
+# end
 
-class Hash
-  # Usage { :a => 1, :b => 2, :c => 3}.except(:a) -> { :b => 2, :c => 3}
-  def except(*keys)
-    self.reject { |k,v|
-      keys.include? k.to_sym
-    }
-  end
-
-  # Usage { :a => 1, :b => 2, :c => 3}.only(:a) -> {:a => 1}
-  def only(*keys)
-    self.dup.reject { |k,v|
-      !keys.include? k.to_sym
-    }
-  end
-end
+# class Hash
+#   # Usage { :a => 1, :b => 2, :c => 3}.except(:a) -> { :b => 2, :c => 3}
+#   def except(*keys)
+#     self.reject { |k,v|
+#       keys.include? k.to_sym
+#     }
+#   end
+# 
+#   # Usage { :a => 1, :b => 2, :c => 3}.only(:a) -> {:a => 1}
+#   def only(*keys)
+#     self.dup.reject { |k,v|
+#       !keys.include? k.to_sym
+#     }
+#   end
+# end

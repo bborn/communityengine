@@ -7,6 +7,7 @@ module CommunityEngine
   require 'community_engine_sha1_crypto_method'    
   require 'i18n_extensions'  
   require 'viewable'    
+  require 'url_upload'
   
   module ActiveRecordExtensions
     def prepare_options_for_attachment_fu(options)
