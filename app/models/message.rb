@@ -22,7 +22,7 @@ class Message < ActiveRecord::Base
   end
   
   def notify_recipient
-    UserNotifier.message_notification(self)
+    UserNotifier.message_notification(self).deliver
   end
   
   def update_message_threads

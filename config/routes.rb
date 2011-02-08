@@ -115,11 +115,15 @@ Rails.application.routes.draw do
   resources :activities
   
   resources :users do
+    collection do
+      post 'return_admin'
+    end
     member do
       get 'dashboard'
       get 'edit_account'
       get 'invite'
       get 'signup_completed'      
+      get 'activate'
       
       put 'toggle_moderator'
       put 'toggle_featured'
@@ -133,7 +137,6 @@ Rails.application.routes.draw do
       get 'welcome_invite'
       get 'welcome_complete'
       
-      post 'return_admin'   
       post 'assume'               
       
       match 'statistics'

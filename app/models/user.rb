@@ -295,15 +295,15 @@ class User < ActiveRecord::Base
   
   # before filter
   def generate_login_slug
-    self.login_slug = self.login.parameterize
+    self.login_slug = self.login && self.login.parameterize 
   end
   
   def deliver_activation
-    UserNotifier.activation(self) if self.recently_activated?
+    UserNotifier.activation(self).deliver if self.recently_activated?
   end
   
   def deliver_signup_notification
-    UserNotifier.signup_notification(self)    
+    UserNotifier.signup_notification(self).deliver    
   end
 
   def update_last_login

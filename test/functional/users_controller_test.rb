@@ -97,7 +97,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_require_login_on_signup
     assert_no_difference User, :count do
       create_user( :user => {:login => nil})
-      assert assigns(:user).errors.on(:login)
+      assert assigns(:user).errors[:login]
       assert_response :success
     end
   end
@@ -105,7 +105,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_require_password_on_signup
     assert_no_difference User, :count do
       create_user( :user => {:password => nil})
-      assert assigns(:user).errors.on(:password)
+      assert assigns(:user).errors[:password]
       assert_response :success
     end
   end
@@ -113,7 +113,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_require_password_confirmation_on_signup
     assert_no_difference User, :count do
       create_user( :user => {:password_confirmation => nil})
-      assert assigns(:user).errors.on(:password_confirmation)
+      assert assigns(:user).errors[:password_confirmation]
       assert_response :success
     end
   end
@@ -121,7 +121,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_require_email_on_signup
     assert_no_difference User, :count do
       create_user( :user => {:email => nil})
-      assert assigns(:user).errors.on(:email)
+      assert assigns(:user).errors[:email]
       assert_response :success
     end
   end
@@ -138,12 +138,7 @@ class UsersControllerTest < ActionController::TestCase
     assert !users(:quentin).reload.active?    
     assert_redirected_to login_path
   end
-  
-  def test_should_not_activate_nil
-    get :activate, :activation_code => nil
-    assert_response :redirect
-  end
-  
+    
   def test_should_activate_user
     users(:quentin).activated_at = nil
     users(:quentin).activation_code = ':quentin_activation_code'
@@ -339,9 +334,9 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_not_resend_activation_for_nonexistent_user
     assert_no_difference ActionMailer::Base.deliveries, :length do
-      post :resend_activation, :id => "nonexistant"
-      assert_response :success
-      assert_equal :activation_email_not_sent_message.l, flash[:notice]
+      assert_raise(ActiveRecord::RecordNotFound) {  
+        post :resend_activation, :id => "nonexistant"
+      }
     end    
   end
 

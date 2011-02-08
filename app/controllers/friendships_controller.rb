@@ -97,7 +97,7 @@ class FriendshipsController < BaseController
     
     respond_to do |format|
       if @friendship.save && reverse_friendship.save
-        UserNotifier.friendship_request(@friendship) if @friendship.friend.notify_friend_requests?
+        UserNotifier.friendship_request(@friendship).deliver if @friendship.friend.notify_friend_requests?
         format.html {
           flash[:notice] = :friendship_requested.l_with_args(:friend => @friendship.friend.login) 
           redirect_to accepted_user_friendships_path(@user)

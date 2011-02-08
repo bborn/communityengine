@@ -1,33 +1,28 @@
 = TODO
 * replace paginating find with will paginate
-* replace att_fu and multiple uploader, responds-to-parent
+* replace att_fu with paperclip
+* rip out multiple uploader, responds-to-parent
 * replace white_list with something (sanitize?) (preserve stuff from white list initializer)
-* should it be an Engine? 
-	class Engine < Rails::Engine
-	  config.autoload_paths << File.expand_path("../plugins/", __FILE__)    
-	end
-	http://edgeapi.rubyonrails.org/classes/Rails/Engine.html
 * replace setup template with something else more sensible
 * fix boot; allow overriding initializers, autoloading assets, etc
-* fix ce plugin loading? config.paths.vendor.plugins << "#{config.root}/vendor/other_plugins"
 * mce_opts initializer, recaptcha constants
 * rip out beta mode and teaser stuff
 * clean up routes
 * remove all the theming stuff
-* asset paths https://github.com/rails/rails/commit/a132229d7b4382d9ffe8847fa58f469cb8f2ecfc#L5L149
 * take out ez where
 * fix initializers/rakismet, recaptcha etc.
 * take out vendors/offerings crap
 * go back and fix: Rails 3 Fix comments
 * searchlogic broken with rails 3 gem 'searchlogic', :git => git://github.com/railsdog/searchlogic.git
 * copy new migrations from main app back into ce
-* don't allow show_localization_keys_for_debugging
-* remote_form_for is gone
+* copy new gemfile from main app back into ce
+# * remote_form_for is gone (use dynamic_form gem)
 * remove stylesheet customization
 * rework users index to use searchlogic/metaseach or something
 * use aato instead of aatos
 * authlogic has problems: not sure it's recording last_login magic columns, investigate
-* finding transparently by login is broken
+# * finding transparently by login is broken (fixed using friendly_id)
+# * can't dup nilclass error in Rails timezone conversion (fixed with a little patch, should get fixed in a new version of Rails)
 
 
 GOTCHAS:

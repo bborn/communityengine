@@ -310,9 +310,9 @@ class UsersController < BaseController
 
   def forgot_username  
     return unless request.post?   
-    
+
     if @user = User.active.find_by_email(params[:email])
-      UserNotifier.forgot_username(@user)
+      UserNotifier.forgot_username(@user).deliver
       redirect_to login_url
       flash[:info] = :your_username_was_emailed_to_you.l      
     else
@@ -331,7 +331,7 @@ class UsersController < BaseController
     
     if @user && !@user.active?
       flash[:notice] = :activation_email_resent_message.l
-      UserNotifier.signup_notification(@user)    
+      UserNotifier.signup_notification(@user).deliver    
       redirect_to login_path and return
     else
       flash[:notice] = :activation_email_not_sent_message.l

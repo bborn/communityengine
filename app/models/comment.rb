@@ -89,19 +89,19 @@ class Comment < ActiveRecord::Base
   
   def notify_previous_commenters
     previous_commenters_to_notify.each do |commenter|
-      UserNotifier.follow_up_comment_notice(commenter, self)
+      UserNotifier.follow_up_comment_notice(commenter, self).deliver
     end    
   end
   
   def notify_previous_anonymous_commenters
     anonymous_commenters_emails = commentable.comments.map{|c|  c.author_email if (c.notify_by_email? && !c.user && !c.author_email.eql?(self.author_email) && c.author_email) }.uniq.compact
     anonymous_commenters_emails.each do |email|
-      UserNotifier.follow_up_comment_notice_anonymous(email, self)
+      UserNotifier.follow_up_comment_notice_anonymous(email, self).deliver
     end    
   end  
   
   def send_notifications
-    UserNotifier.comment_notice(self) if should_notify_recipient?
+    UserNotifier.comment_notice(self).deliver if should_notify_recipient?
     self.notify_previous_commenters
     self.notify_previous_anonymous_commenters if configatron.allow_anonymous_commenting
   end
