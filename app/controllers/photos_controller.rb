@@ -132,7 +132,7 @@ class PhotosController < BaseController
         format.js {
           responds_to_parent do
             render :update do |page|
-              page << "upload_image_callback('#{@photo.public_filename()}', '#{@photo.display_name}', '#{@photo.id}');"
+              page << "upload_image_callback('#{@photo.photo.url()}', '#{@photo.display_name}', '#{@photo.id}');"
             end
           end
         }
@@ -161,7 +161,7 @@ class PhotosController < BaseController
     @photo.save!
 
     # This returns the thumbnail url for handlers.js to use to display the thumbnail
-    render :text => @photo.public_filename(:thumb)
+    render :text => @photo.photo.url(:thumb)
   rescue
     render :text => "Error: #{$!}", :status => 500
   end
@@ -208,7 +208,7 @@ class PhotosController < BaseController
   protected
 
   def description_for_rss(photo)
-    "<a href='#{user_photo_url(photo.user, photo)}' title='#{photo.name}'><img src='#{photo.public_filename(:large)}' alt='#{photo.name}' /><br />#{photo.description}</a>"
+    "<a href='#{user_photo_url(photo.user, photo)}' title='#{photo.name}'><img src='#{photo.photo.url(:large)}' alt='#{photo.name}' /><br />#{photo.description}</a>"
   end
 
 end

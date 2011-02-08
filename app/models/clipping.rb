@@ -48,7 +48,7 @@ class Clipping < ActiveRecord::Base
   end
   
   def image_uri(size = '')
-    image && image.public_filename(size) || image_url
+    image && image.clipping_image_file.url(size) || image_url
   end
   
   def title_for_rss

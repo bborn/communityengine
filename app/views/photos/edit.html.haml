@@ -17,7 +17,7 @@
     = error_messages_for :photo
     = form_for(:photo, :url => user_photo_path(@user, @photo), :html => { :method => :put, :class => "MainForm" }) do |f|
       
-      = image_tag( @photo.public_filename(:medium), :id => 'photo', :class => 'polaroid' )
+      = image_tag( @photo.photo.url(:medium), :id => 'photo', :class => 'polaroid' )
       
       %label 
         = :tags.l

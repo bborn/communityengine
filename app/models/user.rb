@@ -1,13 +1,13 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  
+  xss_foliate :strip => [:raw_post, :title]
   has_friendly_id :login_slug
   has_many :albums
   
   MALE    = 'M'
   FEMALE  = 'F'
-  attr_protected :admin, :featured, :role_id
+  #attr_protected :admin, :featured, :role_id
   
   acts_as_authentic do |c|
     c.crypto_provider = CommunityEngineSha1CryptoMethod
@@ -87,9 +87,17 @@ class User < ActiveRecord::Base
     includes(:tags).where("tags.name = ?", tag_name)
   }
   
-  
+
+  accepts_nested_attributes_for :avatar
+  attr_accessible :avatar_id, :company_name, :country_id, :description, :email,
+    :firstname, :fullname, :gender, :lastname, :login, :metro_area_id,
+    :middlename, :notify_comments, :notify_community_news,
+    :notify_friend_requests, :password, :password_confirmation,
+    :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip, :avatar_attributes
+
+  ## Class Methods
+
   def self.find_country_and_state_from_search_params(search)
-    search = prepare_params_for_search(search)
     country     = Country.find(search['country_id']) if !search['country_id'].blank?
     state       = State.find(search['state_id']) if !search['state_id'].blank?
     metro_area  = MetroArea.find(search['metro_area_id']) if !search['metro_area_id'].blank?
@@ -120,30 +128,29 @@ class User < ActiveRecord::Base
     search
   end
   
-  # def self.build_conditions_for_search(search)
-  #   cond = Caboose::EZ::Condition.new
-  # 
-  #   cond.append ['activated_at IS NOT NULL ']
-  #   if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
-  #     cond.append ['country_id = ?', search['country_id'].to_s]
-  #   end
-  #   if search['state_id'] && !search['metro_area_id']
-  #     cond.append ['state_id = ?', search['state_id'].to_s]
-  #   end
-  #   if search['metro_area_id']
-  #     cond.append ['metro_area_id = ?', search['metro_area_id'].to_s]
-  #   end
-  #   if search['login']    
-  #     cond.login =~ "%#{search['login']}%"
-  #   end
-  #   if search['vendor']
-  #     cond.vendor == true
-  #   end    
-  #   if search['description']
-  #     cond.description =~ "%#{search['description']}%"
-  #   end    
-  #   cond
-  # end  
+  def self.build_conditions_for_search(search)
+    user = User.arel_table
+    users = User.where(user[:activated_at].not_eq nil)
+    if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
+      users = users.where(user[:country_id].eq search['country_id'])
+    end
+    if search['state_id'] && !search['metro_area_id']
+      users = users.where(user[:state_id].eq search['state_id'])
+    end
+    if search['metro_area_id']
+      users = users.where(user[:metro_area_id].eq search['metro_area_id'])
+    end
+    if search['login']    
+      users = users.where('`users`.login LIKE ?', "%#{search['login']}%")
+    end
+    if search['vendor']
+      users = users.where(user[:vendor].eq true)
+    end    
+    if search['description']
+      users = users.where('`users`.description LIKE ?', "%#{search['description']}%")
+    end    
+    users
+  end  
   
   def self.find_by_activity(options = {})
     options.reverse_merge! :limit => 30, :require_avatar => true, :since => 7.days.ago   
@@ -162,21 +169,39 @@ class User < ActiveRecord::Base
   def self.find_featured
     self.featured
   end
+  
+  def self.paginated_users_conditions_with_search(params)
+    search = prepare_params_for_search(params)
+
+    metro_areas, states = find_country_and_state_from_search_params(search)
     
-  def self.recent_activity(page = {}, options = {})
-    page.reverse_merge! :size => 10, :current => 1
-    Activity.recent.paginate(:all, 
+    users = build_conditions_for_search(search)
+    return users, search, metro_areas, states
+  end  
+
+  
+  def self.recent_activity(options = {})
+    options.reverse_merge! :per_page => 10, :page => 1
+    Activity.recent.paginate(
       :select => 'activities.*', 
       :conditions => "users.activated_at IS NOT NULL", 
-      :joins => "LEFT JOIN users ON users.id = activities.user_id", 
-      :per_page => page[:size],
-      :page => page[:current])
-      #Rails 3 fix: page, *options
+      :joins => "LEFT JOIN users ON users.id = activities.user_id",
+      *options)    
   end
 
   def self.currently_online
     User.find(:all, :conditions => ["sb_last_seen_at > ?", Time.now.utc-5.minutes])
   end
+  
+  def self.search(query, options = {})
+    with_scope :find => { :conditions => build_search_conditions(query) } do
+      find :all, options
+    end
+  end
+  
+  def self.build_search_conditions(query)
+    query
+  end  
   
   ## End Class Methods  
   
@@ -217,7 +242,7 @@ class User < ActiveRecord::Base
   
   def avatar_photo_url(size = nil)
     if avatar
-      avatar.public_filename(size)
+      avatar.photo.url(size)
     else
       case size
         when :thumb
@@ -231,12 +256,18 @@ class User < ActiveRecord::Base
   def deactivate
     return if admin? #don't allow admin deactivation
     @activated = false
-    update_attributes(:activated_at => nil, :activation_code => make_activation_code)
+    User.transaction do
+      update_attribute(:activated_at, nil)
+      update_attribute(:activation_code, make_activation_code)
+    end
   end
 
   def activate
     @activated = true
-    update_attributes(:activated_at => Time.now.utc, :activation_code => nil)
+    User.transaction do
+      update_attribute(:activated_at, Time.now.utc)
+      update_attribute(:activation_code, nil)
+    end
   end
   
   def active?
@@ -336,22 +367,22 @@ class User < ActiveRecord::Base
   end
 
   def network_activity(page = {}, since = 1.week.ago)
-    page.reverse_merge :size => 10, :current => 1
+    page.reverse_merge! :per_page => 10, :page => 1
     friend_ids = self.friends_ids
     metro_area_people_ids = self.metro_area ? self.metro_area.users.map(&:id) : []
     
     ids = ((friends_ids | metro_area_people_ids) - [self.id])[0..100] #don't pull TOO much activity for now
     
-    Activity.recent.since(since).by_users(ids).paginate(:all, :page => page[:current], :per_page => page[:size])          
+    Activity.recent.since(since).by_users(ids).paginate(page)          
   end
 
   def comments_activity(page = {}, since = 1.week.ago)
-    page.reverse_merge :size => 10, :current => 1
+    page.reverse_merge :per_page => 10, :page => 1
 
-    Activity.recent.since(since).find(:all, 
+    Activity.recent.since(since).paginate( 
       :conditions => ['comments.recipient_id = ? AND activities.user_id != ?', self.id, self.id], 
       :joins => "LEFT JOIN comments ON comments.id = activities.item_id AND activities.item_type = 'Comment'",
-      :page => page)      
+      *page)
   end
 
   def friends_ids

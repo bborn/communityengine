@@ -44,7 +44,7 @@
       %br.clear
       %h3=:photos.l(:count => @photos.size)
       - @photos.each do |photo|
-        = link_to image_tag(photo.public_filename(:thumb), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})", :class => "polaroid"), user_photo_path(photo.user, photo)
+        = link_to image_tag(photo.photo.url(:thumb), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})", :class => "polaroid"), user_photo_path(photo.user, photo)
       %h6.all= link_to :all_photos_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Photo') unless params[:type]
       
     - if @users.any?

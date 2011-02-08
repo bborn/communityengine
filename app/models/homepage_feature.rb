@@ -1,13 +1,18 @@
 class HomepageFeature < ActiveRecord::Base  
-  has_attachment prepare_options_for_attachment_fu(configatron.feature.attachment_fu_options.to_hash)
-  attr_accessible :url, :title, :description, :position
+  has_attached_file :homepage_feature_file, default_s3_options.merge(
+    :storage => :s3,
+    :styles => { :original => '465>', :thumb => "45x45#", :large => "635x150#" },
+    :path => "/:attachment/:id/:basename:maybe_style.:extension")
+  validates_attachment_presence :homepage_feature_file
+  validates_attachment_content_type :homepage_feature_file, :content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
+  validates_attachment_size :homepage_feature_file, :less_than => 1.megabytes
 
-  validates_presence_of :content_type
-  validates_presence_of :filename
-  validates_presence_of :url, :if => Proc.new{|record| record.parent.nil? }
+  attr_accessible :url, :title, :description
+
+  validates_presence_of :url
   
   def self.find_features
-    find(:all, :order => "created_at DESC", :conditions => 'parent_id IS NULL')
+    find(:all, :order => "created_at DESC")
   end
 
 end

@@ -3,45 +3,45 @@
     = render :partial => 'posts/author_profile', :locals => {:user => @user}
 
     - if @photo.album
-      -box :class => "photo_nav alt" do
+      =box :class => "photo_nav alt" do
         %h3= "#{:album.l}: #{link_to @photo.album.title, user_album_path(@user, @photo.album)}"
-        = link_to "<img src='#{@photo.previous_in_album.public_filename(:thumb)}' /><br />&laquo; " + :previous.l, user_photo_path(@user, @photo.previous_in_album), :class => 'left' if @photo.previous_in_album
-        = link_to "<img src='#{@photo.next_in_album.public_filename(:thumb)}' /><br />" + :next.l + "&raquo;", user_photo_path(@user, @photo.next_in_album), :class => 'right' if @photo.next_in_album    
+        = link_to "<img src='#{@photo.previous_in_album.photo.url(:thumb)}' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @photo.previous_in_album), :class => 'left' if @photo.previous_in_album
+        = link_to "<img src='#{@photo.next_in_album.photo.url(:thumb)}' /><br />".html_safe + :next.l + "&raquo;".html_safe, user_photo_path(@user, @photo.next_in_album), :class => 'right' if @photo.next_in_album    
     - elsif @previous || @next
-      -box :class => "photo_nav alt" do
-        = link_to "<img src='#{@previous.public_filename(:thumb)}' /><br />&laquo; " + :previous.l, user_photo_path(@user, @previous), :class => 'left' if @previous
-        = link_to "<img src='#{@next.public_filename(:thumb)}' /><br />" + :next.l + "&raquo;", user_photo_path(@user, @next), :class => 'right' if @next
+      =box :class => "photo_nav alt" do
+        = link_to "<img src='#{@previous.photo.url(:thumb)}' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @previous), :class => 'left' if @previous
+        = link_to "<img src='#{@next.photo.url(:thumb)}' /><br />" + :next.l + "&raquo;".html_safe, user_photo_path(@user, @next), :class => 'right' if @next
 
     - if @related.any?
-      -box :class => "alt" do 
+      =box :class => "alt" do 
         %h3=:related_photos_all_members.l
         .centered
           - @related.each do |photo|
-            = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo), {:title => :photo_from_user.l_with_args(:photo_description => h(photo.description), :user => photo.user.login)}
+            = link_to image_tag( photo.photo.url(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo), {:title => :photo_from_user.l_with_args(:photo_description => h(photo.description), :user => photo.user.login)}
 
   #yui-main
     .yui-b
-      -box :class => "hfeed" do 
+      =box :class => "hfeed" do 
         %h3
           = link_to :users_photos.l_with_args(:user => @user.login), user_photos_path(@user)
           \:
           = link_to h(@photo.display_name), user_photo_path(@user, @photo)
         - if @is_current_user
-          -box :class => "alt" do 
+          =box :class => "alt" do 
             = link_to :make_this_my_profile_photo.l, change_profile_photo_user_path({:id => @user, :photo_id => @photo}), :method => :put
             |
             = link_to :edit_this_photo_details.l, edit_user_photo_path(@user, @photo) if @is_current_user
             |
             = link_to(:delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete) + "<br class='clear' />"
 
-        %p.centered= image_tag( @photo.public_filename, :class => "polaroid" )
+        %p.centered= image_tag( @photo.photo.url, :class => "polaroid" )
         %p= h @photo.description
         %p= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")
 
-      -box :class => "hfeed comments", :id => 'comments' do
+      =box :class => "hfeed comments", :id => 'comments' do
         %h3=:photo_comments.l
         %h2=:add_your_comment.l
-        = render :partial => 'comments/comment_form', :locals => {:commentable => @photo}
+        %p= render :partial => 'comments/comment_form', :locals => {:commentable => @photo}
         %a#newest_comment
         = render :partial => 'comments/comment', :collection => @photo.comments
         %span#more_comments_links= more_comments_links(@photo)

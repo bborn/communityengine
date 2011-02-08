@@ -2,51 +2,40 @@ class Photo < ActiveRecord::Base
   acts_as_commentable
   belongs_to :album
   
-  has_attachment prepare_options_for_attachment_fu(configatron.photo.attachment_fu_options.to_hash)
-  # attr_accessor :cropped_size
-  # before_thumbnail_saved do |thumbnail|
-  #   raise thumbnail.inspect
-  #   # thumbnail.send(:'attributes=', {:thumbnail_resize_options => cropped_size}, false) if thumbnail.parent.cropped_size
-  #   if thumbnail.parent.cropped_size[:x1]
-  #     # img = Magick::Image::read(@photo.public_filename).first
-  #     thumbnail.crop!(::Magick::CenterGravity, parent.cropped_size[:x1].to_i, parent.cropped_size[:y1].to_i, parent.cropped_size[:width].to_i, parent.cropped_size[:height].to_i, true)
-  #     raise thumbnail.inspect
-  #     # size = configatron.photo['attachment_fu_options']['thumbnails']['medium']
-  #     # dimensions = size[1..size.size].split("x")
-  #     # img.crop_resized!(dimensions[0].to_i, dimensions[1].to_i)
-  #     # img.write @settings.header_image_file
-  #   end
-  # end
+  has_attached_file :photo, default_s3_options.merge(
+    :storage => :s3,
+    :styles => { :thumb => { :geometry => "100x100!", :processors => [:cropper] }, :medium => "290x320#", :large => "664>" },
+    :path => "/:attachment/:id/:basename:maybe_style.:extension")
+  validates_attachment_presence :photo
+  validates_attachment_content_type :photo, :content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
+  validates_attachment_size :photo, :less_than => 3.megabytes
 
-
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :reprocess_photo, :if => :cropping?
+  
   acts_as_taggable
 
-  acts_as_activity :user, :if => Proc.new{|record| record.parent.nil? && record.album_id.nil?}
+  acts_as_activity :user, :if => Proc.new{|record| record.album_id.nil?}
   
-  validates_presence_of :size
-  validates_presence_of :content_type
-  validates_presence_of :filename
-  validates_presence_of :user, :if => Proc.new{|record| record.parent.nil? }
-  validates_inclusion_of :content_type, :in => attachment_options[:content_type], :message => "is not allowed", :allow_nil => true
-  validates_inclusion_of :size, :in => attachment_options[:size], :message => " is too large", :allow_nil => true
+  validates_presence_of :user
   
   belongs_to :user
   has_one :user_as_avatar, :class_name => "User", :foreign_key => "avatar_id"
   
   #Named scopes
-  scope :recent, :order => "photos.created_at DESC", :conditions => ["photos.parent_id IS NULL"]
-  scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ? AND photos.parent_id IS NULL", 7.days.ago.to_s(:db)]
+  scope :recent, :order => "photos.created_at DESC"
+  scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ?", 7.days.ago.to_s(:db)]
   scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
-  attr_accessible :name, :description
+  attr_accessible :name, :description, :photo, :crop_x, :crop_y, :crop_w, :crop_h
 
   def display_name
     (self.name && self.name.length>0) ? self.name : "#{:created_at.l.downcase}: #{I18n.l(self.created_at, :format => :published_date)}"
   end
 
   def description_for_rss
-    "<a href='#{self.link_for_rss}' title='#{self.name}'><img src='#{self.public_filename(:large)}' alt='#{self.name}' /><br />#{self.description}</a>"
+    "<a href='#{self.link_for_rss}' title='#{self.name}'><img src='#{self.photo.url(:large)}' alt='#{self.name}' /><br />#{self.description}</a>"
   end
 
   def owner
@@ -80,6 +69,21 @@ class Photo < ActiveRecord::Base
         :conditions => ['photos.id != ?', photo.id]
     })
     photo = find_tagged_with(photo.tags.collect{|t| t.name }, merged_options).uniq
+  end
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+
+  def photo_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
+  end
+
+  private
+
+  def reprocess_photo
+    photo.reprocess!
   end
 
 end

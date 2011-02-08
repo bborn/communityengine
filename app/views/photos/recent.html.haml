@@ -1,8 +1,8 @@
 -box do
   %h3=:recent_photos.l
 
-  = will_paginate @photos
+  .pagination= paginating_links @photos if @photos.total_pages > 1
 
   %ul
     - @photos.each do |photo|
-      %li= image_tag photo.public_filename(:thumb) 
+      %li= image_tag photo.photo.url(:thumb) 
