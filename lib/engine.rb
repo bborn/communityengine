@@ -10,6 +10,8 @@ module CommunityEngine
     initializer 'community_engine' do |app|
       configatron.configure_from_yaml(root.join('config','application.yml'))
       configatron.configure_from_yaml(app.root.join('config','application.yml'))
+      
+      
     end
     
     
@@ -34,10 +36,5 @@ module CommunityEngine
     # end
     # 
 
-
-
-    
-    
-    
   end
 end

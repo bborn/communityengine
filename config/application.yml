@@ -1,6 +1,5 @@
 app_host: example.com #override this in your application.yml
 
-
 community_name: "Community"
 
 community_tagline: "CommunityEngine Rocks!"
@@ -41,14 +40,16 @@ max_age: 90
 photo:
   missing_thumb: 'icon_missing_thumb.gif'
   missing_medium: "icon_missing_medium.gif"
-  attachment_fu_options:
-    resize_to: "465>"
-    min_size: 1
-    #size in megabytes
+  paperclip_options:
+    styles:
+      thumb:
+        geometry:"100x100!"
+        processors: [:cropper]
+      medium: "290x320#"
+      large: "465>"
+    path: "/:attachment/:id/:basename:maybe_style.:extension"
+  validation_options:
     max_size: 3
-    thumbnails: {thumb: "c100x100!", medium: "c290x320!", large: "664>"}
-    #options - 's3', 'file_system', 'db_system' - see attachment_fu for details
-    storage: 'file_system'
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
       
 feature:

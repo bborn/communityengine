@@ -1,7 +1,6 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  xss_foliate :strip => [:raw_post, :title]
   has_friendly_id :login_slug
   has_many :albums
   
@@ -186,7 +185,9 @@ class User < ActiveRecord::Base
       :select => 'activities.*', 
       :conditions => "users.activated_at IS NOT NULL", 
       :joins => "LEFT JOIN users ON users.id = activities.user_id",
-      *options)    
+      :per_page => options[:per_page],
+      :page => options[:page]
+      )    
   end
 
   def self.currently_online
@@ -382,7 +383,8 @@ class User < ActiveRecord::Base
     Activity.recent.since(since).paginate( 
       :conditions => ['comments.recipient_id = ? AND activities.user_id != ?', self.id, self.id], 
       :joins => "LEFT JOIN comments ON comments.id = activities.item_id AND activities.item_type = 'Comment'",
-      *page)
+      :per_page => page[:per_page],
+      :page => page[:page])
   end
 
   def friends_ids

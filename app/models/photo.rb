@@ -2,13 +2,10 @@ class Photo < ActiveRecord::Base
   acts_as_commentable
   belongs_to :album
   
-  has_attached_file :photo, default_s3_options.merge(
-    :storage => :s3,
-    :styles => { :thumb => { :geometry => "100x100!", :processors => [:cropper] }, :medium => "290x320#", :large => "664>" },
-    :path => "/:attachment/:id/:basename:maybe_style.:extension")
+  has_attached_file :photo, configatron.photo.paperclip_options
   validates_attachment_presence :photo
-  validates_attachment_content_type :photo, :content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
-  validates_attachment_size :photo, :less_than => 3.megabytes
+  validates_attachment_content_type :photo, :content_type => configatron.photo.validation_options.content_type
+  validates_attachment_size :photo, :less_than => configatron.photo.validation_options.max_size.to_i.megabytes
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_photo, :if => :cropping?
