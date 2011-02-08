@@ -157,12 +157,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :photos do
-      collection do
-        post :swfupload
-        get :slideshow
-      end
-    end
+    resources :photos
 
     resources :posts do
       collection do

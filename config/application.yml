@@ -43,11 +43,10 @@ photo:
   paperclip_options:
     styles:
       thumb:
-        geometry:"100x100!"
+        geometry: "100x100!"
         processors: [:cropper]
       medium: "290x320#"
       large: "465>"
-    path: "/:attachment/:id/:basename:maybe_style.:extension"
   validation_options:
     max_size: 3
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
@@ -64,12 +63,15 @@ feature:
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
         
 clipping:
-  attachment_fu_options:
-    resize_to: "465>"
-    min_size: 1    
+  paperclip_options:
+    styles:
+      thumb:
+        geometry:"100x100!"
+        processors: [:cropper]
+      medium: "290x320#"
+      large: "465>"
+  validation_options:
     max_size: 3
-    thumbnails: {thumb: "c100x100!", medium_square: "c200x200!", medium: "200>"}
-    storage: 'file_system'
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
     
 reserved_logins: [

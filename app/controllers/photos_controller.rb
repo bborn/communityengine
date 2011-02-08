@@ -1,10 +1,10 @@
-require 'pp'
+  require 'pp'
 
 class PhotosController < BaseController
   include Viewable  
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :swfupload]
-  before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow, :swfupload]
-  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
+  before_filter :find_user, :only => [:new, :edit, :index, :show]
+  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
 
   skip_before_filter :verify_authenticity_token, :only => [:create] #because the TinyMCE image uploader can't provide the auth token
 
@@ -23,14 +23,13 @@ class PhotosController < BaseController
   def index
     @user = User.find(params[:user_id])
 
-    cond = Caboose::EZ::Condition.new
-    cond.user_id == @user.id
+    @photos = Photo.where :user_id => @user.id
     if params[:tag_name]
-      cond.append ['tags.name = ?', params[:tag_name]]
+      @photos = @photos.where('tags.name = ?', params[:tag_name])
     end
-
-    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page], :size => 30})
-
+    
+    @photos = @photos.includes(:tags).recent.paginate(:page => params[:page])
+  
     @tags = Photo.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
 
     @rss_title = "#{configatron.community_name}: #{@user.login}'s photos"
@@ -54,10 +53,9 @@ class PhotosController < BaseController
   def manage_photos
     if logged_in?
       @user = current_user
-      cond = Caboose::EZ::Condition.new
-      cond.user_id == @user.id
+      @photos = Photo.where :user_id => @user.id
       if params[:tag_name]
-        cond.append ['tags.name = ?', params[:tag_name]]
+        @photos = @photos.where('tags.name = ?', params[:tag_name])
       end
 
       @selected = params[:photo_id]
@@ -117,8 +115,6 @@ class PhotosController < BaseController
 
     respond_to do |format|
       if @photo.save
-        #start the garbage collector
-        GC.start
         flash[:notice] = :photo_was_successfully_created.l
 
         format.html {      
@@ -152,19 +148,6 @@ class PhotosController < BaseController
     end
   end
 
-  def swfupload
-    # swfupload action set in routes.rb
-    @photo = Photo.new :uploaded_data => params[:Filedata]
-    @photo.user = current_user
-    @photo.album_id =  params[:album_id] if params[:album_id]
-    @photo.album_id = params[:album_selected] unless params[:album_selected].blank?
-    @photo.save!
-
-    # This returns the thumbnail url for handlers.js to use to display the thumbnail
-    render :text => @photo.photo.url(:thumb)
-  rescue
-    render :text => "Error: #{$!}", :status => 500
-  end
 
   # PUT /photos/1
   # PUT /photos/1.xml
@@ -200,10 +183,6 @@ class PhotosController < BaseController
     end
   end
 
-  def slideshow
-    @xml_file = user_photos_url( {:user_id => @user, :format => :xml}.merge(:tag_name => params[:tag_name]) )
-    render :action => 'slideshow'
-  end
 
   protected
 

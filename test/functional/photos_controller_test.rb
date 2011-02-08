@@ -17,20 +17,6 @@ class PhotosControllerTest < ActionController::TestCase
       assert_equal albums(:one).photos.count, 2
     end
   end
-
-  def test_should_create_photo_with_swf
-    login_as :quentin 
-    assert_difference Photo, :count, 4 do
-      post :swfupload,
-        :Filedata => fixture_file_upload('files/library.jpg', 'image/jpg'),
-        :user_id => users(:quentin).id,
-        :album_id => '1'
-      photo = Photo.find(assigns(:photo).id)
-      assert_equal users(:quentin), photo.user
-
-      assert_equal albums(:one).photos.count, 2
-    end
-  end  
   
   def test_should_not_be_an_activity
     login_as :quentin 
@@ -217,11 +203,5 @@ class PhotosControllerTest < ActionController::TestCase
     end
     assert users(:quentin).reload.avatar.nil?
   end
-  
-  def test_should_get_slideshow
-    get :slideshow, :user_id => users(:quentin)
-    assert_response :success
-  end
-  
   
 end

@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
     has_many :monitorships, :dependent => :destroy
     has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
 
-    belongs_to  :avatar, :class_name => "Photo", :foreign_key => "avatar_id"
+    belongs_to  :avatar, :class_name => "Photo", :foreign_key => "avatar_id", :inverse_of => :user_as_avatar
     belongs_to  :metro_area
     belongs_to  :state
     belongs_to  :country

@@ -35,7 +35,6 @@ begin
     gem.add_dependency 'rack', '1.2.1'    
     gem.add_dependency 'configatron'
     gem.add_dependency 'hpricot'
-    gem.add_dependency 'rmagick'
     gem.add_dependency 'htmlentities'
     gem.add_dependency 'haml'
     gem.add_dependency 'calendar_date_select'

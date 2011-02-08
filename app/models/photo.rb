@@ -2,7 +2,7 @@ class Photo < ActiveRecord::Base
   acts_as_commentable
   belongs_to :album
   
-  has_attached_file :photo, configatron.photo.paperclip_options
+  has_attached_file :photo, configatron.photo.paperclip_options.to_hash
   validates_attachment_presence :photo
   validates_attachment_content_type :photo, :content_type => configatron.photo.validation_options.content_type
   validates_attachment_size :photo, :less_than => configatron.photo.validation_options.max_size.to_i.megabytes
@@ -17,7 +17,7 @@ class Photo < ActiveRecord::Base
   validates_presence_of :user
   
   belongs_to :user
-  has_one :user_as_avatar, :class_name => "User", :foreign_key => "avatar_id"
+  has_one :user_as_avatar, :class_name => "User", :foreign_key => "avatar_id", :inverse_of => :avatar
   
   #Named scopes
   scope :recent, :order => "photos.created_at DESC"
@@ -25,7 +25,7 @@ class Photo < ActiveRecord::Base
   scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }
-  attr_accessible :name, :description, :photo, :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :name, :description, :photo, :crop_x, :crop_y, :crop_w, :crop_h, :user_id
 
   def display_name
     (self.name && self.name.length>0) ? self.name : "#{:created_at.l.downcase}: #{I18n.l(self.created_at, :format => :published_date)}"

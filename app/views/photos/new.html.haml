@@ -8,7 +8,7 @@
       =:photo_tip_2.l
 
   -box :class => 'alt' do
-    = link_to "&raquo; " + :back_to_my_photos.l, user_photos_path(@user)
+    = link_to "&raquo; ".html_safe + :back_to_my_photos.l, user_photos_path(@user)
 
 #yui-main
   .yui-b
@@ -17,151 +17,35 @@
         =:new_photo.l
 
       = error_messages_for :photo
-      %p
-        %a{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-          = :want_to_upload_multiple_files_at_once.l
-  -box :id => "single_upload", :class => "yui-b" do
-    %h3 
-      =:new_photo.l
 
       = form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
-        = f.file_field :uploaded_data
-    = error_messages_for :photo
-    %p
-      %a{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-        = :want_to_upload_multiple_files_at_once.l
-
+      
+        = f.file_field :photo
+        
         %label
-          %em
-            = " " + :megabyte_upload_limit.l(:count => configatron.photo['attachment_fu_options']['max_size'])
-        %label 
-          =:title.l + ":"
+          %em= " " + :megabyte_upload_limit.l(:count => configatron.photo.validation_options.max_size)
+
+        %label=:title.l + ":"
         = f.text_field :name, :size => 35
-    = form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
-      = f.file_field :uploaded_data
 
         %label 
           = :tags.l
           %em="(#{:optional_keywords_describing_this_photo_separated_by_commas.l})"
         = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
-      %label
-        %em
-          = " " + :megabyte_upload_limit.l(:count => configatron.photo['attachment_fu_options']['max_size'])
-      %label 
-        =:title.l + ":"
-      = f.text_field :name, :size => 35
 
         #tag_list_auto_complete.auto_complete
         = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-      %label 
-        = :tags.l
-        %em="(#{:optional_keywords_describing_this_photo_separated_by_commas.l})"
-      = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
 
-        %label
-          =:description.l + ":"
+        %label=:description.l + ":"
         = f.text_area :description, :size => "58x5"
-      #tag_list_auto_complete.auto_complete
-      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
         - unless params[:album_id] || current_user.albums.empty?
-          %label
-            =:assign_album.l + ":"
+          %label=:assign_album.l + ":"
           = select_tag 'album_selected', options_for_select([''] +current_user.albums.collect{ |album| [album.title, album.id] })
-      %label
-        =:description.l + ":"
-      = f.text_area :description, :size => "58x5"
+
 
         %p
           = submit_tag :create.l
           = :or.l
           = link_to :cancel_and_go_back_to_photo_manager.l, user_photo_manager_index_path(current_user)
-  
-  .yui-b
-    -box :id => 'multiple_upload', :style => "display:none;" do
-      %h3 
-        =:new_photos_multiple_uploader.l
-      - unless params[:album_id] || current_user.albums.empty?
-        %label
-          =:assign_album.l + ":"
-        = select_tag 'album_selected', options_for_select([''] +current_user.albums.collect{ |album| [album.title, album.id] })
-
-      %p
-        %a{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-          =:just_uploading_one_photo.l
-        = submit_tag :create.l
-        = :or.l
-        = link_to :cancel_and_go_back_to_photo_manager.l, user_photo_manager_index_path(current_user)
-  
-  -box :class => 'yui-b', :id => 'multiple_upload', :style => "display:none;" do
-    %h3 
-      =:new_photos_multiple_uploader.l
-
-    %p
-      %a{"href"=>"#", "onclick"=>"$('single_upload').toggle(); $('multiple_upload').toggle(); return false"}
-        =:just_uploading_one_photo.l
-    
-      %p.centered
-    %p.centered
-      
-        %script{:type=>'text/javascript'}
-          var uploader;
-          window.onload = function (){
-          - session_key = ActionController::Base.session_options[:key]
-          - if params[:album_id]
-            ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, :album_id => params[:album_id], |
-             session_key => cookies[session_key], request_forgery_protection_token => form_authenticity_token)}');" |
-          - else
-            ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, | 
-            session_key => cookies[session_key], request_forgery_protection_token => form_authenticity_token)}');"        |
-          };
-      %script{:type=>'text/javascript'}
-        var uploader;
-        window.onload = function (){
-        - session_key = ActionController::Base.session_options[:key]
-        - if params[:album_id]
-          ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, :album_id => params[:album_id], |
-           session_key => cookies[session_key], request_forgery_protection_token => form_authenticity_token)}');" |
-        - else
-          ="uploader = new CommunityEngine.SwfUpload('#{swfupload_user_photos_path(:user_id => current_user.id, | 
-          session_key => cookies[session_key], request_forgery_protection_token => form_authenticity_token)}');"        |
-        };
-        
-      %div
-        %div
-          %div
-            %form.MainForm
-              %div{:style=>"display: inline; border: solid 1px #7FAAFF; background: #C5D9FF; padding: 10px 0 0 0;"}
-                %span{:id=>"SWFUploadButton"}
-              %label
-                %em
-                  =:you_can_select_up_to_5_files_at_a_time.l
-                  %br
-                  = :megabyte_upload_limit_per_file.l(:count => configatron.photo['attachment_fu_options']['max_size'])
-          #divFileProgressContainer{:style=>"height: 75px;"}
-          #thumbnails
-        %p
-          - if params[:album_id]
-            = link_to :view_my_album.l, user_album_path(current_user,params[:album_id])
-          - else
-            = link_to :back_to_my_photos.l, user_photos_path(current_user)
-          = :or.l
-          = link_to :back_to_photo_manager.l, user_photo_manager_index_path(current_user)
-          %form.MainForm
-            %div{:style=>"display: inline; border: solid 1px #7FAAFF; background: #C5D9FF; padding: 10px 0 0 0;"}
-              %span{:id=>"SWFUploadButton"}
-            %label
-              %em
-                =:you_can_select_up_to_5_files_at_a_time.l
-                %br
-                = :megabyte_upload_limit_per_file.l(:count => configatron.photo['attachment_fu_options']['max_size'])
-        #divFileProgressContainer{:style=>"height: 75px;"}
-        #thumbnails
-      %p
-        - if params[:album_id]
-          = link_to :view_my_album.l, user_album_path(current_user,params[:album_id])
-        - else
-          = link_to :back_to_my_photos.l, user_photos_path(current_user)
-        = :or.l
-        = link_to :back_to_photo_manager.l, user_photo_manager_index_path(current_user)
 

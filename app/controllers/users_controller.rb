@@ -1,4 +1,3 @@
-
 class UsersController < BaseController
   include Viewable
   cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
@@ -114,9 +113,9 @@ class UsersController < BaseController
   def edit 
     @metro_areas, @states = setup_locations_for(@user)
 
-    @skills               = Skill.find(:all)
-    @offering             = Offering.new
-    @avatar               = Photo.new
+    @skills     = Skill.find(:all)
+    @offering   = Offering.new
+    @avatar     = (@user.avatar || @user.build_avatar)
   end
   
   def update
@@ -131,6 +130,8 @@ class UsersController < BaseController
     end
   
     @user.tag_list = params[:tag_list] || ''
+
+    params[:user][:avatar_attributes].merge!(:user_id => @user.id) if params[:user] && params[:user][:avatar_attributes]
 
     if @user.update_attributes(params[:user])
       @user.track_activity(:updated_profile)
