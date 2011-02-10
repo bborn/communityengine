@@ -10,8 +10,6 @@ class PostgresCompatibilityChanges < ActiveRecord::Migration
 
     # for postgres databases: 010_create_invitations.rb, comment the next line
     #change_column :invitations, :user_id, :integer
-    rename_column :contests, :begin, :begin_date
-    rename_column :contests, :end, :end_date
     # for postgres databases: 047_add_polls.rb
     #change_column :votes, :user_id, :integer
     
@@ -22,8 +20,6 @@ class PostgresCompatibilityChanges < ActiveRecord::Migration
   def self.down
     #postgres users can't use the "reversion" on the next line, comment it   
     #change_column :invitations, :user_id, :string    
-    rename_column :contests, :begin_date, :begin
-    rename_column :contests, :end_date, :end
     #postgres users can't use the "reversion" on the next line, comment it
     #change_column :votes, :user_id, :string
     #postgres users can't use the "reversion" on the next line, comment it
