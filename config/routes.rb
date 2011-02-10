@@ -33,11 +33,14 @@ Rails.application.routes.draw do
   
   match '/' => 'base#site_index', :as => :home
   
-  resources :pages do
-    member do
-      get :preview
+  scope "/admin" do
+    resources :pages, :as => :admin_pages do
+      member do
+        get :preview
+      end
     end
   end
+  
   match 'pages/:id' => 'pages#show', :as => :pages
   
   match '/admin/dashboard' => 'homepage_features#index', :as => :admin_dashboard
@@ -212,4 +215,5 @@ Rails.application.routes.draw do
   resources :invitations
   match '/users/:user_id/posts/category/:category_name' => 'posts#index', :as => :users_posts_in_category
 
+  match ':controller(/:action(/:id(.:format)))'
 end
