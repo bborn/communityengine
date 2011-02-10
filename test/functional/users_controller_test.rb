@@ -356,6 +356,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_equal UserSession.find.record, users(:aaron)
     assert_nil session[:admin_id]
   end
+
+  def test_only_admin_can_assume_id_js
+    login_as :quentin
+    post :assume, :id => users(:aaron).id, :format => 'js'
+    assert_response :success
+    assert_not_equal UserSession.find.record, users(:aaron)
+    assert_nil session[:admin_id]
+  end
   
   def test_return_admin_should_set_user_to_admin
     login_as :quentin

@@ -21,7 +21,7 @@ class CommentSweeper < ActionController::Caching::Sweeper
     expire_action :controller => 'base', :action => 'footer_content'
 
     if record.commentable_type.eql?('Post') 
-      expire_action :controller => 'posts', :action => 'show', :id => record.commentable , :user_id => record.commentable.user
+      expire_action :controller => 'posts', :action => 'show', :id => record.commentable.to_param , :user_id => record.commentable.user.to_param
       
       if Post.find_recent(:limit => 16).include?(record.commentable)
         # Expire the home page    

@@ -31,6 +31,6 @@ class PostSweeper < ActionController::Caching::Sweeper
     expire_action(:controller => 'categories', :action => 'show')
 
     # Also expire the show pages, in case we just edited a blog entry
-    expire_action(:controller => 'posts', :action => 'show', :id => record.to_param)
+    expire_action(:controller => 'posts', :action => 'show', :id => record.to_param, :user_id => record.user.to_param)
   end
 end

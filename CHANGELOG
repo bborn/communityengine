@@ -33,6 +33,8 @@ GOTCHAS:
 =1.2.1
 * Anonymous forum replies
 * Turn comment notifications on or off by post
+* Allow admins/mods to edit comments (they can already delete them)
+* Fix security vulnerability in AuthenticatedSystem
 
 =1.2.0
 * Threaded private messages

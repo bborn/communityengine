@@ -123,6 +123,7 @@ class SbPostTest < ActiveSupport::TestCase
   end
 
   test "should not allow anonymous posting" do
+    AppConfig.allow_anonymous_forum_posting = false    
     topic = topics(:pdi)      
     post = topic.sb_posts.create(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
     assert !post.valid?

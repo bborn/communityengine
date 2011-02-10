@@ -1,17 +1,37 @@
 class CommentsController < BaseController
   before_filter :login_required, :except => [:index, :unsubscribe]
-  before_filter :admin_or_moderator_required, :only => [:delete_selected]
+  before_filter :admin_or_moderator_required, :only => [:delete_selected, :edit, :update]
 
   if configatron.allow_anonymous_commenting
     skip_before_filter :verify_authenticity_token, :only => [:create]   #because the auth token might be cached anyway
     skip_before_filter :login_required, :only => [:create]
   end
 
+  uses_tiny_mce(:only => [:index, :edit, :update]) do
+    AppConfig.simple_mce_options
   uses_tiny_mce(:only => [:index]) do
     configatron.simple_mce_options
   end
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
+
+  
+  def edit
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update_attributes(params[:comment])    
+    @comment.save!
+    respond_to do |format|
+      format.js
+    end    
+  end
+
 
   def index
   
