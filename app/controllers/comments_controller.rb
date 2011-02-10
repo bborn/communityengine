@@ -18,7 +18,6 @@ class CommentsController < BaseController
   
     @commentable = comment_type.constantize.find(comment_id)
 
-    #don't use the get_type, as we want the specific case where the user typed /User/username/comments
     redirect_to user_comments_path(params[:commentable_id]) and return if (params[:commentable_type] && params[:commentable_type].camelize == "User")    
       
     unless logged_in? || @commentable && (!@commentable.owner.nil? && @commentable.owner.profile_public?)

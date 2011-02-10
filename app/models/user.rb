@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
     c.validates_length_of_email_field_options = { :within => 3..100 }
     c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/ }
   end
+
   acts_as_taggable  
   acts_as_commentable
   has_private_messages
@@ -33,10 +34,7 @@ class User < ActiveRecord::Base
   before_save   :whitelist_attributes  
   after_save    :deliver_activation
   after_save    :recount_metro_area_users
-
   after_destroy :recount_metro_area_users
-
-
 
   #validation
   validates_presence_of     :metro_area,                 :if => Proc.new { |user| user.state }

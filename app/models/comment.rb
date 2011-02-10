@@ -1,12 +1,13 @@
 class Comment < ActiveRecord::Base
 
+  include ActsAsCommentable::Comment
   belongs_to :commentable, :polymorphic => true
-  belongs_to :user
+
+  belongs_to :user, :inverse_of => :comments_as_author, :foreign_key => 'user_id', :class_name => "User"
   belongs_to :recipient, :class_name => "User", :foreign_key => "recipient_id"
   
   validates_presence_of :comment
   validates_presence_of :commentable_id, :commentable_type
-  
   validates_length_of :comment, :maximum => 2000
   
   before_save :whitelist_attributes  
@@ -18,24 +19,10 @@ class Comment < ActiveRecord::Base
 
   acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user
 
-  # scopes
-  scope :recent, :order => 'created_at DESC'
-
   def self.find_photo_comments_for(user)
     Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC')
   end
-  
-  # Helper class method to lookup all comments assigned
-  # to all commentable types for a given user.
-  def self.find_comments_by_user(user, *args)
-    options = args.extract_options!
-    find(:all,
-      :conditions => ["user_id = ?", user.id],
-      :order => "created_at DESC",
-      :limit => options[:limit]  
-    )
-  end
-    
+      
   def previous_commenters_to_notify
     # only send a notification on recent comments
     # limit the number of emails we'll send (or posting will be slooowww)
@@ -44,7 +31,6 @@ class Comment < ActiveRecord::Base
                       AND commentable_id = ? AND commentable_type = ? 
                       AND comments.notify_by_email = ? 
                       AND comments.created_at > ?", [user_id, recipient_id.to_i], true, commentable_id, commentable_type, true, 2.weeks.ago], 
-#      :include => :comments_as_author, :group => "users.id", :limit => 20)    
       :include => :comments_as_author, :limit => 20)
   end    
     
@@ -101,6 +87,7 @@ class Comment < ActiveRecord::Base
   end  
   
   def send_notifications
+    return if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?    
     UserNotifier.comment_notice(self).deliver if should_notify_recipient?
     self.notify_previous_commenters
     self.notify_previous_anonymous_commenters if configatron.allow_anonymous_commenting

@@ -48,6 +48,7 @@ begin
     gem.add_dependency 'aws-s3'
     gem.add_dependency "will_paginate", "~> 3.0.pre2"
     gem.add_dependency "dynamic_form"
+    gem.add_dependency 'acts_as_commentable', '~> 3.0.0'    
     
         
     # other fields that would normally go in your gemspec
