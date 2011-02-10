@@ -7,11 +7,7 @@ class Topic < ActiveRecord::Base
   has_many :monitorships
   has_many :monitors, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :source => :user
 
-  has_many :sb_posts, :order => 'sb_posts.created_at', :dependent => :destroy do
-    def last
-      @last_post ||= find(:first, :order => 'sb_posts.created_at desc')
-    end
-  end
+  has_many :sb_posts, :order => 'sb_posts.created_at DESC', :dependent => :destroy
 
   belongs_to :replied_by_user, :foreign_key => "replied_by", :class_name => "User"
   
@@ -23,6 +19,9 @@ class Topic < ActiveRecord::Base
   attr_accessible :title
   # to help with the create form
   attr_accessor :body
+  
+  scope :recently_replied, order('replied_at DESC')
+  
 
   def notify_of_new_post(post)
     monitorships.each do |m|

@@ -56,14 +56,6 @@ class ActiveSupport::TestCase
   def accept(accept)
     @request.env["HTTP_ACCEPT"] = accept
   end
-
-  def assert_models_equal(expected_models, actual_models, message = nil)
-    #gross
-    to_test_param = lambda { |r| "<#{r.class}:#{r.to_param}>" }
-    full_message = build_message(message, "<?> expected but was\n<?>.\n", 
-      expected_models.collect(&to_test_param), actual_models.collect(&to_test_param))
-    assert_block(full_message) { (expected_models == actual_models || expected_models == actual_models.results) }
-  end
   
   def assert_js_redirected_to(options={}, message=nil)
     clean_backtrace do
