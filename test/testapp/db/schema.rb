@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110205191784) do
+ActiveRecord::Schema.define(:version => 20110210034924) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -47,17 +47,18 @@ ActiveRecord::Schema.define(:version => 20110205191784) do
   end
 
   create_table "assets", :force => true do |t|
-    t.string   "filename"
+    t.string   "asset_file_name"
     t.integer  "width"
     t.integer  "height"
-    t.string   "content_type"
-    t.integer  "size"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
     t.string   "attachable_type"
     t.integer  "attachable_id"
     t.datetime "updated_at"
     t.datetime "created_at"
     t.string   "thumbnail"
     t.integer  "parent_id"
+    t.datetime "asset_updated_at"
   end
 
   create_table "categories", :force => true do |t|
@@ -178,13 +179,14 @@ ActiveRecord::Schema.define(:version => 20110205191784) do
     t.string   "title"
     t.text     "description"
     t.datetime "updated_at"
-    t.string   "content_type"
-    t.string   "filename"
+    t.string   "image_content_type"
+    t.string   "image_file_name"
     t.integer  "parent_id"
     t.string   "thumbnail"
-    t.integer  "size"
+    t.integer  "image_file_size"
     t.integer  "width"
     t.integer  "height"
+    t.datetime "image_updated_at"
   end
 
   create_table "invitations", :force => true do |t|
@@ -256,15 +258,16 @@ ActiveRecord::Schema.define(:version => 20110205191784) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "content_type"
-    t.string   "filename"
-    t.integer  "size"
+    t.string   "photo_content_type"
+    t.string   "photo_file_name"
+    t.integer  "photo_file_size"
     t.integer  "parent_id"
     t.string   "thumbnail"
     t.integer  "width"
     t.integer  "height"
     t.integer  "album_id"
     t.integer  "view_count"
+    t.datetime "photo_updated_at"
   end
 
   add_index "photos", ["created_at"], :name => "index_photos_on_created_at"

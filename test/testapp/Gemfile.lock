@@ -84,14 +84,10 @@ PATH
 PATH
   remote: ../../../meta_search
   specs:
-    meta_search (0.9.4)
-      actionpack
+    meta_search (1.0.1)
       actionpack (~> 3.1.0)
-      activerecord
       activerecord (~> 3.1.0)
-      activesupport
       activesupport (~> 3.1.0)
-      arel
       arel (~> 2.0.6)
 
 GEM

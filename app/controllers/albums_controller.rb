@@ -2,7 +2,7 @@ class AlbumsController < BaseController
   include Viewable
   before_filter :login_required, :except => [:show]
   before_filter :find_user, :only => [:new, :edit, :index]
-  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
+  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :create]
 
   uses_tiny_mce(:only => [:show]) do
     configatron.simple_mce_options
@@ -14,7 +14,7 @@ class AlbumsController < BaseController
   def show
     @album = Album.find(params[:id])
     update_view_count(@album) if current_user && current_user.id != @album.user_id
-    @album_photos = @album.photos.find(:all, :page => { :start => 1, :current => params[:page], :size => 10 })
+    @album_photos = @album.photos.paginate(:page => params[:page], :per_page => 10 )
    
     respond_to do |format|
       format.html # show.html.erb
@@ -94,8 +94,6 @@ class AlbumsController < BaseController
   
   def add_photos
     @album = Album.find(params[:id])
-    #@photos_no_albums = current_user.photos_no_albums
-    #@user_albums = Album.find(:all, :conditions => ['id != ?', params[:id]])
   end
   
   def photos_added

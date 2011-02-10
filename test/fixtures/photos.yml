@@ -4,9 +4,9 @@ library_pic:
   name: library
   description: The MPLS library is so great
   user_id: 1
-  content_type: image/jpg
-  filename: test.jpg
-  size: 274
+  photo_content_type: image/jpg
+  photo_file_name: test.jpg
+  photo_file_size: 274
   width: 45
   height: 45
   created_at: <%= Time.now.to_s :db %>
@@ -19,9 +19,9 @@ another_pic:
   name: another
   description: Something not that idfferent
   user_id: 1
-  content_type: image/jpg
-  filename: test.jpg
-  size: 274
+  photo_content_type: image/jpg
+  photo_file_name: test.jpg
+  photo_file_size: 274
   width: 45
   height: 45
   created_at: <%= 1.days.ago.to_s :db %>

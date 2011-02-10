@@ -6,14 +6,14 @@ class AlbumsControllerTest < ActionController::TestCase
   #User should be the owner
   test "should get new" do
     login_as :quentin
-    get :new, :user => users(:quentin), :user_id => users(:quentin)
+    get :new, :user_id => users(:quentin)
     assert_response :success
   end
 
   test "should only create album" do
     login_as :quentin
     assert_difference Album, :count, 1 do   
-      post :create, :album => {:title => 'Some title', :user => users(:quentin) }, :go_to => 'only_create'
+      post :create, :user_id => users(:quentin), :album => {:title => 'Some title', :user_id => users(:quentin) }, :go_to => 'only_create'
     end
     assert_redirected_to user_photo_manager_index_path(users(:quentin))
   end
@@ -21,7 +21,7 @@ class AlbumsControllerTest < ActionController::TestCase
   test "should create album" do
     login_as :quentin
     assert_difference Album, :count, 1 do  
-      post :create, :album => {:title => 'Some title', :user => users(:quentin) }
+      post :create, :user_id => users(:quentin), :album => {:title => 'Some title', :user_id => users(:quentin) }
     end
     assert_redirected_to new_user_album_photo_path(users(:quentin),Album.last)
   end
@@ -29,14 +29,14 @@ class AlbumsControllerTest < ActionController::TestCase
   test "should not create album" do
     login_as :quentin
     assert_no_difference Album, :count do      
-      post :create, :abum => {:description => 'Some content'}
+      post :create, :user_id => users(:quentin), :album => {:description => 'Some content'}, :user_id => users(:quentin)
     end
     assert_response 200
   end
 
   test "should get edit" do
     login_as :quentin
-    get :edit, :id => albums(:one).id
+    get :edit, :id => albums(:one).id, :user_id => users(:quentin)
     assert_response :success
   end
 
@@ -51,7 +51,7 @@ class AlbumsControllerTest < ActionController::TestCase
   test "should destroy album" do
     login_as :quentin
     assert_difference Album, :count, -1 do   
-      delete :destroy, :id => albums(:one).id, :user => users(:quentin)
+      delete :destroy, :id => albums(:one).id, :user_id => users(:quentin)
     end
     assert_redirected_to user_photo_manager_index_path(users(:quentin))
   end
@@ -59,25 +59,25 @@ class AlbumsControllerTest < ActionController::TestCase
   test "photos should be destroyed" do
     login_as :quentin
     assert_difference Photo, :count, -1 do  
-      delete :destroy, :id => albums(:one).id, :user => users(:quentin)
+      delete :destroy, :id => albums(:one).id, :user_id => users(:quentin)
     end
     assert_redirected_to user_photo_manager_index_path(users(:quentin))
   end
   
-  test "owner should no update counter" do
+  test "owner should not update counter" do
     login_as :quentin
-    get :show, :id => 1
+    get :show, :id => albums(:one).id, :user_id => users(:quentin)
     assert_equal assigns(:album).reload.view_count, 0
   end
   
-  test "other user should update counter" do
+  test "Non owners should update counter" do
     login_as :quentin
     get :show, :id => 2
     assert_equal assigns(:album).reload.view_count, 1
   end  
   
   # Public access
-  test "should show album and no update counter" do
+  test "should show album and not update counter" do
     get :show, :id => 1
     assert_response :success
     assert assigns(:album)
@@ -85,52 +85,36 @@ class AlbumsControllerTest < ActionController::TestCase
     assert_equal assigns(:album).reload.view_count, 0
   end
   
-  # User should not get access
-  test "other user should not get new" do
-    testing_no_owner('get',:new)
+
+  test "should not create albums for another user" do
     login_as :joe
-    testing_no_owner('get',:new)
+    assert_no_difference Album, :count do
+      post :create, :user_id => users(:quentin), :album => {:title => 'Foo'}
+    end
+    assert_response :redirect
   end  
 
-  test "other user should not create" do
-    testing_no_owner('post',:create)
+  test "should not update another user's album" do
     login_as :joe
-    testing_no_owner('post',:create)
+    put :update, :user_id => users(:quentin), :id => albums(:one), :album => {:title => 'Fooo!'}
+    assert !albums(:one).reload.title.eql?('Fooo!')
+    assert_response :redirect
   end  
 
-  test "other user should not update" do
-    testing_no_owner('put',:update)
+  test "should not edit another user's album" do
     login_as :joe
-    testing_no_owner('update',:update)
+    get :edit, :user_id => users(:quentin), :id => albums(:one)
+    assert_response :redirect
   end  
 
-  test "other user should not edit" do
-    testing_no_owner('get',:edit)
+  test "should not destroy another user's album" do
     login_as :joe
-    testing_no_owner('get',:edit)
+
+    assert_no_difference Album, :count do
+      delete :destroy, :user_id => users(:quentin), :id => albums(:one)      
+    end
+    
+    assert_response :redirect
   end  
-
-  test "other user should not destroy" do
-    testing_no_owner('delete',:destroy)
-    login_as :joe
-    testing_no_owner('delete',:destroy)
-  end
-
-  def testing_no_owner(meth,act)
-    user_params = {:user => users(:quentin), :user_id => users(:quentin)}
-    case meth
-      when 'get'
-        get act, user_params
-      when 'post'
-        post act, user_params
-      when 'put'
-        put act, user_params
-      when 'delete'
-        delete act, user_params
-    end 
-    assert_response 302
-  end
-  
-  
   
 end
