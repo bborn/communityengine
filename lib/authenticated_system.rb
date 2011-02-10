@@ -95,13 +95,13 @@ module AuthenticatedSystem
         accepts.xml do
           headers["Status"]           = "Unauthorized"
           headers["WWW-Authenticate"] = %(Basic realm="Web Password")
-          render :text => "Could't authenticate you", :status => '401 Unauthorized'
+          render :text => "Couldn't authenticate you", :status => '401 Unauthorized'
         end
         accepts.js do
           store_location 
           render :update do |page|
-            page.redirect_to login_path and return false
-          end
+            page.redirect_to login_path
+          end and return false
         end        
       end
       false
