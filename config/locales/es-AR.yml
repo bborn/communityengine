@@ -163,16 +163,12 @@ es-AR:
   comments_rss: Comentarios (RSS)  
   #en: community_tagline: CommunityEngine Rocks!
   community_tagline: CommunityEngine es genial!
-  #en: contest_was_successfully_created: Contest was successfully created.
-  contest_was_successfully_created: Concurso se ha creado correctamente.
   #en: comment_author_email_required: Required, won't be shown on the site.
   comment_author_email_required: "Obligatorio, no se mostrará en el sitio."
   #en: comment_web_site_label: "Web site (include http://)"
   comment_web_site_label: "Sitio Web (incluyendo http://)"  
   #en: comment_spam_error: "Comment was flagged as spam. Please make sure you aren't including any spammy words or links and try again."  
   comment_spam_error: "El comentario ha sido marcado como spam. Asegúrese de que no incluyen palabras spam o enlaces y vuelva a intentarlo"    
-  #en: contests: Contests
-  contests: Concursos
   #en: country: Country
   country: Pais
   #en: create: Create

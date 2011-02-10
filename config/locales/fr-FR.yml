@@ -178,14 +178,10 @@ fr:
   cancel: Annuler
   #en: cancel_and_go_back_to: cancel and go back to
   cancel_and_go_back_to: annuler et retourner à
-  #en: cancel_and_go_back_to_all_contests: cancel and go back to all contests
-  cancel_and_go_back_to_all_contests: annuler et retourner aux concours
   #en: cancel_and_go_back_to_all_features: cancel and go back to all features
   cancel_and_go_back_to_all_features: annuler et retourner aux fonctionnalités
   #en: cancel_and_go_back_to_my_clippings: cancel and go back to my clippings
   cancel_and_go_back_to_my_clippings: annuler et retourner à mon pêle-mêle
-  #en: cancel_and_go_back_to_my_contests: cancel and go back to my contests
-  cancel_and_go_back_to_my_contests: annuler et retourner à mes concours
   #en: cancel_and_go_back_to_pages: cancel and go back to pages
   cancel_and_go_back_to_pages: annuler et retourner aux pages
   #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
@@ -212,8 +208,6 @@ fr:
   choose_your_location: Sélectionnez votre situation géographique 
   #en: click_here: click here
   click_here: cliquez ici
-  #en: click_here_to_enter_this_contest: "Click here to enter this contest!"
-  click_here_to_enter_this_contest: "Cliquez ici pour participer à ce concours !"
   #en: click_here_to_retrieve_it: Click here to retrieve it
   click_here_to_retrieve_it: "Cliquez ici pour l'obtenir"
   #en: click_here_to_sign_up: Click here to sign up
@@ -272,12 +266,6 @@ fr:
   compose_message: Ecrire un message
   #en: confirm_password: Confirm Password
   confirm_password: Confirmez votre mot de passe
-  #en: contest_was_successfully_created: Contest was successfully created.
-  contest_was_successfully_created: Le concours a été créé avec succès.
-  #en: contests: Contests
-  contests: Concours
-  #en: contest_entries: Contest Entries
-  contest_entries: Inscriptions au concours
   #en: country: Country
   country: Pays
   #en: create: Create
@@ -368,8 +356,6 @@ fr:
   edit: Editer
   #en: edit_account: Edit account
   edit_account: Editer mon compte
-  #en: edit_contest: Edit Contest
-  edit_contest: Editer le concours
   #en: edit_event: Edit event
   edit_event: Editer l'évènement
   #en: edit_forum: Edit forum
@@ -477,8 +463,6 @@ fr:
   find_experts: Trouver des experts
   #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
   find_out_where_to_be_and_when_to_be_there: "Découvrez où et quand il faut y être."
-  #en: for_detailed_contest_rules: "For detailed contest rules,"
-  for_detailed_contest_rules: "Pour consulter le règlement détaillé du concours,"
   #en: for_more_information_on_tags_check_out_the: For more information on tags check out the
   for_more_information_on_tags_check_out_the: "Pour plus d'information sur les tags, consultez le "
   #en: forgot_your_password: Forgot your password?
@@ -777,8 +761,6 @@ fr:
   new_category: Nouvelle catégorie
   #en: new_clipping: New clipping
   new_clipping: Nouvelle photo du pêle-mêle
-  #en: new_contest: New contest
-  new_contest: Nouveau concours
   #en: new_event: New Event
   new_event: Nouvel évènement
   #en: new_forum: New Forum
@@ -1233,8 +1215,6 @@ fr:
   the_user_was_activated: "L'utilisateur a été activé"
   #en: the_user_was_deleted: The user was deleted.
   the_user_was_deleted: "L'utilisateur a été supprimé."
-  #en: this_contest_is_closed: This contest is closed
-  this_contest_is_closed: Le concours est terminé
   #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
   this_forum_is_still_getting_started: "Ce forum est encore en phase de lancement ... voici quelques messages pour vous permettre d'y réfléchir ..."
   #en: this_friendship_is_pending: This Friendship is pending.

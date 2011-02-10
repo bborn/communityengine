@@ -6,7 +6,6 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :category
-  belongs_to :contest
   has_many   :polls, :dependent => :destroy
   has_many :favorites, :as => :favoritable, :dependent => :destroy
   

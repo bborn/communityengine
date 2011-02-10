@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = %q{2011-02-08}
+  s.date = %q{2011-02-10}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -33,7 +33,6 @@ Gem::Specification.new do |s|
     "app/controllers/clippings_controller.rb",
     "app/controllers/comment_sweeper.rb",
     "app/controllers/comments_controller.rb",
-    "app/controllers/contests_controller.rb",
     "app/controllers/event_sweeper.rb",
     "app/controllers/events_controller.rb",
     "app/controllers/favorite_sweeper.rb",
@@ -67,30 +66,12 @@ Gem::Specification.new do |s|
     "app/controllers/users_controller.rb",
     "app/controllers/vote_sweeper.rb",
     "app/controllers/votes_controller.rb",
-    "app/helpers/ads_helper.rb",
-    "app/helpers/albums_helper.rb",
     "app/helpers/base_helper.rb",
-    "app/helpers/categories_helper.rb",
-    "app/helpers/clippings_helper.rb",
-    "app/helpers/comments_helper.rb",
-    "app/helpers/contests_helper.rb",
     "app/helpers/forums_helper.rb",
     "app/helpers/friendships_helper.rb",
-    "app/helpers/homepage_features_helper.rb",
-    "app/helpers/invitations_helper.rb",
-    "app/helpers/metro_areas_helper.rb",
-    "app/helpers/moderators_helper.rb",
     "app/helpers/monitorships_helper.rb",
-    "app/helpers/offerings_helper.rb",
-    "app/helpers/photos_helper.rb",
     "app/helpers/posts_helper.rb",
-    "app/helpers/sb_posts_helper.rb",
-    "app/helpers/sessions_helper.rb",
     "app/helpers/sitemap_helper.rb",
-    "app/helpers/skills_helper.rb",
-    "app/helpers/statistics_helper.rb",
-    "app/helpers/tags_helper.rb",
-    "app/helpers/topics_helper.rb",
     "app/helpers/users_helper.rb",
     "app/models/ad.rb",
     "app/models/album.rb",
@@ -100,7 +81,6 @@ Gem::Specification.new do |s|
     "app/models/clipping.rb",
     "app/models/clipping_image.rb",
     "app/models/comment.rb",
-    "app/models/contest.rb",
     "app/models/country.rb",
     "app/models/event.rb",
     "app/models/favorite.rb",
@@ -138,7 +118,6 @@ Gem::Specification.new do |s|
     "app/views/activities/index.html.haml",
     "app/views/activities/network.html.haml",
     "app/views/admin/comments.html.haml",
-    "app/views/admin/contests.html.haml",
     "app/views/admin/events.html.haml",
     "app/views/admin/messages.html.haml",
     "app/views/admin/users.html.haml",
@@ -174,10 +153,6 @@ Gem::Specification.new do |s|
     "app/views/comments/_comment_form.html.haml",
     "app/views/comments/create.js.rjs",
     "app/views/comments/index.html.haml",
-    "app/views/contests/edit.html.erb",
-    "app/views/contests/index.html.haml",
-    "app/views/contests/new.html.erb",
-    "app/views/contests/show.html.erb",
     "app/views/events/_event.html.haml",
     "app/views/events/_subscribe.html.haml",
     "app/views/events/edit.html.haml",
@@ -244,7 +219,6 @@ Gem::Specification.new do |s|
     "app/views/photos/new.html.haml",
     "app/views/photos/recent.html.haml",
     "app/views/photos/show.html.haml",
-    "app/views/photos/slideshow.html.erb",
     "app/views/polls/_edit.html.haml",
     "app/views/polls/_excerpt.html.haml",
     "app/views/polls/_new.html.haml",
@@ -364,7 +338,6 @@ Gem::Specification.new do |s|
     "community_engine.gemspec",
     "community_engine_setup_template.rb",
     "config/application.yml",
-    "config/boot.rb",
     "config/initializers/mce_options.rb",
     "config/initializers/rakismet.rb",
     "config/initializers/recaptcha_constants.rb",
@@ -455,6 +428,7 @@ Gem::Specification.new do |s|
     "db/migrate/074_add_threading_to_messages.rb",
     "db/migrate/075_add_anonymous_forum_posting.rb",
     "db/migrate/076_add_comment_notification_toggle.rb",
+    "db/migrate/077_paperclip_changes.rb",
     "db/sample/users.rb",
     "generators/ce_plugin/USAGE",
     "generators/ce_plugin/ce_plugin_generator.rb",
@@ -464,20 +438,19 @@ Gem::Specification.new do |s|
     "generators/ce_plugin/templates/plugin.rb",
     "generators/plugin_migration/plugin_migration_generator.rb",
     "generators/plugin_migration/templates/plugin_migration.erb",
-    "init.rb",
-    "install.rb",
     "lang/TRANSLATION.markdown",
-    "lib/authenticated_system.rb",
-    "lib/authenticated_test_helper.rb",
     "lib/community_engine.rb",
-    "lib/community_engine_sha1_crypto_method.rb",
-    "lib/engine.rb",
-    "lib/i18n_extensions.rb",
-    "lib/localized_application.rb",
-    "lib/rails_asset_extensions.rb",
+    "lib/community_engine/authenticated_system.rb",
+    "lib/community_engine/authenticated_test_helper.rb",
+    "lib/community_engine/community_engine_sha1_crypto_method.rb",
+    "lib/community_engine/engine.rb",
+    "lib/community_engine/i18n_extensions.rb",
+    "lib/community_engine/localized_application.rb",
+    "lib/community_engine/rails_asset_extensions.rb",
+    "lib/community_engine/url_upload.rb",
+    "lib/community_engine/viewable.rb",
+    "lib/paperclip_processors/cropper.rb",
     "lib/tasks/community_engine_tasks.rake",
-    "lib/url_upload.rb",
-    "lib/viewable.rb",
     "public/charts/charts.swf",
     "public/charts/charts_library/arno.swf",
     "public/charts/charts_library/arst.swf",
@@ -880,7 +853,6 @@ Gem::Specification.new do |s|
     "test/fixtures/categories.yml",
     "test/fixtures/clippings.yml",
     "test/fixtures/comments.yml",
-    "test/fixtures/contests.yml",
     "test/fixtures/countries.yml",
     "test/fixtures/events.yml",
     "test/fixtures/files/Granite.bmp",
@@ -915,7 +887,6 @@ Gem::Specification.new do |s|
     "test/functional/categories_controller_test.rb",
     "test/functional/clippings_controller_test.rb",
     "test/functional/comments_controller_test.rb",
-    "test/functional/contests_controller_test.rb",
     "test/functional/events_controller_test.rb",
     "test/functional/favorites_controller_test.rb",
     "test/functional/forums_controller_test.rb",
@@ -1043,6 +1014,7 @@ Gem::Specification.new do |s|
     "test/testapp/db/migrate/20110205191782_add_threading_to_messages.rb",
     "test/testapp/db/migrate/20110205191783_add_anonymous_forum_posting.rb",
     "test/testapp/db/migrate/20110205191784_add_comment_notification_toggle.rb",
+    "test/testapp/db/migrate/20110210034924_paperclip_changes.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/doc/README_FOR_APP",
@@ -1466,7 +1438,6 @@ Gem::Specification.new do |s|
     "test/unit/clipping_image_test.rb",
     "test/unit/clipping_test.rb",
     "test/unit/comment_test.rb",
-    "test/unit/contest_test.rb",
     "test/unit/country_test.rb",
     "test/unit/event_test.rb",
     "test/unit/favorite_test.rb",
@@ -1492,7 +1463,6 @@ Gem::Specification.new do |s|
     "test/unit/user_notifier_test.rb",
     "test/unit/user_test.rb",
     "test/unit/vote_test.rb",
-    "uninstall.rb",
     "vendor/plugins/activity_tracker/README",
     "vendor/plugins/activity_tracker/Rakefile",
     "vendor/plugins/activity_tracker/generators/activity_migration/USAGE",
@@ -1513,13 +1483,6 @@ Gem::Specification.new do |s|
     "vendor/plugins/activity_tracker/test/fixtures/test_users.yml",
     "vendor/plugins/activity_tracker/test/schema.rb",
     "vendor/plugins/activity_tracker/uninstall.rb",
-    "vendor/plugins/acts_as_commentable/MIT-LICENSE",
-    "vendor/plugins/acts_as_commentable/README",
-    "vendor/plugins/acts_as_commentable/init.rb",
-    "vendor/plugins/acts_as_commentable/install.rb",
-    "vendor/plugins/acts_as_commentable/lib/acts_as_commentable.rb",
-    "vendor/plugins/acts_as_commentable/tasks/acts_as_commentable_tasks.rake",
-    "vendor/plugins/acts_as_commentable/test/acts_as_commentable_test.rb",
     "vendor/plugins/acts_as_list/README",
     "vendor/plugins/acts_as_list/init.rb",
     "vendor/plugins/acts_as_list/lib/active_record/acts/list.rb",
@@ -2146,7 +2109,6 @@ Gem::Specification.new do |s|
     "test/functional/categories_controller_test.rb",
     "test/functional/clippings_controller_test.rb",
     "test/functional/comments_controller_test.rb",
-    "test/functional/contests_controller_test.rb",
     "test/functional/events_controller_test.rb",
     "test/functional/favorites_controller_test.rb",
     "test/functional/forums_controller_test.rb",
@@ -2264,6 +2226,7 @@ Gem::Specification.new do |s|
     "test/testapp/db/migrate/20110205191782_add_threading_to_messages.rb",
     "test/testapp/db/migrate/20110205191783_add_anonymous_forum_posting.rb",
     "test/testapp/db/migrate/20110205191784_add_comment_notification_toggle.rb",
+    "test/testapp/db/migrate/20110210034924_paperclip_changes.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/test/performance/browsing_test.rb",
@@ -2275,7 +2238,6 @@ Gem::Specification.new do |s|
     "test/unit/clipping_image_test.rb",
     "test/unit/clipping_test.rb",
     "test/unit/comment_test.rb",
-    "test/unit/contest_test.rb",
     "test/unit/country_test.rb",
     "test/unit/event_test.rb",
     "test/unit/favorite_test.rb",
@@ -2309,6 +2271,27 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
+      s.add_runtime_dependency(%q<community_engine>, ["= 1.9.9"])
+      s.add_runtime_dependency(%q<meta_search>, [">= 0"])
+      s.add_runtime_dependency(%q<authlogic>, [">= 0"])
+      s.add_runtime_dependency(%q<rack>, [">= 0"])
+      s.add_runtime_dependency(%q<arel>, [">= 0"])
+      s.add_runtime_dependency(%q<sqlite3-ruby>, [">= 0"])
+      s.add_runtime_dependency(%q<configatron>, [">= 0"])
+      s.add_runtime_dependency(%q<hpricot>, [">= 0"])
+      s.add_runtime_dependency(%q<rmagick>, [">= 0"])
+      s.add_runtime_dependency(%q<htmlentities>, [">= 0"])
+      s.add_runtime_dependency(%q<haml>, [">= 0"])
+      s.add_runtime_dependency(%q<calendar_date_select>, [">= 0"])
+      s.add_runtime_dependency(%q<ri_cal>, [">= 0"])
+      s.add_runtime_dependency(%q<rakismet>, [">= 0"])
+      s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
+      s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+      s.add_runtime_dependency(%q<dynamic_form>, [">= 0"])
+      s.add_runtime_dependency(%q<friendly_id>, ["~> 3.2.1"])
+      s.add_runtime_dependency(%q<paperclip>, ["~> 2.3"])
+      s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
+      s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_runtime_dependency(%q<rack>, ["= 1.2.1"])
       s.add_runtime_dependency(%q<configatron>, [">= 0"])
       s.add_runtime_dependency(%q<hpricot>, [">= 0"])
@@ -2317,12 +2300,34 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<calendar_date_select>, [">= 0"])
       s.add_runtime_dependency(%q<ri_cal>, [">= 0"])
       s.add_runtime_dependency(%q<authlogic>, [">= 0"])
-      s.add_runtime_dependency(%q<rd_searchlogic>, ["= 3.0.1"])
+      s.add_runtime_dependency(%q<meta_search>, [">= 0"])
       s.add_runtime_dependency(%q<rakismet>, [">= 0"])
       s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
       s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
       s.add_runtime_dependency(%q<dynamic_form>, [">= 0"])
+      s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     else
+      s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
+      s.add_dependency(%q<community_engine>, ["= 1.9.9"])
+      s.add_dependency(%q<meta_search>, [">= 0"])
+      s.add_dependency(%q<authlogic>, [">= 0"])
+      s.add_dependency(%q<rack>, [">= 0"])
+      s.add_dependency(%q<arel>, [">= 0"])
+      s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
+      s.add_dependency(%q<configatron>, [">= 0"])
+      s.add_dependency(%q<hpricot>, [">= 0"])
+      s.add_dependency(%q<rmagick>, [">= 0"])
+      s.add_dependency(%q<htmlentities>, [">= 0"])
+      s.add_dependency(%q<haml>, [">= 0"])
+      s.add_dependency(%q<calendar_date_select>, [">= 0"])
+      s.add_dependency(%q<ri_cal>, [">= 0"])
+      s.add_dependency(%q<rakismet>, [">= 0"])
+      s.add_dependency(%q<aws-s3>, [">= 0"])
+      s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+      s.add_dependency(%q<dynamic_form>, [">= 0"])
+      s.add_dependency(%q<friendly_id>, ["~> 3.2.1"])
+      s.add_dependency(%q<paperclip>, ["~> 2.3"])
+      s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_dependency(%q<rack>, ["= 1.2.1"])
       s.add_dependency(%q<configatron>, [">= 0"])
@@ -2332,13 +2337,35 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<calendar_date_select>, [">= 0"])
       s.add_dependency(%q<ri_cal>, [">= 0"])
       s.add_dependency(%q<authlogic>, [">= 0"])
-      s.add_dependency(%q<rd_searchlogic>, ["= 3.0.1"])
+      s.add_dependency(%q<meta_search>, [">= 0"])
       s.add_dependency(%q<rakismet>, [">= 0"])
       s.add_dependency(%q<aws-s3>, [">= 0"])
       s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
       s.add_dependency(%q<dynamic_form>, [">= 0"])
+      s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     end
   else
+    s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
+    s.add_dependency(%q<community_engine>, ["= 1.9.9"])
+    s.add_dependency(%q<meta_search>, [">= 0"])
+    s.add_dependency(%q<authlogic>, [">= 0"])
+    s.add_dependency(%q<rack>, [">= 0"])
+    s.add_dependency(%q<arel>, [">= 0"])
+    s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
+    s.add_dependency(%q<configatron>, [">= 0"])
+    s.add_dependency(%q<hpricot>, [">= 0"])
+    s.add_dependency(%q<rmagick>, [">= 0"])
+    s.add_dependency(%q<htmlentities>, [">= 0"])
+    s.add_dependency(%q<haml>, [">= 0"])
+    s.add_dependency(%q<calendar_date_select>, [">= 0"])
+    s.add_dependency(%q<ri_cal>, [">= 0"])
+    s.add_dependency(%q<rakismet>, [">= 0"])
+    s.add_dependency(%q<aws-s3>, [">= 0"])
+    s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+    s.add_dependency(%q<dynamic_form>, [">= 0"])
+    s.add_dependency(%q<friendly_id>, ["~> 3.2.1"])
+    s.add_dependency(%q<paperclip>, ["~> 2.3"])
+    s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
     s.add_dependency(%q<rack>, ["= 1.2.1"])
     s.add_dependency(%q<configatron>, [">= 0"])
@@ -2348,11 +2375,12 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<calendar_date_select>, [">= 0"])
     s.add_dependency(%q<ri_cal>, [">= 0"])
     s.add_dependency(%q<authlogic>, [">= 0"])
-    s.add_dependency(%q<rd_searchlogic>, ["= 3.0.1"])
+    s.add_dependency(%q<meta_search>, [">= 0"])
     s.add_dependency(%q<rakismet>, [">= 0"])
     s.add_dependency(%q<aws-s3>, [">= 0"])
     s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
     s.add_dependency(%q<dynamic_form>, [">= 0"])
+    s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
   end
 end
 

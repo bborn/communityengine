@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110210034924) do
+ActiveRecord::Schema.define(:version => 20110210193412) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -106,18 +106,6 @@ ActiveRecord::Schema.define(:version => 20110210034924) do
   add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
   add_index "comments", ["recipient_id"], :name => "index_comments_on_recipient_id"
   add_index "comments", ["user_id"], :name => "fk_comments_user"
-
-  create_table "contests", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "begin_date"
-    t.datetime "end_date"
-    t.text     "raw_post"
-    t.text     "post"
-    t.string   "banner_title"
-    t.string   "banner_subtitle"
-  end
 
   create_table "countries", :force => true do |t|
     t.string "name"

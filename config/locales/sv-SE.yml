@@ -168,14 +168,10 @@ sv:
   cancel: Avbryt
   #en: cancel_and_go_back_to: cancel and go back to
   cancel_and_go_back_to: avbryt och gå tillbaka til
-  #en: cancel_and_go_back_to_all_contests: cancel and go back to all contests
-  cancel_and_go_back_to_all_contests: avbryt och gå tillbaka till alla tävlingar
   #en: cancel_and_go_back_to_all_features: cancel and go back to all features
   cancel_and_go_back_to_all_features: avbryt och gå tillbaka till alla funktioner
   #en: cancel_and_go_back_to_my_clippings: cancel and go back to my clippings
   cancel_and_go_back_to_my_clippings: avbryt och gå tillbaka till mina urklipp
-  #en: cancel_and_go_back_to_my_contests: cancel and go back to my contests
-  cancel_and_go_back_to_my_contests: avbryt och gå tillbaka till mina tävlingar
   #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
   cancel_and_go_back_to_my_photos: avbryt och gå tillbaka till mina bilder
   #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
@@ -196,8 +192,6 @@ sv:
   choose_your_location: Välj plats
   #en: click_here: click here
   click_here: klicka här
-  #en: click_here_to_enter_this_contest: "Click here to enter this contest!"
-  click_here_to_enter_this_contest: "Klicka här för att vara med i tävlingen!"
   #en: click_here_to_retrieve_it: Click here to retrieve it
   click_here_to_retrieve_it: Klicka här för att hämta den
   #en: click_here_to_sign_up: Click here to sign up
@@ -250,12 +244,6 @@ sv:
   compose_message: Skriv meddelande
   #en: confirm_password: Confirm Password
   confirm_password: Bekräfta lösenord
-  #en: contest_was_successfully_created: Contest was successfully created.
-  contest_was_successfully_created: Tävlingen skapad.
-  #en: contests: Contests
-  contests: Tävlingar
-  #en: contest_entries: Contest Entries
-  contest_entries: Tävlingsinlägg
   #en: country: Country
   country: Land
   #en: create: Create
@@ -342,8 +330,6 @@ sv:
   edit: Redigera
   #en: edit_account: Edit account
   edit_account: Redigera konto
-  #en: edit_contest: Edit Contest
-  edit_contest: Redigera tävling
   #en: edit_event: Edit event
   edit_event: Redigera händelse
   #en: edit_forum: Edit forum
@@ -448,8 +434,6 @@ sv:
   find_experts: Hitta experter
   #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
   find_out_where_to_be_and_when_to_be_there: "Få reda på var man ska vara, och när man ska vara där."
-  #en: for_detailed_contest_rules: "For detailed contest rules,"
-  for_detailed_contest_rules: "Mer detaljerade tävlingsregler,"
   #en: for_more_information_on_tags_check_out_the: For more information on tags check out the
   for_more_information_on_tags_check_out_the: Om du vill ha mer information om etiketter kollar du in
   #en: forgot_your_password: Forgot your password?
@@ -700,8 +684,6 @@ sv:
   new_category: Ny kategori
   #en: new_clipping: New clipping
   new_clipping: Nytt urklipp
-  #en: new_contest: New contest
-  new_contest: Ny tävling
   #en: new_event: New Event
   new_event: Ny händelse
   #en: new_forum: New Forum
@@ -1112,8 +1094,6 @@ sv:
   the_user_was_activated: Användarkontot är aktiverat
   #en: the_user_was_deleted: The user was deleted.
   the_user_was_deleted: Användaren är borttagen.
-  #en: this_contest_is_closed: This contest is closed
-  this_contest_is_closed: Tävlingen är avslutad
   #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
   this_forum_is_still_getting_started: "Det här forumet håller på att dra igång... här är några inlägg som kanske väcker några tankar..."
   #en: this_friendship_is_pending: This Friendship is pending.

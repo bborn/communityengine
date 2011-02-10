@@ -166,14 +166,10 @@ de-DE:
   cancel: Abbrechen
   #en: cancel_and_go_back_to: cancel and go back to
   cancel_and_go_back_to: "abbrechen und zur\xC3\xBCck gehen"
-  #en: cancel_and_go_back_to_all_contests: cancel and go back to all contests
-  cancel_and_go_back_to_all_contests: "abbrechen und zur\xC3\xBCck gehen"
   #en: cancel_and_go_back_to_all_features: cancel and go back to all features
   cancel_and_go_back_to_all_features: "abbrechen und zur\xC3\xBCck gehen"
   #en: cancel_and_go_back_to_my_clippings: cancel and go back to my clippings
   cancel_and_go_back_to_my_clippings: "abbrechen und zur\xC3\xBCck gehen"
-  #en: cancel_and_go_back_to_my_contests: cancel and go back to my contests
-  cancel_and_go_back_to_my_contests: "abbrechen und zur\xC3\xBCck gehen"
   #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
   cancel_and_go_back_to_my_photos: "abbrechen und zur\xC3\xBCck gehen"
   #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
@@ -194,8 +190,6 @@ de-DE:
   choose_your_location: "W\xC3\xA4hle deinen Ort"
   #en: click_here: click here
   click_here: klicke hier
-  #en: click_here_to_enter_this_contest: "Click here to enter this contest!"
-  click_here_to_enter_this_contest: "Klicke hier, um zu diesem Wettbewerb zu kommen!"
   #en: click_here_to_retrieve_it: Click here to retrieve it
   click_here_to_retrieve_it: Klicke hier; wir schicken eine E-Mail
   #en: click_here_to_sign_up: Click here to sign up
@@ -248,12 +242,6 @@ de-DE:
   compose_messages: Nachrichten verfassen
   #en: confirm_password: Confirm Password
   confirm_password: Kennwort bestätigen
-  #en: contest_was_successfully_created: Contest was successfully created.
-  contest_was_successfully_created: Wettbewerb wurde erfolgreich angelegt.
-  #en: contests: Contests
-  contests: Wettbewerbe
-  #en: contest_entries: Contest Entries
-  contest_entries: Wettbewerbseinträge
   #en: country: Country
   country: Land
   #en: create: Create
@@ -332,8 +320,6 @@ de-DE:
   edit: Bearbeiten
   #en: edit_account: Edit account
   edit_account: Konto bearbeiten
-  #en: edit_contest: Edit Contest
-  edit_contest: Wettbewerb bearbeiten
   #en: edit_event: Edit event
   edit_event: Bearbeite das Ereignis
   #en: edit_forum: Edit forum
@@ -432,8 +418,6 @@ de-DE:
   find_experts: Finde Experten
   #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
   find_out_where_to_be_and_when_to_be_there: Finde raus, wann du wo sein musst.
-  #en: for_detailed_contest_rules: "For detailed contest rules,"
-  for_detailed_contest_rules: "Für detailierte Wettbewerbsregeln,"
   #en: for_more_informationon_on_tags_check_out_the: For more information on Tags check out the
   for_more_informationon_on_tags_check_out_the: Für mehr Informationen über Tags check die
   #en: forgot_your_password: Forgot your password?
@@ -676,8 +660,6 @@ de-DE:
   new_category: Neue Kategorie
   #en: new_clipping: New clipping
   new_clipping: Neues Clipping
-  #en: new_contest: New contest
-  new_contest: Neuer Wettbewerb
   #en: new_event: New Event
   new_event: Neues Ereignis
   #en: new_forum: New Forum
@@ -1066,8 +1048,6 @@ de-DE:
   the_user_was_activated: Der Benutzer wurde aktiviert
   #en: the_user_was_deleted: The user was deleted.
   the_user_was_deleted: "Der Benutzer wurde gelöscht."
-  #en: this_contest_is_closed: This contest is closed
-  this_contest_is_closed: Dieser Wettbewerb ist beendet
   #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
   this_forum_is_still_getting_started: "Dieses Forum ist gerade erst gestartet ... hier ein paar Blogeinträge zur Anregung ..."
   #en: this_friendship_is_pending: This Friendship is pending.

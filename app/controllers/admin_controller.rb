@@ -16,15 +16,6 @@ class AdminController < BaseController
     redirect_to admin_dashboard_path and return    
   end
   
-  def contests
-    @contests = Contest.find(:all)
-
-    respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @contests.to_xml }
-    end    
-  end
-
   def events
     @events = Event.paginate(:order => 'start_time DESC', :page => params[:page])
   end

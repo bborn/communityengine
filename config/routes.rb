@@ -109,11 +109,6 @@ Rails.application.routes.draw do
   resources :homepage_features
   resources :metro_areas
   resources :ads
-  resources :contests do
-    collection do
-      get :current
-    end
-  end
 
   resources :activities
   
@@ -168,9 +163,6 @@ Rails.application.routes.draw do
       end
       match :send_to_friend, :on => :member
       match :update_views, :on => :member
-      member do
-        get :contest
-      end
     end
 
     resources :events

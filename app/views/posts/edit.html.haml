@@ -1,8 +1,6 @@
 .yui-b
   -box :id => 'category_tips' do
-    - if @post.contest
-      = render :partial => "contest"
-    - elsif @post.category
+    - if @post.category
       = render :partial => "/categories/tips", :locals => {:category => @post.category}
     - else
       = render :partial => "/categories/tips", :locals => {:category => nil}

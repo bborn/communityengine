@@ -171,14 +171,10 @@ ja:
   cancel: キャンセル
   #en: cancel_and_go_back_to: cancel and go back to
   cancel_and_go_back_to: cancel and go back to
-  #en: cancel_and_go_back_to_all_contests: cancel and go back to all contests
-  cancel_and_go_back_to_all_contests: cancel and go back to all contests
   #en: cancel_and_go_back_to_all_features: cancel and go back to all features
   cancel_and_go_back_to_all_features: cancel and go back to all features
   #en: cancel_and_go_back_to_my_clippings: cancel and go back to my clippings
   cancel_and_go_back_to_my_clippings: cancel and go back to my clippings
-  #en: cancel_and_go_back_to_my_contests: cancel and go back to my contests
-  cancel_and_go_back_to_my_contests: cancel and go back to my contests
   #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
   cancel_and_go_back_to_my_photos: cancel and go back to my photos
   #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
@@ -199,8 +195,6 @@ ja:
   choose_your_location: Choose your location
   #en: click_here: click here
   click_here: ここをクリック
-  #en: click_here_to_enter_this_contest: "Click here to enter this contest!"
-  click_here_to_enter_this_contest: "Click here to enter this contest!"
   #en: click_here_to_retrieve_it: Click here to retrieve it
   click_here_to_retrieve_it: 検索するにはここをクリック
   #en: click_here_to_sign_up: Click here to sign up
@@ -255,12 +249,6 @@ ja:
   compose_message: Compose message
   #en: confirm_password: Confirm Password
   confirm_password: パスワードの確認
-  #en: contest_was_successfully_created: Contest was successfully created.
-  contest_was_successfully_created: Contest was successfully created.
-  #en: contests: Contests
-  contests: Contests
-  #en: contest_entries: Contest Entries
-  contest_entries: Contest Entries
   #en: country: Country
   country: 国
   #en: create: Create
@@ -347,8 +335,6 @@ ja:
   edit: 編集
   #en: edit_account: Edit account
   edit_account: アカウントの編集
-  #en: edit_contest: Edit Contest
-  edit_contest: Edit Contest
   #en: edit_event: Edit event
   edit_event: イベントの編集
   #en: edit_forum: Edit forum
@@ -453,8 +439,6 @@ ja:
   find_experts: Find experts
   #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
   find_out_where_to_be_and_when_to_be_there: "Find out where to be, and when to be there."
-  #en: for_detailed_contest_rules: "For detailed contest rules,"
-  for_detailed_contest_rules: "For detailed contest rules,"
   #en: for_more_information_on_tags_check_out_the: For more information on tags check out the
   for_more_information_on_tags_check_out_the: For more information on tags check out the
   #en: forgot_your_password: Forgot your password?
@@ -703,8 +687,6 @@ ja:
   new_category: New category
   #en: new_clipping: New clipping
   new_clipping: New clipping
-  #en: new_contest: New contest
-  new_contest: New contest
   #en: new_event: New Event
   new_event: New Event
   #en: new_forum: New Forum
@@ -1113,8 +1095,6 @@ ja:
   the_user_was_activated: The user was activated
   #en: the_user_was_deleted: The user was deleted.
   the_user_was_deleted: The user was deleted.
-  #en: this_contest_is_closed: This contest is closed
-  this_contest_is_closed: This contest is closed
   #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
   this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
   #en: this_friendship_is_pending: This Friendship is pending.

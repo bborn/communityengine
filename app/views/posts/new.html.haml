@@ -1,8 +1,6 @@
 .yui-b
   -box :id => 'category_tips' do
-    -if @post.contest
-      = render :partial => "contest"
-    -elsif @post.category
+    -if @post.category
       = render :partial => "/categories/tips", :locals => {:category => @post.category}
     - else 
       = render :partial => "/categories/tips", :locals => {:category => nil}
@@ -18,7 +16,7 @@
 
       = error_messages_for :post
       = form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
-        - unless @post.category || @post.contest || @categories.blank?        
+        - unless @post.category || @categories.blank?        
           %label
             =:category.l
           %select{:id=>"post_category_id", :name=>"post[category_id]"}
@@ -26,7 +24,6 @@
               %option{:value=>"#{category.id}"}= h(category.name)
         -else
           = f.hidden_field :category_id
-          = f.hidden_field :contest_id
 
         %label
           =:title.l

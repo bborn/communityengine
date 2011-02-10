@@ -127,7 +127,6 @@ class BaseController < ApplicationController
     
       @topics = Topic.find(:all, :limit => 5, :order => "replied_at DESC")
 
-      @active_contest = Contest.get_active
       @popular_posts = Post.find_popular({:limit => 10})    
       @popular_polls = Poll.find_popular(:limit => 8)
     end

@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.beta', :git => 'git@github.com:bborn/rails.git'
 gem 'community_engine', '1.9.9', :git => 'git@github.com:bborn/community_engine.git', :branch => "rails3"
-gem "meta_search", :git => 'git@github.com:bborn/meta_search.git
-gem 'authlogic', :git => 'git@github.com:bborn/authlogic.git
+gem "meta_search", :git => 'git@github.com:bborn/meta_search.git'
+gem 'authlogic', :git => 'git@github.com:bborn/authlogic.git'
 
 
 gem 'rack', :git => 'git://github.com/rack/rack.git'

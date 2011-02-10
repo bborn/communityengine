@@ -187,10 +187,6 @@ es-ES:
   community_tagline: "\xC2\xA1CommunityEngine Mola!"
   #en: confirm_password: Confirm Password
   confirm_password: "Confirma la Contrase\xC3\xB1a"
-  #en: contest_was_successfully_created: Contest was successfully created.
-  contest_was_successfully_created: "El concurso fue creado con \xC3\xA9xito."
-  #en: contests: Contests
-  contests: "Concursos"
   #en: country: Country
   country: "Pa\xC3\xADs"
   #en: create: Create

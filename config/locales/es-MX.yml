@@ -82,7 +82,6 @@ es-MX:
   see_all_activity: Ver toda la actividad
   banner_subtitle_required: "Subtítulo del Anúncio (requerido):"
   click_here: click aquí
-  click_here_to_enter_this_contest: ¡Haz click aquí y entra a este concurso!
   friendship_request_detail: Detalle de petición de amistad
   created_at: Creado
   showing_categories: Mostrando categorias
@@ -104,7 +103,6 @@ es-MX:
   posts: Publicaciones
   click_the_activation_link_in_the_e_mail_to_log_in: "Haz click en el enlace de activación en el correo electrónico para entrar."
   sent_messages: Mensajes Enviados
-  contests: Concursos
   active_users: Usuarios Activos
   birthday_gender: Cumpleaños & Género
   friends: Amigos
@@ -121,7 +119,6 @@ es-MX:
   user_clippings: Recortes de %{user}
   thanks_youre_now_logged_in: ¡Gracias! Ha sido ingresado.
   start_date: Fecha de inicio
-  contest_was_successfully_created: "El concurso fue creado con éxito."
   ad_was_successfully_created: El anuncio se ha creado correctamente.
   edit_your_user_profile: ¿Editar su perfil de usuario?
   edit_topic: Editar Tema
@@ -131,7 +128,6 @@ es-MX:
   click_to_accept_it: ¡Haz click para aceptar!
   permanently_delete_this_clipping: ¿Desea eliminar permanentemente este recorte?
   medium: Mediano
-  cancel_and_go_back_to_my_contests: cancelar y regresar a mis concursos
   the_user_was_activated: El usuario fué activado
   sticky: Importante
   comment_was_successfully_created: "El comentario se creó satisfactoriamente."
@@ -249,7 +245,6 @@ es-MX:
   users_blog: "Blog de %{user}"
   photo_message: Tu foto de perfil te representa en %{site}. Puedes cambiarla más tarde.
   create_new_forum: Crear Nuevo Foro
-  new_contest: Nuevo concurso
   to_start_adding_friends: Para empezar a añadir amigos, puedes
   subscribe_to: Suscribirse a
   search: Buscar
@@ -282,7 +277,6 @@ es-MX:
   dashboard: Panel de Control
   deny: Denegar
   optional: opcional
-  edit_contest: Editar Concurso
   admin_dashboard: Panel de Control del Administrador
   banner_title_required: "Título del Anúncio (required):"
   email_signup_thanks: "¡Gracias por registrarte! Deberías recibir la confirmación de un correo electrónico dentro de poco en %{email}"
@@ -353,7 +347,6 @@ es-MX:
   requested_friendship_with: Se pidió la amistad de
   an_error_occurred: "Ocurrió un error"
   links: Enlaces
-  cancel_and_go_back_to_all_contests: cancelar y regresar a todos los concursos
   add_from_my_address_book: Agregar desde mi libreta de direcciones
   you_have: Tu tienes
   sb_post_was_deleted: La publicación '%{title}' fué eliminada.
@@ -371,7 +364,6 @@ es-MX:
   end_required: fin (requerido)
   accepted_friendships: Amistades Aceptadas
   this_story_is_awesome: ¡Buena Historia!
-  this_contest_is_closed: Este concurso está cerrado
   related_posts: Publicaciones Relacionadas
   add_a_poll: "Añadir una encuesta"
   cancel_and_go_back_to_my_clippings: cancelar y regresar a mis recortes
@@ -449,7 +441,6 @@ es-MX:
   sign_up_reason_2: Alguna razón para regsitrarseSome reason to sign up
   actions: Acciones
   edit_this_photo_details: Editar los detalles de esta foto
-  contest_entries: Entradas de Concurso
   add_a_photo: "Añadir una foto"
   create: Crear
   want_to_be_popular: ¿Quieres ser popular?
@@ -503,7 +494,6 @@ es-MX:
   rss_feed: RSS feed
   page: página
   find_experts: Encontrar Expertos
-  for_detailed_contest_rules: Para saber las reglas detalladas del concurso,
   metro_area: Ciudad
   my_friends: Mis Amigos
   go_to_your_clippings_page_to_get_started: Ir a tu página de recortes, para iniciar.
