@@ -1,12 +1,9 @@
 class HomepageFeature < ActiveRecord::Base  
-  has_attached_file :homepage_feature_file, default_s3_options.merge(
-    :storage => :s3,
-    :styles => { :original => '465>', :thumb => "45x45#", :large => "635x150#" },
-    :path => "/:attachment/:id/:basename:maybe_style.:extension")
-  validates_attachment_presence :homepage_feature_file
-  validates_attachment_content_type :homepage_feature_file, :content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
-  validates_attachment_size :homepage_feature_file, :less_than => 1.megabytes
-
+  has_attached_file :image, configatron.feature.paperclip_options.to_hash
+  validates_attachment_presence :image
+  validates_attachment_content_type :image, :content_type => configatron.feature.validation_options.content_type
+  validates_attachment_size :image, :less_than => configatron.feature.validation_options.max_size.to_i.megabytes
+  
   attr_accessible :url, :title, :description
 
   validates_presence_of :url

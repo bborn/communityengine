@@ -5,7 +5,7 @@ class ActivitiesControllerTest < ActionController::TestCase
 
   def test_should_get_network
     login_as :quentin
-    get :network, :id => users(:quentin)
+    get :network, :user_id => users(:quentin).to_param
     assert_response :success
   end
   

@@ -11,7 +11,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 
 require "authlogic/test_case"
-require "authenticated_test_helper"
+require "community_engine/authenticated_test_helper"
 ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures/")
 ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 

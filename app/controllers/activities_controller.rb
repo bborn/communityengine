@@ -1,12 +1,13 @@
 class ActivitiesController < BaseController
   before_filter :login_required,  :except => :index
-  before_filter :find_user,       :except => [:index, :destroy]
+  before_filter :find_user,       :only => :network
+  
   before_filter :require_current_user,            :except => [:index, :destroy]
-  before_filter :require_ownership_or_moderator,  :only   => [:destroy]  
+  before_filter :require_ownership_or_moderator,  :only   => :destroy
   
   
   def network
-    @activities = @user.network_activity(:size => 15, :current => params[:page])
+    @activities = @user.network_activity(:per_page => 15, :page => params[:page])
   end
   
   def index

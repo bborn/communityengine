@@ -172,6 +172,7 @@ Rails.application.routes.draw do
 
     resources :events
     resources :clippings
+
     resources :activities do
       collection do
         get :network

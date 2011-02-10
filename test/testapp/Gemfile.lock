@@ -79,7 +79,6 @@ PATH
       rakismet
       rd_searchlogic (= 3.0.1)
       ri_cal
-      rmagick
       will_paginate (~> 3.0.pre2)
 
 PATH
@@ -117,6 +116,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     rack-cache (1.0)
       rack (>= 0.4)
@@ -154,6 +156,7 @@ DEPENDENCIES
   haml
   hpricot
   htmlentities
+  paperclip (~> 2.3)
   rack!
   rails (= 3.1.0.beta)!
   rakismet

@@ -54,12 +54,13 @@ photo:
 feature:
   use_thumbs: true
   dimensions: [150, 635]
-  attachment_fu_options:
-    resize_to: "465>"
-    min_size: 1
-    max_size: 1
-    thumbnails: {thumb: 'c45x45!', large: 'c635x150!'}    
-    storage: 'file_system'
+  paperclip_options:
+    styles:
+      original: '465>'
+      thumb : "45x45#"
+      large : "635x150#"
+  validation_options:
+    max_size: 3
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
         
 clipping:
