@@ -1,18 +1,18 @@
 GIT
   remote: git://github.com/rack/rack.git
-  revision: 1c2715778d3753dce4d8df19e3d3cc698aed20c6
+  revision: e3ffeac0dc04bb8d5994b7923bf12e55d549a279
   specs:
     rack (1.2.1)
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: 4d92a6b33476a5b324188bd86dfa5b5d3f4dcd3a
+  revision: 3d21dabaa6c214ab2f2941c063bd7de04fd95202
   specs:
     arel (2.0.7.beta.20110121165657)
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: d65e3b481e72e8c76818a94353e9ac315c7c0272
+  revision: c560c8b2ba2af2ff1942e40b8eff8287354bf7d8
   specs:
     actionmailer (3.1.0.beta)
       actionpack (= 3.1.0.beta)
@@ -82,10 +82,17 @@ PATH
       will_paginate (~> 3.0.pre2)
 
 PATH
-  remote: ../../../searchlogic
+  remote: ../../../meta_search
   specs:
-    rd_searchlogic (3.0.1)
-      activerecord (>= 3.0.0)
+    meta_search (0.9.4)
+      actionpack
+      actionpack (~> 3.1.0)
+      activerecord
+      activerecord (~> 3.1.0)
+      activesupport
+      activesupport (~> 3.1.0)
+      arel
+      arel (~> 2.0.6)
 
 GEM
   remote: http://rubygems.org/
@@ -128,6 +135,8 @@ GEM
       rack (>= 1.0)
     rake (0.8.7)
     rakismet (1.0.1)
+    rd_searchlogic (3.0.1)
+      activerecord (>= 3.0.0)
     ri_cal (0.8.7)
     rmagick (2.13.1)
     sqlite3 (1.3.3)
@@ -156,11 +165,11 @@ DEPENDENCIES
   haml
   hpricot
   htmlentities
+  meta_search!
   paperclip (~> 2.3)
   rack!
   rails (= 3.1.0.beta)!
   rakismet
-  rd_searchlogic (= 3.0.1)!
   ri_cal
   rmagick
   sqlite3-ruby

@@ -41,7 +41,9 @@ begin
     gem.add_dependency 'ri_cal'
     gem.add_dependency 'authlogic'
 
-    gem.add_dependency 'rd_searchlogic', '3.0.1'
+    # gem.add_dependency 'rd_searchlogic', '3.0.1'
+    gem.add_dependency 'meta_search'
+    
     gem.add_dependency 'rakismet'
     gem.add_dependency 'aws-s3'
     gem.add_dependency "will_paginate", "~> 3.0.pre2"

@@ -7,7 +7,9 @@ gem 'arel',  :git => 'git://github.com/rails/arel.git'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'community_engine', :path => '../../../community_engine'
-gem 'rd_searchlogic', '3.0.1', :require => 'searchlogic', :path => '../../../searchlogic'
+
+gem "meta_search", :path => '../../../meta_search'
+
 gem 'authlogic', :path => '../../../authlogic'
 
 
