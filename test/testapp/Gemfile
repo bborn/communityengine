@@ -11,8 +11,6 @@ gem 'arel',  :git => 'git://github.com/rails/arel.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
-
-
 gem 'configatron'
 gem 'hpricot'
 gem 'rmagick'

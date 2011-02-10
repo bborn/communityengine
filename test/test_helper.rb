@@ -12,7 +12,8 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 require "authlogic/test_case"
 require "community_engine/authenticated_test_helper"
-ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures")
+
+ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures").to_s #we want a string here, not a Pathname
 ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
 

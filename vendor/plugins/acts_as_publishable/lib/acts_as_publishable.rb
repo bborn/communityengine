@@ -19,13 +19,13 @@ module Acts
           self.publish_states = args.collect{|state| state.to_s.downcase.to_sym }
           include InstanceMethods
           
-          scope :live, :conditions => "published_as = 'live'"
-          scope :draft, :conditions => "published_as = 'draft'"
+          scope :live, where(:published_as => 'live')
+          scope :draft, where(:published_as => 'draft')
+          default_scope live
 
-
-          class << self
-            alias_method_chain :find, :published_as
-          end
+          # class << self
+          #   alias_method_chain :find, :published_as
+          # end
 
           # create methods for each publish state
           self.publish_states.each do |status|
@@ -42,23 +42,23 @@ module Acts
           end
         end
 
-        def find_with_published_as(*args)
-          # hacked to filter out unpublished items by default, when using find(:all)
-          # to really find all items, use Class.find_without_published_as
-          state = args.first
-          state = state.eql?(:all) ? :live : state
-          
-          if self.publish_states.include?(state)
-            args.shift
-            # find_all_by_published_as(state.to_s.downcase, *args)
-            # again, hacked
-            with_scope(:find => {:conditions => ["published_as = ?", state.to_s.downcase] }) do
-              find_without_published_as(:all, *args)
-            end            
-          else
-            find_without_published_as(*args)
-          end  
-        end
+        # def find_with_published_as(*args)
+        #   # hacked to filter out unpublished items by default, when using find(:all)
+        #   # to really find all items, use Class.find_without_published_as
+        #   state = args.first
+        #   state = state.eql?(:all) ? :live : state
+        #   
+        #   if self.publish_states.include?(state)
+        #     args.shift
+        #     # find_all_by_published_as(state.to_s.downcase, *args)
+        #     # again, hacked
+        #     with_scope(:find => {:conditions => ["published_as = ?", state.to_s.downcase] }) do
+        #       find_without_published_as(:all, *args)
+        #     end            
+        #   else
+        #     find_without_published_as(*args)
+        #   end  
+        # end
 
       end
 

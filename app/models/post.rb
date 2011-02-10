@@ -29,11 +29,11 @@ class Post < ActiveRecord::Base
   attr_accessor :invalid_emails
   
   #Named scopes
-  scope :by_featured_writers, :conditions => ["users.featured_writer = ?", true], :include => :user
+  scope :by_featured_writers, where("users.featured_writer = ?", true).includes(:user)
   scope :recent, order("posts.published_at DESC")  
-  scope :popular, :order => 'posts.view_count DESC'
+  scope :popular, order('posts.view_count DESC')
   scope :since, lambda { |days|
-    where("posts.published_at IS NOT NULL AND posts.published_at <= ?", days.ago.to_s(:db))    
+    where("posts.published_at > ?", days.ago)    
   }
   scope :tagged_with, lambda {|tag_name|
     where("tags.name = ?", tag_name).includes(:tags)
@@ -59,11 +59,11 @@ class Post < ActiveRecord::Base
   def self.find_popular(options = {} )
     options.reverse_merge! :limit => 5, :since => 7.days
     
-    self.popular.since(options[:since]).find :all, :limit => options[:limit]
+    self.popular.since(options[:since]).limit(options[:limit]).all
   end
 
   def self.find_featured(options = {:limit => 10})
-    self.recent.by_featured_writers.find(:all, :limit => options[:limit] )    
+    self.recent.by_featured_writers.limit(options[:limit]).all
   end
 
   def self.find_most_commented(limit = 10, since = 7.days.ago)
@@ -71,7 +71,6 @@ class Post < ActiveRecord::Base
       :select => 'posts.*, count(*) as comments_count',
       :joins => "LEFT JOIN comments ON comments.commentable_id = posts.id",
       :conditions => ['comments.commentable_type = ? AND posts.published_at > ?', 'Post', since],
-#      :group => 'comments.commentable_id',      
       :group => self.columns.map{|column| self.table_name + "." + column.name}.join(","),
       :order => 'comments_count DESC',
       :limit => limit

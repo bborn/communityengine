@@ -78,7 +78,7 @@ class PostsControllerTest < ActionController::TestCase
     login_as :quentin
     put :update, :id => posts(:funny_post).id, :user_id => users(:quentin).id, :post => { :title => nil }
     assert_response :success
-    assert assigns(:post).errors.on(:title)
+    assert assigns(:post).errors[:title]
   end
 
   
@@ -160,6 +160,13 @@ class PostsControllerTest < ActionController::TestCase
     get :manage, :user_id => users(:quentin)
     assert_redirected_to login_path
   end
+
+  test "should get user's manage posts page" do
+    login_as :quentin
+    get :manage, :user_id => users(:quentin)
+    assert_response :success
+  end
+
   
   
   private

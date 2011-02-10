@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'hpricot'
     
 class PostTest < ActiveSupport::TestCase
-  fixtures :posts, :users, :comments, :roles, :categories
+  fixtures :all
 
   def setup
     Favorite.destroy_all
@@ -11,7 +11,7 @@ class PostTest < ActiveSupport::TestCase
   def test_should_find_including_unpublished
     post = posts(:funny_post)
     post.save_as_draft
-    assert Post.find_without_published_as(:all).include?(post)
+    assert Post.unscoped.all.include?(post)
   end
   
   def test_default_find_should_not_find_drafts
@@ -29,7 +29,7 @@ class PostTest < ActiveSupport::TestCase
 
   def test_should_find_popular
     posts = Post.find_popular(:limit => 3, :since => 10.days)
-    assert_equal posts.size, 3
+    assert_equal 3, posts.size
     posts = Post.find_popular(:limit => 3, :since => 1.days)
     assert_equal posts.size, 0
   end
@@ -183,7 +183,7 @@ class PostTest < ActiveSupport::TestCase
     post.save!
     
     assert_difference ActionMailer::Base.deliveries, :length, 0 do    
-      comment = Comment.create!(:comment => 'foo', :user => users(:aaron), :commentable => post)
+      comment = post.comments.create!(:comment => 'foo', :user => users(:aaron))
       comment.send_notifications      
     end
     

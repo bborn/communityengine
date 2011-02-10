@@ -21,7 +21,7 @@ class Photo < ActiveRecord::Base
   
   #Named scopes
   scope :recent, :order => "photos.created_at DESC"
-  scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ?", 7.days.ago.to_s(:db)]
+  scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ?", 7.days.ago.iso8601]
   scope :tagged_with, lambda {|tag_name|
     {:conditions => ["tags.name = ?", tag_name], :include => :tags}
   }

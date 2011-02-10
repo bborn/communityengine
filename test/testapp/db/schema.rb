@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110210193412) do
+ActiveRecord::Schema.define(:version => 20110210193805) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -281,7 +281,6 @@ ActiveRecord::Schema.define(:version => 20110210193412) do
     t.integer  "category_id"
     t.integer  "user_id"
     t.integer  "view_count",                               :default => 0
-    t.integer  "contest_id"
     t.integer  "emailed_count",                            :default => 0
     t.integer  "favorited_count",                          :default => 0
     t.string   "published_as",               :limit => 16, :default => "draft"

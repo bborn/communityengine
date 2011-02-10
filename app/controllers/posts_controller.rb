@@ -25,22 +25,20 @@ class PostsController < BaseController
   def manage
     @search = Post.search(params[:search])
     @search.order ||= :descend_by_created_at    
-    @posts = @search.find_without_published_as(:all, :conditions => {:user_id => @user.id}, :page => {:current => params[:page], :size => (params[:size] ? params[:size].to_i : 10) })    
+    @posts = @search.find_without_published_as(:all, :conditions => {:user_id => @user.id}, :page => params[:page], :per_page => (params[:size] || 10) )    
   end
 
   def index
     @user = User.find(params[:user_id])            
     @category = Category.find_by_name(params[:category_name]) if params[:category_name]
-    cond = Caboose::EZ::Condition.new
-    if @category
-      cond.append ['category_id = ?', @category.id]
-    end
 
-    @posts = @user.posts.recent.find :all, :conditions => cond.to_sql, :page => {:size => 10, :current => params[:page]}
+    @posts = @user.posts.recent
+    @posts = @post.where('category_id = ?', @category.id) if @category
+    @posts = @posts.paginate :page => params[:page], :per_page => 10
     
     @is_current_user = @user.eql?(current_user)
 
-    @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")
+    @popular_posts = @user.posts.order("view_count DESC").limit(10).all
     
     @rss_title = "#{configatron.community_name}: #{@user.login}'s posts"
     @rss_url = user_posts_path(@user,:format => :rss)
@@ -71,18 +69,13 @@ class PostsController < BaseController
     @is_current_user = @user.eql?(current_user)
     @comment = Comment.new(params[:comment])
 
-    @comments = @post.comments.find(:all, :limit => 20, :order => 'created_at DESC', :include => :user)
+    @comments = @post.comments.includes(:user).order('created_at DESC').limit(20)
 
     @previous = @post.previous_post
     @next = @post.next_post    
     @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")    
     @related = Post.find_related_to(@post)
-    @most_commented = Post.find_most_commented
-    
-    # respond_to do |format|
-    #   format.html
-    #   format.any
-    # end
+    @most_commented = Post.find_most_commented    
   end
   
   def update_views
@@ -204,7 +197,7 @@ class PostsController < BaseController
   end
   
   def recent
-    @posts = Post.recent.find :all, :page => {:current => params[:page], :size => 20}
+    @posts = Post.recent.paginate( :page => params[:page], :per_page => 20)
 
     @recent_clippings = Clipping.find_recent(:limit => 15)
     @recent_photos = Photo.find_recent(:limit => 10)
@@ -222,7 +215,7 @@ class PostsController < BaseController
   end
   
   def featured
-    @posts = Post.by_featured_writers.recent.find(:all, :page => {:current => params[:page]})
+    @posts = Post.by_featured_writers.recent.paginate(:page => params[:page])
     @featured_writers = User.featured
         
     @rss_title = "#{configatron.community_name} "+:featured_posts.l
