@@ -201,7 +201,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_should_prohibit_reserved_logins    
-    user = create_user(:login => 'contests')
+    user = create_user(:login => configatron.reserved_logins.first)
     assert !user.valid?
   end
 

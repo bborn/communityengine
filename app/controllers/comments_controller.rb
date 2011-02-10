@@ -1,5 +1,4 @@
 class CommentsController < BaseController
-  helper :comments
   before_filter :login_required, :except => [:index, :unsubscribe]
   before_filter :admin_or_moderator_required, :only => [:delete_selected]
 
