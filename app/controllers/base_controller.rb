@@ -118,7 +118,7 @@ class BaseController < ApplicationController
     def get_additional_homepage_data
       @sidebar_right = true
       @homepage_features = HomepageFeature.find_features
-      @homepage_features_data = @homepage_features.collect {|f| [f.id, f.homepage_feature_file.url(:large) ]  }
+      @homepage_features_data = @homepage_features.collect {|f| [f.id, f.image.url(:large) ]  }
     
       @active_users = User.find_by_activity({:limit => 5, :require_avatar => false})
       @featured_writers = User.find_featured
