@@ -3,24 +3,24 @@ custom_page:
   id: 1
   title: Custom Page
   body: <p>This is a custom page.</p>
-  created_at: <%= 5.days.ago.to_s :db %>
-  updated_at: <%= 4.days.ago.to_s :db %>
+  created_at: <%= 5.days.ago.iso8601 %>
+  updated_at: <%= 4.days.ago.iso8601 %>
   page_public: true
   published_as: live
 draft_page:
   id: 2
   title: Draft Page
   body: <p>This is an unpublished page.</p>
-  created_at: <%= 4.days.ago.to_s :db %>
-  updated_at: <%= 3.days.ago.to_s :db %>
+  created_at: <%= 4.days.ago.iso8601 %>
+  updated_at: <%= 3.days.ago.iso8601 %>
   page_public: true
   published_as: live
 members_only_page:
   id: 3
   title: Members Only Page
   body: <p>This is not a public page.</p>
-  created_at: <%= 3.days.ago.to_s :db %>
-  updated_at: <%= 2.days.ago.to_s :db %>
+  created_at: <%= 3.days.ago.iso8601 %>
+  updated_at: <%= 2.days.ago.iso8601 %>
   page_public: false
   published_as: live
 

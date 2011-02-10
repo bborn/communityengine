@@ -43,7 +43,7 @@ photo:
   paperclip_options:
     styles:
       thumb:
-        geometry: "100x100!"
+        geometry: "100x100#"
         processors: [:cropper]
       medium: "290x320#"
       large: "465>"
@@ -66,9 +66,7 @@ feature:
 clipping:
   paperclip_options:
     styles:
-      thumb:
-        geometry:"100x100!"
-        processors: [:cropper]
+      thumb: "100x100#"
       medium: "290x320#"
       large: "465>"
   validation_options:

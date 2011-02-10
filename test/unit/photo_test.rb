@@ -33,7 +33,7 @@ class PhotoTest < ActiveSupport::TestCase
   
   def test_should_create_photo
     assert_difference Photo, :count, 4 do
-      photo = Photo.new :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')
+      photo = Photo.new :photo => fixture_file_upload('/files/library.jpg', 'image/jpg')
       photo.user = users(:quentin)
       photo.save!      
     end

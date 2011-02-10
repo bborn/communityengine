@@ -12,7 +12,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 require "authlogic/test_case"
 require "community_engine/authenticated_test_helper"
-ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures/")
+ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures")
 ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
 
@@ -88,11 +88,11 @@ end
 # Redefining this so we don't have to go out to the interwebs everytime we create a clipping
 # file paramater must equal http://www.google.com/intl/en_ALL/images/logo.gif; all other strings are considered an invalid URL
 # module UrlUpload
-#   # include ActionDispatch::TestProcess  
+#   include ActionDispatch::TestProcess  
 #   attr_accessor :data 
 #   
 #   def data_from_url(uri)
-#     data ||= ActionController::TestUploadedFile.new(Rails.root+"/vendor/plugins/community_engine/test/fixtures/files/library.jpg", 'image/jpg', false)    
+#     data ||= Rack::Test::UploadedFile.new("#{File.dirname(__FILE__)}/fixtures/files/library.jpg", 'image/jpg', false)
 #     if ['http://www.google.com/intl/en_ALL/images/logo.gif', 'http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif'].include?(uri)
 #       data
 #     else

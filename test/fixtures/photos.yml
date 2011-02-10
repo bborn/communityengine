@@ -9,8 +9,8 @@ library_pic:
   photo_file_size: 274
   width: 45
   height: 45
-  created_at: <%= Time.now.to_s :db %>
-  updated_at: <%= Time.now.to_s :db %>
+  created_at: <%= Time.now.iso8601 %>
+  updated_at: <%= Time.now.iso8601 %>
   album_id: 1
   view_count: 0
   
@@ -24,6 +24,6 @@ another_pic:
   photo_file_size: 274
   width: 45
   height: 45
-  created_at: <%= 1.days.ago.to_s :db %>
-  created_at: <%= 1.days.ago.to_s :db %>
+  created_at: <%= 1.days.ago.iso8601 %>
+  created_at: <%= 1.days.ago.iso8601 %>
   view_count: 0

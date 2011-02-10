@@ -11,7 +11,7 @@ class Clipping < ActiveRecord::Base
   validates_presence_of :image
   after_save :save_image
   
-  has_one  :image, :as => :attachable, :dependent => :destroy, :class_name => "ClippingImage"  
+  has_one  :image, :as => :attachable, :class_name => "ClippingImage", :dependent => :destroy
   has_many :favorites, :as => :favoritable, :dependent => :destroy
   
   acts_as_taggable
@@ -33,14 +33,14 @@ class Clipping < ActiveRecord::Base
   end
 
   def self.find_recent(options = {:limit => 5})
-    find(:all, :conditions => "created_at > '#{7.days.ago.to_s :db}'", :order => "created_at DESC", :limit => options[:limit])
+    find(:all, :conditions => "created_at > '#{7.days.ago.iso8601}'", :order => "created_at DESC", :limit => options[:limit])
   end
 
   def previous_clipping
-    self.user.clippings.find(:first, :conditions => ['created_at < ?', self.created_at], :order => 'created_at DESC')
+    self.user.clippings.order('created_at DESC').where('created_at < ?', self.created_at).first
   end
   def next_clipping
-    self.user.clippings.find(:first, :conditions => ['created_at > ?', self.created_at], :order => 'created_at ASC')
+    self.user.clippings.where('created_at > ?', self.created_at).order('created_at ASC').first    
   end
 
   def owner
@@ -62,9 +62,10 @@ class Clipping < ActiveRecord::Base
   
   def add_image
     begin
-      self.image = ClippingImage.new
-      uploaded_data = self.image.data_from_url(self.image_url)
-      self.image.uploaded_data = uploaded_data
+      clipping_image = ClippingImage.new
+      uploaded_data = clipping_image.data_from_url(self.image_url)
+      clipping_image.asset = uploaded_data
+      self.image = clipping_image
     rescue
       nil
     end

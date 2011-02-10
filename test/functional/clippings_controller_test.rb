@@ -89,9 +89,8 @@ class ClippingsControllerTest < ActionController::TestCase
   
   def test_should_update_clipping
     login_as :quentin
-    put :update, 
-      :id => 1,
-      :clipping => {:url => 'changed url' },
+    put :update, :id => 1,
+      :clipping => {:url => 'changed url'},
       :user_id => users(:quentin),
       :tag_list => 'tagX, tagY'
     assert_redirected_to user_clipping_path(users(:quentin), assigns(:clipping))

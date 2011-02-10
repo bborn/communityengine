@@ -10,21 +10,12 @@ class ClippingsController < BaseController
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
 
   def site_index
-    cond = Caboose::EZ::Condition.new
-    if params[:tag_name]
-      cond.append ['tags.name = ?', params[:tag_name]]
-    end
+    @clippings = Clipping.includes(:tags).order(params[:recent] ? "created_at DESC" : "clippings.favorited_count DESC")
+    
+    @clippings = @clippings.where('tags.name = ?', params[:tag_name]) if params[:tag_name]
+    @clippings = @clippings.where('created_at > ?', 4.weeks.ago) unless params[:recent]
 
-    cond.append ['created_at > ?', 4.weeks.ago] unless params[:recent]
-    order = (params[:recent] ? "created_at DESC" : "clippings.favorited_count DESC")
-
-
-    @clippings = Clipping.find(:all,
-      :page => {:size => 30, :current => params[:page]},
-      :order => order,
-      :conditions => cond.to_sql,
-      :include => :tags
-      )
+    @clippings = @clippings.paginate(:page => params[:page])
 
     @rss_title = "#{configatron.community_name}: #{params[:popular] ? :popular.l : :recent.l} "+:clippings.l
     @rss_url = rss_site_clippings_path
@@ -48,18 +39,12 @@ class ClippingsController < BaseController
   def index
     @user = User.find(params[:user_id])
 
-    cond = Caboose::EZ::Condition.new
-    cond.user_id == @user.id
-    if params[:tag_name]
-      cond.append ['tags.name = ?', params[:tag_name]]
-    end
+    @clippings = Clipping.includes(:tags).where(:user_id => @user.id).order("created_at DESC")
 
-    @clippings = Clipping.find(:all,
-      :page => {:size => 30, :current => params[:page]},
-      :order => "created_at DESC",
-      :conditions => cond.to_sql,
-      :include => :tags )
+    @clippings = @clippings.where('tags.name = ?', params[:tag_name]) if params[:tag_name]
 
+    @clippings = @clippings.paginate(:page => params[:page])
+    
     @tags = Clipping.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
     @clippings_data = @clippings.collect {|c| [c.id, c.image_url, c.description, c.url ]  }
 
@@ -175,11 +160,12 @@ class ClippingsController < BaseController
     @clipping = Clipping.find(params[:id])
     @clipping.tag_list = params[:tag_list] || ''
 
-    respond_to do |format|
-      @clipping.save!
-      if @clipping.update_attributes(params[:clipping])
+    if @clipping.update_attributes(params[:clipping])
+      respond_to do |format|
         format.html { redirect_to user_clipping_url(@user, @clipping) }
-      else
+      end
+    else
+      respond_to do |format|      
         format.html { render :action => "edit" }
       end
     end

@@ -6,10 +6,10 @@ funny_post:
   raw_post: Seriously, how can you build a good group of people around hatred?
   post: Seriously, how can you build a good group of people around hatred?
   category_id: 1
-  created_at: <%= 5.days.ago.to_s :db %>
-  updated_at: <%= 4.days.ago.to_s :db %>
+  created_at: <%= 5.days.ago.iso8601 %>
+  updated_at: <%= 4.days.ago.iso8601 %>
   published_as: live
-  published_at: <%= 5.days.ago.to_s :db %>    
+  published_at: <%= 5.days.ago.iso8601 %>    
 not_funny_post:
   id: 2
   user_id: 1
@@ -17,9 +17,9 @@ not_funny_post:
   raw_post: Hire good writers!
   post: Hire good writers!
   category_id: 2
-  created_at: <%= 4.days.ago.to_s :db %>
-  updated_at: <%= 3.days.ago.to_s :db %>
-  published_at: <%= 4.days.ago.to_s :db %>  
+  created_at: <%= 4.days.ago.iso8601 %>
+  updated_at: <%= 3.days.ago.iso8601 %>
+  published_at: <%= 4.days.ago.iso8601 %>  
   published_as: live  
 apt_post:
   id: 3
@@ -28,10 +28,10 @@ apt_post:
   raw_post: Mission... Helping people to make their apartments better places to live.  What We Believe A calm, healthy, beautiful home is a necessary foundation for happiness and success in the world.   Creating this home doesn't require large amounts of money or space. It requires inspiration, connection to resources and motivation to do something about it.
   post: Mission... Helping people to make their apartments better places to live.  What We Believe A calm, healthy, beautiful home is a necessary foundation for happiness and success in the world.   Creating this home doesn't require large amounts of money or space. It requires inspiration, connection to resources and motivation to do something about it.
   category_id: 1
-  created_at: <%= 5.days.ago.to_s :db %>
-  updated_at: <%= 4.days.ago.to_s :db %>
+  created_at: <%= 5.days.ago.iso8601 %>
+  updated_at: <%= 4.days.ago.iso8601 %>
   published_as: live  
-  published_at: <%= 5.days.ago.to_s :db %>  
+  published_at: <%= 5.days.ago.iso8601 %>  
 apt2_post:
   id: 4
   user_id: 2
@@ -39,7 +39,7 @@ apt2_post:
   raw_post: There’s a book called The Luck Factor, in which researcher Richard Wiseman describes studying people who considered themselves lucky, to see if they had any special powers along the lines of ESP. It turns out that they don’t. But he did discover that people who expect luck have a more powerful ability to notice opportunities in their environment. Optimistic people’s field of perception is literally greater. And the best part is he discovered that when you train people to expect luck, their field of perception increases accordingly. I think part of the mystery of affirmations has to do with the fact that it improves your ability to notice an opportunity. And when you do, it seems like a lucky coincidence. In my case, about half of my seemingly miraculous results with affirmations could be traced back to my noticing something important.
   post: There’s a book called The Luck Factor, in which researcher Richard Wiseman describes studying people who considered themselves lucky, to see if they had any special powers along the lines of ESP. It turns out that they don’t. But he did discover that people who expect luck have a more powerful ability to notice opportunities in their environment. Optimistic people’s field of perception is literally greater. And the best part is he discovered that when you train people to expect luck, their field of perception increases accordingly. I think part of the mystery of affirmations has to do with the fact that it improves your ability to notice an opportunity. And when you do, it seems like a lucky coincidence. In my case, about half of my seemingly miraculous results with affirmations could be traced back to my noticing something important.
   category_id: 1
-  created_at: <%= 5.days.ago.to_s :db %>
-  updated_at: <%= 4.days.ago.to_s :db %>
+  created_at: <%= 5.days.ago.iso8601 %>
+  updated_at: <%= 4.days.ago.iso8601 %>
   published_as: live  
-  published_at: <%= 5.days.ago.to_s :db %>  
+  published_at: <%= 5.days.ago.iso8601 %>  

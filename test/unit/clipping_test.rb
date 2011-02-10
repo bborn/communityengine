@@ -10,7 +10,7 @@ class ClippingTest < ActiveSupport::TestCase
   def test_should_require_user_id
     clipping = Clipping.new
     assert !clipping.valid?
-    assert clipping.errors.on(:user)
+    assert clipping.errors[:user]
   end
 
   def test_should_find_related_clippings
@@ -35,7 +35,7 @@ class ClippingTest < ActiveSupport::TestCase
   end
   
   def test_should_get_clipping_image
-    assert_difference Asset, :count, 4 do
+    assert_difference Asset, :count, 1 do
       c = Clipping.create(:user => users(:quentin), :url => 'http://example.com', :image_url => 'http://www.google.com/intl/en_ALL/images/logo.gif')
       c.save!
     end

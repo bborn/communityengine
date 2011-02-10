@@ -24,6 +24,8 @@
 # * finding transparently by login is broken (fixed using friendly_id)
 # * can't dup nilclass error in Rails timezone conversion (fixed with a little patch, should get fixed in a new version of Rails)
 
+# Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
+
 
 GOTCHAS:
 * edge rails needs edge rack? and edge arel

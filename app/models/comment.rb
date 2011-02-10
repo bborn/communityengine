@@ -73,7 +73,7 @@ class Comment < ActiveRecord::Base
   end
   
   def self.find_recent(options = {:limit => 5})
-    find(:all, :conditions => "created_at > '#{14.days.ago.to_s :db}'", :order => "created_at DESC", :limit => options[:limit])
+    find(:all, :conditions => "created_at > '#{14.days.ago.iso8601}'", :order => "created_at DESC", :limit => options[:limit])
   end
   
   def can_be_deleted_by(person)
