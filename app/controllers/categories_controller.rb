@@ -18,15 +18,12 @@ class CategoriesController < BaseController
   def show
     @category = Category.find(params[:id])
     @sidebar_right = true
-    
-    cond = Caboose::EZ::Condition.new
-    cond.category_id  == @category.id
+      
     order = (params[:popular] ? "view_count #{params[:popular].eql?('DESC') ? 'DESC' : 'ASC'}": "published_at DESC")
 
-    @posts = Post.find :all, :page => {:current => params[:page]}, :order => order, :conditions => cond.to_sql, :include => :tags
+    @posts = Post.includes(:tags).where('category_id = ?', @category.id).order(order).paginate(:page => params[:page])
     
-    
-    @popular_posts = @category.posts.find(:all, :limit => 10, :order => "view_count DESC")
+    @popular_posts = @category.posts.order("view_count DESC").find(:all, :limit => 10)
     @popular_polls = Poll.find_popular_in_category(@category)
 
     @rss_title = "#{configatron.community_name}: #{@category.name} "+:posts.l

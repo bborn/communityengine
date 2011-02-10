@@ -7,7 +7,7 @@
       %h3=:activity_from_your_network.l
       %table{:width => "100%"}
         =render :partial => "activities/activity", :collection => @activities
-      -if @activities.page_count > 1
+      -if @activities.total_pages > 1
         = will_paginate @activities
     -else
       =:you_have_no_network_activity_yet.l 

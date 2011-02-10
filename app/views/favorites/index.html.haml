@@ -7,4 +7,4 @@
         =render :partial => "favorite", :locals => {:favorite => f}
 
         
-.pagination=paginating_links @favorites if @favorites.page_count > 1      
+.pagination=paginating_links @favorites if @favorites.total_pages > 1      

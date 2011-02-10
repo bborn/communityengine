@@ -20,7 +20,7 @@
     = feed_icon_tag @page_title, all_sb_posts_path(:format => 'rss')
     = :post_found.l(:count => @posts.size)
 
-  - if @posts.page_count > 1
+  - if @posts.total_pages > 1
     .pagination= paginating_links @posts
         
   %table.posts.wide{ :cellspacing => "0", :border => "0", :cellpadding => "0", :width => '100%'}
@@ -52,7 +52,7 @@
     = link_to :next_page.l, { :page => @posts.next_page }.merge(params.reject{|k,v| k=="page"})
 
 
-  - if @posts.page_count > 1
+  - if @posts.total_pages > 1
     .pagination
       = :pages.l
       %strong
