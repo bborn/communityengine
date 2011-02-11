@@ -6,7 +6,7 @@ class FriendshipTest < ActiveSupport::TestCase
   def test_user_and_friend_can_not_be_same
     fr = Friendship.new(:user_id => 1, :friend_id => 1)
     assert(!fr.valid?, "Friendship should not be valid")
-    assert fr.errors.on(:user_id)
+    assert fr.errors[:user_id]
   end
   
   def test_should_prevent_overzealous_frienders
@@ -17,7 +17,7 @@ class FriendshipTest < ActiveSupport::TestCase
     
     f3 = Friendship.create(:user_id => 1, :friend_id => 5, :friendship_status => FriendshipStatus[:pending], :initiator => true)
     assert(!f3.valid?, "Friendship should not be valid")
-    assert_equal f3.errors.on(:base), "Sorry, you'll have to wait a little while before requesting any more friendships."
+    assert_equal f3.errors[:base], ["Sorry, you'll have to wait a little while before requesting any more friendships."]
   end
   
   def test_should_notify_requester_when_accepted
