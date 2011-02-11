@@ -8,13 +8,10 @@ class CommentsController < BaseController
   end
 
   uses_tiny_mce(:only => [:index, :edit, :update]) do
-    AppConfig.simple_mce_options
-  uses_tiny_mce(:only => [:index]) do
     configatron.simple_mce_options
   end
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
-
   
   def edit
     @comment = Comment.find(params[:id])

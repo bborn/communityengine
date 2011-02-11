@@ -4,18 +4,14 @@ class SbPostTest < ActiveSupport::TestCase
   all_fixtures
   include ActionDispatch::TestProcess
 
-  def test_should_select_posts
-    assert_equal [sb_posts(:pdi), sb_posts(:pdi_reply), sb_posts(:pdi_rebuttal)], topics(:pdi).sb_posts
-  end
-  
-  def test_should_find_topic
+    def test_should_find_topic
     assert_equal topics(:pdi), sb_posts(:pdi_reply).topic
   end
 
   def test_should_require_body_for_post
     p = topics(:pdi).sb_posts.build
     p.valid?
-    assert p.errors.on(:body)
+    assert p.errors[:body]
   end
 
   def test_should_create_reply
@@ -123,11 +119,11 @@ class SbPostTest < ActiveSupport::TestCase
   end
 
   test "should not allow anonymous posting" do
-    AppConfig.allow_anonymous_forum_posting = false    
+    configatron.allow_anonymous_forum_posting = false    
     topic = topics(:pdi)      
     post = topic.sb_posts.create(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
     assert !post.valid?
-    assert post.errors.on(:user_id)
+    assert post.errors[:user_id]
   end
   
   test "should allow anonymous posting if configatron specifies it's ok" do
