@@ -23,32 +23,32 @@ class UserTest < ActiveSupport::TestCase
   def test_should_not_reject_spaces
     user = User.new(:login => 'foo bar')
     user.valid?
-    assert !user.errors.on(:login)
+    assert !user.errors[:login]
   end
 
   def test_should_reject_special_chars
     user = User.new(:login => '&stripes')
     assert !user.valid?
-    assert user.errors.on(:login)
+    assert user.errors[:login]
   end
   
   def test_should_accept_normal_chars_in_login
     u = create_user(:login => "foo_and_bar")
-    assert !u.errors.on(:login)
+    assert !u.errors[:login]
     u = create_user(:login => "2foo-and-bar")
-    assert !u.errors.on(:login)
+    assert !u.errors[:login]
   end
 
   def test_should_require_login
     assert_no_difference User, :count do
       u = create_user(:login => nil)
-      assert u.errors.on(:login)
+      assert u.errors[:login]
     end
   end
   
   def test_should_find_user_with_numerals_in_login
     u = create_user(:login => "2foo-and-bar")
-    assert !u.errors.on(:login)
+    assert !u.errors[:login]
     assert_equal u, User.find("2foo-and-bar")
   end
   
@@ -62,28 +62,28 @@ class UserTest < ActiveSupport::TestCase
   def test_should_require_password
     assert_no_difference User, :count do
       u = create_user(:password => nil)
-      assert u.errors.on(:password)
+      assert u.errors[:password]
     end
   end
 
   def test_should_require_password_confirmation
     assert_no_difference User, :count do
       u = create_user(:password_confirmation => nil)
-      assert u.errors.on(:password_confirmation)
+      assert u.errors[:password_confirmation]
     end
   end
 
   def test_should_require_email
     assert_no_difference User, :count do
       u = create_user(:email => nil)
-      assert u.errors.on(:email)
+      assert u.errors[:email]
     end
   end
   
   def test_should_require_birthday
     assert_no_difference User, :count do
       u = create_user(:birthday => nil)
-      assert u.errors.on(:birthday)
+      assert u.errors[:birthday]
     end
   end  
 

@@ -25,17 +25,17 @@ class TopicTest < ActiveSupport::TestCase
   def test_should_require_title_user_and_forum
     t=Topic.new
     t.valid?
-    assert t.errors.on(:title)
-    assert t.errors.on(:user)
-    assert t.errors.on(:forum)
+    assert t.errors[:title]
+    assert t.errors[:user]
+    assert t.errors[:forum]
     assert ! t.save
     t.user  = users(:aaron)
     t.title = "happy life"
     t.forum = forums(:rails)
     assert t.save
-    assert_nil t.errors.on(:title)
-    assert_nil t.errors.on(:user)
-    assert_nil t.errors.on(:forum)
+    assert_nil t.errors[:title]
+    assert_nil t.errors[:user]
+    assert_nil t.errors[:forum]
   end
 
   def test_should_add_to_user_counter_cache

@@ -12,7 +12,7 @@ class RsvpTest < ActiveSupport::TestCase
         r = e.rsvps.build(:attendees_count=>c)
         r.user = u
         r.save
-        assert r.errors.on(:attendees_count)
+        assert r.errors[:attendees_count]
       end
     end    
   end
@@ -24,7 +24,7 @@ class RsvpTest < ActiveSupport::TestCase
       r = e.rsvps.build(:attendees_count=>1)
       r.user = u
       r.save
-      assert r.errors.on(:base)
+      assert r.errors[:base]
     end    
   end
 

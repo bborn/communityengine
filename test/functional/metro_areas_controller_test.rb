@@ -29,7 +29,7 @@ class MetroAreasControllerTest < ActionController::TestCase
     login_as :admin
     assert_no_difference MetroArea, :count do
       post :create, :metro_area => {:name => "Dusseldorf" } 
-      assert assigns(:metro_area).errors.on(:country_id)
+      assert assigns(:metro_area).errors[:country_id]
       assert_response :success
     end
   end

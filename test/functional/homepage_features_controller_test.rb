@@ -54,7 +54,7 @@ class HomepageFeaturesControllerTest < ActionController::TestCase
   def test_should_fail_to_update_homepage_feature
     login_as :admin
     put :update, :id => 1, :homepage_feature => { :url => nil }
-    assert assigns(:homepage_feature).errors.on(:url)
+    assert assigns(:homepage_feature).errors[:url]
     assert_response :success
   end
 

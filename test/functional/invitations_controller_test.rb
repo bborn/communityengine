@@ -39,7 +39,7 @@ class InvitationsControllerTest < ActionController::TestCase
       post :create, :user_id => users(:quentin).id, :invitation => {:message => 'sup dude', :email_addresses => nil }
     end    
     assert_response :success
-    assert assigns(:invitation).errors.on(:email_addresses)
+    assert assigns(:invitation).errors[:email_addresses]
   end
 
 end

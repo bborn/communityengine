@@ -16,25 +16,25 @@ class MessageTest < ActiveSupport::TestCase
   def test_should_be_invalid_without_subject
     m = Message.new(:subject => nil)
     assert !m.valid?
-    assert m.errors.on(:subject)
+    assert m.errors[:subject]
   end
 
   def test_should_be_invalid_without_body
     m = Message.new(:body => nil)
     assert !m.valid?
-    assert m.errors.on(:body)
+    assert m.errors[:body]
   end
   
   def test_should_be_invalid_without_recipient
     m = Message.new(:recipient => nil)
     assert !m.valid?
-    assert m.errors.on(:recipient)
+    assert m.errors[:recipient]
   end
   
   def test_should_not_allow_message_to_self
     m = Message.new(:sender => users(:quentin), :recipient => users(:quentin))
     assert !m.valid?
-    assert m.errors.on(:base)
+    assert m.errors[:base]
   end
   
   def test_should_be_deleted_with_user

@@ -69,7 +69,7 @@ class PagesControllerTest < ActionController::TestCase
     login_as :admin
     put :update, :id => pages(:custom_page).id, :page => { :title => nil }
     assert_response :success
-    assert assigns(:page).errors.on(:title)
+    assert assigns(:page).errors[:title]
   end
   
   def test_should_destroy_page

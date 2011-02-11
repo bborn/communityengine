@@ -47,7 +47,7 @@ class EventsControllerTest < ActionController::TestCase
   def test_should_fail_to_update_event
     login_as :admin
     put :update, :id => 1, :event => { :name => nil }
-    assert assigns(:event).errors.on(:name)
+    assert assigns(:event).errors[:name]
     assert_response :success
   end
 
