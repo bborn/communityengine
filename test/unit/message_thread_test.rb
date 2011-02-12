@@ -57,31 +57,24 @@ class MessageThreadTest < ActiveSupport::TestCase
     assert !kevins_thread.parent_message.children.first.sender_deleted, 'The child message should not be marked as deleted by the sender'
   end
 
-  # test "read? should always be 'read' for the sender" do
-  #   message = messages(:message_from_kevin_to_aaron)
-  #   message.update_message_threads
-  #   aarons_thread = MessageThread.for(message, users(:aaron))
-  #   assert_equal(aarons_thread.read?, false)
-  # 
-  #   # create a reply from aaron to kevin's message
-  #   reply = Message.new_reply(users(:aaron), aarons_thread, {:message => { :body => 'Hey kevin, just replying to your message'}})    
-  #   reply.recipient = users(:kevin)
-  #   reply.save!
-  #   reply.update_message_threads    
-  #   
-  #   puts "A thred:" + aarons_thread.inspect
-  # 
-  #   kevins_thread = MessageThread.for(message, users(:kevin))
-  #   puts "K thred:" + kevins_thread.inspect
-  #   
-  #   puts "Message: " + aarons_thread.message.inspect    
-  #   
-  #   assert_equal aarons_thread.read?, false
-  #   
-  #   
-  #   assert_equal(kevins_thread.read?, false)
-  #   
-  # end
+  test "read? should always be 'read' for the sender" do
+    message = messages(:message_from_kevin_to_aaron)
+    message.update_message_threads
+
+    aarons_thread = MessageThread.for(message, users(:aaron))
+    assert_equal aarons_thread.read?, false 
+  
+    # create a reply from aaron to kevin's message
+    reply = Message.new_reply(users(:aaron), aarons_thread, {:message => { :body => 'Hey kevin, just replying to your message'}})    
+    reply.recipient = users(:kevin)
+    reply.save!
+    
+    aarons_thread = MessageThread.for(reply, users(:aaron))    
+
+    assert_equal aarons_thread.read?, 'read'
+
+    
+  end
 
 
 end
