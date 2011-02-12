@@ -32,7 +32,7 @@ class Message < ActiveRecord::Base
     message
   end
   
-  # Returns true or false value based on whether the a message has been read by it's recipient.
+  # Returns true or false value based on whether the a message has been read by its recipient.
   def read?
     self.read_at.nil? ? false : true
   end
