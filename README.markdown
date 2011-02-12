@@ -91,7 +91,7 @@ LONG VERSION:
 7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
 
 		# development.rb, production.rb, and test.rb should include something like:
-		APP_URL = "http://localhost:3000" (or whatever your URL will be for that particular environment)
+		configatron.app_host = "http://localhost:3000" (or whatever your URL will be for that particular environment)
 
 8. Modify your routes.rb as indicated below:
 

@@ -30,10 +30,10 @@ EOF
 
     say "Modifying environment files ..."
     ['development', 'test'].each do |env|
-      environment "\nAPP_URL = \"http://localhost:3000\"", :env => env
+      environment "\nconfigatron.app_host = \"http://localhost:3000\"", :env => env
     end
-    app_url = ask("Please enter the url where you plan to deploy this app (use 'example.com' for now if you don't know yet):")
-    environment "\nAPP_URL = \"http://#{app_url}\"", :env => 'production'
+    configatron.app_host = ask("Please enter the url where you plan to deploy this app (use 'example.com' for now if you don't know yet):")
+    environment "\nconfigatron.app_host = \"http://#{configatron.app_host}\"", :env => 'production'
   end
 end
 

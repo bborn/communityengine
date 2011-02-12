@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
 
   acts_as_taggable  
   acts_as_commentable
-  has_private_messages
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
@@ -74,6 +73,20 @@ class User < ActiveRecord::Base
     has_many    :comments_as_recipient, :class_name => "Comment", :foreign_key => "recipient_id", :order => "created_at desc", :dependent => :destroy
     has_many    :clippings, :order => "created_at desc", :dependent => :destroy
     has_many    :favorites, :order => "created_at desc", :dependent => :destroy
+    
+    #messages
+    has_many :all_sent_messages, :class_name => "Message", :foreign_key => "sender_id", :dependent => :destroy
+    has_many :sent_messages,
+             :class_name => 'Message',
+             :foreign_key => 'sender_id',
+             :order => "messages.created_at DESC",
+             :conditions => ["messages.sender_deleted = ?", false]
+
+    has_many :received_messages,
+             :class_name => 'Message',
+             :foreign_key => 'recipient_id',
+             :order => "message.created_at DESC",
+             :conditions => ["message.recipient_deleted = ?", false]
     
   #named scopes
   scope :recent, order('users.created_at DESC')
@@ -433,6 +446,17 @@ class User < ActiveRecord::Base
     User.update_all ['sb_last_seen_at = ?', Time.now.utc], ['id = ?', self.id]
     self.sb_last_seen_at = Time.now.utc
   end
+  
+  def unread_messages?
+    unread_message_count > 0 ? true : false
+  end
+  
+  # Returns the number of unread messages for this user
+  def unread_message_count
+    Message.count(:conditions => ["recipient_id = ? AND read_at IS NULL", self])
+  end
+  
+  
   
   ## End Instance Methods
   
