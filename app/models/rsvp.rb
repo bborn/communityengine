@@ -15,10 +15,10 @@ class Rsvp < ActiveRecord::Base
 private
 
   def event_allows_rsvp
-    errors.add_to_base(:event_does_not_allow_rsvp.l) unless self.event.allow_rsvp?
+    errors.add(:base, :event_does_not_allow_rsvp.l) unless self.event.allow_rsvp?
   end
 
   def event_in_future
-    errors.add_to_base(:cannot_rsvp_for_an_event_that_has_already_happened.l) if self.event.end_time < Time.now
+    errors.add(:base, :cannot_rsvp_for_an_event_that_has_already_happened.l) if self.event.end_time < Time.now
   end
 end
