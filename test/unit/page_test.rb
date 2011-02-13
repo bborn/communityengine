@@ -7,13 +7,13 @@ class PageTest < ActiveSupport::TestCase
   def test_should_find_including_unpublished
     page = pages(:draft_page)
     page.save_as_draft
-    assert Page.find_without_published_as(:all).include?(page)
+    assert Page.unscoped.all.include?(page)
   end
   
   def test_default_find_should_not_find_drafts
     page = pages(:draft_page)
     page.save_as_draft
-    assert !Page.find(:all).include?(page)    
+    assert !Page.all.include?(page)    
   end
   
   def test_default_find_should_find_published
