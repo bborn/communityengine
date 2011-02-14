@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TopicTest < ActiveSupport::TestCase
-  all_fixtures
+  fixtures :all
 
   def test_save_should_update_post_id_for_posts_belonging_to_topic
     # checking current forum_id's are in sync
@@ -19,29 +19,13 @@ class TopicTest < ActiveSupport::TestCase
   end
 
   def test_knows_last_post
-    assert_equal sb_posts(:pdi_rebuttal), topics(:pdi).sb_posts.last
+    assert_equal sb_posts(:pdi_rebuttal), topics(:pdi).sb_posts.recent.first
   end
   
-  def test_should_require_title_user_and_forum
-    t=Topic.new
-    t.valid?
-    assert t.errors[:title]
-    assert t.errors[:user]
-    assert t.errors[:forum]
-    assert ! t.save
-    t.user  = users(:aaron)
-    t.title = "happy life"
-    t.forum = forums(:rails)
-    assert t.save
-    assert_nil t.errors[:title]
-    assert_nil t.errors[:user]
-    assert_nil t.errors[:forum]
-  end
-
   def test_should_add_to_user_counter_cache
     assert_difference SbPost, :count do
       assert_difference users(:sam).sb_posts, :count do
-        p = topics(:pdi).sb_posts.build(:body => "I'll do it")
+        p = topics(:galactus).sb_posts.build(:body => "I'll do it")
         p.user = users(:sam)
         p.save
       end
@@ -72,8 +56,8 @@ class TopicTest < ActiveSupport::TestCase
     hits=topics(:pdi).views
     topics(:pdi).hit!
     topics(:pdi).hit!
+    assert_equal(topics(:pdi).hits, topics(:pdi).views)      
     assert_equal(hits+2, topics(:pdi).reload.hits)
-    assert_equal(topics(:pdi).hits, topics(:pdi).views)
   end
   
   def test_replied_at_set
@@ -105,7 +89,6 @@ class TopicTest < ActiveSupport::TestCase
     configatron.allow_anonymous_forum_posting = true
     assert_difference ActionMailer::Base.deliveries, :length, 2 do
       post = topics(:pdi).sb_posts.create!(:body => "Anonymous post", :author_email => 'foo@bar.com', :author_ip => '1.2.3.4')
-      topics(:pdi).notify_of_new_post( post )      
     end    
     configatron.allow_anonymous_forum_posting = false
   end
