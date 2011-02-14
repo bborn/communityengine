@@ -26,8 +26,6 @@ class MessageThread < ActiveRecord::Base
   end
   
   def read?
-    puts message.inspect
-    puts self.inspect
     message.recipient.eql?(recipient) ? message.read? : 'read'
   end
   

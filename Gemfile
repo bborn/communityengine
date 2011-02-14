@@ -5,15 +5,8 @@ gem 'community_engine', '1.9.9', :git => 'git@github.com:bborn/community_engine.
 gem "meta_search", :git => 'git@github.com:bborn/meta_search.git'
 gem 'authlogic', :git => 'git@github.com:bborn/authlogic.git'
 
-
-gem 'rack', :git => 'git://github.com/rack/rack.git'
-gem 'arel',  :git => 'git://github.com/rails/arel.git'
-
-
-gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'configatron'
 gem 'hpricot'
-gem 'rmagick'
 gem 'htmlentities'
 gem 'haml'
 gem 'calendar_date_select'
@@ -25,3 +18,5 @@ gem "dynamic_form"
 gem "friendly_id", "~> 3.2.1"
 gem "paperclip", "~> 2.3"
 gem 'acts_as_commentable', "~> 3.0.0"
+
+gem 'sqlite3-ruby', :require => 'sqlite3'
