@@ -36,11 +36,12 @@ class User < ActiveRecord::Base
   after_destroy :recount_metro_area_users
 
   #validation
-  validates_presence_of     :metro_area,                 :if => Proc.new { |user| user.state }
+  validates_presence_of     :metro_area, :if => Proc.new { |user| user.state }
   validates_uniqueness_of   :login_slug
   validates_exclusion_of    :login, :in => configatron.reserved_logins
-  validates_date :birthday, :before => 13.years.ago.to_date  
 
+  validate :valid_birthday
+  
   #associations
     has_enumerated :role  
     has_many :posts, :order => "published_at desc", :dependent => :destroy
@@ -103,7 +104,7 @@ class User < ActiveRecord::Base
     :firstname, :fullname, :gender, :lastname, :login, :metro_area_id,
     :middlename, :notify_comments, :notify_community_news,
     :notify_friend_requests, :password, :password_confirmation,
-    :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip, :avatar_attributes
+    :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip, :avatar_attributes, :birthday
 
   ## Class Methods
 
@@ -455,6 +456,17 @@ class User < ActiveRecord::Base
   def unread_message_count
     Message.count(:conditions => ["recipient_id = ? AND read_at IS NULL", self])
   end
+  
+  def deliver_password_reset_instructions!
+    reset_perishable_token!
+    UserNotifier.password_reset_instructions(self).deliver
+  end  
+  
+  def valid_birthday
+    date = configatron.min_age.years.ago
+    errors.add(:birthday, "must be before #{date.strftime("%Y-%m-%d")}") unless birthday && (birthday.to_date <= date.to_date)    
+  end
+  
   
   
   

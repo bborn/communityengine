@@ -12,7 +12,7 @@ quentin:
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.iso8601 %>
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -31,7 +31,7 @@ aaron:
   sb_posts_count: 2
   sb_last_seen_at: <%= 5.minutes.ago.iso8601 %>
   login_slug: aaron
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -47,7 +47,7 @@ kevin:
   activated_at: <%= 5.days.ago.iso8601 %>  
   activation_code: 
   login_slug: kevin
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -63,7 +63,7 @@ admin:
   activated_at: <%= 30.minutes.ago.iso8601 %>  
   activation_code: 
   login_slug: admin
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 1
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -80,7 +80,7 @@ dwr:
   activation_code: 
   vendor: true
   login_slug: dwreach
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -97,7 +97,7 @@ leopoldo:
   metro_area_id: 4
   activation_code: 
   login_slug: leopoldo
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -114,7 +114,7 @@ florian:
   metro_area_id: 5
   activation_code: 
   login_slug: florian
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -132,7 +132,7 @@ super_writer:
   activation_code: 
   featured_writer: true
   login_slug: superwriter
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -149,7 +149,7 @@ plumberbob:
   activation_code: 
   vendor: true
   login_slug: plumberbob
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -167,7 +167,7 @@ privateuser:
   vendor: false
   login_slug: privateuser
   profile_public: false
-  birthday: <%= 15.years.ago.iso8601 %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>

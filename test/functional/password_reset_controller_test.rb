@@ -10,7 +10,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
   end
 
   test "should post to create and send an email" do
-    assert_emails 1 do 
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do
       post :create, :email => users(:quentin).email
       assert_response :redirect
       assert_redirected_to login_path

@@ -1,10 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead.
-  # Then, you can remove it from this and the functional test.
-  fixtures :all
-  
+  fixtures :all  
 
   def test_should_create_user
     assert_difference User, :count do
@@ -23,7 +20,7 @@ class UserTest < ActiveSupport::TestCase
   def test_should_not_reject_spaces
     user = User.new(:login => 'foo bar')
     user.valid?
-    assert !user.errors[:login]
+    assert user.errors[:login].empty?
   end
 
   def test_should_reject_special_chars
@@ -34,9 +31,9 @@ class UserTest < ActiveSupport::TestCase
   
   def test_should_accept_normal_chars_in_login
     u = create_user(:login => "foo_and_bar")
-    assert !u.errors[:login]
+    assert u.errors[:login].empty?
     u = create_user(:login => "2foo-and-bar")
-    assert !u.errors[:login]
+    assert u.errors[:login].empty?
   end
 
   def test_should_require_login
@@ -48,7 +45,7 @@ class UserTest < ActiveSupport::TestCase
   
   def test_should_find_user_with_numerals_in_login
     u = create_user(:login => "2foo-and-bar")
-    assert !u.errors[:login]
+    assert u.errors[:login].empty?
     assert_equal u, User.find("2foo-and-bar")
   end
   
@@ -80,16 +77,16 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
-  def test_should_require_birthday
+  def test_should_require_valid_birthday
     assert_no_difference User, :count do
-      u = create_user(:birthday => nil)
-      assert u.errors[:birthday]
+      u = create_user(:birthday => 1.year.ago)
+      assert u.errors[:birthday].any?
     end
   end  
 
   def test_should_handle_email_upcase
     assert_difference User, :count, 1 do
-      assert create_user(:email => 'BENMOORE@BENMOORE.NET').valid?
+      assert create_user(:email => 'FOO@BAR.NET').valid?
     end
   end
 
@@ -100,7 +97,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "should deliver password reset instructions" do
-    assert_emails 1 do
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do
       users(:quentin).deliver_password_reset_instructions!
     end
   end
@@ -116,8 +113,8 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_should_call_avatar_photo
-    assert_equal users(:quentin).avatar_photo_url, configatron.photo['missing_medium']
-    assert_equal users(:quentin).avatar_photo_url(:thumb), configatron.photo['missing_thumb']
+    assert_equal users(:quentin).avatar_photo_url, configatron.photo.missing_medium
+    assert_equal users(:quentin).avatar_photo_url(:thumb), configatron.photo.missing_thumb
   end
     
   def test_should_find_featured
@@ -179,12 +176,9 @@ class UserTest < ActiveSupport::TestCase
   
   def test_comments_activity
     user = users(:quentin)
-    
-    #might be a good idea to check if there are any comments_activity objects beforehand
-    #assert_equal 0, user.comments_activity.size
-    
+        
     2.times do
-      comment = Comment.create!(:comment => "foo", :user => users(:aaron), :commentable => user, :recipient => user)
+      comment = user.comments.create!(:comment => "foo", :user => users(:aaron), :recipient => user)
     end
     
     assert_equal 2, user.comments_activity.size
@@ -207,8 +201,12 @@ class UserTest < ActiveSupport::TestCase
 
   
   protected
-    def create_user(options = {})
-      User.create({ :login => 'quire', 
-          :email => 'quire@example.com', :password => 'quire123', :password_confirmation => 'quire123', :birthday => 14.years.ago }.merge(options))
+    def create_user(options = {})      
+      User.create({ 
+        :login => 'quire', 
+        :email => 'quire@example.com', 
+        :password => 'quire123', 
+        :password_confirmation => 'quire123', 
+        :birthday => configatron.min_age.years.ago }.merge(options))
     end
 end
