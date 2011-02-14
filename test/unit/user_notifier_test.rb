@@ -1,12 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'user_notifier'
 require 'hpricot'
 
 class UserNotifierTest < ActiveSupport::TestCase
   FIXTURES_PATH = File.dirname(__FILE__) + '/../fixtures'
   CHARSET = "utf-8"
-
-  # include ActionMailer::Quoting
 
   fixtures :users, :friendships, :friendship_statuses, :comments, :posts, :sb_posts, :topics, :forums, :roles
 
@@ -15,8 +12,6 @@ class UserNotifierTest < ActiveSupport::TestCase
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
 
-    @expected = TMail::Mail.new
-    @expected.set_content_type "text", "plain", { "charset" => CHARSET }
   end
 
   def test_should_deliver_signup_invitation_with_name_in_email
