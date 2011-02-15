@@ -11,7 +11,7 @@ class Poll < ActiveRecord::Base
   
   def add_choices(choices)
     choices.each do |description|
-      choice = self.choices.build(:description => description)
+      choice = self.choices.new(:description => description)
       choice.save
     end
   end

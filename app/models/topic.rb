@@ -7,7 +7,7 @@ class Topic < ActiveRecord::Base
   has_many :monitorships
   has_many :monitors, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :source => :user
 
-  has_many :sb_posts, :order => 'sb_posts.created_at DESC', :dependent => :destroy
+  has_many :sb_posts, :dependent => :destroy
 
   belongs_to :replied_by_user, :foreign_key => "replied_by", :class_name => "User"
   

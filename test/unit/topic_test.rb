@@ -19,7 +19,7 @@ class TopicTest < ActiveSupport::TestCase
   end
 
   def test_knows_last_post
-    assert_equal sb_posts(:pdi_rebuttal), topics(:pdi).sb_posts.recent.first
+    assert_equal sb_posts(:pdi_rebuttal), topics(:pdi).sb_posts.recent.last
   end
   
   def test_should_add_to_user_counter_cache

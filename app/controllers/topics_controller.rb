@@ -32,7 +32,7 @@ class TopicsController < BaseController
         # authors of topics don't get counted towards total hits
         @topic.hit! unless logged_in? and @topic.user == current_user
 
-        @posts = @topic.sb_posts.recent.find(:all, :page => {:current => params[:page], :size => 25}, :include => :user)
+        @posts = @topic.sb_posts.recent.includes(:user).paginate(:page => params[:page], :per_page => 25)
 
         @voices = @posts.map(&:user)
         @voices.compact.uniq!
@@ -42,7 +42,7 @@ class TopicsController < BaseController
         render :xml => @topic.to_xml
       end
       format.rss do
-        @posts = @topic.sb_posts.find(:all, :order => 'created_at desc', :limit => 25)
+        @posts = @topic.sb_posts.recent.limit(25)
         render :action => 'show.xml.builder', :layout => false
       end
     end
@@ -51,9 +51,9 @@ class TopicsController < BaseController
   def create
     # this is icky - move the topic/first post workings into the topic model?
     Topic.transaction do
-      @topic  = @forum.topics.build(params[:topic])
+      @topic  = @forum.topics.new(params[:topic])
       assign_protected
-      @post   = @topic.sb_posts.build(params[:topic])
+      @post   = @topic.sb_posts.new(params[:topic])
       @post.topic=@topic
       @post.user = current_user
       # only save topic if post is valid so in the view topic will be a new record if there was an error

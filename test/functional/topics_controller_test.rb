@@ -86,7 +86,7 @@ class TopicsControllerTest < ActionController::TestCase
     assert assigns(:topic)
     assert assigns(:post)
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
-    [forums(:rails), users(:aaron)].each &:reload
+    [forums(:rails), users(:aaron)].each(&:reload)
   
     assert_equal old.collect { |n| n + 1}, counts.call
     assert_equal ['tag1', 'tag2'], Topic.find(assigns(:topic).id).tag_list
@@ -149,14 +149,14 @@ class TopicsControllerTest < ActionController::TestCase
     get :show, :forum_id => forums(:rails).id, :id => topics(:pdi).id
     assert_response :success
     assert_equal topics(:pdi), assigns(:topic)
-    assert_models_equal [sb_posts(:pdi), sb_posts(:pdi_reply), sb_posts(:pdi_rebuttal)], assigns(:posts)
+    assert_equal [sb_posts(:pdi), sb_posts(:pdi_reply), sb_posts(:pdi_rebuttal)], assigns(:posts)
   end
 
   def test_should_show_other_post
     get :show, :forum_id => forums(:rails).id, :id => topics(:ponies).id
     assert_response :success
     assert_equal topics(:ponies), assigns(:topic)
-    assert_models_equal [sb_posts(:ponies)], assigns(:posts)
+    assert_equal [sb_posts(:ponies)], assigns(:posts)
   end
 
   def test_should_get_edit

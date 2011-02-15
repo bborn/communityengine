@@ -149,7 +149,7 @@ class Post < ActiveRecord::Base
   end
   
   def create_poll(poll, choices)
-    new_poll = self.polls.build(:question => poll[:question])
+    new_poll = self.polls.new(:question => poll[:question])
     choices.delete('')
     if choices.size > 1
       new_poll.save

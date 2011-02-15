@@ -68,7 +68,7 @@ class SbPostsController < BaseController
     end
 
     @forum = @topic.forum
-    @post  = @topic.sb_posts.build(params[:post])
+    @post  = @topic.sb_posts.new(params[:post])
 
     @post.user = current_user if current_user
     @post.author_ip = request.remote_ip #save the ip address for everyone, just because    
