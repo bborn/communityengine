@@ -12,7 +12,7 @@ class SbPost < ActiveRecord::Base
   }
   after_destroy { |r| 
     t = Topic.find(r.topic_id)
-    Topic.update_all(['replied_at = ?, replied_by = ?, last_post_id = ?', t.sb_posts.recent.first.created_at, t.sb_posts.recent.first.user_id, t.sb_posts.recent.first.id], ['id = ?', t.id]) if t.sb_posts.recent.first 
+    Topic.update_all(['replied_at = ?, replied_by = ?, last_post_id = ?', t.sb_posts.recent.last.created_at, t.sb_posts.recent.last.user_id, t.sb_posts.recent.last.id], ['id = ?', t.id]) if t.sb_posts.recent.last 
   }
 
   validates_presence_of :user_id, :unless => Proc.new{|record| configatron.allow_anonymous_forum_posting }
