@@ -100,6 +100,13 @@ Rails.application.routes.draw do
   resources :categories
   resources :skills
   resources :events do
+    collection do
+      get :past
+      get :ical
+    end
+    member do
+      get :clone
+    end
     resources :rsvps
   end
 

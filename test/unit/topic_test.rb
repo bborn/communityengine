@@ -25,7 +25,7 @@ class TopicTest < ActiveSupport::TestCase
   def test_should_add_to_user_counter_cache
     assert_difference SbPost, :count do
       assert_difference users(:sam).sb_posts, :count do
-        p = topics(:galactus).sb_posts.build(:body => "I'll do it")
+        p = topics(:galactus).sb_posts.new(:body => "I'll do it")
         p.user = users(:sam)
         p.save
       end
@@ -35,7 +35,7 @@ class TopicTest < ActiveSupport::TestCase
   def test_should_create_topic
     counts = lambda { [Topic.count, forums(:rails).topics_count] }
     old = counts.call
-    t = forums(:rails).topics.build(:title => 'foo')
+    t = forums(:rails).topics.new(:title => 'foo')
     t.user = users(:aaron)
     assert t.valid?
     t.save
@@ -94,7 +94,7 @@ class TopicTest < ActiveSupport::TestCase
   end
   
   def test_topic_creator_should_monitor_automatically
-    t = forums(:rails).topics.build(:title => 'foo')
+    t = forums(:rails).topics.new(:title => 'foo')
     t.user = users(:aaron)
     t.save  
     assert users(:aaron).monitoring_topic?(t)

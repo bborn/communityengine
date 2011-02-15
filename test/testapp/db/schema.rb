@@ -87,11 +87,11 @@ ActiveRecord::Schema.define(:version => 20110210193805) do
   add_index "clippings", ["created_at"], :name => "index_clippings_on_created_at"
 
   create_table "comments", :force => true do |t|
-    t.string   "title",            :limit => 50, :default => ""
-    t.datetime "created_at",                                       :null => false
-    t.integer  "commentable_id",                 :default => 0,    :null => false
-    t.string   "commentable_type", :limit => 15, :default => "",   :null => false
-    t.integer  "user_id",                        :default => 0,    :null => false
+    t.string   "title",            :limit => 50
+    t.datetime "created_at"
+    t.integer  "commentable_id"
+    t.string   "commentable_type", :limit => 15
+    t.integer  "user_id"
     t.integer  "recipient_id"
     t.text     "comment"
     t.string   "author_name"

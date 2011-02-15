@@ -255,22 +255,22 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_upload_avatar
     login_as :quentin
-    put :update, :id => users(:quentin).id, :user => {}, :avatar => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')}
-    assert users(:quentin).reload.avatar.filename, "library.jpg"
+    put :update, :id => users(:quentin).id, :user => {:avatar_attributes => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}}
+    assert users(:quentin).reload.avatar.photo_file_name, "library.jpg"
   end
   
   def test_should_not_delete_existing_avatar_if_file_field_is_blank
     login_as :quentin
-    put :update, :id => users(:quentin).id, :user => {}, :avatar => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')}
-    assert users(:quentin).reload.avatar.filename, "library.jpg"
+    put :update, :id => users(:quentin).id, :user => {:avatar_attributes => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}}
+    assert users(:quentin).reload.avatar.photo_file_name, "library.jpg"
 
     put :update, :id => users(:quentin).id, :user => {}
-    assert users(:quentin).reload.avatar.filename, "library.jpg"
+    assert users(:quentin).reload.avatar.photo_file_name, "library.jpg"
   end
   
   def test_should_crop_profile_photo
     login_as :quentin
-    avatar = Photo.new(:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg'))
+    avatar = Photo.new(:photo => fixture_file_upload('/files/library.jpg', 'image/jpg'))
     avatar.user = users(:quentin)
     avatar.save!
 
@@ -285,7 +285,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_upload_profile_photo
     login_as :quentin
 
-    put :upload_profile_photo, :id => users(:quentin), :avatar => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    put :upload_profile_photo, :id => users(:quentin), :avatar => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}
     
     assert_redirected_to crop_profile_photo_user_path(users(:quentin))    
   end
@@ -441,7 +441,7 @@ class UsersControllerTest < ActionController::TestCase
   
   protected
     def create_user(options = {})
-      params = {:user => {:login => 'quire', :email => 'quire@example.com', :password => 'quire123', :password_confirmation => 'quire123', :birthday => 15.years.ago}}
+      params = {:user => {:login => 'quire', :email => 'quire@example.com', :password => 'quire123', :password_confirmation => 'quire123', :birthday => configatron.min_age.years.ago}}
       user_opts = options.delete(:user)
       params[:user].merge!(user_opts) if user_opts
     

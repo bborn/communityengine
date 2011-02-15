@@ -77,7 +77,7 @@ class UsersController < BaseController
 
     @comments       = @user.comments.find(:all, :limit => 10, :order => 'created_at DESC')
     @photo_comments = Comment.find_photo_comments_for(@user)    
-    @users_comments = Comment.find_comments_by_user(@user, :limit => 5)
+    @users_comments = Comment.find_comments_by_user(@user).limit(5)
 
     @recent_posts   = @user.posts.find(:all, :limit => 2, :order => "published_at DESC")
     @clippings      = @user.clippings.find(:all, :limit => 5)

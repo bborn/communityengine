@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   acts_as_taggable
   acts_as_activity :user, :if => Proc.new{|r| r.is_live?}
   acts_as_publishable :live, :draft
-
+  
   belongs_to :user
   belongs_to :category
   has_many   :polls, :dependent => :destroy
@@ -13,7 +13,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :user
   validates_presence_of :published_at, :if => Proc.new{|r| r.is_live? }
-
+  
   before_save :transform_post
   before_validation :set_published_at
   
@@ -44,14 +44,14 @@ class Post < ActiveRecord::Base
         :order => 'published_at DESC', 
         :conditions => [ 'posts.id != ? AND published_as = ?', post.id, 'live' ]
     })
-
+  
     find_tagged_with(post.tag_list, merged_options).uniq
   end
-
+  
   def to_param
     id.to_s << "-" << (title ? title.parameterize : '' )
   end
-
+  
   def self.find_recent(options = {:limit => 5})
     self.recent.find :all, options
   end
@@ -61,11 +61,11 @@ class Post < ActiveRecord::Base
     
     self.popular.since(options[:since]).limit(options[:limit]).all
   end
-
+  
   def self.find_featured(options = {:limit => 10})
     self.recent.by_featured_writers.limit(options[:limit]).all
   end
-
+  
   def self.find_most_commented(limit = 10, since = 7.days.ago)
     Post.find(:all, 
       :select => 'posts.*, count(*) as comments_count',
@@ -76,7 +76,7 @@ class Post < ActiveRecord::Base
       :limit => limit
       )
   end
-
+  
   def display_title
     t = self.title
     if self.category
@@ -178,7 +178,7 @@ class Post < ActiveRecord::Base
     f = Favorite.find_by_user_or_ip_address(self, user, remote_ip)
     return f
   end  
-
+  
   def published_at_display(format = 'published_date')
     is_live? ? I18n.l(published_at, :format => format) : 'Draft'
   end

@@ -10,6 +10,13 @@ GIT
   specs:
     arel (2.0.7.beta.20110121165657)
 
+GIT
+  remote: http://github.com/paneq/calendar_date_select.git
+  revision: 8e7ec79435a68665df40b14bd90f47e6ac5e9135
+  branch: rails3test
+  specs:
+    calendar_date_select (1.16.1)
+
 PATH
   remote: ../../../authlogic
   specs:
@@ -22,7 +29,6 @@ PATH
     community_engine (1.9.9)
       acts_as_commentable (~> 3.0.0)
       acts_as_commentable (~> 3.0.0)
-      arel
       authlogic
       authlogic
       aws-s3
@@ -35,6 +41,7 @@ PATH
       dynamic_form
       dynamic_form
       friendly_id (~> 3.2.1)
+      friendly_id (= 3.2.1)
       haml
       haml
       hpricot
@@ -44,15 +51,14 @@ PATH
       meta_search
       meta_search
       paperclip (~> 2.3)
+      paperclip (~> 2.3)
       rack (= 1.2.1)
-      rack
       rails (= 3.1.0.beta)
       rails (= 3.1.0.beta)
       rakismet
       rakismet
       ri_cal
       ri_cal
-      rmagick
       sqlite3-ruby
       will_paginate (~> 3.0.pre2)
       will_paginate (~> 3.0.pre2)
@@ -123,7 +129,6 @@ GEM
     babosa (0.2.2)
     bcrypt-ruby (2.1.4)
     builder (3.0.0)
-    calendar_date_select (1.16.2)
     configatron (2.6.4)
       yamler (>= 0.1.0)
     dynamic_form (1.1.3)
@@ -154,7 +159,6 @@ GEM
     rake (0.8.7)
     rakismet (1.0.1)
     ri_cal (0.8.7)
-    rmagick (2.13.1)
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
@@ -174,7 +178,7 @@ DEPENDENCIES
   arel!
   authlogic!
   aws-s3
-  calendar_date_select
+  calendar_date_select!
   community_engine!
   configatron
   dynamic_form
@@ -188,6 +192,5 @@ DEPENDENCIES
   rails (= 3.1.0.beta)!
   rakismet
   ri_cal
-  rmagick
   sqlite3-ruby
   will_paginate (~> 3.0.pre2)

@@ -81,32 +81,16 @@ end
 
 # Redefining this so we don't have to go out to the interwebs everytime we create a clipping
 # file paramater must equal http://www.google.com/intl/en_ALL/images/logo.gif; all other strings are considered an invalid URL
-# module UrlUpload
-#   include ActionDispatch::TestProcess  
-#   attr_accessor :data 
-#   
-#   def data_from_url(uri)
-#     data ||= Rack::Test::UploadedFile.new("#{File.dirname(__FILE__)}/fixtures/files/library.jpg", 'image/jpg', false)
-#     if ['http://www.google.com/intl/en_ALL/images/logo.gif', 'http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif'].include?(uri)
-#       data
-#     else
-#       nil
-#     end
-#   end      
-# end
-
-# class Hash
-#   # Usage { :a => 1, :b => 2, :c => 3}.except(:a) -> { :b => 2, :c => 3}
-#   def except(*keys)
-#     self.reject { |k,v|
-#       keys.include? k.to_sym
-#     }
-#   end
-# 
-#   # Usage { :a => 1, :b => 2, :c => 3}.only(:a) -> {:a => 1}
-#   def only(*keys)
-#     self.dup.reject { |k,v|
-#       !keys.include? k.to_sym
-#     }
-#   end
-# end
+module UrlUpload
+  include ActionDispatch::TestProcess  
+  attr_accessor :data 
+  
+  def data_from_url(uri)
+    data ||= Rack::Test::UploadedFile.new("#{File.dirname(__FILE__)}/fixtures/files/library.jpg", 'image/jpg', false)
+    if ['http://www.google.com/intl/en_ALL/images/logo.gif', 'http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif'].include?(uri)
+      data
+    else
+      nil
+    end
+  end      
+end

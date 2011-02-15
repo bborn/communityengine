@@ -1,8 +1,7 @@
 class Comment < ActiveRecord::Base
-
   include ActsAsCommentable::Comment
+  
   belongs_to :commentable, :polymorphic => true
-
   belongs_to :user, :inverse_of => :comments_as_author, :foreign_key => 'user_id', :class_name => "User"
   belongs_to :recipient, :class_name => "User", :foreign_key => "recipient_id"
   
@@ -11,14 +10,14 @@ class Comment < ActiveRecord::Base
   validates_length_of :comment, :maximum => 2000
   
   before_save :whitelist_attributes  
-
+  
   validates_presence_of :user, :unless => Proc.new{|record| configatron.allow_anonymous_commenting }
   validates_presence_of :author_email, :unless => Proc.new{|record| record.user }  #require email unless logged in
   validates_presence_of :author_ip, :unless => Proc.new{|record| record.user} #log ip unless logged in
   validates_format_of :author_url, :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :unless => Proc.new{|record| record.user }
-
+  
   acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user
-
+  
   def self.find_photo_comments_for(user)
     Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC')
   end
@@ -49,7 +48,7 @@ class Comment < ActiveRecord::Base
         commentable.class.to_s.humanize
     end
   end
-
+  
   def title_for_rss
     "Comment from #{username}"
   end
@@ -108,5 +107,5 @@ class Comment < ActiveRecord::Base
     self.comment = white_list(self.comment)
   end
   
-
+  
 end

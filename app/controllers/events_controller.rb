@@ -54,12 +54,12 @@ class EventsController < BaseController
 
   def index
     @is_admin_user = (current_user && current_user.admin?)
-    @events = Event.upcoming.find(:all, :page => {:current => params[:page]})
+    @events = Event.upcoming.paginate(:page => params[:page])
   end
 
   def past
     @is_admin_user = (current_user && current_user.admin?)
-    @events = Event.past.find(:all, :page => {:current => params[:page]})
+    @events = Event.past.paginate(:page => params[:page])
     render :template => 'events/index'
   end
 
@@ -127,8 +127,6 @@ class EventsController < BaseController
     end
   end
   
-  # DELETE /homepage_features/1
-  # DELETE /homepage_features/1.xml
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
