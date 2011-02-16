@@ -15,10 +15,12 @@ class SbPostsController < BaseController
 
   def index
     conditions = []
-    [:user_id, :forum_id].each { |attr| conditions << SbPost.send(:sanitize_sql, ["sb_posts.#{attr} = ?", params[attr].to_i]) if params[attr] }
+    [:user_id, :forum_id].each { |attr| 
+      conditions << SbPost.send(:sanitize_sql, ["sb_posts.#{attr} = ?", params[attr].to_i]) if params[attr] 
+    }
     conditions = conditions.any? ? conditions.collect { |c| "(#{c})" }.join(' AND ') : nil
 
-    @posts = SbPost.with_query_options.find :all, :conditions => conditions, :page => params[:page]
+    @posts = SbPost.with_query_options.where(conditions).paginate(:page => params[:page])
     
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
     render_posts_or_xml
@@ -27,7 +29,7 @@ class SbPostsController < BaseController
   def search
     conditions = params[:q].blank? ? nil : SbPost.send(:sanitize_sql, ['LOWER(sb_posts.body) LIKE ?', "%#{params[:q]}%"])
     
-    @posts = SbPost.with_query_options.find :all, :conditions => conditions, :page => params[:page]
+    @posts = SbPost.with_query_options.where(conditions).paginate(:page => params[:page])
 
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
     render_posts_or_xml :index
@@ -35,7 +37,7 @@ class SbPostsController < BaseController
 
   def monitored
     @user = User.find params[:user_id]    
-    @posts = SbPost.with_query_options.find(:all, 
+    @posts = SbPost.with_query_options.paginate( 
       :joins => ' INNER JOIN monitorships ON monitorships.topic_id = topics.id', 
       :conditions  => ['monitorships.user_id = ? AND sb_posts.user_id != ?', params[:user_id], @user.id],
       :page => params[:page])

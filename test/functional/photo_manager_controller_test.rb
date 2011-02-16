@@ -7,8 +7,8 @@ class PhotoManagerControllerTest < ActionController::TestCase
     login_as :quentin
     get :index, :user => users(:quentin), :user_id => users(:quentin)
     assert_response :success
-    assert_equal assigns(:albums).results[0].id, 1
-    assert assigns(:photos_no_albums).results, [photos(:another_pic)]
+    assert_equal assigns(:albums)[0].id, 1
+    assert_equal assigns(:photos_no_albums), [photos(:another_pic)]
   end
   
   test "should not get index" do

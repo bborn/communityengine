@@ -15,11 +15,9 @@ class PhotosController < BaseController
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
 
   def recent
-    @photos = Photo.recent.find(:all, :page => params[:page])
+    @photos = Photo.recent.paginate(:page => params[:page])
   end
   
-  # GET /photos
-  # GET /photos.xml
   def index
     @user = User.find(params[:user_id])
 
@@ -36,7 +34,7 @@ class PhotosController < BaseController
     @rss_url = user_photos_path(@user,:format => :rss)
 
     respond_to do |format|
-      format.html # index.rhtml
+      format.html 
       format.rss {
         render_rss_feed_for(@photos,
            { :feed => {:title => @rss_title, :link => url_for(:controller => 'photos', :action => 'index', :user_id => @user) },

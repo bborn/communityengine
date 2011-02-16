@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SessionsControllerTest < ActionController::TestCase  
-  fixtures :users, :roles
+  fixtures :all
 
   def test_should_login_and_redirect
     post :create, :login => 'quentin', :password => 'test'

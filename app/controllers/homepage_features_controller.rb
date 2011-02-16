@@ -12,7 +12,7 @@ class HomepageFeaturesController < BaseController
     @search = HomepageFeature.search(params[:search])
     @search.order ||= :descend_by_created_at
     
-    @homepage_features = @search.find(:all, :conditions => ["parent_id IS NULL"], :page => {:current => params[:page], :size => 100})    
+    @homepage_features = @search.paginate(:all, :conditions => ["parent_id IS NULL"], :page => {:current => params[:page], :size => 100})    
     
     respond_to do |format|
       format.html # index.rhtml

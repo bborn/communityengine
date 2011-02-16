@@ -28,7 +28,7 @@ class TagsController < BaseController
   def manage
     @search = Tag.search(params[:search])
     @search.order ||= :ascend_by_name
-    @tags = @search.find(:all, :page => {:current => params[:page], :size => 100})
+    @tags = @search.paginate(:page => params[:page], :per_page => 100)
   end
   
 

@@ -48,7 +48,7 @@ class FriendshipsController < BaseController
 
   def denied
     @user = User.find(params[:user_id])    
-    @friendships = @user.friendships.find(:all, :conditions => ["friendship_status_id = ?", FriendshipStatus[:denied].id], :page => params[:page])
+    @friendships = @user.friendships.where("friendship_status_id = ?", FriendshipStatus[:denied].id).paginate(:page => params[:page])
     
     respond_to do |format|
       format.html
@@ -61,7 +61,7 @@ class FriendshipsController < BaseController
     @friend_count = @user.accepted_friendships.count
     @pending_friendships_count = @user.pending_friendships.count
           
-    @friendships = @user.friendships.accepted.find :all, :page => {:size => 12, :current => params[:page], :count => @friend_count}
+    @friendships = @user.friendships.accepted.paginate(:page => params[:page], :per_page => 12)
     
     respond_to do |format|
       format.html

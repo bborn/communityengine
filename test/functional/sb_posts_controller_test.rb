@@ -171,21 +171,21 @@ class SbPostsControllerTest < ActionController::TestCase
   
   
   test "should create anonymous reply" do
-    AppConfig.allow_anonymous_forum_posting = true    
+    configatron.allow_anonymous_forum_posting = true    
     assert_difference SbPost, :count, 1 do
       post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo@bar.com' }
       assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param
     end
-    AppConfig.allow_anonymous_forum_posting = false    
+    configatron.allow_anonymous_forum_posting = false    
   end
 
   test "should fail creating an anonymous reply" do
-    AppConfig.allow_anonymous_forum_posting = true        
+    configatron.allow_anonymous_forum_posting = true        
     assert_difference SbPost, :count, 0 do
       post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo' }
       assert_response :redirect
     end
-    AppConfig.allow_anonymous_forum_posting = false        
+    configatron.allow_anonymous_forum_posting = false        
   end
 
   
