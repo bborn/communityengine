@@ -5,9 +5,9 @@ class PhotosControllerTest < ActionController::TestCase
 
   def test_should_create_photo
     login_as :quentin 
-    assert_difference Photo, :count, 4 do
+    assert_difference Photo, :count, 1 do
       post :create,
-        :photo => { :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') },
+        :photo => { :photo => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
         :tag_list => 'tag1, tag2',
         :album_id => '1'
@@ -22,7 +22,7 @@ class PhotosControllerTest < ActionController::TestCase
     login_as :quentin 
     assert_no_difference Activity, :count  do
      post :create,
-        :photo => { :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') },
+        :photo => { :photo => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
         :tag_list => 'tag1, tag2',
         :album_id => '1'
@@ -98,9 +98,9 @@ class PhotosControllerTest < ActionController::TestCase
   
   def test_should_create_photo_without_album_id
     login_as :quentin
-    assert_difference Photo, :count, 4 do
+    assert_difference Photo, :count, 1 do
       post :create,
-        :photo => { :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') },
+        :photo => { :photo => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
         :tag_list => 'tag1, tag2'
 
@@ -125,7 +125,7 @@ class PhotosControllerTest < ActionController::TestCase
   def test_should_fail_content_type
     login_as :quentin
     assert_no_difference Photo, :count do
-      post :create, :photo => {:uploaded_data => fixture_file_upload('/files/Granite.bmp', 'image/bmp') }, :user_id => users(:quentin).id
+      post :create, :photo => {:photo => fixture_file_upload('/files/Granite.bmp', 'image/bmp') }, :user_id => users(:quentin).id
     end
     assert_response :success
   end
