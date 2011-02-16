@@ -3,7 +3,7 @@ class MetroAreasController < BaseController
   before_filter :admin_required
 
   def index
-    @metro_areas = MetroArea.find :all, :page => {:current => params[:page]}, :order => "countries.name, metro_areas.name", :include => :country
+    @metro_areas = MetroArea.find :all, :page => params[:page], :order => "countries.name, metro_areas.name", :include => :country
   end
   
   def show

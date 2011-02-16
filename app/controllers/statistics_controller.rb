@@ -5,6 +5,7 @@ class StatisticsController < BaseController
   def index
     @total_users = User.count(:conditions => ['activated_at IS NOT NULL'])
     @unactivated_users = User.count(:conditions => ['activated_at IS NULL'])
+
     @yesterday_new_users = find_new_users(1.day.ago.midnight, Date.today.midnight)
     @today_new_users = find_new_users(Date.today.midnight, Date.today.tomorrow.midnight)  
 
@@ -29,12 +30,9 @@ class StatisticsController < BaseController
 
       
   protected
-  def find_new_users(from, to, limit= nil)
-    @users = User.arel_table
-    @users = @users.active
-    @users = @users.where("created_at >= ? AND created_at =< ?", from, to)
-    return @users.all(:limit => limit)
-  end
+    def find_new_users(from, to, limit= nil)
+      User.active.where(:created_at => from..to)
+    end
   
 
 end

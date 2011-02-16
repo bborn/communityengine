@@ -15,7 +15,7 @@ class PhotosController < BaseController
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
 
   def recent
-    @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
+    @photos = Photo.recent.find(:all, :page => params[:page])
   end
   
   # GET /photos

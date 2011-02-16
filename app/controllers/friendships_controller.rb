@@ -48,7 +48,7 @@ class FriendshipsController < BaseController
 
   def denied
     @user = User.find(params[:user_id])    
-    @friendships = @user.friendships.find(:all, :conditions => ["friendship_status_id = ?", FriendshipStatus[:denied].id], :page => {:current => params[:page]})
+    @friendships = @user.friendships.find(:all, :conditions => ["friendship_status_id = ?", FriendshipStatus[:denied].id], :page => params[:page])
     
     respond_to do |format|
       format.html

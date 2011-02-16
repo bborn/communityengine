@@ -7,7 +7,7 @@ class SkillsController < BaseController
   def index
     @skills = Skill.find(:all)
 
-    @users = User.recent.vendors.find :all, :include => :tags, :page => {:current => params[:page], :size => 10}
+    @users = User.recent.vendors.find :all, :include => :tags, :page => params[:page], :per_page => 10
     
     @tags = User.tag_counts :limit => 10
 
@@ -27,7 +27,7 @@ class SkillsController < BaseController
   # GET /skills/1.xml
   def show
     @skill = Skill.find(params[:id])
-    @users = @skill.users.find(:all, :page => {:current => params[:page], :size => 10})
+    @users = @skill.users.find(:all, :page => params[:page], :per_page => 10)
         
     respond_to do |format|
       format.html # show.rhtml
