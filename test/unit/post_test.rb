@@ -11,6 +11,7 @@ class PostTest < ActiveSupport::TestCase
   def test_should_find_including_unpublished
     post = posts(:funny_post)
     post.save_as_draft
+    assert Post.unscoped.find(post.id)
     assert Post.unscoped.all.include?(post)
   end
   

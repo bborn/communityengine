@@ -16,8 +16,8 @@ class PostsController < BaseController
     !logged_in? && controller_name.eql?('posts')
   end  
                            
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage]
-  before_filter :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage]
+  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]
+  before_filter :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage, :preview]
   before_filter :require_ownership_or_moderator, :only => [:edit, :update, :destroy, :create, :manage, :new]
 
   skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages 
@@ -85,7 +85,8 @@ class PostsController < BaseController
   end
   
   def preview
-    @user = current_user
+    @post = Post.unscoped.find(params[:id])
+    redirect_to(:controller => 'sessions', :action => 'new') and return false unless @post.user.eql?(current_user) || admin? || moderator?
   end
   
   # GET /posts/new

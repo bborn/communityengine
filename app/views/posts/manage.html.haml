@@ -7,7 +7,7 @@
       
   -box do
     %h3=:search.l
-    = form_for @search, :html => {:class => "MainForm"} do |f|
+    = form_for @search, :url => manage_posts_path, :html => {:class => "MainForm"} do |f|
     
       = f.label :title.l
       = f.text_field :title_like
