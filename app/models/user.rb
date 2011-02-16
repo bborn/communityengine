@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
 
   acts_as_taggable  
   acts_as_commentable
+  
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
@@ -88,6 +89,7 @@ class User < ActiveRecord::Base
              :foreign_key => 'recipient_id',
              :order => "message.created_at DESC",
              :conditions => ["message.recipient_deleted = ?", false]
+    has_many :message_threads_as_recipient, :class_name => "MessageThread", :foreign_key => "recipient_id"               
     
   #named scopes
   scope :recent, order('users.created_at DESC')
@@ -452,9 +454,8 @@ class User < ActiveRecord::Base
     unread_message_count > 0 ? true : false
   end
   
-  # Returns the number of unread messages for this user
   def unread_message_count
-    Message.count(:conditions => ["recipient_id = ? AND read_at IS NULL", self])
+    message_threads_as_recipient.count(:conditions => ["messages.recipient_id = ? AND messages.recipient_deleted = ? AND read_at IS NULL", self.id, false], :include => :message)
   end
   
   def deliver_password_reset_instructions!

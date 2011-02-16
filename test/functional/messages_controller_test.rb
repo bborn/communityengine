@@ -92,10 +92,12 @@ class MessagesControllerTest < ActionController::TestCase
   
   def test_should_get_show
     create_message(users(:florian),users(:leopoldo))
+    
     get :show, :id => Message.last.id, :user_id => users(:leopoldo).id
+    
     assert_response :success
     assert_equal assigns(:message).body, 'Some content'
-    assert_tag :tag=>'a', :attributes=>{:href=>"/leopoldo/messages/new?reply_to=#{Message.last.id}"}
+    assert_tag :tag=>'form', :attributes=>{:action=> user_messages_path(users(:leopoldo))}
   end
   
   def test_show_send_links_if_logged_in
