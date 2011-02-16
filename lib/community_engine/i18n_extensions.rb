@@ -18,7 +18,6 @@ module SymbolExtensionCustom
   
   def localize_with_debugging(*args)
     localized_sym = I18n.translate(self, *args)
-        
     localized_sym.html_safe    
   end
   alias_method :l, :localize_with_debugging

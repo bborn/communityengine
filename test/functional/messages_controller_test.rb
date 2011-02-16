@@ -143,10 +143,9 @@ class MessagesControllerTest < ActionController::TestCase
     end
   
     def should_mark_deleted(user)
-      @request.env['HTTP_REFERER'] = "#{user.login}/messages"
       create_message(users(:leopoldo),users(:florian))
       post :delete_selected, :delete => [Message.last.id], :user_id => user.id
-      assert_redirected_to "#{user.login}/messages"
+      assert_redirected_to user_messages_path(user)
     end
   
 

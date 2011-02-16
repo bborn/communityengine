@@ -902,9 +902,9 @@ en:
   #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
   optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
   #en: yes_status: yes
-  yes_status: yes
+  yes: yes
   #en: no_status: no
-  no_status: no
+  no: no
   #en: or: or
   or: or
   #en: page: page

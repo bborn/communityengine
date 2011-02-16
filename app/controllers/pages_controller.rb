@@ -14,7 +14,7 @@ class PagesController < BaseController
   before_filter :require_moderator, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
 
   def index
-    @pages = Page.find_without_published_as(:all, :order => 'created_at DESC')
+    @pages = Page.unscoped.order('created_at DESC').paginate(:page => params[:page])
   end
 
   def preview

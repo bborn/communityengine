@@ -18,9 +18,9 @@
       %table{:width=>"100%"}
         %tr 
           %th
-            =order @search, :by => :name, :as => :name.l            
+            =sort_link @search, :by => :name, :as => :name.l            
           %th 
-            =order @search, :by => :taggings_count, :as => "##{:taggings.l}"
+            =sort_link @search, :by => :taggings_count, :as => "##{:taggings.l}"
           %th=:actions.l
 
         - for tag in @tags

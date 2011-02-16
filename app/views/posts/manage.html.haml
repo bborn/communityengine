@@ -7,7 +7,7 @@
       
   -box do
     %h3=:search.l
-    = form_for @search, :url => manage_posts_path, :html => {:class => "MainForm"} do |f|
+    = form_for @search, :url => manage_user_posts_path(current_user), :html => {:class => "MainForm"} do |f|
     
       = f.label :title.l
       = f.text_field :title_like
@@ -42,9 +42,9 @@
         %thead
           %tr
             %th
-              =order @search, :by => :created_at, :as => :date_created.l
+              =sort_link @search, :by => :created_at, :as => :date_created.l
             %th
-              =order @search, :by => :published_at, :as => :date_published.l
+              =sort_link @search, :by => :published_at, :as => :date_published.l
             %th=:title.l
             %th=:category.l
             %th=:tags.l

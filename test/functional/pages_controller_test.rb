@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PagesControllerTest < ActionController::TestCase
-  fixtures :pages, :users, :roles
+  fixtures :all
 
   def test_should_get_index
     login_as :admin
