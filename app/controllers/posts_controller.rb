@@ -23,9 +23,9 @@ class PostsController < BaseController
   skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages 
   
   def manage
-    @search = Post.search(params[:search])
+    @search = Post.unscoped.search(params[:search])
     @search.order ||= :descend_by_created_at    
-    @posts = @search.find_without_published_as(:all, :conditions => {:user_id => @user.id}, :page => params[:page], :per_page => (params[:size] || 10) )    
+    @posts = @search.paginate(:all, :conditions => {:user_id => @user.id}, :page => params[:page], :per_page => (params[:size] || 10) )    
   end
 
   def index

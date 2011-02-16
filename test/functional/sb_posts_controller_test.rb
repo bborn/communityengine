@@ -109,54 +109,54 @@ class SbPostsControllerTest < ActionController::TestCase
   def test_should_view_recent_posts
     get :index
     assert_response :success
-    assert_models_equal [sb_posts(:il8n), sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus), sb_posts(:ponies), sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi), sb_posts(:sticky)], assigns(:posts)
+    assert_equals [sb_posts(:il8n), sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus), sb_posts(:ponies), sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi), sb_posts(:sticky)], assigns(:posts)
   end
 
   def test_should_view_posts_by_forum
     get :index, :forum_id => forums(:comics).to_param
     assert_response :success
-    assert_models_equal [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
+    assert_equals [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
 
   def test_should_view_posts_by_user
     get :index, :user_id => users(:sam).id
     assert_response :success
-    assert_models_equal [sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:ponies), sb_posts(:pdi_reply), sb_posts(:sticky)], assigns(:posts)
+    assert_equals [sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:ponies), sb_posts(:pdi_reply), sb_posts(:sticky)], assigns(:posts)
   end
   
   def test_should_view_monitored_posts
     get :monitored, :user_id => users(:aaron).id
-    assert_models_equal [sb_posts(:pdi_reply)], assigns(:posts)
+    assert_equals [sb_posts(:pdi_reply)], assigns(:posts)
   end
 
   def test_should_search_recent_posts
     get :search, :q => 'pdi'
     assert_response :success
-    assert_models_equal [sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi)], assigns(:posts)
+    assert_equals [sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi)], assigns(:posts)
   end
 
   def test_should_search_posts_by_forum
     get :search, :forum_id => forums(:comics).to_param, :q => 'galactus'
     assert_response :success
-    assert_models_equal [sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
+    assert_equals [sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
   
   def test_should_view_recent_posts_as_rss
     get :index, :format => 'rss'
     assert_response :success
-    assert_models_equal [sb_posts(:il8n), sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus), sb_posts(:ponies), sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi), sb_posts(:sticky)], assigns(:posts)
+    assert_equals [sb_posts(:il8n), sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus), sb_posts(:ponies), sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi), sb_posts(:sticky)], assigns(:posts)
   end
 
   def test_should_view_posts_by_forum_as_rss
     get :index, :forum_id => forums(:comics).to_param, :format => 'rss'
     assert_response :success
-    assert_models_equal [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
+    assert_equals [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
 
   def test_should_view_posts_by_user_as_rss
     get :index, :user_id => users(:sam).id, :format => 'rss'
     assert_response :success
-    assert_models_equal [sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:ponies), sb_posts(:pdi_reply), sb_posts(:sticky)], assigns(:posts)
+    assert_equals [sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:ponies), sb_posts(:pdi_reply), sb_posts(:sticky)], assigns(:posts)
   end
   
   def test_disallow_new_post_to_locked_topic
