@@ -225,10 +225,6 @@ module BaseHelper
 		html.html_safe
   end
   
-  def feature_enabled?(feature)
-    configatron.sections_enabled.include?(feature)
-  end  
-
   def show_footer_content?
     return true #you can override this in your app
   end

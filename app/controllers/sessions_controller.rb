@@ -8,7 +8,6 @@ class SessionsController < BaseController
   def new
     redirect_to user_path(current_user) and return if current_user
     @user_session = UserSession.new
-    render :layout => 'beta' if configatron.closed_beta_mode
   end
 
   def create

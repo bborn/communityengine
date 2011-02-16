@@ -134,10 +134,6 @@ module AuthenticatedSystem
       logged_in? && authorized? ? true : access_denied
     end
 
-    def beta_login_required
-      login_required
-    end
-
     def require_user
       unless current_user
         store_location

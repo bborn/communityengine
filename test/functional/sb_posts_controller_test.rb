@@ -174,7 +174,7 @@ class SbPostsControllerTest < ActionController::TestCase
     configatron.allow_anonymous_forum_posting = true    
     assert_difference SbPost, :count, 1 do
       post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo@bar.com' }
-      assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param
+      assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1'
     end
     configatron.allow_anonymous_forum_posting = false    
   end
@@ -182,8 +182,9 @@ class SbPostsControllerTest < ActionController::TestCase
   test "should fail creating an anonymous reply" do
     configatron.allow_anonymous_forum_posting = true        
     assert_difference SbPost, :count, 0 do
-      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo' }
-      assert_response :redirect
+      post_params = { :body => 'blah', :author_email => 'foo' }
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => post_params
+      assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge({:post => post_params}))
     end
     configatron.allow_anonymous_forum_posting = false        
   end

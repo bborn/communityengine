@@ -24,9 +24,4 @@ class BaseControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  def test_should_get_teaser
-    get :teaser
-    assert_response :success
-  end
-  
 end

@@ -1,34 +1,28 @@
 = TODO
-* replace paginating find with will paginate
-* replace att_fu with paperclip
+# * replace paginating find with will paginate
+# * replace att_fu with paperclip
 * rip out multiple uploader, responds-to-parent
 * replace white_list with something (sanitize?) (preserve stuff from white list initializer)
 * replace setup template with something else more sensible
-* fix boot; allow overriding initializers, autoloading assets, etc
-* mce_opts initializer, recaptcha constants
-* rip out beta mode and teaser stuff
-* clean up routes
-* remove all the theming stuff
-* take out ez where
-* fix initializers/rakismet, recaptcha etc.
-* take out vendors/offerings crap
-* go back and fix: Rails 3 Fix comments
-* searchlogic broken with rails 3 gem 'searchlogic', :git => git://github.com/railsdog/searchlogic.git
-* copy new migrations from main app back into ce
-* copy new gemfile from main app back into ce
+# * fix boot; 
+* allow overriding initializers, autoloading assets, etc
+* mce_opts initializer
+# * recaptcha constants
+# * rip out beta mode and teaser stuff
+# * clean up routes
+* remove all the theming stuff?
+# * take out ez where
+* fix rakismet initializer
+* take out vendors/offerings stuff
+* add back searching to users index, use metaseach
 # * remote_form_for is gone (use dynamic_form gem)
-* remove stylesheet customization
-* rework users index to use searchlogic/metaseach or something
+* remove stylesheet customization?
 * use aato instead of aatos
 * authlogic has problems: not sure it's recording last_login magic columns, investigate
 # * finding transparently by login is broken (fixed using friendly_id)
 # * can't dup nilclass error in Rails timezone conversion (fixed with a little patch, should get fixed in a new version of Rails)
-
 # Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
 
-
-GOTCHAS:
-* edge rails needs edge rack? and edge arel
 
 =1.2.1
 * Anonymous forum replies

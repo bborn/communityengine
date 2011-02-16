@@ -3,13 +3,10 @@
 
   %ul.list
     %li= link_to_unless_current :features.l, homepage_features_path
-    - if feature_enabled?('categories')
-      %li= link_to_unless_current :categories.l, categories_path
+    %li= link_to_unless_current :categories.l, categories_path
     %li= link_to_unless_current :metro_areas.l, metro_areas_path
-    - if feature_enabled?('skills')
-      %li= link_to_unless_current :skills.l, new_skill_path 
-    - if feature_enabled?('events')
-      %li= link_to_unless_current :events.l, admin_events_path
+    %li= link_to_unless_current :skills.l, new_skill_path 
+    %li= link_to_unless_current :events.l, admin_events_path
     %li= link_to_unless_current :statistics.l, statistics_path
     %li= link_to_unless_current :ads.l, ads_path 
     %li= link_to_unless_current :comments.l, admin_comments_path 

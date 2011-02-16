@@ -2,16 +2,6 @@ class UsersController < BaseController
   include Viewable
   cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
   
-  if configatron.closed_beta_mode
-    skip_before_filter :beta_login_required, :only => [:new, :create, :activate]
-    before_filter :require_invitation, :only => [:new, :create]
-    
-    def require_invitation
-      redirect_to home_path and return false unless params[:inviter_id] && params[:inviter_code]
-      redirect_to home_path and return false unless User.find(params[:inviter_id]).valid_invite_code?(params[:inviter_code])
-    end
-  end    
-
   uses_tiny_mce(:only => [:new, :create, :update, :edit, :welcome_about]) do
     configatron.default_mce_options.merge({:editor_selector => "rich_text_editor"})
   end
@@ -93,8 +83,6 @@ class UsersController < BaseController
     @user         = User.new( {:birthday => Date.parse((Time.now - 25.years).to_s) }.merge(params[:user] || {}) )
     @inviter_id   = params[:id]
     @inviter_code = params[:code]
-
-    render :action => 'new', :layout => 'beta' and return if configatron.closed_beta_mode    
   end
 
   def create
@@ -269,7 +257,6 @@ class UsersController < BaseController
   def signup_completed
     @user = User.find(params[:id])
     redirect_to home_path and return unless @user
-    render :action => 'signup_completed', :layout => 'beta' if configatron.closed_beta_mode    
   end
   
   def welcome_photo
