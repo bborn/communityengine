@@ -24,4 +24,3 @@ gem 'acts_as_commentable', "~> 3.0.0"
 gem "recaptcha", :require => "recaptcha/rails"
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-

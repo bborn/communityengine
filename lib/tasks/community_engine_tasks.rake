@@ -1,25 +1,6 @@
 require 'rake/clean'
 
-namespace :db do
-  namespace :tables do
-    desc 'Blow away all your database tables.' 
-    task :drop => :environment do 
-      ActiveRecord::Base.establish_connection 
-      ActiveRecord::Base.connection.tables.each do |table_name| 
-        # truncate resets the auto_increment counters
-        ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table_name}") 
-        ActiveRecord::Base.connection.execute("DROP TABLE #{table_name}") 
-      end 
-    end
-  end
-end
-
 namespace :community_engine do   
-  
-  desc 'Mirror public assets'
-  task :mirror_assets => :environment do
-    #nothing
-  end
   
   desc  'Assign admin role to user. Usage: rake community_engine:make_admin email=admin@foo.com'
   task :make_admin => :environment do

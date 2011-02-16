@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   end
 
   resources :forums do
+    resources :sb_posts
+    
     resources :moderators
     resources :topics do
       resources :sb_posts

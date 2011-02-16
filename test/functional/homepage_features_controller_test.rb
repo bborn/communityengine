@@ -18,8 +18,8 @@ class HomepageFeaturesControllerTest < ActionController::TestCase
   
   def test_should_create_homepage_feature
     login_as :admin
-    assert_difference HomepageFeature, :count, 3 do
-      post :create, :homepage_feature => {:title => 'feature', :url => 'example.com', :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') } 
+    assert_difference HomepageFeature, :count, 1 do
+      post :create, :homepage_feature => {:title => 'feature', :url => 'example.com', :image => fixture_file_upload('/files/library.jpg', 'image/jpg') } 
     end
     assert_redirected_to homepage_feature_path(assigns(:homepage_feature))
   end

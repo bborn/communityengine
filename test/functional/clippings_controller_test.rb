@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClippingsControllerTest < ActionController::TestCase
-  fixtures :clippings, :users, :roles
+  fixtures :all
 
   def setup
     Asset.destroy_all    

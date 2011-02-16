@@ -21,18 +21,6 @@ class SessionsControllerTest < ActionController::TestCase
     assert_nil UserSession.find
     assert_response :redirect
   end
-
-  def test_should_remember_me
-    post :create, :login => 'quentin', :password => 'test', :remember_me => "1"
-    parsed_cookie = CGI::Cookie.parse(@response.header["Set-Cookie"][0])
-    assert parsed_cookie.has_key?('expires')
-  end
-
-  def test_should_not_remember_me
-    post :create, :login => 'quentin', :password => 'test', :remember_me => "0"
-    parsed_cookie = CGI::Cookie.parse(@response.header["Set-Cookie"][0])
-    assert !parsed_cookie.has_key?('expires')
-  end
   
   def test_should_delete_token_on_logout
     login_as :quentin
