@@ -117,7 +117,7 @@ float: right;
 padding-left: 20px;
 margin-right: 20px;
 background-color: transparent;
-background-image: url(/plugin_assets/community_engine/images/icons/email_open.png);
+background-image: url(/community_engine/images/icons/email_open.png);
 background-repeat: no-repeat;
 background-position: left center;
 }
@@ -125,7 +125,7 @@ background-position: left center;
 /* Navbar */
 
 #NavBar{
-background: #aba8a3 url(/plugin_assets/community_engine/images/bg_navbar.gif) repeat-x 0 0;
+background: #aba8a3 url(/community_engine/images/bg_navbar.gif) repeat-x 0 0;
 border-top: 1px solid #d9d6d3;
 clear: both;
 }
@@ -158,7 +158,7 @@ text-decoration: none !important;
 font-size: 108%;
 padding: 4px 15px 4px 5px;
 margin: 11px 10px 0 0;
-background: #fff url(/plugin_assets/community_engine/images/search.gif) no-repeat right center;
+background: #fff url(/community_engine/images/search.gif) no-repeat right center;
 border: none;
 }
 
@@ -186,12 +186,12 @@ margin-bottom:.5em;
 font-size: 108%;}
 
 #welcome .box h4{
-background:url(/plugin_assets/community_engine/images/bg_h6btn.gif) repeat-x left center;
+background:url(/community_engine/images/bg_h6btn.gif) repeat-x left center;
 }
 
 #welcome .box h4 a{
 background-color: transparent;
-background-image: url(/plugin_assets/community_engine/images/icons/52.png);
+background-image: url(/community_engine/images/icons/52.png);
 background-repeat: no-repeat;
 background-position: .5em center;
 display: block;
@@ -205,7 +205,7 @@ border: 1px solid #9ec500;
 }
 
 #welcome .first .box h4 a{
-background-image: url(/plugin_assets/community_engine/images/icons/31.png);
+background-image: url(/community_engine/images/icons/31.png);
 }
 
 #welcome .box h4 a:hover{
@@ -348,22 +348,22 @@ font-weight: bold;
 padding:0 0 3px 0;
 }
 
-.hentry .vcard ul li.update{background-image: url(/plugin_assets/community_engine/images/icons/date.png) }
-.hentry .vcard ul li.view{background-image: url(/plugin_assets/community_engine/images/icons/page_white_magnify.png) }
-.hentry .vcard ul li.comments{background-image: url(/plugin_assets/community_engine/images/icons/comments.png) }
-.hentry .vcard ul li.msg{background-image: url(/plugin_assets/community_engine/images/icons/email_go.png) }
-.hentry .vcard ul li.addfriend{background-image: url(/plugin_assets/community_engine/images/icons/user_add.png) }
-.hentry .vcard ul li.print{background-image: url(/plugin_assets/community_engine/images/icons/printer.png) }
-.hentry .vcard ul li.email{background-image: url(/plugin_assets/community_engine/images/icons/user_go.png) }
+.hentry .vcard ul li.update{background-image: url(/community_engine/images/icons/date.png) }
+.hentry .vcard ul li.view{background-image: url(/community_engine/images/icons/page_white_magnify.png) }
+.hentry .vcard ul li.comments{background-image: url(/community_engine/images/icons/comments.png) }
+.hentry .vcard ul li.msg{background-image: url(/community_engine/images/icons/email_go.png) }
+.hentry .vcard ul li.addfriend{background-image: url(/community_engine/images/icons/user_add.png) }
+.hentry .vcard ul li.print{background-image: url(/community_engine/images/icons/printer.png) }
+.hentry .vcard ul li.email{background-image: url(/community_engine/images/icons/user_go.png) }
 .hentry .vcard ul li.share{
-/*	background-image: url(/plugin_assets/community_engine/images/icons/group_go.png) */
+/*	background-image: url(/community_engine/images/icons/group_go.png) */
 	padding-left:0;
 	}
-.hentry .vcard ul li.tags{background-image: url(/plugin_assets/community_engine/images/icons/tag_blue.png) }
-.hentry .vcard ul li.skills{background-image: url(/plugin_assets/community_engine/images/icons/wrench.png) }
-.hentry .vcard ul li.geo{background-image: url(/plugin_assets/community_engine/images/icons/world.png) }
-.hentry .vcard ul li.edit{background-image: url(/plugin_assets/community_engine/images/icons/post.png) }
-.hentry .vcard ul li.delete{background-image: url(/plugin_assets/community_engine/images/icons/delete.png) }
+.hentry .vcard ul li.tags{background-image: url(/community_engine/images/icons/tag_blue.png) }
+.hentry .vcard ul li.skills{background-image: url(/community_engine/images/icons/wrench.png) }
+.hentry .vcard ul li.geo{background-image: url(/community_engine/images/icons/world.png) }
+.hentry .vcard ul li.edit{background-image: url(/community_engine/images/icons/post.png) }
+.hentry .vcard ul li.delete{background-image: url(/community_engine/images/icons/delete.png) }
 
 .entry-content h6{
 border-bottom: 1px dotted #a2a19b;
@@ -377,7 +377,7 @@ font-size: 85%;
 font-weight: bold;
 text-transform: uppercase;
 text-decoration: none;
-background: transparent url(/plugin_assets/community_engine/images/icons/add.png) no-repeat left center;
+background: transparent url(/community_engine/images/icons/add.png) no-repeat left center;
 padding-left: 20px;
 padding: 2px 2px 2px 20px;
 }
@@ -405,7 +405,7 @@ background: red;
 display: block;
 margin: 0 10px 5px 0;
 padding: 2px 0 2px 15px;
-background: url(/plugin_assets/community_engine/images/icons/tag_blue.png) no-repeat left center;
+background: url(/community_engine/images/icons/tag_blue.png) no-repeat left center;
 }
 
 
@@ -426,13 +426,13 @@ border-bottom: 1px dotted #a2a19b;
 .checks li, .page li{
 padding-left: 20px;
 background-color: transparent;
-background-image: url(/plugin_assets/community_engine/images/icons/accept.png);
+background-image: url(/community_engine/images/icons/accept.png);
 background-repeat: no-repeat;
 background-position: left center;
 }
 
-.checks li{background-image: url(/plugin_assets/community_engine/images/icons/accept.png)}
-.page li{background-image:url(/plugin_assets/community_engine/images/icons/page_white.png)}
+.checks li{background-image: url(/community_engine/images/icons/accept.png)}
+.page li{background-image:url(/community_engine/images/icons/page_white.png)}
 
 /* user list */
 dl.vcard{
@@ -471,9 +471,9 @@ background-repeat: no-repeat;
 background-color: transparent;
 }
 
-dl.vcard dd.member{background-image: url(/plugin_assets/community_engine/images/icons/user.png);}
-dl.vcard dd.post{background-image: url(/plugin_assets/community_engine/images/icons/page_white.png);}
-dl.vcard dd.rss{background-image: url(/plugin_assets/community_engine/images/icons/rss.png);}
+dl.vcard dd.member{background-image: url(/community_engine/images/icons/user.png);}
+dl.vcard dd.post{background-image: url(/community_engine/images/icons/page_white.png);}
+dl.vcard dd.rss{background-image: url(/community_engine/images/icons/rss.png);}
 
 h6.all{margin:.5em 0;}
 
@@ -481,7 +481,7 @@ h6.all a{
 font-size: 85%;
 font-weight: bold;
 text-transform: uppercase;
-background: transparent url(/plugin_assets/community_engine/images/icons/add.png) no-repeat left center;
+background: transparent url(/community_engine/images/icons/add.png) no-repeat left center;
 padding:3px 0 3px 20px;
 color: #379d00;
 }
@@ -632,19 +632,19 @@ margin-left:  12.3846em; /* about 200px - 3em*/
 
 .fresh dt {
 	padding-left: 20px;
-	background-image: url(/plugin_assets/community_engine/images/icons/activity_default.png);
+	background-image: url(/community_engine/images/icons/activity_default.png);
 	background-repeat: no-repeat;
 	background-position: left center;
 	background-color: transparent;	
 }
 
-.fresh .comment dt {background-image: url(/plugin_assets/community_engine/images/icons/comment.png);}
-.fresh .photo dt {background-image: url(/plugin_assets/community_engine/images/icons/picture.png);}
-.fresh .clipping dt {background-image: url(/plugin_assets/community_engine/images/icons/book.png);}
-.fresh .updated_profile dt {background-image: url(/plugin_assets/community_engine/images/icons/user_edit.png);}
-.fresh .favorite dt {background-image: url(/plugin_assets/community_engine/images/icons/heart_add.png);}
-.fresh .post dt, .fresh .sb_post dt, .fresh .topic dt{background-image: url(/plugin_assets/community_engine/images/icons/post.png);}
-.fresh .rsvp dt, .fresh .event dt {background-image: url(/plugin_assets/community_engine/images/icons/date.png);}
+.fresh .comment dt {background-image: url(/community_engine/images/icons/comment.png);}
+.fresh .photo dt {background-image: url(/community_engine/images/icons/picture.png);}
+.fresh .clipping dt {background-image: url(/community_engine/images/icons/book.png);}
+.fresh .updated_profile dt {background-image: url(/community_engine/images/icons/user_edit.png);}
+.fresh .favorite dt {background-image: url(/community_engine/images/icons/heart_add.png);}
+.fresh .post dt, .fresh .sb_post dt, .fresh .topic dt{background-image: url(/community_engine/images/icons/post.png);}
+.fresh .rsvp dt, .fresh .event dt {background-image: url(/community_engine/images/icons/date.png);}
 
 /* =============================================== */
 /* 8. COMMUNITY FOOTER                             */
@@ -678,7 +678,7 @@ padding-left: 0;
 #CommunityFooter p{
 float: right;
 padding: 2px 0 2px 120px;
-background: url(/plugin_assets/community_engine/images/logo.gif) no-repeat left center;
+background: url(/community_engine/images/logo.gif) no-repeat left center;
 }
 
 /* =============================================== */
@@ -968,10 +968,10 @@ ul.message_nav li {
 	background-repeat: no-repeat;
 	padding-left:20px;
 }
-ul.message_nav li.inbox_new {background-image: url(/plugin_assets/community_engine/images/icons/email_open.png);}
-ul.message_nav li.inbox {background-image: url(/plugin_assets/community_engine/images/icons/email.png);}
-ul.message_nav li.sent {background-image: url(/plugin_assets/community_engine/images/icons/email_go.png);}
-li.compose {background-image: url(/plugin_assets/community_engine/images/icons/email_edit.png);}
+ul.message_nav li.inbox_new {background-image: url(/community_engine/images/icons/email_open.png);}
+ul.message_nav li.inbox {background-image: url(/community_engine/images/icons/email.png);}
+ul.message_nav li.sent {background-image: url(/community_engine/images/icons/email_go.png);}
+li.compose {background-image: url(/community_engine/images/icons/email_edit.png);}
 .messages .photo a img{
 	float: left;
 	display: block;
@@ -1015,7 +1015,7 @@ table.poll {
     table.poll td .vote {
       display: block;
       float: left;
-      background: url(/plugin_assets/community_engine/images/icons/vote.png) no-repeat left;
+      background: url(/community_engine/images/icons/vote.png) no-repeat left;
       padding: 0 10px 0 20px;
       height: 20px;
       margin-right: 10px;
@@ -1040,10 +1040,10 @@ table.poll {
 /* User Menu Dropdown*/
 #user-menu {
 	padding-right: 15px;
-	background: url(/plugin_assets/community_engine/images/icons/bullet_arrow_down_50.png) no-repeat right;
+	background: url(/community_engine/images/icons/bullet_arrow_down_50.png) no-repeat right;
 	}
 #user-menu:hover {
-	background: url(/plugin_assets/community_engine/images/icons/bullet_arrow_down.png) no-repeat right;	
+	background: url(/community_engine/images/icons/bullet_arrow_down.png) no-repeat right;	
 }
 
 .icon_row a {

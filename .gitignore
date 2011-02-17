@@ -3,3 +3,4 @@
 pkg
 .rvmrc
 test/testapp/public/system/
+coverage

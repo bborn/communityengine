@@ -187,4 +187,4 @@ Contributors - Thanks! :)
 
 
 
-Bug tracking is via [Lighthouse](http://communityengine.lighthouseapp.com)
+Bug tracking is via [GitHub Issues](https://github.com/bborn/communityengine/issues)
