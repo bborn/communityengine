@@ -4,8 +4,10 @@ hgtv:
   name: hgtv
   html: Come watch our show!
   frequency: 1
-  created_at: 2007-04-22 16:54:48
-  updated_at: 2007-04-22 16:54:48
-  start_date: 2007-04-22 16:54:48
-  end_date: 2007-04-22 16:54:48
+  created_at: <%= 5.days.ago.iso8601 %>
+  updated_at: <%= 5.days.ago.iso8601 %>
+  start_date: <%= 5.days.ago.iso8601 %>
+  end_date: <%= 5.days.from_now.iso8601 %>
   location: homepage_s1
+  audience: all
+  published: true

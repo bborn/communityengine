@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gemspec
+
 gem 'rails', '3.1.0.beta', :git => 'git://github.com/bborn/rails.git'
 gem 'rack', :git => 'git://github.com/rack/rack.git'
 gem 'arel',  :git => 'git://github.com/rails/arel.git'

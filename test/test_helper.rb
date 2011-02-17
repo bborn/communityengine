@@ -1,8 +1,8 @@
 # Configure Rails Envinronment
 ENV["RAILS_ENV"] = "test"
 
-require 'simplecov'
-# require File.expand_path('../../../simplecov/lib/simplecov', __FILE__)
+# require 'simplecov'
+require File.expand_path('../../../simplecov/lib/simplecov', __FILE__)
 SimpleCov.start do
   add_filter '/config/'
   add_filter '/vendor/'  

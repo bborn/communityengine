@@ -22,23 +22,44 @@ PATH
   specs:
     community_engine (1.9.9)
       acts_as_commentable (~> 3.0.0)
+      acts_as_commentable (~> 3.0.0)
+      arel
+      authlogic
       authlogic
       aws-s3
+      aws-s3
       calendar_date_select
+      calendar_date_select
+      community_engine
+      configatron
       configatron
       dynamic_form
+      dynamic_form
+      friendly_id (~> 3.2.1)
       friendly_id (= 3.2.1)
       haml
+      haml
+      hpricot
       hpricot
       htmlentities
+      htmlentities
+      meta_search
       meta_search
       paperclip (~> 2.3)
+      paperclip (~> 2.3)
       rack (= 1.2.1)
+      rack
+      rails (= 3.1.0.beta)
       rails (= 3.1.0.beta)
       rakismet
+      rakismet
+      recaptcha
       recaptcha
       ri_cal
+      ri_cal
       simplecov
+      sqlite3-ruby
+      will_paginate (~> 3.0.pre2)
       will_paginate (~> 3.0.pre2)
 
 PATH
