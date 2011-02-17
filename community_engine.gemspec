@@ -2201,6 +2201,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<friendly_id>, ["= 3.2.1"])
       s.add_runtime_dependency(%q<paperclip>, ["~> 2.3"])
       s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
+      s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
     else
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_dependency(%q<rack>, [">= 0"])
@@ -2240,6 +2241,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<friendly_id>, ["= 3.2.1"])
       s.add_dependency(%q<paperclip>, ["~> 2.3"])
       s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
+      s.add_dependency(%q<recaptcha>, [">= 0"])
     end
   else
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
@@ -2280,6 +2282,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<friendly_id>, ["= 3.2.1"])
     s.add_dependency(%q<paperclip>, ["~> 2.3"])
     s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
+    s.add_dependency(%q<recaptcha>, [">= 0"])
   end
 end
 
