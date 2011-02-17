@@ -51,7 +51,7 @@ Lightbox.base.prototype = {
 		Element.addClassName(this.element, 'lbox')
 		
 		//Tip: make sure the path to the close.gif image below is correct for your setup
-		closer = '<img id="close" src="/plugin_assets/community_engine/images/close.gif" alt="Close" title="Close this window" />'
+		closer = '<img id="close" src="/community_engine/images/close.gif" alt="Close" title="Close this window" />'
 
 		//insert the closer image into the div
 		new Insertion.Top(this.element, closer);
