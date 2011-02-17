@@ -876,7 +876,6 @@ Gem::Specification.new do |s|
     "test/testapp/Rakefile",
     "test/testapp/app/controllers/application_controller.rb",
     "test/testapp/app/helpers/application_helper.rb",
-    "test/testapp/app/views/layouts/application.html.erb",
     "test/testapp/config.ru",
     "test/testapp/config/application.rb",
     "test/testapp/config/application.yml",
@@ -1370,7 +1369,6 @@ Gem::Specification.new do |s|
     "test/testapp/public/community_engine/stylesheets/screen.css",
     "test/testapp/public/favicon.ico",
     "test/testapp/public/images/rails.png",
-    "test/testapp/public/index.html",
     "test/testapp/public/javascripts/application.js",
     "test/testapp/public/javascripts/controls.js",
     "test/testapp/public/javascripts/dragdrop.js",
@@ -2202,7 +2200,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<paperclip>, ["~> 2.3"])
       s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
-      s.add_development_dependency(%q<simplecov>, ["~> 0.4"])
+      s.add_runtime_dependency(%q<simplecov>, [">= 0"])
     else
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_dependency(%q<rack>, [">= 0"])
@@ -2243,7 +2241,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<paperclip>, ["~> 2.3"])
       s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_dependency(%q<recaptcha>, [">= 0"])
-      s.add_dependency(%q<simplecov>, ["~> 0.4"])
+      s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
@@ -2285,7 +2283,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<paperclip>, ["~> 2.3"])
     s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     s.add_dependency(%q<recaptcha>, [">= 0"])
-    s.add_dependency(%q<simplecov>, ["~> 0.4"])
+    s.add_dependency(%q<simplecov>, [">= 0"])
   end
 end
 
