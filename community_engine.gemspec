@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = %q{2011-02-14}
+  s.date = %q{2011-02-16}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -133,7 +133,6 @@ Gem::Specification.new do |s|
     "app/views/base/advertise.html.haml",
     "app/views/base/plaxo.html.haml",
     "app/views/base/site_index.html.haml",
-    "app/views/base/teaser.html.haml",
     "app/views/categories/_tips.html.haml",
     "app/views/categories/edit.html.haml",
     "app/views/categories/index.html.haml",
@@ -187,7 +186,6 @@ Gem::Specification.new do |s|
     "app/views/invitations/index.html.erb",
     "app/views/invitations/new.html.haml",
     "app/views/layouts/application.html.haml",
-    "app/views/layouts/beta.html.haml",
     "app/views/messages/_form.html.haml",
     "app/views/messages/_inbox.html.haml",
     "app/views/messages/_sent.html.haml",
@@ -238,7 +236,7 @@ Gem::Specification.new do |s|
     "app/views/posts/manage.html.haml",
     "app/views/posts/new.html.haml",
     "app/views/posts/popular.html.haml",
-    "app/views/posts/preview.html.erb",
+    "app/views/posts/preview.html.haml",
     "app/views/posts/recent.html.haml",
     "app/views/posts/show.html.haml",
     "app/views/rsvps/edit.html.haml",
@@ -804,7 +802,6 @@ Gem::Specification.new do |s|
     "public/stylesheets/screen.css",
     "sample_files/amazon_s3.yml",
     "sample_files/s3.yml",
-    "test/all_tests.rb",
     "test/fixtures/ads.yml",
     "test/fixtures/albums.yml",
     "test/fixtures/categories.yml",
@@ -1503,17 +1500,6 @@ Gem::Specification.new do |s|
     "vendor/plugins/prototype_legacy_helper/init.rb",
     "vendor/plugins/prototype_legacy_helper/lib/prototype_legacy_helper.rb",
     "vendor/plugins/prototype_legacy_helper/test/test_prototype_helper.rb",
-    "vendor/plugins/recaptcha/.gitignore",
-    "vendor/plugins/recaptcha/LICENSE",
-    "vendor/plugins/recaptcha/README.rdoc",
-    "vendor/plugins/recaptcha/Rakefile",
-    "vendor/plugins/recaptcha/init.rb",
-    "vendor/plugins/recaptcha/install.rb",
-    "vendor/plugins/recaptcha/lib/recaptcha.rb",
-    "vendor/plugins/recaptcha/tasks/recaptcha_tasks.rake",
-    "vendor/plugins/recaptcha/test/recaptcha_test.rb",
-    "vendor/plugins/recaptcha/test/verify_recaptcha_test.rb",
-    "vendor/plugins/recaptcha/uninstall.rb",
     "vendor/plugins/resource_feeder/README",
     "vendor/plugins/resource_feeder/Rakefile",
     "vendor/plugins/resource_feeder/init.rb",
@@ -2009,7 +1995,6 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{CommunityEngine for Rails 3}
   s.test_files = [
-    "test/all_tests.rb",
     "test/functional/activities_controller_test.rb",
     "test/functional/admin_controller_test.rb",
     "test/functional/ads_controller_test.rb",
@@ -2179,6 +2164,8 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
+      s.add_runtime_dependency(%q<rack>, [">= 0"])
+      s.add_runtime_dependency(%q<arel>, [">= 0"])
       s.add_runtime_dependency(%q<community_engine>, ["= 1.9.9"])
       s.add_runtime_dependency(%q<meta_search>, [">= 0"])
       s.add_runtime_dependency(%q<authlogic>, [">= 0"])
@@ -2195,6 +2182,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<friendly_id>, ["~> 3.2.1"])
       s.add_runtime_dependency(%q<paperclip>, ["~> 2.3"])
       s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
+      s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
       s.add_runtime_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_runtime_dependency(%q<rack>, ["= 1.2.1"])
@@ -2215,6 +2203,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     else
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
+      s.add_dependency(%q<rack>, [">= 0"])
+      s.add_dependency(%q<arel>, [">= 0"])
       s.add_dependency(%q<community_engine>, ["= 1.9.9"])
       s.add_dependency(%q<meta_search>, [">= 0"])
       s.add_dependency(%q<authlogic>, [">= 0"])
@@ -2231,6 +2221,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<friendly_id>, ["~> 3.2.1"])
       s.add_dependency(%q<paperclip>, ["~> 2.3"])
       s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
+      s.add_dependency(%q<recaptcha>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_dependency(%q<rack>, ["= 1.2.1"])
@@ -2252,6 +2243,8 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
+    s.add_dependency(%q<rack>, [">= 0"])
+    s.add_dependency(%q<arel>, [">= 0"])
     s.add_dependency(%q<community_engine>, ["= 1.9.9"])
     s.add_dependency(%q<meta_search>, [">= 0"])
     s.add_dependency(%q<authlogic>, [">= 0"])
@@ -2268,6 +2261,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<friendly_id>, ["~> 3.2.1"])
     s.add_dependency(%q<paperclip>, ["~> 2.3"])
     s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
+    s.add_dependency(%q<recaptcha>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
     s.add_dependency(%q<rack>, ["= 1.2.1"])

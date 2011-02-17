@@ -1,130 +1,45 @@
-CommunityEngine [v1.2.1]
+CommunityEngine [v1.9.9]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.3.4 (higher versions are not yet supported)
-	- ImageMagick (>6.4) 
-	- Several gems:
-    desert 0.5.2
-	  rmagick
-	  hpricot
-	  htmlentities
-	  rake 0.8.3
-	  haml 2.0.5
-	  calendar_date_select
-	  ri_cal
-    authlogic
-    searchlogic
-    rakismet
-	  aws-s3 (if using s3 for photos)
+	- RAILS VERSION 3.1.0beta (lower versions are not supported)
+	- All the gems listed in the Gemfile
 
 Getting CommunityEngine Running
 --------------------------------
 
-SHORT VERSION: 
+1. Copy the following into your Gemfile:
 
-        rails your_app_name -m http://github.com/bborn/communityengine/raw/edge/community_engine_setup_template.rb
+		gem 'rails', '3.1.0.beta', :git => 'git://github.com/bborn/rails.git'
+		gem 'rack', :git => 'git://github.com/rack/rack.git'
+		gem 'arel',  :git => 'git://github.com/rails/arel.git'
+		gem 'community_engine', '1.9.9', :git => 'git://github.com/bborn/communityengine.git', :branch => "rails3"
+		gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
+		gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
+		gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'		
+		gem 'configatron'
+		gem 'hpricot'
+		gem 'htmlentities'
+		gem 'haml'
+		gem 'ri_cal'
+		gem 'rakismet'
+		gem 'aws-s3', :require => 'aws/s3'
+		gem "will_paginate", "~> 3.0.pre2"
+		gem "dynamic_form"
+		gem "friendly_id", "~> 3.2.1"
+		gem "paperclip", "~> 2.3"
+		gem 'acts_as_commentable', "~> 3.0.0"
+		gem "recaptcha", :require => "recaptcha/rails"
 
-LONG VERSION:
+2. From your app's root directory run:
 
-1. From the command line
+		$ bundle install
 
-		$ rails site_name (create a rails app if you don't have one already)    
+3. Mount CommunityEngine in your `config/routes.rb` file:
 
-2. Install desert:
-
-		$ sudo gem install desert
-	
-3. Put the community engine plugin into plugins directory (use one of the following methods):
-
-	* If you're not using git, and just want to add the source files:
-
-			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community\_engine
-
-	* Using git, make a shallow clone of the community_engine repository:
-
-			$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
-
-	* If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:
-	
-			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
-			Basically:
-			git submodule add git://github.com/bborn/communityengine.git vendor/plugins/community_engine
-			git submodule init
-			git submodule update
-
-	* Make sure you rename your CE directory to `community_engine` (note the underscore) if it isn't named that for some reason
-
-4. Create your database and modify your `config/database.yml` appropriately.
-
-5. Delete public/index.html (if you haven't already)
-
-6. Modify your environment.rb as indicated below:
-
-		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
-		require File.join(File.dirname(__FILE__), 'boot')
-
-        require 'desert'
-
-		Rails::Initializer.run do |config|
-		  config.plugins = [:community_engine, :white_list, :all]
-		  config.plugin_paths += ["#{Rails.root}/vendor/plugins/community_engine/plugins"]
-		  config.gem 'calendar_date_select'
-		  config.gem 'icalendar'		
-		  config.gem 'authlogic'
-		  config.gem 'searchlogic'
-		  config.gem 'rakismet'		  
-		  
-      config.action_controller.session = {
-        :key    => '_your_app_session',
-        :secret => 'secret'
-      }
-
-		  ... Your stuff here ...
-		end
-		# Include your application configuration below
-		require "#{Rails.root}/vendor/plugins/community_engine/config/boot.rb"
-
-7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
-
-		# development.rb, production.rb, and test.rb should include something like:
-		configatron.app_host = "http://localhost:3000" (or whatever your URL will be for that particular environment)
-
-8. Modify your routes.rb as indicated below:
-
-		# Add this after any of your own existing routes, but before the default rails routes: 
-		map.routes_from_plugin :community_engine
-		# Install the default routes as the lowest priority.
-		map.connect ':controller/:action/:id'
-		map.connect ':controller/:action/:id.:format'     
-
-9. Generate the community engine migrations: 
-
-		$ script/generate plugin_migration
-    
-10. From the command line:
-	
-		$ rake db:migrate
-
-11. You may need to change these lines in `application.rb` (if you're not using cookie sessions):
-
-		# See ActionController::RequestForgeryProtection for details
-		# Uncomment the :secret if you're not using the cookie session store
-		protect_from_forgery # :secret => 'your_secret_string'
-
-12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
-
-    $ rake test
-		$ rake community_engine:test
-
-13. Start your server and check out your site! 
-
-		$ mongrel_rails start
-		or
-		$ ./script/server
+		mount CommunityEngine::Engine => "/"
 
 
 
@@ -139,6 +54,7 @@ The application configuration defined in this file overrides the one defined in 
 This is where you can change commonly used configuration variables, like `configatron.community_name`, etc.
 
 This YAML file will get converted into an OpenStruct, giving you things like `configatron.community_name`, `configatron.support_email`, etc.
+
 
 Photo Uploading
 ---------------
