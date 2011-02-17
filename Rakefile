@@ -62,6 +62,7 @@ begin
     gem.add_dependency "friendly_id", "3.2.1"
     gem.add_dependency "paperclip", "~> 2.3"
     gem.add_dependency 'acts_as_commentable', '~> 3.0.0'    
+    gem.add_dependency 'recaptcha'
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."

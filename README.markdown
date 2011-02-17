@@ -52,21 +52,15 @@ Getting CommunityEngine Running
 6. Start your server! 
 
 		$ rails server
-		
-
-
 
 Optional Configuration
 ======================
 
-
 To override the default configuration, create an `application.yml` file in `Rails.root/config` 
 
-The application configuration defined in this file overrides the one defined in `/community_engine/config/application.yml`
+The application configuration defined in this file overrides the one defined in the [CommunityEngine gem](https://github.com/bborn/communityengine/blob/rails3/config/application.yml)
 
 This is where you can change commonly used configuration variables, like `configatron.community_name`, etc.
-
-This YAML file will get converted into an OpenStruct, giving you things like `configatron.community_name`, `configatron.support_email`, etc.
 
 
 Photo Uploading
@@ -82,16 +76,14 @@ Finally, you'll need an S3 account for S3 photo uploading.
 
 
 Create an s3.yml file in `Rails.root/config` 
-------------------------------------------------------
 
-CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `Rails.root/config/s3.yml`. (Sample in `sample_files/s3.yml`)
+
 
 Roles
 ------
 
 CommunityEngine Users have a Role (by default, it's admin, moderator, or member)
 
-To set a user as an admin, you must manually change his `role_id` through the database.
 Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar.)
 
 Admins and moderators can edit and delete other users posts.
@@ -129,12 +121,10 @@ To create a theme:
 *Note: when running in production mode, theme assets (images, js, and stylesheets) are automatically copied to you public directory (avoiding a Rails request on each image load).*
 
 
-Localization [FIX Rails3]
+Localization
 ------------
 
-Localization is done via Rails native I18n API. We've added some extensions to String and Symbol to allow backwards compatibility (we used to use Globalite).
-
-Strings and Symbols respond to the `.l` method that allows for a look up of the symbol (or a symbolized version of the string) into a strings file which is stored in yaml. 
+Localization is done via Rails native I18n API. We've added some extensions to String and Symbol to let them respond to the `.l` method. That allows for a look up of the symbol (or a symbolized version of the string).
 
 For complex strings with substitutions, Symbols respond to the `.l` method with a hash passed as an argument, for example: 
 
@@ -144,17 +134,7 @@ And in your language file you'd have:
 
 	welcome: "Welcome {{name}}"
 
-To customize the language, or add a new language create a new yaml file in `Rails.root/lang/ui`.
-The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
-The language only file (`es.yml`) will support all locales.
-
-To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb`:
-
-	configatron.show_localization_keys_for_debugging = true if Rails.env.eql?('development')
-  
-Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
-
-For more, see /lang/readme.txt.
+To customize the language, or add a new language create a new yaml file in `Rails.root/config/locales`. The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`). The language only file (`es.yml`) will support all locales.
 
 
 Spam Control
@@ -168,38 +148,24 @@ ReCaptcha: to allow non-logged-in commenting and use [ReCaptcha](http://recaptch
     recaptcha_pub_key: YOUR_PUBLIC_KEY
     recaptcha_priv_key: YOUR_PRIVATE_KEY
     
-You can also require recaptcha on signup (to prevent automated signups) by adding this in your `application.yml` (you'll still need to add your ReCaptcha keys):
+You can also require ReCaptcha on signup (to prevent automated signups) by adding this in your `application.yml` (you'll still need to add your ReCaptcha keys):
 
     require_captcha_on_signup: true
     
-Akismet: Unfortunately, bots aren't the only ones submitting spam; humans do it to. [Akismet](http://akismet.com/) is a great collaborative spam filter from the makers of Wordpress, and you can use it to check for spam comments by adding one line to your `application.yml`:
+Akismet: Unfortunately, bots aren't the only ones submitting spam; humans do it too. [Akismet](http://akismet.com/) is a great collaborative spam filter from the makers of Wordpress, and you can use it to check for spam comments by adding one line to your `application.yml`:
 
-    akismet_key: 4bfd15b0ea46
+    akismet_key: YOUR_KEY
   
-(If you do this, make sure you are requiring the `rakismet` gem in `environment.rb`)
     
-
-
 Other notes
 -----------
 
-Any views you create in your app directory will override those in `community_engine/app/views`. 
+Any views you create in your app directory will override those in CommunityEngine
 For example, you could create `Rails.root/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
 
 You can also override CommunityEngine's controllers by creating identically-named controllers in your application's `app/controllers` directory.
 
 
-Gotchas
--------
-
-1. I get errors running rake! Error: (wrong number of arguments (3 for 1)
-  - make sure you have the latest version of rake
-2. When upgrading to Rails 2.3, make sure your `action_controller.session` key is called `:key`, instead of the old `:session_key`:
-
-        config.action_controller.session = {
-          :key => '_ce_session',
-          :secret      => 'secret'
-        }
 
 
 Contributors - Thanks! :)
@@ -220,8 +186,5 @@ Contributors - Thanks! :)
 - [Stephane Decleire](http://github.com/sdecleire) i18n, fr-FR locale
 
 
-To Do
-----
-* Track down `<RangeError ... is recycled object>` warnings on tests (anyone know where that's coming from?)
 
 Bug tracking is via [Lighthouse](http://communityengine.lighthouseapp.com)
