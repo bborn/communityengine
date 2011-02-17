@@ -6,8 +6,8 @@ class FriendshipsController < BaseController
   def index
     @body_class = 'friendships-browser'
     
-    @user = (params[:id] ||params[:user_id]) ? User.find((params[:id] || params[:user_id] )): Friendship.find(:first, :order => "rand()").user
-    @friendships = Friendship.find(:all, :conditions => ['user_id = ? OR friend_id = ?', @user.id, @user.id], :limit => 40, :order => "rand()")
+    @user = (params[:id] ||params[:user_id]) ? User.find((params[:id] || params[:user_id] )): Friendship.find(:first).user
+    @friendships = Friendship.find(:all, :conditions => ['user_id = ? OR friend_id = ?', @user.id, @user.id], :limit => 40)
     @users = User.find(:all, :conditions => ['users.id in (?)', @friendships.collect{|f| f.friend_id }])    
     
     respond_to do |format|

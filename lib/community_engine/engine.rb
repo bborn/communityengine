@@ -1,3 +1,4 @@
+require "community_engine"
 require 'rails/all'
 
 module CommunityEngine

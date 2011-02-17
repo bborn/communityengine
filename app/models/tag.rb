@@ -2,13 +2,6 @@ require_dependency File.dirname(__FILE__) + '/../../vendor/plugins/acts_as_tagga
 
 class Tag < ActiveRecord::Base
   
-  # def to_param
-  #   param = URI.escape(self.name, /[\/.?#]/)    
-  #   #quote if needed
-  #   param = "\"#{param}\"" if param.match(TagList.delimiter)
-  #   param
-  # end
-
   def related_tags
     taggable_ids = self.taggings.find(:all, :limit => 10).collect{|t| t.taggable_id }
     return [] if taggable_ids.blank?

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = %q{2011-02-16}
+  s.date = %q{2011-02-17}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -1410,6 +1410,7 @@ Gem::Specification.new do |s|
     "test/unit/sb_post_test.rb",
     "test/unit/skill_test.rb",
     "test/unit/state_test.rb",
+    "test/unit/tag_test.rb",
     "test/unit/topic_test.rb",
     "test/unit/user_notifier_test.rb",
     "test/unit/user_test.rb",
@@ -2150,6 +2151,7 @@ Gem::Specification.new do |s|
     "test/unit/sb_post_test.rb",
     "test/unit/skill_test.rb",
     "test/unit/state_test.rb",
+    "test/unit/tag_test.rb",
     "test/unit/topic_test.rb",
     "test/unit/user_notifier_test.rb",
     "test/unit/user_test.rb",
@@ -2164,7 +2166,6 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_runtime_dependency(%q<rack>, [">= 0"])
       s.add_runtime_dependency(%q<arel>, [">= 0"])
-      s.add_runtime_dependency(%q<community_engine>, ["= 1.9.9"])
       s.add_runtime_dependency(%q<meta_search>, [">= 0"])
       s.add_runtime_dependency(%q<authlogic>, [">= 0"])
       s.add_runtime_dependency(%q<configatron>, [">= 0"])
@@ -2205,7 +2206,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_dependency(%q<rack>, [">= 0"])
       s.add_dependency(%q<arel>, [">= 0"])
-      s.add_dependency(%q<community_engine>, ["= 1.9.9"])
       s.add_dependency(%q<meta_search>, [">= 0"])
       s.add_dependency(%q<authlogic>, [">= 0"])
       s.add_dependency(%q<configatron>, [">= 0"])
@@ -2247,7 +2247,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
     s.add_dependency(%q<rack>, [">= 0"])
     s.add_dependency(%q<arel>, [">= 0"])
-    s.add_dependency(%q<community_engine>, ["= 1.9.9"])
     s.add_dependency(%q<meta_search>, [">= 0"])
     s.add_dependency(%q<authlogic>, [">= 0"])
     s.add_dependency(%q<configatron>, [">= 0"])

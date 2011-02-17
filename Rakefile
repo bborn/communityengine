@@ -1,8 +1,6 @@
 require 'rake'
 require 'rake/testtask'
 
-
-desc 'Default: run test suite'
 task :default => :test
 
 desc 'Runs test:units, test:functionals'
@@ -22,12 +20,14 @@ end
 namespace :test do
 
   Rake::TestTask.new(:functionals) do |t|
+    t.libs << "lib"
     t.libs << "test"
     t.pattern = 'test/functional/**/*_test.rb'
     t.verbose = true
   end
   
   Rake::TestTask.new(:units) do |t|
+    t.libs << "lib"
     t.libs << "test"
     t.pattern = 'test/unit/**/*_test.rb'
     t.verbose = true    

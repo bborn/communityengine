@@ -4,7 +4,7 @@ gem 'rails', '3.1.0.beta', :path => '../../../rails'
 gem 'rack', :git => 'git://github.com/rack/rack.git'
 gem 'arel',  :git => 'git://github.com/rails/arel.git'
 
-gem 'community_engine', :path => '../../../community_engine'
+gem 'community_engine', :path => '../../'
 gem "meta_search", :path => '../../../meta_search'
 gem 'authlogic', :path => '../../../authlogic'
 
@@ -22,6 +22,6 @@ gem "friendly_id", "~> 3.2.1"
 gem "paperclip", "~> 2.3"
 gem 'acts_as_commentable', "~> 3.0.0"
 gem "recaptcha", :require => "recaptcha/rails"
-gem 'simplecov'
+gem 'simplecov', :path => '../../../'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
