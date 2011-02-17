@@ -242,7 +242,7 @@ module BaseHelper
   end
     
   def ajax_spinner_for(id, spinner="spinner.gif")
-    "<img src='/plugin_assets/community_engine/images/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> ".html_safe
+    "<img src='/community_engine/images/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> ".html_safe
   end
 
   def avatar_for(user, size=32)

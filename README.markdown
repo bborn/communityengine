@@ -36,10 +36,23 @@ Getting CommunityEngine Running
 2. From your app's root directory run:
 
 		$ bundle install
+		$ rake community_engine:install
+		$ rake db:migrate
+		
+3. Add a file called `application.yml` to your `config` directory. In it put (at least):
 
-3. Mount CommunityEngine in your `config/routes.rb` file:
+		community_name: Your Application Name
+
+4. Mount CommunityEngine in your `config/routes.rb` file:
 
 		mount CommunityEngine::Engine => "/"
+
+5. Delete the default `views/layouts/application.html.erb` that Rails created for you. Delete `public/index.html` if you haven't already.
+		
+6. Start your server! 
+
+		$ rails server
+		
 
 
 
