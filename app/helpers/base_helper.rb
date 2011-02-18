@@ -131,7 +131,6 @@ module BaseHelper
       when 'users'
         if @user && !@user.new_record? && @user.login 
           title = @user.login
-          title += ", #{:expert_in.l} #{@user.offerings.collect{|o| o.skill.name }.join(', ')}" if @user.vendor? and !@user.offerings.empty?
           title += divider + app_base + tagline
           @canonical_url = user_url(@user)          
         else
@@ -164,12 +163,6 @@ module BaseHelper
           title = :posts_photos_and_bookmarks.l(:name => @category.name) + divider + app_base + tagline
         else
           title = :showing_categories.l + divider + app_base + tagline            
-        end
-      when 'skills'
-        if @skill and @skill.name
-          title = :find_an_expert_in.l + ' ' + @skill.name + divider + app_base + tagline
-        else
-          title = :find_experts.l + divider + app_base + tagline            
         end
       when 'sessions'
         title = :login.l + divider + app_base + tagline            

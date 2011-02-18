@@ -360,7 +360,6 @@ padding:0 0 3px 0;
 	padding-left:0;
 	}
 .hentry .vcard ul li.tags{background-image: url(/community_engine/images/icons/tag_blue.png) }
-.hentry .vcard ul li.skills{background-image: url(/community_engine/images/icons/wrench.png) }
 .hentry .vcard ul li.geo{background-image: url(/community_engine/images/icons/world.png) }
 .hentry .vcard ul li.edit{background-image: url(/community_engine/images/icons/post.png) }
 .hentry .vcard ul li.delete{background-image: url(/community_engine/images/icons/delete.png) }
@@ -718,34 +717,6 @@ ul.sortable_hover {
 	border:1px dashed #328E01;
 	background:#efefef;
 	}
-
-ul#skills {
-	width:250px;
-	height:200px;
-	overflow:auto;
-	}
-	ul#skills li {
-		background:#ffffff;
-		margin:.5em;
-		padding:.5em;
-		border:1px solid #cccccc;
-		}
-
-ul#users_skills {
-	width:250px;
-	background:#eee;
-	overflow:hidden;	
-	}		
-	ul#users_skills li {
-		background:#ffffff;
-		margin:.5em;
-		padding:.5em;
-		border:1px solid #cccccc;
-		}	
-.handle {
-	cursor:move;
-}
-
 
 /*	PAGINATION	*/
 div.pagination {

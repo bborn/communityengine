@@ -340,9 +340,7 @@ fr:
   dont_wait_its: "Vous pouvez nous contacter à tout moment sur"
   #en: draft: draft
   draft: brouillon
-#  #en: drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
-  drag_and_drop_up_to_three_skills_into_the_gray_area_above: "Faites glisser jusqu'à 3 compétences dans la zone grisée ci-dessus."
-#  #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
+  #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
   drag_the_bookmarklet: "Faites glisser le lien %{site}-it! sur votre barre de favoris."
   #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
   drag_this_to_your_bookmarks_toolbar: Faites glisser ceci dans votre barre de favoris
@@ -389,8 +387,6 @@ fr:
   editing_photo: Editer la photo
   #en: editing_post: Editing post
   editing_post: Editer le message
-#  #en: editing_skill: Editing skill
-  editing_skill: Editer la compétence
   #en: email_addresses: Email Addresses
   email_addresses: Adresses email
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
@@ -743,8 +739,6 @@ fr:
   my_profile: Mon Profil
   #en: my_recent_comments: My recent comments
   my_recent_comments: Mes commentaires récents
-#  #en: my_skills: My Skills
-  my_skills: Mes compétences
   #en: my_tags: My tags
   my_tags: Mes tags
   #en: name: Name
@@ -783,8 +777,6 @@ fr:
   new_post_for_category: "Nouveau dans %{category}"
   #en: new_post_text: New Post text
   new_post_text: Contenu du nouveau message
-#  #en: new_skill: New skill
-  new_skill: Nouvelle compétence
   #en: new_today: New today
   new_today: "Nouveau aujourd'hui"
   #en: new_topic: New topic
@@ -819,8 +811,6 @@ fr:
   notify_of_friend_requests: Alerte sur les invitations
   #en: of: of
   of: de
-  #en: offering_was_successfully_created: Offering was successfully created.
-  offering_was_successfully_created: La proposition a été créée avec succès.
   #en: on_commentable: On
   on_commentable: "sur"
   #en: optional: optional
@@ -971,10 +961,8 @@ fr:
   profile_privacy: Profil privé/public
   #en: profile_views: profile views
   profile_views: Affichages du profil
-#  #en: pros: Pros
+  #en: pros: Pros
   pros: Experts
-#  #en: pros_skilled_in: Pros skilled in
-  pros_skilled_in: Experts en
   #en: published: Published
   published: publié
   #en: question: Question
@@ -987,7 +975,7 @@ fr:
   recent: récents
   #en: recent_activity: Recent activity
   recent_activity: Activité récente
-#  #en: recent_blog_posts: Recent Blog Posts
+  #en: recent_blog_posts: Recent Blog Posts
   recent_blog_posts: Derniers articles de mon blog
   #en: recent_posts: Recent Posts
   recent_posts: Nouveaux messages
@@ -1131,10 +1119,6 @@ fr:
     other: "%{count} messages"
   #en: site_members: "%{site} members"
   site_members: "membres de %{site}"
-#  #en: skill_was_successfully_created: Skill was successfully created.
-  skill_was_successfully_created: La compétence a été correctement créée.
-#  #en: skills: Skills
-  skills: Compétences
   #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
   skip_this_and_go_to_your_profile: Passer cette étape et voir votre profil
   #en: skip_this_step: Skip this step
@@ -1147,8 +1131,6 @@ fr:
   sorry_there_was_an_error_requesting_friendship: "Désolé, une erreur est survenue pendant l'invitation."
   #en: sorry_there_was_an_error_uploading_the_photo: "Sorry, there was an error uploading the photo."
   sorry_there_was_an_error_uploading_the_photo: "Désolé, une erreur est survenue pendant le téléchargement de la photo."
-  #en: sorry_we_dont_have_any_pros_in_this_skill_category_yet: "Sorry, we don't have any pros in this skill category yet."
-  sorry_we_dont_have_any_pros_in_this_skill_category_yet: "Désolé, il n'y a pas encore d'experts dans cette catégorie."
   #en: sorry_we_dont_recognize_that_email_address: "Sorry. We don't recognize that email address."
   sorry_we_dont_recognize_that_email_address: "Désolé, cette adresse mail est inconnue."
   #en: spread_the_word: Spread the word

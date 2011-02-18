@@ -304,8 +304,6 @@ de-DE:
   dont_wait_its: Warte nicht! Schreib an
   #en: draft: draft
   draft: Entwurf
-  #en: drag_and_drop_up_to_three_skills_into_gray_area_above: Drag and drop up to three skills into gray area above.
-  drag_and_drop_up_to_three_skills_into_gray_area_above: Ziehe bis zu drei Fähigkeiten in den grauen Kasten oben.
   #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
   drag_the_bookmarklet: Zieh das %{site}-It! Bookmarklet in die Bookmark-Leiste.
   #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
@@ -352,8 +350,6 @@ de-DE:
   editing_photo: Foto bearbeiten
   #en: editing_post: Editing post
   editing_post: Eintrag bearbeiten
-  #en: editing_skill: Editing skill
-  editing_skill: Fähigkeiten bearbeiten
   #en: email_addresses: Email Addresses
   email_addresses: Email-Adressen
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
@@ -642,8 +638,6 @@ de-DE:
   my_profile: Mein Profil
   #en: my_recent_comments: My recent comments
   my_recent_comments: Meine letzten Kommentare
-  #en: my_skills: My Skills
-  my_skills: Meine Fähigkeiten
   #en: my_tags: My tags
   my_tags: Meine Tags
   #en: name: Name
@@ -682,8 +676,6 @@ de-DE:
   new_post_for_category: "Neuer Eintrag für Kategorie"
   #en: new_post_text: New Post text
   new_post_text: Text für den Link 'Neuer Beitrag'
-  #en: new_skill: New skill
-  new_skill: Neue Fähigkeit
   #en: new_today: New today
   new_today: Heute neu
   #en: new_topic: New topic
@@ -710,8 +702,6 @@ de-DE:
   notify_of_comments: Benachrichtigung bei Kommentaren
   #en: notify_of_friend_requests: Notify of friend requests
   notify_of_friend_requests: Benachrichtigung bei Freundschaftsanfragen
-  #en: offering_was_successfully_created: Offering was successfully created.
-  offering_was_successfully_created: Angebot wurde erfolgreich angelegt.
   #en: on: On
   on: Zu
   #en: one_day_ago: one day ago
@@ -820,8 +810,6 @@ de-DE:
   profile_views: Profilansichten
   #en: pros: Pros
   pros: Profis
-  #en: pros_skilled_in: Pros skilled in
-  pros_skilled_in: Profis mit der Fähigkeit
   #en: published: Published
   published: "Veröffentlicht"
   #en: question: Question
@@ -966,10 +954,6 @@ de-DE:
   singular_posts: Eintrag
   #en: site_members: "%{site} members"
   site_members: Mitglieder
-  #en: skill_was_successfully_created: Skill was successfully created.
-  skill_was_successfully_created: "Fähigkeit wurde erfolgreich angelegt."
-  #en: skills: Skills
-  skills: "Fähigkeiten"
   #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
   skip_this_and_go_to_your_profile: "Überspringe und gehe zu deinem Profil"
   #en: skip_this_step: Skip this step
@@ -982,8 +966,6 @@ de-DE:
   sorry_there_was_an_error_requesting_friendship: Sorry, bei der Freundschaftsanfrage ist ein Fehler aufgetreten.
   #en: sorry_there_was_an_error_uploading_the_photo: Sorry, there was an error uploading the photo.
   sorry_there_was_an_error_uploading_the_photo: Sorry, beim Hochladen des Fotos ist ein Fehler aufgetreten.
-  #en: sorry_we_dont_have_any_pros_in_this_skill_category_yet: Sorry, we don't have any pros in this skill category yet.
-  sorry_we_dont_have_any_pros_in_this_skill_category_yet: Wir haben derzeit keine Profis mit dieser Fähigkeit
   #en: sorry_we_dont_recognize_that_email_address: Sorry. We don't recognize that email address.
   sorry_we_dont_recognize_that_email_address: "Sorry, wir können die E-Mailadresse nicht erkennen."
   #en: spread_the_word: Spread the word

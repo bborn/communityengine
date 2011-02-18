@@ -13,7 +13,7 @@
 * remove all the theming stuff?
 # * take out ez where
 * fix rakismet initializer
-* take out vendors/offerings stuff
+# * take out vendors/offerings stuff
 * add back searching to users index, use metaseach
 # * remote_form_for is gone (use dynamic_form gem)
 * remove stylesheet customization?

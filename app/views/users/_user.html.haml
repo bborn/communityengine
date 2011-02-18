@@ -12,8 +12,6 @@
           %li.update
             %abbr.published{:title=>"#{user.created_at}"}
               =:joined.l + " #{time_ago_in_words_or_date user.created_at}"
-          - if user.offerings.any?
-            %li.skills= user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')
           - if current_user and current_user.can_request_friendship_with(user)
             %li.addfriend= add_friend_link(user)
 

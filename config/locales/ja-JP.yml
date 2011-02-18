@@ -319,8 +319,6 @@ ja:
   dont_wait_its: Don't wait! It's
   #en: draft: draft
   draft: 草稿
-  #en: drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
-  drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
   #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
   drag_the_bookmarklet: "Drag the %{site}-It! bookmarklet to your bookmarks toolbar."
   #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
@@ -367,8 +365,6 @@ ja:
   editing_photo: 写真の編集
   #en: editing_post: Editing post
   editing_post: Editing post
-  #en: editing_skill: Editing skill
-  editing_skill: Editing skill
   #en: email_addresses: Email Addresses
   email_addresses: Emailアドレス
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
@@ -669,8 +665,6 @@ ja:
   my_profile: 私のプロフィール
   #en: my_recent_comments: My recent comments
   my_recent_comments: My recent comments
-  #en: my_skills: My Skills
-  my_skills: My Skills
   #en: my_tags: My tags
   my_tags: タグ
   #en: name: Name
@@ -709,8 +703,6 @@ ja:
   new_post_for_category: "New %{category}"
   #en: new_post_text: New Post text
   new_post_text: New Post text
-  #en: new_skill: New skill
-  new_skill: New skill
   #en: new_today: New today
   new_today: New today
   #en: new_topic: New topic
@@ -745,8 +737,6 @@ ja:
   notify_of_friend_requests: Notify of friend requests
   #en: of: of
   of: of
-  #en: offering_was_successfully_created: Offering was successfully created.
-  offering_was_successfully_created: Offering was successfully created.
   #en: on_commentable: On
   on_commentable: 'On'
   #en: one_day_ago: one day ago
@@ -865,8 +855,6 @@ ja:
   profile_views: profile views
   #en: pros: Pros
   pros: Pros
-  #en: pros_skilled_in: Pros skilled in
-  pros_skilled_in: Pros skilled in
   #en: published: Published
   published: Published
   #en: question: Question
@@ -1011,10 +999,6 @@ ja:
   singular_posts: "%{count} post"
   #en: site_members: "%{site} members"
   site_members: "%{site}メンバ"
-  #en: skill_was_successfully_created: Skill was successfully created.
-  skill_was_successfully_created: Skill was successfully created.
-  #en: skills: Skills
-  skills: Skills
   #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
   skip_this_and_go_to_your_profile: Skip this and go to your profile
   #en: skip_this_step: Skip this step
@@ -1027,8 +1011,6 @@ ja:
   sorry_there_was_an_error_requesting_friendship: "Sorry, there was an error requesting friendship."
   #en: sorry_there_was_an_error_uploading_the_photo: "Sorry, there was an error uploading the photo."
   sorry_there_was_an_error_uploading_the_photo: "Sorry, there was an error uploading the photo."
-  #en: sorry_we_dont_have_any_pros_in_this_skill_category_yet: "Sorry, we don't have any pros in this skill category yet."
-  sorry_we_dont_have_any_pros_in_this_skill_category_yet: "Sorry, we don't have any pros in this skill category yet."
   #en: sorry_we_dont_recognize_that_email_address: "Sorry. We don't recognize that email address."
   sorry_we_dont_recognize_that_email_address: "Sorry. We don't recognize that email address."
   #en: spread_the_word: Spread the word

@@ -102,9 +102,6 @@ class UsersController < BaseController
     
   def edit 
     @metro_areas, @states = setup_locations_for(@user)
-
-    @skills     = Skill.find(:all)
-    @offering   = Offering.new
     @avatar     = (@user.avatar || @user.build_avatar)
   end
   
@@ -215,7 +212,6 @@ class UsersController < BaseController
 
   def update_pro_details
     @user = User.find(params[:id])
-    @user.add_offerings(params[:offerings]) if params[:offerings]
     
     @user.attributes = params[:user]
 

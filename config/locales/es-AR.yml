@@ -389,8 +389,6 @@ es-AR:
   no_tags: Sin tags
   #notify_me_of_follow_ups_via_email: Notify me of comments via e-mail
   notify_me_of_follow_ups_via_email: Notificarme cuando hay nuevos commentarios    
-  #en: offering_was_successfully_created: Offering was successfully created.
-  offering_was_successfully_created: Oferta creada satisfactoriamente.
   #en: on_commentable: On
   on_commentable: sobre
   #en: optional: (optional)
@@ -532,10 +530,6 @@ es-AR:
   singular_posts: "%{count} entrada"
   #en: site_members: "%{site} members"
   site_members: Miembros de %{site}
-  #en: skill_was_successfully_created: Skill was successfully created.
-  skill_was_successfully_created: Habilidad creada satisfactoriamente.
-  #en: skills: Skills
-  skills: Habilidades
   #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
   skip_this_and_go_to_your_profile: Saltear esto e ir a tu perfil
   #en: skip_this_step: Skip this step

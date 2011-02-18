@@ -3,13 +3,13 @@
 - @sidebar_left = true
 
 
-- if @is_current_user and @user.vendor? and (@user.offerings.empty? or @user.description.nil? )
+- if @is_current_user and @user.vendor? and @user.description.nil?
   %p
     ? Hey, you're a
     = configatron.community_name
     Pro! You should
     = link_to :update_your_profile.l, edit_user_path(@user)
-    \! Add your skills, contact info and Web site.
+    \! Add your contact info and Web site.
 
 
 .yui-b

@@ -314,8 +314,6 @@ sv:
   dont_wait_its: Vänta inte! Det är
   #en: draft: draft
   draft: utkast
-  #en: drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
-  drag_and_drop_up_to_three_skills_into_the_gray_area_above: Drag and drop up to three skills into gray area above.
   #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
   drag_the_bookmarklet: "Drag the %{site}-It! bookmarklet to your bookmarks toolbar."
   #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
@@ -362,8 +360,6 @@ sv:
   editing_photo: Redigerar bild
   #en: editing_post: Editing post
   editing_post: Redigerar inlägg
-  #en: editing_skill: Editing skill
-  editing_skill: Redigerar kompetensområde
   #en: email_addresses: Email Addresses
   email_addresses: Mejladresser
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
@@ -666,8 +662,6 @@ sv:
   my_profile: Min profil
   #en: my_recent_comments: My recent comments
   my_recent_comments: Mina senaste kommentarer
-  #en: my_skills: My Skills
-  my_skills: Mina kompetensområden
   #en: my_tags: My tags
   my_tags: Mina etiketter
   #en: name: Name
@@ -706,8 +700,6 @@ sv:
   new_post_for_category: "Ny %{category}"
   #en: new_post_text: New Post text
   new_post_text: Text i nytt inlägg
-  #en: new_skill: New skill
-  new_skill: Nytt kompetensområde
   #en: new_today: New today
   new_today: Nytt idag
   #en: new_topic: New topic
@@ -742,8 +734,6 @@ sv:
   notify_of_friend_requests: Meddela om kompisförfrågan
   #en: of: of
   of: av
-  #en: offering_was_successfully_created: Offering was successfully created.
-  offering_was_successfully_created: Offering was successfully created.
   #en: on_commentable: On
   on_commentable: 'På'
   #en: one_day_ago: one day ago
@@ -864,8 +854,6 @@ sv:
   profile_views: profilvisningar
   #en: pros: Pros
   pros: Proffs
-  #en: pros_skilled_in: Pros skilled in
-  pros_skilled_in: Proffs inom kompetensområdet
   #en: published: Published
   published: Publicerad
   #en: question: Question
@@ -1010,10 +998,6 @@ sv:
   singular_posts: "%{count} inlägg"
   #en: site_members: "%{site} members"
   site_members: "Medlemmar hos %{site}"
-  #en: skill_was_successfully_created: Skill was successfully created.
-  skill_was_successfully_created: Kompetensområdet skapat.
-  #en: skills: Skills
-  skills: Kompetensområden
   #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
   skip_this_and_go_to_your_profile: Hoppa över det här och gå till din profil
   #en: skip_this_step: Skip this step
@@ -1026,8 +1010,6 @@ sv:
   sorry_there_was_an_error_requesting_friendship: "Tyvärr blev det ett fel vid kompisförfrågan."
   #en: sorry_there_was_an_error_uploading_the_photo: "Sorry, there was an error uploading the photo."
   sorry_there_was_an_error_uploading_the_photo: "Tyvärr blev det ett fel vid uppladdningen av bilden."
-  #en: sorry_we_dont_have_any_pros_in_this_skill_category_yet: "Sorry, we don't have any pros in this skill category yet."
-  sorry_we_dont_have_any_pros_in_this_skill_category_yet: "Tyvärr har vi inga proffs i den kategorin ännu."
   #en: sorry_we_dont_recognize_that_email_address: "Sorry. We don't recognize that email address."
   sorry_we_dont_recognize_that_email_address: "Tyvärr, vi känner inte igen din mejladress."
   #en: spread_the_word: Spread the word

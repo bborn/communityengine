@@ -26,7 +26,6 @@ es-MX:
   active_users: Usuarios activos
   popular_posts: Publicaciones Populares
   audience: Audiencia
-  editing_skill: Editando habilidad
   by_looking_at_the: mirando
   title: Título
   remember_you_can_always_change_this_later: Recuerde, usted puede cambiar esto despues.
@@ -95,7 +94,6 @@ es-MX:
   account_activation_error: "Activación de cuenta falló. Tal vez ya está activa. Intenta conectarte o manda un correo electrónico a %{email} para obtener ayuda."
   more_about_you: Más sobre tí
   email_addresses: Direcciones de Correo Electrónico
-  my_skills: Mis Habilidades
   blog_posts: "Publicaciones de la blog"
   admin: Administrador
   create_a_clipping_: Crear un recorte
@@ -175,7 +173,6 @@ es-MX:
   end: fin
   view_all_my_friend_requests: Ver todas mis solicitudes de amistad
   the_service_was_deleted: El servicio fué eliminado.
-  skills: Habilidades
   all_clippings_tagged: Todos los recortes marcados con la etiqueta %{tag_name}
   delete_this_forum: Suprimir este foro
   e_mail: "Correo electrónico"
@@ -189,7 +186,6 @@ es-MX:
   blog: "Blog"
   we_just_sent_an_e_mail_to: "Enviamos un e-mail a: %{email}"
   resend_my_activation_e_mail: Re-enviar mi e-mail de activación
-  offering_was_successfully_created: La Oferta fué creada exitosamente.
   click_on_an_image_below_to_clip_it: Haz click en una imágen para recortarla.
   cancel_and_go_back_to: "cancelar, y volver atrás"
   accept_this_request: Aceptar esta petición
@@ -292,7 +288,6 @@ es-MX:
   clipping_was_successfully_created: "El recorte se creó satisfactoriamente."
   walkthrough_complete: Ha completado la mini-gira por el sitio. ¡Ahora puedes explorar por tu cuenta!
   topic: Temas
-  new_skill: Nueva Habilidad
   delete_selected: Eliminar Seleccionados
   close_this_message: Cierra este mensaje
   found: encontrado
@@ -327,7 +322,6 @@ es-MX:
   have_an_account: "¿Tienes una cuenta? "
   you_cant_delete_that_user: No puede eliminar ese usuario.
   username: Nombre de Usuario
-  sorry_we_dont_have_any_pros_in_this_skill_category_yet: Lo sentimos, no hay ningún experto en esta categoría de habilidades aún.
   my_profile: Mi Perfil
   view_all_my_clippings: Ver todos mis recortes
   service_could_not_be_deleted: El servicio no pudo ser eliminado.
@@ -398,7 +392,6 @@ es-MX:
   get_help_from_someone_who_knows: Obtén ayuda de alguien que sabe
   tags: Etiquetas
   about_site: Acerca de %{site}
-  drag_and_drop_up_to_three_skills_into_gray_area_above: Arrastra y tira hasta tres habilidades en el área gris arriba.
   one_minute_ago: hace un minuto
   request_friendship: Solicitar amistad
   remove_this_friend: Eliminar este amigo
@@ -540,7 +533,6 @@ es-MX:
   manage_posts: Administrar Publicaciones
   find_an_expert_in: Encontrar un Experto en
   uploaded_by: subido por
-  skill_was_successfully_created: Habilidad creada exitosamente.
   or: o
   bookmarklet: Marcador
   view_comment: Ver Comentario
@@ -658,7 +650,6 @@ es-MX:
   draft: borrador
   want_to_list_your_services_on: Deseas listar tus servicios en
   send_me_my_username: Enviarme mi nombre de usuario
-  pros_skilled_in: Profesionales con Habilidades en 
   a_few_seconds_ago: hace unos segundos
   all_comments: Todos los comentarios
   clipping_comments: Comentarios de Recortes

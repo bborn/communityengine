@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  fixtures :users, :roles, :tags, :states, :metro_areas, :countries, :skills, :friendship_statuses, :friendships, :categories
+  fixtures :all
 
   def test_should_get_index
     get :index

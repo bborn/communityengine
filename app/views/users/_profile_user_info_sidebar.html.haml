@@ -40,8 +40,6 @@
       %li.view
         =:profile_views.l
         = "(#{@user.view_count})"
-      - if @user.offerings.any?
-        %li.skills= :my_skills.l+": #{@user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')}"
       - if @user.tags.any?
         %li.tags= :my_tags.l+": #{@user.tags.collect{|t| link_to t.name, tag_url(t) }.join(", ")}"
       - if @user.metro_area

@@ -209,7 +209,7 @@ class UserTest < ActiveSupport::TestCase
   
   test "should prepare params for search" do
     params = User.prepare_params_for_search(:metro_area_id => 1, :state_id => 1)
-    assert_equal(params, {:metro_area_id=>1, :state_id=>1, "metro_area_id"=>1, "state_id"=>1, "country_id"=>nil, "skill_id"=>nil})
+    assert_equal(params, {:metro_area_id=>1, :state_id=>1, "metro_area_id"=>1, "state_id"=>1, "country_id"=>nil})
   end
   
   test "should build scope for search params" do

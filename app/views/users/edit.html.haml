@@ -48,9 +48,6 @@
         =:tips.l
         = render :partial => 'shared/bio_help'
         =:feel_free_to_embed_images_or_videos.l
-
-      - if @user.vendor? 
-        = render :partial => 'offerings/chooser'
       
       -box do 
         %h3= :tags.l

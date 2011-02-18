@@ -45,7 +45,6 @@ Gem::Specification.new do |s|
     "app/controllers/metro_areas_controller.rb",
     "app/controllers/moderators_controller.rb",
     "app/controllers/monitorships_controller.rb",
-    "app/controllers/offerings_controller.rb",
     "app/controllers/page_sweeper.rb",
     "app/controllers/pages_controller.rb",
     "app/controllers/password_resets_controller.rb",
@@ -57,7 +56,6 @@ Gem::Specification.new do |s|
     "app/controllers/sb_posts_controller.rb",
     "app/controllers/sessions_controller.rb",
     "app/controllers/sitemap_controller.rb",
-    "app/controllers/skills_controller.rb",
     "app/controllers/statistics_controller.rb",
     "app/controllers/taggable_sweeper.rb",
     "app/controllers/tags_controller.rb",
@@ -94,7 +92,6 @@ Gem::Specification.new do |s|
     "app/models/metro_area.rb",
     "app/models/moderatorship.rb",
     "app/models/monitorship.rb",
-    "app/models/offering.rb",
     "app/models/page.rb",
     "app/models/photo.rb",
     "app/models/poll.rb",
@@ -102,7 +99,6 @@ Gem::Specification.new do |s|
     "app/models/role.rb",
     "app/models/rsvp.rb",
     "app/models/sb_post.rb",
-    "app/models/skill.rb",
     "app/models/state.rb",
     "app/models/tag.rb",
     "app/models/topic.rb",
@@ -202,7 +198,6 @@ Gem::Specification.new do |s|
     "app/views/moderators/destroy.js.rjs",
     "app/views/monitorships/create.js.rjs",
     "app/views/monitorships/destroy.js.rjs",
-    "app/views/offerings/_chooser.html.haml",
     "app/views/pages/_form.html.haml",
     "app/views/pages/edit.html.haml",
     "app/views/pages/index.html.haml",
@@ -269,11 +264,6 @@ Gem::Specification.new do |s|
     "app/views/shared/_user_menu.html.haml",
     "app/views/sitemap/index.html.haml",
     "app/views/sitemap/index.xml.builder",
-    "app/views/skills/_sidebar_menu.html.haml",
-    "app/views/skills/edit.html.haml",
-    "app/views/skills/index.html.haml",
-    "app/views/skills/new.html.haml",
-    "app/views/skills/show.html.haml",
     "app/views/statistics/activities.xml.builder",
     "app/views/statistics/index.html.haml",
     "app/views/tags/edit.html.haml",
@@ -317,7 +307,6 @@ Gem::Specification.new do |s|
     "app/views/users/_profile_user_info_sidebar.html.haml",
     "app/views/users/_search_options.html.haml",
     "app/views/users/_sidebar_user.html.haml",
-    "app/views/users/_skill.html.haml",
     "app/views/users/_user.html.haml",
     "app/views/users/crop_profile_photo.html.haml",
     "app/views/users/dashboard.html.haml",
@@ -820,14 +809,12 @@ Gem::Specification.new do |s|
     "test/fixtures/metro_areas.yml",
     "test/fixtures/moderatorships.yml",
     "test/fixtures/monitorships.yml",
-    "test/fixtures/offerings.yml",
     "test/fixtures/pages.yml",
     "test/fixtures/photos.yml",
     "test/fixtures/posts.yml",
     "test/fixtures/roles.yml",
     "test/fixtures/rsvps.yml",
     "test/fixtures/sb_posts.yml",
-    "test/fixtures/skills.yml",
     "test/fixtures/states.yml",
     "test/fixtures/taggings.yml",
     "test/fixtures/tags.yml",
@@ -851,7 +838,6 @@ Gem::Specification.new do |s|
     "test/functional/metro_areas_controller_test.rb",
     "test/functional/moderators_controller_test.rb",
     "test/functional/monitorships_controller_test.rb",
-    "test/functional/offerings_controller_test.rb",
     "test/functional/pages_controller_test.rb",
     "test/functional/password_reset_controller_test.rb",
     "test/functional/photo_manager_controller_test.rb",
@@ -861,7 +847,6 @@ Gem::Specification.new do |s|
     "test/functional/sb_posts_controller_test.rb",
     "test/functional/sessions_controller_test.rb",
     "test/functional/sitemap_controller_test.rb",
-    "test/functional/skills_controller_test.rb",
     "test/functional/statistics_controller_test.rb",
     "test/functional/tags_controller_test.rb",
     "test/functional/theme_controller_test.rb",
@@ -1401,14 +1386,12 @@ Gem::Specification.new do |s|
     "test/unit/metro_area_test.rb",
     "test/unit/moderatorship_test.rb",
     "test/unit/monitorships_test.rb",
-    "test/unit/offering_test.rb",
     "test/unit/page_test.rb",
     "test/unit/photo_test.rb",
     "test/unit/poll_test.rb",
     "test/unit/post_test.rb",
     "test/unit/rsvp_test.rb",
     "test/unit/sb_post_test.rb",
-    "test/unit/skill_test.rb",
     "test/unit/state_test.rb",
     "test/unit/tag_test.rb",
     "test/unit/topic_test.rb",
@@ -2012,7 +1995,6 @@ Gem::Specification.new do |s|
     "test/functional/metro_areas_controller_test.rb",
     "test/functional/moderators_controller_test.rb",
     "test/functional/monitorships_controller_test.rb",
-    "test/functional/offerings_controller_test.rb",
     "test/functional/pages_controller_test.rb",
     "test/functional/password_reset_controller_test.rb",
     "test/functional/photo_manager_controller_test.rb",
@@ -2022,7 +2004,6 @@ Gem::Specification.new do |s|
     "test/functional/sb_posts_controller_test.rb",
     "test/functional/sessions_controller_test.rb",
     "test/functional/sitemap_controller_test.rb",
-    "test/functional/skills_controller_test.rb",
     "test/functional/statistics_controller_test.rb",
     "test/functional/tags_controller_test.rb",
     "test/functional/theme_controller_test.rb",
@@ -2142,14 +2123,12 @@ Gem::Specification.new do |s|
     "test/unit/metro_area_test.rb",
     "test/unit/moderatorship_test.rb",
     "test/unit/monitorships_test.rb",
-    "test/unit/offering_test.rb",
     "test/unit/page_test.rb",
     "test/unit/photo_test.rb",
     "test/unit/poll_test.rb",
     "test/unit/post_test.rb",
     "test/unit/rsvp_test.rb",
     "test/unit/sb_post_test.rb",
-    "test/unit/skill_test.rb",
     "test/unit/state_test.rb",
     "test/unit/tag_test.rb",
     "test/unit/topic_test.rb",
@@ -2163,7 +2142,6 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<community_engine>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_runtime_dependency(%q<rack>, [">= 0"])
       s.add_runtime_dependency(%q<arel>, [">= 0"])
@@ -2204,7 +2182,6 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
       s.add_runtime_dependency(%q<simplecov>, [">= 0"])
     else
-      s.add_dependency(%q<community_engine>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_dependency(%q<rack>, [">= 0"])
       s.add_dependency(%q<arel>, [">= 0"])
@@ -2246,7 +2223,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<community_engine>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
     s.add_dependency(%q<rack>, [">= 0"])
     s.add_dependency(%q<arel>, [">= 0"])

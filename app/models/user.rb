@@ -48,7 +48,6 @@ class User < ActiveRecord::Base
     has_many :posts, :order => "published_at desc", :dependent => :destroy
     has_many :photos, :order => "created_at desc", :dependent => :destroy
     has_many :invitations, :dependent => :destroy
-    has_many :offerings, :dependent => :destroy
     has_many :rsvps, :dependent => :destroy
 
     #friendship associations
@@ -137,7 +136,6 @@ class User < ActiveRecord::Base
     search['metro_area_id'] = params[:metro_area_id] || nil
     search['state_id'] = params[:state_id] || nil
     search['country_id'] = params[:country_id] || nil
-    search['skill_id'] = params[:skill_id] || nil    
     search
   end
   
@@ -357,26 +355,6 @@ class User < ActiveRecord::Base
     self.update_attribute(:last_login_at, Time.now)
   end
   
-  def add_offerings(skills)
-    skills.each do |skill_id|
-      offering = Offering.new(:skill_id => skill_id)
-      offering.user = self
-      if self.under_offering_limit? && !self.has_skill?(offering.skill)
-        if offering.save
-          self.offerings << offering
-        end
-      end
-    end
-  end  
-  
-  def under_offering_limit?
-    self.offerings.size < 3
-  end
-  
-  def has_skill?(skill)
-    self.offerings.collect{|o| o.skill }.include?(skill)
-  end
-
   def has_reached_daily_friend_request_limit?
     friendships_initiated_by_me.count(:conditions => ['created_at > ?', Time.now.beginning_of_day]) >= Friendship.daily_request_limit
   end
