@@ -143,21 +143,21 @@ class User < ActiveRecord::Base
   
   def self.build_conditions_for_search(search)
     user = User.arel_table
-    users = User.where(user[:activated_at].not_eq nil)
+    users = User.where(user[:activated_at].not_eq(nil))
     if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
-      users = users.where(user[:country_id].eq search['country_id'])
+      users = users.where(user[:country_id].eq(search['country_id']))
     end
     if search['state_id'] && !search['metro_area_id']
-      users = users.where(user[:state_id].eq search['state_id'])
+      users = users.where(user[:state_id].eq(search['state_id']))
     end
     if search['metro_area_id']
-      users = users.where(user[:metro_area_id].eq search['metro_area_id'])
+      users = users.where(user[:metro_area_id].eq(search['metro_area_id']))
     end
     if search['login']    
       users = users.where('`users`.login LIKE ?', "%#{search['login']}%")
     end
     if search['vendor']
-      users = users.where(user[:vendor].eq true)
+      users = users.where(user[:vendor].eq(true))
     end    
     if search['description']
       users = users.where('`users`.description LIKE ?', "%#{search['description']}%")

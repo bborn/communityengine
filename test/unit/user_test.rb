@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   fixtures :all  
@@ -197,6 +197,27 @@ class UserTest < ActiveSupport::TestCase
   def test_should_prohibit_reserved_logins    
     user = create_user(:login => configatron.reserved_logins.first)
     assert !user.valid?
+  end
+  
+  test "should find user tagged with a tag" do
+    user = users(:quentin)
+    user.tag_list = 'foo'
+    user.save
+
+    assert User.tagged_with('foo').include?(user)
+  end
+  
+  test "should prepare params for search" do
+    params = User.prepare_params_for_search(:metro_area_id => 1, :state_id => 1)
+    assert_equal(params, {:metro_area_id=>1, :state_id=>1, "metro_area_id"=>1, "state_id"=>1, "country_id"=>nil, "skill_id"=>nil})
+  end
+  
+  test "should build scope for search params" do
+    params = {'country_id' => 1, 'state_id' => 1, 'metro_area_id' => 1, 'login' => 'foo', 'vendor' => false, 'description' => 'baz'}
+    scope = User.build_conditions_for_search(params)
+
+    #I'm sure this is not the best way of doing this; I want to make sure that the correct scopes are set up on the relation, but I don't know a better way.
+    assert_equal("SELECT \"users\".* FROM \"users\"  WHERE \"users\".\"metro_area_id\" = 1 AND (\"users\".\"activated_at\" IS NOT NULL) AND (`users`.login LIKE '%foo%') AND (`users`.description LIKE '%baz%')", scope.to_sql)
   end
 
   
