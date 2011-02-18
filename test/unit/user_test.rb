@@ -216,10 +216,13 @@ class UserTest < ActiveSupport::TestCase
     params = {'country_id' => 1, 'state_id' => 1, 'metro_area_id' => 1, 'login' => 'foo', 'vendor' => false, 'description' => 'baz'}
     scope = User.build_conditions_for_search(params)
 
-    #I'm sure this is not the best way of doing this; I want to make sure that the correct scopes are set up on the relation, but I don't know a better way.
-    assert_equal("SELECT \"users\".* FROM \"users\"  WHERE \"users\".\"metro_area_id\" = 1 AND (\"users\".\"activated_at\" IS NOT NULL) AND (`users`.login LIKE '%foo%') AND (`users`.description LIKE '%baz%')", scope.to_sql)
+    #This sucks; I want to make sure that the correct scopes are set up on the relation, but I don't know a better way.
+    assert_equal("SELECT \"users\".* FROM \"users\"  WHERE \"users\".\"metro_area_id\" = 1 AND (users.activated_at IS NOT NULL) AND (`users`.login LIKE '%foo%') AND (`users`.description LIKE '%baz%')", scope.to_sql)
   end
 
+  test "should " do
+    
+  end
   
   protected
     def create_user(options = {})      

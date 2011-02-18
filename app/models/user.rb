@@ -93,9 +93,9 @@ class User < ActiveRecord::Base
     
   #named scopes
   scope :recent, order('users.created_at DESC')
-  scope :featured, where("users.featured_writer = ?", true)
+  scope :featured, where(:featured_writer => true)
   scope :active, where("users.activated_at IS NOT NULL")
-  scope :vendors, where("users.vendor = ?", true)
+  scope :vendors, where(:vendor => true)
   scope :tagged_with, lambda {|tag_name|
     includes(:tags).where("tags.name = ?", tag_name)
   }
@@ -143,7 +143,7 @@ class User < ActiveRecord::Base
   
   def self.build_conditions_for_search(search)
     user = User.arel_table
-    users = User.where(user[:activated_at].not_eq(nil))
+    users = User.active
     if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
       users = users.where(user[:country_id].eq(search['country_id']))
     end
@@ -183,7 +183,7 @@ class User < ActiveRecord::Base
     self.featured
   end
   
-  def self.paginated_users_conditions_with_search(params)
+  def self.search_conditions_with_metros_and_states(params)
     search = prepare_params_for_search(params)
 
     metro_areas, states = find_country_and_state_from_search_params(search)
