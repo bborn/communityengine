@@ -33,8 +33,11 @@ class CommentsController < BaseController
 
 
   def index
-  
-    @commentable = comment_type.constantize.find(comment_id)
+    if is_valid_comment_type?(comment_type)
+      @commentable = comment_type.constantize.find(comment_id)      
+    else
+      redirect_to home_path and return
+    end
 
     #don't use the get_type, as we want the specific case where the user typed /User/username/comments
     redirect_to user_comments_path(params[:commentable_id]) and return if (params[:commentable_type] && params[:commentable_type].camelize == "User")    
@@ -163,6 +166,12 @@ class CommentsController < BaseController
     def comment_type
       return "User" unless params[:commentable_type]
       params[:commentable_type].camelize
+    end
+    
+    def is_valid_comment_type?(type)
+      tables = ActiveRecord::Base.connection.tables
+      models = tables.collect(&:classify)
+      models.include?(type)
     end
   
     def comment_id
