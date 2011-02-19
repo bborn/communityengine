@@ -2,28 +2,26 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   has_friendly_id :login_slug
-  has_many :albums
   
   MALE    = 'M'
   FEMALE  = 'F'
-  #attr_protected :admin, :featured, :role_id
   
   acts_as_authentic do |c|
     c.crypto_provider = CommunityEngineSha1CryptoMethod
-
+    
     c.validates_length_of_password_field_options = { :within => 6..20, :if => :password_required? }
     c.validates_length_of_password_confirmation_field_options = { :within => 6..20, :if => :password_required? }
 
-    c.validates_length_of_login_field_options = { :within => 5..20 }
+    c.validates_length_of_login_field_options = { :minimum => 5 }
     c.validates_format_of_login_field_options = { :with => /^[\sA-Za-z0-9_-]+$/ }
 
-    c.validates_length_of_email_field_options = { :within => 3..100 }
-    c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/ }
+    c.validates_length_of_email_field_options = { :within => 3..100, :if => :email_required? }
+    c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/, :if => :email_required? }
   end
-
+  
   acts_as_taggable  
   acts_as_commentable
-  
+  has_enumerated :role      
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
@@ -41,14 +39,15 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login_slug
   validates_exclusion_of    :login, :in => configatron.reserved_logins
 
-  validate :valid_birthday
+  validate :valid_birthday, :if => :requires_valid_birthday?
   
   #associations
-    has_enumerated :role  
+    has_many :authorizations, :dependent => :destroy
     has_many :posts, :order => "published_at desc", :dependent => :destroy
     has_many :photos, :order => "created_at desc", :dependent => :destroy
     has_many :invitations, :dependent => :destroy
     has_many :rsvps, :dependent => :destroy
+    has_many :albums    
 
     #friendship associations
     has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
@@ -106,6 +105,8 @@ class User < ActiveRecord::Base
     :middlename, :notify_comments, :notify_community_news,
     :notify_friend_requests, :password, :password_confirmation,
     :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip, :avatar_attributes, :birthday
+
+  attr_accessor :authorizing_from_omniauth
 
   ## Class Methods
 
@@ -446,11 +447,19 @@ class User < ActiveRecord::Base
     errors.add(:birthday, "must be before #{date.strftime("%Y-%m-%d")}") unless birthday && (birthday.to_date <= date.to_date)    
   end
   
-  
-  
+  def self.create_from_authorization_hash(hash)
+    user = User.new(:login => hash['user_info']['nickname'], :email => hash['user_info']['email'])
+    new_password = user.newpass(8)
+    user.password = new_password
+    user.password_confirmation = new_password
+    user.authorizing_from_omniauth = true
+    user.save
+    user.activate
+    user.reset_persistence_token! #set persistence_token else sessions will not be created
+    user
+  end
   
   ## End Instance Methods
-  
 
   protected
 
@@ -467,6 +476,18 @@ class User < ActiveRecord::Base
 
     def password_required?
       crypted_password.blank? || !password.blank?
+    end
+    
+    def email_required?
+      !omniauthed?
+    end
+    
+    def requires_valid_birthday?
+      !omniauthed?
+    end
+    
+    def omniauthed?
+      authorizing_from_omniauth || authorizations.any?      
     end
   
 end

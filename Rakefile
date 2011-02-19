@@ -65,6 +65,7 @@ begin
     gem.add_dependency 'recaptcha'
 
     gem.add_dependency 'simplecov'
+    gem.add_dependency 'omniauth'  
     
   end
 rescue

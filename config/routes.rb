@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  match '/base/:action' => 'base'
+
   match '/forums/recent' => 'sb_posts#index', :as => :recent_forum_posts
+
+  resources :authorizations
+  match '/auth/:provider/callback' => 'authorizations#create', :as => :callback
+  match '/auth/failure' => 'authorizations#failure'
   
   resources :sb_posts, :as => 'all_sb_posts' do
     collection do
@@ -7,9 +13,7 @@ Rails.application.routes.draw do
       get :monitored
     end
   end
-  
-  match '/base/:action' => 'base'
-  
+    
   resources :monitorship
   resources :sb_posts do
     collection do

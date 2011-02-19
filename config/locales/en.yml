@@ -1,4 +1,14 @@
 en:
+  authorizations:
+    create:
+      success_existing_user: "Successfully added %{provider} authentication"
+      success_new_user: "Welcome %{provider} user. Your account has been created."      
+      welcome_back_message: "Welcome back %{provider} user"
+    failure:
+      notice: "Sorry, You didn't authorize"
+    destroy:
+      notice: "Successfully deleted %{provider} authentication."
+  
   date:
     formats:
       published_date: "%m/%d/%Y"

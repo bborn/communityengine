@@ -3,94 +3,94 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   fixtures :all  
 
-  def test_should_create_user
+  test "should_create_user" do
     assert_difference User, :count do
       user = create_user
       assert !user.new_record?, "#{user.errors.full_messages.to_sentence}"
     end
   end
   
-  def test_should_trim_whitespace
+  test "should_trim_whitespace" do
     user = users(:quentin)
     user.login = 'quentin    '
     user.save!
     assert_equal user.login, 'quentin'
   end
 
-  def test_should_not_reject_spaces
+  test "should_not_reject_spaces" do
     user = User.new(:login => 'foo bar')
     user.valid?
     assert user.errors[:login].empty?
   end
 
-  def test_should_reject_special_chars
+  test "should_reject_special_chars" do
     user = User.new(:login => '&stripes')
     assert !user.valid?
     assert user.errors[:login]
   end
   
-  def test_should_accept_normal_chars_in_login
+  test "should_accept_normal_chars_in_login" do
     u = create_user(:login => "foo_and_bar")
     assert u.errors[:login].empty?
     u = create_user(:login => "2foo-and-bar")
     assert u.errors[:login].empty?
   end
 
-  def test_should_require_login
+  test "should_require_login" do
     assert_no_difference User, :count do
       u = create_user(:login => nil)
       assert u.errors[:login]
     end
   end
   
-  def test_should_find_user_with_numerals_in_login
+  test "should_find_user_with_numerals_in_login" do
     u = create_user(:login => "2foo-and-bar")
     assert u.errors[:login].empty?
     assert_equal u, User.find("2foo-and-bar")
   end
   
-  def test_login_slug_should_be_unique
+  test "login_slug_should_be_unique" do
     u = create_user(:login => 'user-name')
     u2 = create_user(:login => 'user_name')    
     
     assert u.login_slug != u2.login_slug
   end
   
-  def test_should_require_password
+  test "should_require_password" do
     assert_no_difference User, :count do
       u = create_user(:password => nil)
       assert u.errors[:password]
     end
   end
 
-  def test_should_require_password_confirmation
+  test "should_require_password_confirmation" do
     assert_no_difference User, :count do
       u = create_user(:password_confirmation => nil)
       assert u.errors[:password_confirmation]
     end
   end
 
-  def test_should_require_email
+  test "should_require_email" do
     assert_no_difference User, :count do
       u = create_user(:email => nil)
       assert u.errors[:email]
     end
   end
   
-  def test_should_require_valid_birthday
+  test "should_require_valid_birthday" do
     assert_no_difference User, :count do
       u = create_user(:birthday => 1.year.ago)
       assert u.errors[:birthday].any?
     end
   end  
 
-  def test_should_handle_email_upcase
+  test "should_handle_email_upcase" do
     assert_difference User, :count, 1 do
       assert create_user(:email => 'FOO@BAR.NET').valid?
     end
   end
 
-  def test_should_update_password
+  test "should_update_password" do
     activate_authlogic
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
     assert_equal users(:quentin), UserSession.create(:login => 'quentin', :password => 'new password').record
@@ -102,27 +102,27 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  def test_should_not_rehash_password
+  test "should_not_rehash_password" do
     activate_authlogic
     users(:quentin).update_attributes(:login => 'quentin_two')
     assert_equal users(:quentin), UserSession.create(:login => 'quentin_two', :password => 'test').record
   end
 
-  def test_should_show_location
+  test "should_show_location" do
     assert_equal users(:quentin).location, metro_areas(:twincities).name
   end
   
-  def test_should_call_avatar_photo
+  test "should_call_avatar_photo" do
     assert_equal users(:quentin).avatar_photo_url, configatron.photo.missing_medium
     assert_equal users(:quentin).avatar_photo_url(:thumb), configatron.photo.missing_thumb
   end
     
-  def test_should_find_featured
+  test "should_find_featured" do
     featured = User.find_featured
     assert_equal featured.size, 1
   end
 
-  def test_should_find_by_activity
+  test "should_find_by_activity" do
     assert_difference Activity, :count, 3 do
       users(:quentin).track_activity(:logged_in)
       users(:quentin).track_activity(:logged_in)
@@ -135,7 +135,7 @@ class UserTest < ActiveSupport::TestCase
     assert !User.find_by_activity.empty?    
   end
   
-  def test_should_not_include_inactive_users_in_find_by_activity
+  test "should_not_include_inactive_users_in_find_by_activity" do
     inactive_user = create_user
     assert !inactive_user.active?
     Activity.create(:user => inactive_user)
@@ -145,7 +145,7 @@ class UserTest < ActiveSupport::TestCase
   end  
   
   
-  def test_should_update_activities_counter_on_user
+  test "should_update_activities_counter_on_user" do
     #make sure the initial count is right
     Activity.destroy_all
     users(:quentin).update_attribute( :activities_count, Activity.by(users(:quentin)) )
@@ -157,7 +157,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
-  def test_should_have_reached_daily_friend_request_limit
+  test "should_have_reached_daily_friend_request_limit" do
     Friendship.daily_request_limit = 1
     
     assert !users(:quentin).has_reached_daily_friend_request_limit?
@@ -165,7 +165,7 @@ class UserTest < ActiveSupport::TestCase
     assert users(:quentin).has_reached_daily_friend_request_limit?
   end
   
-  def test_get_network_activity
+  test "get_network_activity" do
     users(:aaron).track_activity(:logged_in) #create an activity
         
     u = users(:quentin)
@@ -174,7 +174,7 @@ class UserTest < ActiveSupport::TestCase
     assert !u.network_activity.empty?    
   end
   
-  def test_comments_activity
+  test "should_get_comments_activity" do
     user = users(:quentin)
         
     2.times do
@@ -184,17 +184,17 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 2, user.comments_activity.size
   end
   
-  def test_should_deactivate
+  test "should_deactivate" do
     assert users(:quentin).active?
     users(:quentin).deactivate
     assert !users(:quentin).reload.active?
   end
 
-  def test_should_return_full_location
+  test "should_return_full_location" do
     assert_equal "Minneapolis / St. Paul", users(:quentin).full_location    
   end
   
-  def test_should_prohibit_reserved_logins    
+  test "should_prohibit_reserved_logins    " do
     user = create_user(:login => configatron.reserved_logins.first)
     assert !user.valid?
   end
@@ -220,8 +220,27 @@ class UserTest < ActiveSupport::TestCase
     assert_equal("SELECT \"users\".* FROM \"users\"  WHERE \"users\".\"metro_area_id\" = 1 AND (users.activated_at IS NOT NULL) AND (`users`.login LIKE '%foo%') AND (`users`.description LIKE '%baz%')", scope.to_sql)
   end
 
-  test "should " do
+  test "should create user from authorization hash" do
+    hash = {
+      'provider' => 'twitter',
+      'uid' => '12345',
+      'user_info' => {
+        'nickname' => 'omniauthuser',
+        'email' => 'email@example.com'        
+      }
+    }    
     
+    assert_difference User, :count, 1 do
+      User.create_from_authorization_hash(hash)
+    end
+  end
+  
+  test "should not require password or email for omniauthed user" do
+    user = User.new
+    user.authorizing_from_omniauth = true
+    user.valid?
+    assert(user.errors[:email].empty?, "Should not have errors on email")
+    assert(user.errors[:birthday].empty?, "Should not have errors on birthday")    
   end
   
   protected

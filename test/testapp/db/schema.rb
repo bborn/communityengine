@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110210193805) do
+ActiveRecord::Schema.define(:version => 20110219112729) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(:version => 20110210193805) do
     t.string   "thumbnail"
     t.integer  "parent_id"
     t.datetime "asset_updated_at"
+  end
+
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "categories", :force => true do |t|
