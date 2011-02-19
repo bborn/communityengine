@@ -17,6 +17,45 @@ GIT
   specs:
     calendar_date_select (1.16.1)
 
+GIT
+  remote: https://github.com/intridea/omniauth.git
+  revision: 31cb192c0c95811da75915df9b5a50f11629bf05
+  specs:
+    oa-basic (0.2.0.beta3)
+      multi_json (~> 0.0.2)
+      nokogiri (~> 1.4.2)
+      oa-core (= 0.2.0.beta3)
+      rest-client (~> 1.6.0)
+    oa-core (0.2.0.beta3)
+      rack (~> 1.1)
+    oa-enterprise (0.2.0.beta3)
+      net-ldap (~> 0.1.1)
+      nokogiri (~> 1.4.2)
+      oa-core (= 0.2.0.beta3)
+      pyu-ruby-sasl (~> 0.0.3.1)
+      rubyntlm (~> 0.1.1)
+    oa-more (0.2.0.beta3)
+      multi_json (~> 0.0.2)
+      oa-core (= 0.2.0.beta3)
+      rest-client (~> 1.6.0)
+    oa-oauth (0.2.0.beta3)
+      multi_json (~> 0.0.2)
+      nokogiri (~> 1.4.2)
+      oa-core (= 0.2.0.beta3)
+      oauth (~> 0.4.0)
+      oauth2 (~> 0.1.1)
+    oa-openid (0.2.0.beta3)
+      oa-core (= 0.2.0.beta3)
+      rack-openid (~> 1.2.0)
+      ruby-openid-apps-discovery
+    omniauth (0.2.0.beta3)
+      oa-basic (= 0.2.0.beta3)
+      oa-core (= 0.2.0.beta3)
+      oa-enterprise (= 0.2.0.beta3)
+      oa-more (= 0.2.0.beta3)
+      oa-oauth (= 0.2.0.beta3)
+      oa-openid (= 0.2.0.beta3)
+
 PATH
   remote: ../../
   specs:
@@ -165,39 +204,10 @@ GEM
     multipart-post (1.1.0)
     net-ldap (0.1.1)
     nokogiri (1.4.4)
-    oa-basic (0.1.6)
-      multi_json (~> 0.0.2)
-      nokogiri (~> 1.4.2)
-      oa-core (= 0.1.6)
-      rest-client (~> 1.6.0)
-    oa-core (0.1.6)
-      rack (~> 1.1)
-    oa-enterprise (0.1.6)
-      net-ldap (~> 0.1.1)
-      nokogiri (~> 1.4.2)
-      oa-core (= 0.1.6)
-      pyu-ruby-sasl (~> 0.0.3.1)
-      rubyntlm (~> 0.1.1)
-    oa-oauth (0.1.6)
-      multi_json (~> 0.0.2)
-      nokogiri (~> 1.4.2)
-      oa-core (= 0.1.6)
-      oauth (~> 0.4.0)
-      oauth2 (~> 0.1.0)
-    oa-openid (0.1.6)
-      oa-core (= 0.1.6)
-      rack-openid (~> 1.2.0)
-      ruby-openid-apps-discovery
     oauth (0.4.4)
     oauth2 (0.1.1)
       faraday (~> 0.5.0)
       multi_json (~> 0.0.4)
-    omniauth (0.1.6)
-      oa-basic (= 0.1.6)
-      oa-core (= 0.1.6)
-      oa-enterprise (= 0.1.6)
-      oa-oauth (= 0.1.6)
-      oa-openid (= 0.1.6)
     paperclip (2.3.8)
       activerecord
       activesupport
@@ -251,7 +261,7 @@ DEPENDENCIES
   hpricot
   htmlentities
   meta_search!
-  omniauth
+  omniauth!
   paperclip (~> 2.3)
   rack!
   rails (= 3.1.0.beta)!

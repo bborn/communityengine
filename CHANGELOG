@@ -24,6 +24,14 @@
 # Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
 
 
+=1.9.9
+
+* Rails 3.1 compatibility
+* Ruby 1.9.2 compatibility
+* Use Paperclip instead of attachment_fu
+* Add Omniauth
+* Remove lots of old, unused featured (contests, skills, offerings, etc.)
+
 =1.2.1
 * Anonymous forum replies
 * Turn comment notifications on or off by post

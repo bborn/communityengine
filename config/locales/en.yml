@@ -8,6 +8,11 @@ en:
       notice: "Sorry, You didn't authorize"
     destroy:
       notice: "Successfully deleted %{provider} authentication."
+  sessions:
+    new:
+      omniauth:
+        header: "Sign in with:"
+        button_alt: "Sign in with your %{provider} account"
   
   date:
     formats:

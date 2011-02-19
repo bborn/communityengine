@@ -11,7 +11,6 @@ class SessionsController < BaseController
   end
 
   def create
-    
     @user_session = UserSession.new(:login => params[:login], :password => params[:password], :remember_me => params[:remember_me])
 
     if @user_session.save

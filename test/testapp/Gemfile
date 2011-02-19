@@ -25,4 +25,4 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'simplecov', :path => '../../../'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'omniauth'  
+gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'  

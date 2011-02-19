@@ -2,7 +2,7 @@ class AuthorizationsController < BaseController
   before_filter :require_user, :only => [:destroy]
 
   def create
-    omniauth = request.env['rack.auth'] #this is where you get all the data from your provider through omniauth
+    omniauth = request.env['omniauth.auth'] #this is where you get all the data from your provider through omniauth
     @auth = Authorization.find_from_hash(omniauth)
     provider_name = omniauth['provider'].capitalize
     if current_user

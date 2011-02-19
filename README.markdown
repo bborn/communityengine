@@ -63,6 +63,20 @@ The application configuration defined in this file overrides the one defined in 
 This is where you can change commonly used configuration variables, like `configatron.community_name`, etc.
 
 
+OmniAuth Configuration:
+=======================
+
+You can allow users to sign up and log in using their accounts from other social networks (like Facbeook, Twitter, LinkedIn, etc.). To do so, just add an initializer in your app's `config/initializers` directory called `omniauth.rb`. In it, put:
+
+	Rails.application.config.middleware.use OmniAuth::Builder do
+	  provider :twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'
+	  provider :facebook, 'APP_ID', 'APP_SECRET'
+	  provider :linked_in, 'CONSUMER_KEY', 'CONSUMER_SECRET'
+	end
+
+See the [OmniAuth Github repository](https://github.com/intridea/omniauth) for more information and configuration options.
+
+
 Photo Uploading
 ---------------
 
