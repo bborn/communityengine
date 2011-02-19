@@ -1,5 +1,5 @@
 class AuthorizationsController < BaseController
-  before_filter :require_user, :only => [:destroy]
+  before_filter :login_required, :only => [:destroy]
 
   def create
     omniauth = request.env['omniauth.auth'] #this is where you get all the data from your provider through omniauth

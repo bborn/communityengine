@@ -1,0 +1,26 @@
+-if configatron.omniauth_providers
+  -remaining_providers = configatron.omniauth_providers - @authorizations.map(&:provider)
+  #omniauth_connect
+
+    -if @authorizations.any?
+      %h3 You can sign in to this account using:
+      .authentications
+        - @authorizations.each do |authorization|
+          %span.auth_providers_used
+            = image_tag "auth/#{authorization.provider}_32.png"
+            = link_to image_tag("auth/remove.png"), authorization, :confirm => "Are you sure you want to remove #{authorization.provider} authentication option?", :method => :delete, :class => "omniauth_remove", :title => "remove #{authorization.provider} authentication option?"
+        .clear
+
+    
+    -if remaining_providers.any?
+      %em Add another provider to sign in with:
+      %ul
+        -remaining_providers.each do |provider|
+          -alt = t('sessions.new.omniauth.button_alt', :provider => provider.capitalize)
+          %li= link_to(image_tag("auth/#{provider}_32.png", :alt => alt), "/auth/#{provider}", :title => alt)
+          
+%style          
+  :sass
+    .omniauth_remove
+      position: absolute
+      margin-left: -15px

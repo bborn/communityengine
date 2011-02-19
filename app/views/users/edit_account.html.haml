@@ -21,6 +21,10 @@
 
   #yui-main
     .yui-b
+    
+      -box :class => 'alt first_alt' do
+        = render :partial => "omniauth_connect"
+    
       -box do
         %h3=:e_mail_notification.l
 

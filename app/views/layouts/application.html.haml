@@ -3,6 +3,7 @@
   %head
     %link{:rel=>"shortcut icon", :href=>"#{home_url}favicon.ico"}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
+    =csrf_meta_tag
 
     %title= page_title
     -if @meta
