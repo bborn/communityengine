@@ -32,6 +32,9 @@ Getting CommunityEngine Running
 		gem "paperclip", "~> 2.3"
 		gem 'acts_as_commentable', "~> 3.0.0"
 		gem "recaptcha", :require => "recaptcha/rails"
+		gem 'simplecov'
+		gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'  
+
 
 2. From your app's root directory run:
 
