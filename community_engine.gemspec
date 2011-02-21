@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = %q{2011-02-17}
+  s.date = %q{2011-02-21}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "app/controllers/admin_controller.rb",
     "app/controllers/ads_controller.rb",
     "app/controllers/albums_controller.rb",
+    "app/controllers/authorizations_controller.rb",
     "app/controllers/base_controller.rb",
     "app/controllers/categories_controller.rb",
     "app/controllers/clippings_controller.rb",
@@ -74,6 +75,7 @@ Gem::Specification.new do |s|
     "app/models/ad.rb",
     "app/models/album.rb",
     "app/models/asset.rb",
+    "app/models/authorization.rb",
     "app/models/category.rb",
     "app/models/choice.rb",
     "app/models/clipping.rb",
@@ -303,6 +305,7 @@ Gem::Specification.new do |s|
     "app/views/user_notifier/signup_notification.erb",
     "app/views/user_notifier/signup_notification.fr.erb",
     "app/views/users/_dashboard_nav.html.haml",
+    "app/views/users/_omniauth_connect.html.haml",
     "app/views/users/_profile_completeness.html.haml",
     "app/views/users/_profile_user_info_sidebar.html.haml",
     "app/views/users/_search_options.html.haml",
@@ -417,6 +420,7 @@ Gem::Specification.new do |s|
     "db/migrate/075_add_anonymous_forum_posting.rb",
     "db/migrate/076_add_comment_notification_toggle.rb",
     "db/migrate/077_paperclip_changes.rb",
+    "db/migrate/078_create_authorizations.rb",
     "db/sample/users.rb",
     "generators/ce_plugin/USAGE",
     "generators/ce_plugin/ce_plugin_generator.rb",
@@ -440,6 +444,16 @@ Gem::Specification.new do |s|
     "lib/paperclip_processors/cropper.rb",
     "lib/tasks/community_engine_tasks.rake",
     "public/favicon.ico",
+    "public/images/auth/facebook_32.png",
+    "public/images/auth/facebook_64.png",
+    "public/images/auth/google_32.png",
+    "public/images/auth/google_64.png",
+    "public/images/auth/linked_in_32.png",
+    "public/images/auth/linked_in_64.png",
+    "public/images/auth/open_id_32.png",
+    "public/images/auth/remove.png",
+    "public/images/auth/twitter_32.png",
+    "public/images/auth/twitter_64.png",
     "public/images/bg_h6btn.gif",
     "public/images/bg_navbar.gif",
     "public/images/clearbits/bg_rounded.gif",
@@ -500,34 +514,17 @@ Gem::Specification.new do |s|
     "public/images/swf/line_grapher.swf",
     "public/images/swf/swfupload.swf",
     "public/images/thumb.gif",
-    "public/javascripts/AC_RunActiveContent.js",
     "public/javascripts/application.js",
-    "public/javascripts/builder.js",
     "public/javascripts/calendarview.js",
     "public/javascripts/controls.js",
     "public/javascripts/cropper.css",
     "public/javascripts/cropper.js",
     "public/javascripts/dragdrop.js",
     "public/javascripts/effects.js",
-    "public/javascripts/event-selectors.js",
     "public/javascripts/forum.js",
     "public/javascripts/lightbox.js",
-    "public/javascripts/lowpro.js",
-    "public/javascripts/prototip-min.js",
     "public/javascripts/prototype.js",
-    "public/javascripts/rounder.js",
-    "public/javascripts/scrapbooker.js",
-    "public/javascripts/scriptaculous.js",
-    "public/javascripts/slider.js",
-    "public/javascripts/slideshow/blank.gif",
-    "public/javascripts/slideshow/info.gif",
-    "public/javascripts/slideshow/loading.gif",
-    "public/javascripts/slideshow/next.gif",
-    "public/javascripts/slideshow/prev.gif",
-    "public/javascripts/slideshow/slideshow.css",
-    "public/javascripts/slideshow/slideshow.js",
-    "public/javascripts/sound.js",
-    "public/javascripts/swfupload.js",
+    "public/javascripts/rails.js",
     "public/javascripts/tiny_mce/langs/en.js",
     "public/javascripts/tiny_mce/license.txt",
     "public/javascripts/tiny_mce/plugins/advhr/css/advhr.css",
@@ -779,13 +776,11 @@ Gem::Specification.new do |s|
     "public/javascripts/tiny_mce/utils/form_utils.js",
     "public/javascripts/tiny_mce/utils/mctabs.js",
     "public/javascripts/tiny_mce/utils/validate.js",
-    "public/javascripts/uploader.js",
     "public/stylesheets/fonts.css",
     "public/stylesheets/forum.css",
     "public/stylesheets/grids.css",
     "public/stylesheets/lightbox.css",
     "public/stylesheets/print.css",
-    "public/stylesheets/prototip.css",
     "public/stylesheets/reset-fonts-grids.css",
     "public/stylesheets/reset.css",
     "public/stylesheets/screen.css",
@@ -951,6 +946,7 @@ Gem::Specification.new do |s|
     "test/testapp/db/migrate/20110210193803_add_anonymous_forum_posting.rb",
     "test/testapp/db/migrate/20110210193804_add_comment_notification_toggle.rb",
     "test/testapp/db/migrate/20110210193805_paperclip_changes.rb",
+    "test/testapp/db/migrate/20110219112729_create_authorizations.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/doc/README_FOR_APP",
@@ -1368,6 +1364,7 @@ Gem::Specification.new do |s|
     "test/testapp/vendor/plugins/.gitkeep",
     "test/unit/ad_test.rb",
     "test/unit/asset_test.rb",
+    "test/unit/authorization_test.rb",
     "test/unit/category_test.rb",
     "test/unit/choice_test.rb",
     "test/unit/clipping_image_test.rb",
@@ -2099,12 +2096,14 @@ Gem::Specification.new do |s|
     "test/testapp/db/migrate/20110210193803_add_anonymous_forum_posting.rb",
     "test/testapp/db/migrate/20110210193804_add_comment_notification_toggle.rb",
     "test/testapp/db/migrate/20110210193805_paperclip_changes.rb",
+    "test/testapp/db/migrate/20110219112729_create_authorizations.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/test/performance/browsing_test.rb",
     "test/testapp/test/test_helper.rb",
     "test/unit/ad_test.rb",
     "test/unit/asset_test.rb",
+    "test/unit/authorization_test.rb",
     "test/unit/category_test.rb",
     "test/unit/choice_test.rb",
     "test/unit/clipping_image_test.rb",
@@ -2142,6 +2141,7 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<community_engine>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_runtime_dependency(%q<rack>, [">= 0"])
       s.add_runtime_dependency(%q<arel>, [">= 0"])
@@ -2181,7 +2181,9 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
       s.add_runtime_dependency(%q<simplecov>, [">= 0"])
+      s.add_runtime_dependency(%q<omniauth>, ["~> 0.2.0"])
     else
+      s.add_dependency(%q<community_engine>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_dependency(%q<rack>, [">= 0"])
       s.add_dependency(%q<arel>, [">= 0"])
@@ -2221,8 +2223,10 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_dependency(%q<recaptcha>, [">= 0"])
       s.add_dependency(%q<simplecov>, [">= 0"])
+      s.add_dependency(%q<omniauth>, ["~> 0.2.0"])
     end
   else
+    s.add_dependency(%q<community_engine>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
     s.add_dependency(%q<rack>, [">= 0"])
     s.add_dependency(%q<arel>, [">= 0"])
@@ -2262,6 +2266,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     s.add_dependency(%q<recaptcha>, [">= 0"])
     s.add_dependency(%q<simplecov>, [">= 0"])
+    s.add_dependency(%q<omniauth>, ["~> 0.2.0"])
   end
 end
 
