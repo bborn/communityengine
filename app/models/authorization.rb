@@ -37,8 +37,10 @@ class Authorization < ActiveRecord::Base
   
   
   def allow_destroy?
-    errors.add(:base, "You must have at least one authorization provider.") if user.authorizations.count.eql?(1)
-    raise ActiveRecord::Rollback    
+    if user.authorizations.count.eql?(1)    
+      errors.add(:base, "You must have at least one authorization provider.") 
+      raise ActiveRecord::Rollback    
+    end
   end
   
   def assign_account_info(auth_hash)

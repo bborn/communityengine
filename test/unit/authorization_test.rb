@@ -27,6 +27,14 @@ class AuthorizationTest < ActiveSupport::TestCase
     end
   end
   
+  test "should allow authorization to be destroyed" do
+    authorization1 = Authorization.create_from_hash(auth_hash, users(:quentin))              
+    authorization2 = Authorization.create_from_hash(auth_hash.merge('provider' => 'facebook'), users(:quentin))                      
+    
+    assert authorization2.destroy
+    assert authorization2.errors[:base].empty?, 'Authorization should have not have an error on :base'    
+  end
+  
   
   test "should not allow authorization to be destroyed if it's the only one left and the user would be invalid without it" do
     authorization = Authorization.create_from_hash(auth_hash, users(:quentin))              
