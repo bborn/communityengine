@@ -16,13 +16,12 @@
             = check_box_tag 'remember_me'
         %p
           = submit_tag :log_in.l
-    
-    -if configatron.omniauth_providers
+
+    -if configatron.auth_providers.to_hash.keys.any?      
       -box :class => "alt" do
         %h3= t 'sessions.new.omniauth.header'
-        
-        -configatron.omniauth_providers.each do |provider|
+        -configatron.auth_providers.to_hash.keys.each do |provider|
           -alt = t('sessions.new.omniauth.button_alt', :provider => provider.capitalize)
-          = link_to(image_tag("auth/#{provider}_64.png", :alt => alt), "/auth/#{provider}", :title => alt)
+          = link_to(image_tag("auth/#{provider.to_s}_64.png", :alt => alt), "/auth/#{provider.to_s}", :title => alt)
 
         

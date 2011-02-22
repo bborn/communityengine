@@ -84,6 +84,7 @@ PATH
       htmlentities
       meta_search
       meta_search
+      omniauth
       omniauth (~> 0.2.0)
       paperclip (~> 2.3)
       paperclip (~> 2.3)

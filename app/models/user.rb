@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     c.validates_length_of_password_confirmation_field_options = { :within => 6..20, :if => :password_required? }
 
     c.validates_length_of_login_field_options = { :minimum => 5 }
-    c.validates_format_of_login_field_options = { :with => /^[\sA-Za-z0-9_-]+$/ }
+    c.validates_format_of_login_field_options = { :with => /^[\sA-Za-z0-9_-]+$/, :if => :login_format_required? }
 
     c.validates_length_of_email_field_options = { :within => 3..100, :if => :email_required? }
     c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/, :if => :email_required? }
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   #validation
   validates_presence_of     :metro_area, :if => Proc.new { |user| user.state }
-  validates_uniqueness_of   :login_slug
+  validates_uniqueness_of   :login_slug, :login
   validates_exclusion_of    :login, :in => configatron.reserved_logins
 
   validate :valid_birthday, :if => :requires_valid_birthday?
@@ -258,12 +258,14 @@ class User < ActiveRecord::Base
   def avatar_photo_url(size = nil)
     if avatar
       avatar.photo.url(size)
+    elsif omniauthed? && authorizations.first.picture_url
+      authorizations.first.picture_url      
     else
       case size
         when :thumb
-          '/community_engine/images/' + configatron.photo.missing_thumb.to_s
+          configatron.photo.missing_thumb.to_s
         else
-          '/community_engine/images/' + configatron.photo.missing_medium.to_s
+          configatron.photo.missing_medium.to_s
       end
     end
   end
@@ -448,27 +450,16 @@ class User < ActiveRecord::Base
     errors.add(:birthday, "must be before #{date.strftime("%Y-%m-%d")}") unless birthday && (birthday.to_date <= date.to_date)    
   end
   
-  def self.create_from_authorization_hash(hash)
-    user = User.new(:login => hash['user_info']['nickname'], :email => hash['user_info']['email'])
+  def self.create_from_authorization(auth)
+    user = User.new(:login => auth.nickname, :email => auth.email)
     new_password = user.newpass(8)
     user.password = new_password
     user.password_confirmation = new_password
     user.authorizing_from_omniauth = true
-    user.save
+    user.save!
+
     user.activate
     user.reset_persistence_token! #set persistence_token else sessions will not be created
-
-    if hash['user_info']['image']
-      puts hash['user_info']['image']
-      avatar = Photo.new
-      avatar.photo = user.data_from_url(hash['user_info']['image'])
-      avatar.user = user
-      avatar.save!
-      user.avatar = avatar      
-      user.save
-      #woah, this is pretty bad
-    end
-    
     user
   end
   
@@ -492,6 +483,10 @@ class User < ActiveRecord::Base
     end
     
     def email_required?
+      !omniauthed?
+    end
+    
+    def login_format_required?
       !omniauthed?
     end
     

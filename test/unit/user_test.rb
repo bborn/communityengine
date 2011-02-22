@@ -220,19 +220,19 @@ class UserTest < ActiveSupport::TestCase
     assert_equal("SELECT \"users\".* FROM \"users\"  WHERE \"users\".\"metro_area_id\" = 1 AND (users.activated_at IS NOT NULL) AND (`users`.login LIKE '%foo%') AND (`users`.description LIKE '%baz%')", scope.to_sql)
   end
 
-  test "should create user from authorization hash" do
-    hash = {
-      'provider' => 'twitter',
+  test "should create user from authorization" do
+    hash = {'provider' => 'twitter',
       'uid' => '12345',
-      'user_info' => {
-        'nickname' => 'omniauthuser',
-        'email' => 'email@example.com'        
-      }
-    }    
-    
-    assert_difference User, :count, 1 do
-      User.create_from_authorization_hash(hash)
+      'nickname' => 'omniauthuser',
+      'email' => 'email@example.com' } 
+      
+    Authorization.create!(hash) do |auth|
+      assert_difference User, :count, 1 do
+        user = User.create_from_authorization(auth)
+        auth.user = user        
+      end      
     end
+    
   end
   
   test "should not require password or email for omniauthed user" do

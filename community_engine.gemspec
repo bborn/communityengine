@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = %q{2011-02-21}
+  s.date = %q{2011-02-22}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -946,7 +946,6 @@ Gem::Specification.new do |s|
     "test/testapp/db/migrate/20110210193803_add_anonymous_forum_posting.rb",
     "test/testapp/db/migrate/20110210193804_add_comment_notification_toggle.rb",
     "test/testapp/db/migrate/20110210193805_paperclip_changes.rb",
-    "test/testapp/db/migrate/20110219112729_create_authorizations.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/doc/README_FOR_APP",
@@ -1488,14 +1487,6 @@ Gem::Specification.new do |s|
     "vendor/plugins/resource_feeder/test/atom_feed_test.rb",
     "vendor/plugins/resource_feeder/test/rss_feed_test.rb",
     "vendor/plugins/resource_feeder/test/test_helper.rb",
-    "vendor/plugins/responds_to_parent/MIT-LICENSE",
-    "vendor/plugins/responds_to_parent/README",
-    "vendor/plugins/responds_to_parent/Rakefile",
-    "vendor/plugins/responds_to_parent/init.rb",
-    "vendor/plugins/responds_to_parent/lib/parent_selector_assertion.rb",
-    "vendor/plugins/responds_to_parent/lib/responds_to_parent.rb",
-    "vendor/plugins/responds_to_parent/test/assert_select_parent_test.rb",
-    "vendor/plugins/responds_to_parent/test/responds_to_parent_test.rb",
     "vendor/plugins/tiny_mce/README",
     "vendor/plugins/tiny_mce/Rakefile",
     "vendor/plugins/tiny_mce/TODO",
@@ -2096,7 +2087,7 @@ Gem::Specification.new do |s|
     "test/testapp/db/migrate/20110210193803_add_anonymous_forum_posting.rb",
     "test/testapp/db/migrate/20110210193804_add_comment_notification_toggle.rb",
     "test/testapp/db/migrate/20110210193805_paperclip_changes.rb",
-    "test/testapp/db/migrate/20110219112729_create_authorizations.rb",
+    "test/testapp/db/migrate/20110222170124_create_authorizations.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/test/performance/browsing_test.rb",

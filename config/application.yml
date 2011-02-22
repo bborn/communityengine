@@ -23,7 +23,12 @@ require_captcha_on_signup: false
 #uncomment this if you want to use akismet for comment filtering. Go to http://en.wordpress.com/api-keys/
 
 #uncomment below to use omniauth providers for login and signup
-#omniauth_providers: ['twitter', 'facebook']
+# auth_providers:
+#   twitter:
+#     key: 'key'
+#     secret: 'secret'  
+
+
 
 # for SEO reasons sometimes you should control the robots on how they have to handle your content
 # listing of stuff which points to single posts or entries should normally not been indexed, 
@@ -38,8 +43,8 @@ min_age: 16
 max_age: 90
 
 photo:
-  missing_thumb: 'icon_missing_thumb.gif'
-  missing_medium: "icon_missing_medium.gif"
+  missing_thumb: '/community_engine/images/icon_missing_thumb.gif'
+  missing_medium: "/community_engine/images/icon_missing_medium.gif"
   paperclip_options:
     styles:
       thumb:

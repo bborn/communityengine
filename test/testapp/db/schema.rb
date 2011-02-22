@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110219112729) do
+ActiveRecord::Schema.define(:version => 20110222170124) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -62,9 +62,15 @@ ActiveRecord::Schema.define(:version => 20110219112729) do
   end
 
   create_table "authorizations", :force => true do |t|
+    t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
-    t.integer  "user_id"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "picture_url"
+    t.string   "access_token"
+    t.string   "access_token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,18 +101,19 @@ ActiveRecord::Schema.define(:version => 20110219112729) do
   add_index "clippings", ["created_at"], :name => "index_clippings_on_created_at"
 
   create_table "comments", :force => true do |t|
-    t.string   "title",            :limit => 50
-    t.datetime "created_at"
+    t.string   "title"
     t.integer  "commentable_id"
-    t.string   "commentable_type", :limit => 15
+    t.string   "commentable_type"
     t.integer  "user_id"
     t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "comment"
     t.string   "author_name"
     t.string   "author_email"
     t.string   "author_url"
     t.string   "author_ip"
-    t.boolean  "notify_by_email",                :default => true
+    t.boolean  "notify_by_email",  :default => true
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
