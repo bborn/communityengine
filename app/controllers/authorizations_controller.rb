@@ -26,8 +26,13 @@ class AuthorizationsController < BaseController
   
   def destroy
     @authorization = current_user.authorizations.find(params[:id])
-    flash[:notice] = t('authorizations.destroy.notice', :provider => @authorization.provider.capitalize)
-    @authorization.destroy
-    redirect_to home_url
+
+    if @authorization.destroy
+      flash[:notice] = t('authorizations.destroy.notice', :provider => @authorization.provider.capitalize)      
+      redirect_to home_url
+    else
+      flash[:notice] = @authorization.errors.full_messages.to_sentence
+      redirect_to edit_account_user_path(current_user)
+    end
   end
 end

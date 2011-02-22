@@ -1,21 +1,22 @@
 = TODO
 # * replace paginating find with will paginate
 # * replace att_fu with paperclip
-* rip out multiple uploader, responds-to-parent
-* replace white_list with something (sanitize?) (preserve stuff from white list initializer)
-* replace setup template with something else more sensible
 # * fix boot; 
-* allow overriding initializers, autoloading assets, etc
-* mce_opts initializer
 # * recaptcha constants
 # * rip out beta mode and teaser stuff
 # * clean up routes
-* remove all the theming stuff?
-# * take out ez where
-* fix rakismet initializer
 # * take out vendors/offerings stuff
-* add back searching to users index, use metaseach
+# * take out ez where
 # * remote_form_for is gone (use dynamic_form gem)
+
+* rip out multiple uploader, responds-to-parent
+* replace white_list with something (sanitize?) (preserve stuff from white list initializer)
+* replace setup template with something else more sensible
+* allow overriding initializers, autoloading assets, etc
+* mce_opts initializer
+* remove all the theming stuff?
+* fix rakismet initializer
+* add back searching to users index, use metaseach
 * remove stylesheet customization?
 * use aato instead of aatos
 * authlogic has problems: not sure it's recording last_login magic columns, investigate

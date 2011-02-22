@@ -1,6 +1,7 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  include UrlUpload
   has_friendly_id :login_slug
   
   MALE    = 'M'
@@ -260,9 +261,9 @@ class User < ActiveRecord::Base
     else
       case size
         when :thumb
-          configatron.photo.missing_thumb.to_s
+          '/community_engine/images/' + configatron.photo.missing_thumb.to_s
         else
-          configatron.photo.missing_medium.to_s
+          '/community_engine/images/' + configatron.photo.missing_medium.to_s
       end
     end
   end
@@ -456,6 +457,18 @@ class User < ActiveRecord::Base
     user.save
     user.activate
     user.reset_persistence_token! #set persistence_token else sessions will not be created
+
+    if hash['user_info']['image']
+      puts hash['user_info']['image']
+      avatar = Photo.new
+      avatar.photo = user.data_from_url(hash['user_info']['image'])
+      avatar.user = user
+      avatar.save!
+      user.avatar = avatar      
+      user.save
+      #woah, this is pretty bad
+    end
+    
     user
   end
   

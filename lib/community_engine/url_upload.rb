@@ -1,4 +1,5 @@
 module UrlUpload
+            
   def data_from_url(uri)
     io = (open(URI.parse(uri)) rescue return nil)
     (class << io; self; end;).class_eval do

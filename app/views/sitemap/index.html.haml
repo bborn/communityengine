@@ -12,7 +12,7 @@
         %h3= :pages.l
         %ul
           %li=link_to :home.l, '/'
-          %li= link_to :users.l, users_path
+          %li= link_to t('sitemaps.index.users').l, users_path
           - Page.find(:all).each do |page|
             - if (logged_in? || page.page_public)
               %li= link_to page.title, pages_path(page)

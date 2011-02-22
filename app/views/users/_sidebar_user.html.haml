@@ -1,5 +1,6 @@
 %dl.vcard
   %dt.photo
+    - raise user.avatar_photo_url(:thumb).to_s
     = link_to image_tag(user.avatar_photo_url(:thumb), :alt => "#{user.login}", :width => '50', :height => '50'), user_path(user)
   %dd.fn
     =link_to user.login, user_path(user), :class => 'url'

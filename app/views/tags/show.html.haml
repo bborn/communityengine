@@ -49,7 +49,7 @@
       
     - if @users.any?
       .user
-        %h3=:users.l
+        %h3= t('tags.show.users')
         - @users.each do |user|
           = link_to image_tag(user.avatar_photo_url(:thumb), :class => "polaroid"), user_path(user), :title => user.login
         %h6.all= link_to :all_users_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'User') unless params[:type]

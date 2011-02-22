@@ -20,6 +20,12 @@ class AuthorizationTest < ActiveSupport::TestCase
   end
   
   
+  test "should not allow authorization to be destroyed if it's the only one left and the user would be invalid without it" do
+    authorization = Authorization.create_from_hash(auth_hash, users(:quentin))              
+    authorization.destroy    
+    assert !authorization.errors[:base].empty?, 'Authorization should have an error on :base'
+  end
+  
   def auth_hash
     hash = {
       'provider' => 'twitter',

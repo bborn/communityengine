@@ -27,7 +27,7 @@
 
     %h3
       = :active.l+":"
-      = pluralize @active_users_count, :user.l, :users.l
+      = pluralize @active_users_count, :user.l
       (
       = number_to_percentage((@active_users_count/@total_users.to_f)*100, :precision => 1)
       =", 1 "+:month.l+")"

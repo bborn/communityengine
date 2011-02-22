@@ -105,7 +105,6 @@ class Post < ActiveRecord::Base
   
   ## transform the text and title into valid html
   def transform_post
-   # self.raw_post  = force_relative_urls(self.raw_post)
    self.post  = white_list(self.raw_post)
    self.title = white_list(self.title)
   end

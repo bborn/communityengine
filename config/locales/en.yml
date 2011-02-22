@@ -13,6 +13,18 @@ en:
       omniauth:
         header: "Sign in with:"
         button_alt: "Sign in with your %{provider} account"
+  users:
+    edit_account:
+      omniauth:
+        confirm_remove: "Are you sure you want to remove %{provider} authentication option?"
+        title_remove: "Remove %{provider} authentication option?"
+  tags:
+    show:
+      users: Users
+  sitemaps:
+    index:
+      users: Users
+
   
   date:
     formats:
@@ -1408,8 +1420,6 @@ en:
   user: User
   #en: user_information: %{site} User information
   user_information: "%{site} User information"
-  #en: users: Users
-  users: Users
   #en: users_blog: "%{user}'s Blog"
   users_blog: "%{user}'s Blog"
   #en: user_clippings: Clippings of %{user}

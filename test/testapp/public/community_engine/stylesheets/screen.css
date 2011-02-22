@@ -718,6 +718,7 @@ ul.sortable_hover {
 	background:#efefef;
 	}
 
+
 /*	PAGINATION	*/
 div.pagination {
 	margin: 10px;
@@ -1009,12 +1010,28 @@ table.poll {
       padding-right: 2px; }
 
 /* User Menu Dropdown*/
+#user-menu-tip {
+  background: #fff;
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: -9999px;
+	*width:150px;
+	border: 2px solid #2a1301; 
+	border-top: none;	
+  padding: 10px;
+  z-index: 999;  
+}
 #user-menu {
 	padding-right: 15px;
+	position: relative;
 	background: url(/community_engine/images/icons/bullet_arrow_down_50.png) no-repeat right;
 	}
 #user-menu:hover {
 	background: url(/community_engine/images/icons/bullet_arrow_down.png) no-repeat right;	
+} 
+#user-menu:hover #user-menu-tip {
+  top: 22px;
 }
 
 .icon_row a {
