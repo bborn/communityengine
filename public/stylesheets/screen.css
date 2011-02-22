@@ -971,7 +971,7 @@ table.poll {
 /* Omniauth */
 
 .omniauth_remove {
-  position: absolute;
+  position: relative;
   margin-left: -15px; 
 }
 
