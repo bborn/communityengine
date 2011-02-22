@@ -23,5 +23,6 @@ gem "friendly_id", "~> 3.2.1"
 gem "paperclip", "~> 2.3"
 gem 'acts_as_commentable', "~> 3.0.0"
 gem "recaptcha", :require => "recaptcha/rails"
+gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'  
 
 gem 'sqlite3-ruby', :require => 'sqlite3'

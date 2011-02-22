@@ -69,12 +69,13 @@ PATH
       aws-s3
       calendar_date_select
       calendar_date_select
+      community_engine
       configatron
       configatron
       dynamic_form
       dynamic_form
-      friendly_id (~> 3.2.1)
       friendly_id (= 3.2.1)
+      friendly_id (~> 3.2.1)
       haml
       haml
       hpricot
@@ -83,10 +84,11 @@ PATH
       htmlentities
       meta_search
       meta_search
+      omniauth (~> 0.2.0)
       paperclip (~> 2.3)
       paperclip (~> 2.3)
-      rack
       rack (= 1.2.1)
+      rack
       rails (= 3.1.0.beta)
       rails (= 3.1.0.beta)
       rakismet

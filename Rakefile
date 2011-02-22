@@ -65,7 +65,6 @@ begin
     gem.add_dependency 'recaptcha'
     gem.add_dependency 'simplecov'
     gem.add_dependency 'omniauth', '~> 0.2.0'  
-    
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."
