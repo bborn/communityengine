@@ -48,14 +48,7 @@ class UserTest < ActiveSupport::TestCase
     assert u.errors[:login].empty?
     assert_equal u, User.find("2foo-and-bar")
   end
-  
-  test "login_slug_should_be_unique" do
-    u = create_user(:login => 'user-name')
-    u2 = create_user(:login => 'user_name')    
     
-    assert u.login_slug != u2.login_slug
-  end
-  
   test "should_require_password" do
     assert_no_difference User, :count do
       u = create_user(:password => nil)

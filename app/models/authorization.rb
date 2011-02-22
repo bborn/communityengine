@@ -2,12 +2,13 @@ class Authorization < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user_id, :uid, :provider
   validates_uniqueness_of :uid, :scope => :provider
+  validates_associated :user
   before_destroy :allow_destroy?
 
   def self.find_or_create_from_hash(hash, existing_user = nil)
     if (auth = find_from_hash(hash))
       auth.assign_account_info(hash)
-      auth.save!
+      auth.save
       auth
     else
       create_from_hash(hash, existing_user)
@@ -15,7 +16,7 @@ class Authorization < ActiveRecord::Base
   end
   
   def self.create_from_hash(hash, existing_user = nil)
-    create! do |authorization|
+    create do |authorization|
       authorization.assign_account_info(hash)
       authorization.find_or_create_user(existing_user)
     end    
@@ -54,7 +55,6 @@ class Authorization < ActiveRecord::Base
       self.access_token        = auth_hash['credentials']['token']
       self.access_token_secret = auth_hash['credentials']['secret']
     end
-  end
-  
+  end  
 
 end

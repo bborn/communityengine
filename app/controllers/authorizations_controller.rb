@@ -9,12 +9,17 @@ class AuthorizationsController < BaseController
 
     if logged_in?
       flash[:notice] = t('authorizations.create.success_existing_user', :provider => provider_name)
-    elsif @auth
+    elsif @auth.valid?
       flash[:notice] = t('authorizations.create.success_message', :provider => provider_name)
       UserSession.create(@auth.user, true)
     end
-    
-    redirect_to request.env['omniauth.origin'] || user_path(current_user)
+
+    if logged_in?
+      redirect_to request.env['omniauth.origin'] || user_path(current_user)
+    else
+      flash[:notice] = @auth.user.errors.full_messages.to_sentence 
+      redirect_to login_path
+    end
   end
   
   def failure

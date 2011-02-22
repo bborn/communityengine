@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   include UrlUpload
-  has_friendly_id :login_slug
+  has_friendly_id :login, :use_slug => true, :cache_column => 'login_slug'
   
   MALE    = 'M'
   FEMALE  = 'F'
@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
     c.validates_length_of_password_field_options = { :within => 6..20, :if => :password_required? }
     c.validates_length_of_password_confirmation_field_options = { :within => 6..20, :if => :password_required? }
 
-    c.validates_length_of_login_field_options = { :minimum => 5 }
-    c.validates_format_of_login_field_options = { :with => /^[\sA-Za-z0-9_-]+$/, :if => :login_format_required? }
+    c.validates_length_of_login_field_options = { :minimum => 5, :unless => :omniauthed? }
+    c.validates_format_of_login_field_options = { :with => /^[\sA-Za-z0-9_-]+$/, :unless => :omniauthed? }
 
     c.validates_length_of_email_field_options = { :within => 3..100, :if => :email_required? }
     c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/, :if => :email_required? }
@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
-  before_validation   :generate_login_slug  
   before_create :make_activation_code
   after_create  :update_last_login
   after_create  :deliver_signup_notification
@@ -37,7 +36,7 @@ class User < ActiveRecord::Base
 
   #validation
   validates_presence_of     :metro_area, :if => Proc.new { |user| user.state }
-  validates_uniqueness_of   :login_slug, :login
+  validates_uniqueness_of   :login
   validates_exclusion_of    :login, :in => configatron.reserved_logins
 
   validate :valid_birthday, :if => :requires_valid_birthday?
@@ -243,9 +242,9 @@ class User < ActiveRecord::Base
     ma.save
   end  
   
-  def to_param
-    login_slug
-  end
+  # def login_slug
+  #   friendly_id
+  # end
   
   def this_months_posts
     self.posts.find(:all, :conditions => ["published_at > ?", DateTime.now.to_time.at_beginning_of_month])
@@ -339,11 +338,6 @@ class User < ActiveRecord::Base
 
   def friendship_exists_with?(friend)
     Friendship.find(:first, :conditions => ["user_id = ? AND friend_id = ?", self.id, friend.id])
-  end
-  
-  # before filter
-  def generate_login_slug
-    self.login_slug = self.login && self.login.parameterize 
   end
   
   def deliver_activation
@@ -456,11 +450,12 @@ class User < ActiveRecord::Base
     user.password = new_password
     user.password_confirmation = new_password
     user.authorizing_from_omniauth = true
-    user.save!
-
-    user.activate
-    user.reset_persistence_token! #set persistence_token else sessions will not be created
-    user
+    
+    if user.save
+      user.activate
+      user.reset_persistence_token! #set persistence_token else sessions will not be created
+    end
+    user    
   end
   
   ## End Instance Methods
@@ -485,11 +480,7 @@ class User < ActiveRecord::Base
     def email_required?
       !omniauthed?
     end
-    
-    def login_format_required?
-      !omniauthed?
-    end
-    
+        
     def requires_valid_birthday?
       !omniauthed?
     end

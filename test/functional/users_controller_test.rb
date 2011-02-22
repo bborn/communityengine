@@ -209,7 +209,7 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_update_user
     login_as :quentin
-    put :update, :id => users(:quentin), :user => {:login => "changed_login", :email => "changed_email@email.com"}
+    put :update, :id => users(:quentin), :user => {:email => "changed_email@email.com"}
     assert_redirected_to user_path(users(:quentin).reload)
     assert_equal assigns(:user).email, "changed_email@email.com"
   end
@@ -287,7 +287,7 @@ class UsersControllerTest < ActionController::TestCase
 
     put :upload_profile_photo, :id => users(:quentin), :avatar => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}
     
-    assert_redirected_to crop_profile_photo_user_path(users(:quentin))    
+    assert_redirected_to crop_profile_photo_user_path(users(:quentin).reload)    
   end
   
   def test_create_friendship_with_invited_user
@@ -416,7 +416,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_get_dashboard_with_no_friends
     login_as :aaron
     assert users(:aaron).network_activity.empty?
-    get :dashboard, :id => users(:aaron).login_slug
+    get :dashboard, :id => users(:aaron).friendly_id
     assert_response :success
   end
 
@@ -427,7 +427,7 @@ class UsersControllerTest < ActionController::TestCase
     assert !users(:aaron).tags.empty?
 
     assert users(:aaron).recommended_posts.empty?    
-    get :dashboard, :id => users(:aaron).login_slug
+    get :dashboard, :id => users(:aaron).friendly_id
     assert_response :success
   end
 
