@@ -1,7 +1,13 @@
+.bundle/
+log/*.log
+pkg/
+test/testapp/db/*.sqlite3
+test/testapp/log/*.log
+Gemfile.lock
+
 .DS_Store
 *~
-pkg
 .rvmrc
 test/testapp/public/system/
 coverage
-Gemfile.lock
+bin/

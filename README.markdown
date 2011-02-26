@@ -4,52 +4,58 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 3.1.0beta (lower versions are not supported)
-	- All the gems listed in the Gemfile
+	- RAILS VERSION 3.1.0.beta (lower versions are not supported)
+	- For now, patched versions of: meta_search, authlogic, calendar_date_select, and omniauth
+	- All other requirements are brought in automatically
+	- Don't forget to include the gems you plan to include in your application
 
 Getting CommunityEngine Running
 --------------------------------
 
 1. Copy the following into your Gemfile:
 
-		gem 'community_engine', '1.9.9', :git => 'git://github.com/bborn/communityengine.git', :branch => "rails3"
-		# If doing local development on CE, change to something like:
-		# gem 'community_engine', '1.9.9', :path => '../communityengine'
-		
-		# You must enable any gems you intend to use in your application
-		# gem 'haml'
-		gem 'sqlite3-ruby', :require => 'sqlite3'
-		
-		# Living on rails edge for now
-		gem 'rails', '3.1.0.beta', :git => 'git://github.com/bborn/rails.git'
-		gem 'rack', :git => 'git://github.com/rack/rack.git'
-		gem 'arel',  :git => 'git://github.com/rails/arel.git'
-		
-		# Temporary patches to other libraries
-		gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
-		gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
-		gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
-		gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
+	source 'http://rubygems.org'
+
+	gem 'community_engine', '1.9.9', :path => '../communityengine'
+
+	# Bundle edge Rails
+	gem 'rails', :git => 'git://github.com/bborn/rails.git'
+	gem 'arel',  :git => 'git://github.com/rails/arel.git'
+	gem "rack", :git => "git://github.com/rack/rack.git"
+
+	gem 'sqlite3'
+
+	# Temporary patches to other libraries
+	# gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
+	gem 'meta_search', :path => '../meta_search'
+	gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
+	gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
+	gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
+
+You may also have to add the following near the top of your application.rb  Try this if you get YAML errors.
+
+	require 'yaml'
+	YAML::ENGINE.yamler= 'syck'
 
 2. From your app's root directory run:
 
-		$ bundle install
-		$ rake community_engine:install
-		$ rake db:migrate
-		
+	$ bundle install --binstubs
+	$ bin/rake community_engine:install
+	$ bin/rake db:migrate
+
 3. Add a file called `application.yml` to your `config` directory. In it put (at least):
 
-		community_name: Your Application Name
+	community_name: Your Application Name
 
 4. Mount CommunityEngine in your `config/routes.rb` file:
 
-		mount CommunityEngine::Engine => "/"
+	mount CommunityEngine::Engine => "/"
 
 5. Delete the default `views/layouts/application.html.erb` that Rails created for you. Delete `public/index.html` if you haven't already.
-		
+
 6. Start your server! 
 
-		$ rails server
+	$ bin rails server
 
 Optional Configuration
 ======================
