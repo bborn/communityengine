@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class FriendshipTest < ActiveSupport::TestCase
   fixtures :friendships, :users, :roles, :friendship_statuses 

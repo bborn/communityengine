@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class BaseControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :photos, :homepage_features, :taggings, :tags, :posts, :categories, :roles
