@@ -8,9 +8,8 @@ ActiveSupport::Deprecation.silenced = true
 require 'yaml'
 YAML::ENGINE.yamler= 'syck'
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require
+require "community_engine"
 
 module Dummy
   class Application < Rails::Application
