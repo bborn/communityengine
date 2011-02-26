@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = %q{2011-02-22}
+  s.date = %q{2011-02-25}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -421,6 +421,7 @@ Gem::Specification.new do |s|
     "db/migrate/076_add_comment_notification_toggle.rb",
     "db/migrate/077_paperclip_changes.rb",
     "db/migrate/078_create_authorizations.rb",
+    "db/migrate/079_create_slugs.rb",
     "db/sample/users.rb",
     "generators/ce_plugin/USAGE",
     "generators/ce_plugin/ce_plugin_generator.rb",
@@ -946,6 +947,8 @@ Gem::Specification.new do |s|
     "test/testapp/db/migrate/20110210193803_add_anonymous_forum_posting.rb",
     "test/testapp/db/migrate/20110210193804_add_comment_notification_toggle.rb",
     "test/testapp/db/migrate/20110210193805_paperclip_changes.rb",
+    "test/testapp/db/migrate/20110222170124_create_authorizations.rb",
+    "test/testapp/db/migrate/20110222184308_create_slugs.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/doc/README_FOR_APP",
@@ -997,6 +1000,16 @@ Gem::Specification.new do |s|
     "test/testapp/public/community_engine/charts/themes/default/test.yml",
     "test/testapp/public/community_engine/contest_enter.png",
     "test/testapp/public/community_engine/favicon.ico",
+    "test/testapp/public/community_engine/images/auth/facebook_32.png",
+    "test/testapp/public/community_engine/images/auth/facebook_64.png",
+    "test/testapp/public/community_engine/images/auth/google_32.png",
+    "test/testapp/public/community_engine/images/auth/google_64.png",
+    "test/testapp/public/community_engine/images/auth/linked_in_32.png",
+    "test/testapp/public/community_engine/images/auth/linked_in_64.png",
+    "test/testapp/public/community_engine/images/auth/open_id_32.png",
+    "test/testapp/public/community_engine/images/auth/remove.png",
+    "test/testapp/public/community_engine/images/auth/twitter_32.png",
+    "test/testapp/public/community_engine/images/auth/twitter_64.png",
     "test/testapp/public/community_engine/images/bg_h6btn.gif",
     "test/testapp/public/community_engine/images/bg_navbar.gif",
     "test/testapp/public/community_engine/images/clearbits/bg_rounded.gif",
@@ -1072,6 +1085,7 @@ Gem::Specification.new do |s|
     "test/testapp/public/community_engine/javascripts/lowpro.js",
     "test/testapp/public/community_engine/javascripts/prototip-min.js",
     "test/testapp/public/community_engine/javascripts/prototype.js",
+    "test/testapp/public/community_engine/javascripts/rails.js",
     "test/testapp/public/community_engine/javascripts/rounder.js",
     "test/testapp/public/community_engine/javascripts/scrapbooker.js",
     "test/testapp/public/community_engine/javascripts/scriptaculous.js",
@@ -1962,7 +1976,7 @@ Gem::Specification.new do |s|
     "vendor/plugins/white_list/test/white_list_test.rb"
   ]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.5.2}
   s.summary = %q{CommunityEngine for Rails 3}
   s.test_files = [
     "test/functional/activities_controller_test.rb",
@@ -2088,6 +2102,7 @@ Gem::Specification.new do |s|
     "test/testapp/db/migrate/20110210193804_add_comment_notification_toggle.rb",
     "test/testapp/db/migrate/20110210193805_paperclip_changes.rb",
     "test/testapp/db/migrate/20110222170124_create_authorizations.rb",
+    "test/testapp/db/migrate/20110222184308_create_slugs.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/test/performance/browsing_test.rb",
@@ -2128,32 +2143,10 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<community_engine>, [">= 0"])
-      s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
-      s.add_runtime_dependency(%q<rack>, [">= 0"])
-      s.add_runtime_dependency(%q<arel>, [">= 0"])
-      s.add_runtime_dependency(%q<meta_search>, [">= 0"])
-      s.add_runtime_dependency(%q<authlogic>, [">= 0"])
-      s.add_runtime_dependency(%q<configatron>, [">= 0"])
-      s.add_runtime_dependency(%q<hpricot>, [">= 0"])
-      s.add_runtime_dependency(%q<htmlentities>, [">= 0"])
-      s.add_runtime_dependency(%q<haml>, [">= 0"])
-      s.add_runtime_dependency(%q<calendar_date_select>, [">= 0"])
-      s.add_runtime_dependency(%q<ri_cal>, [">= 0"])
-      s.add_runtime_dependency(%q<rakismet>, [">= 0"])
-      s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
-      s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
-      s.add_runtime_dependency(%q<dynamic_form>, [">= 0"])
-      s.add_runtime_dependency(%q<friendly_id>, ["~> 3.2.1"])
-      s.add_runtime_dependency(%q<paperclip>, ["~> 2.3"])
-      s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
-      s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
-      s.add_runtime_dependency(%q<omniauth>, [">= 0"])
-      s.add_runtime_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_runtime_dependency(%q<rack>, ["= 1.2.1"])
       s.add_runtime_dependency(%q<authlogic>, [">= 0"])
@@ -2173,30 +2166,9 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
       s.add_runtime_dependency(%q<simplecov>, [">= 0"])
-      s.add_runtime_dependency(%q<omniauth>, ["~> 0.2.0"])
+      s.add_runtime_dependency(%q<omniauth>, [">= 0"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
-      s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
-      s.add_dependency(%q<rack>, [">= 0"])
-      s.add_dependency(%q<arel>, [">= 0"])
-      s.add_dependency(%q<meta_search>, [">= 0"])
-      s.add_dependency(%q<authlogic>, [">= 0"])
-      s.add_dependency(%q<configatron>, [">= 0"])
-      s.add_dependency(%q<hpricot>, [">= 0"])
-      s.add_dependency(%q<htmlentities>, [">= 0"])
-      s.add_dependency(%q<haml>, [">= 0"])
-      s.add_dependency(%q<calendar_date_select>, [">= 0"])
-      s.add_dependency(%q<ri_cal>, [">= 0"])
-      s.add_dependency(%q<rakismet>, [">= 0"])
-      s.add_dependency(%q<aws-s3>, [">= 0"])
-      s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
-      s.add_dependency(%q<dynamic_form>, [">= 0"])
-      s.add_dependency(%q<friendly_id>, ["~> 3.2.1"])
-      s.add_dependency(%q<paperclip>, ["~> 2.3"])
-      s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
-      s.add_dependency(%q<recaptcha>, [">= 0"])
-      s.add_dependency(%q<omniauth>, [">= 0"])
-      s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
       s.add_dependency(%q<rack>, ["= 1.2.1"])
       s.add_dependency(%q<authlogic>, [">= 0"])
@@ -2216,31 +2188,10 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_dependency(%q<recaptcha>, [">= 0"])
       s.add_dependency(%q<simplecov>, [">= 0"])
-      s.add_dependency(%q<omniauth>, ["~> 0.2.0"])
+      s.add_dependency(%q<omniauth>, [">= 0"])
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
-    s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
-    s.add_dependency(%q<rack>, [">= 0"])
-    s.add_dependency(%q<arel>, [">= 0"])
-    s.add_dependency(%q<meta_search>, [">= 0"])
-    s.add_dependency(%q<authlogic>, [">= 0"])
-    s.add_dependency(%q<configatron>, [">= 0"])
-    s.add_dependency(%q<hpricot>, [">= 0"])
-    s.add_dependency(%q<htmlentities>, [">= 0"])
-    s.add_dependency(%q<haml>, [">= 0"])
-    s.add_dependency(%q<calendar_date_select>, [">= 0"])
-    s.add_dependency(%q<ri_cal>, [">= 0"])
-    s.add_dependency(%q<rakismet>, [">= 0"])
-    s.add_dependency(%q<aws-s3>, [">= 0"])
-    s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
-    s.add_dependency(%q<dynamic_form>, [">= 0"])
-    s.add_dependency(%q<friendly_id>, ["~> 3.2.1"])
-    s.add_dependency(%q<paperclip>, ["~> 2.3"])
-    s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
-    s.add_dependency(%q<recaptcha>, [">= 0"])
-    s.add_dependency(%q<omniauth>, [">= 0"])
-    s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
     s.add_dependency(%q<rack>, ["= 1.2.1"])
     s.add_dependency(%q<authlogic>, [">= 0"])
@@ -2260,7 +2211,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     s.add_dependency(%q<recaptcha>, [">= 0"])
     s.add_dependency(%q<simplecov>, [">= 0"])
-    s.add_dependency(%q<omniauth>, ["~> 0.2.0"])
+    s.add_dependency(%q<omniauth>, [">= 0"])
   end
 end
 

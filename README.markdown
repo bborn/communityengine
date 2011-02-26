@@ -12,29 +12,20 @@ Getting CommunityEngine Running
 
 1. Copy the following into your Gemfile:
 
+		gem 'community_engine', '1.9.9', :git => 'git://github.com/bborn/communityengine.git', :branch => "rails3"
+		# If doing local development on CE, change to something like:
+		# gem 'community_engine', '1.9.9', :path => '../communityengine'
+		
+		# Living on rails edge for now
 		gem 'rails', '3.1.0.beta', :git => 'git://github.com/bborn/rails.git'
 		gem 'rack', :git => 'git://github.com/rack/rack.git'
 		gem 'arel',  :git => 'git://github.com/rails/arel.git'
-		gem 'community_engine', '1.9.9', :git => 'git://github.com/bborn/communityengine.git', :branch => "rails3"
+		
+		# Temporary patches to other libraries
 		gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
 		gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
-		gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'		
-		gem 'configatron'
-		gem 'hpricot'
-		gem 'htmlentities'
-		gem 'haml'
-		gem 'ri_cal'
-		gem 'rakismet'
-		gem 'aws-s3', :require => 'aws/s3'
-		gem "will_paginate", "~> 3.0.pre2"
-		gem "dynamic_form"
-		gem "friendly_id", "~> 3.2.1"
-		gem "paperclip", "~> 2.3"
-		gem 'acts_as_commentable', "~> 3.0.0"
-		gem "recaptcha", :require => "recaptcha/rails"
-		gem 'simplecov'
-		gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'  
-
+		gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
+		gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
 
 2. From your app's root directory run:
 
