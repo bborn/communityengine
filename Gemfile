@@ -13,4 +13,4 @@ gemspec
 # gem 'aws-s3', :require => 'aws/s3'
 # gem "recaptcha", :require => "recaptcha/rails"
 
-# gem 'sqlite3-ruby', :require => 'sqlite3' # development dependency?
+# gem 'sqlite3-ruby', :require => 'sqlite3'

@@ -16,6 +16,10 @@ Getting CommunityEngine Running
 		# If doing local development on CE, change to something like:
 		# gem 'community_engine', '1.9.9', :path => '../communityengine'
 		
+		# You must enable any gems you intend to use in your application
+		# gem 'haml'
+		gem 'sqlite3-ruby', :require => 'sqlite3'
+		
 		# Living on rails edge for now
 		gem 'rails', '3.1.0.beta', :git => 'git://github.com/bborn/rails.git'
 		gem 'rack', :git => 'git://github.com/rack/rack.git'
