@@ -14,48 +14,48 @@ Getting CommunityEngine Running
 
 1. Copy the following into your Gemfile:
 
-	source 'http://rubygems.org'
+		source 'http://rubygems.org'
 
-	gem 'community_engine', '1.9.9', :path => '../communityengine'
+		gem 'community_engine', '1.9.9', :path => '../communityengine'
 
-	# Bundle edge Rails
-	gem 'rails', :git => 'git://github.com/bborn/rails.git'
-	gem 'arel',  :git => 'git://github.com/rails/arel.git'
-	gem "rack", :git => "git://github.com/rack/rack.git"
+		# Bundle edge Rails
+		gem 'rails', :git => 'git://github.com/bborn/rails.git'
+		gem 'arel',  :git => 'git://github.com/rails/arel.git'
+		gem "rack", :git => "git://github.com/rack/rack.git"
 
-	gem 'sqlite3'
+		gem 'sqlite3'
 
-	# Temporary patches to other libraries
-	# gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
-	gem 'meta_search', :path => '../meta_search'
-	gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
-	gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
-	gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
+		# Temporary patches to other libraries
+		# gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
+		gem 'meta_search', :path => '../meta_search'
+		gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
+		gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
+		gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
 
-You may also have to add the following near the top of your application.rb  Try this if you get YAML errors.
+	You may also have to add the following near the top of your application.rb  Try this if you get YAML errors.
 
-	require 'yaml'
-	YAML::ENGINE.yamler= 'syck'
+		require 'yaml'
+		YAML::ENGINE.yamler= 'syck'
 
 2. From your app's root directory run:
 
-	$ bundle install --binstubs
-	$ bin/rake community_engine:install
-	$ bin/rake db:migrate
+		$ bundle install --binstubs
+		$ bin/rake community_engine:install
+		$ bin/rake db:migrate
 
 3. Add a file called `application.yml` to your `config` directory. In it put (at least):
 
-	community_name: Your Application Name
+		community_name: Your Application Name
 
 4. Mount CommunityEngine in your `config/routes.rb` file:
 
-	mount CommunityEngine::Engine => "/"
+		mount CommunityEngine::Engine => "/"
 
 5. Delete the default `views/layouts/application.html.erb` that Rails created for you. Delete `public/index.html` if you haven't already.
 
 6. Start your server! 
 
-	$ bin rails server
+		$ bin rails server
 
 Optional Configuration
 ======================
