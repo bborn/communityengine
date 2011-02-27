@@ -12,7 +12,7 @@ Requirements:
 Getting CommunityEngine Running
 --------------------------------
 
-1. Copy the following into your Gemfile:
+1. Copy the following into your `Gemfile`:
 
 		source 'http://rubygems.org'
 
@@ -31,11 +31,6 @@ Getting CommunityEngine Running
 		gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
 		gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
 		gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
-
-	You may also have to add the following near the top of your application.rb  Try this if you get YAML errors.
-
-		require 'yaml'
-		YAML::ENGINE.yamler= 'syck'
 
 2. From your app's root directory run:
 

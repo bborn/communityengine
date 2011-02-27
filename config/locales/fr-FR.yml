@@ -3,7 +3,10 @@ fr:
     formats:
       published_date: "%d/%m/%Y"
       date_ago: "%d %B"
-    order: [ :day, :month, :year ]
+    order: 
+    - :day
+    - :month
+    - :year
     day_names: [~, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, Dimanche]
     abbr_day_names: [~, Lun, Mar, Mer, Jeu, Ven, Sam, Dim]
     month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]

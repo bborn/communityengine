@@ -49,7 +49,8 @@ photo:
     styles:
       thumb:
         geometry: "100x100#"
-        processors: [:cropper]
+        processors:
+        - :cropper
       medium: "290x320#"
       large: "465>"
   validation_options:
