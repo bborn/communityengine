@@ -50,7 +50,7 @@ Getting CommunityEngine Running
 
 6. Start your server! 
 
-		$ bin rails server
+		$ bin/rails server
 
 Optional Configuration
 ======================
