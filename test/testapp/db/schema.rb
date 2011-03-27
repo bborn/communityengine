@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110222184308) do
+ActiveRecord::Schema.define(:version => 79) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -241,11 +241,6 @@ ActiveRecord::Schema.define(:version => 20110222184308) do
     t.boolean "active",   :default => true
   end
 
-  create_table "offerings", :force => true do |t|
-    t.integer "skill_id"
-    t.integer "user_id"
-  end
-
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "body"
@@ -345,10 +340,6 @@ ActiveRecord::Schema.define(:version => 20110222184308) do
   end
 
   add_index "sessions", ["sessid"], :name => "index_sessions_on_sessid"
-
-  create_table "skills", :force => true do |t|
-    t.string "name"
-  end
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
