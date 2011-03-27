@@ -248,7 +248,7 @@ module BaseHelper
   end
 
   def search_posts_title
-    returning(params[:q].blank? ? :recent_posts.l : :searching_for.l+" '#{h params[:q]}'") do |title|
+    (params[:q].blank? ? :recent_posts.l : :searching_for.l+" '#{h params[:q]}'").tap do |title|
       title << " by #{h User.find(params[:user_id]).display_name}" if params[:user_id]
       title << " in #{h Forum.find(params[:forum_id]).name}"       if params[:forum_id]
     end

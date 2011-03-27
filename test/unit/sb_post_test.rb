@@ -138,7 +138,7 @@ class SbPostTest < ActiveSupport::TestCase
   
   protected
     def create_post(topic, options = {})
-      returning topic.sb_posts.new(options) do |p|
+      topic.sb_posts.new(options).tap do |p|
         p.user = users(:aaron)
         p.save!
       end

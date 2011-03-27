@@ -76,7 +76,7 @@ class TagList < Array
     #   tag_list = TagList.from("One , Two,  Three")
     #   tag_list # ["One", "Two", "Three"]
     def from(string)
-      returning new do |tag_list|
+      new.tap do |tag_list|
         string = string.to_s.gsub('.', '').dup
                 
         [

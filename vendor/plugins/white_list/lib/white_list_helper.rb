@@ -29,7 +29,7 @@ module WhiteListHelper
     return html if html.blank? || !html.include?('<')
     (options[:attributes] ||= {}).update(white_listed_attributes)
     (options[:tags]       ||= []).push(*options[:attributes].keys).push(*white_listed_tags).uniq!
-    returning [] do |new_text|
+    [].tap do |new_text|
       tokenizer = HTML::Tokenizer.new(html)
       
       while token = tokenizer.next
