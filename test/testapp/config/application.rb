@@ -5,10 +5,7 @@ require 'rails/all'
 #tired of the warnings, for now
 ActiveSupport::Deprecation.silenced = true
 
-require 'yaml'
-YAML::ENGINE.yamler= 'syck'
-
-Bundler.require
+Bundler.require(:default, Rails.env)
 require "community_engine"
 
 module Dummy
