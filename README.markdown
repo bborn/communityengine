@@ -16,7 +16,7 @@ Getting CommunityEngine Running
 
 		source 'http://rubygems.org'
 
-		gem 'community_engine', '1.9.9', :path => '../communityengine'
+		gem 'community_engine', '1.9.9', :git => 'git://github.com/bborn/rails.git', :branch => 'omniauth'
 
 		# Bundle edge Rails
 		gem 'rails', :git => 'git://github.com/bborn/rails.git'
@@ -26,8 +26,7 @@ Getting CommunityEngine Running
 		gem 'sqlite3'
 
 		# Temporary patches to other libraries
-		# gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
-		gem 'meta_search', :path => '../meta_search'
+		gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
 		gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
 		gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
 		gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
