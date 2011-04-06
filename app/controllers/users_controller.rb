@@ -399,14 +399,13 @@ class UsersController < BaseController
       date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i)
       @month = Time.parse(date.to_s)
     else
-      @month = Date.today    
+      @month = Date.today
     end
     
-    start_date  = @month.beginning_of_month
-    end_date    = @month.end_of_month + 1.day
+    start_date  = @month.utc.beginning_of_month.beginning_of_day
+    end_date    = @month.utc.end_of_month.end_of_day
     
-    @posts = @user.posts.find(:all, 
-      :conditions => ['? <= published_at AND published_at <= ?', start_date, end_date])    
+    @posts = @user.posts.find(:all, :conditions => ['? <= published_at AND published_at <= ?', start_date, end_date])    
     
     @estimated_payment = @posts.sum do |p| 
       7
