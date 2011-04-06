@@ -399,7 +399,7 @@ class UsersController < BaseController
       date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i)
       @month = Time.parse(date.to_s)
     else
-      @month = Date.today
+      @month = Time.now
     end
     
     start_date  = @month.utc.beginning_of_month.beginning_of_day
