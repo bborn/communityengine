@@ -31,5 +31,5 @@
             = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
 
   %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
-    = link_to_function image_tag('/clearbits/comment.gif', :class => 'icon reply', :plugin => 'community_engine'), "$('reply').toggle()" if logged_in?
+    = link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply', :plugin => 'community_engine'), "$('reply').toggle()" if logged_in?
     = post.body_html
