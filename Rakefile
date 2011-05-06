@@ -76,7 +76,8 @@ begin
     gem.add_dependency 'omniauth', '~> 0.2.0.beta3'
     gem.add_dependency 'prototype-rails'
     gem.add_dependency 'rails_autolink'
-    gem.add_dependency 'meta_search', '~> 1.1.0'    
+    gem.add_dependency 'meta_search', '~> 1.1.0'   
+    gem.add_dependency 'tiny_mce'
     gem.add_development_dependency 'sqlite3'
   end
 rescue
