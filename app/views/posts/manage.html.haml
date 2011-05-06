@@ -42,9 +42,9 @@
         %thead
           %tr
             %th
-              =sort_link @search, :by => :created_at, :as => :date_created.l
+              =sort_link @search, :created_at, :date_created.l
             %th
-              =sort_link @search, :by => :published_at, :as => :date_published.l
+              =sort_link @search, :published_at, :date_published.l
             %th=:title.l
             %th=:category.l
             %th=:tags.l
