@@ -35,7 +35,7 @@ Getting CommunityEngine Running
 2. From your app's root directory run:
 
 		$ bundle install --binstubs
-		$ bin/rake community_engine:install
+		$ bin/rake community_engine:install:migrations
 		$ bin/rake db:migrate
 
 3. Add a file called `application.yml` to your `config` directory. In it put (at least):
