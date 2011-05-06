@@ -14,8 +14,6 @@ class PaperclipChanges < ActiveRecord::Migration
     rename_column :homepage_features, :content_type, :image_content_type
     rename_column :homepage_features, :size, :image_file_size        
     add_column :homepage_features, :image_updated_at, :datetime       
-    
-    
   end
 
   def down

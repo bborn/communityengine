@@ -1,6 +1,6 @@
 class NewsToTalk < ActiveRecord::Migration
-  # was to remove News, but now, just adding talk, not removing news
   def self.up
+    # Not in a migration!
     # category = Category.create(:name => "Talk")
   end
 
