@@ -272,7 +272,7 @@ label {
 /* random */
 
 .photo {
-	background:#aaa url(/community_engine/images/clearbits/smile.gif) no-repeat 8px 8px;
+	background:#aaa url(/assets/clearbits/smile.gif) no-repeat 8px 8px;
 }
 #footer_content .photo {
 	/* Prevents conflict with footer class*/
@@ -525,7 +525,7 @@ p.online {margin-bottom:0;}
 
 img.icon {
 	background:#696;
-	background-image: url(/community_engine/images/clearbits/bg_rounded.gif);
+	background-image: url(/assets/clearbits/bg_rounded.gif);
 	background-repeat: no-repeat;
 	vertical-align: bottom;
 	}
@@ -542,7 +542,7 @@ img.green { background-color:#0c0;}
 /* reply */
 
 div.editbox {
-	background:url(/community_engine/images/reply_background.png);
+	background:url(/assets/reply_background.png);
 	border:2px solid #333;
 	border-width:2px 0;
 	position:fixed;
