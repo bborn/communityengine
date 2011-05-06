@@ -1,13 +1,13 @@
 =javascript_include_tag 'community_engine'
 =stylesheet_link_tag 'community_engine'
 
-
 = javascript_include_tiny_mce_if_used
 = tiny_mce if using_tiny_mce?
 
 - if forum_page?
-  = javascript_include_tag 'forum', :plugin => 'community_engine'  
-  = stylesheet_link_tag 'forum', :plugin => 'community_engine'
+  = javascript_include_tag 'forum'
+  = stylesheet_link_tag 'forum'
+
   - unless @feed_icons.blank?
     - @feed_icons.each do |feed|
       = auto_discovery_link_tag :rss, feed[:url], :title => "Subscribe to '#{feed[:title]}'"

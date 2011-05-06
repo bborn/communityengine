@@ -1,10 +1,5 @@
 /*
- *= require_tree . 
-*/
-
-/*
- *= reset-fonts-grids
- *= screen
- *= print
- *= lightbox
+ *= require reset-fonts-grids
+ *= require screen
+ *= require lightbox
 */
