@@ -16,7 +16,7 @@ Getting CommunityEngine Running
 
 		source 'http://rubygems.org'
 
-		gem 'community_engine', '1.9.9', :git => 'https://github.com/bborn/communityengine.git', :branch => 'rails3'
+		gem 'community_engine', '2.0.0.beta', :git => 'https://github.com/bborn/communityengine.git', :branch => 'rails3'
 
 		# Bundle edge Rails
 	  gem 'rails', '3.1.0.beta1', :git => 'https://github.com/rails/rails.git'
