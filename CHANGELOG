@@ -11,7 +11,8 @@
 # * finding transparently by login is broken (fixed using friendly_id)
 # * can't dup nilclass error in Rails timezone conversion (fixed with a little patch, should get fixed in a new version of Rails)
 
-* remove metasearch dependency
+* tinymce isn't working
+* fix photo uploading from welcome_photo page
 * add back searching to users index
 * remove all the theming stuff
 * replace white_list with something (sanitize?) (preserve stuff from white list initializer)
