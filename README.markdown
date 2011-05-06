@@ -1,10 +1,10 @@
-CommunityEngine [v1.9.9]
+CommunityEngine
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 3.1.0.beta (lower versions are not supported)
+	- RAILS VERSION 3.1.0.beta1 (lower versions are not supported)
 	- For now, patched versions of: meta_search, authlogic, calendar_date_select, and omniauth
 	- All other requirements are brought in automatically
 	- Don't forget to include the gems you plan to include in your application
@@ -19,17 +19,18 @@ Getting CommunityEngine Running
 		gem 'community_engine', '1.9.9', :git => 'https://github.com/bborn/communityengine.git', :branch => 'rails3'
 
 		# Bundle edge Rails
-		gem 'rails', :git => 'git://github.com/bborn/rails.git'
-		gem 'arel',  :git => 'git://github.com/rails/arel.git'
-		gem "rack", :git => "git://github.com/rack/rack.git"
+	  gem 'rails', '3.1.0.beta1', :git => 'https://github.com/rails/rails.git'
+	  gem 'arel', '~> 2.1.0', :git => 'https://github.com/rails/arel.git'
+	  gem "rack", '1.3.0.beta', :git => "https://github.com/rack/rack.git"  
+
+		# Temporary edge sources for other libraries
+	  gem 'authlogic', :git => 'https://github.com/bborn/authlogic.git'
+	  gem 'calendar_date_select', :git => 'https://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
+	  gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
+	  gem 'meta_search', :git => 'https://github.com/ernie/meta_search.git'
 
 		gem 'sqlite3'
 
-		# Temporary patches to other libraries
-		gem "meta_search", :git => 'git://github.com/bborn/meta_search.git', :branch => 'rails3.1'
-		gem 'authlogic', :git => 'git://github.com/bborn/authlogic.git'
-		gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
-		gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
 
 2. From your app's root directory run:
 

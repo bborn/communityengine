@@ -51,7 +51,7 @@ begin
     gem.summary = "CommunityEngine for Rails 3"
     gem.email = 'admin@curbly.com'
     gem.authors = ["Bruno Bornsztein"]    
-    gem.version = '1.9.9'
+    gem.version = File.read('VERSION')
     
     gem.add_dependency 'rails', '3.1.0.beta1'
     gem.add_dependency 'rack', '1.3.0.beta'    

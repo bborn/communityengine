@@ -13,7 +13,6 @@
 
 * remove metasearch dependency
 * add back searching to users index
-
 * remove all the theming stuff
 * replace white_list with something (sanitize?) (preserve stuff from white list initializer)
 * rip out multiple uploader, responds-to-parent
@@ -21,12 +20,13 @@
 * allow overriding initializers, autoloading assets, etc
 * mce_opts initializer
 * fix rakismet initializer
-
 * remove stylesheet customization
 * use aato instead of aatos
 * authlogic has problems: not sure it's recording last_login magic columns, investigate
 # Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
 
+=2.0.0.pre
+* Rails 3.1.0.beta1 compatibility
 
 =1.9.9
 
