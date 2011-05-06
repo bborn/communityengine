@@ -40,7 +40,7 @@ module ActiveRecord #:nodoc:
           options.blank? ? [] : find(:all, options)
         end
 
-        # will_paginate's method_missing function wants to hit
+        # paginate's method_missing function wants to hit
         # find_all_tagged_with if you call paginate_tagged_with, which is
         # obviously suboptimal
         def find_all_tagged_with(*args)

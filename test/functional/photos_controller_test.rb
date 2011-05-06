@@ -55,16 +55,12 @@ class PhotosControllerTest < ActionController::TestCase
     assert_equal assigns(:photo).reload.view_count, 0
   end
   
-
-
-
   def test_should_get_index
     get :index, :user_id => users(:quentin).id
     assert_response :success
     assert assigns(:photos)
   end
-
-
+  
   def test_should_get_index_rss
     get :index, :user_id => users(:quentin).id, :format => 'rss'
     assert_response :success

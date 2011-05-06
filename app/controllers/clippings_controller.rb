@@ -15,7 +15,7 @@ class ClippingsController < BaseController
     @clippings = @clippings.where('tags.name = ?', params[:tag_name]) if params[:tag_name]
     @clippings = @clippings.where('created_at > ?', 4.weeks.ago) unless params[:recent]
 
-    @clippings = @clippings.paginate(:page => params[:page])
+    @clippings = @clippings.page(params[:page])
 
     @rss_title = "#{configatron.community_name}: #{params[:popular] ? :popular.l : :recent.l} "+:clippings.l
     @rss_url = rss_site_clippings_path
@@ -43,7 +43,7 @@ class ClippingsController < BaseController
 
     @clippings = @clippings.where('tags.name = ?', params[:tag_name]) if params[:tag_name]
 
-    @clippings = @clippings.paginate(:page => params[:page])
+    @clippings = @clippings.page(params[:page])
     
     @tags = Clipping.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
     @clippings_data = @clippings.collect {|c| [c.id, c.image_url, c.description, c.url ]  }

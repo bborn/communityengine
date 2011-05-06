@@ -21,7 +21,7 @@ class CategoriesController < BaseController
       
     order = (params[:popular] ? "view_count #{params[:popular].eql?('DESC') ? 'DESC' : 'ASC'}": "published_at DESC")
 
-    @posts = Post.includes(:tags).where('category_id = ?', @category.id).order(order).paginate(:page => params[:page])
+    @posts = Post.includes(:tags).where('category_id = ?', @category.id).order(order).page(params[:page])
     
     @popular_posts = @category.posts.order("view_count DESC").find(:all, :limit => 10)
     @popular_polls = Poll.find_popular_in_category(@category)

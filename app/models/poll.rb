@@ -33,12 +33,7 @@ class Poll < ActiveRecord::Base
 
   def self.find_popular_in_category(category, options = {})
     options.reverse_merge! :limit => 5
-    
-    find(:all, :order => "polls.votes_count desc", 
-      :limit => options[:limit], 
-      :include => [:post => :user],
-      :conditions => ['posts.category_id = ?', category.id]
-      )    
+    self.includes(:post).order('polls.votes_count desc').limit(options[:limit]).where('posts.category_id = ?', category.id)
   end
 
 end

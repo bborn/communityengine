@@ -1,6 +1,6 @@
 [13 March 08]
 
-* Added helper methods for will_paginate compatibility (Clinton R. Nixon)
+* Added helper methods for paginate compatibility (Clinton R. Nixon)
 * Fixed :conditions in tag_counts to accept array to sanitize (Clinton R. Nixon)
 
 [07 March 08]

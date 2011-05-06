@@ -26,7 +26,7 @@
     
   %br.clear
 
-  - if @topics.total_pages > 1
+  - if @topics.total_count > 1
     - if logged_in?
       %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
   
@@ -37,7 +37,7 @@
       %tr
         %th.la{:colspan=>"2"}= :topics.l
         %th{:width=>"1%"}= :posts.l
-        %th{:width=>"1%"}= :views.l 
+        %th{:width=>"1%"}= :view_count.l 
         %th.la= :last_post.l
         
       - for topic in @topics
@@ -64,8 +64,8 @@
               %strong.fn= h(topic.replied_by_user.display_name)
             %span= link_to :view.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
   
-  - if @topics.total_pages > 1
-    = will_paginate @topics
+  - if @topics.total_count > 1
+    = paginate @topics
 
   - if logged_in?
     %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
@@ -79,7 +79,7 @@
         %tr
           %th.la{:colspan=>"2"}= :this_forum_is_still_getting_started.l
           %th{:width=>"1%"}= :comments.l
-          %th{:width=>"1%"}= :views.l
+          %th{:width=>"1%"}= :view_count.l
           %th.la= :author.l
           -@related.each do |post|
             = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}

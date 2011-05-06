@@ -12,7 +12,7 @@
     -box :class => "hfeed" do 
       %h3=:featured_posts.l
 
-      .pagination=paginating_links @posts if @posts.total_pages > 1
+      .pagination=paginating_links @posts if @posts.total_count > 1
 
       = render :partial => 'posts/post', :collection => @posts
   

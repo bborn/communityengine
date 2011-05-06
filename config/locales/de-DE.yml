@@ -682,8 +682,6 @@ de-DE:
   new_topic: Neues Thema
   #en: new_yesterday: New yesterday
   new_yesterday: Gestern neu
-  #en: next_page: Next page
-  next_page: Nächste Seite
   #en: no_comments_found: Sorry, we couldn't find any comments for that %{type}
   no_comments_found: Kein Kommentar gefunden
   #en: no_images_uploaded_yet: No images uploaded yet.

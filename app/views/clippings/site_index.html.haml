@@ -15,7 +15,7 @@
               =render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
             .clear
       
-      -if @clippings.total_pages > 1      
+      -if @clippings.total_count > 1      
         .pagination=paginating_links @clippings
       .clear
       %br

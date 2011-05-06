@@ -12,9 +12,9 @@ class MessagesController < BaseController
     
   def index
     if params[:mailbox] == "sent"
-      @messages = @user.sent_messages.paginate(:page => params[:page], :per_page => 20)
+      @messages = @user.sent_messages.page(params[:page]).per(20)
     else
-      @messages = @user.message_threads_as_recipient.order('updated_at DESC').paginate(:page => params[:page], :per_page => 20)
+      @messages = @user.message_threads_as_recipient.order('updated_at DESC').page(params[:page]).per(20)
     end
   end
   

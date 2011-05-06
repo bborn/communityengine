@@ -218,7 +218,7 @@ class UsersControllerTest < ActionController::TestCase
     login_as :quentin
     users(:quentin).tag_list = ''
     users(:quentin).save
-    put :update, :id => users(:quentin), :tag_list => 'tag1, tag2'
+    put :update, :id => users(:quentin), :tag_list => 'tag1, tag2', :user => {}
     assert_redirected_to user_path(users(:quentin).reload)
     assert_equal users(:quentin).tag_list, ['tag1', 'tag2']
   end

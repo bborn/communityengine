@@ -47,7 +47,7 @@ class UsersController < BaseController
   def index
     @users, @search, @metro_areas, @states = User.search_conditions_with_metros_and_states(params)
     
-    @users = @users.active.recent.includes(:tags).paginate( :page => params[:page], :per_page => 20 )
+    @users = @users.active.recent.includes(:tags).page(params[:page]).per(20)
     
     @metro_areas, @states = User.find_country_and_state_from_search_params(params)
     

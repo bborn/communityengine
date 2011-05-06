@@ -649,8 +649,8 @@ es-AR:
   view_all_my_photos: Ver todas mis fotos
   #en: view_my: "View my:"  
   view_my: "Ver mi:"
-  #en: views: Views
-  views: Vistas  
+  #en: views_count: Views
+  view_count: Vistas  
   #en: view_my_blog: View my blog
   view_my_blog: Ver mi blog
   #en: view_profile: View profile

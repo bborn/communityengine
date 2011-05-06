@@ -54,12 +54,12 @@ class EventsController < BaseController
 
   def index
     @is_admin_user = (current_user && current_user.admin?)
-    @events = Event.upcoming.paginate(:page => params[:page])
+    @events = Event.upcoming.page(params[:page])
   end
 
   def past
     @is_admin_user = (current_user && current_user.admin?)
-    @events = Event.past.paginate(:page => params[:page])
+    @events = Event.past.page(params[:page])
     render :template => 'events/index'
   end
 

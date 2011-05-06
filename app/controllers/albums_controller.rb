@@ -14,7 +14,7 @@ class AlbumsController < BaseController
   def show
     @album = Album.find(params[:id])
     update_view_count(@album) if current_user && current_user.id != @album.user_id
-    @album_photos = @album.photos.paginate(:page => params[:page], :per_page => 10 )
+    @album_photos = @album.photos.page(params[:page]).per(10)
    
     respond_to do |format|
       format.html # show.html.erb
@@ -103,14 +103,4 @@ class AlbumsController < BaseController
     flash[:notice] = :album_added_photos.l
   end
   
-  def paginate_photos
-   @album = Album.find(params[:id])
-   @page = params[:next_page]
-   album_type = params[:album_type]
-   case album_type
-    when 'no_album'
-      @photos = current_user.photos_no_albums(@page)
-      @next_page = @photos.next_page
-   end
-  end
 end

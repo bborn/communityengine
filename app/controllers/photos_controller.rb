@@ -15,20 +15,20 @@ class PhotosController < BaseController
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
 
   def recent
-    @photos = Photo.recent.paginate(:page => params[:page])
+    @photos = Photo.recent.page(params[:page])
   end
   
   def index
     @user = User.find(params[:user_id])
 
-    @photos = Photo.where :user_id => @user.id
+    @photos = Photo.where(:user_id => @user.id).includes(:tags)
     if params[:tag_name]
       @photos = @photos.where('tags.name = ?', params[:tag_name])
     end
     
-    @photos = @photos.includes(:tags).recent.paginate(:page => params[:page])
+    @photos = @photos.recent.page(params[:page])
   
-    @tags = Photo.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
+    @tags = Photo.tag_counts(:conditions => { :user_id => @user.id }, :limit => 20)
 
     @rss_title = "#{configatron.community_name}: #{@user.login}'s photos"
     @rss_url = user_photos_path(@user,:format => :rss)
@@ -50,15 +50,13 @@ class PhotosController < BaseController
 
   def manage_photos
     if logged_in?
-      @user = current_user
-      @photos = Photo.where :user_id => @user.id
+      @user = current_user      
+      @photos = current_user.photos.recent.includes(:tags)      
       if params[:tag_name]
         @photos = @photos.where('tags.name = ?', params[:tag_name])
       end
-
       @selected = params[:photo_id]
-      @photos = Photo.recent.paginate :all, :conditions => cond.to_sql, :include => :tags, :page => {:size => 10, :current => params[:page]}
-
+      @photos = @photos.page(params[:page]).per(10)
     end
     respond_to do |format|
       format.js

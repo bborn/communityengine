@@ -788,8 +788,6 @@ fr:
   new_yesterday: Nouveau hier
   #en: next: next
   next: suivant
-  #en: next_page: Next page
-  next_page: Page suivante
   #en: no_activation_email: No activation e-mail?
   no_activation_email: "Vous n'avez pas reçu le mail d'activation de votre compte ?"
   #en: no_comments_found: Sorry, we couldn't find any comments for that %{type}
@@ -1318,8 +1316,8 @@ fr:
   vendor_avatar_hint: "Vous souhaitez peut être utiliser le logo de votre société, ou une photo d'un de vos produits. "
   #en: view: View
   view: Consulter
-  #en: views: Views
-  views: Consultations
+  #en: views_count: Views
+  view_count: Consultations
   #en: view_all_my_clippings: View all my clippings
   view_all_my_clippings: Voir mon pêle-mêle
   #en: view_all_my_friend_requests: View all my friend requests

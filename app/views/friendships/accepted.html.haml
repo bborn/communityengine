@@ -6,7 +6,7 @@
       %h3
         =:accepted_friendships.l(:count => @friend_count)
         = link_to "(#{@pending_friendships_count} "+:pending.l+")", pending_user_friendships_path(@user) if  (@pending_friendships_count > 0)
-      .pagination=paginating_links @friendships if @friendships.total_pages > 1
+      .pagination=paginating_links @friendships if @friendships.total_count > 1
       
       .clear
       .user_list= render :partial => "friendships/friendship", :collection => @friendships

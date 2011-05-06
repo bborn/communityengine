@@ -43,7 +43,7 @@ class CommentsController < BaseController
 
     if @commentable
 
-      @comments = @commentable.comments.recent.paginate(:page => params[:page])
+      @comments = @commentable.comments.recent.page(params[:page])
 
       if @comments.to_a.empty?
 

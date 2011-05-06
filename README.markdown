@@ -107,31 +107,6 @@ There is a rake task to make an existing user into an admin:
 (Pass in the e-mail of the user you'd like to make an admin)
 
 
-Themes
-------
-
-To create a theme:
-
-1. Add a 'themes' directory in `Rails.root` with the following structure:
-
-		/Rails.root
-		  /themes
-		    /your_theme_name
-		      /views
-		      /images
-		      /stylesheets
-		      /javascripts
-      
-2. Add `theme: your_theme_name` to your `application.yml` (you'll have to restart your server after doing this)
-
-3. Customize your theme. For example: you can create a `/Rails.root/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
-
-	To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
-
-		= stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
-
-*Note: when running in production mode, theme assets (images, js, and stylesheets) are automatically copied to you public directory (avoiding a Rails request on each image load).*
-
 
 Localization
 ------------

@@ -25,7 +25,7 @@ class PostsController < BaseController
   def manage
     @search = Post.unscoped.search(params[:search])
     @search.order ||= :descend_by_created_at    
-    @posts = @search.paginate(:all, :conditions => {:user_id => @user.id}, :page => params[:page], :per_page => (params[:size] || 10) )    
+    @posts = @search.where(:user_id => @user.id).page(params[:page]).per(params[:size]||10)
   end
 
   def index
@@ -34,7 +34,7 @@ class PostsController < BaseController
 
     @posts = @user.posts.recent
     @posts = @post.where('category_id = ?', @category.id) if @category
-    @posts = @posts.paginate :page => params[:page], :per_page => 10
+    @posts = @posts.page(params[:page]).per(10)
     
     @is_current_user = @user.eql?(current_user)
 
@@ -198,7 +198,7 @@ class PostsController < BaseController
   end
   
   def recent
-    @posts = Post.recent.paginate( :page => params[:page], :per_page => 20)
+    @posts = Post.recent.page(params[:page]).per(20)
 
     @recent_clippings = Clipping.find_recent(:limit => 15)
     @recent_photos = Photo.find_recent(:limit => 10)
@@ -216,7 +216,7 @@ class PostsController < BaseController
   end
   
   def featured
-    @posts = Post.by_featured_writers.recent.paginate(:page => params[:page])
+    @posts = Post.by_featured_writers.recent.page(params[:page])
     @featured_writers = User.featured
         
     @rss_title = "#{configatron.community_name} "+:featured_posts.l
@@ -234,9 +234,9 @@ class PostsController < BaseController
   def category_tips_update
     return unless request.xhr?
     @category = Category.find(params[:post_category_id] )
-    render :partial => "/categories/tips", :locals => {:category => @category}    
+    render :partial => "categories/tips", :locals => {:category => @category}    
   rescue ActiveRecord::RecordNotFound
-    render :partial => "/categories/tips", :locals => {:category => nil}    
+    render :partial => "categories/tips", :locals => {:category => nil}    
   end
   
   private

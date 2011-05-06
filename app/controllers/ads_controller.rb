@@ -8,7 +8,7 @@ class AdsController < BaseController
   def index
     @search = Ad.search(params[:search])
     @search.order ||= :descend_by_created_at
-    @ads = @search.paginate(:per_page => 15, :page => params[:page])
+    @ads = @search.page(params[:page]).per(15)
 
     respond_to do |format|
       format.html # index.rhtml

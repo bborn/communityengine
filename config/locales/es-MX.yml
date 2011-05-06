@@ -409,7 +409,6 @@ es-MX:
   clippings_are_a_way_to_save_images_you_like_from_around_the_web: Los recortes son una forma de guardar imagenes que te gusten de la Web
   new_photo: Nueva foto.
   by: por
-  next_page: Página Siguiente
   last: último
   zippostal_code: "Código Postal:"
   my_recent_comments: Mis comentarios recientes
@@ -432,7 +431,7 @@ es-MX:
   homepage_features: Bloques de Página de Inicio
   click_here_to_view_as_a_list: Haz click aquí para ver como lista
   choices: Opciones
-  views: Vistas
+  view_count: Vistas
   users_online: Usuarios en línea
   sign_up_reason_2: Alguna razón para regsitrarseSome reason to sign up
   actions: Acciones

@@ -38,7 +38,7 @@
           %abbr.published{:title=>"#{@user.created_at}"}
             =:member_since.l+" #{I18n.l(@user.created_at, :format => :short_published_date)}"
       %li.view
-        =:profile_views.l
+        =:profile_view_count.l
         = "(#{@user.view_count})"
       - if @user.tags.any?
         %li.tags= :my_tags.l+": #{@user.tags.collect{|t| link_to t.name, tag_url(t) }.join(", ")}"

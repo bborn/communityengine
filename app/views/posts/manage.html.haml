@@ -35,8 +35,8 @@
       %p=:posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them.l
       
 
-      -if @posts.total_pages > 1
-        = will_paginate @posts
+      -if @posts.total_count > 1
+        = paginate @posts
 
       %table{:border => 0, :width => '100%'}
         %thead

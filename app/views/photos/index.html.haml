@@ -23,6 +23,6 @@
       - @photos.each do |photo|
         = link_to tag('img', :src => photo.photo.url(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
         
-      .pagination=paginating_links @photos if @photos.total_pages > 1
+      .pagination=paginating_links @photos if @photos.total_count > 1
 
       

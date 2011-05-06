@@ -227,7 +227,7 @@ module BaseHelper
   end
   
   def paginating_links(paginator, options = {}, html_options = {})
-    will_paginate paginator
+    paginate paginator
   end  
   
   def last_active

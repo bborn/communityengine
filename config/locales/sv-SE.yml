@@ -708,8 +708,6 @@ sv:
   new_yesterday: Nytt igår
   #en: next: next
   next: nästa
-  #en: next_page: Next page
-  next_page: Nästa sida
   #en: no_activation_email: No activation e-mail?
   no_activation_email: Inget aktiveringsmejl?
   #en: no_comments_found: Sorry, we couldn't find any comments for that %{type}
@@ -1186,8 +1184,8 @@ sv:
   user_bio_help: "<p>Din beskrivning är det första man ser av din profil. Den kan t.ex. innehålla:<ul><li> Beskriv din känsla för stil</li><li> Beskriv vad du känner starkt för i livet.</li><li> Vad var det senaste du köpte åt en kompis?</li></ul></p>"
   #en: view: View
   view: Vy
-  #en: views: Views
-  views: Visningar
+  #en: views_count: Views
+  view_count: Visningar
   #en: view_all_my_clippings: View all my clippings
   view_all_my_clippings: Visa alla mina urklipp
   #en: view_all_my_friend_requests: View all my friend requests

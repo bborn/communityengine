@@ -7,21 +7,24 @@
 # * clean up routes
 # * take out vendors/offerings stuff
 # * take out ez where
-# * remote_form_for is gone (use dynamic_form gem)
+# * remote_form_for is gone (use dynamic_form gem/prototype legacy helper)
+# * finding transparently by login is broken (fixed using friendly_id)
+# * can't dup nilclass error in Rails timezone conversion (fixed with a little patch, should get fixed in a new version of Rails)
 
-* rip out multiple uploader, responds-to-parent
+* remove metasearch dependency
+* add back searching to users index
+
+* remove all the theming stuff
 * replace white_list with something (sanitize?) (preserve stuff from white list initializer)
+* rip out multiple uploader, responds-to-parent
 * replace setup template with something else more sensible
 * allow overriding initializers, autoloading assets, etc
 * mce_opts initializer
-* remove all the theming stuff?
 * fix rakismet initializer
-* add back searching to users index, use metaseach
-* remove stylesheet customization?
+
+* remove stylesheet customization
 * use aato instead of aatos
 * authlogic has problems: not sure it's recording last_login magic columns, investigate
-# * finding transparently by login is broken (fixed using friendly_id)
-# * can't dup nilclass error in Rails timezone conversion (fixed with a little patch, should get fixed in a new version of Rails)
 # Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
 
 

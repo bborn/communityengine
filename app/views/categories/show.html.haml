@@ -39,5 +39,5 @@
           %li= link_to :popular.l, category_path(@category, :popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
 
       = render :partial => 'posts/post', :collection => @posts      
-      - if @posts.total_pages > 1
-        = will_paginate @posts
+      - if @posts.total_count > 1
+        = paginate @posts

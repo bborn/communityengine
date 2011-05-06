@@ -873,8 +873,6 @@ en:
   new_yesterday: New yesterday
   #en: next: next
   next: next
-  #en: next_page: Next page
-  next_page: Next page
   #en: no_activation_email: No activation e-mail?
   no_activation_email: No activation e-mail?
   #en: no_comments_found_for_that_item: Sorry, we couldn't find any comments for that %{type}
@@ -1441,8 +1439,8 @@ en:
   vendor_avatar_hint: "You may want to use your company logo, or a photo of one of your products. "
   #en: view: View
   view: View
-  #en: views: Views
-  views: Views
+  #en: views_count: Views
+  view_count: Views
   #en: view_all_my_clippings: View all my clippings
   view_all_my_clippings: View all my clippings
   #en: view_all_my_friend_requests: View all my friend requests

@@ -1,7 +1,7 @@
 = render :partial => 'show_image_list', :locals => { :photos => photos }
 
 #image_list_pages.clear
-  = will_paginate @photos
+  = paginate @photos
 
 %script{:type => 'text/javascript'}
   :plain

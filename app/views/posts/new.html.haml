@@ -1,9 +1,9 @@
 .yui-b
   -box :id => 'category_tips' do
     -if @post.category
-      = render :partial => "/categories/tips", :locals => {:category => @post.category}
+      = render :partial => "categories/tips", :locals => {:category => @post.category}
     - else 
-      = render :partial => "/categories/tips", :locals => {:category => nil}
+      = render :partial => "categories/tips", :locals => {:category => nil}
 
   -box :class => "alt" do 
     %a.button.positive{:href => '#', :onclick => "tinyMCE.execCommand('mceCurblyAdvImage');return false;"}=:upload_an_image_for_your_post.l

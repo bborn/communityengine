@@ -17,12 +17,12 @@ class AdminController < BaseController
   end
   
   def events
-    @events = Event.paginate(:order => 'start_time DESC', :page => params[:page])
+    @events = Event.order('start_time DESC').page(params[:page])
   end
   
   def messages
     @user = current_user
-    @messages = Message.paginate(:page => params[:page], :per_page => 50, :order => 'created_at DESC')
+    @messages = Message.order('created_at DESC').page(params[:page]).per(50)
   end
   
   def users
@@ -36,7 +36,7 @@ class AdminController < BaseController
       @users = @users.where('`users`.email LIKE ?', "%#{params['email']}%")
     end        
 
-    @users = @users.paginate(:page => params[:page], :per_page => 100)
+    @users = @users.page(params[:page]).per(100)
     
     respond_to do |format|
       format.html
@@ -47,9 +47,9 @@ class AdminController < BaseController
   end
   
   def comments
-    @search = Comment.search(params[:search])
+    @search = Comment.page(params[:page]).per(100).search(params[:search])
     @search.order ||= :descend_by_created_at        
-    @comments = @search.paginate(:page => params[:page], :per_page => 100)
+    @comments = @search
   end
   
   def activate_user

@@ -61,7 +61,7 @@
     %h6.all.right= link_to :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"  
   
   
-  - if @posts.total_pages > 1
+  - if @posts.total_count > 1
     .pagination.clear= paginating_links @posts
 
   %a{"name"=>"#{@posts.to_a.first.dom_id}", "id"=>"#{@posts.to_a.first.dom_id}"} &nbsp;
@@ -72,7 +72,7 @@
       =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
 
-  - if @posts.total_pages > 1
+  - if @posts.total_count > 1
     .pagination= paginating_links @posts
 
   - if logged_in? || configatron.allow_anonymous_forum_posting  

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = %q{2011-03-27}
+  s.date = %q{2011-05-05}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -871,82 +871,6 @@ Gem::Specification.new do |s|
     "test/testapp/config/initializers/session_store.rb",
     "test/testapp/config/locales/en.yml",
     "test/testapp/config/routes.rb",
-    "test/testapp/db/migrate/20110210193732_create_users.rb",
-    "test/testapp/db/migrate/20110210193733_add_activation_code_to_user.rb",
-    "test/testapp/db/migrate/20110210193734_create_photos.rb",
-    "test/testapp/db/migrate/20110210193735_add_tag_support.rb",
-    "test/testapp/db/migrate/20110210193736_create_friendships.rb",
-    "test/testapp/db/migrate/20110210193737_add_comments_tables.rb",
-    "test/testapp/db/migrate/20110210193738_create_friendship_statuses.rb",
-    "test/testapp/db/migrate/20110210193739_add_friendship_statuses.rb",
-    "test/testapp/db/migrate/20110210193740_create_clippings.rb",
-    "test/testapp/db/migrate/20110210193741_create_invitations.rb",
-    "test/testapp/db/migrate/20110210193742_create_homepage_features.rb",
-    "test/testapp/db/migrate/20110210193743_create_posts.rb",
-    "test/testapp/db/migrate/20110210193744_create_states.rb",
-    "test/testapp/db/migrate/20110210193745_add_states.rb",
-    "test/testapp/db/migrate/20110210193746_create_metro_areas.rb",
-    "test/testapp/db/migrate/20110210193747_add_metro_areas.rb",
-    "test/testapp/db/migrate/20110210193748_add_sessions_table.rb",
-    "test/testapp/db/migrate/20110210193749_create_categories.rb",
-    "test/testapp/db/migrate/20110210193750_change_comment_to_text_field.rb",
-    "test/testapp/db/migrate/20110210193751_create_login_slug.rb",
-    "test/testapp/db/migrate/20110210193752_add_category_names.rb",
-    "test/testapp/db/migrate/20110210193753_add_denied_friendship_status.rb",
-    "test/testapp/db/migrate/20110210193754_add_notification_preferences.rb",
-    "test/testapp/db/migrate/20110210193755_create_countries.rb",
-    "test/testapp/db/migrate/20110210193756_add_countries.rb",
-    "test/testapp/db/migrate/20110210193757_add_us_to_existing_metro_areas.rb",
-    "test/testapp/db/migrate/20110210193758_add_country_id_to_users.rb",
-    "test/testapp/db/migrate/20110210193759_add_us_to_users_with_states.rb",
-    "test/testapp/db/migrate/20110210193760_add_users_counter_cache.rb",
-    "test/testapp/db/migrate/20110210193761_news_to_talk.rb",
-    "test/testapp/db/migrate/20110210193762_featured_users.rb",
-    "test/testapp/db/migrate/20110210193763_add_last_login.rb",
-    "test/testapp/db/migrate/20110210193764_track_emailed.rb",
-    "test/testapp/db/migrate/20110210193765_create_skills.rb",
-    "test/testapp/db/migrate/20110210193766_create_offerings.rb",
-    "test/testapp/db/migrate/20110210193767_add_zag_to_users.rb",
-    "test/testapp/db/migrate/20110210193768_create_activities_table.rb",
-    "test/testapp/db/migrate/20110210193769_add_category_tips.rb",
-    "test/testapp/db/migrate/20110210193770_create_events_table.rb",
-    "test/testapp/db/migrate/20110210193771_add_privacy_to_users.rb",
-    "test/testapp/db/migrate/20110210193772_sql_session_store_setup.rb",
-    "test/testapp/db/migrate/20110210193773_category_improvements.rb",
-    "test/testapp/db/migrate/20110210193774_adding_indexes.rb",
-    "test/testapp/db/migrate/20110210193775_adding_ads.rb",
-    "test/testapp/db/migrate/20110210193776_add_polls.rb",
-    "test/testapp/db/migrate/20110210193777_add_activities_count.rb",
-    "test/testapp/db/migrate/20110210193778_create_initial_schema.rb",
-    "test/testapp/db/migrate/20110210193779_add_audience_limitation_to_ads.rb",
-    "test/testapp/db/migrate/20110210193780_create_assets.rb",
-    "test/testapp/db/migrate/20110210193781_create_favoritables.rb",
-    "test/testapp/db/migrate/20110210193782_add_published_as_to_posts.rb",
-    "test/testapp/db/migrate/20110210193783_add_published_at_to_posts.rb",
-    "test/testapp/db/migrate/20110210193784_create_roles.rb",
-    "test/testapp/db/migrate/20110210193785_add_more_indexes.rb",
-    "test/testapp/db/migrate/20110210193786_add_anonymous_commenting_fields.rb",
-    "test/testapp/db/migrate/20110210193787_create_messages.rb",
-    "test/testapp/db/migrate/20110210193788_still_more_indexes.rb",
-    "test/testapp/db/migrate/20110210193789_postgres_compatibility_changes.rb",
-    "test/testapp/db/migrate/20110210193790_add_notify_to_comments.rb",
-    "test/testapp/db/migrate/20110210193791_create_albums.rb",
-    "test/testapp/db/migrate/20110210193792_add_album_id_to_photos.rb",
-    "test/testapp/db/migrate/20110210193793_add_view_count_to_albums.rb",
-    "test/testapp/db/migrate/20110210193794_add_view_count_to_photos.rb",
-    "test/testapp/db/migrate/20110210193795_create_static_pages.rb",
-    "test/testapp/db/migrate/20110210193796_create_rsvps.rb",
-    "test/testapp/db/migrate/20110210193797_create_pages.rb",
-    "test/testapp/db/migrate/20110210193798_add_pages.rb",
-    "test/testapp/db/migrate/20110210193799_authlogic_compatibility_changes.rb",
-    "test/testapp/db/migrate/20110210193800_add_allow_rsvp_to_events.rb",
-    "test/testapp/db/migrate/20110210193801_add_taggings_count_to_tags.rb",
-    "test/testapp/db/migrate/20110210193802_add_threading_to_messages.rb",
-    "test/testapp/db/migrate/20110210193803_add_anonymous_forum_posting.rb",
-    "test/testapp/db/migrate/20110210193804_add_comment_notification_toggle.rb",
-    "test/testapp/db/migrate/20110210193805_paperclip_changes.rb",
-    "test/testapp/db/migrate/20110222170124_create_authorizations.rb",
-    "test/testapp/db/migrate/20110222184308_create_slugs.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
     "test/testapp/doc/README_FOR_APP",
@@ -1976,169 +1900,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{CommunityEngine for Rails 3}
-  s.test_files = [
-    "test/functional/activities_controller_test.rb",
-    "test/functional/admin_controller_test.rb",
-    "test/functional/ads_controller_test.rb",
-    "test/functional/albums_controller_test.rb",
-    "test/functional/base_controller_test.rb",
-    "test/functional/categories_controller_test.rb",
-    "test/functional/clippings_controller_test.rb",
-    "test/functional/comments_controller_test.rb",
-    "test/functional/events_controller_test.rb",
-    "test/functional/favorites_controller_test.rb",
-    "test/functional/forums_controller_test.rb",
-    "test/functional/friendships_controller_test.rb",
-    "test/functional/homepage_features_controller_test.rb",
-    "test/functional/invitations_controller_test.rb",
-    "test/functional/messages_controller_test.rb",
-    "test/functional/metro_areas_controller_test.rb",
-    "test/functional/moderators_controller_test.rb",
-    "test/functional/monitorships_controller_test.rb",
-    "test/functional/pages_controller_test.rb",
-    "test/functional/password_reset_controller_test.rb",
-    "test/functional/photo_manager_controller_test.rb",
-    "test/functional/photos_controller_test.rb",
-    "test/functional/posts_controller_test.rb",
-    "test/functional/rsvps_controller_test.rb",
-    "test/functional/sb_posts_controller_test.rb",
-    "test/functional/sessions_controller_test.rb",
-    "test/functional/sitemap_controller_test.rb",
-    "test/functional/statistics_controller_test.rb",
-    "test/functional/tags_controller_test.rb",
-    "test/functional/theme_controller_test.rb",
-    "test/functional/topics_controller_test.rb",
-    "test/functional/users_controller_test.rb",
-    "test/functional/votes_controller_test.rb",
-    "test/test_helper.rb",
-    "test/testapp/app/controllers/application_controller.rb",
-    "test/testapp/app/helpers/application_helper.rb",
-    "test/testapp/config/application.rb",
-    "test/testapp/config/boot.rb",
-    "test/testapp/config/environment.rb",
-    "test/testapp/config/environments/development.rb",
-    "test/testapp/config/environments/production.rb",
-    "test/testapp/config/environments/test.rb",
-    "test/testapp/config/initializers/backtrace_silencers.rb",
-    "test/testapp/config/initializers/inflections.rb",
-    "test/testapp/config/initializers/mime_types.rb",
-    "test/testapp/config/initializers/secret_token.rb",
-    "test/testapp/config/initializers/session_store.rb",
-    "test/testapp/config/routes.rb",
-    "test/testapp/db/migrate/20110210193732_create_users.rb",
-    "test/testapp/db/migrate/20110210193733_add_activation_code_to_user.rb",
-    "test/testapp/db/migrate/20110210193734_create_photos.rb",
-    "test/testapp/db/migrate/20110210193735_add_tag_support.rb",
-    "test/testapp/db/migrate/20110210193736_create_friendships.rb",
-    "test/testapp/db/migrate/20110210193737_add_comments_tables.rb",
-    "test/testapp/db/migrate/20110210193738_create_friendship_statuses.rb",
-    "test/testapp/db/migrate/20110210193739_add_friendship_statuses.rb",
-    "test/testapp/db/migrate/20110210193740_create_clippings.rb",
-    "test/testapp/db/migrate/20110210193741_create_invitations.rb",
-    "test/testapp/db/migrate/20110210193742_create_homepage_features.rb",
-    "test/testapp/db/migrate/20110210193743_create_posts.rb",
-    "test/testapp/db/migrate/20110210193744_create_states.rb",
-    "test/testapp/db/migrate/20110210193745_add_states.rb",
-    "test/testapp/db/migrate/20110210193746_create_metro_areas.rb",
-    "test/testapp/db/migrate/20110210193747_add_metro_areas.rb",
-    "test/testapp/db/migrate/20110210193748_add_sessions_table.rb",
-    "test/testapp/db/migrate/20110210193749_create_categories.rb",
-    "test/testapp/db/migrate/20110210193750_change_comment_to_text_field.rb",
-    "test/testapp/db/migrate/20110210193751_create_login_slug.rb",
-    "test/testapp/db/migrate/20110210193752_add_category_names.rb",
-    "test/testapp/db/migrate/20110210193753_add_denied_friendship_status.rb",
-    "test/testapp/db/migrate/20110210193754_add_notification_preferences.rb",
-    "test/testapp/db/migrate/20110210193755_create_countries.rb",
-    "test/testapp/db/migrate/20110210193756_add_countries.rb",
-    "test/testapp/db/migrate/20110210193757_add_us_to_existing_metro_areas.rb",
-    "test/testapp/db/migrate/20110210193758_add_country_id_to_users.rb",
-    "test/testapp/db/migrate/20110210193759_add_us_to_users_with_states.rb",
-    "test/testapp/db/migrate/20110210193760_add_users_counter_cache.rb",
-    "test/testapp/db/migrate/20110210193761_news_to_talk.rb",
-    "test/testapp/db/migrate/20110210193762_featured_users.rb",
-    "test/testapp/db/migrate/20110210193763_add_last_login.rb",
-    "test/testapp/db/migrate/20110210193764_track_emailed.rb",
-    "test/testapp/db/migrate/20110210193765_create_skills.rb",
-    "test/testapp/db/migrate/20110210193766_create_offerings.rb",
-    "test/testapp/db/migrate/20110210193767_add_zag_to_users.rb",
-    "test/testapp/db/migrate/20110210193768_create_activities_table.rb",
-    "test/testapp/db/migrate/20110210193769_add_category_tips.rb",
-    "test/testapp/db/migrate/20110210193770_create_events_table.rb",
-    "test/testapp/db/migrate/20110210193771_add_privacy_to_users.rb",
-    "test/testapp/db/migrate/20110210193772_sql_session_store_setup.rb",
-    "test/testapp/db/migrate/20110210193773_category_improvements.rb",
-    "test/testapp/db/migrate/20110210193774_adding_indexes.rb",
-    "test/testapp/db/migrate/20110210193775_adding_ads.rb",
-    "test/testapp/db/migrate/20110210193776_add_polls.rb",
-    "test/testapp/db/migrate/20110210193777_add_activities_count.rb",
-    "test/testapp/db/migrate/20110210193778_create_initial_schema.rb",
-    "test/testapp/db/migrate/20110210193779_add_audience_limitation_to_ads.rb",
-    "test/testapp/db/migrate/20110210193780_create_assets.rb",
-    "test/testapp/db/migrate/20110210193781_create_favoritables.rb",
-    "test/testapp/db/migrate/20110210193782_add_published_as_to_posts.rb",
-    "test/testapp/db/migrate/20110210193783_add_published_at_to_posts.rb",
-    "test/testapp/db/migrate/20110210193784_create_roles.rb",
-    "test/testapp/db/migrate/20110210193785_add_more_indexes.rb",
-    "test/testapp/db/migrate/20110210193786_add_anonymous_commenting_fields.rb",
-    "test/testapp/db/migrate/20110210193787_create_messages.rb",
-    "test/testapp/db/migrate/20110210193788_still_more_indexes.rb",
-    "test/testapp/db/migrate/20110210193789_postgres_compatibility_changes.rb",
-    "test/testapp/db/migrate/20110210193790_add_notify_to_comments.rb",
-    "test/testapp/db/migrate/20110210193791_create_albums.rb",
-    "test/testapp/db/migrate/20110210193792_add_album_id_to_photos.rb",
-    "test/testapp/db/migrate/20110210193793_add_view_count_to_albums.rb",
-    "test/testapp/db/migrate/20110210193794_add_view_count_to_photos.rb",
-    "test/testapp/db/migrate/20110210193795_create_static_pages.rb",
-    "test/testapp/db/migrate/20110210193796_create_rsvps.rb",
-    "test/testapp/db/migrate/20110210193797_create_pages.rb",
-    "test/testapp/db/migrate/20110210193798_add_pages.rb",
-    "test/testapp/db/migrate/20110210193799_authlogic_compatibility_changes.rb",
-    "test/testapp/db/migrate/20110210193800_add_allow_rsvp_to_events.rb",
-    "test/testapp/db/migrate/20110210193801_add_taggings_count_to_tags.rb",
-    "test/testapp/db/migrate/20110210193802_add_threading_to_messages.rb",
-    "test/testapp/db/migrate/20110210193803_add_anonymous_forum_posting.rb",
-    "test/testapp/db/migrate/20110210193804_add_comment_notification_toggle.rb",
-    "test/testapp/db/migrate/20110210193805_paperclip_changes.rb",
-    "test/testapp/db/migrate/20110222170124_create_authorizations.rb",
-    "test/testapp/db/migrate/20110222184308_create_slugs.rb",
-    "test/testapp/db/schema.rb",
-    "test/testapp/db/seeds.rb",
-    "test/testapp/test/performance/browsing_test.rb",
-    "test/testapp/test/test_helper.rb",
-    "test/unit/ad_test.rb",
-    "test/unit/asset_test.rb",
-    "test/unit/authorization_test.rb",
-    "test/unit/category_test.rb",
-    "test/unit/choice_test.rb",
-    "test/unit/clipping_image_test.rb",
-    "test/unit/clipping_test.rb",
-    "test/unit/comment_test.rb",
-    "test/unit/country_test.rb",
-    "test/unit/event_test.rb",
-    "test/unit/favorite_test.rb",
-    "test/unit/forum_test.rb",
-    "test/unit/friendship_status_test.rb",
-    "test/unit/friendship_test.rb",
-    "test/unit/homepage_feature_test.rb",
-    "test/unit/invitation_test.rb",
-    "test/unit/message_test.rb",
-    "test/unit/message_thread_test.rb",
-    "test/unit/metro_area_test.rb",
-    "test/unit/moderatorship_test.rb",
-    "test/unit/monitorships_test.rb",
-    "test/unit/page_test.rb",
-    "test/unit/photo_test.rb",
-    "test/unit/poll_test.rb",
-    "test/unit/post_test.rb",
-    "test/unit/rsvp_test.rb",
-    "test/unit/sb_post_test.rb",
-    "test/unit/state_test.rb",
-    "test/unit/tag_test.rb",
-    "test/unit/topic_test.rb",
-    "test/unit/user_notifier_test.rb",
-    "test/unit/user_test.rb",
-    "test/unit/vote_test.rb"
-  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
@@ -2150,10 +1911,24 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
-      s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta"])
-      s.add_runtime_dependency(%q<rack>, ["= 1.2.1"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta1"])
+      s.add_runtime_dependency(%q<rack>, ["= 1.3.0.beta"])
+      s.add_runtime_dependency(%q<arel>, ["~> 2.1.0"])
       s.add_runtime_dependency(%q<authlogic>, [">= 0"])
-      s.add_runtime_dependency(%q<meta_search>, [">= 0"])
       s.add_runtime_dependency(%q<configatron>, [">= 0"])
       s.add_runtime_dependency(%q<hpricot>, [">= 0"])
       s.add_runtime_dependency(%q<htmlentities>, [">= 0"])
@@ -2162,7 +1937,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<ri_cal>, [">= 0"])
       s.add_runtime_dependency(%q<rakismet>, [">= 0"])
       s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
-      s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+      s.add_runtime_dependency(%q<kaminari>, [">= 0"])
       s.add_runtime_dependency(%q<dynamic_form>, [">= 0"])
       s.add_runtime_dependency(%q<friendly_id>, ["= 3.2.1"])
       s.add_runtime_dependency(%q<paperclip>, ["~> 2.3"])
@@ -2170,6 +1945,9 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
       s.add_runtime_dependency(%q<simplecov>, [">= 0"])
       s.add_runtime_dependency(%q<omniauth>, ["~> 0.2.0.beta3"])
+      s.add_runtime_dependency(%q<prototype-rails>, [">= 0"])
+      s.add_runtime_dependency(%q<rails_autolink>, [">= 0"])
+      s.add_runtime_dependency(%q<meta_search>, [">= 0"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
@@ -2177,10 +1955,24 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
-      s.add_dependency(%q<rack>, ["= 1.2.1"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<rails>, ["= 3.1.0.beta1"])
+      s.add_dependency(%q<rack>, ["= 1.3.0.beta"])
+      s.add_dependency(%q<arel>, ["~> 2.1.0"])
       s.add_dependency(%q<authlogic>, [">= 0"])
-      s.add_dependency(%q<meta_search>, [">= 0"])
       s.add_dependency(%q<configatron>, [">= 0"])
       s.add_dependency(%q<hpricot>, [">= 0"])
       s.add_dependency(%q<htmlentities>, [">= 0"])
@@ -2189,7 +1981,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<ri_cal>, [">= 0"])
       s.add_dependency(%q<rakismet>, [">= 0"])
       s.add_dependency(%q<aws-s3>, [">= 0"])
-      s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+      s.add_dependency(%q<kaminari>, [">= 0"])
       s.add_dependency(%q<dynamic_form>, [">= 0"])
       s.add_dependency(%q<friendly_id>, ["= 3.2.1"])
       s.add_dependency(%q<paperclip>, ["~> 2.3"])
@@ -2197,6 +1989,9 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<recaptcha>, [">= 0"])
       s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<omniauth>, ["~> 0.2.0.beta3"])
+      s.add_dependency(%q<prototype-rails>, [">= 0"])
+      s.add_dependency(%q<rails_autolink>, [">= 0"])
+      s.add_dependency(%q<meta_search>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
     end
   else
@@ -2205,10 +2000,24 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<rails>, ["= 3.1.0.beta"])
-    s.add_dependency(%q<rack>, ["= 1.2.1"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<rails>, ["= 3.1.0.beta1"])
+    s.add_dependency(%q<rack>, ["= 1.3.0.beta"])
+    s.add_dependency(%q<arel>, ["~> 2.1.0"])
     s.add_dependency(%q<authlogic>, [">= 0"])
-    s.add_dependency(%q<meta_search>, [">= 0"])
     s.add_dependency(%q<configatron>, [">= 0"])
     s.add_dependency(%q<hpricot>, [">= 0"])
     s.add_dependency(%q<htmlentities>, [">= 0"])
@@ -2217,7 +2026,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<ri_cal>, [">= 0"])
     s.add_dependency(%q<rakismet>, [">= 0"])
     s.add_dependency(%q<aws-s3>, [">= 0"])
-    s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+    s.add_dependency(%q<kaminari>, [">= 0"])
     s.add_dependency(%q<dynamic_form>, [">= 0"])
     s.add_dependency(%q<friendly_id>, ["= 3.2.1"])
     s.add_dependency(%q<paperclip>, ["~> 2.3"])
@@ -2225,6 +2034,9 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<recaptcha>, [">= 0"])
     s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<omniauth>, ["~> 0.2.0.beta3"])
+    s.add_dependency(%q<prototype-rails>, [">= 0"])
+    s.add_dependency(%q<rails_autolink>, [">= 0"])
+    s.add_dependency(%q<meta_search>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
   end
 end

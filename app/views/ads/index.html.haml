@@ -38,7 +38,7 @@
               |
               = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
             
-      .pagination=paginating_links @ads if @ads.total_pages > 1
+      .pagination=paginate @ads
       
       %br
       = link_to :new_ad.l, new_ad_path

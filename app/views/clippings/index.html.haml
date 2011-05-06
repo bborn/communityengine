@@ -19,7 +19,7 @@
     -box :class => "hfeed", :id => 'clippings' do
       %h3= link_to "#{:user_clippings.l :user =>@user.login}", user_clippings_path(@user)
       - if @clippings.any?
-        -if @clippings.total_pages > 1
+        -if @clippings.total_count > 1
           .pagination=paginating_links @clippings
 
         - @clippings.each do |clipping|

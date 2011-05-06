@@ -8,11 +8,11 @@
     -box :class => "user_list" do
       %h3=:site_members.l :site => configatron.community_name
 
-      = will_paginate @users
+      = paginate @users
   
       %br.clear
   
       = render :partial => "users/user", :collection => @users
       
       %br.clear
-      = will_paginate @users
+      = paginate @users

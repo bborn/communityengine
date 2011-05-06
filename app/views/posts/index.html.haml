@@ -20,4 +20,4 @@
 
       = render :partial => 'post', :collection => @posts
 
-      .pagination=paginating_links @posts if @posts.total_pages > 1
+      .pagination=paginating_links @posts if @posts.total_count > 1

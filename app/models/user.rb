@@ -194,13 +194,7 @@ class User < ActiveRecord::Base
   
   def self.recent_activity(options = {})
     options.reverse_merge! :per_page => 10, :page => 1
-    Activity.recent.paginate(
-      :select => 'activities.*', 
-      :conditions => "users.activated_at IS NOT NULL", 
-      :joins => "LEFT JOIN users ON users.id = activities.user_id",
-      :per_page => options[:per_page],
-      :page => options[:page]
-      )    
+    Activity.joins("LEFT JOIN users ON users.id = activities.user_id").where('users.activated_at IS NOT NULL').select('activities.*').page(options[:page]).per(options[:per_page])
   end
 
   def self.currently_online
@@ -364,17 +358,13 @@ class User < ActiveRecord::Base
     
     ids = ((friends_ids | metro_area_people_ids) - [self.id])[0..100] #don't pull TOO much activity for now
     
-    Activity.recent.since(since).by_users(ids).paginate(page)          
+    Activity.recent.since(since).by_users(ids).page(page[:page]).per(page[:per_page])          
   end
 
   def comments_activity(page = {}, since = 1.week.ago)
     page.reverse_merge :per_page => 10, :page => 1
 
-    Activity.recent.since(since).paginate( 
-      :conditions => ['comments.recipient_id = ? AND activities.user_id != ?', self.id, self.id], 
-      :joins => "LEFT JOIN comments ON comments.id = activities.item_id AND activities.item_type = 'Comment'",
-      :per_page => page[:per_page],
-      :page => page[:page])
+    Activity.recent.since(since).where('comments.recipient_id = ? AND activities.user_id != ?', self.id, self.id).joins("LEFT JOIN comments ON comments.id = activities.item_id AND activities.item_type = 'Comment'").page(page[:per_page]).per(page[:page])
   end
 
   def friends_ids

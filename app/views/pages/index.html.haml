@@ -31,4 +31,4 @@
                   =:no.l
               %td= page.is_live? ? link_to(:published.l, pages_path(page)) : :draft.l
         
-      =will_paginate @pages
+      =paginate @pages

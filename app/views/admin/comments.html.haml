@@ -25,7 +25,7 @@
         = configatron.community_name
         = :comments.l
 
-      = will_paginate @comments
+      = paginate @comments
 
       %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%", :style => "table-layout:fixed;"}
         %thead
@@ -63,7 +63,7 @@
                 %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
                 %p= submit_tag :delete_selected.l              
 
-      = will_paginate @comments
+      = paginate @comments
 
 %script{:type => 'text/javascript'}
   var form = $('comments');

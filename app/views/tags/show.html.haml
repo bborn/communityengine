@@ -37,7 +37,7 @@
         -box :class => 'first_alt hfeed' do
           = render :partial => 'posts/post', :collection => @posts      
           - if @pages
-            = will_paginate @pages
+            = paginate @pages
           
 
     - if @photos.any?
@@ -64,4 +64,4 @@
         %h6.all= link_to :all_clippings_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Clipping') unless params[:type]
 
     - if @pages && !params[:type].eql?('Post')
-      = will_paginate @pages
+      = paginate @pages

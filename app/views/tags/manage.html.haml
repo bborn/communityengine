@@ -33,5 +33,5 @@
               = link_to :edit.l, edit_tag_path(tag)
               |
               = link_to :destroy.l, tag_path(tag), :confirm => :are_you_sure.l, :method => :delete
-    .pagination=paginating_links @tags if @tags.total_pages > 1
+    .pagination=paginating_links @tags if @tags.total_count > 1
 

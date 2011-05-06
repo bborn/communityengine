@@ -14,7 +14,7 @@ class PagesController < BaseController
   before_filter :require_moderator, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
 
   def index
-    @pages = Page.unscoped.order('created_at DESC').paginate(:page => params[:page])
+    @pages = Page.unscoped.order('created_at DESC').page(params[:page])
   end
 
   def preview
