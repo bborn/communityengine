@@ -17,7 +17,7 @@
     <fieldset>
       <legend>Upload New Image</legend>
       <form id='image_upload_form' enctype="multipart/form-data" method="post" onsubmit="ts_onload(); return true;" target="html_editor_image_upload_frame">
-        <input class="input-file" id="image_uploaded_data" name="photo[uploaded_data]" size="30" type="file"/>
+        <input class="input-file" id="image_uploaded_data" name="photo[photo]" size="30" type="file"/>
         <input class="submit" name="commit" type="submit" value="Upload"/>
       </form>
     </fieldset>
@@ -48,7 +48,7 @@
 
           <div id='dynamic_images_list'>
             Loading Images...<br />
-            <img src='/assets/spinner.gif'>
+            <img src='/plugin_assets/community_engine/images/spinner.gif'>
           </div>
 		      </fieldset>
 		  </div>		  

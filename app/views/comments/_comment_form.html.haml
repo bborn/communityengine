@@ -7,27 +7,16 @@
         loc = parts[0] + "#newest_comment"
       } else {
         loc = loc + "#newest_comment";
-- if logged_in? || configatron.allow_anonymous_commenting
-  %script{:type=>"text/javascript"} 
-    :plain
-      function scrollToNewestComment(){
-        loc = document.location.toString();
-        if (loc.indexOf("#") != -1){
-          parts = loc.split('#')
-          loc = parts[0] + "#newest_comment"
-        } else {
-          loc = loc + "#newest_comment";
-        }
-        document.location.href = loc;
       }
       document.location.href = loc;
     }
       
   .errors
-  - form_remote_for(:comment, @comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(commentable.class.to_s.underscore, commentable.id ), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
+  = form_remote_for(:comment, @comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(commentable.class.to_s.underscore, commentable.id ), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
     %label
       %em=:comment_character_limit.l
-    = text_area :comment, :comment, {:size => "86x5", :class => "rich_text_editor"}
+    
+    = f.text_area :comment, {:size => "86x5", :class => "rich_text_editor"}
     
     - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key 
       .right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true

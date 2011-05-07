@@ -2,11 +2,12 @@ class UsersController < BaseController
   include Viewable
   cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
   
-  uses_tiny_mce(:only => [:new, :create, :update, :edit, :welcome_about]) do
-    configatron.default_mce_options.merge({:editor_selector => "rich_text_editor"})
+  uses_tiny_mce do
+    {:only => [:new, :create, :update, :edit, :welcome_about], :options => configatron.default_mce_options}
   end
-  uses_tiny_mce(:only => [:show]) do
-    configatron.simple_mce_options
+  
+  uses_tiny_mce do
+    {:only => [:show], :options => configatron.simple_mce_options}
   end
 
   # Filters

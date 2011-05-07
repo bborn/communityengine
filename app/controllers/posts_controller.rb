@@ -1,12 +1,12 @@
 class PostsController < BaseController
   include Viewable
 
-  uses_tiny_mce(:only => [:new, :edit, :update, :create ]) do
-    configatron.default_mce_options
+  uses_tiny_mce do
+    {:only => [:new, :edit, :update, :create ], :options => configatron.default_mce_options}
   end
 
-  uses_tiny_mce(:only => [:show]) do
-    configatron.simple_mce_options
+  uses_tiny_mce do
+    {:only => [:show], :options => configatron.simple_mce_options}
   end
          
   cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]

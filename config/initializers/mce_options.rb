@@ -20,6 +20,7 @@ configatron.default_mce_options = {
   :plugin_preview_width => "950",
   :plugin_preview_height => "650",
   :editor_deselector => "mceNoEditor",
+  :editor_selector => "rich_text_editor",  
   :extended_valid_elements => "img[class|src|flashvars|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|obj|param|embed|scale|wmode|salign|style],embed[src|quality|scale|salign|wmode|bgcolor|width|height|name|align|type|pluginspage|flashvars],object[align<bottom?left?middle?right?top|archive|border|class|classid|codebase|codetype|data|declare|dir<ltr?rtl|height|hspace|id|lang|name|style|tabindex|title|type|usemap|vspace|width]",
   :media_strict => false    
   }
@@ -37,5 +38,6 @@ configatron.simple_mce_options = {
   :theme_advanced_buttons1 => %w{bold italic underline separator bullist numlist separator link unlink image},
   :theme_advanced_buttons2 => [],
   :theme_advanced_buttons3 => [],
-  :plugins => %w{inlinepopups safari curblyadvimage}
+  :plugins => %w{inlinepopups safari curblyadvimage},
+  :editor_selector => "rich_text_editor"
   }

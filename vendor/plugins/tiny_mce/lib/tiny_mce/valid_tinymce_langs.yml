@@ -1,0 +1,25 @@
+#
+# For more information about available languages, see
+# http://tinymce.moxiecode.com/i18n/index.php?ctrl=lang&
+# Should only include a list of completed translations (not incomplete ones which most are :-( )
+#
+
+--- 
+- ca
+- cs
+- da
+- en
+- fi
+- fr
+- ka
+- hu
+- ja
+- nb
+- no
+- pl
+- pt
+- ru
+- sk
+- sl
+- sv
+- zh-cn

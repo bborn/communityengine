@@ -1,0 +1,56 @@
+Note: Spell checking is not tested o regularly maintained. Use with caution.
+
+= Spellchecking in TinyMCE for Rails
+
+TinyMCE comes packed with a spellcheck plugin that relies on a server-side call to function.
+
+If uses_tiny_mce is called in a controller, the controller will get a "spellchecker" action added to it that validates text given to it with aspell. Right now, only aspell is supported.
+
+
+== Installing Aspell
+
+If your distribution has Aspell in its package repositories, then use it. Some commands include (as root):
+
+  Debian/Ubuntu:  apt-get install aspell aspell-en
+  openSUSE:       yast2 -i aspell aspell-en
+  Mac OS X:       port install aspell aspell-dict-en
+
+If you're package repositories don't have Aspell, you'll need to compile from source. Whatever way you install it, make sure that you see the language dictionaries you plan to use when you run
+
+  aspell dicts
+
+
+== Installing Spellchecker on TinyMCE
+
+The SpellCheck plugin is not enabled by default in TinyMCE. To enable it, do the following.
+
+Add the following to your uses_tiny_mce controller options declaration (edit toolbar location to suit and merge with existing settings):
+
+  :theme => 'advanced',
+  :theme_advanced_buttons3_add => %w{ spellchecker },
+  :spellchecker_languages => "+English=en",
+  :plugins => %w{ spellchecker },
+
+
+== Customization
+
+By default, Spellchecking calls "/controller/spellchecker". But this won't always be where the spellchecker method is accessible. But you can easily change where it should call by supplying the following setting to the options hash on the uses_tiny_mce declaration in the controller.
+
+  :spellchecker_rpc_url => '/blog/posts/spellchecker'
+
+Also, if you want to have other languages spellchecked, make sure they're installed for Aspell to use and then add to the comma delimited value of :spellchecker_languages in the format of
+
+  FriendlyName=code
+
+So the value for English, French, German and Spanish would look like this for example
+
+  :spellchecker_languages => "+English=en,French=fr,German=de,Spanish=es",
+
+The + sign in front of a friendly name indicates the default option for spellchecking.
+
+
+= Credits
+
+Spellchecking functionality created by Akhil Bansal ( http://webonrails.com/2008/08/08/configuring-tinymce-spellchecker-with-rails-application/ )
+
+Spellchecking functionality integrated into plugin by Terry Heath
