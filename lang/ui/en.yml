@@ -355,6 +355,8 @@ en:
   delete: Delete
   #en: delete_selected: Delete selected
   delete_selected: Delete selected
+  #en: delete_selected_mark_as_spam: Delete selected and mark spam
+  delete_selected_mark_as_spam: Delete selected and mark spam
   #en: delete_this_event: Delete this event
   delete_this_event: Delete this event
   #en: delete_this_forum: Delete this forum

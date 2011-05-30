@@ -125,6 +125,9 @@ class CommentsController < BaseController
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.can_be_deleted_by(current_user) && @comment.destroy
+      if params[:spam] && AppConfig.akismet_key
+        @comment.spam!
+      end
       flash.now[:notice] = :the_comment_was_deleted.l
     else
       flash.now[:error] = :comment_could_not_be_deleted.l
@@ -143,6 +146,7 @@ class CommentsController < BaseController
       if params[:delete]
         params[:delete].each { |id|
           comment = Comment.find(id)
+          comment.spam! if params[:spam] && AppConfig.akismet_key          
           comment.destroy if comment.can_be_deleted_by(current_user)
         }
       end
