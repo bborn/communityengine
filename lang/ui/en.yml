@@ -356,7 +356,7 @@ en:
   #en: delete_selected: Delete selected
   delete_selected: Delete selected
   #en: delete_selected_mark_as_spam: Delete selected and mark spam
-  delete_selected_mark_as_spam: Delete selected and mark spam
+  delete_selected_mark_as_spam: Mark as spam
   #en: delete_this_event: Delete this event
   delete_this_event: Delete this event
   #en: delete_this_forum: Delete this forum
@@ -1447,6 +1447,8 @@ en:
   users_photos: "{{user}}'s Photos"
   #en: users_profile: {{user}}'s profile
   users_profile: "{{user}}'s profile"
+  #en: user_spam_error: "User was flagged as spam. Please make sure you aren't including any spammy words or links and try again."  
+  user_spam_error: "User was flagged as spam. Make sure you don't include spammy words or links and try again"  
   #en: users_tagged: Users tagged
   users_tagged: "Users tagged"
   #en: user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"

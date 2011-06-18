@@ -97,6 +97,7 @@ end
 resources :favorites, :path_prefix => '/:favoritable_type/:favoritable_id'
 resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
 delete_selected_comments 'comments/delete_selected', :controller => "comments", :action => 'delete_selected'
+delete_selected_users 'users/delete_selected', :controller => "users", :action => 'delete_selected'
 
 resources :homepage_features
 resources :metro_areas

@@ -1,6 +1,9 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  include Rakismet::Model
+  rakismet_attrs :author => :login, :comment_type => 'registration', :content => :description, :user_ip => :last_login_ip, :author_email => :email
+  
   has_many :albums
   
   MALE    = 'M'
@@ -43,6 +46,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login_slug
   validates_exclusion_of    :login, :in => AppConfig.reserved_logins
   validates_date :birthday, :before => 13.years.ago.to_date  
+  validate :check_spam  
 
   #associations
     has_enumerated :role  
@@ -439,6 +443,12 @@ class User < ActiveRecord::Base
   def unread_message_count
     message_threads_as_recipient.count(:conditions => ["messages.recipient_id = ? AND messages.recipient_deleted = ? AND read_at IS NULL", self.id, false], :include => :message)
   end
+  
+  def check_spam
+    if AppConfig.akismet_key && self.spam?
+      self.errors.add_to_base(:user_spam_error.l) 
+    end
+  end  
   
   ## End Instance Methods
   

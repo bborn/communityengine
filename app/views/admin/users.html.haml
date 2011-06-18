@@ -1,6 +1,7 @@
 .yui-b.sidebar
   = render :partial => 'shared/admin_nav'
 
+
 #yui-main
   .yui-b
     -box  do
@@ -18,25 +19,53 @@
       -if @users.page_count > 1
         .pagination= paginating_links @users, :link_to_current_page => true
 
-      %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
-        %tr
-          %th=:login.l
-          %th=:e_mail.l
-          %th=:status.l
-          %th=:actions.l
+      - form_tag delete_selected_users_path, :id => 'users' do
+        %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
+          %thead
+            %tr
+              %th{:width => '60px', :colspan => '3'}
+              %th=:login.l
+              %th=:e_mail.l
+              %th=:status.l
+              %th=:actions.l
         
-        - @users.each do |user|
-          %tr{:id => "user_#{user.id}"}
-            %td
-              = link_to h(user.login), user_path(user)
-            %td
-              = h user.email
-            %td
-              = user.active? ? :active.l : :inactive.l
-            %td
-              = link_to( :assume_id.l , assume_user_path(user) )
-              = (" | " + link_to(:activate.l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
-              = link_to_remote(image_tag('icons/delete.png', :plugin => 'community_engine'), {:url => user_path(user), :method => :delete, :success => visual_effect(:fade, "user_#{user.id}"), :confirm => "Are you sure you want to permanently delete this user"} )                                                
+          %tbody
+            - @users.each do |user|        
+              %tr{:id => "user_#{user.id}"}
+                %td
+                  = link_to_remote(image_tag('icons/delete.png', :plugin => 'community_engine'), {:url => user_path(user), :method => :delete, :success => visual_effect(:fade, "user_#{user.id}"), :confirm => "Are you sure you want to permanently delete this user"} )                                                                          
+                %td
+                  -if AppConfig.akismet_key                
+                    = link_to_remote(image_tag('icons/bad-flag.png', :plugin => 'community_engine'), {:url => user_path(user, :spam => true), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "user_#{user.id}"), :confirm => "Are you sure you want to permanently delete this user and mark it as spam!?"} )                                                
 
+                %td= check_box_tag "delete[]", user.id
+          
+                %td
+                  = link_to h(user.login), user_path(user)
+                %td
+                  = h user.email
+                %td
+                  = user.active? ? :active.l : :inactive.l
+                %td
+                  = link_to( :assume_id.l , assume_user_path(user) )
+                  = (" | " + link_to(:activate.l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
+          %tfoot
+            %tr
+              %td{ :colspan => "4" }
+                -if @users.any?
+                  %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
+                  %p
+                    -if AppConfig.akismet_key
+                      = check_box_tag :spam
+                      =:delete_selected_mark_as_spam.l
+                      %br
+                    = submit_tag :delete_selected.l              
+
+                
+                
       -if @users.page_count > 1
         .pagination= paginating_links @users, :link_to_current_page => true
+        
+%script{:type => 'text/javascript'}
+  var form = $('users');
+  checkboxes = form.getInputs('checkbox');        

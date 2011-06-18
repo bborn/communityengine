@@ -32,7 +32,7 @@ class UsersController < BaseController
                                                 :edit_pro_details, :update_pro_details,
                                                 :welcome_photo, :welcome_about, :welcome_invite, :deactivate, 
                                                 :crop_profile_photo, :upload_profile_photo]
-  before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator]
+  before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator, :delete_selected]
   before_filter :admin_or_current_user_required, :only => [:statistics]  
 
   def activate
@@ -164,6 +164,9 @@ class UsersController < BaseController
   
   def destroy
     unless @user.admin? || @user.featured_writer?
+      if params[:spam] && AppConfig.akismet_key
+        @user.spam!
+      end      
       @user.destroy
       flash[:notice] = :the_user_was_deleted.l
     else
@@ -418,6 +421,22 @@ class UsersController < BaseController
       }
     end
   end    
+  
+  def delete_selected
+    if request.post?
+      if params[:delete] 
+        params[:delete].each { |id|
+          user = User.find(id)
+          unless user.admin? || user.featured_writer?
+            user.spam! if params[:spam] && AppConfig.akismet_key          
+            user.destroy 
+          end
+        }
+      end
+      flash[:notice] = :the_user_was_deleted.l                
+      redirect_to admin_users_path
+    end
+  end  
 
   protected  
     def setup_metro_areas_for_cloud
