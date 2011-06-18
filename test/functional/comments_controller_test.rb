@@ -80,6 +80,15 @@ class CommentsControllerTest < ActionController::TestCase
     end
   end
   
+  def test_should_delete_selected
+    login_as :admin
+    assert_difference Comment, :count, -1 do
+      post :delete_selected, :delete => Comment.last.id  
+    end
+    assert_redirected_to admin_comments_path
+  end
+  
+  
   def test_should_fail_to_create_post_comment
     login_as :aaron
     assert_no_difference Comment, :count do

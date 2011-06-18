@@ -442,8 +442,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
-  
+  def test_should_delete_selected
+    login_as :admin
+    assert_difference User, :count, -1 do
+      post :delete_selected, :delete => users(:florian).id      
+    end
+    assert_redirected_to admin_users_path
+  end
+    
   protected
     def create_user(options = {})
       params = {:user => {:login => 'quire', :email => 'quire@example.com', :password => 'quire123', :password_confirmation => 'quire123', :birthday => 15.years.ago}}

@@ -204,7 +204,6 @@ class UserTest < ActiveSupport::TestCase
     user = create_user(:login => 'contests')
     assert !user.valid?
   end
-
   
   protected
     def create_user(options = {})
