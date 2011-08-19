@@ -6,6 +6,7 @@ require 'community_engine/community_engine_sha1_crypto_method'
 require 'community_engine/i18n_extensions'  
 require 'community_engine/viewable'    
 require 'community_engine/url_upload'  
+require 'community_engine/engines_extensions'  
 
 require 'configatron'
 require 'hpricot'
@@ -25,3 +26,6 @@ require 'authlogic'
 require 'prototype-rails'
 require 'rails_autolink'
 require 'meta_search'
+
+
+include EnginesExtensions

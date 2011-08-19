@@ -53,9 +53,9 @@ begin
     gem.authors = ["Bruno Bornsztein"]    
     gem.version = File.read('VERSION')
     
-    gem.add_dependency 'rails', '3.1.0.beta1'
-    gem.add_dependency 'rack', '1.3.0.beta'    
-    gem.add_dependency 'arel', '~> 2.1.0'        
+    gem.add_dependency 'rails', '3.1.0.rc6'
+    gem.add_dependency 'rack', '1.3.2'    
+    gem.add_dependency 'arel', '~> 2.2.1'        
 
     gem.add_dependency 'authlogic'
     gem.add_dependency 'configatron'
@@ -73,10 +73,10 @@ begin
     gem.add_dependency 'acts_as_commentable', '~> 3.0.0'    
     gem.add_dependency 'recaptcha'
     gem.add_dependency 'simplecov'
-    gem.add_dependency 'omniauth', '~> 0.2.0.beta3'
+    gem.add_dependency 'omniauth', '~> 0.2.6'
     gem.add_dependency 'prototype-rails'
     gem.add_dependency 'rails_autolink'
-    gem.add_dependency 'meta_search', '1.1.0.pre'   
+    gem.add_dependency 'meta_search', '1.1.0.pre2'   
     gem.add_development_dependency 'sqlite3'
   end
 rescue
