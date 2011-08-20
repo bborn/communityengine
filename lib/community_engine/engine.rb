@@ -1,5 +1,6 @@
 require "community_engine"
 require 'rails/all'
+require 'community_engine/util/version'
 
 module CommunityEngine
   class Engine < Rails::Engine
