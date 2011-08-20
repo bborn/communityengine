@@ -682,16 +682,7 @@ Gem::Specification.new do |s|
     "config/initializers/rakismet.rb",
     "config/initializers/recaptcha_constants.rb",
     "config/initializers/white_list.rb",
-    "config/locales/de-DE.yml",
     "config/locales/en.yml",
-    "config/locales/es-AR.yml",
-    "config/locales/es-ES.yml",
-    "config/locales/es-MX.yml",
-    "config/locales/fr-FR.yml",
-    "config/locales/ja-JP.yml",
-    "config/locales/ru-RU.yml",
-    "config/locales/sr-CP.yml",
-    "config/locales/sv-SE.yml",
     "config/routes.rb",
     "db/migrate/001_create_users.rb",
     "db/migrate/002_add_activation_code_to_user.rb",
@@ -787,8 +778,25 @@ Gem::Specification.new do |s|
     "lib/community_engine/i18n_extensions.rb",
     "lib/community_engine/localized_application.rb",
     "lib/community_engine/rails_asset_extensions.rb",
+    "lib/community_engine/theme_support.rb",
+    "lib/community_engine/theme_support/hook_listener.rb",
     "lib/community_engine/url_upload.rb",
+    "lib/community_engine/util/file_utilz.rb",
+    "lib/community_engine/util/version.rb",
     "lib/community_engine/viewable.rb",
+    "lib/generators/community_engine/extension_generator.rb",
+    "lib/generators/templates/LICENSE",
+    "lib/generators/templates/README.md",
+    "lib/generators/templates/Rakefile.tt",
+    "lib/generators/templates/Versionfile.tt",
+    "lib/generators/templates/extension.gemspec.tt",
+    "lib/generators/templates/extension/extension.rb.tt",
+    "lib/generators/templates/gitignore.tt",
+    "lib/generators/templates/hooks.rb.tt",
+    "lib/generators/templates/install.rake.tt",
+    "lib/generators/templates/lib/tasks/%file_name%.rake.tt",
+    "lib/generators/templates/routes.rb",
+    "lib/generators/templates/spec_helper.rb",
     "lib/paperclip_processors/cropper.rb",
     "lib/tasks/community_engine_tasks.rake",
     "public/favicon.ico",
@@ -1765,6 +1773,10 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.rc6"])
       s.add_runtime_dependency(%q<rack>, ["~> 1.3.0"])
       s.add_runtime_dependency(%q<arel>, ["~> 2.2.1"])
@@ -1792,6 +1804,10 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
@@ -1844,6 +1860,10 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])

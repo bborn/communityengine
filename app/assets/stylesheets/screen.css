@@ -649,32 +649,32 @@ margin-left:  12.3846em; /* about 200px - 3em*/
 /* 8. COMMUNITY FOOTER                             */
 /* =============================================== */
 
-#CommunityFooter{
+#footer{
 margin: 20px 0;
 font-size: 85%;}
 
-#CommunityFooter ul, #CommunityFooter ul li{float: left;}
+#footer ul, #footer ul li{float: left;}
 
-#CommunityFooter li a{
+#footer li a{
 padding: 2px 10px;
 display: block;
 border-left: 1px solid #ccc;
 }
 
-#CommunityFooter li#rss a{
+#footer li#rss a{
 color: #fff;
 background: orange;
 text-decoration: none;
 }
 
 
-#CommunityFooter li:first-child a{
+#footer li:first-child a{
 border: none;
 padding-left: 0;
 }
 
 
-#CommunityFooter p{
+#footer p{
 float: right;
 padding: 2px 0 2px 120px;
 background: url(/assets/logo.gif) no-repeat left center;
@@ -684,7 +684,7 @@ background: url(/assets/logo.gif) no-repeat left center;
 /* 9. CLEARFIX                                     */
 /* =============================================== */
 
-#NavBar:after, .hentry:after, .box:after, dl.vcard:after, .fresh dl:after, #CommunityFooter:after, .hentry .tags:after {
+#NavBar:after, .hentry:after, .box:after, dl.vcard:after, .fresh dl:after, #footer:after, .hentry .tags:after {
     content: "."; 
     display: block; 
     height: 0; 
@@ -692,11 +692,11 @@ background: url(/assets/logo.gif) no-repeat left center;
     visibility: hidden;
 }
 
-* html #NavBar, * html .hentry, * html .box, * html dl.vcard, * html .fresh dl, * html #CommunityFooter, * html .hentry .tags {display: inline-table;}
+* html #NavBar, * html .hentry, * html .box, * html dl.vcard, * html .fresh dl, * html #footer, * html .hentry .tags {display: inline-table;}
 
 /* Hides from IE-mac \*/
-#NavBar, .hentry, .box, dl.vcard, .fresh dl, #CommunityFooter, .hentry .tags {height: 1%;}
-#NavBar, .hentry, .box, dl.vcard, .fresh dl, #CommunityFooter, .hentry .tags {display: block;}
+#NavBar, .hentry, .box, dl.vcard, .fresh dl, #footer, .hentry .tags {height: 1%;}
+#NavBar, .hentry, .box, dl.vcard, .fresh dl, #footer, .hentry .tags {display: block;}
 /* End hide from IE-mac */
 
 
