@@ -70,7 +70,7 @@ begin
     gem.add_dependency "dynamic_form"
     gem.add_dependency "friendly_id", "3.2.1"
     gem.add_dependency "paperclip", "~> 2.3"
-    gem.add_dependency 'acts_as_commentable', '~> 3.0.0'    
+    gem.add_dependency 'acts_as_commentable', '~> 3.0.0'
     gem.add_dependency 'recaptcha'
     gem.add_dependency 'simplecov'
     gem.add_dependency 'omniauth', '~> 0.3.0.rc1'
