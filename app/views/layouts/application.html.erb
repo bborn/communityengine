@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head data-hook="inside_head">
+    <title><%= page_title %></title>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png"/>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <% if @meta %>
+        <% @meta.each do |key| %>
+            <meta name="<%= key[0] %>" content="<%= key[1] %>">
+        <% end %>
+    <% end %>
+
+    <%= csrf_meta_tags %>
+    <%= render :partial => "shared/scripts_and_styles" %>
+
+    <% if @rss_title && @rss_url %>
+        <%= auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title}) %>
+    <% end %>
+</head>
+<body data-hook="body">
+<div class='yui-t<%= @sidebar_left ? 3 : 6 %>' id='doc2' data-hook>
+    <%= render :partial => "shared/header" %>
+    <div id='bd' data-hook>
+        <%= render :partial => "shared/messages" %>
+        <%= yield %>
+    </div>
+    <div id='ft' data-hook>
+        <% if show_footer_content? %>
+            <div class='yui-gc' id='footer_content' data-hook>
+                <%= image_tag 'spinner.gif', :plugin => 'community_engine' %>
+                <%= :loading_recent_content.l %>
+            </div>
+
+            <script type="text/javascript">
+                <%= remote_function(:update => "footer_content", :url => { :controller => 'base', :action => 'footer_content' }) %>
+            </script>
+        <% end %>
+    </div>
+    <div id='footer'data-hook>
+        <ul>
+            <li><%= link_to :home.l, home_url, :title=>"#{configatron.community_name} " + :home.l %></li>
+            <% if !logged_in? %>
+                <li><%= link_to :log_in.l, login_path %></li>
+            <% else %>
+                <li><%= link_to :log_out.l, logout_url, :title=>:log_out_of_your.l + " #{configatron.community_name} " + :account.l %></li>
+            <% end %>
+
+            <% Page.find(:all).each do |page| %>
+                <% if (logged_in? || page.page_public) %>
+                    <li><%= link_to page.title, pages_path(page) %></li>
+                <% end %>
+            <% end %>
+            <% if @rss_title && @rss_url %>
+                <li id="rss" data-hook><%= link_to :rss.l, @rss_url, {:title => @rss_title} %></li>
+            <% end %>
+        </ul>
+        <p><%= :community_tagline.l %></p>
+    </div>
+</div>
+</body>
+</html>

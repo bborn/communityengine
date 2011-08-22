@@ -5,8 +5,9 @@ require 'pp'
 class BaseController < ApplicationController
 
   include AuthenticatedSystem
-  include LocalizedApplication
-  around_filter :set_locale  
+  #include LocalizedApplication
+  #around_filter :set_user_language
+  before_filter :set_user_language
   skip_before_filter :verify_authenticity_token, :only => :footer_content
   helper_method :commentable_url
   before_filter :initialize_header_tabs
@@ -63,6 +64,13 @@ class BaseController < ApplicationController
   
   
   private
+
+  def set_user_language
+    locale = session[:locale] || configatron.community_locale
+    locale = I18n.default_locale unless locale && I18n.available_locales.include?(locale.to_sym)
+    I18n.locale = locale.to_sym
+  end
+
     def admin_required
       current_user && current_user.admin? ? true : access_denied
     end

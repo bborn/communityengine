@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{community_engine}
-  s.version = "2.0.0.beta"
+  s.version = "3.0.0.beta"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Bruno Bornsztein"]
-  s.date = %q{2011-05-07}
+  s.authors = [%q{Bruno Bornsztein}]
+  s.date = %q{2011-08-21}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".gitmodules",
+    ".travis.yml",
     "CHANGELOG",
     "Gemfile",
     "LICENSE",
@@ -529,7 +530,7 @@ Gem::Specification.new do |s|
     "app/views/homepage_features/show.html.haml",
     "app/views/invitations/index.html.erb",
     "app/views/invitations/new.html.haml",
-    "app/views/layouts/application.html.haml",
+    "app/views/layouts/application.html.erb",
     "app/views/messages/_form.html.haml",
     "app/views/messages/_inbox.html.haml",
     "app/views/messages/_sent.html.haml",
@@ -681,16 +682,7 @@ Gem::Specification.new do |s|
     "config/initializers/rakismet.rb",
     "config/initializers/recaptcha_constants.rb",
     "config/initializers/white_list.rb",
-    "config/locales/de-DE.yml",
     "config/locales/en.yml",
-    "config/locales/es-AR.yml",
-    "config/locales/es-ES.yml",
-    "config/locales/es-MX.yml",
-    "config/locales/fr-FR.yml",
-    "config/locales/ja-JP.yml",
-    "config/locales/ru-RU.yml",
-    "config/locales/sr-CP.yml",
-    "config/locales/sv-SE.yml",
     "config/routes.rb",
     "db/migrate/001_create_users.rb",
     "db/migrate/002_add_activation_code_to_user.rb",
@@ -784,10 +776,26 @@ Gem::Specification.new do |s|
     "lib/community_engine/community_engine_sha1_crypto_method.rb",
     "lib/community_engine/engine.rb",
     "lib/community_engine/i18n_extensions.rb",
-    "lib/community_engine/localized_application.rb",
     "lib/community_engine/rails_asset_extensions.rb",
+    "lib/community_engine/theme_support.rb",
+    "lib/community_engine/theme_support/hook_listener.rb",
     "lib/community_engine/url_upload.rb",
+    "lib/community_engine/util/file_utilz.rb",
+    "lib/community_engine/util/version.rb",
     "lib/community_engine/viewable.rb",
+    "lib/generators/community_engine/extension_generator.rb",
+    "lib/generators/templates/LICENSE",
+    "lib/generators/templates/README.md",
+    "lib/generators/templates/Rakefile.tt",
+    "lib/generators/templates/Versionfile.tt",
+    "lib/generators/templates/extension.gemspec.tt",
+    "lib/generators/templates/extension/extension.rb.tt",
+    "lib/generators/templates/gitignore.tt",
+    "lib/generators/templates/hooks.rb.tt",
+    "lib/generators/templates/install.rake.tt",
+    "lib/generators/templates/lib/tasks/%file_name%.rake.tt",
+    "lib/generators/templates/routes.rb",
+    "lib/generators/templates/spec_helper.rb",
     "lib/paperclip_processors/cropper.rb",
     "lib/tasks/community_engine_tasks.rake",
     "public/favicon.ico",
@@ -879,6 +887,7 @@ Gem::Specification.new do |s|
     "test/testapp/config/routes.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
+    "test/testapp/db/test.sqlite3",
     "test/testapp/doc/README_FOR_APP",
     "test/testapp/lib/tasks/.gitkeep",
     "test/testapp/public/404.html",
@@ -1730,12 +1739,11 @@ Gem::Specification.new do |s|
     "vendor/plugins/white_list/lib/white_list_helper.rb",
     "vendor/plugins/white_list/test/white_list_test.rb"
   ]
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.6}
   s.summary = %q{CommunityEngine for Rails 3}
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
@@ -1756,9 +1764,23 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
-      s.add_runtime_dependency(%q<rails>, ["= 3.1.0.beta1"])
-      s.add_runtime_dependency(%q<rack>, ["= 1.3.0.beta"])
-      s.add_runtime_dependency(%q<arel>, ["~> 2.1.0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_runtime_dependency(%q<rails>, ["= 3.1.0.rc6"])
+      s.add_runtime_dependency(%q<rack>, ["~> 1.3.0"])
+      s.add_runtime_dependency(%q<arel>, ["~> 2.2.1"])
       s.add_runtime_dependency(%q<authlogic>, [">= 0"])
       s.add_runtime_dependency(%q<configatron>, [">= 0"])
       s.add_runtime_dependency(%q<hpricot>, [">= 0"])
@@ -1775,10 +1797,11 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
       s.add_runtime_dependency(%q<simplecov>, [">= 0"])
-      s.add_runtime_dependency(%q<omniauth>, ["~> 0.2.0.beta3"])
+      s.add_runtime_dependency(%q<omniauth>, ["~> 0.3.0.rc1"])
       s.add_runtime_dependency(%q<prototype-rails>, [">= 0"])
       s.add_runtime_dependency(%q<rails_autolink>, [">= 0"])
-      s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre"])
+      s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
+      s.add_runtime_dependency(%q<deface>, [">= 0.6.1"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
@@ -1798,9 +1821,23 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<rails>, ["= 3.1.0.beta1"])
-      s.add_dependency(%q<rack>, ["= 1.3.0.beta"])
-      s.add_dependency(%q<arel>, ["~> 2.1.0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<rails>, ["= 3.1.0.rc6"])
+      s.add_dependency(%q<rack>, ["~> 1.3.0"])
+      s.add_dependency(%q<arel>, ["~> 2.2.1"])
       s.add_dependency(%q<authlogic>, [">= 0"])
       s.add_dependency(%q<configatron>, [">= 0"])
       s.add_dependency(%q<hpricot>, [">= 0"])
@@ -1817,10 +1854,11 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_dependency(%q<recaptcha>, [">= 0"])
       s.add_dependency(%q<simplecov>, [">= 0"])
-      s.add_dependency(%q<omniauth>, ["~> 0.2.0.beta3"])
+      s.add_dependency(%q<omniauth>, ["~> 0.3.0.rc1"])
       s.add_dependency(%q<prototype-rails>, [">= 0"])
       s.add_dependency(%q<rails_autolink>, [">= 0"])
-      s.add_dependency(%q<meta_search>, ["= 1.1.0.pre"])
+      s.add_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
+      s.add_dependency(%q<deface>, [">= 0.6.1"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
     end
   else
@@ -1841,9 +1879,23 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<rails>, ["= 3.1.0.beta1"])
-    s.add_dependency(%q<rack>, ["= 1.3.0.beta"])
-    s.add_dependency(%q<arel>, ["~> 2.1.0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<rails>, ["= 3.1.0.rc6"])
+    s.add_dependency(%q<rack>, ["~> 1.3.0"])
+    s.add_dependency(%q<arel>, ["~> 2.2.1"])
     s.add_dependency(%q<authlogic>, [">= 0"])
     s.add_dependency(%q<configatron>, [">= 0"])
     s.add_dependency(%q<hpricot>, [">= 0"])
@@ -1860,10 +1912,11 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     s.add_dependency(%q<recaptcha>, [">= 0"])
     s.add_dependency(%q<simplecov>, [">= 0"])
-    s.add_dependency(%q<omniauth>, ["~> 0.2.0.beta3"])
+    s.add_dependency(%q<omniauth>, ["~> 0.3.0.rc1"])
     s.add_dependency(%q<prototype-rails>, [">= 0"])
     s.add_dependency(%q<rails_autolink>, [">= 0"])
-    s.add_dependency(%q<meta_search>, ["= 1.1.0.pre"])
+    s.add_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
+    s.add_dependency(%q<deface>, [">= 0.6.1"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
   end
 end
