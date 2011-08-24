@@ -6,7 +6,7 @@
     = f.text_field :name
 
     %label=:html.l
-    = f.text_area :html, :size => '80x10'
+    = f.text_area :html, :size => '80x10', :class => "rich_text_editor"
 
     %label=:frequency.l
     = f.select :frequency, Ad.frequencies_for_select

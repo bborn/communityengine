@@ -4,7 +4,7 @@
   %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
     %tr
       %td{"rowspan"=>"2", "width"=>"60%"}
-        = f.text_area :body, :style => "width: 99%; height: 300px;"
+        = f.text_area :body, :style => "width: 99%; height: 300px;", :class => "rich_text_editor"
       - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key 
         %td{"style"=>"vertical-align:top;"}
           %label{"for"=>"comment[author_name"}

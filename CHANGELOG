@@ -13,6 +13,7 @@
 # * tinymce isn't working
 # * fix responds-to-parent
 
+* mce_opts initializer
 * replace old multiple uploader
 * fix photo uploading from welcome_photo page
 * add back searching to users index
@@ -20,12 +21,14 @@
 * replace white_list with something (sanitize?) (preserve stuff from white list initializer)
 * replace setup template with something else more sensible
 * allow overriding initializers, autoloading assets, etc
-* mce_opts initializer
 * fix rakismet initializer
 * remove stylesheet customization
 * use aato instead of aatos
 * authlogic has problems: not sure it's recording last_login magic columns, investigate
-# Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
+* Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
+* swap jquery for prototype
+* photo cropping is not working
+* configure configatron from ruby, not yaml
 
 =2.0.0.pre
 * Rails 3.1.0.beta1 compatibility

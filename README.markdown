@@ -72,10 +72,9 @@ By default CommunityEngine uses the filesystem to store photos.
 
 To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called `amazon_s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`). 
 
-You'll need to change your configuration in your `application.yml` to tell CommunityEngine to use s3 as the photo backend.
+You'll need to change your configuration in your `application.yml` to tell CommunityEngine to use s3 as the photo backend. For more, see the Paperclip documentation on S3 storage for uploads: https://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/storage/s3.rb
 
 Finally, you'll need an S3 account for S3 photo uploading.
-
 
 Create an s3.yml file in `Rails.root/config` 
 

@@ -1,7 +1,6 @@
 class ForumsController < BaseController
   before_filter :login_required, :except => [:index, :show]
   before_filter :find_or_initialize_forum
-  helper :application
 
   uses_tiny_mce do    
     configatron.default_mce_options

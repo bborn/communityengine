@@ -25,7 +25,6 @@ module CommunityEngine
       Dir["#{root}/config/initializers/**/*.rb"].each do |initializer| 
         load(initializer) unless File.exists?("#{root.to_s}/config/initializers/#{File.basename(initializer)}")
       end      
-      require 'paperclip_processors/cropper'
     end
      
   end

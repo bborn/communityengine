@@ -104,6 +104,7 @@ Rails.application.routes.draw do
   match '/tags/:id/:type' => 'tags#show', :as => :show_tag_type
   match '/search/tags' => 'tags#show', :as => :search_tags
   resources :categories
+  
   resources :events do
     collection do
       get :past

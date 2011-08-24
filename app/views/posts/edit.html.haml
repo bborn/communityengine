@@ -23,7 +23,7 @@
         %label
           =:body_text.l
           %em= '('+:required.l+')'
-        = f.text_area :raw_post, :size => "86x15"
+        = f.text_area :raw_post, :size => "86x15", :class => "rich_text_editor"
         %label
           =:tags.l
           %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
