@@ -116,8 +116,12 @@ Rails.application.routes.draw do
     resources :rsvps
   end
 
-  resources :favorites
-  resources :comments
+  scope '/:favoritable_type/:favoritable_id' do
+    resources :favorites
+  end
+  scope "'/:commentable_type/:commentable_id'" do
+    resources :comments
+  end
   match 'comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
   resources :homepage_features
   resources :metro_areas
@@ -201,14 +205,17 @@ Rails.application.routes.draw do
 
     resources :comments
     resources :photo_manager
-    resources :albums do
-      resources :photos do
-        collection do
-          post :swfupload
-          get :slideshow
+
+    scope ':user_id/photo_manager' do
+      resources :albums do
+        resources :photos do
+          collection do
+            post :swfupload
+            get :slideshow
+          end
         end
       end
-    end
+    end  
   end
 
   resources :votes

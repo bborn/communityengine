@@ -29,6 +29,7 @@
 * swap jquery for prototype
 * photo cropping is not working
 * configure configatron from ruby, not yaml
+* fix commentable routing (path prefix)
 
 =2.0.0.pre
 * Rails 3.1.0.beta1 compatibility

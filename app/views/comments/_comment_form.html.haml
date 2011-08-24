@@ -12,7 +12,7 @@
     }
       
   .errors
-  = form_remote_for(:comment, @comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(commentable.class.to_s.underscore, commentable.id ), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
+  = form_remote_for(:comment, @comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => comments_url(commentable.class.to_s.underscore, commentable.id), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
     %label
       %em=:comment_character_limit.l
     
