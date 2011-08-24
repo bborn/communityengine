@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Bruno Bornsztein}]
-  s.date = %q{2011-08-19}
+  s.date = %q{2011-08-24}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -96,6 +96,7 @@ Gem::Specification.new do |s|
     "app/assets/images/swf/line_grapher.swf",
     "app/assets/images/swf/swfupload.swf",
     "app/assets/images/thumb.gif",
+    "app/assets/javascripts/builder.js",
     "app/assets/javascripts/calendarview.js",
     "app/assets/javascripts/community_engine.js",
     "app/assets/javascripts/controls.js",
@@ -105,6 +106,7 @@ Gem::Specification.new do |s|
     "app/assets/javascripts/effects.js",
     "app/assets/javascripts/forum.js",
     "app/assets/javascripts/lightbox.js",
+    "app/assets/javascripts/prototip-min.js",
     "app/assets/javascripts/prototype.js",
     "app/assets/javascripts/rails.js",
     "app/assets/javascripts/tiny_mce/langs/en.js",
@@ -369,6 +371,7 @@ Gem::Specification.new do |s|
     "app/assets/stylesheets/community_engine.css",
     "app/assets/stylesheets/forum.css",
     "app/assets/stylesheets/lightbox.css",
+    "app/assets/stylesheets/prototip.css",
     "app/assets/stylesheets/reset-fonts-grids.css",
     "app/assets/stylesheets/screen.css",
     "app/controllers/activities_controller.rb",
@@ -678,6 +681,7 @@ Gem::Specification.new do |s|
     "community_engine.gemspec",
     "community_engine_setup_template.rb",
     "config/application.yml",
+    "config/initializers/cropper.rb",
     "config/initializers/mce_options.rb",
     "config/initializers/rakismet.rb",
     "config/initializers/recaptcha_constants.rb",
@@ -790,7 +794,6 @@ Gem::Specification.new do |s|
     "lib/community_engine/rails_asset_extensions.rb",
     "lib/community_engine/url_upload.rb",
     "lib/community_engine/viewable.rb",
-    "lib/paperclip_processors/cropper.rb",
     "lib/tasks/community_engine_tasks.rake",
     "public/favicon.ico",
     "sample_files/amazon_s3.yml",
@@ -1003,7 +1006,6 @@ Gem::Specification.new do |s|
     "test/testapp/public/community_engine/images/thumb.gif",
     "test/testapp/public/community_engine/javascripts/AC_RunActiveContent.js",
     "test/testapp/public/community_engine/javascripts/application.js",
-    "test/testapp/public/community_engine/javascripts/builder.js",
     "test/testapp/public/community_engine/javascripts/calendarview.js",
     "test/testapp/public/community_engine/javascripts/controls.js",
     "test/testapp/public/community_engine/javascripts/cropper.css",
@@ -1014,7 +1016,6 @@ Gem::Specification.new do |s|
     "test/testapp/public/community_engine/javascripts/forum.js",
     "test/testapp/public/community_engine/javascripts/lightbox.js",
     "test/testapp/public/community_engine/javascripts/lowpro.js",
-    "test/testapp/public/community_engine/javascripts/prototip-min.js",
     "test/testapp/public/community_engine/javascripts/prototype.js",
     "test/testapp/public/community_engine/javascripts/rails.js",
     "test/testapp/public/community_engine/javascripts/rounder.js",
@@ -1288,7 +1289,6 @@ Gem::Specification.new do |s|
     "test/testapp/public/community_engine/stylesheets/grids.css",
     "test/testapp/public/community_engine/stylesheets/lightbox.css",
     "test/testapp/public/community_engine/stylesheets/print.css",
-    "test/testapp/public/community_engine/stylesheets/prototip.css",
     "test/testapp/public/community_engine/stylesheets/reset-fonts-grids.css",
     "test/testapp/public/community_engine/stylesheets/reset.css",
     "test/testapp/public/community_engine/stylesheets/screen.css",
@@ -1764,6 +1764,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.rc6"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["~> 2.2.1"])
@@ -1790,6 +1792,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
@@ -1839,6 +1843,8 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
