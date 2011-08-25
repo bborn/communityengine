@@ -15,7 +15,9 @@
           %br
             %small
               =:have_an_account.l
-              %a{:href=>login_url, :title=>:log_in_to_your.l+" #{configatron.community_name} "+:account.l}="&raquo; " + :login.l
+              %a{:href=>login_url, :title=>:log_in_to_your.l+" #{configatron.community_name} "+:account.l}
+                &raquo;
+                =:login.l
 
   -box :class => "alt" do 
     %h3=:top_writers.l

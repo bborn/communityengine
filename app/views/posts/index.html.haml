@@ -13,7 +13,7 @@
     -box :class => "posts hfeed" do 
       %h3
         = link_to :users_blog.l(:user => @user.login), user_posts_path(@user)
-        = @category ? "&raquo; " + link_to(@category.name.upcase, users_posts_in_category_path(@user, @category.name)) : ''
+        = @category ? "&raquo; #{link_to(@category.name.upcase, users_posts_in_category_path(@user, @category.name))}".html_safe : ''
 
       = link_to( :new_post.l, new_user_post_path(@user), {:class => "right"})  if @is_current_user
       %br

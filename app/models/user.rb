@@ -194,7 +194,7 @@ class User < ActiveRecord::Base
   
   def self.recent_activity(options = {})
     options.reverse_merge! :per_page => 10, :page => 1
-    Activity.joins("LEFT JOIN users ON users.id = activities.user_id").where('users.activated_at IS NOT NULL').select('activities.*').page(options[:page]).per(options[:per_page])
+    Activity.recent.joins("LEFT JOIN users ON users.id = activities.user_id").where('users.activated_at IS NOT NULL').select('activities.*').page(options[:page]).per(options[:per_page])
   end
 
   def self.currently_online
@@ -235,11 +235,7 @@ class User < ActiveRecord::Base
     ma.users_count = User.count(:conditions => ["metro_area_id = ?", ma.id])
     ma.save
   end  
-  
-  # def login_slug
-  #   friendly_id
-  # end
-  
+    
   def this_months_posts
     self.posts.find(:all, :conditions => ["published_at > ?", DateTime.now.to_time.at_beginning_of_month])
   end
@@ -248,7 +244,7 @@ class User < ActiveRecord::Base
     self.posts.find(:all, :conditions => ["published_at > ? and published_at < ?", DateTime.now.to_time.at_beginning_of_month.months_ago(1), DateTime.now.to_time.at_beginning_of_month])
   end
   
-  def avatar_photo_url(size = nil)
+  def avatar_photo_url(size = :original)
     if avatar
       avatar.photo.url(size)
     elsif omniauthed? && authorizations.first.picture_url

@@ -1419,8 +1419,8 @@ en:
   user_information: "%{site} User information"
   #en: users_blog: "%{user}'s Blog"
   users_blog: "%{user}'s Blog"
-  #en: user_clippings: Clippings of %{user}
-  user_clippings: "Clippings of %{user}"
+  #en: user_clippings: %{user}'s Clippings
+  user_clippings: "%{user}'s Clippings"
   #en: user_login: User login
   user_login: User login
   #en: users_online: Users online

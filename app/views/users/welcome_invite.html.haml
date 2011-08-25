@@ -5,7 +5,7 @@
 
 -box do
   %h3
-    =:get_started.l + ' ' + :invite_some_friends.l
+    = :get_started.l + ' ' + :invite_some_friends.l
     = :invite_some_customers.l if @user.vendor?
   %p
     =:invite_message.l(:site=> configatron.community_name)
@@ -18,11 +18,10 @@
         %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
           %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/
     
-    
       =:enter_e_mail_addresses.l
       %em= :comma_separated.l
       \:
-    %br  
+    .clear 
     = f.text_area :email_addresses , :size => "83x5"
 
     %label{"for"=>"message"}=:write_a_message.l
@@ -31,4 +30,4 @@
     %p
       = submit_tag :send_invitations.l
       %br/
-      = link_to "&raquo; "+ :skip_this_and_go_to_your_profile.l, user_path(@user)
+      = link_to :skip_this_and_go_to_your_profile.l, user_path(@user)

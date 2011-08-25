@@ -2,18 +2,19 @@
   -box :class => "first_alt alt" do 
     %h3
       =:admin_controls.l
-    = link_to( "&raquo; #{:assume_user_id.l}", assume_user_path(@user) )
-    %br/
-    = link_to( "&raquo; #{:delete_this_user.l}", user_path(@user), {:method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l} )
-    %br/
-    = link_to( "&raquo; #{:toggle.l} #{:featured_writer.l}", toggle_featured_user_path(@user), {:method => :put} )
-    %br/
-    = link_to( "&raquo; #{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}", toggle_moderator_user_path(@user), {:method => :put} )
+    = link_to(:assume_user_id.l, assume_user_path(@user) )
+    %br/      
+    = link_to(:delete_this_user.l, user_path(@user), {:method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l} )
+    %br/      
+    = link_to("#{:toggle.l} #{:featured_writer.l}".html_safe, toggle_featured_user_path(@user), {:method => :put} )
+    %br/      
+    = link_to("#{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}".html_safe, toggle_moderator_user_path(@user), {:method => :put} )
 
 -box :class => 'hentry', :id => 'profile_details' do
   %h3
     = link_to @user.login, user_path(@user)
-    = " <small>(#{:featured_writer.l})</small>" if @user.featured_writer?
+    -if @user.featured_writer?    
+      %small=:featured_writer.l 
 
   .centered
     - if @is_current_user

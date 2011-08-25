@@ -21,11 +21,7 @@ class StatisticsController < BaseController
     
     @featured_writers = User.find_featured
 
-    @posts = Post.find(:all, 
-      :conditions => ['? <= posts.published_at AND posts.published_at <= ? AND users.featured_writer = ?', Time.now.beginning_of_month, (Time.now.end_of_month + 1.day), true], :include => :user)        
-    @estimated_payment = @posts.sum do |p| 
-      7
-    end  
+    @posts = Post.find(:all, :conditions => ['? <= posts.published_at AND posts.published_at <= ? AND users.featured_writer = ?', Time.now.beginning_of_month, (Time.now.end_of_month + 1.day), true], :include => :user)        
   end  
 
       

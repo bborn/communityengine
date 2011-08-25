@@ -1,5 +1,6 @@
 %html
   %head
+    =csrf_meta_tag  
     %title
       = configatron.community_name
       \- 
@@ -49,7 +50,7 @@
               = image_tag 'spinner.gif', :plugin => "community_engine"
               =:loading_images.l
               %script{"type"=>"text/javascript"}
-                = remote_function(:url => { :action => "load_images_from_uri", :params => {:uri => params[:uri]} } )
+                = remote_function(:url => { :action => "load_images_from_uri", :uri => params[:uri] } )
             %small
               %a{"href"=>"#{ params[:uri] }"}
                 =:cancel_and_go_back_to.l

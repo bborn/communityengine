@@ -3,8 +3,8 @@ class ClippingsController < BaseController
   before_filter :find_user, :only => [:new, :edit, :index, :show]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
 
-  uses_tiny_mce(:only => [:show,:new_clipping]) do
-    configatron.default_mce_options
+  uses_tiny_mce do
+    {:only => [:show,:new_clipping], :options => configatron.default_mce_options}    
   end
 
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    

@@ -54,16 +54,3 @@
     %ul
       - @featured_writers.each do |w|
         %li= link_to w.login, statistics_user_path(w)
-
-    %h3
-      =:estimated_writers_costs_this_month.l
-    $
-    = @estimated_payment
-    \-
-    = @posts.length
-    = :posts.l
-    ($
-    = (@estimated_payment.to_i / @posts.length.to_i) rescue "0"
-    \/
-    =:post.l
-    )
