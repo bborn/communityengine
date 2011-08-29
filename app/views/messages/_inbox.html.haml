@@ -20,10 +20,13 @@
                   %fieldset.inline
                     = check_box_tag "delete[]", message_thread.id
                 %td
-                  ="#{link_to h(message_thread.subject), user_message_path(@user, message)}"
+                  =link_to h(message_thread.subject), user_message_path(@user, message)
                   =children.any? ? "(#{children.size} messages)" : ''
                   %br
-                  ="<em>#{message.sender.login}</em>: #{truncate(message.body)}"
+                  %em
+                    =message.sender.login
+                    \: 
+                    =truncate(message.body)
                 
                 %td.meta{:width => '150px'}
                   =time_ago_in_words_or_date(message_thread.updated_at)                

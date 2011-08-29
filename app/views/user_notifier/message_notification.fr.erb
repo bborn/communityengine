@@ -1,8 +1,0 @@
-Bonjour <%= @message.recipient.login %> !
-
-<%= @message.sender.login %> vous a envoyé un message privé sur <%= configatron.community_name %>. Vous pouvez le lire à l'adresse suivante :
-
-<%= user_message_url(@message.recipient, @message) %> 
-
-Merci,
-L'Equipe <%= configatron.community_name %>
