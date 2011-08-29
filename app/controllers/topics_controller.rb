@@ -2,8 +2,8 @@ class TopicsController < BaseController
   before_filter :find_forum_and_topic, :except => :index
   before_filter :login_required, :except => [:index, :show]
 
-  uses_tiny_mce(:only => [:show, :new]) do
-    configatron.default_mce_options
+  uses_tiny_mce do
+    {:only => [:show, :new], :options => configatron.default_mce_options}
   end
 
   def index

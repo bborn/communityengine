@@ -20,7 +20,7 @@
 - if @topic.new_record?
 
   %label{"for"=>"topic_body"}= :body_text.l
-  = form.text_area :body, :rows => 12
+  = form.text_area :body, :rows => 12, :class => 'rich_text_editor'
   
   - if admin? and not @topic.new_record?
     %p#topic_forum_id

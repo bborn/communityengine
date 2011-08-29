@@ -12,13 +12,14 @@
 # * can't dup nilclass error in Rails timezone conversion (fixed with a little patch, should get fixed in a new version of Rails)
 # * tinymce isn't working
 # * fix responds-to-parent
+# * replace white_list with something (sanitize?) (preserve stuff from white list initializer)
 
 * mce_opts initializer
 * replace old multiple uploader
 * fix photo uploading from welcome_photo page
 * add back searching to users index
 * remove all the theming stuff
-* replace white_list with something (sanitize?) (preserve stuff from white list initializer)
+
 * replace setup template with something else more sensible
 * allow overriding initializers, autoloading assets, etc
 * fix rakismet initializer

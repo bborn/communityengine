@@ -66,5 +66,5 @@
       .users
         - unless online_users.empty? 
           = :users_online.l + ':'
-          = online_users.map { |u| link_to u.login, user_path(u) } * ", " 
+          = online_users.map{ |u| link_to u.login, user_path(u) }.join(", ").html_safe
           %br

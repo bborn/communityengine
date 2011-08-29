@@ -1,6 +1,6 @@
 = content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply]
 .errors
-- remote_form_for :post, @post, :url => sb_posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page), :html => {:class => "MainForm"}, :before => "tinyMCE.triggerSave()" do |f|
+= remote_form_for :post, @post, :url => sb_posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page), :html => {:class => "MainForm"}, :before => "tinyMCE.triggerSave()" do |f|
   %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
     %tr
       %td{"rowspan"=>"2", "width"=>"60%"}
@@ -32,6 +32,6 @@
           %p
             = ajax_spinner_for "editbox", "spinner_black.gif"                    
             = submit_tag :save_reply.l
-            =:or.l + " #{link_to_function :cancel.l, "$('reply').hide()"}"                  
+            ="#{:or.l} #{link_to_function :cancel.l, "$('reply').hide()"}".html_safe                  
     %tr
       %td{"style"=>"vertical-align: bottom; padding-bottom:15px;"}

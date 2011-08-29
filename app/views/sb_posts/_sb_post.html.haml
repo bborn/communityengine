@@ -14,9 +14,8 @@
       %span.fn
         = link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)
       %span.posts= pluralize post.user.sb_posts_count, :post.l
-      
     -else
-      = image_tag(configatron.photo['missing_thumb'], :height => '32', :width => '32', :class => 'photo')        
+      = image_tag(configatron.photo.missing_thumb, :height => '32', :width => '32', :class => 'photo')        
       %span.fn
         =truncate(h(post.username), :length => 15)
 
@@ -31,5 +30,5 @@
             = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
 
   %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
-    = link_to_function image_tag('/clearbits/comment.gif', :class => 'icon reply', :plugin => 'community_engine'), "$('reply').toggle()" if logged_in?
-    = post.body_html
+    = link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if logged_in?
+    = raw post.body_html

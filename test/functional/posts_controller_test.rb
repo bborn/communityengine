@@ -192,7 +192,7 @@ class PostsControllerTest < ActionController::TestCase
     end
       
     def create_post(options = {})
-      post :create, {:user_id => users(:quentin), :post => { :title => 'dude', :raw_post => 'rawness', :category => categories(:talk) }.merge(options[:post] || {}) }.merge(options || {})
+      post :create, {:user_id => users(:quentin), :post => { :title => 'dude', :raw_post => 'rawness', :category_id => categories(:talk) }.merge(options[:post] || {}) }.merge(options || {})
     end
   
   

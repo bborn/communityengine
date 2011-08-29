@@ -5,7 +5,7 @@ module WhiteListHelper
   @@tags         = %w(strong em b i p code pre tt output samp kbd var sub sup dfn cite big small address hr br div span h1 h2 h3 h4 h5 h6 ul ol li dt dd)
   @@attributes   = { 
     'a'          => %w(href),
-    'img'        => %w(src width height alt), 
+    'img'        => %w(src width height alt title), 
     'blockquote' => %w(cite),
     'del'        => %w(cite datetime),
     'ins'        => %w(cite datetime),

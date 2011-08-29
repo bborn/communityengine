@@ -3,7 +3,7 @@ class ForumsController < BaseController
   before_filter :find_or_initialize_forum
 
   uses_tiny_mce do    
-    configatron.default_mce_options
+    {:options => configatron.default_mce_options}
   end
   
   def index
