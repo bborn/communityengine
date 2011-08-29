@@ -629,31 +629,18 @@ Gem::Specification.new do |s|
     "app/views/topics/show.html.haml",
     "app/views/topics/show.xml.builder",
     "app/views/user_notifier/activation.erb",
-    "app/views/user_notifier/activation.fr.erb",
     "app/views/user_notifier/comment_notice.erb",
-    "app/views/user_notifier/comment_notice.fr.erb",
     "app/views/user_notifier/follow_up_comment_notice.erb",
-    "app/views/user_notifier/follow_up_comment_notice.fr.erb",
     "app/views/user_notifier/follow_up_comment_notice_anonymous.erb",
-    "app/views/user_notifier/follow_up_comment_notice_anonymous.fr.erb",
     "app/views/user_notifier/forgot_username.erb",
-    "app/views/user_notifier/forgot_username.fr.erb",
     "app/views/user_notifier/friendship_accepted.erb",
-    "app/views/user_notifier/friendship_accepted.fr.erb",
     "app/views/user_notifier/friendship_request.erb",
-    "app/views/user_notifier/friendship_request.fr.erb",
     "app/views/user_notifier/message_notification.erb",
-    "app/views/user_notifier/message_notification.fr.erb",
     "app/views/user_notifier/new_forum_post_notice.erb",
-    "app/views/user_notifier/new_forum_post_notice.fr.erb",
     "app/views/user_notifier/password_reset_instructions.erb",
-    "app/views/user_notifier/password_reset_instructions.fr.erb",
     "app/views/user_notifier/post_recommendation.erb",
-    "app/views/user_notifier/post_recommendation.fr.erb",
     "app/views/user_notifier/signup_invitation.erb",
-    "app/views/user_notifier/signup_invitation.fr.erb",
     "app/views/user_notifier/signup_notification.erb",
-    "app/views/user_notifier/signup_notification.fr.erb",
     "app/views/users/_dashboard_nav.html.haml",
     "app/views/users/_omniauth_connect.html.haml",
     "app/views/users/_profile_completeness.html.haml",
@@ -1776,6 +1763,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0.rc6"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["~> 2.2.1"])
@@ -1802,6 +1791,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
@@ -1863,6 +1854,8 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
