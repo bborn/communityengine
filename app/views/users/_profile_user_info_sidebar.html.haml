@@ -2,7 +2,7 @@
   -box :class => "first_alt alt" do 
     %h3
       =:admin_controls.l
-    = link_to(:assume_user_id.l, assume_user_path(@user) )
+    = link_to(:assume_user_id.l, assume_user_path(@user), {:method => :post} )
     %br/      
     = link_to(:delete_this_user.l, user_path(@user), {:method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l} )
     %br/      
