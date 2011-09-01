@@ -67,7 +67,7 @@
   %a{"name"=>"#{@posts.to_a.first.dom_id}", "id"=>"#{@posts.to_a.first.dom_id}"} &nbsp;
   %br.clear
   %br
-  %table.posts.wide{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0"}
+  %table#posts.wide{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0"}
     - for post in @posts do
       =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 

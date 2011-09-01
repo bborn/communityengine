@@ -1,7 +1,6 @@
 <div id="edit" class="editbox">
 <div class="container">
-  <% remote_form_for :post, @post, :url => sb_post_path(:forum_id => @post.forum_id, :topic_id => @post.topic_id, :id => @post), 
-    :html => { :method => :put }, :before => "$('editbox_spinner').show();tinyMCE.triggerSave();" do |f| -%>
+  <%= remote_form_for :post, @post, :url => sb_post_path(:forum_id => @post.forum_id, :topic_id => @post.topic_id, :id => @post), :html => { :method => :put, :class => "MainForm" }, :before => "$('editbox_spinner').show();tinyMCE.triggerSave();" do |f| -%>
 
   <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
@@ -10,11 +9,13 @@
       </td>
       <td style="vertical-align:top;">
 
-        <%= link_to(:delete_this_post.l, sb_post_path(:forum_id => @post.topic.forum, :topic_id => @post.topic, :id => @post, :page => params[:page]), 
-              :class => "utility", :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l) %>  
-
-        <%= ajax_spinner_for "editbox", "spinner_black.gif" %>
-        <%= submit_tag :save_changes.l %> <%= :or.l %>  <%= link_to_function(:cancel.l, "EditForm.cancel()") %>
+        <p>
+        	<%= ajax_spinner_for "editbox", "spinner_black.gif" %>	
+					<%= submit_tag :save_changes.l %> <%= :or.l %>  <%= link_to_function(:cancel.l, "EditForm.cancel()") %>
+	
+	        <%= link_to(:delete_this_post.l, sb_post_path(:forum_id => @post.topic.forum, :topic_id => @post.topic, :id => @post, :page => params[:page]), :class => "utility", :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l) %>  
+	
+				</p>
 
       </td>
     </tr>
@@ -27,4 +28,4 @@
   <% end -%>
 </div>
 </div>
-<%= include_tiny_mce_js if using_tiny_mce? %>
+<%= include_tiny_mce_if_needed %>

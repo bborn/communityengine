@@ -6,9 +6,11 @@ else
   page.visual_effect :highlight, "post-body-#{@post.id}", :duration => 1.5  
   page << "$('reply').hide();"
   page << "$$('#reply form').invoke('reset');"
-
+  page << "scrollToAnchor('post-body-#{@post.id}');"
 end
 
-# if configatron.recaptcha_pub_key
-#   page << "if($('dynamic_recaptcha')){Recaptcha.create('#{configatron.recaptcha_pub_key}', $('dynamic_recaptcha') )}"    
-# end
+if configatron.recaptcha_pub_key
+  page << "if($('dynamic_recaptcha')){Recaptcha.create('#{configatron.recaptcha_pub_key}', $('dynamic_recaptcha') )}"    
+end
+
+page << "$('editbox_spinner').hide();"

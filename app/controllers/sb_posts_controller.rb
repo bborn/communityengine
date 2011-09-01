@@ -12,8 +12,8 @@ class SbPostsController < BaseController
     verify_authenticity_token if controller.action_name.eql?('create') && !configatron.allow_anonymous_forum_posting
   end
 
-  uses_tiny_mce(:only => [:edit, :update]) do
-    configatron.default_mce_options
+  uses_tiny_mce do
+    {:only => [:edit, :update], :options => configatron.default_mce_options}
   end
 
 
