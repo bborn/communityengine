@@ -10,7 +10,8 @@
       %h3= :greeting.l :name => @user.login
     
       -if @user.pending_friendships.any?
-        %p=link_to "#{image_tag 'icons/user_add.png', :plugin => 'community_engine'} "+:you_have_pending_friendship_requests.l, pending_user_friendships_path(@user)
+        %p
+          =link_to "#{image_tag 'icons/user_add.png'} #{:you_have_pending_friendship_requests.l}".html_safe, pending_user_friendships_path(@user)
     
     
       -if @network_activity.empty? && @recommended_posts.empty?

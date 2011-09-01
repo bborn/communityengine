@@ -30,7 +30,6 @@ class User < ActiveRecord::Base
   after_create  :update_last_login
   after_create  :deliver_signup_notification
   before_save   :whitelist_attributes  
-  after_save    :deliver_activation
   after_save    :recount_metro_area_users
   after_destroy :recount_metro_area_users
 
@@ -261,7 +260,6 @@ class User < ActiveRecord::Base
 
   def deactivate
     return if admin? #don't allow admin deactivation
-    @activated = false
     User.transaction do
       update_attribute(:activated_at, nil)
       update_attribute(:activation_code, make_activation_code)
@@ -269,19 +267,15 @@ class User < ActiveRecord::Base
   end
 
   def activate
-    @activated = true
     User.transaction do
       update_attribute(:activated_at, Time.now.utc)
       update_attribute(:activation_code, nil)
     end
+    UserNotifier.activation(self).deliver    
   end
   
   def active?
     activation_code.nil? && !activated_at.nil?
-  end
-
-  def recently_activated?
-    @activated
   end
   
   def valid_invite_code?(code)
@@ -329,11 +323,7 @@ class User < ActiveRecord::Base
   def friendship_exists_with?(friend)
     Friendship.find(:first, :conditions => ["user_id = ? AND friend_id = ?", self.id, friend.id])
   end
-  
-  def deliver_activation
-    UserNotifier.activation(self).deliver if self.recently_activated?
-  end
-  
+    
   def deliver_signup_notification
     UserNotifier.signup_notification(self).deliver    
   end

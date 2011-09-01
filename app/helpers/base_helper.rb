@@ -89,7 +89,8 @@ module BaseHelper
   def truncate_words(text, length = 30, end_string = '...')
     return if text.blank?
     words = strip_tags(text).split()
-    words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
+    string = words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
+    string.html_safe
   end
   
   def truncate_words_with_highlight(text, phrase)

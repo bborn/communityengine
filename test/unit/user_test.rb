@@ -183,6 +183,17 @@ class UserTest < ActiveSupport::TestCase
     assert !users(:quentin).reload.active?
   end
 
+  test "should activate and send email" do
+    #make quentin inactive
+    users(:quentin).deactivate
+    assert !users(:quentin).reload.active?
+    
+    assert_difference ActionMailer::Base.deliveries, :length, 1 do    
+      users(:quentin).activate
+      assert users(:quentin).reload.active?
+    end
+  end
+
   test "should_return_full_location" do
     assert_equal "Minneapolis / St. Paul", users(:quentin).full_location    
   end
