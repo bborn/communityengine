@@ -456,7 +456,6 @@ Gem::Specification.new do |s|
     "app/models/topic.rb",
     "app/models/user.rb",
     "app/models/user_notifier.rb",
-    "app/models/user_observer.rb",
     "app/models/user_session.rb",
     "app/models/vote.rb",
     "app/views/activities/_activity.html.haml",
@@ -1730,6 +1729,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<community_engine>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["~> 2.2.1"])
@@ -1755,6 +1755,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.1.0"])
       s.add_dependency(%q<rack>, ["= 1.3.2"])
@@ -1782,6 +1783,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.1.0"])
     s.add_dependency(%q<rack>, ["= 1.3.2"])
