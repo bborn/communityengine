@@ -4,7 +4,7 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 3.1.0.beta1 (lower versions are not supported)
+	- RAILS VERSION 3.1.0 (lower versions are not supported)
 	- For now, patched versions of: meta_search, authlogic, calendar_date_select, and omniauth
 	- All other requirements are brought in automatically
 	- Don't forget to include the gems you plan to include in your application
