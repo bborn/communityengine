@@ -15,4 +15,5 @@ group :test do
   gem 'omniauth'
   gem 'meta_search'
   gem 'simplecov'
+  gem 'sqlite3'
 end
