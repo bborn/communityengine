@@ -1729,7 +1729,8 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<community_engine>, [">= 0"])
-      s.add_runtime_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sqlite3>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
@@ -1790,9 +1791,9 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<prototype-rails>, [">= 0"])
       s.add_runtime_dependency(%q<rails_autolink>, [">= 0"])
       s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
-      s.add_development_dependency(%q<sqlite3>, [">= 0"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
@@ -1854,10 +1855,10 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<prototype-rails>, [">= 0"])
       s.add_dependency(%q<rails_autolink>, [">= 0"])
       s.add_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
-      s.add_dependency(%q<sqlite3>, [">= 0"])
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
@@ -1919,7 +1920,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<prototype-rails>, [">= 0"])
     s.add_dependency(%q<rails_autolink>, [">= 0"])
     s.add_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
-    s.add_dependency(%q<sqlite3>, [">= 0"])
   end
 end
 

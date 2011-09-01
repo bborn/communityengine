@@ -2,8 +2,6 @@ source 'http://rubygems.org'
 
 gemspec
 
-gem 'sqlite3'
-
 group :development do
   gem 'jeweler'
 end

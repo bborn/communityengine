@@ -77,7 +77,6 @@ begin
     gem.add_dependency 'prototype-rails'
     gem.add_dependency 'rails_autolink'
     gem.add_dependency 'meta_search', '1.1.0.pre2'   
-    gem.add_development_dependency 'sqlite3'
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."
