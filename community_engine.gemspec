@@ -104,6 +104,7 @@ Gem::Specification.new do |s|
     "app/assets/javascripts/forum.js",
     "app/assets/javascripts/lightbox.js",
     "app/assets/javascripts/prototip-min.js",
+    "app/assets/javascripts/rails.js",
     "app/assets/javascripts/tiny_mce/langs/en.js",
     "app/assets/javascripts/tiny_mce/license.txt",
     "app/assets/javascripts/tiny_mce/plugins/advhr/css/advhr.css",
@@ -1728,6 +1729,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["~> 2.2.1"])
@@ -1753,6 +1755,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -1784,6 +1787,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])

@@ -1,5 +1,5 @@
 //= require prototype
-//= require prototype_ujs
+//= require rails
 //= require effects
 //= require builder
 //= require dragdrop

@@ -19,8 +19,8 @@
   .centered
     - if @is_current_user
       - if @user.avatar
-        = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
-        = @user.featured_writer ? "<div class='right_corner'><div class='featured_writer'></div></div>" : ''
+        = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>".html_safe : ''
+        = @user.featured_writer ? "<div class='right_corner'><div class='featured_writer'></div></div>".html_safe : ''
         = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)
       - else 
         =:no_profile_photo.l
