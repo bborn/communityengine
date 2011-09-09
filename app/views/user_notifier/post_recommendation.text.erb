@@ -1,0 +1,32 @@
+## <%= configatron.community_name %>&trade; &#8211; <%= configatron.community_tagline %> ##
+
+
+<%= @name %> wants to share the following article with you:
+
+<%= @title %>
+[<%= @url %>]
+
+Description:
+
+<%= @description %>
+
+Personal Message:
+
+<%= @message %>
+
+
+---------------------------------------	
+
+Use this link to sign up for your own <%= configatron.community_name %> account: 
+
+[<%= @signup_link %>]
+
+
+Thanks,
+<%= @name.eql?('Someone') ? "The #{configatron.community_name} Team" : @name %></p>
+
+---------------------------------------	
+
+<%= configatron.community_description %>
+
+For support, or to report abuse, please contact <%= configatron.support_email %>.	
