@@ -6,7 +6,7 @@
       %h3
         -if @message_thread
           %em 
-            =link_to @message_thread.parent_message.sender.login, @message_thread.parent_message.sender}
+            =link_to @message_thread.parent_message.sender.login, @message_thread.parent_message.sender
             \: 
           =h @message_thread.parent_message.subject
         -else
