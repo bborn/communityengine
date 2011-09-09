@@ -261,6 +261,7 @@ class UsersController < BaseController
   
   def welcome_photo
     @user = User.find(params[:id])
+    @avatar = (@user.avatar || @user.build_avatar)    
   end
 
   def welcome_about
