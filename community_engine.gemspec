@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Bruno Bornsztein}]
-  s.date = %q{2011-09-01}
+  s.date = %q{2011-09-09}
   s.email = %q{admin@curbly.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -623,19 +623,19 @@ Gem::Specification.new do |s|
     "app/views/topics/new.html.haml",
     "app/views/topics/show.html.haml",
     "app/views/topics/show.xml.builder",
-    "app/views/user_notifier/activation.erb",
-    "app/views/user_notifier/comment_notice.erb",
-    "app/views/user_notifier/follow_up_comment_notice.erb",
-    "app/views/user_notifier/follow_up_comment_notice_anonymous.erb",
-    "app/views/user_notifier/forgot_username.erb",
-    "app/views/user_notifier/friendship_accepted.erb",
-    "app/views/user_notifier/friendship_request.erb",
-    "app/views/user_notifier/message_notification.erb",
-    "app/views/user_notifier/new_forum_post_notice.erb",
-    "app/views/user_notifier/password_reset_instructions.erb",
-    "app/views/user_notifier/post_recommendation.erb",
-    "app/views/user_notifier/signup_invitation.erb",
-    "app/views/user_notifier/signup_notification.erb",
+    "app/views/user_notifier/activation.text.erb",
+    "app/views/user_notifier/comment_notice.text.erb",
+    "app/views/user_notifier/follow_up_comment_notice.text.erb",
+    "app/views/user_notifier/follow_up_comment_notice_anonymous.text.erb",
+    "app/views/user_notifier/forgot_username.text.erb",
+    "app/views/user_notifier/friendship_accepted.text.erb",
+    "app/views/user_notifier/friendship_request.text.erb",
+    "app/views/user_notifier/message_notification.text.erb",
+    "app/views/user_notifier/new_forum_post_notice.text.erb",
+    "app/views/user_notifier/password_reset_instructions.text.erb",
+    "app/views/user_notifier/post_recommendation.text.erb",
+    "app/views/user_notifier/signup_invitation.text.erb",
+    "app/views/user_notifier/signup_notification.text.erb",
     "app/views/users/_dashboard_nav.html.haml",
     "app/views/users/_omniauth_connect.html.haml",
     "app/views/users/_profile_completeness.html.haml",
@@ -866,7 +866,6 @@ Gem::Specification.new do |s|
     "test/testapp/config/routes.rb",
     "test/testapp/db/schema.rb",
     "test/testapp/db/seeds.rb",
-    "test/testapp/db/test.sqlite3",
     "test/testapp/doc/README_FOR_APP",
     "test/testapp/lib/tasks/.gitkeep",
     "test/testapp/public/404.html",
@@ -1730,6 +1729,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["~> 2.2.1"])
@@ -1755,6 +1755,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -1787,6 +1788,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
