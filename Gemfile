@@ -14,6 +14,5 @@ group :test do
   gem 'calendar_date_select', :git => 'https://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
   gem 'omniauth'
   gem 'meta_search'
-  gem 'simplecov'
   gem 'sqlite3'
 end

@@ -1,17 +1,17 @@
 # Configure Rails Envinronment
 ENV["RAILS_ENV"] = "test"
 
-require 'simplecov'
-SimpleCov.start do
-  add_filter '/config/'
-  add_filter '/vendor/'  
-  
-  add_group 'Controllers', 'app/controllers'
-  add_group 'Models', 'app/models'
-  add_group 'Helpers', 'app/helpers'
-  add_group 'Libraries', 'lib'
-  add_group 'Tests', 'test'
-end
+# require 'simplecov'
+# SimpleCov.start do
+#   add_filter '/config/'
+#   add_filter '/vendor/'  
+#   
+#   add_group 'Controllers', 'app/controllers'
+#   add_group 'Models', 'app/models'
+#   add_group 'Helpers', 'app/helpers'
+#   add_group 'Libraries', 'lib'
+#   add_group 'Tests', 'test'
+# end
 
 require File.expand_path("../testapp/config/environment",  __FILE__)
 require "rails/test_help"

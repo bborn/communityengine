@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{community_engine}
+  s.name = "community_engine"
   s.version = "2.0.0.beta"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Bruno Bornsztein}]
-  s.date = %q{2011-09-09}
-  s.email = %q{admin@curbly.com}
+  s.authors = ["Bruno Bornsztein"]
+  s.date = "2011-09-09"
+  s.email = "admin@curbly.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.markdown"
@@ -1714,15 +1714,16 @@ Gem::Specification.new do |s|
     "vendor/plugins/white_list/lib/white_list_helper.rb",
     "vendor/plugins/white_list/test/white_list_test.rb"
   ]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.5}
-  s.summary = %q{CommunityEngine for Rails 3}
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.10"
+  s.summary = "CommunityEngine for Rails 3"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<community_engine>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
@@ -1748,13 +1749,13 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<paperclip>, ["~> 2.3"])
       s.add_runtime_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<recaptcha>, [">= 0"])
-      s.add_runtime_dependency(%q<simplecov>, [">= 0"])
       s.add_runtime_dependency(%q<omniauth>, ["~> 0.2.6"])
       s.add_runtime_dependency(%q<prototype-rails>, [">= 0"])
       s.add_runtime_dependency(%q<rails_autolink>, [">= 0"])
       s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -1780,7 +1781,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<paperclip>, ["~> 2.3"])
       s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
       s.add_dependency(%q<recaptcha>, [">= 0"])
-      s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<omniauth>, ["~> 0.2.6"])
       s.add_dependency(%q<prototype-rails>, [">= 0"])
       s.add_dependency(%q<rails_autolink>, [">= 0"])
@@ -1788,6 +1788,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
@@ -1813,7 +1814,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<paperclip>, ["~> 2.3"])
     s.add_dependency(%q<acts_as_commentable>, ["~> 3.0.0"])
     s.add_dependency(%q<recaptcha>, [">= 0"])
-    s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<omniauth>, ["~> 0.2.6"])
     s.add_dependency(%q<prototype-rails>, [">= 0"])
     s.add_dependency(%q<rails_autolink>, [">= 0"])
