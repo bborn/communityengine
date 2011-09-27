@@ -6,8 +6,8 @@
       %h3
         =:log_in_to_site.l(:site => configatron.community_name)
       = form_tag sessions_path, :class => 'MainForm' do
-        %label{"for"=>"login"}=:username.l
-        = text_field_tag 'login', nil, :size => 35
+        %label{"for"=>"email"}=:email.l
+        = text_field_tag 'email', nil, :size => 35
         %label{"for"=>"password"}=:password.l
         = password_field_tag 'password', nil, :size => 35
         %fieldset
