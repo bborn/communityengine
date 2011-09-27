@@ -1,4 +1,5 @@
 class UserSession < Authlogic::Session::Base
+  find_by_login_method :find_by_login_or_email
   remember_me_for 2.weeks
   remember_me false
   after_create :update_user_activity
