@@ -13,6 +13,6 @@ group :test do
   gem 'authlogic', :git => 'https://github.com/bborn/authlogic.git'
   gem 'calendar_date_select', :git => 'https://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
   gem 'omniauth'
-  gem 'meta_search'
+  gem 'meta_search', '1.1.1'
   gem 'sqlite3'
 end

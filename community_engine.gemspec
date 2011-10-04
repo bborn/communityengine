@@ -1755,7 +1755,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<omniauth>, ["~> 0.2.6"])
       s.add_runtime_dependency(%q<prototype-rails>, [">= 0"])
       s.add_runtime_dependency(%q<rails_autolink>, [">= 0"])
-      s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
+      s.add_runtime_dependency(%q<meta_search>, ["= 1.1.1"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
