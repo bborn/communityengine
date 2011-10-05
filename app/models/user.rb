@@ -3,12 +3,13 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   include Rakismet::Model
   rakismet_attrs :author => :login, :comment_type => 'registration', :content => :description, :user_ip => :last_login_ip, :author_email => :email
+  attr_protected :akismet_attrs  
   
   has_many :albums
   
   MALE    = 'M'
   FEMALE  = 'F'
-  attr_protected :admin, :featured, :role_id
+  attr_protected :admin, :featured, :role_id, :akismet_attrs
   
   acts_as_authentic do |c|
     c.crypto_provider = CommunityEngineSha1CryptoMethod

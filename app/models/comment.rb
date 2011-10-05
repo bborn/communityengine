@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   include Rakismet::Model
   rakismet_attrs :author => :author_name, :comment_type => 'comment', :content => :comment, :user_ip => :author_ip
+  attr_protected :akismet_attrs  
   
   belongs_to :commentable, :polymorphic => true
   belongs_to :user

@@ -3,7 +3,6 @@ class SbPost < ActiveRecord::Base
   include Rakismet::Model
   rakismet_attrs :author => :username, :comment_type => 'comment', :content => :body, :user_ip => :author_ip
   
-  
   belongs_to :forum, :counter_cache => true
   belongs_to :user,  :counter_cache => true
   belongs_to :topic, :counter_cache => true
