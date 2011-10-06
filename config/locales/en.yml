@@ -205,8 +205,8 @@ en:
   browse_all_members: browse all members
   #en: browse_content_by_tags: Browse content by tags
   browse_content_by_tags: Browse content by tags
-  #en: by: by
-  by: by
+  #en: by: by %{login}
+  by: "by %{login}"
   #en: by_looking_at_the: by looking at the
   by_looking_at_the: by looking at the
   #en: cache_cleared: The cache was cleared

@@ -40,4 +40,5 @@
           %ul
             -@recommended_posts.each do |post|
               %li
-                = link_to( "#{post.tag_for_first_image_in_body} #{truncate(post.display_title, :length => 75)} <span class='post_excerpt'>#{ truncate_words(post.post, 35, '...' )} (:by.l #{post.user.login})</span>", user_post_path(post.user, post), :title => ":by.l #{post.user.login}" )
+                = link_to( "#{post.tag_for_first_image_in_body} #{truncate(post.display_title, :length => 75)} <span class='post_excerpt'>#{ truncate_words(post.post, 35, '...' )} (#{:by.l :login => post.user.login})</span>".html_safe, user_post_path(post.user, post), :title => :by.l(:login => post.user.login) )
+                

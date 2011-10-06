@@ -8,8 +8,7 @@
 -box do 
   %h3#new_topic= :new_topic.l
   %p.subtitle
-    = :by.l
-    = current_user.display_name
+    = :by.l :login => current_user.display_name
     
   = error_messages_for :topic
   = form_for :topic, :url  => forum_topics_path(@forum), :html => {:class => "MainForm"} do |f|

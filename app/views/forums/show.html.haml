@@ -59,9 +59,9 @@
           %td.ca.inv.stat= number_with_delimiter(topic.views)
           %td.lp
             %abbr.updated{:title=>"#{topic.replied_at.xmlschema}"}= time_ago_in_words(topic.replied_at)
-            = :by.l
             %span.author
-              %strong.fn= h(topic.replied_by_user.display_name)
+              %strong.fn
+                =:by.l :login => topic.replied_by_user.display_name
             %span= link_to :view.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
   
   - if @topics.total_count > 1
