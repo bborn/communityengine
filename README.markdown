@@ -1,3 +1,5 @@
+** Looking for the Rails 3.1 version? You want the [Rails3 branch](https://github.com/bborn/communityengine/tree/rails3).
+
 CommunityEngine [v1.0.4.2]
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
