@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = "2011-10-04"
+  s.date = "2011-10-06"
   s.email = "admin@curbly.com"
   s.extra_rdoc_files = [
     "LICENSE",
@@ -661,7 +661,6 @@ Gem::Specification.new do |s|
     "app/views/users/welcome_photo.html.haml",
     "app/views/votes/create.js.rjs",
     "community_engine.gemspec",
-    "community_engine_setup_template.rb",
     "config/application.yml",
     "config/initializers/cropper.rb",
     "config/initializers/mce_options.rb",
@@ -778,7 +777,6 @@ Gem::Specification.new do |s|
     "lib/community_engine/viewable.rb",
     "lib/tasks/community_engine_tasks.rake",
     "public/favicon.ico",
-    "sample_files/amazon_s3.yml",
     "sample_files/s3.yml",
     "test/fixtures/ads.yml",
     "test/fixtures/albums.yml",
@@ -1734,6 +1732,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["~> 2.2.1"])
@@ -1755,9 +1754,10 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<omniauth>, ["~> 0.2.6"])
       s.add_runtime_dependency(%q<prototype-rails>, [">= 0"])
       s.add_runtime_dependency(%q<rails_autolink>, [">= 0"])
-      s.add_runtime_dependency(%q<meta_search>, ["= 1.1.1"])
+      s.add_runtime_dependency(%q<meta_search>, ["= 1.1.0.pre2"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -1794,6 +1794,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
