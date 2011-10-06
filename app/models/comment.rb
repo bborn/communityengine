@@ -1,5 +1,8 @@
 class Comment < ActiveRecord::Base
-
+  include Rakismet::Model
+  rakismet_attrs :author => :author_name, :comment_type => 'comment', :content => :comment, :user_ip => :author_ip
+  attr_protected :akismet_attrs  
+  
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
   belongs_to :recipient, :class_name => "User", :foreign_key => "recipient_id"
@@ -15,14 +18,15 @@ class Comment < ActiveRecord::Base
   validates_presence_of :author_email, :unless => Proc.new{|record| record.user }  #require email unless logged in
   validates_presence_of :author_ip, :unless => Proc.new{|record| record.user} #log ip unless logged in
   validates_format_of :author_url, :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :unless => Proc.new{|record| record.user }
-
+  validate :check_spam
+  
   acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user
 
   # named_scopes
   named_scope :recent, :order => 'created_at DESC'
 
   def self.find_photo_comments_for(user)
-    Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC')
+    Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC', :limit => 10)
   end
   
   # Helper class method to lookup all comments assigned
@@ -101,6 +105,7 @@ class Comment < ActiveRecord::Base
   end  
   
   def send_notifications
+    return if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
     UserNotifier.deliver_comment_notice(self) if should_notify_recipient?
     self.notify_previous_commenters
     self.notify_previous_anonymous_commenters if AppConfig.allow_anonymous_commenting
@@ -116,10 +121,15 @@ class Comment < ActiveRecord::Base
     end
   end
   
-  protected
-  def whitelist_attributes
-    self.comment = white_list(self.comment)
-  end
+  def check_spam
+    if AppConfig.akismet_key && self.spam?
+      self.errors.add_to_base(:comment_spam_error.l) 
+    end
+  end  
   
+  protected
+    def whitelist_attributes
+      self.comment = white_list(self.comment)
+    end  
 
 end

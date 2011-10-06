@@ -188,7 +188,7 @@ class UsersControllerTest < ActionController::TestCase
   
   def test_should_fill_states_on_detroit_search
     #state drop down not being enabled
-    get :index, :metro_area_id => metro_areas(:Detroit).id
+    get :index, :metro_area_id => metro_areas(:detroit).id
     assert_equal assigns(:states).size, State.count
     assert_response :success
   end
@@ -311,14 +311,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal assigns(:user).login, 'changed_login'
   end
   
-  def test_should_reset_password
-    assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      post :forgot_password, :email => users(:quentin).email
-      assert_redirected_to login_path    
-      assert_nil UserSession.find
-    end
-  end
-
   def test_should_remind_username
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       post :forgot_username, :email => users(:quentin).email
@@ -369,6 +361,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_equal UserSession.find.record, users(:aaron)
     assert_nil session[:admin_id]
   end
+
+  def test_only_admin_can_assume_id_js
+    login_as :quentin
+    post :assume, :id => users(:aaron).id, :format => 'js'
+    assert_response :success
+    assert_not_equal UserSession.find.record, users(:aaron)
+    assert_nil session[:admin_id]
+  end
   
   def test_return_admin_should_set_user_to_admin
     login_as :quentin
@@ -391,19 +391,19 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_decrement_metro_area_count
     initial_count = metro_areas(:twincities).users_count
     quentin = users(:quentin)
-    quentin.metro_area = metro_areas(:Detroit)
+    quentin.metro_area = metro_areas(:detroit)
     quentin.save
     assert_equal(metro_areas(:twincities).reload.users_count, metro_areas(:twincities).reload.users.size )
-    assert_equal(metro_areas(:Detroit).reload.users_count, metro_areas(:Detroit).reload.users.size )
+    assert_equal(metro_areas(:detroit).reload.users_count, metro_areas(:detroit).reload.users.size )
   end  
   
   def test_should_increment_metro_area_count
-    initial_count = metro_areas(:Detroit).users_count
+    initial_count = metro_areas(:detroit).users_count
     aaron = users(:aaron)
-    aaron.metro_area = metro_areas(:Detroit)
-    aaron.save
-    assert_equal metro_areas(:Detroit).reload.users_count, initial_count + 1
-    assert_equal(metro_areas(:Detroit).reload.users_count, metro_areas(:Detroit).reload.users.size )
+    aaron.metro_area = metro_areas(:detroit)
+    aaron.save!
+    assert_equal metro_areas(:detroit).reload.users_count, initial_count + 1
+    assert_equal(metro_areas(:detroit).reload.users_count, metro_areas(:detroit).reload.users.size )
   end  
   
   def test_should_get_stats_if_admin
@@ -442,8 +442,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
-  
+  def test_should_delete_selected
+    login_as :admin
+    assert_difference User, :count, -1 do
+      post :delete_selected, :delete => users(:florian).id      
+    end
+    assert_redirected_to admin_users_path
+  end
+    
   protected
     def create_user(options = {})
       params = {:user => {:login => 'quire', :email => 'quire@example.com', :password => 'quire123', :password_confirmation => 'quire123', :birthday => 15.years.ago}}

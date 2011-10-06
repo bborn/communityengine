@@ -48,14 +48,11 @@ class MessagesControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal assigns(:message).to, m.sender.login
     assert_tag :tag=>'input', :attributes=>{:name=>'message[to]', :value=> m.sender.login}
-    assert_equal assigns(:message).subject, "Re: #{m.subject}"
-    assert_equal assigns(:message).body, "\n\n*Original message*\n\n #{m.body}"
-    assert_tag :tag=>'textarea', :attributes=>{:name=>'message[body]'},
-     :content => '&#x000A;&#x000A;*Original message*&#x000A;&#x000A; Some content'
+    assert_equal assigns(:message).subject, "#{m.subject}"
   end
   
   def test_should_create
-    assert_difference Message, :count, +1 do  
+    assert_difference Message, :count, 1 do  
       post :create, :message => {:to => users(:florian).login, :body => 'Some content',
         :subject => 'A subject'}, :user_id => users(:leopoldo).id
     end
@@ -70,14 +67,7 @@ class MessagesControllerTest < ActionController::TestCase
     end
     assert_response :success
   end
-  
-  def test_should_create_multiple_messages
-    assert_difference Message, :count, 2 do
-      post :create, :user_id => users(:leopoldo).id, :message => {:to => 'aaron,kevin', :subject => 'Test message', :body => 'Test message' } 
-    end
-    assert_redirected_to user_messages_path(users(:leopoldo))
-  end
-  
+    
   def test_should_fail_to_create_message_with_no_to
     assert_no_difference Message, :count do
       post :create, :user_id => users(:leopoldo).id, :message => { :subject => 'Test message', :body => 'Test message' }
@@ -87,7 +77,7 @@ class MessagesControllerTest < ActionController::TestCase
   
   def test_should_fail_to_create_message_with_invalid_to
     assert_no_difference Message, :count do
-      post :create, :user_id => users(:leopoldo).id, :message => { :to => 'aaron,notarealuser', :subject => 'Test message', :body => 'Test message' }
+      post :create, :user_id => users(:leopoldo).id, :message => { :to => 'notarealuser', :subject => 'Test message', :body => 'Test message' }
     end
     assert_response :success
   end

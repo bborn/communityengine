@@ -4,28 +4,31 @@
   .yui-b
     -box do 
       %h3
-        = :subject.l + ":"
-        =h @message.subject
+        -if @message_thread
+          %em="#{link_to @message_thread.parent_message.sender.login, @message_thread.parent_message.sender}: "        
+          =h @message_thread.parent_message.subject
+        -else
+          =h @message.subject
 
-      %p
-        = :from.l + ":"
-        = @message.sender.eql?(@user) ? link_to(:to_you.l, user_path(@user)) : link_to(h(@message.sender.login), user_path(@message.sender))
-
-      %p
-        = :to.l + ":"
-        = @message.recipient.eql?(@user) ? link_to(:to_you.l, user_path(@user)) : link_to(h(@message.recipient.login), user_path(@message.recipient))
-
+      -unless @message_thread
+        .right= h I18n.l(@message.created_at, :format => :literal_date)            
+        %pre.clear.message_body= auto_link @message.body      
+      -else
+        .right= h I18n.l(@message_thread.parent_message.created_at, :format => :literal_date)                  
+        %pre.clear.message_body= auto_link @message_thread.parent_message.body
+        %br
       
-      %p
-        = :date_title.l + ":"
-        = h I18n.l(@message.created_at, :format => :time_ago)
-
-      %pre.message_body= auto_link(h(@message.body))
-      
+        - children = @message_thread.parent_message.children
+        - children.each do |child|      
+          .right=h I18n.l(child.created_at, :format => :literal_date)
+          ="<em>#{child.sender.login}</em>:"
+          %br
+          %pre.message_body= auto_link child.body
+          %br
+            
       -if @reply    
         %ul.message_nav
-          - if @message.recipient.eql? @user
-            %li.sent= link_to :reply.l, new_user_message_path(@user, :reply_to => @message), :onclick => "$('reply').toggle(); $('message_body').activate().scrollTo();return false;"
+          %li.sent= link_to :reply.l, new_user_message_path(@user, :reply_to => @message), :onclick => "$('reply').toggle(); $('message_body').activate().scrollTo();return false;"
       
         %form.MainForm#dummy_reply
           %textarea{:onclick => "$('reply').toggle(); $('message_body').activate(); $('dummy_reply').hide(); $(this).blur(); return false;", :style => "height: 75px;"}

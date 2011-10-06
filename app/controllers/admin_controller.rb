@@ -1,6 +1,21 @@
 class AdminController < BaseController
   before_filter :admin_required
   
+  def clear_cache
+    case Rails.cache
+      when ActiveSupport::Cache::FileStore
+        dir = Rails.cache.cache_path
+        unless dir == Rails.public_path
+          FileUtils.rm_r(Dir.glob(dir+"/*")) rescue Errno::ENOENT
+          Rails.logger.info("Cache directory fully swept.")
+        end
+        flash[:notice] = :cache_cleared.l
+      else
+        Rails.logger.warn("Cache not swept: you must override AdminController#clear_cache to support #{Rails.cache}") 
+    end
+    redirect_to admin_dashboard_path and return    
+  end
+  
   def contests
     @contests = Contest.find(:all)
 
@@ -27,8 +42,22 @@ class AdminController < BaseController
     if params['email']
       cond.email =~ "%#{params['email']}%"
     end        
+    if params['featured']
+      cond.featured_writer == true
+    end        
+    if params['id']    
+      cond.id == params['id']
+    end
+    
     
     @users = User.recent.find(:all, :page => {:current => params[:page], :size => 100}, :conditions => cond.to_sql)      
+    
+    respond_to do |format|
+      format.html
+      format.xml {
+        render :xml => @users.to_xml(:except => [ :password, :crypted_password, :single_access_token, :perishable_token, :password_salt, :persistence_token ])
+      }
+    end
   end
   
   def comments
@@ -50,5 +79,16 @@ class AdminController < BaseController
     flash[:notice] = :the_user_was_deactivated.l
     redirect_to :action => :users
   end  
+  
+  def subscribers
+    @users = User.find(:all, :conditions => ["notify_community_news = ? AND users.activated_at IS NOT NULL", (params[:unsubs] ? false : true)])    
+    
+    respond_to do |format|
+      format.xml {
+        render :xml => @users.to_xml(:only => [:login, :email])
+      }
+    end
+    
+  end
   
 end

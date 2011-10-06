@@ -61,16 +61,16 @@ class UserNotifier < ActionMailer::Base
 
   def new_forum_post_notice(user, post)
      setup_email(user)
-     @subject     += "#{:has_posted_in_a_thread_you_are_monitoring.l(:user => post.user.login)}"
+     @subject     += "#{:has_posted_in_a_thread_you_are_monitoring.l(:user => post.username)}"
      @body[:url]  = "#{forum_topic_url(:forum_id => post.topic.forum, :id => post.topic, :page => post.topic.last_page)}##{post.dom_id}"
      @body[:post] = post
-     @body[:author] = post.user
+     @body[:author] = post.username
    end
 
   def signup_notification(user)
     setup_email(user)
     @subject    += "#{:please_activate_your_new_account.l(:site => AppConfig.community_name)}"
-    @body[:url]  = "#{application_url}users/activate/#{user.activation_code}"
+    @body[:url]  = "#{home_url}users/activate/#{user.activation_code}"
   end
   
   def message_notification(message)
@@ -101,9 +101,11 @@ class UserNotifier < ActionMailer::Base
     @body[:url]  = home_url
   end
   
-  def reset_password(user)
+  def password_reset_instructions(user)
     setup_email(user)
     @subject    += "#{:user_information.l(:site => AppConfig.community_name)}"
+    sent_on       Time.now
+    body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)    
   end
 
   def forgot_username(user)

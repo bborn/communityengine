@@ -176,7 +176,7 @@ module BaseHelper
     if @page_title
       title = @page_title + ' &raquo; ' + app_base + tagline
     elsif title == app_base          
-		  title = :showing.l + ' ' + @controller.controller_name.l + ' &raquo; ' + app_base + tagline
+		  title = :showing.l + ' ' + @controller.controller_name + ' &raquo; ' + app_base + tagline
     end
 
     title
@@ -255,7 +255,7 @@ module BaseHelper
   end
   
   def clippings_link
-    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{application_url}new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
+    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{home_url}new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
   end
   
   def paginating_links(paginator, options = {}, html_options = {})
@@ -324,7 +324,7 @@ module BaseHelper
     from_time = from_time.to_time if from_time.respond_to?(:to_time)
     to_time = to_time.to_time if to_time.respond_to?(:to_time)
     distance_in_minutes = (((to_time - from_time).abs)/60).round
-  
+      
     case distance_in_minutes
       when 0              then :a_few_seconds_ago.l
       when 1..59          then :minutes_ago.l(:count => distance_in_minutes)

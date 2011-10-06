@@ -2,7 +2,7 @@ class TopicsController < BaseController
   before_filter :find_forum_and_topic, :except => :index
   before_filter :login_required, :except => [:index, :show]
 
-  uses_tiny_mce(:only => [:show, :new]) do
+  uses_tiny_mce(:only => [:show, :new, :create, :edit, :update]) do
     AppConfig.default_mce_options
   end
 
@@ -35,8 +35,8 @@ class TopicsController < BaseController
         @posts = @topic.sb_posts.recent.find(:all, :page => {:current => params[:page], :size => 25}, :include => :user)
 
         @voices = @posts.map(&:user)
-        @voices.uniq!
-        @post   = SbPost.new
+        @voices.compact.uniq!
+        @post   = SbPost.new(params[:post])
       end
       format.xml do
         render :xml => @topic.to_xml

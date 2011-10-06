@@ -1,11 +1,15 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  include Rakismet::Model
+  rakismet_attrs :author => :login, :comment_type => 'registration', :content => :description, :user_ip => :last_login_ip, :author_email => :email
+  attr_protected :akismet_attrs  
+  
   has_many :albums
   
   MALE    = 'M'
   FEMALE  = 'F'
-  attr_protected :admin, :featured, :role_id
+  attr_protected :admin, :featured, :role_id, :akismet_attrs
   
   acts_as_authentic do |c|
     c.crypto_provider = CommunityEngineSha1CryptoMethod
@@ -18,10 +22,13 @@ class User < ActiveRecord::Base
 
     c.validates_length_of_email_field_options = { :within => 3..100 }
     c.validates_format_of_email_field_options = { :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/ }
+    c.perishable_token_valid_for = 2.hours
   end
   acts_as_taggable  
   acts_as_commentable
-  has_private_messages
+  has_private_messages  
+  has_many :message_threads_as_recipient, :class_name => "MessageThread", :foreign_key => "recipient_id"  
+  
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]  
   
   #callbacks  
@@ -36,10 +43,11 @@ class User < ActiveRecord::Base
 
 
   #validation
-  validates_presence_of     :metro_area,                 :if => Proc.new { |user| user.state }
+  validates_presence_of     :metro_area, :if => Proc.new { |user| user.state }
   validates_uniqueness_of   :login_slug
   validates_exclusion_of    :login, :in => AppConfig.reserved_logins
   validates_date :birthday, :before => 13.years.ago.to_date  
+  validate :check_spam  
 
   #associations
     has_enumerated :role  
@@ -66,7 +74,7 @@ class User < ActiveRecord::Base
     has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
 
     belongs_to  :avatar, :class_name => "Photo", :foreign_key => "avatar_id"
-    belongs_to  :metro_area
+    belongs_to  :metro_area, :counter_cache => true
     belongs_to  :state
     belongs_to  :country
     has_many    :comments_as_author, :class_name => "Comment", :foreign_key => "user_id", :order => "created_at desc", :dependent => :destroy
@@ -324,6 +332,7 @@ class User < ActiveRecord::Base
   
   def deliver_activation
     UserNotifier.deliver_activation(self) if self.recently_activated?
+    @activated = false
   end
   
   def deliver_signup_notification
@@ -426,6 +435,21 @@ class User < ActiveRecord::Base
     User.update_all ['sb_last_seen_at = ?', Time.now.utc], ['id = ?', self.id]
     self.sb_last_seen_at = Time.now.utc
   end
+  
+  def deliver_password_reset_instructions!
+    reset_perishable_token!
+    UserNotifier.deliver_password_reset_instructions(self)
+  end  
+  
+  def unread_message_count
+    message_threads_as_recipient.count(:conditions => ["messages.recipient_id = ? AND messages.recipient_deleted = ? AND read_at IS NULL", self.id, false], :include => :message)
+  end
+  
+  def check_spam
+    if AppConfig.akismet_key && self.spam?
+      self.errors.add_to_base(:user_spam_error.l) 
+    end
+  end  
   
   ## End Instance Methods
   

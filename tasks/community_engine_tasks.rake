@@ -21,6 +21,12 @@ namespace :community_engine do
     #nothing
   end
   
+  desc "Create user with admin role."
+  task :create_admin do
+    Rake::Task['environment'].invoke
+    require File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine', 'db', 'sample', 'users.rb')
+  end
+
   desc  'Assign admin role to user. Usage: rake community_engine:make_admin email=admin@foo.com'
   task :make_admin => :environment do
     email = ENV["email"]
@@ -33,7 +39,7 @@ namespace :community_engine do
       puts "There is no user with the e-mail '#{email}'."
     end
   end
-      
+  
   desc 'Test the community_engine plugin.'
   Rake::TestTask.new(:test) do |t|         
     t.libs << 'lib'
@@ -63,13 +69,13 @@ namespace :community_engine do
           reg_exp = []
           for show_type in show_only
             reg_exp << case show_type
-              when 'm', 'models' : 'app\/models'
-              when 'c', 'controllers' : 'app\/controllers'
-              when 'h', 'helpers' : 'app\/helpers'
-              when 'l', 'lib' : 'lib'
-              else
-                show_type
-            end
+                       when 'm', 'models' : 'app\/models'
+                       when 'c', 'controllers' : 'app\/controllers'
+                       when 'h', 'helpers' : 'app\/helpers'
+                       when 'l', 'lib' : 'lib'
+                       else
+                         show_type
+                       end
           end
           reg_exp.map!{ |m| "(#{m})" }
           params << " --exclude \"^(?!#{reg_exp.join('|')})\""
@@ -83,6 +89,15 @@ namespace :community_engine do
     desc "Remove Rcov reports for community_engine tests"
     task :clobber_rcov do |t|
       rm_r OUTPUT_DIR, :force => true
+    end
+    
+  end
+  
+  desc 'When upgrading to threaded messages, add thread to existing ones'
+  task :add_threads_to_existing_messages => :environment do
+    Message.all.each do |message|
+      message.update_message_threads
+      message.message_threads.update_all(["updated_at = ?", message.created_at])      
     end
   end
 
@@ -101,12 +116,12 @@ namespace :community_engine do
   
   namespace :db do
     namespace :migrate do 
-            
+      
       desc 'For CE coming from version < 1.0.1 that stored plugin migration info in the normal Rails schema_migrations table. Move that info back into the plugin_schema_migrations table.'
       task :upgrade_desert_plugin_migrations => :environment do
         plugin_migration_table = Desert::PluginMigrations::Migrator.schema_migrations_table_name
         schema_migration_table = ActiveRecord::Migrator.schema_migrations_table_name
-          
+        
         unless ActiveRecord::Base.connection.table_exists?(plugin_migration_table)
           ActiveRecord::Migration.create_table(plugin_migration_table, :id => false) do |schema_migrations_table|
             schema_migrations_table.column :version, :string, :null => false

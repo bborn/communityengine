@@ -93,10 +93,16 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  def test_should_reset_password
+  def test_should_update_password
     activate_authlogic
     users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
     assert_equal users(:quentin), UserSession.create(:login => 'quentin', :password => 'new password').record
+  end
+  
+  test "should deliver password reset instructions" do
+    assert_emails 1 do
+      users(:quentin).deliver_password_reset_instructions!
+    end
   end
 
   def test_should_not_rehash_password
@@ -198,7 +204,6 @@ class UserTest < ActiveSupport::TestCase
     user = create_user(:login => 'contests')
     assert !user.valid?
   end
-
   
   protected
     def create_user(options = {})

@@ -238,7 +238,7 @@ ja:
   #en: comment_could_not_be_deleted: Comment could not be deleted.
   comment_could_not_be_deleted: コメントを削除できませんでした.
   #en: comment_save_error: Your comment couldn't be saved.
-  comment_save_error: コメントを保存できませんでした.
+  comment_save_error: "コメントを保存できませんでした: {{error}}"
   #en: comment_was_successfully_created: Comment was successfully created.
   comment_was_successfully_created: コメントの投稿が完了しました.
   #en: comments: Comments
@@ -1345,8 +1345,8 @@ ja:
   your_about_text_goes_here: Your About Text Goes Here
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Your changes were saved.
-  #en: your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
-  your_password_has_been_reset_and_emailed_to_you: Your password has been reset and emailed to you.
+  #en: your_password_reset_instructions_have_been_emailed_to_you: Your password has been reset and emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: Your password has been reset and emailed to you.
   #en: your_post_was_deleted: Your post was deleted.
   your_post_was_deleted: 記事を削除しました.
   #en: your_post_was_successfully_created: Your post was successfully created.

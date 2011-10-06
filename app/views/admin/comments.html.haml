@@ -10,12 +10,19 @@
       =f.label :commentable_id.l
       =f.text_field :commentable_id
 
-      =f.label :email.l
-      =f.text_field :author_email_or_user_email_like
+      =f.label :name.l
+      =f.text_field :author_name_or_user_login_like
 
+      =f.label :email.l
+      =f.text_field :author_email_like
+
+      =f.label :comment_web_site_label.l
+      =f.text_field :author_url_like
+
+      =f.label :body_text.l
+      =f.text_field :comment_like
 
       %p= f.submit :search.l
-  
 
 
 - form_tag delete_selected_comments_path, :id => 'comments' do
@@ -31,7 +38,7 @@
       %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%", :style => "table-layout:fixed;"}
         %thead
           %tr
-            %th{:width => '30px', :colspan => '2'}
+            %th{:width => '60px', :colspan => '3'}
             %th=:author.l          
             %th{:width => "250px"}=:body_text.l
             %th=:on_commentable.l
@@ -39,7 +46,11 @@
         %tbody
           - @comments.each do |comment|
             %tr{:id => "comment_#{comment.id}"}
-              %td=link_to_remote(image_tag('icons/delete.png', :plugin => 'community_engine'), {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )                                                
+              %td
+                =link_to_remote(image_tag('icons/delete.png', :plugin => 'community_engine'), {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )                                                
+              %td
+                -if AppConfig.akismet_key              
+                  =link_to_remote(image_tag('icons/bad-flag.png', :plugin => 'community_engine'), {:url => comment_path(comment.commentable_type, comment.commentable_id, comment, :spam => true), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment and mark it as spam!?"} )                                                              
               %td= check_box_tag "delete[]", comment.id
               %td
                 .left
@@ -62,7 +73,13 @@
             %td{ :colspan => "4" }
               -if @comments.any?
                 %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
-                %p= submit_tag :delete_selected.l              
+                
+                %p
+                  -if AppConfig.akismet_key
+                    = check_box_tag :spam
+                    =:delete_selected_mark_as_spam.l
+                    %br
+                  = submit_tag :delete_selected.l              
 
 
       -if @comments.page_count > 1

@@ -1,20 +1,4 @@
-require 'hpricot'
-
 module PostsHelper
-
-  def post_with_ad_in_content(post)
-    string = Ad.display(:post_content, logged_in?)      
-
-    doc = Hpricot(post.post)
-    paragraphs = doc.search("p")
-    
-    if paragraphs.length > 4
-      graph_html = paragraphs[2].inner_html
-      paragraphs[2].swap(string + "<p id='jump'>#{graph_html}</p>")
-    end
-    
-    doc.to_html
-  end
 
   # The ShareThis widget defines a bunch of attributes you can customize.
   # Facebook seems to ignore them (it uses title and description meta tags

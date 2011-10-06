@@ -25,6 +25,16 @@ function insertTable() {
 	cellpadding = formObj.elements['cellpadding'].value != "" ? formObj.elements['cellpadding'].value : "";
 	cellspacing = formObj.elements['cellspacing'].value != "" ? formObj.elements['cellspacing'].value : "";
 	align = formObj.elements['align'].options[formObj.elements['align'].selectedIndex].value;
+
+  // HACKED BY bborn to resolve table plugin bug on Chrome
+  if (formObj.elements['frame'].selectedIndex < 0 || formObj.elements['frame'].selectedIndex === undefined){
+    formObj.elements['frame'].selectedIndex = 0;    
+  }
+  if (formObj.elements['rules'].selectedIndex < 0 || formObj.elements['rules'].selectedIndex === undefined){
+    formObj.elements['rules'].selectedIndex = 0;    
+  }
+       
+       
 	frame = formObj.elements['frame'].options[formObj.elements['frame'].selectedIndex].value;
 	rules = formObj.elements['rules'].options[formObj.elements['rules'].selectedIndex].value;
 	width = formObj.elements['width'].value;

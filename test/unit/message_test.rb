@@ -3,6 +3,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 class MessageTest < ActiveSupport::TestCase
   fixtures :all
 
+  test "should be created" do
+    message = Message.create!(:sender => users(:quentin), :recipient => users(:aaron), :body => 'hey aaron', :subject => 'Hello friend!')    
+  end
+
   def test_should_send_notification
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       message = Message.create!(:sender => users(:quentin), :recipient => users(:aaron), :body => 'hey aaron', :subject => 'Hello friend!')

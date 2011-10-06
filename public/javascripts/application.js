@@ -69,7 +69,7 @@ var Cookie = {
 	},
 
 	destroy: function(name) {
-		createCookie(name,"",-1);
+		Cookie.set(name,"",-1);
 	}	
 }
 

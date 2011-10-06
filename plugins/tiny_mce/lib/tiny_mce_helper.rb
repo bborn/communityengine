@@ -22,7 +22,11 @@ module TinyMCEHelper
       when String, Symbol, Fixnum
         tinymce_js += "'#{value}'"
       when Array
-        tinymce_js += '"' + value.join(',') + '"'
+        if value.first.is_a?(Hash)
+          tinymce_js += '[' + value.map{|h| h.to_json}.join(',') + ']'
+        else
+          tinymce_js += '"' + value.join(',') + '"'          
+        end
       when TrueClass
         tinymce_js += 'true'
       when FalseClass

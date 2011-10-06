@@ -1,33 +1,44 @@
 .yui-b
   = render :partial => 'shared/admin_nav'
+  
+  -box do
+    %h3=:search.l
+    - form_for @search, :html => {:class => "MainForm"} do |f|
+
+      = f.label :name.l
+      = f.text_field :name_begins_with
+      
+      = f.label :location.l
+      = f.text_field :location_contains
+
+      %p= f.submit :search.l
+  
 
 #yui-main
-  -box :class => "yui-b" do
-    %h3= :ads.l
-    %table{"width"=>"100%"}
-      %tr
-        %th=:name.l
-        %th=:frequency.l
-        %th 
-          =:published.l
-          \?
-        %th=:run.l
-        %th=:location.l
-        %th &nbsp;
-
-      - for ad in @ads
+  .yui-b  
+    -box do
+      %h3= :ads.l
+      %table{"width"=>"100%"}
         %tr
-          %td= link_to h(ad.name), ad_path(ad)
-          %td= h ad.frequency
-          %td= h ad.published?
-          %td= h ad.time_constrained? ? "#{ad.start_date.to_formatted_s(:short)}-#{ad.end_date.to_formatted_s(:short)}" : "n/a"
-          %td= h ad.location
-          %td{:colspan => 3}
-            = link_to :show.l, ad_path(ad)
-            |
-            = link_to :edit.l, edit_ad_path(ad)
-            |
-            = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
+          %th=order @search, :by => :name, :as => :name.l                    
+          %th 
+            =order @search, :by => :published, :as => :published.l                              
+            \?
+          %th
+            =order @search, :by => :location, :as => :location.l                              
+          %th &nbsp;
+
+        - for ad in @ads
+          %tr
+            %td= link_to h(ad.name), ad_path(ad)
+            %td= h ad.published?
+            %td= h ad.location
+            %td{:colspan => 3}
+              = link_to :edit.l, edit_ad_path(ad)
+              |
+              = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
             
-    %br
-    = link_to :new_ad.l, new_ad_path
+      .pagination=paginating_links @ads if @ads.page_count > 1
+      
+      %br
+      = link_to :new_ad.l, new_ad_path

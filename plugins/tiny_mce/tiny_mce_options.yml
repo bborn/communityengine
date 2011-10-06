@@ -122,3 +122,6 @@
 - plugin_preview_pageurl
 - plugin_preview_width
 - plugin_preview_height
+- body_class
+- gecko_spellcheck
+- media_strict

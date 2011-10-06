@@ -55,7 +55,12 @@
     - @voices.each do |user|
       %li= link_to h(user.display_name), user_path(user)
 
-  %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
+  - if logged_in? || AppConfig.allow_anonymous_forum_posting
+    %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
+  -else
+    %h6.all.right= link_to :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"  
+  
+  
   - if @posts.page_count > 1
     .pagination.clear= paginating_links @posts
 
@@ -64,40 +69,13 @@
   %br
   %table.posts.wide{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0"}
     - for post in @posts do
-      - unless post.eql?(@posts.to_a.first)
-        %tr.spacer
-          %td{"colspan"=>"2"}
-            %a{"name"=>"#{post.dom_id}", "id"=>"#{post.dom_id}"} &nbsp;
-          
-      %tr.post{"id"=>"posts-#{post.dom_id}-row"}
-        %td.author.vcard{:width => "15%"}
-          .date
-            %a{"href"=>"##{post.dom_id}", "rel"=>"bookmark"}
-              %abbr.updated{"title"=>"#{post.created_at.xmlschema}"}= time_ago_in_words(post.created_at)
-
-          = avatar_for post.user
-          %span.fn
-            = link_to truncate(h(post.user.display_name), :length => 15), user_path(post.user), :class => (post.user == @posts.to_a.first.user ? "admin" : nil)
-
-          %span.posts= pluralize post.user.sb_posts_count, :post.l
-          - if logged_in? && post.editable_by?(current_user)
-            %p
-              %span.edit
-                = ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif"
-                = link_to_remote(:edit_post.l, {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, {:class => "utility"})
-              - if admin? && !post.user.admin?
-                %div{"class"=>"make-moderator-#{post.user_id}"}
-                  = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
-
-        %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
-          = link_to_function image_tag('/clearbits/comment.gif', :class => 'icon reply', :plugin => 'community_engine'), "$('reply').toggle()" if logged_in?
-          = post.body_html
+      =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
 
   - if @posts.page_count > 1
     .pagination= paginating_links @posts
 
-  - if logged_in?
+  - if logged_in? || AppConfig.allow_anonymous_forum_posting  
     #edit
     - if @topic.locked?
       %p
@@ -107,19 +85,9 @@
       %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
       #reply.editbox
         .container
-          = content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply]
-
-          - form_for :post, :url => sb_posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page) do |f|
-            %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
-              %tr
-                %td{"rowspan"=>"2", "width"=>"70%"}
-                  = f.text_area :body, :style => "width: 99%"
-                %td{"style"=>"vertical-align:top;"}
-                  = submit_tag :save_reply.l
-                  %span.button_or= :or.l+" #{link_to_function :cancel.l, "$('reply').hide()"}"
-              %tr
-                %td{"style"=>"vertical-align: bottom; padding-bottom:15px;"}
-
+          =render :partial => 'sb_posts/reply_form'
+          
+          
     = javascript_tag "$('reply').hide();"
   - else
     %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"

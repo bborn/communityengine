@@ -47,6 +47,8 @@ has_attachment(options = {})
     :partition        # Whether to partiton files in directories like /0000/0001/image.jpg. Default is true. Only applicable to the :file_system backend.
     :storage          # Specifies the storage system to use..
                       # Defaults to :db_file.  Options are :file_system, :db_file, and :s3.
+    :cloudfront       # If using S3 for storage, this option allows for serving the files via Amazon CloudFront.
+                      # Defaults to false.
     :processor        # Sets the image processor to use for resizing of the attached image.
                       # Options include ImageScience, Rmagick, and MiniMagick.  Default is whatever is installed.
     :uuid_primary_key # If your model's primary key is a 128-bit UUID in hexadecimal format, then set this to true.
@@ -67,6 +69,7 @@ has_attachment(options = {})
     has_attachment :storage => :file_system, :path_prefix => 'public/files',
                    :thumbnails => { :thumb => [50, 50], :geometry => 'x50' }
     has_attachment :storage => :s3
+    has_attachment :store => :s3, :cloudfront => true
 
 validates_as_attachment
   This method prevents files outside of the valid range (:min_size to :max_size, or the :size range) from being saved.  It does not however, halt the upload of such files.  They will be uploaded into memory regardless of size before validation.

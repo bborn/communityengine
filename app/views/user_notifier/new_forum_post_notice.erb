@@ -1,7 +1,6 @@
 Hey <%= @user.login %>!
 
-<%= @comment.username %> has added a comment to a <%= @comment.commentable_type %> 
-that you commented on. Use this link to check it out:
+<%= @author %> has replied to a thread you are monitoring! Use this link to see:
 
 <%= @url %> 
 
@@ -12,4 +11,4 @@ The <%= AppConfig.community_name %> team
 If you don't want to receive e-mails like this one from <%= AppConfig.community_name %>, you can change 
 your e-mail preferences here:
 
-<%= application_url %>/<%= @user.login_slug %>/edit_account
+<%= home_url %>/<%= @user.login_slug %>/edit_account

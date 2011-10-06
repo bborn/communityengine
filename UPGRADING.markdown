@@ -1,3 +1,25 @@
+Upgrading to v1.2.1
+===================
+Run `ruby script/generate plugin_migration`
+Run `rake db:migrate`
+Run `rake test && rake community_engine:test`
+
+
+Upgrading to v1.2.0
+===================
+Run `ruby script/generate plugin_migration`
+Run `rake db:migrate`
+Run `rake test && rake community_engine:test`
+To migrate existing private messages to the new threaded message format, run `rake community_engine:add_threads_to_existing_messages` on your production server (CAREFUL: make backups first!)
+
+
+Upgrading to v1.1.0
+=====================
+Run `ruby script/generate plugin_migration`
+Run `rake db:migrate`
+Run `rake test && rake community_engine:test`
+
+
 Upgrading to v1.0.4.2
 =====================
 Run `rake gems:install`

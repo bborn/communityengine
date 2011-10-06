@@ -32,7 +32,7 @@ class UsersController < BaseController
                                                 :edit_pro_details, :update_pro_details,
                                                 :welcome_photo, :welcome_about, :welcome_invite, :deactivate, 
                                                 :crop_profile_photo, :upload_profile_photo]
-  before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator]
+  before_filter :admin_required, :only => [:assume, :destroy, :featured, :toggle_featured, :toggle_moderator, :delete_selected]
   before_filter :admin_or_current_user_required, :only => [:statistics]  
 
   def activate
@@ -68,6 +68,12 @@ class UsersController < BaseController
     @tags = User.tag_counts :limit => 10
     
     setup_metro_areas_for_cloud
+    
+     respond_to do |format|
+        format.html # index.html.erb
+        format.xml  #{ render :xml => @users }
+      end
+      
   end
   
   def dashboard
@@ -158,6 +164,9 @@ class UsersController < BaseController
   
   def destroy
     unless @user.admin? || @user.featured_writer?
+      if params[:spam] && AppConfig.akismet_key
+        @user.spam!
+      end      
       @user.destroy
       flash[:notice] = :the_user_was_deleted.l
     else
@@ -311,20 +320,6 @@ class UsersController < BaseController
     flash[:notice] = :walkthrough_complete.l_with_args(:site => AppConfig.community_name) 
     redirect_to user_path
   end
-  
-  def forgot_password  
-    return unless request.post?   
-
-    @user = User.active.find_by_email(params[:email])  
-    if @user && @user.reset_password
-      UserNotifier.deliver_reset_password(@user)
-      @user.save_without_session_maintenance
-      redirect_to login_url
-      flash[:info] = :your_password_has_been_reset_and_emailed_to_you.l      
-    else
-      flash[:error] = :sorry_we_dont_recognize_that_email_address.l
-    end 
-  end
 
   def forgot_username  
     return unless request.post?   
@@ -357,8 +352,8 @@ class UsersController < BaseController
   end
   
   def assume
-    self.assume_user(User.find(params[:id]))
-    redirect_to user_path(current_user)
+    user = User.find(params[:id])
+    redirect_to user_path(self.assume_user(user).record)
   end
 
   def return_admin
@@ -407,20 +402,41 @@ class UsersController < BaseController
       date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i)
       @month = Time.parse(date.to_s)
     else
-      @month = Date.today    
+      @month = Time.now
     end
     
-    start_date  = @month.beginning_of_month
-    end_date    = @month.end_of_month + 1.day
+    start_date  = @month.utc.beginning_of_month.beginning_of_day
+    end_date    = @month.utc.end_of_month.end_of_day
     
-    @posts = @user.posts.find(:all, 
-      :conditions => ['? <= published_at AND published_at <= ?', start_date, end_date])    
+    @posts = @user.posts.find(:all, :conditions => ['? <= published_at AND published_at <= ?', start_date, end_date])    
     
     @estimated_payment = @posts.sum do |p| 
       7
     end
-  end  
+
+    respond_to do |format|
+      format.html
+      format.xml {
+        render :xml => @posts.to_xml(:include => :category)
+      }
+    end
+  end    
   
+  def delete_selected
+    if request.post?
+      if params[:delete] 
+        params[:delete].each { |id|
+          user = User.find(id)
+          unless user.admin? || user.featured_writer?
+            user.spam! if params[:spam] && AppConfig.akismet_key          
+            user.destroy 
+          end
+        }
+      end
+      flash[:notice] = :the_user_was_deleted.l                
+      redirect_to admin_users_path
+    end
+  end  
 
   protected  
     def setup_metro_areas_for_cloud

@@ -1,6 +1,19 @@
 = TODO
-* haml/sass propagation (desert)
-* upgrade documentation/rake tasks to fix old migrations
+
+=1.2.1
+* Anonymous forum replies
+* Turn comment notifications on or off by post
+* Allow admins/mods to edit comments (they can already delete them)
+* Fix security vulnerability in AuthenticatedSystem
+
+=1.2.0
+* Threaded private messages
+* Clear cache link in admin dashboard
+* Add support for using rakismet gem to check comments for spam (see README for instructions)
+
+=1.1.0
+* fixed time_ago formatting problem on user/index
+* user Authlogic's perishable token for doing password resets (instead of sending them a password)
 
 
 = 1.0.4.2

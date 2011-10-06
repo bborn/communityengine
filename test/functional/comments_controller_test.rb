@@ -80,6 +80,15 @@ class CommentsControllerTest < ActionController::TestCase
     end
   end
   
+  def test_should_delete_selected
+    login_as :admin
+    assert_difference Comment, :count, -1 do
+      post :delete_selected, :delete => Comment.last.id  
+    end
+    assert_redirected_to admin_comments_path
+  end
+  
+  
   def test_should_fail_to_create_post_comment
     login_as :aaron
     assert_no_difference Comment, :count do
@@ -159,6 +168,32 @@ class CommentsControllerTest < ActionController::TestCase
     post :unsubscribe, :commentable_type => 'User', :commentable_id => users(:quentin).to_param, :comment_id => comment.id, :token => 'badtokengoeshere' 
     assert comment.reload.notify_by_email.eql?(true)    
   end
+  
+  def test_should_get_edit_js_as_admin
+    login_as :admin
+    get :edit, :id => comments(:quentins_comment_on_his_own_post), :format => 'js'
+    assert_response :success
+  end
+
+  def test_should_update_as_admin
+    login_as :admin
+    edited_text = 'edited the comment body'
+    put :update, :id => comments(:quentins_comment_on_his_own_post), :comment => {:comment => edited_text}, :format => 'js'
+    
+    assert assigns(:comment).comment.eql?(edited_text)
+    assert_response :success
+  end
+  
+  def test_should_not_update_if_not_admin_or_moderator
+    login_as :quentin
+    
+    edited_text = 'edited the comment body'    
+    put :update, :id => comments(:quentins_comment_on_his_own_post), :comment => {:comment => edited_text}, :format => "js"
+    
+    assert_response :success #js redirect
+    assert_not_equal(comments(:quentins_comment_on_his_own_post).comment, edited_text)
+  end
+
 
   
   protected

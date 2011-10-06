@@ -11,7 +11,7 @@ module CommunityEngine
   end  
   
   class << self
-
+    
     def check_for_pending_migrations
       newest_ce_migration = Desert::Manager.find_plugin('community_engine').latest_migration
       current_ce_version  = guess_current_ce_version

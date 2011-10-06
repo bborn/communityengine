@@ -99,6 +99,17 @@ class SbPostTest < ActiveSupport::TestCase
     assert !user.monitoring_topic?(topic)    
   end
   
+  test "should not monitor for anonymous posts" do
+    AppConfig.allow_anonymous_forum_posting = true
+    
+    assert_difference Monitorship, :count, 0 do
+      topic = topics(:pdi)
+      topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")      
+    end
+    
+    AppConfig.allow_anonymous_forum_posting = false    
+  end
+  
   def test_to_xml
     #not really testing the output cause it's just calling Rails' to_xml
     assert sb_posts(:shield_reply).to_xml
@@ -111,6 +122,24 @@ class SbPostTest < ActiveSupport::TestCase
     assert !SbPost.exists?(id)
   end
 
+  test "should not allow anonymous posting" do
+    AppConfig.allow_anonymous_forum_posting = false    
+    topic = topics(:pdi)      
+    post = topic.sb_posts.create(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
+    assert !post.valid?
+    assert post.errors.on(:user_id)
+  end
+  
+  test "should allow anonymous posting if AppConfig specifies it's ok" do
+    AppConfig.allow_anonymous_forum_posting = true
+    
+    topic = topics(:pdi)
+      
+    assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
+    
+    AppConfig.allow_anonymous_forum_posting = false    
+  end
+  
   protected
     def create_post(topic, options = {})
       returning topic.sb_posts.build(options) do |p|
