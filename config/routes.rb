@@ -119,7 +119,7 @@ Rails.application.routes.draw do
   scope '/:favoritable_type/:favoritable_id' do
     resources :favorites
   end
-  scope "'/:commentable_type/:commentable_id'" do
+  scope "/:commentable_type/:commentable_id" do
     resources :comments
   end
   match 'comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
