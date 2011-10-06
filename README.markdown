@@ -1,7 +1,6 @@
 CommunityEngine [v1.2.1]
-** Looking for the Rails 3.1 version? You want the [Rails3 branch](https://github.com/bborn/communityengine/tree/rails3).
 
-CommunityEngine [v1.0.4.2]
+** Looking for the Rails 3.1 version (CE 2.0.0beta)? You want the [Rails3 branch](https://github.com/bborn/communityengine/tree/rails3).
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
