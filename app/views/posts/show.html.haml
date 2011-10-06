@@ -44,7 +44,7 @@
               
         / vcard
         .entry-content
-          = @post.post
+          = @post.post.html_safe
           = render :partial => 'polls/poll_ui', :locals => {:poll => @post.polls.first} unless @post.polls.empty?
           - unless @post.tags.empty?
             %ul.tags
