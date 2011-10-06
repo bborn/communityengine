@@ -1,3 +1,5 @@
+** Using Rails 2.x? You want the [master branch](https://github.com/bborn/communityengine)
+
 CommunityEngine
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
