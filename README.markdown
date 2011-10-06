@@ -5,9 +5,6 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 Requirements:
 
 	- RAILS VERSION 3.1.0 (lower versions are not supported)
-	- For now, patched versions of: meta_search, authlogic, calendar_date_select, and omniauth
-	- All other requirements are brought in automatically
-	- Don't forget to include the gems you plan to include in your application
 
 Getting CommunityEngine Running
 --------------------------------
@@ -15,11 +12,6 @@ Getting CommunityEngine Running
 1. Copy the following into your `Gemfile`:
 
 		gem 'community_engine', '2.0.0.beta', :git => 'https://github.com/bborn/communityengine.git', :branch => 'rails3'
-
-		# Temporary edge sources for other libraries
-	  gem 'authlogic', :git => 'https://github.com/bborn/authlogic.git'
-	  gem 'calendar_date_select', :git => 'https://github.com/paneq/calendar_date_select.git', :branch => 'rails3test'
-
 
 2. From your app's root directory run:
 
@@ -70,13 +62,11 @@ Photo Uploading
 
 By default CommunityEngine uses the filesystem to store photos.
 
-To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called `amazon_s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`). 
+To use Amazon S3 as the backend for your file uploads,you'll need to add a file called `s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`). 
 
 You'll need to change your configuration in your `application.yml` to tell CommunityEngine to use s3 as the photo backend. For more, see the Paperclip documentation on S3 storage for uploads: https://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/storage/s3.rb
 
 Finally, you'll need an S3 account for S3 photo uploading.
-
-Create an s3.yml file in `Rails.root/config` 
 
 
 
@@ -133,15 +123,44 @@ Akismet: Unfortunately, bots aren't the only ones submitting spam; humans do it 
     akismet_key: YOUR_KEY
   
     
+Integrating with Your Application & Overriding CE
+-------------------------------------------------
+
+To make a controller from your application use CE's layout and inherit CE's helper methods, make it inherit from `BaseController`. For example:
+
+		class RecipesController < BaseController
+
+			before_filter :login_required			
+			
+			uses_tiny_mce do
+				{:only => [:show], :options => configatron.default_mce_options}
+			end			
+			
+		end
+		
+To override or modify a controller, helper, or model from CE, you can use the `require_from_ce` helper method. For example, to override a method in CE's `User` model, create `app/models/user.rb`:
+
+		class User < ActiveRecordBase
+			require_from_ce('models/user')
+			
+			#add a new association
+			has_many :recipes
+			
+			#override an existing method
+			def	display_name
+				login.capitalize
+			end
+			
+		end
+
+
+
+
 Other notes
 -----------
 
 Any views you create in your app directory will override those in CommunityEngine
 For example, you could create `Rails.root/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
-
-You can also override CommunityEngine's controllers by creating identically-named controllers in your application's `app/controllers` directory.
-
-
 
 
 Contributors - Thanks! :)

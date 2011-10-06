@@ -4,13 +4,13 @@ class SessionsControllerTest < ActionController::TestCase
   fixtures :all
 
   def test_should_login_and_redirect
-    post :create, :login => 'quentin', :password => 'test'
+    post :create, :email => 'quentin@example.com', :password => 'test'
     assert_equal users(:quentin), UserSession.find.record
     assert_response :redirect
   end
 
   def test_should_fail_login_and_not_redirect
-    post :create, :login => 'quentin', :password => 'bad password'
+    post :create, :email => 'quentin@example.com', :password => 'bad password'
     assert_nil UserSession.find
     assert_response :success
   end
@@ -48,7 +48,7 @@ class SessionsControllerTest < ActionController::TestCase
     quentin.reset_password
     newpass = quentin.password
     quentin.save_without_session_maintenance
-    post :create, :login => 'quentin', :password => newpass
+    post :create, :email => 'quentin@example.com', :password => newpass
     assert_equal users(:quentin), UserSession.find.record
   end
 

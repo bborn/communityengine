@@ -342,7 +342,7 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_assume_should_assume_users_id
     login_as :admin
-    post :assume, :id => users(:quentin).id
+    post :assume, :id => users(:quentin)
     assert_response :redirect
     assert_equal UserSession.find.record, users(:quentin)
     assert_not_nil session[:admin_id]
