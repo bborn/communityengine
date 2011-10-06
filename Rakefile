@@ -55,7 +55,7 @@ begin
     
     gem.add_dependency 'rails', '3.1.0'
     gem.add_dependency 'rack', '1.3.2'    
-    gem.add_dependency 'arel', '~> 2.2.1'        
+    gem.add_dependency 'arel', '2.2.1'        
 
     gem.add_dependency 'authlogic'
     gem.add_dependency 'configatron'
@@ -69,13 +69,13 @@ begin
     gem.add_dependency 'kaminari'
     gem.add_dependency "dynamic_form"
     gem.add_dependency "friendly_id", "3.2.1"
-    gem.add_dependency "paperclip", "~> 2.3"
-    gem.add_dependency 'acts_as_commentable', '~> 3.0.0'    
+    gem.add_dependency "paperclip", "2.4.3"
+    gem.add_dependency 'acts_as_commentable', '3.0.1'    
     gem.add_dependency 'recaptcha'
-    gem.add_dependency 'omniauth', '~> 0.2.6'
+    gem.add_dependency 'omniauth', '0.3.0'
     gem.add_dependency 'prototype-rails'
     gem.add_dependency 'rails_autolink'
-    gem.add_dependency 'meta_search', '1.1.0.pre2'   
+    gem.add_dependency 'meta_search', '1.1.1'   
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."
