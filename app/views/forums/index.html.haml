@@ -51,7 +51,7 @@
             = time_ago_in_words(forum.sb_posts.last.created_at)
             %br
             = :by.l
-            %strong= h(forum.sb_posts.last.user.display_name)
+            %strong= h(forum.sb_posts.last.username)
             %span
               (
               = link_to :view.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
