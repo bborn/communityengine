@@ -314,7 +314,12 @@ class UsersController < BaseController
   
   def assume
     user = User.find(params[:id])
-    redirect_to user_path(self.assume_user(user).record)
+    
+    if assumed_user_session = self.assume_user(user)
+      redirect_to user_path(assumed_user_session.record)
+    else
+      redirect_to users_path
+    end
   end
 
   def return_admin

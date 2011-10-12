@@ -33,7 +33,7 @@
 
         - if @is_current_user
           -box :class => "alt" do 
-            = link_to :make_this_my_profile_photo.l, change_profile_photo_user_path({:id => @user, :photo_id => @photo}), :method => :put
+            = link_to :make_this_my_profile_photo.l, change_profile_photo_user_path(@user, :photo_id => @photo), :method => :put
             |
             = link_to :edit_this_photo_details.l, edit_user_photo_path(@user, @photo) if @is_current_user
             |

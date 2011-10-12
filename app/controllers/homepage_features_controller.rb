@@ -1,17 +1,15 @@
 class HomepageFeaturesController < BaseController
-  uses_tiny_mce(:only => [:new, :edit ]) do
-    configatron.default_mce_options
+  uses_tiny_mce do
+    {:only => [:new, :edit, :create, :update ], :options => configatron.default_mce_options}
   end
 
   before_filter :login_required
   before_filter :admin_required
 
   def index
-    
-    @search = HomepageFeature.page(params[:page]).per(100).search(params[:search])
+    @search = HomepageFeature.search(params[:search])
     @search.order ||= :descend_by_created_at
-    @homepage_features = @search
-    
+    @homepage_features = @search.page(params[:page]).per(100)
     respond_to do |format|
       format.html
     end

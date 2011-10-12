@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = "2011-10-06"
+  s.date = "2011-10-09"
   s.email = "admin@curbly.com"
   s.extra_rdoc_files = [
     "LICENSE",
@@ -1733,6 +1733,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["= 2.2.1"])
@@ -1741,6 +1743,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<hpricot>, [">= 0"])
       s.add_runtime_dependency(%q<htmlentities>, [">= 0"])
       s.add_runtime_dependency(%q<haml>, [">= 0"])
+      s.add_runtime_dependency(%q<sass-rails>, [">= 0"])
       s.add_runtime_dependency(%q<calendar_date_select>, [">= 0"])
       s.add_runtime_dependency(%q<ri_cal>, [">= 0"])
       s.add_runtime_dependency(%q<rakismet>, [">= 0"])
@@ -1769,6 +1772,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.1.0"])
       s.add_dependency(%q<rack>, ["= 1.3.2"])
       s.add_dependency(%q<arel>, ["= 2.2.1"])
@@ -1777,6 +1782,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<hpricot>, [">= 0"])
       s.add_dependency(%q<htmlentities>, [">= 0"])
       s.add_dependency(%q<haml>, [">= 0"])
+      s.add_dependency(%q<sass-rails>, [">= 0"])
       s.add_dependency(%q<calendar_date_select>, [">= 0"])
       s.add_dependency(%q<ri_cal>, [">= 0"])
       s.add_dependency(%q<rakismet>, [">= 0"])
@@ -1806,6 +1812,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.1.0"])
     s.add_dependency(%q<rack>, ["= 1.3.2"])
     s.add_dependency(%q<arel>, ["= 2.2.1"])
@@ -1814,6 +1822,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<hpricot>, [">= 0"])
     s.add_dependency(%q<htmlentities>, [">= 0"])
     s.add_dependency(%q<haml>, [">= 0"])
+    s.add_dependency(%q<sass-rails>, [">= 0"])
     s.add_dependency(%q<calendar_date_select>, [">= 0"])
     s.add_dependency(%q<ri_cal>, [">= 0"])
     s.add_dependency(%q<rakismet>, [">= 0"])

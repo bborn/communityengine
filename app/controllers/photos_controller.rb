@@ -26,7 +26,7 @@ class PhotosController < BaseController
       @photos = @photos.where('tags.name = ?', params[:tag_name])
     end
     
-    @photos = @photos.recent.page(params[:page])
+    @photos = @photos.recent.page(params[:page]).per(20)
   
     @tags = Photo.tag_counts(:conditions => { :user_id => @user.id }, :limit => 20)
 

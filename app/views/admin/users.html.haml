@@ -2,23 +2,11 @@
   = render :partial => 'shared/admin_nav'
 
 #yui-main
-  .yui-b
-    -box  do
-      %h3
-        = configatron.community_name
-        = :members.l
-      - form_tag admin_users_url, :class => 'MainForm' do
-        %label= :user_login.l
-        = text_field_tag 'login', params['login']
-        %label= :user_e_mail.l
-        = text_field_tag 'email', params['email']
-        %p
-          %input{:type=>"submit", :value=> :search_users.l }
   -box :class => "yui-b" do
     %h3
       = configatron.community_name
       = :members.l
-    - form_tag admin_users_url, :class => 'MainForm' do
+    = form_tag admin_users_url, :class => 'MainForm' do
       %label= :user_login.l
       = text_field_tag 'login', params['login']
       %label= :user_e_mail.l
@@ -44,7 +32,7 @@
             %td
               = user.active? ? :active.l : :inactive.l
             %td
-              = link_to( :assume_id.l , assume_user_path(user) )
+              = link_to( :assume_id.l , assume_user_path(user), :method => :post )
               = (" | " + link_to(:activate.l, :controller => "/admin", :action => "activate_user", :id => user.id)) unless user.active?
               = link_to_remote(image_tag('icons/delete.png', :plugin => 'community_engine'), {:url => user_path(user), :method => :delete, :success => visual_effect(:fade, "user_#{user.id}"), :confirm => "Are you sure you want to permanently delete this user"} )                                                
 

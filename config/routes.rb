@@ -68,14 +68,14 @@ Rails.application.routes.draw do
   match '/resend_activation' => 'users#resend_activation', :as => :resend_activation
   
   match '/new_clipping' => 'clippings#new_clipping'
-  match '/clippings' => 'clippings#site_index', :as => :site_clippings
+  match '/clippings(/page/:page)' => 'clippings#site_index', :as => :site_clippings
   match '/clippings.rss' => 'clippings#site_index', :as => :rss_site_clippings, :format => 'rss'
   
-  match '/featured' => 'posts#featured', :as => :featured
+  match '/featured(/page/:page)' => 'posts#featured', :as => :featured
   match '/featured.rss' => 'posts#featured', :as => :featured_rss, :format => 'rss'
-  match '/popular' => 'posts#popular', :as => :popular
+  match '/popular(/page/:page)' => 'posts#popular', :as => :popular
   match '/popular.rss' => 'posts#popular', :as => :popular_rss, :format => 'rss'
-  match '/recent' => 'posts#recent', :as => :recent
+  match '/recent(/page/:page)' => 'posts#recent', :as => :recent
   match '/recent.rss' => 'posts#recent', :as => :recent_rss, :format => 'rss'
   match '/rss' => 'base#rss_site_index', :as => :rss_redirect
   match '/site_index.rss' => 'base#site_index', :as => :rss, :format => 'rss'
@@ -106,6 +106,7 @@ Rails.application.routes.draw do
   resources :categories
   
   resources :events do
+    get 'page/:page', :action => :index, :on => :collection
     collection do
       get :past
       get :ical
@@ -130,6 +131,8 @@ Rails.application.routes.draw do
   resources :activities
   
   resources :users do
+    get 'page/:page', :action => :index, :on => :collection
+    
     collection do
       post 'return_admin'
     end
@@ -172,9 +175,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :photos
+    resources :photos do
+      get 'page/:page', :action => :index, :on => :collection
+    end
 
     resources :posts do
+      get 'page/:page', :action => :index, :on => :collection      
       collection do
         get :manage
       end
@@ -182,10 +188,10 @@ Rails.application.routes.draw do
       match :update_views, :on => :member
     end
 
-    resources :events
     resources :clippings
 
     resources :activities do
+      get 'page/:page', :action => :index, :on => :collection  
       collection do
         get :network
       end
