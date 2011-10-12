@@ -9,15 +9,15 @@
         - @tags.each do |tag|
           = link_to h(tag.name), tag_path(tag)
        
-        
-    -box do 
-      %h3.tags=:related_tags.l
-      %ul
-        - tag_cloud @related_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
-          - css_class = css_class + (name.eql?(params[:id]) ? " selected": "")
-          %li= link_to h(name), tag_path(name), :class => css_class
+    -if @related_tags.any?    
+      -box do 
+        %h3.tags=:related_tags.l
+        %ul
+          - tag_cloud @related_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
+            - css_class = css_class + (name.eql?(params[:id]) ? " selected": "")
+            %li= link_to h(name), tag_path(name), :class => css_class
       
-      %h6.all= link_to :all_tags.l, tags_path
+        %h6.all= link_to :all_tags.l, tags_path
       
     = Ad.display(:new_sidebar_3, logged_in?) #REDESIGN-FIX      
 

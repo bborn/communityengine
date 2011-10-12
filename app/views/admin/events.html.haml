@@ -27,8 +27,7 @@
               |
               = link_to :destroy.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete
 
-    %p
-      = link_to :new_event.l, new_event_path
+      %p= link_to :new_event.l, new_event_path
 
     .pagination=paginating_links @events if @events.total_count > 1
 

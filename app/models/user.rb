@@ -2,6 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   include UrlUpload
+  include FacebookProfile
   has_friendly_id :login, :use_slug => true, :cache_column => 'login_slug'
   
   MALE    = 'M'
@@ -250,8 +251,8 @@ class User < ActiveRecord::Base
   def avatar_photo_url(size = :original)
     if avatar
       avatar.photo.url(size)
-    elsif omniauthed? && authorizations.first.picture_url
-      authorizations.first.picture_url      
+    elsif facebook?
+      facebook_authorization.picture_url      
     else
       case size
         when :thumb
@@ -424,16 +425,21 @@ class User < ActiveRecord::Base
     errors.add(:birthday, "must be before #{date.strftime("%Y-%m-%d")}") unless birthday && (birthday.to_date <= date.to_date)    
   end
   
-  def self.create_from_authorization(auth)
-    user = User.new(:login => auth.nickname, :email => auth.email)
-    new_password = user.newpass(8)
-    user.password = new_password
-    user.password_confirmation = new_password
+  def self.find_or_create_from_authorization(auth)
+    user = User.find_or_initialize_by_email(:email => auth.email)
+    user.login ||= auth.nickname
+    
+    if user.new_record?
+      new_password = user.newpass(8)
+      user.password = new_password
+      user.password_confirmation = new_password
+    end
+    
     user.authorizing_from_omniauth = true
     
     if user.save
-      user.activate
-      user.reset_persistence_token! #set persistence_token else sessions will not be created
+      user.activate unless user.active?
+      user.reset_persistence_token!
     end
     user    
   end

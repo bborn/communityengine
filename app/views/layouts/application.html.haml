@@ -15,6 +15,9 @@
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
     
   %body
+    -unless configatron.auth_providers.facebook.key.blank?    
+      =render :partial => 'facebook/fb_require'    
+      
     #doc2{:class => "yui-t#{@sidebar_left ? 3 : 6}"}
       = render :partial => "shared/header"
             

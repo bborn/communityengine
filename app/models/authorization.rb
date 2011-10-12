@@ -18,7 +18,7 @@ class Authorization < ActiveRecord::Base
   def self.create_from_hash(hash, existing_user = nil)
     create do |authorization|
       authorization.assign_account_info(hash)
-      authorization.find_or_create_user(existing_user)
+      authorization.find_or_create_or_associate_user(existing_user)
     end    
   end
   
@@ -26,13 +26,13 @@ class Authorization < ActiveRecord::Base
     find_by_provider_and_uid(hash['provider'], hash['uid'])
   end
 
-  def find_or_create_user(existing_user = nil)
+  def find_or_create_or_associate_user(existing_user = nil)
     if existing_user
       self.user = existing_user
     elsif self.user 
       self.user
     else
-      self.user = User.create_from_authorization(self)      
+      self.user = User.find_or_create_from_authorization(self)      
     end
   end
   

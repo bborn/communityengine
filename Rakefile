@@ -77,6 +77,7 @@ begin
     gem.add_dependency 'prototype-rails'
     gem.add_dependency 'rails_autolink'
     gem.add_dependency 'meta_search', '1.1.1'   
+    gem.add_dependency 'koala'
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."
