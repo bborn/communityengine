@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   match '/admin/users' => 'admin#users', :as => :admin_users
   match '/admin/messages' => 'admin#messages', :as => :admin_messages
   match '/admin/comments' => 'admin#comments', :as => :admin_comments
-  match '/admin/tags/:action' => 'tags#index', :as => :admin_tags, :defaults => { :action => "manage" }
+  match '/admin/tags/:action' => 'tags#manage', :as => :admin_tags
   match '/admin/events' => 'admin#events', :as => :admin_events
   match '/admin/clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
   
