@@ -105,14 +105,14 @@ Gem::Specification.new do |s|
     "app/assets/javascripts/lightbox.js",
     "app/assets/javascripts/prototip-min.js",
     "app/assets/javascripts/rails.js",
-    "app/assets/javascripts/tiny_mce/plugins/curblyadvimage/css/advimage.css",
-    "app/assets/javascripts/tiny_mce/plugins/curblyadvimage/editor_plugin.js",
-    "app/assets/javascripts/tiny_mce/plugins/curblyadvimage/editor_plugin_src.js",
-    "app/assets/javascripts/tiny_mce/plugins/curblyadvimage/image.htm",
-    "app/assets/javascripts/tiny_mce/plugins/curblyadvimage/img/sample.gif",
-    "app/assets/javascripts/tiny_mce/plugins/curblyadvimage/js/functions.js",
-    "app/assets/javascripts/tiny_mce/plugins/curblyadvimage/langs/en.js",
-    "app/assets/javascripts/tiny_mce/plugins/curblyadvimage/langs/en_dlg.js",
+    "app/assets/javascripts/tinymce/plugins/curblyadvimage/css/advimage.css",
+    "app/assets/javascripts/tinymce/plugins/curblyadvimage/editor_plugin.js",
+    "app/assets/javascripts/tinymce/plugins/curblyadvimage/editor_plugin_src.js",
+    "app/assets/javascripts/tinymce/plugins/curblyadvimage/image.htm",
+    "app/assets/javascripts/tinymce/plugins/curblyadvimage/img/sample.gif",
+    "app/assets/javascripts/tinymce/plugins/curblyadvimage/js/functions.js",
+    "app/assets/javascripts/tinymce/plugins/curblyadvimage/langs/en.js",
+    "app/assets/javascripts/tinymce/plugins/curblyadvimage/langs/en_dlg.js",
     "app/assets/stylesheets/community_engine.css",
     "app/assets/stylesheets/forum.css",
     "app/assets/stylesheets/lightbox.css",
@@ -809,6 +809,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["= 2.2.1"])
@@ -835,6 +836,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<tinymce-rails>, ["~> 3.4.6"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -879,6 +881,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
