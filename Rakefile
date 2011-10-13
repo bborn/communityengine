@@ -63,7 +63,6 @@ begin
     gem.add_dependency 'htmlentities'
     gem.add_dependency 'haml'
     gem.add_dependency 'sass-rails'    
-    gem.add_dependency 'calendar_date_select'
     gem.add_dependency 'ri_cal'
     gem.add_dependency 'rakismet'
     gem.add_dependency 'aws-s3'

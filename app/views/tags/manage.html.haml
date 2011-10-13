@@ -6,7 +6,7 @@
     = form_for @search, :html => {:class => "MainForm"} do |f|
 
       = f.label :name.l
-      = f.text_field :name_begins_with
+      = f.text_field :name_starts_with
 
       %p= f.submit :search.l
   
@@ -20,7 +20,7 @@
           %th
             =sort_link @search, :by => :name, :as => :name.l            
           %th 
-            =sort_link @search, :by => :taggings_count, :as => "##{:taggings.l}"
+            =sort_link @search, :by => :taggings_count, :as => :taggings.l
           %th=:actions.l
 
         - for tag in @tags

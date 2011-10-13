@@ -4,25 +4,13 @@ class EventsController < BaseController
   caches_page :ical
   cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
  
-  #These two methods make it easy to use helpers in the controller.
-  #This could be put in application_controller.rb if we want to use
-  #helpers in many controllers
-  def help
-    Helper.instance
-  end
 
-  class Helper
-    include Singleton
-    include ActionView::Helpers::SanitizeHelper
-    extend ActionView::Helpers::SanitizeHelper::ClassMethods
-  end
-
-  uses_tiny_mce(:only => [:new, :edit, :create, :update, :clone ]) do
-    configatron.default_mce_options
+  uses_tiny_mce do
+    {:only => [:new, :edit, :create, :update, :clone ], :options => configatron.default_mce_options}
   end
   
-  uses_tiny_mce(:only => [:show]) do
-    configatron.simple_mce_options
+  uses_tiny_mce do
+    {:only => [:show], :options => configatron.simple_mce_options}
   end
 
   before_filter :admin_required, :except => [:index, :show, :ical]

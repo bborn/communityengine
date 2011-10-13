@@ -429,6 +429,8 @@ Gem::Specification.new do |s|
     "app/models/comment.rb",
     "app/models/country.rb",
     "app/models/event.rb",
+    "app/models/facebook_profile.rb",
+    "app/models/facebook_publisher.rb",
     "app/models/favorite.rb",
     "app/models/forum.rb",
     "app/models/friendship.rb",
@@ -504,6 +506,7 @@ Gem::Specification.new do |s|
     "app/views/events/index.html.haml",
     "app/views/events/new.html.haml",
     "app/views/events/show.html.haml",
+    "app/views/facebook/_fb_require.html.haml",
     "app/views/favorites/_favorite.html.haml",
     "app/views/favorites/create.js.rjs",
     "app/views/favorites/destroy.js.rjs",
@@ -1736,6 +1739,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["= 2.2.1"])
@@ -1745,7 +1749,6 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<htmlentities>, [">= 0"])
       s.add_runtime_dependency(%q<haml>, [">= 0"])
       s.add_runtime_dependency(%q<sass-rails>, [">= 0"])
-      s.add_runtime_dependency(%q<calendar_date_select>, [">= 0"])
       s.add_runtime_dependency(%q<ri_cal>, [">= 0"])
       s.add_runtime_dependency(%q<rakismet>, [">= 0"])
       s.add_runtime_dependency(%q<aws-s3>, [">= 0"])
@@ -1777,6 +1780,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rails>, ["= 3.1.0"])
       s.add_dependency(%q<rack>, ["= 1.3.2"])
       s.add_dependency(%q<arel>, ["= 2.2.1"])
@@ -1786,7 +1790,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<htmlentities>, [">= 0"])
       s.add_dependency(%q<haml>, [">= 0"])
       s.add_dependency(%q<sass-rails>, [">= 0"])
-      s.add_dependency(%q<calendar_date_select>, [">= 0"])
       s.add_dependency(%q<ri_cal>, [">= 0"])
       s.add_dependency(%q<rakismet>, [">= 0"])
       s.add_dependency(%q<aws-s3>, [">= 0"])
@@ -1819,6 +1822,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rails>, ["= 3.1.0"])
     s.add_dependency(%q<rack>, ["= 1.3.2"])
     s.add_dependency(%q<arel>, ["= 2.2.1"])
@@ -1828,7 +1832,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<htmlentities>, [">= 0"])
     s.add_dependency(%q<haml>, [">= 0"])
     s.add_dependency(%q<sass-rails>, [">= 0"])
-    s.add_dependency(%q<calendar_date_select>, [">= 0"])
     s.add_dependency(%q<ri_cal>, [">= 0"])
     s.add_dependency(%q<rakismet>, [">= 0"])
     s.add_dependency(%q<aws-s3>, [">= 0"])

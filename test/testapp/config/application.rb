@@ -34,7 +34,7 @@ module Dummy
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
-
+    config.assets.enabled = true
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

@@ -7,8 +7,8 @@ class CommentsController < BaseController
     skip_before_filter :login_required, :only => [:create]
   end
 
-  uses_tiny_mce(:only => [:index, :edit, :update]) do
-    configatron.simple_mce_options
+  uses_tiny_mce do
+    {:only => [:index, :edit, :update], :options => configatron.simple_mce_options}
   end
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]

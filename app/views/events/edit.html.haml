@@ -1,4 +1,4 @@
-=calendar_date_select_includes
+
 -box do
   %h3= :edit_event.l
   = error_messages_for :event
@@ -10,10 +10,10 @@
     = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
     
     %label= :start_time.l
-    = f.calendar_date_select :start_time, :time => true 
+    = f.date_select :start_time, :time => true 
     
     %label= :end_time.l
-    = f.calendar_date_select :end_time, :time => true 
+    = f.date_select :end_time, :time => true 
 
     %label
       = f.check_box :allow_rsvp

@@ -8,8 +8,8 @@ class PhotosController < BaseController
 
   skip_before_filter :verify_authenticity_token, :only => [:create] #because the TinyMCE image uploader can't provide the auth token
 
-  uses_tiny_mce(:only => [:show]) do
-    configatron.simple_mce_options
+  uses_tiny_mce do
+    {:only => [:show], :options => configatron.simple_mce_options}
   end
 
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    

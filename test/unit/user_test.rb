@@ -232,7 +232,7 @@ class UserTest < ActiveSupport::TestCase
       
     Authorization.create!(hash) do |auth|
       assert_difference User, :count, 1 do
-        user = User.create_from_authorization(auth)
+        user = User.find_or_create_from_authorization(auth)
         auth.user = user        
       end      
     end
