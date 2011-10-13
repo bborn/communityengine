@@ -9,7 +9,7 @@
             = :thumb.l
           %a{:href=>p.photo.url(:medium), :alt => p.display_name}
             = :medium.l
-          %a{:href=>p.photo.url(), :alt => p.display_name}
+          %a{:href=>p.photo.url(:large), :alt => p.display_name}
             = :large.l
           %br
           %a{:href=>'#', :onclick=>"$(this).up('li').removeClassName('selected');return false;", :style => 'float:right; font-size: 10px;'}
