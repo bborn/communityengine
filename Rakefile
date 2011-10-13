@@ -77,6 +77,7 @@ begin
     gem.add_dependency 'rails_autolink'
     gem.add_dependency 'meta_search', '1.1.1'   
     gem.add_dependency 'koala'
+    gem.add_dependency 'tinymce-rails', '~> 3.4.6'
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."

@@ -1,7 +1,7 @@
-=javascript_include_tag 'community_engine'
-=stylesheet_link_tag 'community_engine'
+= javascript_include_tag 'community_engine'
+= stylesheet_link_tag 'community_engine'
 
-= include_tiny_mce_if_needed
+= tiny_mce_init_if_needed
 
 - if forum_page?
   = javascript_include_tag 'forum'

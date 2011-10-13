@@ -16,22 +16,7 @@ module TinyMCE
         end        
         
         configuration = TinyMCE::Configuration.new(options.delete(:options), options.delete(:raw_options))
-        
-        
-        # Include an option to load the main tiny_mce.js file if the app appears
-        # to be using jquery. (And use uncompressed script in development)
-        if configuration.uses_jquery?
-          configuration.reverse_add_options( {:script_url => (Rails.env.to_s == 'development' ? "/javascripts/tiny_mce/tiny_mce_src.js" : "/javascripts/tiny_mce/tiny_mce.js")} )
-        end
-        
-        
-        # If the tiny_mce plugins includes the spellchecker, then form a spellchecking path,
-        # add it to the tiny_mce_options, and include the SpellChecking module
-        if configuration.plugins.include?('spellchecker')
-          configuration.reverse_add_options("spellchecker_rpc_url" => "/" + self.controller_name + "/spellchecker")
-          self.class_eval { include TinyMCE::SpellChecker }
-        end
-
+                
         # Set instance vars in the current class
         proc = Proc.new do |c|
           configurations = c.instance_variable_get(:@tiny_mce_configurations) || []

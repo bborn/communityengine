@@ -4,12 +4,9 @@
 //= require builder
 //= require dragdrop
 //= require controls
-
 //= require lightbox
 //= require prototip-min
-
-
-
+//= require tinymce
 
 function scrollToAnchor(anchor){
   loc = document.location.toString();
