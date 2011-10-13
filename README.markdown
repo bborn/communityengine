@@ -1,6 +1,6 @@
 ** Using Rails 2.x? You want the [master branch](https://github.com/bborn/communityengine)
 
-CommunityEngine
+CommunityEngine [![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
