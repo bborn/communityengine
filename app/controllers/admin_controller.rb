@@ -47,9 +47,9 @@ class AdminController < BaseController
   end
   
   def comments
-    @search = Comment.page(params[:page]).per(100).search(params[:search])
+    @search = Comment.search(params[:search])
     @search.order ||= :descend_by_created_at        
-    @comments = @search
+    @comments = @search.page(params[:page]).per(100)
   end
   
   def activate_user

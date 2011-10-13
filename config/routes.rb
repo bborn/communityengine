@@ -40,6 +40,15 @@ Rails.application.routes.draw do
   match '/' => 'base#site_index', :as => :home
   
   scope "/admin" do
+    match 'dashboard' => 'homepage_features#index', :as => :admin_dashboard
+    match 'users' => 'admin#users', :as => :admin_users
+    match 'messages' => 'admin#messages', :as => :admin_messages
+    match 'comments' => 'admin#comments', :as => :admin_comments
+    match 'tags' => 'tags#manage', :as => :admin_tags
+    match 'events' => 'admin#events', :as => :admin_events
+    match 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
+    
+    
     resources :pages, :as => :admin_pages do
       member do
         get :preview
@@ -49,13 +58,6 @@ Rails.application.routes.draw do
   
   match 'pages/:id' => 'pages#show', :as => :pages
   
-  match '/admin/dashboard' => 'homepage_features#index', :as => :admin_dashboard
-  match '/admin/users' => 'admin#users', :as => :admin_users
-  match '/admin/messages' => 'admin#messages', :as => :admin_messages
-  match '/admin/comments' => 'admin#comments', :as => :admin_comments
-  match '/admin/tags' => 'tags#manage', :as => :admin_tags
-  match '/admin/events' => 'admin#events', :as => :admin_events
-  match '/admin/clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
   
   match '/login' => 'sessions#new', :as => :login
   match '/signup' => 'users#new', :as => :signup
