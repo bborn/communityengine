@@ -42,7 +42,7 @@
         =:view_count.l
         = "(#{@user.view_count})"
       - if @user.tags.any?
-        %li.tags= :my_tags.l+": #{@user.tags.collect{|t| link_to t.name, tag_url(t) }.join(", ")}"
+        %li.tags= "#{:my_tags.l}: #{@user.tags.collect{|t| link_to t.name, tag_url(t) }.join(", ")}".html_safe
       - if @user.metro_area
         %li.geo= link_to( @user.full_location, users_path(:metro_area_id => @user.metro_area_id, :state_id => @user.state_id, :country_id => @user.country_id ) ) 
       - if current_user
