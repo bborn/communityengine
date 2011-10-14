@@ -66,7 +66,7 @@ class Comment < ActiveRecord::Base
   end
   
   def should_notify_recipient?
-    return unless recipient
+    return unless recipient && recipient.email
     return false if recipient.eql?(user)
     return false unless recipient.notify_comments?
     true    
@@ -74,7 +74,7 @@ class Comment < ActiveRecord::Base
   
   def notify_previous_commenters
     previous_commenters_to_notify.each do |commenter|
-      UserNotifier.follow_up_comment_notice(commenter, self).deliver
+      UserNotifier.follow_up_comment_notice(commenter, self).deliver if commenter.email
     end    
   end
   

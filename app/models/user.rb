@@ -3,6 +3,8 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   include UrlUpload
   include FacebookProfile
+  include TwitterProfile
+    
   has_friendly_id :login, :use_slug => true, :cache_column => 'login_slug'
   
   MALE    = 'M'
@@ -253,6 +255,8 @@ class User < ActiveRecord::Base
       avatar.photo.url(size)
     elsif facebook?
       facebook_authorization.picture_url      
+    elsif twitter?
+      twitter_authorization.picture_url
     else
       case size
         when :thumb

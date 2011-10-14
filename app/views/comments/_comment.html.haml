@@ -20,7 +20,7 @@
     .vcard.author
       %h5
         %a{:href => '#', :rel => 'bookmark', :class => 'photo', :onclick => 'return false;'}
-          = image_tag(configatron.photo['missing_thumb'], :height => '50', :width => '50')
+          = image_tag(configatron.photo.missing_thumb, :height => '50', :width => '50')
       %ul
         %li.fn
           =link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }

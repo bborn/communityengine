@@ -1,4 +1,4 @@
-.hentry.yui-gf.row{"class"=>"#{user.vendor ? 'community_pro' : ''} #{user.featured_writer ? 'featured_writer' : ''}"}
+.hentry.yui-gf.row{"class"=>"#{user.authorizations.map(&:provider).join(' ')} #{user.vendor ? 'community_pro' : ''} #{user.featured_writer ? 'featured_writer' : ''}"}
   .vcard.author
     .yui-u.first.centered
       = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
