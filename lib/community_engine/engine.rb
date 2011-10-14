@@ -6,16 +6,15 @@ module CommunityEngine
     engine_name "community_engine"
 
     initializer engine_name do |app|
-      # configatron.configure_from_yaml(root.join('config','application.yml'))
-      # configatron.configure_from_yaml(app.root.join('config','application.yml'))      
       require root.join('config','application_config.rb')
-      require app.root.join('config','application_config.rb')      
-      
+      require app.root.join('config','application_config.rb')            
+    end
+    
+    initializer "#{engine_name}.rakismet_config", :before => "rakismet.setup" do |app|
       if configatron.akismet_key
         app.config.rakismet.key  = configatron.akismet_key
         app.config.rakismet.url  = configatron.app_host
       end
-      
     end
     
     initializer "#{engine_name}.load_middleware", :after => :load_config_initializers do
@@ -32,7 +31,7 @@ module CommunityEngine
     ActiveSupport.on_load(:after_initialize) do
       Dir["#{root}/config/initializers/**/*.rb"].each do |initializer| 
         load(initializer) unless File.exists?("#{root.to_s}/config/initializers/#{File.basename(initializer)}")
-      end      
+      end            
     end
      
   end
