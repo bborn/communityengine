@@ -1,0 +1,1 @@
+configatron.community_name = "Test Application"

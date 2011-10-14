@@ -6,8 +6,10 @@ module CommunityEngine
     engine_name "community_engine"
 
     initializer engine_name do |app|
-      configatron.configure_from_yaml(root.join('config','application.yml'))
-      configatron.configure_from_yaml(app.root.join('config','application.yml'))      
+      # configatron.configure_from_yaml(root.join('config','application.yml'))
+      # configatron.configure_from_yaml(app.root.join('config','application.yml'))      
+      require root.join('config','application_config.rb')
+      require app.root.join('config','application_config.rb')      
     end
     
     initializer "#{engine_name}.load_middleware", :after => :load_config_initializers do
