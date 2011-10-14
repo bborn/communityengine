@@ -10,6 +10,12 @@ module CommunityEngine
       # configatron.configure_from_yaml(app.root.join('config','application.yml'))      
       require root.join('config','application_config.rb')
       require app.root.join('config','application_config.rb')      
+      
+      if configatron.akismet_key
+        app.config.rakismet.key  = configatron.akismet_key
+        app.config.rakismet.url  = configatron.app_host
+      end
+      
     end
     
     initializer "#{engine_name}.load_middleware", :after => :load_config_initializers do
