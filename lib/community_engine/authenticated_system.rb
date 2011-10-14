@@ -23,7 +23,8 @@ module AuthenticatedSystem
     # Create a user session without credentials.
     def current_user=(user)
       return if current_user # Use act_as_user= to switch to another user account
-      UserSession.create(user, true)
+      @current_user_session = UserSession.create(user, true)
+      @current_user = @current_user_session.record
     end
 
     # Set session to another user.  Only available to admins
