@@ -136,6 +136,12 @@ class SbPostTest < ActiveSupport::TestCase
     configatron.allow_anonymous_forum_posting = false    
   end
   
+  test "should tranform body before saving" do
+    body = "<script type='text/javascript'>alert('xss attack!')</script> I hacked you!"    
+    post = create_post(topics(:pdi), {:body => body})
+    assert !post.reload.body.include?("<script")
+  end
+  
   protected
     def create_post(topic, options = {})
       topic.sb_posts.new(options).tap do |p|

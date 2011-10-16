@@ -45,7 +45,7 @@
             = link_to(h(post.forum_name), forum_path(post.forum))
             \/
             = link_to h(post.topic_title), forum_topic_path(post.forum, post.topic)
-          = post.body_html
+          =raw post.body
         
   - if @posts.total_count > 1
     .pagination

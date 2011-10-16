@@ -5,7 +5,7 @@
       %label= :title.l
       = form.text_field :name, :class => "primary"
 
-    %td{"style"=>"text-align:right"}
+    %td
       %label= :position.l
       = form.text_field :position, :size => 5
 
@@ -18,4 +18,4 @@
 
 #forum_descripion
   %label= :description.l
-  = form.text_area :description, :rows => 7
+  = form.text_area :description, :rows => 7, :class => "rich_text_editor"

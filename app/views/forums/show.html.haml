@@ -16,7 +16,7 @@
     = pluralize @forum.sb_posts_count, :post.l
 
   - unless @forum.description.blank?
-    = @forum.description_html
+    =raw @forum.description_html
   
   - if @forum.moderators.any?
     = "#{:moderators.l}:"

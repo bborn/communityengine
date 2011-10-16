@@ -28,7 +28,7 @@ class SbPost < ActiveRecord::Base
   
   scope :with_query_options, :select => 'sb_posts.*, topics.title as topic_title, forums.name as forum_name', :joins => 'inner join topics on sb_posts.topic_id = topics.id inner join forums on topics.forum_id = forums.id', :order => 'sb_posts.created_at desc'
   scope :recent, :order => 'sb_posts.created_at ASC'
-  
+    
   def monitor_topic
     return unless user    
     monitorship = Monitorship.find_or_initialize_by_user_id_and_topic_id(self.user.id, self.topic.id)

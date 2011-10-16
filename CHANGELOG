@@ -30,6 +30,7 @@
 * swap jquery for prototype
 * photo cropping is not working
 * fix commentable routing (path prefix)
+* use Sanitize or Loofah gem
 
 =2.0.0.pre
 * Rails 3.1.0.beta1 compatibility

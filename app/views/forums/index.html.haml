@@ -41,7 +41,7 @@
               = number_with_delimiter(forum.sb_posts_count)
               = :posts.l
 
-          %p.desc= forum.description_html
+          %p.desc=raw forum.description_html
 
         %td.c3
           = link_to :edit.l, edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin?

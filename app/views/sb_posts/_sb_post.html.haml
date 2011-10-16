@@ -31,4 +31,4 @@
 
   %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
     = link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if logged_in?
-    = raw post.body_html
+    = raw post.body
