@@ -24,7 +24,7 @@
 * replace setup template with something else more sensible
 * allow overriding initializers, autoloading assets, etc
 * remove stylesheet customization
-* use aato instead of aatos
+* use aato instead of aatos (and fix pg problems)
 * authlogic has problems: not sure it's recording last_login magic columns, investigate
 * Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
 * swap jquery for prototype
