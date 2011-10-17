@@ -12,7 +12,9 @@ Tag.class_eval do
   end
   
   def self.popular(limit = 20, type = nil)
-    Tag.counts(:at_least => 0).limit(limit).order('count DESC')
+    tags = Tag.counts(:at_least => 0).limit(limit).order('count DESC')
+    tags = tags.where("taggings.taggable_type = ?", type.capitalize) if type
+    tags
   end  
   
 end

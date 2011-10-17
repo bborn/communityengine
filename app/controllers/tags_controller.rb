@@ -17,7 +17,7 @@ class TagsController < BaseController
     @tags = popular_tags(100)
 
     @user_tags = popular_tags(75, 'User')
-
+    
     @post_tags = popular_tags(75, 'Post')
 
     @photo_tags = popular_tags(75, 'Photo')

@@ -9,7 +9,7 @@
         - @tags.each do |tag|
           = link_to h(tag.name), tag_path(tag)
        
-    -if @related_tags
+    -if @related_tags.to_a.size > 0
       -box do 
         %h3.tags=:related_tags.l
         -tag_cloud @related_tags, %w(css1 css2 css3 css4) do |tag, css_class|
