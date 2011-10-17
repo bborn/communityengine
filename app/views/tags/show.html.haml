@@ -9,13 +9,11 @@
         - @tags.each do |tag|
           = link_to h(tag.name), tag_path(tag)
        
-    -if @related_tags.any?    
+    -if @related_tags
       -box do 
         %h3.tags=:related_tags.l
-        %ul
-          - tag_cloud @related_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
-            - css_class = css_class + (name.eql?(params[:id]) ? " selected": "")
-            %li= link_to h(name), tag_path(name), :class => css_class
+        -tag_cloud @related_tags, %w(css1 css2 css3 css4) do |tag, css_class|
+          =link_to h(tag.name), tag_path(tag), :class => css_class
       
         %h6.all= link_to :all_tags.l, tags_path
       

@@ -35,10 +35,7 @@ class Post < ActiveRecord::Base
   scope :since, lambda { |days|
     where("posts.published_at > ?", days.ago)    
   }
-  scope :tagged_with, lambda {|tag_name|
-    where("tags.name = ?", tag_name).includes(:tags)
-  }
-    
+
   def self.find_related_to(post, options = {})
     merged_options = options.merge({:limit => 8, 
         :order => 'published_at DESC', 

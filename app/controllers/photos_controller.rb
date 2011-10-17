@@ -28,8 +28,8 @@ class PhotosController < BaseController
     
     @photos = @photos.recent.page(params[:page]).per(20)
   
-    @tags = Photo.tag_counts(:conditions => { :user_id => @user.id }, :limit => 20)
-
+    @tags = Photo.includes(:taggings).where(:user_id => @user.id).tag_counts(:limit => 20)
+  
     @rss_title = "#{configatron.community_name}: #{@user.login}'s photos"
     @rss_url = user_photos_path(@user,:format => :rss)
 

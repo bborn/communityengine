@@ -96,9 +96,6 @@ class User < ActiveRecord::Base
   scope :featured, where(:featured_writer => true)
   scope :active, where("users.activated_at IS NOT NULL")
   scope :vendors, where(:vendor => true)
-  scope :tagged_with, lambda {|tag_name|
-    includes(:tags).where("tags.name = ?", tag_name)
-  }
   
 
   accepts_nested_attributes_for :avatar

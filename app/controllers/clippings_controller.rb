@@ -45,7 +45,8 @@ class ClippingsController < BaseController
 
     @clippings = @clippings.page(params[:page])
     
-    @tags = Clipping.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
+    @tags = Clipping.includes(:taggings).where(:user_id => @user.id).tag_counts(:limit => 20)    
+    
     @clippings_data = @clippings.collect {|c| [c.id, c.image_url, c.description, c.url ]  }
 
     @rss_title = "#{configatron.community_name}: #{@user.login}'s clippings"

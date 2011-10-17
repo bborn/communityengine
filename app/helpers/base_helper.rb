@@ -2,7 +2,8 @@ require 'digest/md5'
 
 # Methods added to this helper will be available to all templates in the application.
 module BaseHelper
-
+  include TagsHelper
+  
   def commentable_url(comment)
     if comment.commentable_type != "User"
       polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
@@ -57,21 +58,7 @@ module BaseHelper
   def box(html_options = {}, &block)
     block_to_partial('shared/box', html_options, &block)
   end  
-  
-  def tag_cloud(tags, classes)
-    max, min = 0, 0
-    tags.each { |t|
-      max = t.count.to_i if t.count.to_i > max
-      min = t.count.to_i if t.count.to_i < min
-    }
-
-    divisor = ((max - min) / classes.size) + 1
-
-    tags.each { |t|
-      yield t.name, classes[(t.count.to_i - min) / divisor]
-    }
-  end
-  
+    
   def city_cloud(cities, classes)
     max, min = 0, 0
     cities.each { |c|

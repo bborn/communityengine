@@ -18,9 +18,6 @@ class Clipping < ActiveRecord::Base
   acts_as_activity :user
     
   scope :recent, :order => 'clippings.created_at DESC'    
-  scope :tagged_with, lambda {|tag_name|
-    {:conditions => ["tags.name = ?", tag_name], :include => :tags}
-  }
     
     
   def self.find_related_to(clipping, options = {})

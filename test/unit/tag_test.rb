@@ -5,8 +5,7 @@ class TagTest < ActiveSupport::TestCase
 
   test "should get popular tags" do
     popular = Tag.popular
-    assert !popular.empty?
-    assert_equal popular.last['count'], 2
+    assert_equal popular.first['count'], 2
   end
   
   test "should get related tags" do

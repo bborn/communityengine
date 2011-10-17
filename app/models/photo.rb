@@ -22,9 +22,6 @@ class Photo < ActiveRecord::Base
   #Named scopes
   scope :recent, :order => "photos.created_at DESC"
   scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ?", 7.days.ago.iso8601]
-  scope :tagged_with, lambda {|tag_name|
-    {:conditions => ["tags.name = ?", tag_name], :include => :tags}
-  }
   attr_accessible :name, :description, :photo, :crop_x, :crop_y, :crop_w, :crop_h, :user_id
 
   def display_name

@@ -1,7 +1,7 @@
 .yui-b
   = render :partial => 'posts/author_profile', :locals => {:user => @user}
 
-  -box :id => 'tag_list', :class => 'yui-u first' do
+  -box :class => 'yui-u first' do
     %h3=:tags.l
     %ul.tags        
       - @tags.each do |tag|

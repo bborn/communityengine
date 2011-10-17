@@ -94,15 +94,8 @@ class BaseController < ApplicationController
       return @user
     end
 
-    def popular_tags(limit = nil, order = ' tags.name ASC', type = nil)
-      sql = "SELECT tags.id, tags.name, count(*) AS count 
-        FROM taggings, tags 
-        WHERE tags.id = taggings.tag_id "
-      sql += " AND taggings.taggable_type = '#{type}'" unless type.nil?      
-      sql += " GROUP BY tags.id, tags.name"
-      sql += " ORDER BY #{order}"
-      sql += " LIMIT #{limit}" if limit
-      Tag.find_by_sql(sql).sort{ |a,b| a.name.downcase <=> b.name.downcase}
+    def popular_tags(limit = 20, type = nil)
+      Tag.popular(limit, type)
     end
   
 
@@ -110,7 +103,7 @@ class BaseController < ApplicationController
       @recent_clippings = Clipping.find_recent(:limit => 10)
       @recent_photos = Photo.find_recent(:limit => 10)
       @recent_comments = Comment.find_recent(:limit => 13)
-      @popular_tags = popular_tags(30, ' count DESC')
+      @popular_tags = popular_tags(30)
       @recent_activity = User.recent_activity(:size => 15, :current => 1)
     
     end

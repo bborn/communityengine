@@ -14,6 +14,18 @@ class TagsControllerTest < ActionController::TestCase
    assert_response :success
    assert assigns(:photos).include?(photos(:library_pic))
   end
+  
+  def test_should_show_tag_with_type
+   %w(posts users clippings photos).each do |type|
+     item = type.classify.constantize.first
+     item.tag_list = "general"
+     item.save!
+     
+     get :show, :id => tags(:general).name, :type => 'type'
+     assert_response :success
+   end
+  end
+  
 
   def test_should_fail_to_show_tag
    get :show, :id => 'tag_that_does_not_exist'

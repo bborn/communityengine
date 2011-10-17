@@ -14,15 +14,15 @@ class TagsController < BaseController
   end
   
   def index  
-    @tags = popular_tags(100, ' count DESC')
+    @tags = popular_tags(100)
 
-    @user_tags = popular_tags(75, ' count DESC', 'User')
+    @user_tags = popular_tags(75, 'User')
 
-    @post_tags = popular_tags(75, ' count DESC', 'Post')
+    @post_tags = popular_tags(75, 'Post')
 
-    @photo_tags = popular_tags(75, ' count DESC', 'Photo')
+    @photo_tags = popular_tags(75, 'Photo')
 
-    @clipping_tags = popular_tags(75, ' count DESC', 'Clipping')  
+    @clipping_tags = popular_tags(75, 'Clipping')  
   end
   
   def manage
@@ -72,22 +72,22 @@ class TagsController < BaseController
       flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_names)
       redirect_to :action => :index and return
     end
-    @related_tags = @tags.collect { |tag| tag.related_tags }.flatten.uniq
+    @related_tags = @tags.first.related_tags
     @tags_raw = @tags.collect { |t| t.name } .join(',')
 
     if params[:type]
       case params[:type]
         when 'Post', 'posts'
-          @pages = @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 20, :current => params[:page]})
+          @pages = @posts = Post.recent.find_tagged_with(tag_names, :match_all => true).page(params[:page]).per(20)
           @photos, @users, @clippings = [], [], []
         when 'Photo', 'photos'
-          @pages = @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
+          @pages = @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true).page(params[:page]).per(30)
           @posts, @users, @clippings = [], [], []
         when 'User', 'users'
-          @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 30, :current => params[:page]})
+          @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true).page(params[:page]).per(30)
           @posts, @photos, @clippings = [], [], []
         when 'Clipping', 'clippings'
-          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :page => {:size => 10, :current => params[:page]})
+          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true).page(params[:page]).per(10)
           @posts, @photos, @users = [], [], []
       else
         @clippings, @posts, @photos, @users = [], [], [], []

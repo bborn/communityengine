@@ -28,5 +28,7 @@ require 'prototype-rails'
 require 'rails_autolink'
 require 'meta_search'
 require 'tinymce-rails'
+require 'acts_as_taggable'
+require 'tag_hacks'
 
 include EnginesExtensions

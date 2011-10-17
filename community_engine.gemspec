@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = "2011-10-13"
+  s.date = "2011-10-17"
   s.email = "admin@curbly.com"
   s.extra_rdoc_files = [
     "LICENSE",
@@ -199,8 +199,8 @@ Gem::Specification.new do |s|
     "app/models/rsvp.rb",
     "app/models/sb_post.rb",
     "app/models/state.rb",
-    "app/models/tag.rb",
     "app/models/topic.rb",
+    "app/models/twitter_profile.rb",
     "app/models/user.rb",
     "app/models/user_notifier.rb",
     "app/models/user_session.rb",
@@ -413,10 +413,9 @@ Gem::Specification.new do |s|
     "app/views/users/welcome_photo.html.haml",
     "app/views/votes/create.js.rjs",
     "community_engine.gemspec",
-    "config/application.yml",
+    "config/application_config.rb",
     "config/initializers/cropper.rb",
     "config/initializers/mce_options.rb",
-    "config/initializers/rakismet.rb",
     "config/initializers/recaptcha_constants.rb",
     "config/initializers/white_list.rb",
     "config/locales/de-DE.yml",
@@ -527,6 +526,7 @@ Gem::Specification.new do |s|
     "lib/community_engine/rails_asset_extensions.rb",
     "lib/community_engine/url_upload.rb",
     "lib/community_engine/viewable.rb",
+    "lib/tag_hacks.rb",
     "lib/tasks/community_engine_tasks.rake",
     "public/favicon.ico",
     "sample_files/s3.yml",
@@ -600,7 +600,7 @@ Gem::Specification.new do |s|
     "test/testapp/app/helpers/application_helper.rb",
     "test/testapp/config.ru",
     "test/testapp/config/application.rb",
-    "test/testapp/config/application.yml",
+    "test/testapp/config/application_config.rb",
     "test/testapp/config/boot.rb",
     "test/testapp/config/database.yml",
     "test/testapp/config/environment.rb",
@@ -694,40 +694,6 @@ Gem::Specification.new do |s|
     "vendor/plugins/acts_as_publishable/lib/acts_as_publishable.rb",
     "vendor/plugins/acts_as_publishable/test/acts_as_publishable_test.rb",
     "vendor/plugins/acts_as_publishable/uninstall.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/CHANGELOG",
-    "vendor/plugins/acts_as_taggable_on_steroids/MIT-LICENSE",
-    "vendor/plugins/acts_as_taggable_on_steroids/README",
-    "vendor/plugins/acts_as_taggable_on_steroids/Rakefile",
-    "vendor/plugins/acts_as_taggable_on_steroids/generators/acts_as_taggable_migration/acts_as_taggable_migration_generator.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/generators/acts_as_taggable_migration/templates/migration.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/init.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/lib/acts_as_taggable.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/lib/tag.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/lib/tag_counts_extension.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/lib/tag_list.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/lib/tagging.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/lib/tags_helper.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/abstract_unit.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/acts_as_taggable_test.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/database.yml",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/magazine.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/magazines.yml",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/photo.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/photos.yml",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/post.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/posts.yml",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/special_post.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/subscription.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/subscriptions.yml",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/taggings.yml",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/tags.yml",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/user.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/users.yml",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/schema.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/tag_list_test.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/tag_test.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/tagging_test.rb",
-    "vendor/plugins/acts_as_taggable_on_steroids/test/tags_helper_test.rb",
     "vendor/plugins/auto_complete/README",
     "vendor/plugins/auto_complete/Rakefile",
     "vendor/plugins/auto_complete/init.rb",
@@ -810,6 +776,9 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<rails>, ["= 3.1.0"])
       s.add_runtime_dependency(%q<rack>, ["= 1.3.2"])
       s.add_runtime_dependency(%q<arel>, ["= 2.2.1"])
@@ -834,8 +803,12 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<meta_search>, ["= 1.1.1"])
       s.add_runtime_dependency(%q<koala>, [">= 0"])
       s.add_runtime_dependency(%q<tinymce-rails>, ["~> 3.4.6"])
+      s.add_runtime_dependency(%q<bborn-acts_as_taggable_on_steroids>, ["~> 2.0.beta2"])
     else
       s.add_dependency(%q<community_engine>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -878,9 +851,13 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<meta_search>, ["= 1.1.1"])
       s.add_dependency(%q<koala>, [">= 0"])
       s.add_dependency(%q<tinymce-rails>, ["~> 3.4.6"])
+      s.add_dependency(%q<bborn-acts_as_taggable_on_steroids>, ["~> 2.0.beta2"])
     end
   else
     s.add_dependency(%q<community_engine>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
@@ -923,6 +900,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<meta_search>, ["= 1.1.1"])
     s.add_dependency(%q<koala>, [">= 0"])
     s.add_dependency(%q<tinymce-rails>, ["~> 3.4.6"])
+    s.add_dependency(%q<bborn-acts_as_taggable_on_steroids>, ["~> 2.0.beta2"])
   end
 end
 
