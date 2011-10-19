@@ -22,5 +22,13 @@ class AdTest < ActiveSupport::TestCase
   test "should get audiences for select tag" do
     assert_equal Ad.audiences_for_select, %w(all logged_in logged_out).map{|f| [f, f.to_s]}    
   end
+  
+  test "should not escape html" do
+    ad = ads(:hgtv)
+    ad.html = "<script>"
+    ad.save
+    html = Ad.display(:homepage_s1, true)
+    assert html.include?("<script>")
+  end
 
 end
