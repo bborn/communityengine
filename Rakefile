@@ -78,7 +78,7 @@ begin
     gem.add_dependency 'meta_search', '1.1.1'   
     gem.add_dependency 'koala'
     gem.add_dependency 'tinymce-rails', '~> 3.4.6'
-    gem.add_dependency "bborn-acts_as_taggable_on_steroids", "~> 2.0.beta2"
+    gem.add_dependency "bborn-acts_as_taggable_on_steroids", "~> 2.0.beta3"
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."
