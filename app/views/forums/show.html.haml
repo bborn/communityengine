@@ -73,7 +73,7 @@
     %h6.all.right= link_to :log_in_to_create_a_new_topic.l, new_forum_topic_path(@forum)
 
   - if @topics.size < 10
-    - @related = Post.tagged_with(@forum.tag_list).limit(10)
+    - @related = Post.limit(10).tagged_with(@forum.tag_list)
     - unless @related.empty?
       %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
         %tr

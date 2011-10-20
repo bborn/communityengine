@@ -62,7 +62,7 @@ class Photo < ActiveRecord::Base
         :order => 'created_at DESC', 
         :conditions => ['photos.id != ?', photo.id]
     })
-    tagged_with(photo.tags.collect{|t| t.name }).limit(options[:limit]).order(options[:order]).where(options[:conditions])
+    limit(options[:limit]).order(options[:order]).where(options[:conditions]).tagged_with(photo.tags.collect{|t| t.name })
   end
 
   def cropping?
