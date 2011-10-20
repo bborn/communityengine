@@ -366,17 +366,9 @@ class User < ActiveRecord::Base
   
   def recommended_posts(since = 1.week.ago)
     return [] if tags.empty?
-    rec_posts = Post.find_tagged_with(tags.map(&:name), 
-      :conditions => ['posts.user_id != ? AND published_at > ?', self.id, since ],
-      :order => 'published_at DESC',      
-      :limit => 10
-      )
-
-    if rec_posts.empty?
-      []
-    else
-      rec_posts.uniq
-    end
+    rec_posts = Post.tagged_with(tags.map(&:name)).where(['posts.user_id != ? AND published_at > ?', self.id, since ])
+    rec_posts = rec_posts.order('published_at DESC').limit(10)
+    rec_posts
   end
   
   def display_name

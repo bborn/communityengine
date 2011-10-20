@@ -58,11 +58,11 @@ class Photo < ActiveRecord::Base
   end
   
   def self.find_related_to(photo, options = {})
-    merged_options = options.merge({:limit => 8, 
+    options.reverse_merge!({:limit => 8, 
         :order => 'created_at DESC', 
         :conditions => ['photos.id != ?', photo.id]
     })
-    photo = find_tagged_with(photo.tags.collect{|t| t.name }, merged_options).uniq
+    tagged_with(photo.tags.collect{|t| t.name }).limit(options[:limit]).order(options[:order]).where(options[:conditions])
   end
 
   def cropping?

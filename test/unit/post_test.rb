@@ -190,5 +190,23 @@ class PostTest < ActiveSupport::TestCase
     
   end
 
+  test "should find related" do
+    p1 = posts(:funny_post)
+    p2 = posts(:not_funny_post)
+    
+    p1.tag_list = 'tag1, tag2'
+    p1.save!
+    p2.tag_list = 'tag2, tag3'
+    p2.save!
+    
+    assert Post.find_related_to(p1).include?(p2)
+
+    p2.tag_list = 'tag3, tag4'
+    p2.save!
+
+    assert !Post.find_related_to(p1).include?(p2)    
+
+    
+  end
       
 end

@@ -78,25 +78,25 @@ class TagsController < BaseController
     if params[:type]
       case params[:type]
         when 'Post', 'posts'
-          @pages = @posts = Post.recent.find_tagged_with(tag_names, :match_all => true).page(params[:page]).per(20)
+          @pages = @posts = Post.recent.tagged_with(tag_names, :match_all => true).page(params[:page]).per(20)
           @photos, @users, @clippings = [], [], []
         when 'Photo', 'photos'
-          @pages = @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true).page(params[:page]).per(30)
+          @pages = @photos = Photo.recent.tagged_with(tag_names, :match_all => true).page(params[:page]).per(30)
           @posts, @users, @clippings = [], [], []
         when 'User', 'users'
-          @pages = @users = User.recent.find_tagged_with(tag_names, :match_all => true).page(params[:page]).per(30)
+          @pages = @users = User.recent.tagged_with(tag_names, :match_all => true).page(params[:page]).per(30)
           @posts, @photos, @clippings = [], [], []
         when 'Clipping', 'clippings'
-          @pages = @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true).page(params[:page]).per(10)
+          @pages = @clippings = Clipping.recent.tagged_with(tag_names, :match_all => true).page(params[:page]).per(10)
           @posts, @photos, @users = [], [], []
       else
         @clippings, @posts, @photos, @users = [], [], [], []
       end
     else
-      @posts = Post.recent.find_tagged_with(tag_names, :match_all => true, :limit => 5)
-      @photos = Photo.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
-      @users = User.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10).uniq
-      @clippings = Clipping.recent.find_tagged_with(tag_names, :match_all => true, :limit => 10)
+      @posts = Post.recent.limit(5).tagged_with(tag_names, :match_all => true)
+      @photos = Photo.recent.limit(10).tagged_with(tag_names, :match_all => true)
+      @users = User.recent.limit(10).tagged_with(tag_names, :match_all => true)
+      @clippings = Clipping.recent.limit(10).tagged_with(tag_names, :match_all => true)
     end
   end
 

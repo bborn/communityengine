@@ -37,12 +37,12 @@ class Post < ActiveRecord::Base
   }
 
   def self.find_related_to(post, options = {})
-    merged_options = options.merge({:limit => 8, 
+    options.reverse_merge!({:limit => 8, 
         :order => 'published_at DESC', 
         :conditions => [ 'posts.id != ? AND published_as = ?', post.id, 'live' ]
     })
   
-    find_tagged_with(post.tag_list, merged_options).uniq
+    tagged_with(post.tag_list).limit(options[:limit]).order(options[:order]).where(options[:conditions])
   end
   
   def to_param
