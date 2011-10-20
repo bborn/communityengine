@@ -11,7 +11,7 @@ end
 Tag.class_eval do
     
   def to_param
-    self.name
+    URI.escape(self.name, /[\/.?#]/)
   end
   
   def related_tags(limit = 10)
