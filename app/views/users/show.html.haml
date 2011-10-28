@@ -58,7 +58,7 @@
       - @photo_comments.each do |comment|
         %dl.vcard
           %dt.photo
-            = link_to(image_tag(comment.user.avatar_photo_url(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))
+            = link_to(image_tag((comment.user && comment.user.avatar_photo_url(:thumb) || configatron.photo.missing_thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))            
           %dd.fn= "#{comment.username}" + " " + :says.l + ":"
           %dd
             = truncate_words(comment.comment, 10).html_safe
