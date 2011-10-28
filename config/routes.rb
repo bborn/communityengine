@@ -182,12 +182,14 @@ Rails.application.routes.draw do
     end
 
     resources :posts do
-      get 'page/:page', :action => :index, :on => :collection      
       collection do
         get :manage
+        get 'page/:page', :action => :index
       end
-      match :send_to_friend, :on => :member
-      match :update_views, :on => :member
+      member do
+        match :send_to_friend
+        put :update_views
+      end
     end
 
     resources :clippings

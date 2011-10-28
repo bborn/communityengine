@@ -82,4 +82,4 @@
 / sidebar
 
 %script{:type=>"text/javascript", :charset=>"utf-8"}
-  = remote_function :url => {:controller => 'posts', :action => 'update_views', :user_id => @post.user, :id => @post}, :method => :put
+  =remote_function :url => update_views_user_post_path(@post.user, @post), :method => :put  

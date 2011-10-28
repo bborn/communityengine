@@ -11,10 +11,7 @@ class PostsController < BaseController
          
   cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
-  caches_action :show, :if => Proc.new{|c| c.cache_action? }
-  def cache_action?
-    !logged_in? && controller_name.eql?('posts')
-  end  
+  caches_action :show, :if => Proc.new{|c| !logged_in? }
                            
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]
   before_filter :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage, :preview]
