@@ -143,7 +143,7 @@ configuration = {
     'search', 
     'sessions',
     'signup', 
-    'sitemap'
+    'sitemap',
     'sb_posts', 
     'sitemap', 
     'states',
