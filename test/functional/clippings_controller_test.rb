@@ -39,6 +39,17 @@ class ClippingsControllerTest < ActionController::TestCase
     assert_response :success
     assert !assigns(:clippings).empty?
   end
+  
+  test "should get site index with recent param" do
+    get :site_index, :recent => 'true'
+    assert_select '.alt a[href=/recent]'
+  end
+
+  test "should get site index without recent param" do
+    get :site_index
+    assert_select '.alt a[href=/recent?recent=true]'
+  end
+
 
   def test_should_get_site_index_rss
     get :site_index, :format => 'rss'
