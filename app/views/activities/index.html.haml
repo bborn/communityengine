@@ -10,7 +10,7 @@
   .yui-u
     -box do 
       %h3= :tags.l
-      - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
-        = link_to name, tag_path(URI.escape(name, /[\/.?#]/)), :class => css_class
+      - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |tag, css_class|
+        = link_to tag.name, tag_path(URI.escape(tag.name.to_s, /[\/.?#]/)), :class => css_class
       %h6.all=link_to :all_tags.l, tags_path
 
