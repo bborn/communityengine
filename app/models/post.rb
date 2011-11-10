@@ -28,50 +28,71 @@ class Post < ActiveRecord::Base
     
   attr_accessor :invalid_emails
   
-  #Named scopes
-  scope :by_featured_writers, where("users.featured_writer = ?", true).includes(:user)
-  scope :recent, order("posts.published_at DESC")  
-  scope :popular, order('posts.view_count DESC')
-  scope :since, lambda { |days|
-    where("posts.published_at > ?", days.ago)    
-  }
-
-  def self.find_related_to(post, options = {})
-    options.reverse_merge!({:limit => 8, 
-        :order => 'published_at DESC', 
-        :conditions => [ 'posts.id != ? AND published_as = ?', post.id, 'live' ]
-    })
+  # Class Methods
+  class << self
+    
+    # Scopes    
+    def by_featured_writers
+      where("users.featured_writer = ?", true).includes(:user)
+    end
+    def popular
+      order('posts.view_count DESC')
+    end
+    def since(days)
+      where("posts.published_at > ?", days.ago)    
+    end
+    def recent
+      order("posts.published_at DESC")    
+    end
   
-    limit(options[:limit]).order(options[:order]).where(options[:conditions]).tagged_with(post.tag_list)
+    def find_related_to(post, options = {})
+      options.reverse_merge!({:limit => 8, 
+          :order => 'published_at DESC', 
+          :conditions => [ 'posts.id != ? AND published_as = ?', post.id, 'live' ]
+      })
+
+      limit(options[:limit]).order(options[:order]).where(options[:conditions]).tagged_with(post.tag_list)
+    end
+    
+    def find_recent(options = {:limit => 5})
+      recent.find :all, options
+    end
+
+    def find_popular(options = {} )
+      options.reverse_merge! :limit => 5, :since => 7.days
+
+      self.popular.since(options[:since]).limit(options[:limit]).all
+    end
+
+    def find_featured(options = {:limit => 10})
+      self.recent.by_featured_writers.limit(options[:limit]).all
+    end
+
+    def find_most_commented(limit = 10, since = 7.days.ago)
+      Post.find(:all, 
+        :select => 'posts.*, count(*) as comments_count',
+        :joins => "LEFT JOIN comments ON comments.commentable_id = posts.id",
+        :conditions => ['comments.commentable_type = ? AND posts.published_at > ?', 'Post', since],
+        :group => self.columns.map{|column| self.table_name + "." + column.name}.join(","),
+        :order => 'comments_count DESC',
+        :limit => limit
+        )
+    end    
+    
+    def new_from_bookmarklet(params)
+      self.new(
+        :title => "#{params[:title] || params[:uri]}",
+        :raw_post => "<a href='#{params[:uri]}'>#{params[:uri]}</a>#{params[:selection] ? "<p>#{params[:selection]}</p>" : ''}"
+        )
+    end
+  
   end
+  
+  
+
   
   def to_param
     id.to_s << "-" << (title ? title.parameterize : '' )
-  end
-  
-  def self.find_recent(options = {:limit => 5})
-    self.recent.find :all, options
-  end
-  
-  def self.find_popular(options = {} )
-    options.reverse_merge! :limit => 5, :since => 7.days
-    
-    self.popular.since(options[:since]).limit(options[:limit]).all
-  end
-  
-  def self.find_featured(options = {:limit => 10})
-    self.recent.by_featured_writers.limit(options[:limit]).all
-  end
-  
-  def self.find_most_commented(limit = 10, since = 7.days.ago)
-    Post.find(:all, 
-      :select => 'posts.*, count(*) as comments_count',
-      :joins => "LEFT JOIN comments ON comments.commentable_id = posts.id",
-      :conditions => ['comments.commentable_type = ? AND posts.published_at > ?', 'Post', since],
-      :group => self.columns.map{|column| self.table_name + "." + column.name}.join(","),
-      :order => 'comments_count DESC',
-      :limit => limit
-      )
   end
   
   def display_title
@@ -132,14 +153,7 @@ class Post < ActiveRecord::Base
       self.increment(:emailed_count).save    
     end
   end
-  
-  def self.new_from_bookmarklet(params)
-    self.new(
-      :title => "#{params[:title] || params[:uri]}",
-      :raw_post => "<a href='#{params[:uri]}'>#{params[:uri]}</a>#{params[:selection] ? "<p>#{params[:selection]}</p>" : ''}"
-      )
-  end
-  
+    
   def image_for_excerpt
     first_image_in_body || user.avatar_photo_url(:medium)  
   end
