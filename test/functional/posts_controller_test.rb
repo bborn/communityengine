@@ -54,6 +54,15 @@ class PostsControllerTest < ActionController::TestCase
     get :preview, :id => posts(:funny_post).id, :user_id => users(:quentin)
     assert_response :success
   end
+
+  def test_should_edit_draft_post
+    posts(:funny_post).save_as_draft
+    
+    login_as :quentin    
+    get :edit, :id => posts(:funny_post).id, :user_id => users(:quentin)
+    assert_response :success
+  end
+
   
   test "shouldn't show draft to logged out or non owner/admin/moderator" do
     posts(:funny_post).save_as_draft

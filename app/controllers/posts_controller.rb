@@ -98,7 +98,7 @@ class PostsController < BaseController
   
   # GET /posts/1;edit
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.unscoped.find(params[:id])
   end
 
   # POST /posts
@@ -242,7 +242,7 @@ class PostsController < BaseController
   
   def require_ownership_or_moderator
     @user ||= User.find(params[:user_id])
-    @post ||= Post.find(params[:id]) if params[:id]
+    @post ||= Post.unscoped.find(params[:id]) if params[:id]
     unless admin? || moderator? || (@post && (@post.user.eql?(current_user))) || (!@post && @user && @user.eql?(current_user))
       redirect_to :controller => 'sessions', :action => 'new' and return false
     end
