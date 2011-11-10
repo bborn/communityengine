@@ -144,6 +144,7 @@ configuration = {
     'sessions',
     'signup', 
     'sitemap',
+    'site_index',    
     'sb_posts', 
     'sitemap', 
     'states',
