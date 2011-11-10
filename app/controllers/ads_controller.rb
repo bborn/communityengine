@@ -7,7 +7,7 @@ class AdsController < BaseController
   # GET /ads.xml
   def index
     @search = Ad.search(params[:search])
-    @search.order ||= :descend_by_created_at
+    @search.meta_sort ||= 'created_at.desc'    
     @ads = @search.page(params[:page]).per(15)
 
     respond_to do |format|

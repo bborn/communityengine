@@ -48,7 +48,7 @@ class AdminController < BaseController
   
   def comments
     @search = Comment.search(params[:search])
-    @search.order ||= :descend_by_created_at        
+    @search.meta_sort ||= 'created_at.desc'
     @comments = @search.page(params[:page]).per(100)
   end
   

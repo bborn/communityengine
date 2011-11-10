@@ -8,7 +8,7 @@ class HomepageFeaturesController < BaseController
 
   def index
     @search = HomepageFeature.search(params[:search])
-    @search.order ||= :descend_by_created_at
+    @search.meta_sort ||= 'created_at.desc'    
     @homepage_features = @search.page(params[:page]).per(100)
     respond_to do |format|
       format.html

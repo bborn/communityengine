@@ -20,9 +20,11 @@ class PostsController < BaseController
   skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages 
   
   def manage
-    @search = Post.unscoped.search(params[:search])
-    @search.order ||= :descend_by_created_at    
-    @posts = @search.where(:user_id => @user.id).page(params[:page]).per(params[:size]||10)
+    Post.unscoped do
+      @search = Post.search(params[:search])
+      @search.meta_sort ||= 'created_at.desc'
+      @posts = @search.where(:user_id => @user.id).page(params[:page]).per(params[:size]||10)
+    end
   end
 
   def index
