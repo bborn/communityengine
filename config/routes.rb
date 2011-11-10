@@ -182,7 +182,12 @@ Rails.application.routes.draw do
     end
 
     resources :posts do
-      get 'manage(/page/:page)', :action => :manage
+      get 'page/:page', :action => :index, :on => :collection            
+      
+      collection do 
+        # get 'manage(/page/:page)', :action => :manage
+        get :manage
+      end
       
       member do
         match :send_to_friend
