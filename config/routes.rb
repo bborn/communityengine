@@ -182,10 +182,8 @@ Rails.application.routes.draw do
     end
 
     resources :posts do
-      collection do
-        get :manage
-        get 'page/:page', :action => :index
-      end
+      get 'manage(/page/:page)', :action => :manage
+      
       member do
         match :send_to_friend
         put :update_views
