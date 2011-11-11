@@ -100,6 +100,16 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal assigns(:post).title, "changed_name"
   end
 
+
+  def test_should_update_draft_post
+    posts(:funny_post).save_as_draft
+        
+    login_as :quentin
+    put :update, :id => posts(:funny_post).id, :user_id => users(:quentin), :post => { :title => "changed_name", :published_as => "live" }
+    assert_redirected_to user_post_path(users(:quentin), assigns(:post))
+    assert assigns(:post).is_live?
+  end
+
   def test_should_fail_to_update_post
     login_as :quentin
     put :update, :id => posts(:funny_post).id, :user_id => users(:quentin), :post => { :title => nil }

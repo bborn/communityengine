@@ -132,7 +132,7 @@ class PostsController < BaseController
   # PUT /posts/1
   # PUT /posts/1.xml
   def update
-    @post = Post.find(params[:id])
+    @post = Post.unscoped.find(params[:id])
     @user = @post.user
     @post.tag_list = params[:tag_list] || ''
     
