@@ -62,7 +62,7 @@ class PostsController < BaseController
     @rss_title = "#{configatron.community_name}: #{@user.login}'s posts"
     @rss_url = user_posts_path(@user,:format => :rss)
     
-    @post = Post.find(params[:id])
+    @post = Post.unscoped.find(params[:id])
 
     @user = @post.user
     @is_current_user = @user.eql?(current_user)
