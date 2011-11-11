@@ -20,12 +20,11 @@
       %h3= :ads.l
       %table{"width"=>"100%"}
         %tr
-          %th=sort_link @search, :by => :name, :as => :name.l                    
+          %th=sort_link @search, :name, :name.l                    
           %th 
-            =sort_link @search, :by => :published, :as => :published.l                              
-            \?
+            =sort_link @search, :published, :published.l
           %th
-            =sort_link @search, :by => :location, :as => :location.l                              
+            =sort_link @search, :location, :location.l                              
           %th &nbsp;
 
         - for ad in @ads
