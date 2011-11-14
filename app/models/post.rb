@@ -104,10 +104,10 @@ class Post < ActiveRecord::Base
   end
   
   def previous_post
-    self.user.posts.find(:first, :conditions => ['published_at < ? and published_as = ?', published_at, 'live'], :order => 'published_at DESC')
+    self.user.posts.order('published_at DESC').where('published_at < ? and published_as = ?', published_at, 'live').first
   end
   def next_post
-    self.user.posts.find(:first, :conditions => ['published_at > ? and published_as = ?', published_at, 'live'], :order => 'published_at ASC')
+    self.user.posts.except(:order).order('published_at DESC').where('published_at > ? and published_as = ?', published_at, 'live').first    
   end
   
   def first_image_in_body(size = nil, options = {})

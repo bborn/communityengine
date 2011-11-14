@@ -72,7 +72,7 @@ class PostsController < BaseController
 
     @previous = @post.previous_post
     @next = @post.next_post    
-    @popular_posts = @user.posts.find(:all, :limit => 10, :order => "view_count DESC")    
+    @popular_posts = @user.posts.except(:order).order('view_count DESC').limit(10).all
     @related = Post.find_related_to(@post)
     @most_commented = Post.find_most_commented    
   end

@@ -46,6 +46,11 @@ class PostsControllerTest < ActionController::TestCase
     get :show, :id => posts(:funny_post).id, :user_id => users(:quentin)
     assert_response :success
   end
+  
+  test "show post should have popular posts sorted correctly" do
+    get :show, :id => posts(:funny_post).id, :user_id => users(:quentin)
+    assert assigns(:popular_posts).first.view_count > assigns(:popular_posts).last.view_count
+  end
 
   def test_should_show_draft_post
     posts(:funny_post).save_as_draft
@@ -185,10 +190,10 @@ class PostsControllerTest < ActionController::TestCase
   end  
   
   def test_should_update_views
-    assert_equal 0, posts(:funny_post).view_count
+    assert_equal 1, posts(:funny_post).view_count
     put :update_views, :user_id => posts(:funny_post).user_id, :id => posts(:funny_post)
     assert_response :success
-    assert_equal 1, posts(:funny_post).reload.view_count      
+    assert_equal 2, posts(:funny_post).reload.view_count      
   end
   
   def test_should_not_view_another_users_manage_page
