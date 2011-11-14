@@ -78,6 +78,7 @@
 - preformatted
 - style_formats
 - valid_child_elements
+- valid_children
 - valid_elements
 - verify_css_classes
 - verify_html
