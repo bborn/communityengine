@@ -388,6 +388,20 @@ class UsersController < BaseController
       }
     end
   end    
+  
+  def delete_selected
+    if params[:delete] 
+      params[:delete].each { |id|
+        user = User.find(id)
+        unless user.admin? || user.featured_writer?
+          user.spam! if params[:spam] && !configatron.akismet_key.nil?          
+          user.destroy 
+        end
+      }
+    end
+    flash[:notice] = :the_user_was_deleted.l                
+    redirect_to admin_users_path
+  end  
 
   protected  
     def setup_metro_areas_for_cloud

@@ -11,7 +11,7 @@ module CommunityEngine
     end
     
     initializer "#{engine_name}.rakismet_config", :before => "rakismet.setup" do |app|
-      if configatron.akismet_key
+      if !configatron.akismet_key.nil?
         app.config.rakismet.key  = configatron.akismet_key
         app.config.rakismet.url  = configatron.app_host
       end

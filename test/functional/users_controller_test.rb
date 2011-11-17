@@ -436,6 +436,15 @@ class UsersControllerTest < ActionController::TestCase
     get :statistics, :id => users(:quentin).id
     assert_response :success
   end
+  
+  test 'should delete selected users in admin users action' do
+    login_as :admin
+    assert_difference User, :count, -1 do
+      post :delete_selected, :delete => [users(:florian).id]
+    end
+    assert_redirected_to admin_users_path
+  end
+  
 
 
   

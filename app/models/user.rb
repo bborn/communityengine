@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
   include UrlUpload
   include FacebookProfile
   include TwitterProfile
-    
+  
+  include Rakismet::Model
+  rakismet_attrs :author => :login, :comment_type => 'registration', :content => :description, :user_ip => :last_login_ip, :author_email => :email
+  attr_protected :admin, :featured, :role_id, :akismet_attrs
+      
   has_friendly_id :login, :use_slug => true, :cache_column => 'login_slug'
   
   MALE    = 'M'
@@ -42,6 +46,7 @@ class User < ActiveRecord::Base
   validates_exclusion_of    :login, :in => configatron.reserved_logins
 
   validate :valid_birthday, :if => :requires_valid_birthday?
+  validate :check_spam    
   
   #associations
     has_many :authorizations, :dependent => :destroy
@@ -49,7 +54,7 @@ class User < ActiveRecord::Base
     has_many :photos, :order => "created_at desc", :dependent => :destroy
     has_many :invitations, :dependent => :destroy
     has_many :rsvps, :dependent => :destroy
-    has_many :albums    
+    has_many :albums, :dependent => :destroy    
 
     #friendship associations
     has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
@@ -68,7 +73,7 @@ class User < ActiveRecord::Base
     has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
 
     belongs_to  :avatar, :class_name => "Photo", :foreign_key => "avatar_id", :inverse_of => :user_as_avatar
-    belongs_to  :metro_area
+    belongs_to  :metro_area, :counter_cache => true
     belongs_to  :state
     belongs_to  :country
     has_many    :comments_as_author, :class_name => "Comment", :foreign_key => "user_id", :order => "created_at desc", :dependent => :destroy
@@ -436,6 +441,13 @@ class User < ActiveRecord::Base
     end
     user    
   end
+  
+  def check_spam
+    if !configatron.akismet_key.nil? && self.spam?
+      self.errors.add_to_base(:user_spam_error.l) 
+    end
+  end  
+  
   
   ## End Instance Methods
 

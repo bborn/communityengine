@@ -126,6 +126,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   match 'comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
+  
   resources :homepage_features
   resources :metro_areas
   resources :ads
@@ -133,10 +134,12 @@ Rails.application.routes.draw do
   resources :activities
   
   resources :users do
+    
     get 'page/:page', :action => :index, :on => :collection
     
     collection do
       post 'return_admin'
+      delete 'delete_selected'
     end
     member do
       get 'dashboard'

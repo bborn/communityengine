@@ -1,4 +1,9 @@
 class Post < ActiveRecord::Base
+  include Rakismet::Model
+  rakismet_attrs :comment_type => 'post'
+  attr_protected :akismet_attrs  
+  
+  
   acts_as_commentable
   acts_as_taggable
   acts_as_activity :user, :if => Proc.new{|r| r.is_live?}

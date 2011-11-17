@@ -1,5 +1,8 @@
 class Comment < ActiveRecord::Base
   include ActsAsCommentable::Comment
+  include Rakismet::Model
+  rakismet_attrs :author => :author_name, :comment_type => 'comment', :content => :comment, :user_ip => :author_ip  
+  attr_protected :akismet_attrs    
   
   belongs_to :commentable, :polymorphic => true
   belongs_to :user, :inverse_of => :comments_as_author, :foreign_key => 'user_id', :class_name => "User"
@@ -15,7 +18,8 @@ class Comment < ActiveRecord::Base
   validates_presence_of :author_email, :unless => Proc.new{|record| record.user }  #require email unless logged in
   validates_presence_of :author_ip, :unless => Proc.new{|record| record.user} #log ip unless logged in
   validates_format_of :author_url, :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :unless => Proc.new{|record| record.user }
-  
+  validate :check_spam
+    
   acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user
   
   def self.find_photo_comments_for(user)
@@ -101,6 +105,13 @@ class Comment < ActiveRecord::Base
       previous_comment.update_attribute :notify_by_email, false
     end
   end
+  
+  def check_spam
+    if !configatron.akismet_key.nil? && self.spam?
+      self.errors.add_to_base(:comment_spam_error.l) 
+    end
+  end  
+  
   
   protected
   def whitelist_attributes
