@@ -33,8 +33,6 @@ class CommentsController < BaseController
   def index
   
     @commentable = comment_type.constantize.find(comment_id)
-
-    redirect_to user_comments_path(params[:commentable_id]) and return if (params[:commentable_type] && params[:commentable_type].camelize == "User")    
       
     unless logged_in? || @commentable && (!@commentable.owner.nil? && @commentable.owner.profile_public?)
       flash.now[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
