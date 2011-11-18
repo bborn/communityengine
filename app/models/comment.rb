@@ -108,7 +108,7 @@ class Comment < ActiveRecord::Base
   
   def check_spam
     if !configatron.akismet_key.nil? && self.spam?
-      self.errors.add_to_base(:comment_spam_error.l) 
+      self.errors.add(:base, :comment_spam_error.l) 
     end
   end  
   
