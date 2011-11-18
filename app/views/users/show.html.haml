@@ -100,4 +100,4 @@
       = render :partial => 'comments/comment_form', :locals => {:commentable => @user}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments
-      %span#more_comments_links= more_user_comments_links
+      %span#more_comments_links= more_comments_links(@user)

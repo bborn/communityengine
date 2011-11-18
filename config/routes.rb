@@ -123,9 +123,9 @@ Rails.application.routes.draw do
     resources :favorites
   end
   scope "/:commentable_type/:commentable_id" do
-    resources :comments
+    resources :comments, :as => :commentable_comments
   end
-  match 'comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
+  match '/comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
   
   resources :homepage_features
   resources :metro_areas

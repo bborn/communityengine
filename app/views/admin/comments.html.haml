@@ -39,7 +39,7 @@
           %tbody
             - @comments.each do |comment|
               %tr{:id => "comment_#{comment.id}"}
-                %td=link_to_remote(image_tag('icons/delete.png'), {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )                                                
+                %td=link_to_remote(image_tag('icons/delete.png'), {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )                                                
                 %td= check_box_tag "delete[]", comment.id
                 %td
                   .left

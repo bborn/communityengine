@@ -587,8 +587,8 @@ es-AR:
   this_is_your_dashboard: Este es su panel de control.
   #en: this_topic_is_locked: This topic is locked.
   this_topic_is_locked: "Este tema est\xC3\xA1 bloqueado."
-  #en: this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
-  this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: "Este perfil de usuario no es p\xC3\xBAblico. Necesitas crear una cuenta e iniciar sesi\xC3\xB3n para poder accederlo."
+  #en: private_user_profile_message: This user's profile is not public. You'll need to create an account and log in to access it.
+  private_user_profile_message: "Este perfil de usuario no es p\xC3\xBAblico. Necesitas crear una cuenta e iniciar sesi\xC3\xB3n para poder accederlo."
   #en: time_constrained: Time constrained
   time_constrained: "Restricci\xC3\xB3n de tiempo"
   #en: tips: "Tips:"

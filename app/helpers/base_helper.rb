@@ -187,25 +187,14 @@ module BaseHelper
     string = "<li class='#{classes.join(' ')}'>" + link_to( content_tag(:span, name), options.delete(:url), options) + "</li>"
     string.html_safe
   end
-
-  # def format_post_totals(posts)
-  #   "#{posts.size} posts, How to: #{posts.select{ |p| p.category.eql?(Category.get(:how_to))}.size}, Non How To: #{posts.select{ |p| !p.category.eql?(Category.get(:how_to))}.size}"
-  # end
   
   def more_comments_links(commentable)
-    html = link_to "&raquo; ".html_safe + :all_comments.l, comments_url(commentable.class.to_s.underscore, commentable.to_param)
+    html = link_to "&raquo; ".html_safe + :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
     html += "<br />".html_safe
-		html += link_to "&raquo; ".html_safe + :comments_rss.l, comments_url(commentable.class.to_s.underscore, commentable.to_param, :format => :rss)
+		html += link_to "&raquo; ".html_safe + :comments_rss.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
 		html.html_safe
   end
-  
-  def more_user_comments_links(user = @user)
-    html = link_to "&raquo; ".html_safe + :all_comments.l, user_comments_url(user)
-    html += "<br />".html_safe
-		html += link_to "&raquo; ".html_safe + :comments_rss.l, user_comments_url(user.to_param, :format => :rss)
-		html.html_safe
-  end
-  
+    
   def show_footer_content?
     return true #you can override this in your app
   end

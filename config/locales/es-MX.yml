@@ -212,7 +212,7 @@ es-MX:
   assume_user_id: Asumir la identidad de este usuario
   delete_post: "Eliminar publicación"
   when_checked_your_profile_will_be_visible_to_anyone: Cuando está activado, su perfil es visible a todos.
-  this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: El perfil de este usuario no es público. usted necesita crear una cuenta e ingrsar para poder verlo.
+  private_user_profile_message: El perfil de este usuario no es público. usted necesita crear una cuenta e ingrsar para poder verlo.
   state: Estado
   singular_posts: "%{count} publicación"
   your_post_was_deleted: Su publicación fue eliminada.

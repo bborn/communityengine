@@ -1210,8 +1210,8 @@ fr:
   this_story_is_awesome: "Ce texte est extraordinaire !"
   #en: this_topic_is_locked: This topic is locked.
   this_topic_is_locked: Cette discussion est verrouillée.
-  #en: this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: This user's profile is not public. You'll need to create an account and log in to access it.
-  this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it: "Le profil de cet utilisateur est privé. Vous devez être inscrit pour le consulter."
+  #en: private_user_profile_message: This user's profile is not public. You'll need to create an account and log in to access it.
+  private_user_profile_message: "Le profil de cet utilisateur est privé. Vous devez être inscrit pour le consulter."
 #  #en: thumb: Thumb
   thumb: Thumb
   #en: time_constrained: Time constrained

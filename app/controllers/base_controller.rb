@@ -75,7 +75,7 @@ class BaseController < ApplicationController
       if @user = User.active.find(params[:user_id] || params[:id])
         @is_current_user = (@user && @user.eql?(current_user))
         unless logged_in? || @user.profile_public?
-          flash[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
+          flash[:error] = :private_user_profile_message.l
           access_denied 
         else
           return @user
@@ -136,14 +136,6 @@ class BaseController < ApplicationController
         polymorphic_url(comment.commentable)+"#comment_#{comment.id}"      
       end
     end
-
-    def commentable_comments_url(commentable)
-      if commentable.owner && commentable.owner != commentable
-        "#{polymorphic_path([commentable.owner, commentable])}#comments"      
-      else
-        "#{polymorphic_path(commentable)}#comments"      
-      end    
-    end 
     
     def initialize_header_tabs
       # This hook allows plugins or host apps to easily add tabs to the header by adding to the @header_tabs array
