@@ -5,7 +5,7 @@ require 'rails/all'
 #tired of the warnings, for now
 ActiveSupport::Deprecation.silenced = true
 
-Bundler.require(:default, Rails.env)
+Bundler.require
 require "community_engine"
 
 module Dummy

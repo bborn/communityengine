@@ -6,14 +6,14 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 3.1.0 (lower versions are not supported)
+	- RAILS VERSION 3.1.2
 
 Getting CommunityEngine Running
 --------------------------------
 
 1. Copy the following into your `Gemfile`:
 
-		gem 'community_engine', '2.0.0.beta', :git => 'https://github.com/bborn/communityengine.git', :branch => 'rails3'
+		gem 'community_engine', '2.0.0.beta1', :git => 'https://github.com/bborn/communityengine.git', :branch => 'rails3'
 
 2. From your app's root directory run:
 
