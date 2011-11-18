@@ -50,5 +50,5 @@ task :build do
 end
  
 task :release => :build do
-  system "gem push community_engine-#{CommunityEngine::Version::STRING}"
+  system "gem push community_engine-#{CommunityEngine::Version::STRING}.gem"
 end

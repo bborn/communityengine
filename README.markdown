@@ -13,7 +13,7 @@ Getting CommunityEngine Running
 
 1. Copy the following into your `Gemfile`:
 
-		gem 'community_engine', '2.0.0.beta1', :git => 'https://github.com/bborn/communityengine.git', :branch => 'rails3'
+		gem 'community_engine', '2.0.0.beta1'
 
 2. From your app's root directory run:
 

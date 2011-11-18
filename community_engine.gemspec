@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.11"
   
-  s.files = `git ls-files`.split("\n")
+  s.files       = `git ls-files`.split("\n") rescue ''
+  s.test_files  = `git ls-files -- {test}/*`.split("\n")  
   
   s.add_dependency(%q<rails>, ["= 3.1.2"])
   s.add_dependency(%q<rack>, ["= 1.3.5"])
