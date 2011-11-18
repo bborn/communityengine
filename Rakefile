@@ -43,3 +43,12 @@ namespace :test do
   end  
   
 end
+
+
+task :build do
+  system "gem build community_engine.gemspec"
+end
+ 
+task :release => :build do
+  system "gem push community_engine-#{CommunityEngine::Version::STRING}"
+end

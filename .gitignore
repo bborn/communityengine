@@ -1,6 +1,5 @@
 .bundle/
 log/*.log
-pkg/
 test/testapp/db/*.sqlite3
 test/testapp/log/*.log
 Gemfile.lock
@@ -11,3 +10,6 @@ Gemfile.lock
 test/testapp/public/system/
 coverage
 bin/
+
+pkg
+*.gem
