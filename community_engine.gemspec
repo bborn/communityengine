@@ -50,7 +50,5 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<koala>, [">= 0"])
   s.add_dependency(%q<tinymce-rails>, ["~> 3.4.7"])
   s.add_dependency(%q<bborn-acts_as_taggable_on_steroids>, ["~> 2.0.beta3"])
-  s.add_development_dependency(%q<sqlite3>)
-  
 end
 
