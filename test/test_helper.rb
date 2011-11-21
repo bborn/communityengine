@@ -53,7 +53,7 @@ class ActiveSupport::TestCase
   end 
   
   def authorize_as(user, mime_type = 'application/xml')
-    @request.env["HTTP_AUTHORIZATION"] = user ? "Basic #{Base64.encode64("#{users(user).login}:testy")}" : nil
+    @request.env["HTTP_AUTHORIZATION"] = user ? "Basic #{Base64.encode64("#{users(user).login}:test")}" : nil
   end
 
   def content_type(type)

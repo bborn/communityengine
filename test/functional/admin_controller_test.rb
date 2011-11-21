@@ -56,5 +56,13 @@ class AdminControllerTest < ActionController::TestCase
     get :clear_cache
     assert_redirected_to admin_dashboard_path
   end
+  
+  test "should get subscribers xml" do
+    authorize_as :admin
+
+    get :subscribers, :format => :xml
+    assert_response :success
+    assert assigns(:users).any?
+  end
 
 end

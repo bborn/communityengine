@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     match 'tags' => 'tags#manage', :as => :admin_tags
     match 'events' => 'admin#events', :as => :admin_events
     match 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
-    
+    match 'subscribers(.:format)' => "admin#subscribers", :as => :admin_subscribers
     
     resources :pages, :as => :admin_pages do
       member do
