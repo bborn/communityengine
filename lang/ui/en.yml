@@ -2,7 +2,7 @@ en:
   date:
     formats:
       published_date: "%m/%d/%Y"
-      date_ago: "%b %Y"
+      date_ago: "%b %d, %Y"
 
   time:
     formats:
@@ -10,7 +10,7 @@ en:
       short_published_date: "%m/%d/%y"
       literal_date: "%B %d, %Y"
       short_literal_date: "%b %d, %Y"
-      time_ago: "%l:%M%p"
+      time_ago: "%I:%M %P"
 
   activerecord:
     attributes:

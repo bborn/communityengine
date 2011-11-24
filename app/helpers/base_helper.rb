@@ -330,7 +330,7 @@ module BaseHelper
       when 1..59          then :minutes_ago.l(:count => distance_in_minutes)
       when 60..1440       then :hours_ago.l(:count => (distance_in_minutes.to_f / 60.0).round)
       when 1440..2880     then :days_ago.l(:count => (distance_in_minutes.to_f / 1440.0).round) # 1.5 days to 2 days
-      else I18n.l(from_time, :format => :time_ago)
+      else I18n.l(from_time.to_date, :format => :date_ago)
     end
   end
 

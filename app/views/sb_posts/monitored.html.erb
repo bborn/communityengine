@@ -27,9 +27,9 @@
 <tr class="post hentry" id="<%= post.dom_id %>">
   <td class="author vcard">
     <div class="date">
-      <abbr class="updated" title="<%= post.created_at.xmlschema %>">
+      <abbr class="updated" title="<%= post.created_at %>">
       <% if post.created_at > Time.now.utc-24.hours%>
-      <%= time_ago_in_words(post.created_at).sub(/about /, '') %> ago
+      <%= time_ago_in_words(post.created_at) %> ago
       <% else %>
       <%= post.created_at.strftime("%b %e, %Y")%>
       <% end %>
