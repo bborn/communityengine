@@ -23,8 +23,6 @@ ru-RU:
   sitemaps:
     index:
       users: Пользователи
-
-  
   date:
     formats:
       published_date: "%d.%m.%Y"
@@ -313,7 +311,7 @@ ru-RU:
   #en: comment_web_site_label: "Web site (include http://)"
   comment_web_site_label: "Вебсайт (включая http://)"  
   #en: comment_spam_error: "Comment was flagged as spam. Please make sure you aren't including any spammy words or links and try again."  
-  comment_spam_error: "Комментарий была отмечен как спам. Убедитесь, что вы не набрали спамовые слова или ссылки и попытайтесь еще раз"  
+  comment_spam_error: "Комментарий был отмечен как спам. Убедитесь, что вы не набрали спамовые слова или ссылки и попытайтесь еще раз"  
   #en: comments: Comments
   comments: Комментарии
   #en: comments_count: %{count} comments
