@@ -7,7 +7,7 @@
   %td.author.vcard{:width => "15%"}
     .date
       %a{"href"=>"##{post.dom_id}", "rel"=>"bookmark"}
-        %abbr.updated{"title"=>"#{post.created_at.xmlschema}"}= time_ago_in_words(post.created_at)
+        %abbr.updated{"title"=>"#{post.created_at}"}= time_ago_in_words(post.created_at)
 
     -if post.user
       = avatar_for post.user    

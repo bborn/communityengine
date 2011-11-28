@@ -8,7 +8,7 @@ class Message < ActiveRecord::Base
   has_many :children, :class_name => "Message", :foreign_key => "parent_id"
   has_many :message_threads
 
-  named_scope :parents, :conditions => "parent_id IS NULL"
+  # named_scope :conversation_roots, :conditions => "parent_id IS NULL"
 
   validates_presence_of :body, :subject
   validates_presence_of :recipient, :message => "is invalid"

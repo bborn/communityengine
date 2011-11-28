@@ -58,7 +58,7 @@
           %td.ca.inv.stat= topic.sb_posts_count
           %td.ca.inv.stat= number_with_delimiter(topic.views)
           %td.lp
-            %abbr.updated{:title=>"#{topic.replied_at.xmlschema}"}= time_ago_in_words(topic.replied_at)
+            %abbr.updated{:title=>"#{topic.replied_at}"}= time_ago_in_words(topic.replied_at)
             = :by.l
             %span.author
               %strong.fn= h(topic.replied_by_user.display_name)

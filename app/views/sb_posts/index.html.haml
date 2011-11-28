@@ -32,7 +32,7 @@
       %tr.post{ :id => post.dom_id }
         %td.author.vcard
           .date
-            %abbr.updated{ :title => post.created_at.xmlschema }
+            %abbr.updated{ :title => post.created_at }
               = time_ago_in_words(post.created_at)
 
           = avatar_for @users[post.user_id]
