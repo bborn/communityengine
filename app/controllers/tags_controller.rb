@@ -25,9 +25,8 @@ class TagsController < BaseController
     @clipping_tags = popular_tags(75, 'Clipping')  
   end
   
-  def manage
+  def manage    
     @search = Tag.search(params[:search])
-    @search.order ||= :ascend_by_name
     @search.meta_sort ||= 'name.asc'    
     @tags = @search.page(params[:page]).per(100)
   end

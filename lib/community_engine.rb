@@ -1,3 +1,5 @@
+require 'acts_as_taggable'
+
 require 'community_engine/engine'
 
 require 'community_engine/authenticated_system'
@@ -28,7 +30,6 @@ require 'prototype-rails'
 require 'rails_autolink'
 require 'meta_search'
 require 'tinymce-rails'
-require 'acts_as_taggable'
-require 'tag_hacks'
+
 
 include EnginesExtensions
