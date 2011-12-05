@@ -63,7 +63,7 @@ class CommentsController < BaseController
           @title = @user.login
           @back_url = user_path(@user)
         elsif @user = @commentable.user
-          @title = @commentable.try(:title) || @commentable.try(:description) || @title
+          @title = @commentable.respond_to?(:title) ? @commentable.title : @title
           @back_url = url_for([@user, @commentable])
         end
         
