@@ -142,7 +142,7 @@ module BaseHelper
             end
             title += " (#{:related_tags.l}: #{@related_tags.join(', ')})" if @related_tags
             title += divider + app_base    
-            @canonical_url = tag_url(URI.escape(@tags_raw, /[\/.?#]/)) if @tags_raw
+            @canonical_url = tag_url(URI.escape(URI.escape(@tags_raw), /[\/.?#]/)) if @tags_raw
           else
             title = "Showing tags #{divider} #{app_base} #{tagline}"
           end
