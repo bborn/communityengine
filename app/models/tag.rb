@@ -15,7 +15,8 @@ class Tag < ActiveRecord::Base
   end
       
   def to_param
-    URI.escape(self.name, /[\/.?#]/)
+    # First call to escape function is to handle utf-8 characters
+    URI.escape(URI.escape(self.name), /[\/.?#]/)
   end
   
   def related_tags(limit = 10)
