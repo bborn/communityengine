@@ -14,6 +14,11 @@ class TagsControllerTest < ActionController::TestCase
    assert_response :success
    assert assigns(:photos).include?(photos(:library_pic))
   end
+
+  def test_should_show_special_character_tag
+    get :show, :id => tags(:special_characters).name
+    assert_response :success
+  end
   
   def test_should_show_tag_with_type
    %w(posts users clippings photos).each do |type|
