@@ -37,19 +37,19 @@ class Photo < ActiveRecord::Base
   end
 
   def previous_photo
-    self.user.photos.find(:first, :conditions => ['created_at < ?', created_at], :order => 'created_at DESC')
+    self.user.photos.where('created_at < ?', created_at).first
   end
   def next_photo
-    self.user.photos.find(:first, :conditions => ['created_at > ?', created_at], :order => 'created_at ASC')
+    self.user.photos.where('created_at > ?', created_at).last
   end
 
   def previous_in_album
     return nil unless self.album
-    self.user.photos.find(:first, :conditions => ['created_at < ? and album_id = ?', created_at, self.album.id], :order => 'created_at DESC')
+    self.user.photos.where('created_at < ? and album_id = ?', created_at, self.album.id).first
   end
   def next_in_album
-    return nil unless self.album    
-    self.user.photos.find(:first, :conditions => ['created_at > ? and album_id = ?', created_at, self.album_id], :order => 'created_at ASC')
+    return nil unless self.album
+    self.user.photos.where('created_at > ? and album_id = ?', created_at, self.album_id).last
   end
 
 
