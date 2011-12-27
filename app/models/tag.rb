@@ -15,15 +15,21 @@ class Tag < ActiveRecord::Base
   end
       
   def to_param
-    # First call to escape function is to handle utf-8 characters
     URI.escape(URI.escape(self.name), /[\/.?#]/)
   end
   
   def related_tags(limit = 10)
-    taggable_ids = self.taggings.find(:all, :limit => 10).collect{|t| t.taggable_id }
-    return [] if taggable_ids.blank?
+    taggables = self.taggings.limit(10).all.collect{|t| t.taggable }
+    tagging_ids = taggables.map{|t| t.taggings.limit(10).map(&:id) }.flatten.uniq    
+    return [] if tagging_ids.blank?
   
-    Tag.where("tags.id != '#{self.id}'").select("tags.id, tags.name, COUNT(tags.id) as count").joins(:taggings).where({:taggings => {:taggable_id => taggable_ids}}).group("tags.id, tags.name").order("count DESC").limit(limit)
+    Tag.where("tags.id != '#{self.id}'").
+      select("tags.id, tags.name, COUNT(tags.id) as count").
+      joins(:taggings).
+      where({:taggings => {:id => tagging_ids }}).
+      group("tags.id, tags.name").
+      order("count DESC").
+      limit(limit)
   end
       
 end
