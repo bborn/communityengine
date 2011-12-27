@@ -12,4 +12,14 @@ yahoo_clipping_tagged_misc:
   id: 3
   tag_id: 2
   taggable_id: 2
-  taggable_type: Clipping  
+  taggable_type: Clipping
+another_pic_tagged_special_characters:
+  id: 4
+  tag_id: 4
+  taggable_id: 2
+  taggable_type: Photo
+google_clipping_tagged_related:
+  id: 5
+  tag_id: 5
+  taggable_id: 1
+  taggable_type: Clipping
