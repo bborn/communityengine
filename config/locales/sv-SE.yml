@@ -1,4 +1,30 @@
 sv:
+
+  authorizations:
+    create:
+      success_existing_user: "Inloggning via %{provider} har lagts till"
+      success_message: "Välkommen %{provider}-användare. Du är nu inloggad."
+    failure:
+      notice: "Tyvärr, auktoriseringen misslyckades"
+    destroy:
+      notice: "Inloggning via %{provider} borttagen."
+  sessions:
+    new:
+      omniauth:
+        header: "Logga in med:"
+        button_alt: "Logga in med ditt %{provider}-konto"
+  users:
+    edit_account:
+      omniauth:
+        confirm_remove: "Är du säker på att du vill ta bort möjligheten att logga in via %{provider}?"
+        title_remove: "Ta bort möjligheten att logga in via %{provider}?"
+  tags:
+    show:
+      users: "Användare"
+  sitemaps:
+    index:
+      users: "Användare"
+
   date:
     formats:
       published_date: "%Y-%m-%d"
@@ -6,9 +32,12 @@ sv:
 
   time:
     formats:
-      published_date: "%Y-%m-%d"      
-      short_date: "%y-%m-%d"
-      time_ago: "%l:%M%p"
+      published_date: "%Y-%m-%d"
+      short_published_date: "%y-%m-%d"
+      literal_date: "%d %B, %Y"
+      short_literal_date: "%d %b, %Y"
+      time_ago: "%H:%M"
+
 
   activerecord:
     attributes:
@@ -795,7 +824,7 @@ sv:
   #en: popular: Popular
   popular: Populära
   #en: popular_catgory: Popular %{name}
-  popular_catgory: "Populära %{name}"
+  popular_category: "Populära %{name}"
   #en: popular_posts: Popular Posts
   popular_posts: Populära inlägg
   #en: popular_posts_on: Popular Posts on
@@ -1318,3 +1347,182 @@ sv:
   youve_been_logged_out_hope_you_come_back_soon: Du är nu utloggad. Välkommen tillbaka snart igen!
   #en: zippostal_code: "ZIP/Postal code:"
   zippostal_code: "Postnr:"
+
+
+  # Did not get translation plugin working so adding missing localization keys here
+
+  greeting: "Välkommen %{name}"
+  admin_pages: "Sidor"
+  administer_events: "Administrera event"
+  allow_rsvp: "Tillåt svar"
+  anonymous: "Anonym"
+  are_attending_this_event: "ska närvara på evenemanget"
+  is_attending_this_event: "ska närvara på evenemanget"
+  are_you_sure_you_want_to_delete_this_page: "Är du säker på att du vill ta bort den här sidan?"
+  attendees: "Deltagare"
+  cache_cleared: "Cachen har rensats"
+  cache_clear_link: "Rensa cachen"
+  cancel_and_go_back_to_pages: "avbryt och gå tillbaks till sidor"
+  cannot_rsvp_for_an_event_that_has_already_happened: "Kan inte svara till ett event som redan har varit."
+  check_out_this_story_on: "Kolla in den här storyn på %{site}"
+  clipping_from_user: "Urklipp av %{user}"
+  clone: "Klona"
+  clippings_tagged: "Urklipp taggade"
+  commentable_type: "Kommenterbar typ (Inlägg, Användare, etc.)"
+  commentable_id: "Kommenterbart ID"
+  comment_notifications_off: "Notifieringar om kommentarer är för närvarande avstängda."
+  comment_author_email_required: "Obligatorisk, kommer inte visas på sidan."
+  comment_web_site_label: "Websida (inkludera http://)"
+  comment_spam_error: "Kommentaren har flaggats som spam. Se till att du inte använder spammiga ord eller länkar och försök igen"
+  comments_count:
+    one: "En kommentar"
+    other: "%{count} kommentarer"
+  comments_deleted: "Kommentarer borttagna"
+  comment_unsubscribe_succeeded: "Tack, vi har nu tagit bort din prenumeration på nofifieringar på den här kommentaren."
+  delete_selected_mark_as_spam: "Markera som spam"
+  delete_this_page: "Ta bort den här sidan"
+  edit_page: "Redigera sidan"
+  edit_rsvp_for: "Redigera svar för"
+  editing_tag: "Redigera tag"
+  email: "Email"
+  end_time: "Sluttid"
+  event_details: "Evenemangsinformation"
+  event_comments: "Kommentarer om evenemanget"
+  event_does_not_allow_rsvp: "Detta evenemang tillåter inte att man OSAr."
+  expert_in: "expert på"
+  favorited: "favorit"
+  post_found:
+    one: "1 inlägg funnet"
+    other: "%{count} inlägg funna"
+  friendship_request_accepted: "Vänförfrågan accepterad!"
+  get_started: "Kom igång:"
+  invite_some_friends: "Bjud in några vänner!"
+  tell_us_about_yourself: "Berätta om dig själv"
+  upload_a_profile_photo: "Ladda upp en profilbild"
+  has_commented_on_something_that_you_also_commented_on: "%{user} har kommenterat en %{item} som du också kommenterat."
+  has_posted_in_a_thread_you_are_monitoring: "%{user} has skrivit i en tråd som du övervakar."
+  has_something_to_say_to_you_on: "%{user} har något att berätta för dig på %{site}!"
+  his: "hans"
+  her: "hennes"
+  homepage_feature_created: "Hemsidesfunktion skapad"
+  items_tagged: "Object taggade med"
+  joined_the_site: "gick med i %{site}"
+  most_recent: "senaste"
+  most_popular: "mest populära"
+  make_page_public: "Gör den här sidan publik"
+  manage: "Hantera:"
+  manage_pages: "Hantera sidor"
+  map_it: "Lägg in det på kartan!"
+  read: "läst"
+  unread: "oläst"
+  unread_messages:
+    one: "1 oläst meddelande"
+    other: "%{count} olästa meddelanden"
+  my_account: "Mitt konto"
+  my_blog: "Min blogg"
+  my_blog_posts: "Mina inlägg"
+  my_clippings: "Mina urklipp"
+  my_photos: "Mina foton"
+  new_page: "Ny sida"
+  no_clippings_yet: "Inga urklipp ännu."
+  number_of_attendees: "Antal deltagare (dig inkluderat)"
+  optional_keywords_describing_this_clipping_separated_by_commas: "valfria nyckelord som beskriver det här urklippet, separerade med komma"
+  optional_keywords_describing_this_forum_separated_by_commas: "valfria nyckelord som beskriver det här forumet, separerade med komma"
+  optional_keywords_describing_this_photo_separated_by_commas: "valfria nyckelord som beskriver det här fotot, separerade med komma"
+  optional_keywords_describing_this_topic_separated_by_commas: "valfria nyckelord som beskriver det här ämnet, separerade med komma"
+  true: "sant"
+  false: "falskt"
+  page_not_found: "Sidan du försökte visa har flyttats eller existerar inte längre."
+  page_not_public_warning: "Den här sidan är inte publik, du måste skapa ett konto och logga in för att få access till den"
+  page_was_successfully_created: "Sidan har skapats."
+  page_was_successfully_deleted: "Sidan har tagits bort."
+  page_was_successfully_updated: "Sidan har uppdaterats."
+  page_tips: "Sidor är ett bra ställe att sätta statiskt innehåll som du inte vill lägga i en blog eller i ett forum."
+  plural_photos:
+    one: "1 Foto"
+    other: "%{count} Foton"
+  photos_tagged: "Foton taggade med"
+  please_activate_your_new_account: "Vänligen aktivera ditt nya %{site}-konto"
+  posted_an_event: "la upp ett evenemang:"
+  upcoming_events: "Kommande evenemang"
+  past_events: "Tidigare evenemang"
+  posts_tagged: "Inlägg taggade med"
+  pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: "Sidor sparade med statusen 'utkast' kommer inte visas på sidan förrän du publicerar dom."
+  public: "Publik"
+  recent_photos: "Nya foton"
+  retract_rsvp: "Ta tillbaka svar"
+  rsvp_for: "Svar för"
+  rsvped_for_an_event: "OSAde till ett event:"
+  rsvp: "Svar"
+  rsvps: "Svar"
+  save_page_as: "Spara sida som:"
+  see_all_recent_posts: "Se alla nya inlägg"
+  select_your_city: "Välj din stad"
+  send_comment_notifications: "Skicka notifieringar om kommentarer?"
+  send_me_a_message: "Skicka ett meddelande till mig"
+  sent_you_a_private_message: "%{user} har sänt ett privat meddelande till dig!"
+  sharethis: "ShareThis"
+  subscribe_events_instructions: "Håll dig uppdaterad om evenemang med hjälp av ditt favoritprogram (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) eller onlinetjänst (Google Calendar, AirSet, iScrybe, etc.)."
+  taggings: "Taggningar"
+  tag_was_successfully_updated: "Taggen har uppdaterats"
+  tag_was_successfully_deleted: "Taggen har tagits bort"
+  the_team: "Teamet bakom %{site} <%{email}>"
+  the_user_was_deactivated: "Användaren har deaktiverats"
+  their: "deras"
+  update_rsvp: "Uppdatera svar"
+  user_information: "%{site} Användarinformation"
+  users_profile: "%{user}'s profil"
+  users_tagged: "Användare taggade med"
+  vendor_avatar_hint: "Du kanske vill använda ditt företags logga, ett foto eller en av dina produkter. "
+  what_is_site: "Vad är %{site}"
+  when: "När"
+  where: "Var"
+  when_checked_this_page_will_be_visible_to_anyone: "När denna ruta är ikryssad, kommer sidan vara synlig för alla."
+  when_checked_users_will_be_able_to_rsvp_for_this_event: "När denna ruta är ikryssad, kommer inloggade användare att kunna OSA till eventet."
+  when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: "När rutan inte är ikryssad, kommer sidan bara vara synlig för dom som är inloggade på"
+  would_like_to_be_friends_with_you_on: "%{user} vill bli vän med dig på %{site}!"
+  would_like_you_to_join: "%{user} skulle vilja att du gick med i %{site}!"
+  you_have_friends:
+    one: "Du har 1 vän."
+    other: "Du har %{count} vänner."
+  you_have_added_clippings:
+    one: "Du har lagt till 1 urklipp."
+    other: "Du har lagt till %{count} urklipp."
+  you_have_already_rsvped_for_this_event: "Du har redan OSAt till det här evenemanget."
+  you_have_left_comments:
+    one: "Du har skrivit 1 kommentar."
+    other: "Du har skrivit %{count} kommentarer."
+  you_have_uploaded_photos:
+    one: "Du har laddat upp 1 foto."
+    other: "Du har laddat upp %{count} foton."
+  you_have_written_blog_posts:
+    one: "Du har skrivit 1 inlägg."
+    other: "Du har skrivit %{count} inlägg."
+  your_account_has_been_activated: "Ditt %{site}-konto har aktiverats!"
+  your_faq_text_goes_here: "Din FAQ text sätter du här."
+  your_rsvp_has_been_retracted: "Ditt svar har tagits tillbaka."
+  your_rsvp_was_successfully_created: "Ditt svar har lagrats."
+  your_rsvp_was_successfully_updated: "Ditt svar har uppdaterats."
+  photo_manager: "Fotohanterare"
+  album: "Album"
+  albums: "Album"
+  album_added_photos: "Foton har lagts till i albumet"
+  album_updated: "Albumet har uppdaterats"
+  album_comments: "Albumkommentarer"
+  album_tip: "Album låter dig organisera dina foton. Dela dina erfarenheter med andra %{community_name}-användare"
+  delete_album_and_photos: "Ta bort albumet och tillhörande foton?"
+  album_was_successfully_created: "Albumet har skapats"
+  view_more: "Visa mer"
+  assign_album: "Tilldela album"
+  new_album: "Nytt album"
+  created_an_album: "Skapade ett album"
+  add_photos: "Lägg till foton"
+  view_my_album: "Visa mitt album"
+  photos_of_this_album: "Foton från det här albumet"
+  not_assigned_photos: "Foton som inte hör till något album"
+  create_and_add_photos: "Skapa och lägg till foton till det här albumet."
+  edit_and_add_photos: "Redigera och lägg till foton till det här albumet."
+  create_album: "Skapa album"
+  edit_album: "Redigera album"
+  cancel_and_go_back_to_photo_manager: "Avbryt och gå tillbaka till fotohanteraren"
+  back_to_photo_manager: "Tillbaka till fotohanteraren"
