@@ -34,8 +34,7 @@ class TopicsController < BaseController
 
         @posts = @topic.sb_posts.recent.includes(:user).page(params[:page]).per(25)
 
-        @voices = @posts.map(&:user)
-        @voices.compact.uniq!
+        @voices = @posts.map(&:user).compact.uniq
         @post   = SbPost.new(params[:post])
       end
       format.xml do
