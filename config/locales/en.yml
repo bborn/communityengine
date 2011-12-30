@@ -1623,7 +1623,7 @@ en:
   #en: album_comments: "Comentarios de álbum"
   album_comments: "Album comments"
   #en: album_tip: "Albums let you organize yout photos. Share whole experiencies with other %{community_name} users"
-  album_tip: "Albums let you organize yout photos. Share whole experiencies with other %{community_name} users"  
+  album_tip: "Albums let you organize your photos. Share whole experiencies with other %{community_name} users"
   #en: delete_album_and_photos: Delete album and its associated photos?
   delete_album_and_photos: "Delete album and its associated photos?"
   #en: album_was_successfully_created: "Album was successfully created"
