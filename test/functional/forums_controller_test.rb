@@ -83,7 +83,7 @@ class ForumsControllerTest < ActionController::TestCase
     
     assert_redirected_to forums_path
   end
-
+  
   # def test_should_destroy_forum_with_xml
   #   authorize_as :aaron
   #   content_type 'application/xml'

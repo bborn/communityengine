@@ -27,7 +27,6 @@ class SbPostsController < BaseController
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
     
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
-    render_posts_or_xml
   end
 
   def search
@@ -36,19 +35,17 @@ class SbPostsController < BaseController
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
 
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
-    render_posts_or_xml :index
+    render :action => :index
   end
 
   def monitored
     @user = User.find params[:user_id]    
     @posts = SbPost.with_query_options.joins('INNER JOIN monitorships ON monitorships.topic_id = topics.id').where('monitorships.user_id = ? AND sb_posts.user_id != ?', params[:user_id], @user.id).page(params[:page])
-    render_posts_or_xml
   end
 
   def show
     respond_to do |format|
       format.html { redirect_to forum_topic_path(@post.forum_id, @post.topic_id) }
-      format.xml  { render :xml => @post.to_xml }
     end
   end
 
@@ -139,11 +136,4 @@ class SbPostsController < BaseController
       @post = SbPost.find_by_id_and_topic_id_and_forum_id(params[:id].to_i, params[:topic_id].to_i, params[:forum_id].to_i) || raise(ActiveRecord::RecordNotFound)
     end
     
-    def render_posts_or_xml(template_name = action_name)
-      respond_to do |format|
-        format.html { render :action => "#{template_name}" }
-        format.rss  { render :action => "#{template_name}.xml.builder", :layout => false }
-        format.xml  { render :xml => @posts.to_xml }
-      end
-    end
 end

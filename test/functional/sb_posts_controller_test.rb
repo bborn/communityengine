@@ -140,25 +140,7 @@ class SbPostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal [sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
-  
-  def test_should_view_recent_posts_as_rss
-    get :index, :format => 'rss'
-    assert_response :success
-    assert_equal [sb_posts(:il8n), sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus), sb_posts(:ponies), sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi), sb_posts(:sticky)], assigns(:posts)
-  end
-
-  def test_should_view_posts_by_forum_as_rss
-    get :index, :forum_id => forums(:comics).to_param, :format => 'rss'
-    assert_response :success
-    assert_equal [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
-  end
-
-  def test_should_view_posts_by_user_as_rss
-    get :index, :user_id => users(:sam).id, :format => 'rss'
-    assert_response :success
-    assert_equal [sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:ponies), sb_posts(:pdi_reply), sb_posts(:sticky)], assigns(:posts)
-  end
-  
+    
   def test_disallow_new_post_to_locked_topic
     galactus = topics(:galactus)
     galactus.locked = true
@@ -188,6 +170,20 @@ class SbPostsControllerTest < ActionController::TestCase
     end
     configatron.allow_anonymous_forum_posting = false        
   end
+
+  test "should show recent with anonymous posts" do
+    configatron.allow_anonymous_forum_posting = true
+    
+    topic = topics(:pdi)
+      
+    assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
+    
+    get :index    
+    assert_response :success
+    
+    configatron.allow_anonymous_forum_posting = false        
+  end
+  
 
   
 end

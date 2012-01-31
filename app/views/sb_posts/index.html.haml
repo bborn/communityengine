@@ -35,11 +35,16 @@
             %abbr.updated{ :title => post.created_at.xmlschema }
               = time_ago_in_words(post.created_at)
 
-          = avatar_for @users[post.user_id]
-          %span.fn
-            = link_to truncate(h(@users[post.user_id].display_name), :length => 15), user_path(post.user)
-          %span.posts
-            = pluralize @users[post.user_id].sb_posts_count, :post.l
+          -if post.user
+            = avatar_for post.user    
+            %span.fn
+              = link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)
+            %span.posts= pluralize post.user.sb_posts_count, :post.l
+          -else
+            = image_tag(configatron.photo.missing_thumb, :height => '32', :width => '32', :class => 'photo')        
+            %span.fn
+              =truncate(h(post.username), :length => 15)
+
         %td.body.entry-content
           %p.topic
             = link_to(h(post.forum_name), forum_path(post.forum))
