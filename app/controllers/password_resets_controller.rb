@@ -22,6 +22,10 @@ class PasswordResetsController < BaseController
   end
 
   def edit
+    # If the user is clicking on a 'reset password' link we emailed him, he's confirming that email
+    if !@user.active?
+      @user.activate
+    end
   end
 
   def update
