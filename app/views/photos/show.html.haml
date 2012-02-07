@@ -41,7 +41,7 @@
 
         %p.centered= tag(:img, :src => @photo.photo(:large), :class => "polaroid" )
         %p= h @photo.description
-        %p= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")
+        %p= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ").html_safe
 
       -box :class => "hfeed comments", :id => 'comments' do
         %h3=:photo_comments.l
