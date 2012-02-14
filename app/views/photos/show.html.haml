@@ -14,7 +14,7 @@
       -box :class => "photo_nav alt" do
         = link_to "<img src='#{@previous.photo.url(:thumb)}' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @previous), :class => 'left' if @previous
         
-        = link_to "<img src='#{@next.photo.url(:thumb)}' /><br />" + :next.l + "&raquo;".html_safe, user_photo_path(@user, @next), :class => 'right' if @next
+        = link_to "<img src='#{@next.photo.url(:thumb)}' /><br />".html_safe + :next.l + "&raquo;".html_safe, user_photo_path(@user, @next), :class => 'right' if @next
 
     - if @related.any?
       -box :class => "alt" do 
