@@ -45,6 +45,6 @@
         %li.tags= "#{:my_tags.l}: #{@user.tags.collect{|t| link_to t.name, tag_url(t) }.join(", ")}".html_safe
       - if @user.metro_area
         %li.geo= link_to( @user.full_location, users_path(:metro_area_id => @user.metro_area_id, :state_id => @user.state_id, :country_id => @user.country_id ) ) 
-      - if current_user
+      - if current_user && @user != current_user
         %li.compose= link_to(:send_me_a_message.l, new_user_message_path(current_user, :to=>@user))
   .clear
