@@ -180,7 +180,7 @@ class PostsController < BaseController
 
     @monthly_popular_posts = Post.find_popular({:limit => 20, :since => 30.days})
     
-    @related_tags = Tag.find_by_sql("SELECT tags.id, tags.name, count(*) AS count 
+    @related_tags = ActsAsTaggableOn::Tag.find_by_sql("SELECT tags.id, tags.name, count(*) AS count 
       FROM taggings, tags 
       WHERE tags.id = taggings.tag_id GROUP BY tags.id, tags.name");
 

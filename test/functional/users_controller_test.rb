@@ -422,9 +422,10 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_get_dashboard_with_no_recommended_posts
     login_as :quentin
-    users(:aaron).tag_list = 'hansel, gretel'
+    users(:aaron).tag_list = 'hansel,gretel'
     users(:aaron).save
-    assert !users(:aaron).tags.empty?
+    
+    assert !users(:aaron).tags.reload.empty?
 
     assert users(:aaron).recommended_posts.empty?    
     get :dashboard, :id => users(:aaron).friendly_id

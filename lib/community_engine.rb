@@ -1,4 +1,4 @@
-require 'acts_as_taggable'
+require 'acts-as-taggable-on'
 
 require 'community_engine/engine'
 

@@ -95,7 +95,7 @@ class BaseController < ApplicationController
     end
 
     def popular_tags(limit = 20, type = nil)
-      Tag.popular(limit, type)
+      ActsAsTaggableOn::Tag.popular(limit, type)
     end
   
 

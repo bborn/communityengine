@@ -211,6 +211,7 @@ class UserTest < ActiveSupport::TestCase
     assert User.tagged_with('foo').include?(user)
   end
   
+    
   test "should prepare params for search" do
     params = User.prepare_params_for_search(:metro_area_id => 1, :state_id => 1)
     assert_equal(params, {:metro_area_id=>1, :state_id=>1, "metro_area_id"=>1, "state_id"=>1, "country_id"=>nil})

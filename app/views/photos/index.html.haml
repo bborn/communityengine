@@ -6,10 +6,10 @@
     %ul.tags        
       - @tags.each do |tag|
         %li
-          - if (tag.name.eql?(params[:tag_name]) )
-            = link_to tag.name, user_photos_path(@user), :class => "selected"
+          - if (ActsAsTaggableOn::Tag.name.eql?(params[:tag_name]) )
+            = link_to ActsAsTaggableOn::Tag.name, user_photos_path(@user), :class => "selected"
           - else
-            = link_to tag.name, user_photos_path(:user_id => @user, :tag_name => tag.name)    
+            = link_to ActsAsTaggableOn::Tag.name, user_photos_path(:user_id => @user, :tag_name => ActsAsTaggableOn::Tag.name)    
   
 
 #yui-main

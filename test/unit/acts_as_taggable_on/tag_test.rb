@@ -1,15 +1,15 @@
 require 'test_helper'
 
-class TagTest < ActiveSupport::TestCase
+class ActsAsTaggableOn::TagTest < ActiveSupport::TestCase
   fixtures :all  
 
   test "should get popular tags" do
-    popular = Tag.popular
+    popular = ActsAsTaggableOn::Tag.popular
     assert_equal popular.first['count'], 2
   end
   
   test "should get popular tags of one type" do
-    popular = Tag.popular(20, 'clipping')
+    popular = ActsAsTaggableOn::Tag.popular(20, 'clipping')
     assert_equal popular.to_a.size, 2
     assert_equal popular.first['count'], 2
   end

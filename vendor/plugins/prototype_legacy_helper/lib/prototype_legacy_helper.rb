@@ -27,7 +27,7 @@ module PrototypeHelper
   #  <%= submit_to_remote 'update_btn', 'Update', :url => { :action => 'update' },
   #     :update => { :success => "succeed", :failure => "fail" }
   #
-  # <tt>options</tt> argument is the same as in form_remote_tag.
+  # <tt>options</tt> argument is the same as in form_remote_ActsAsTaggableOn::Tag.
   def submit_to_remote(name, value, options = {})
     options[:with] ||= 'Form.serialize(this.form)'
 
@@ -253,7 +253,7 @@ module PrototypeHelper
   #     ...
   #   <% end %>
   #
-  # If you don't need to attach a form to a resource, then check out form_remote_tag.
+  # If you don't need to attach a form to a resource, then check out form_remote_ActsAsTaggableOn::Tag.
   #
   # See FormHelper#form_for for additional semantics.
   def remote_form_for(record_or_name_or_array, *args, &proc)

@@ -3,7 +3,7 @@
 
 #yui-main
   -box :class => "yui-b" do
-    %h3=:editing_tag.l
+    %h3=:editing_ActsAsTaggableOn::Tag.l
     = form_for(:tag, :url => tag_path(@tag), :html => { :method => :put, :class => "MainForm" }) do |f|
 
       %label

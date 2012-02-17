@@ -32,6 +32,8 @@ class ActiveSupport::TestCase
   setup :activate_authlogic
   include AuthenticatedTestHelper
   
+  set_fixture_class :tags => ActsAsTaggableOn::Tag, :taggings => ActsAsTaggableOn::Tagging  
+  
   def self.all_fixtures
     # fixtures :forums, :users, :sb_posts, :topics, :moderatorships, :monitorships, :categories
     fixtures :all
