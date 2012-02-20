@@ -18,4 +18,5 @@
       = :or.l
       = link_to(:cancel.l, forum_path(@forum))
 
-  = javascript_tag "$('topic_title').focus();"
+  -content_for :end_javascript do
+    = javascript_tag "$('topic_title').focus();"

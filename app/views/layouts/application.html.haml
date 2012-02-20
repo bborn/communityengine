@@ -9,10 +9,11 @@
     -if @meta
       -@meta.each do |key|
         %meta{:name=>key[0], :content=>key[1]}
-  
-    = render :partial => "shared/scripts_and_styles"
+
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
+      
+    = render :partial => "shared/scripts_and_styles"      
     
   %body
     -unless configatron.auth_providers.facebook.key.blank?    
@@ -33,8 +34,6 @@
             = image_tag 'spinner.gif', :plugin => 'community_engine'
             =:loading_recent_content.l       
 
-          %script{:type=>"text/javascript"}
-            = remote_function(:update => "footer_content", :url => { :controller => 'base', :action => 'footer_content' })
 
       #CommunityFooter
         %ul
@@ -57,3 +56,6 @@
 
         %p
           = :community_tagline.l
+
+    = render :partial => "shared/end_javascript"
+    = yield :end_javascript

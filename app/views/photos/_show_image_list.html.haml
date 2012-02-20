@@ -17,8 +17,7 @@
         %a{:href=>'#', :onclick=>"select_image(this);return false;"}
           = image_tag( p.photo.url(:thumb), :alt => p.display_name )
           
-  %script{:type => 'text/javascript'}
-    :plain
-      $$('.thumbs a').invoke("observe", 'click', select_thumb)
+  :javascript
+    $$('.thumbs a').invoke("observe", 'click', select_thumb)
 - else
   = :no_images_uploaded_yet.l

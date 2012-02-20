@@ -4,9 +4,6 @@
       = render :partial => "categories/tips", :locals => {:category => @post.category}
     - else 
       = render :partial => "categories/tips", :locals => {:category => nil}
-
-  -box :class => "alt" do 
-    %a.button.positive{:href => '#', :onclick => "tinyMCE.execCommand('mceCurblyAdvImage');return false;"}=:upload_an_image_for_your_post.l
     
 #yui-main
   .yui-b
@@ -40,6 +37,8 @@
           %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
         = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35}
         .auto_complete#tag_list_auto_complete
+        
+        -content_for :end_javascript do        
           = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
         
         %label
@@ -64,4 +63,5 @@
           =:or.l 
           = link_to :cancel_and_go_back_to_my_posts.l, user_posts_path(@user)
 
-  = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}
+  -content_for :end_javascript do
+    = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}

@@ -19,23 +19,6 @@ module BaseHelper
   def is_current_user_and_featured?(u)
     u && u.eql?(current_user) && u.featured_writer?
   end
-  
-  def resize_img(classname, width=90, height=135)
-    "<style>
-      .#{classname} {
-        max-width: #{width}px;
-      }
-    </style>
-    <script type=\"text/javascript\">
-    	//<![CDATA[
-        Event.observe(window, 'load', function(){
-      		$$('img.#{classname}').each(function(image){
-      			CommunityEngine.resize_image(image, {max_width: #{width}, max_height:#{height}});
-      		});          
-        }, false);
-    	//]]>
-    </script>"
-  end
 
   def rounded(options={}, &content)
     options = {:class=>"box"}.merge(options)

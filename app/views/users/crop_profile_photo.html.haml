@@ -1,5 +1,5 @@
-= javascript_include_tag "cropper"
-= stylesheet_link_tag "cropper"
+
+
     
 .yui-b
 
@@ -28,14 +28,18 @@
         = :or.l
         = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)
 
-:javascript
-  function onEndCrop( coords, dimensions ) {
-    $( 'crop_x' ).value = coords.x1;
-    $( 'crop_y' ).value = coords.y1;
-    $( 'crop_w' ).value = dimensions.width;
-    $( 'crop_h' ).value = dimensions.height;
-  }
-  function loadExample() {
-    new Cropper.ImgWithPreview( 'photo', { previewWrap: 'previewWrap', minWidth: 100, minHeight: 100, ratioDim: { x: 290, y: 290 }, onEndCrop: onEndCrop } );      
-  }
-  Event.observe( window, 'load', function() { loadExample(); } );      
+
+-content_for :head_css
+-content_for :end_javascript do
+  = javascript_include_tag "cropper"
+  :javascript
+    function onEndCrop( coords, dimensions ) {
+      $( 'crop_x' ).value = coords.x1;
+      $( 'crop_y' ).value = coords.y1;
+      $( 'crop_w' ).value = dimensions.width;
+      $( 'crop_h' ).value = dimensions.height;
+    }
+    function loadCropper() {
+      new Cropper.ImgWithPreview( 'photo', { previewWrap: 'previewWrap', minWidth: 100, minHeight: 100, ratioDim: { x: 290, y: 290 }, onEndCrop: onEndCrop } );      
+    }
+    Event.observe( window, 'load', function() { loadCropper(); } );      
