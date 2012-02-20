@@ -1,4 +1,29 @@
 de-DE:
+  authorizations:
+    create:
+      success_existing_user: "Erfolgreich %{provider} Anmeldung hinzugefügt."
+      success_message: "Willkommen %{provider} Benutzer. Du bist angemeldet."      
+    failure:
+      notice: "Anmeldung nicht erfolgreich"
+    destroy:
+      notice: "Anmeldung von %{provider} erfolgreich gelöscht."
+  sessions:
+    new:
+      omniauth:
+        header: "Anmelden mit:"
+        button_alt: "Melden Sie sich mit Ihrem Konto von %{provider} an"
+  users:
+    edit_account:
+      omniauth:
+        confirm_remove: "Sind Sie sicher, das Sie Ihre Anmeldeoption von %{provider} entfernen möchten ?"
+        title_remove: "Entfernen von Anmeldeoption von %{provider} ?"
+  tags:
+    show:
+      users: Benutzer
+  sitemaps:
+    index:
+      users: Benutzer
+
   date:
     formats:
       published_date: "%d.%m.%Y"
@@ -19,21 +44,14 @@ de-DE:
       short_literal_date: "%d %b, %Y"
       short_date: "%d.%m.%y"
       time_ago: "%H:%M"
-  sessions:
-    new:
-      omniauth:
-        header: "Anmelden mit:"
-        button_alt: "Melden Sie sich mit Ihrem Konto von %{provider} an"
-  users:
-    edit_account:
-      omniauth:
-        confirm_remove: "Sind Sie sicher, das Sie Ihre Anmeldeoption von %{provider} entfernen möchten ?"
-        title_remove: "Entfernen von Anmeldeoption von %{provider} ?"
 
   activerecord:
     attributes:
       photo:
         created_at: "erstellt am: "
+        
+  greeting: "Hallo %{name}"
+  
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  vor ein paar Sekunden
   #en: about: About
@@ -965,6 +983,8 @@ de-DE:
   see_all_activity: Alle Aktivitäten
   #en: see_all_events: See all events
   see_all_events: Sieh dir die Liste der Ereignisse an
+  #en: see_all_recent_posts: See all recent posts
+  see_all_recent_posts: Alle letzten Posts
   #en: see_you_back_here_in_a_short_while: See you back here in a short while.
   see_you_back_here_in_a_short_while: Wir sehen uns hoffentlich bald wieder.
   #en: select_images_to_upload: Select Images to Upload
