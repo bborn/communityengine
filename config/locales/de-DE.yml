@@ -1,12 +1,47 @@
 de-DE:
+  authorizations:
+    create:
+      success_existing_user: "Erfolgreich %{provider} Anmeldung hinzugefügt."
+      success_message: "Willkommen %{provider} Benutzer. Du bist angemeldet."      
+    failure:
+      notice: "Anmeldung nicht erfolgreich"
+    destroy:
+      notice: "Anmeldung von %{provider} erfolgreich gelöscht."
+  sessions:
+    new:
+      omniauth:
+        header: "Anmelden mit:"
+        button_alt: "Melden Sie sich mit Ihrem Konto von %{provider} an"
+  users:
+    edit_account:
+      omniauth:
+        confirm_remove: "Sind Sie sicher, das Sie Ihre Anmeldeoption von %{provider} entfernen möchten ?"
+        title_remove: "Entfernen von Anmeldeoption von %{provider} ?"
+  tags:
+    show:
+      users: Benutzer
+  sitemaps:
+    index:
+      users: Benutzer
+
   date:
     formats:
       published_date: "%d.%m.%Y"
       date_ago: "%b %Y"
-
+    order:
+    - :day
+    - :month
+    - :year
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
   time:
     formats:
       published_date: "%d.%m.%Y"      
+      short_published_date: "%d.%m.%y"
+      literal_date: "%d %B, %Y"
+      short_literal_date: "%d %b, %Y"
       short_date: "%d.%m.%y"
       time_ago: "%H:%M"
 
@@ -14,6 +49,9 @@ de-DE:
     attributes:
       photo:
         created_at: "erstellt am: "
+        
+  greeting: "Hallo %{name}"
+  
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  vor ein paar Sekunden
   #en: about: About
@@ -44,6 +82,8 @@ de-DE:
   activate: Aktivieren
   #en: activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
   activation_email_not_sent_message: Aktivierungs-EMail konnte nicht gesendet werden. Ist der Benutzer vielleicht schon aktiviert?
+  #en: activation_email_resent_message: An activation e-mail was resent to the e-mail address you used to sign up.
+  activation_email_resent_message: Die Aktivierungs-EMail wurde erneut an die EMail Adresse geschickt, mit der Sie sich angemeldet haben.
   #en: active: active
   active: Aktiv
   #en: active_users: Active Users
@@ -264,14 +304,20 @@ de-DE:
   dashboard: "Übersicht"
   #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on %{site} here
   dashboard_friends: Die Aktivitäten deiner Freunde kannst du hier auf %{site} verfolgen
-  #en: date: Date
-  date: Datum
   #en: date_created: Date Created
   date_created: Erstellungsdatum
   #en: date_published: Date Published
   date_published: "Veröffentlichungsdatum"
   #en: days_ago: days ago
   days_ago: Tage zuvor
+  #en: deactivate_link: Click here to deactivate your account
+  deactivate_link: Hiermit deaktivieren Sie ihr Konto.
+  #en: deactivate_tip: Deactivating your account will remove your profile from the site.
+  deactivate_tip: Die Deaktivierung Ihres Kontos löscht das Profile von dieser Seite.
+  #en: deactivate_confirmation: Are you sure you want to deactivate your account?
+  deactivate_confirmation: Sind Sie sicher, das Sie Ihr Konto deaktivieren möchten ?
+  #en: deactivate_completed: Thanks. Your account has been deactivated and you have been logged out.
+  deactivate_completed: Danke. Ihr Konto wurde deaktiviert und Sie sind abgemeldet worden.
   #en: delete: Delete
   delete: Löschen
   #en: delete_selected: Delete selected
@@ -350,6 +396,8 @@ de-DE:
   editing_photo: Foto bearbeiten
   #en: editing_post: Editing post
   editing_post: Eintrag bearbeiten
+  #en: email: Email
+  email: Email
   #en: email_addresses: Email Addresses
   email_addresses: Email-Adressen
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
@@ -384,6 +432,8 @@ de-DE:
   event_was_successfully_created: Ereignis wurde erfolgreich angelegt.
   #en: events: Events
   events: Ereignisse
+  #en: every_person_has_something_to_say: Every single person has something to say, something to give, something that will help someone else.  Join in!
+  every_person_has_something_to_say: "Jeder hat etwas zu sagen, etwas zugeben oder etwas was anderen hilft.  Mach mit!"
   #en: explore_site: Explore %{site}
   explore_site: Site erkunden
   #en: failed: failed
@@ -398,6 +448,8 @@ de-DE:
   favorite_this: Zu Favoriten hinzufügen
   #en:featured_posts: Featured posts
   featured_posts: Redaktionelle Beiträge
+  #en: featured_writer: Featured writer
+  featured_writer: Featured writer
   #en: features: Features
   features: Funktionen
   #en: feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
@@ -452,6 +504,8 @@ de-DE:
   get_help_from_someone_who_knows: Hilfe von jemanden, der Bescheid weiß
   #en: get_popular: Get popular.
   get_popular: "Werde beliebt."
+  #en: get_started: "Get started:"
+  get_started: "Erste Schritte:"  
   #en: get_started_banner: Get started with <a href="/">%{site}</a> today!
   get_started_banner: Willkommen bei <a href="/">%{site}</a>!
   #en: get_started_invite_some_friends: "Get Started: Invite some friends!"
@@ -480,6 +534,8 @@ de-DE:
   help: Hilfe
   #en: home: Home
   home: Home
+  #en: homepage_banner_download_msg: Download it now and get started
+  homepage_banner_download_msg: Jetzt runterladen und anfangen
   #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
   homepage_banner_msg: Diese Community ist der beste Weg, um in Null-Komma-Nichts zum Held zu werden
   #en: homepage_banner_signup_prompt: See how it works
@@ -522,6 +578,8 @@ de-DE:
   items: Inhalt
   #en: joined: joined
   joined: Mitglied seit
+  #en: joined_the_site: joined %{site}
+  joined_the_site: %{site} beigetreten
   #en: just_uploading_one_photo: Just uploading one photo?
   just_uploading_one_photo: Nur ein Foto hochladen?
   #en: keywords: Keywords
@@ -610,6 +668,8 @@ de-DE:
   messages_deleted: Nachricht gelöscht
   #en: messages_sent: Messages sent!
   messages_sent: Nachricht abgeschickt
+  #en: metro_area: Metro Area
+  metro_area: Metro Area
   #en: metro_areas: Metro Areas
   metro_areas: Metro Areas
   #en: metro_area_was_successfully_created: MetroArea was successfully created.
@@ -630,6 +690,10 @@ de-DE:
   more_about_you: "Mehr über dich"
   #en: most_active_1_month: Most active (1 month)
   most_active_1_month: Am aktivsten (1 Monat)
+  #en: most_recent: most recent
+  most_recent: aktuellem
+  #en: most_popular: most popular
+  most_popular: beliebtesten
   #en: my_details: My Details
   my_details: Meine Details
   #en: my_friends: My Friends
@@ -682,6 +746,8 @@ de-DE:
   new_topic: Neues Thema
   #en: new_yesterday: New yesterday
   new_yesterday: Gestern neu
+  #en: no_activation_email: No activation e-mail?
+  no_activation_email: Keine Aktivierungsmail bekommen ?
   #en: no_comments_found: Sorry, we couldn't find any comments for that %{type}
   no_comments_found: Kein Kommentar gefunden
   #en: no_images_uploaded_yet: No images uploaded yet.
@@ -702,6 +768,8 @@ de-DE:
   notify_of_friend_requests: Benachrichtigung bei Freundschaftsanfragen
   #en: on: On
   on: Zu
+  #en: on_commentable: On
+  on_commentable: 'An'
   #en: one_day_ago: one day ago
   one_day_ago: vor einem Tag
   #en: one_hour_ago: one hour ago
@@ -710,8 +778,16 @@ de-DE:
   one_minute_ago: vor einer Minute
   #en: optional: (optional)
   optional: (optional)
+  #en: optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  optional_keywords_describing_this_clipping_separated_by_commas: "(optionale Schlüsselwörter, die diesen Ausschnitt beschreiben, durch Komma getrennt)"
+  #en: optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  optional_keywords_describing_this_forum_separated_by_commas: "(optionale Schlüsselwörter, die das Forum beschreiben, durch Komma getrennt)"
+  #en: optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
+  optional_keywords_describing_this_photo_separated_by_commas: "(optionale Schlüsselwörter, die dieses Foto beschreiben, durch Komma getrennt)"
   #en: optional_keywords_describing_this_post_separated_by_commas: (optional keywords describing this post, separated by commas)
   optional_keywords_describing_this_post_separated_by_commas: "(optionale Schlüsselwörter, die den Betrag beschreiben, durch Komma getrennt)"
+  #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
+  optional_keywords_describing_this_topic_separated_by_commas: "(optionale Schlüsselwörter, die das Thema beschreiben, durch Komma getrennt)"
   #en: or: or
   or: oder
   #en: page: page
@@ -768,6 +844,9 @@ de-DE:
   position: Position
   #en: post: Post
   post: "Beitrag"
+  post_found:
+    one: 1 Beitrag gefunden
+    other: "%{count} Beiträge gefunden"
   #en: posts: Posts
   posts: "Beiträge"
   #en: post_a_new_topic: Post a new topic
@@ -904,12 +983,16 @@ de-DE:
   see_all_activity: Alle Aktivitäten
   #en: see_all_events: See all events
   see_all_events: Sieh dir die Liste der Ereignisse an
+  #en: see_all_recent_posts: See all recent posts
+  see_all_recent_posts: Alle letzten Posts
   #en: see_you_back_here_in_a_short_while: See you back here in a short while.
   see_you_back_here_in_a_short_while: Wir sehen uns hoffentlich bald wieder.
   #en: select_images_to_upload: Select Images to Upload
   select_images_to_upload: Wähle Bilder zum Hochladen aus
   #en: send: "Send"
   send: "Senden"
+  #en: send_comment_notifications: Send comment notifications?
+  send_comment_notifications: Benachrichtigen bei Kommentaren ?
   #en: send_invitations: Send Invitations!
   send_invitations: Einladung verschicken!
   #en: send_me_my_username: Send me my username
@@ -1023,7 +1106,9 @@ de-DE:
   #en: the_service_was_deleted: The service was deleted.
   the_service_was_deleted: "Der Service wurde gelöscht."
   #en: the_slideshow_is_disabled: The slideshow is disabled.
-  the_slideshow_is_disabled: Die Slideshow ist verfügar.
+  the_slideshow_is_disabled: Die Slideshow ist verfügbar.
+  #en: the_team: The %{site} Team <%{email}>
+  the_team: "Das %{site} Team <%{email}>"
   #en: the_user_was_activated: The user was activated
   the_user_was_activated: Der Benutzer wurde aktiviert
   #en: the_user_was_deleted: The user was deleted.
@@ -1104,6 +1189,8 @@ de-DE:
   updated_at: geändert am
   #en: updated_their_profile: updated their profile
   updated_their_profile: "hat das persönliche Profil geändert"
+  #en: upload_a_profile_photo: "Upload a profile photo"
+  upload_a_profile_photo: "Ein Profil Foto hochladen"  
   #en: upload_an_image_for_your_post: Upload an image for your post
   upload_an_image_for_your_post: Foto zum Eintrag hochladen
   #en: upload_and_continue_to_step_two: Upload, and continue to step two
@@ -1114,6 +1201,8 @@ de-DE:
   uploaded_by: hochgeladen von
   #en: url: Url
   url: Url
+  #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
+  user_bio_help: "<p>Über Mich ist das Erste was die Leute sehen, wenn Sie dein Profile besuchen. Einige Ideen:<ul><li> Describe your sense of style</li><li> Erkläre was du am Leben liebst.</li><li> Was hast du als letztes für einen Freund gekauft?</li></ul></p>"
   #en: user_e_mail: "User e-mail:"
   user_e_mail: "Benutzer-E-Mail:"
   #en: username: Username
@@ -1126,6 +1215,8 @@ de-DE:
   users_blog: Benutzerblog
   #en: user_clippings: Clippings of %{user}
   user_clippings: Clippings von %{user}
+  #en: user_information: %{site} User information
+  user_information: "%{site} User information"
   #en: user_login: User login
   user_login: Benutzerkennung
   #en: users_online: Users online
@@ -1136,6 +1227,8 @@ de-DE:
   view: Zeige
   #en: views: Views
   views: Aufrufe
+  #en: views_count: Views
+  view_count: Views
   #en: view_all_my_clippings: View all my clippings
   view_all_my_clippings: Alle meine Clippings
   #en: view_all_my_friend_requests: View all my friend requests
