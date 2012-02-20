@@ -1,6 +1,6 @@
 class MigrateToActsAsTaggableOn < ActiveRecord::Migration
   
-  def self.change
+  def self.up
 
     change_table :taggings do |t|
       t.references :tagger, :polymorphic => true
@@ -8,9 +8,11 @@ class MigrateToActsAsTaggableOn < ActiveRecord::Migration
       t.datetime :created_at      
     end
     
-    add_index :taggings, :tag_id
-    add_index :taggings, [:taggable_id, :taggable_type, :context]    
+    add_index :taggings, [:taggable_id, :taggable_type, :context]
   end  
   
+  def self.down
+    
+  end
   
 end
