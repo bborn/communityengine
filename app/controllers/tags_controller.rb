@@ -40,20 +40,20 @@ class TagsController < BaseController
     @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
     
     respond_to do |format|
-      if @ActsAsTaggableOn::Tag.update_attributes(params[:tag])
+      if @tag.update_attributes(params[:tag])
         flash[:notice] = :tag_was_successfully_updated.l
         format.html { redirect_to admin_tags_url }
         format.xml  { render :nothing => true }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @ActsAsTaggableOn::Tag.errors.to_xml }        
+        format.xml  { render :xml => @tag.errors.to_xml }        
       end
     end
   end
 
   def destroy
     @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
-    @ActsAsTaggableOn::Tag.destroy
+    @tag.destroy
     
     respond_to do |format|
       format.html { 

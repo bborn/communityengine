@@ -151,15 +151,16 @@ module BaseHelper
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
     html += link_to_remote :request_friendship.l,
-				{:update => "friend_request_#{user.id}",
+				{ :update => "friend_request_#{user.id}",
 					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
-          500 => "alert('"+:sorry_there_was_an_error_requesting_friendship.l.gsub(/'/, "\\\\'")+"')",
+          500 => "alert('#{escape_javascript(:sorry_there_was_an_error_requesting_friendship.l)}')",
 					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
-					:method => :post }, {:class => "add_friend button"}
+					:method => :post 
+				}, {:class => "add_friend button"}
 		html +=	"<span style='display:none;' class='spinner'>"
-		html += image_tag 'spinner.gif', :plugin => "community_engine"
-		html += :requesting_friendship.l+" ...</span></span>"
+		html += image_tag('spinner.gif')
+		html += "#{:requesting_friendship.l} ...</span></span>"
 		html.html_safe
   end
 

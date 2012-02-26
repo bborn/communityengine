@@ -11,6 +11,6 @@
     -box do 
       %h3= :tags.l
       - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |tag, css_class|
-        = link_to ActsAsTaggableOn::Tag.name, tag_path(ActsAsTaggableOn::Tag.to_param), :class => css_class
+        = link_to tag.name, tag_path(tag.to_param), :class => css_class
       %h6.all=link_to :all_tags.l, tags_path
 
