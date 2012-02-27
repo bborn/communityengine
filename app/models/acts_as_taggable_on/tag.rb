@@ -55,7 +55,8 @@ class ActsAsTaggableOn::Tag < ActiveRecord::Base
   end
   
   def related_tags(limit = 10)
-    taggables = self.taggings.limit(10).all.collect{|t| t.taggable }
+    taggables = self.taggings.limit(10).all.collect{|t| t.taggable }.compact
+
     tagging_ids = taggables.map{|t| t.taggings.limit(10).map(&:id) }.flatten.uniq    
     return [] if tagging_ids.blank?
   
