@@ -131,7 +131,6 @@ module AuthenticatedSystem
     #   skip_before_filter :login_required
     #
     def login_required
-      store_location
       logged_in? && authorized? ? true : access_denied
     end
 
