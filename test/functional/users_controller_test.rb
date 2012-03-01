@@ -412,6 +412,15 @@ class UsersControllerTest < ActionController::TestCase
     get :statistics, :id => users(:super_writer).id
     assert_response :redirect
   end
+  
+  def test_should_get_with_date_param
+    login_as :admin
+    post = users(:quentin).posts.last
+    get :statistics, :id => users(:quentin).id, :date => {:year => post.published_at.year, :month => post.published_at.month}
+    assert_response :success
+    assert !assigns(:posts).empty?
+  end
+  
 
   def test_should_get_dashboard_with_no_friends
     login_as :aaron

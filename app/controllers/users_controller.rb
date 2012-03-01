@@ -372,7 +372,7 @@ class UsersController < BaseController
     end
     
     start_date  = @month.beginning_of_month
-    end_date    = @month.end_of_month + 1.day
+    end_date    = @month.end_of_month.end_of_day
     
     @posts = @user.posts.find(:all, 
       :conditions => ['? <= published_at AND published_at <= ?', start_date, end_date])    
