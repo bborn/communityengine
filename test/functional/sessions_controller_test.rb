@@ -52,4 +52,18 @@ class SessionsControllerTest < ActionController::TestCase
     assert_equal users(:quentin), UserSession.find.record
   end
 
+  test 'should login and not store location' do
+    return_to = session[:return_to]
+    post :create, :email => 'quentin@example.com', :password => 'test'
+    assert_equal return_to, session[:return_to]
+  end
+
+  test 'should logout and destroy session' do
+    login_as :quentin
+    assert !session.empty?
+    get :destroy
+    assert session.empty?
+  end
+
 end
+

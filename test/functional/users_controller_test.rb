@@ -444,8 +444,13 @@ class UsersControllerTest < ActionController::TestCase
     end
     assert_redirected_to admin_users_path
   end
-  
 
+  test 'should store location for anonymous page' do
+    return_to = session[:return_to]
+    get :index
+    assert_not_equal return_to, session[:return_to]
+    assert_equal "http://test.host/users", session[:return_to]
+  end
 
   
   protected
