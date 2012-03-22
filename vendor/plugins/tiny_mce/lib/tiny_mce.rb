@@ -15,10 +15,4 @@ module TinyMCE
   end
 end
 
-# Finally, lets include the TinyMCE base and helpers where
-# they need to go (support for Rails 2 and Rails 3)
-if defined?(Rails::Railtie)
-  require 'tiny_mce/railtie'
-else
-  TinyMCE.initialize
-end
+TinyMCE.initialize
