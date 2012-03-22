@@ -14,7 +14,10 @@ module ActiveRecord
           valid_keys = [:conditions, :order, :on_lookup_failure]
           options.assert_valid_keys(*valid_keys)
           valid_keys.each do |key|   
-            write_inheritable_attribute("acts_enumerated_#{key.to_s}".to_sym, options[key]) if options.has_key? key
+            class_attribute "acts_enumerated_#{key.to_s}"
+            if options.has_key?( key )
+              self.send "acts_enumerated_#{key.to_s}=", options[key]
+            end            
           end
           
           unless self.is_a? ActiveRecord::Acts::Enumerated::ClassMethods
@@ -34,10 +37,9 @@ module ActiveRecord
         
         def all
           return @all if @all
-          @all = find(:all, 
-                      :conditions => read_inheritable_attribute(:acts_enumerated_conditions),
-                      :order => read_inheritable_attribute(:acts_enumerated_order)
-                      ).collect{|val| val.freeze}.freeze
+          conditions = self.acts_enumerated_conditions
+          order = self.acts_enumerated_order
+          @all = where(conditions).order(order).collect{|val| val.freeze}.freeze          
         end
 
         def [](arg)

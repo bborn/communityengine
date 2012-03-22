@@ -20,7 +20,7 @@ module TinyMCE
     # put in the file
     def self.config_file_options
       @@config_file_options ||= begin
-        tiny_mce_yaml_filepath = File.join(Rails.root.to_s, 'config', 'tiny_mce.yml')
+        tiny_mce_yaml_filepath = File.join(::Rails.root.to_s, 'config', 'tiny_mce.yml')
         return Hash.new unless File.exist?(tiny_mce_yaml_filepath)
         tiny_mce_config = IO.read(tiny_mce_yaml_filepath)
         tiny_mce_config = ERB.new(tiny_mce_config).result if defined?(ERB)
