@@ -12,7 +12,9 @@
       %label= :tag_name.l+":"
       = text_field_tag 'id', params[:id], :autocomplete => "off"
       #id_auto_complete.auto_complete{"class"=>"auto_complete", "id"=>"id_auto_complete"}
-      = auto_complete_field 'id', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+      -content_for :end_javascript do
+        = auto_complete_field 'id', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+        
       %p
         %input{"type"=>"submit", "value"=>:go.l}
 

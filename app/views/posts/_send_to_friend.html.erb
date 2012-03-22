@@ -1,5 +1,5 @@
 <div id="send_to_friend" style="display:none;">
-	<% form_remote_tag( 
+	<%= form_remote_tag( 
 		{ 
 		:loading => "$('send_to_friend_spinner').show();", 	
 		:url => send_to_friend_user_post_path(:user_id => params[:user_id], :id => params[:id]), 

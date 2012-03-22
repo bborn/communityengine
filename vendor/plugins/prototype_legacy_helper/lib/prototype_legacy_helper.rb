@@ -253,7 +253,7 @@ module PrototypeHelper
   #     ...
   #   <% end %>
   #
-  # If you don't need to attach a form to a resource, then check out form_remote_tag.
+  # If you don't need to attach a form to a resource, then check out form_remote_tag
   #
   # See FormHelper#form_for for additional semantics.
   def remote_form_for(record_or_name_or_array, *args, &proc)

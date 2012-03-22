@@ -56,7 +56,7 @@ class Post < ActiveRecord::Base
           :conditions => [ 'posts.id != ? AND published_as = ?', post.id, 'live' ]
       })
 
-      limit(options[:limit]).order(options[:order]).where(options[:conditions]).tagged_with(post.tag_list)
+      limit(options[:limit]).order(options[:order]).where(options[:conditions]).tagged_with(post.tag_list, :any => true)
     end
     
     def find_recent(options = {:limit => 5})

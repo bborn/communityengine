@@ -34,7 +34,8 @@
         = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
 
         #tag_list_auto_complete.auto_complete
-        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+        -content_for :end_javascript do        
+          = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
         %label=:description.l + ":"
         = f.text_area :description, :size => "58x5"

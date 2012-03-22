@@ -9,7 +9,7 @@ class TagsController < BaseController
   end  
 
   def auto_complete_for_tag_name
-    @tags = Tag.find(:all, :limit => 10, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
+    @tags = ActsAsTaggableOn::Tag.find(:all, :limit => 10, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
     render :inline => "<%= auto_complete_result(@tags, 'name') %>"
   end
   
@@ -26,18 +26,18 @@ class TagsController < BaseController
   end
   
   def manage    
-    @search = Tag.search(params[:search])
+    @search = ActsAsTaggableOn::Tag.search(params[:search])
     @search.meta_sort ||= 'name.asc'    
     @tags = @search.page(params[:page]).per(100)
   end
   
 
   def edit
-    @tag = Tag.find_by_name(URI::decode(params[:id]))
+    @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
   end
 
   def update
-    @tag = Tag.find_by_name(URI::decode(params[:id]))
+    @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
     
     respond_to do |format|
       if @tag.update_attributes(params[:tag])
@@ -52,7 +52,7 @@ class TagsController < BaseController
   end
 
   def destroy
-    @tag = Tag.find_by_name(URI::decode(params[:id]))
+    @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
     @tag.destroy
     
     respond_to do |format|
@@ -65,11 +65,11 @@ class TagsController < BaseController
   end
 
   def show
-    tag_names = URI::decode(params[:id])
+    tag_array = ActsAsTaggableOn::TagList.from( URI::decode(params[:id]) )
     
-    @tags = Tag.find(:all, :conditions => [ 'name IN (?)', TagList.from(tag_names) ] )
+    @tags = ActsAsTaggableOn::Tag.find(:all, :conditions => [ 'name IN (?)', tag_array ] )
     if @tags.nil? || @tags.empty?
-      flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_names)
+      flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_array)
       redirect_to :action => :index and return
     end
     @related_tags = @tags.first.related_tags
@@ -78,25 +78,25 @@ class TagsController < BaseController
     if params[:type]
       case params[:type]
         when 'Post', 'posts'
-          @pages = @posts = Post.recent.tagged_with(tag_names, :match_all => true).page(params[:page]).per(20)
+          @pages = @posts = Post.recent.tagged_with(tag_array).page(params[:page]).per(20)
           @photos, @users, @clippings = [], [], []
         when 'Photo', 'photos'
-          @pages = @photos = Photo.recent.tagged_with(tag_names, :match_all => true).page(params[:page]).per(30)
+          @pages = @photos = Photo.recent.tagged_with(tag_array).page(params[:page]).per(30)
           @posts, @users, @clippings = [], [], []
         when 'User', 'users'
-          @pages = @users = User.recent.tagged_with(tag_names, :match_all => true).page(params[:page]).per(30)
+          @pages = @users = User.recent.tagged_with(tag_array).page(params[:page]).per(30)
           @posts, @photos, @clippings = [], [], []
         when 'Clipping', 'clippings'
-          @pages = @clippings = Clipping.recent.tagged_with(tag_names, :match_all => true).page(params[:page]).per(10)
+          @pages = @clippings = Clipping.recent.tagged_with(tag_array).page(params[:page]).per(10)
           @posts, @photos, @users = [], [], []
       else
         @clippings, @posts, @photos, @users = [], [], [], []
       end
     else
-      @posts = Post.recent.limit(5).tagged_with(tag_names, :match_all => true)
-      @photos = Photo.recent.limit(10).tagged_with(tag_names, :match_all => true)
-      @users = User.recent.limit(10).tagged_with(tag_names, :match_all => true)
-      @clippings = Clipping.recent.limit(10).tagged_with(tag_names, :match_all => true)
+      @posts      = Post.recent.limit(5).tagged_with(tag_array)
+      @photos     = Photo.recent.limit(10).tagged_with(tag_array)
+      @users      = User.recent.limit(10).tagged_with(tag_array)
+      @clippings  = Clipping.recent.limit(10).tagged_with(tag_array)
     end
   end
 

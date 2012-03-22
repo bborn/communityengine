@@ -3,13 +3,14 @@
 - @page_title = @topic.title
 - @monitoring = logged_in? && current_user.monitoring_topic?(@topic)
 
-%script{:type => 'text/javascript'}
-  function monitor_click(checkbox){
-  if (checkbox.checked) {
-  = remote_function :url => forum_topic_monitorship_path(@forum, @topic)
-  } else {
-  = remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete
-  }}
+-content_for :end_javascript do
+  :javascript
+    function monitor_click(checkbox){
+      if (checkbox.checked) {
+        #{remote_function :url => forum_topic_monitorship_path(@forum, @topic)}
+      } else {
+        #{remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete}
+      }}
 
 
 -box :class => "alt first_alt" do 
@@ -41,9 +42,12 @@
           = link_to(:edit.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
           |
           = link_to(:delete.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => :delete_this_topic_forever.l)
-      %script{:type => "text/javascript"}
-        $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
-        $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
+
+
+      -content_for :end_javascript do
+        :javascript
+          $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
+          $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
 
   %p.subtitle
     = feed_icon_tag @topic.title, forum_topic_path(@forum, @topic, :format => :rss)
@@ -92,8 +96,9 @@
         .container
           =render :partial => 'sb_posts/reply_form'
           
-          
-    = javascript_tag "$('reply').hide();"
+    -content_for :end_javascript do      
+      = javascript_tag "$('reply').hide();"
+      
   - else
     %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
 
@@ -104,9 +109,10 @@
   %span.arrow &rarr;
   = h @topic.title
   
-%script{"type"=>"text/javascript", "charset"=>"utf-8"}
-  Event.observe(window, 'load', function(){
-  if(document.location.href.include('#reply-form')){
-  ReplyForm.init();
-  }
-  })
+-content_for :end_javascript do
+  :javascript
+    Event.observe(window, 'load', function(){
+      if(document.location.href.include('#reply-form')){
+      ReplyForm.init();
+      }
+    })

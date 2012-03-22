@@ -3,12 +3,11 @@
 #image_list_pages.clear
   = paginate @photos
 
-%script{:type => 'text/javascript'}
-  :plain
-    $('image_list_pages').select('a').invoke('observe', 'click', remote_paginate )
-    function remote_paginate(event){
-      $('dynamic_images_list').update("Loading images...<br /><img src='/assets/spinner.gif'>");
-      element = Event.element(event);
-      new Ajax.Request(element.href, {asynchronous:true, evalScripts:true, method:'get'});
-      Event.stop(event);
-    }
+:javascript
+  $('image_list_pages').select('a').invoke('observe', 'click', remote_paginate )
+  function remote_paginate(event){
+    $('dynamic_images_list').update("Loading images...<br /><img src='/assets/spinner.gif'>");
+    element = Event.element(event);
+    new Ajax.Request(element.href, {asynchronous:true, evalScripts:true, method:'get'});
+    Event.stop(event);
+  }

@@ -26,7 +26,10 @@ class Clipping < ActiveRecord::Base
         :conditions => [ 'clippings.id != ?', clipping.id ]
     })
 
-    limit(options[:limit]).order(options[:order]).where(options[:conditions]).tagged_with(clipping.tags.collect{|t| t.name })
+    limit(options[:limit]).
+      order(options[:order]).
+      where(options[:conditions]).
+      tagged_with(clipping.tags.collect{|t| t.name }, :any => true)
   end
 
   def self.find_recent(options = {:limit => 5})

@@ -2,7 +2,7 @@ require 'digest/md5'
 
 # Methods added to this helper will be available to all templates in the application.
 module BaseHelper
-  include TagsHelper
+  include ActsAsTaggableOn::TagsHelper
   
   def commentable_url(comment)
     if comment.commentable_type != "User"
@@ -18,23 +18,6 @@ module BaseHelper
   
   def is_current_user_and_featured?(u)
     u && u.eql?(current_user) && u.featured_writer?
-  end
-  
-  def resize_img(classname, width=90, height=135)
-    "<style>
-      .#{classname} {
-        max-width: #{width}px;
-      }
-    </style>
-    <script type=\"text/javascript\">
-    	//<![CDATA[
-        Event.observe(window, 'load', function(){
-      		$$('img.#{classname}').each(function(image){
-      			CommunityEngine.resize_image(image, {max_width: #{width}, max_height:#{height}});
-      		});          
-        }, false);
-    	//]]>
-    </script>"
   end
 
   def rounded(options={}, &content)
@@ -168,15 +151,16 @@ module BaseHelper
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
     html += link_to_remote :request_friendship.l,
-				{:update => "friend_request_#{user.id}",
+				{ :update => "friend_request_#{user.id}",
 					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
-          500 => "alert('"+:sorry_there_was_an_error_requesting_friendship.l.gsub(/'/, "\\\\'")+"')",
+          500 => "alert('#{escape_javascript(:sorry_there_was_an_error_requesting_friendship.l)}')",
 					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
-					:method => :post }, {:class => "add_friend button"}
+					:method => :post 
+				}, {:class => "add_friend button"}
 		html +=	"<span style='display:none;' class='spinner'>"
-		html += image_tag 'spinner.gif', :plugin => "community_engine"
-		html += :requesting_friendship.l+" ...</span></span>"
+		html += image_tag('spinner.gif')
+		html += "#{:requesting_friendship.l} ...</span></span>"
 		html.html_safe
   end
 

@@ -64,6 +64,7 @@
   
         = paginate @users
 
-%script{:type => 'text/javascript'}
-  var form = $('users');
-  checkboxes = form.getInputs('checkbox');        
+-content_for :end_javascript do
+  :javascript
+    var form = $('users');
+    checkboxes = form.getInputs('checkbox');        

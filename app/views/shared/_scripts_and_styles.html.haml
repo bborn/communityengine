@@ -1,12 +1,9 @@
-= javascript_include_tag 'community_engine'
 = stylesheet_link_tag 'community_engine'
 
-= tiny_mce_init_if_needed
-
 - if forum_page?
-  = javascript_include_tag 'forum'
   = stylesheet_link_tag 'forum'
-
   - unless @feed_icons.blank?
     - @feed_icons.each do |feed|
       = auto_discovery_link_tag :rss, feed[:url], :title => "Subscribe to '#{feed[:title]}'"
+
+= yield :head_css

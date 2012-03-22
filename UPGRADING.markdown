@@ -30,8 +30,8 @@ That's it!
 
 Note: this version adds a counter_cache to taggings, so you may need to update the counter on your existing tags by doing something like:
 
-Tag.all.each do |tag|
-  Tag.update_counters tag.id, :taggings_count => tag.taggings.length
+ActsAsTaggableOn::Tag.all.each do |tag|
+	tag.update_counters tag.id, :taggings_count => tag.taggings.length
 end
 
 If you have many tags, this could take a while, though.

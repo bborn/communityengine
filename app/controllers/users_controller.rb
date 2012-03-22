@@ -345,7 +345,8 @@ class UsersController < BaseController
           :metro_areas => metro_areas, 
           :selected_country => params[:country_id].to_i, 
           :selected_state => params[:state_id].to_i, 
-          :selected_metro_area => nil }        
+          :selected_metro_area => nil,
+          :js => true }        
       }
     end
   end
