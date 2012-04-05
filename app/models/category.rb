@@ -1,18 +1,9 @@
 class Category < ActiveRecord::Base
   has_many :posts, :order => "published_at desc"
-
-  def to_param
-    id.to_s << "-" << (name ? name.parameterize : '' )
-  end
+  validates_presence_of :name
   
-  def slug
-    name.parameterize.downcase
-  end
-
-  def self.get(name)
-    self.find_by_name(name.to_s.humanize)
-  end
-  
+  has_friendly_id :name, :use_slug => true
+      
   def display_new_post_text
     new_post_text
   end
