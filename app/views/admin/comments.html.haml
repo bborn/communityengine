@@ -4,14 +4,14 @@
   -box do
     = form_for @search, :url => admin_comments_path, :html => {:class => "MainForm"} do |f|
     
-      = f.label :commentable_type.l
+      %label= :commentable_type.l
       = f.text_field :commentable_type_like
 
-      =f.label :commentable_id.l
-      =f.text_field :commentable_id_equals
+      %label= :commentable_id.l
+      = f.text_field :commentable_id_equals
 
-      =f.label :email.l
-      =f.text_field :author_email_or_user_email_like
+      %label= :email.l
+      = f.text_field :author_email_or_user_email_like
 
       %p= f.submit :search.l
   

@@ -99,8 +99,7 @@ class SbPostsController < BaseController
   end
   
   def update
-    @post.attributes = params[:post]
-    @post.save!
+    @post.update_attributes!(params[:post])
   rescue ActiveRecord::RecordInvalid
     flash[:bad_reply] = :an_error_occurred.l
   ensure

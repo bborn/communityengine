@@ -44,6 +44,37 @@ class MessageTest < ActiveSupport::TestCase
       users(:quentin).destroy
     end
   end
+  
+  test "should update message threads" do
+    message = messages(:message_from_kevin_to_aaron)
 
+    assert_difference MessageThread, :count, 1 do
+      message.update_message_threads    
+    end
+    
+    mt = MessageThread.last
+    assert_equal(mt.message, message)
+    assert_equal(mt.recipient, users(:aaron))
+    assert_equal(mt.sender, users(:kevin))
+    assert_equal(mt.parent_message, message)
+  end
 
+  test "should find a message by id and mark it read if reader is the recipient" do
+    message_id = messages(:message_from_kevin_to_aaron).id
+    message = Message.read(message_id, users(:aaron))
+    assert message.read?
+  end
+  
+  test "should be marked as deleted and destroyed if sender & recepient have deleted" do
+    message = messages(:message_from_kevin_to_aaron)
+    message.mark_deleted(users(:aaron))
+    assert message.recipient_deleted
+    
+    assert_difference Message, :count, -1 do
+      message.mark_deleted(users(:kevin))
+      assert message.sender_deleted
+    end
+    
+  end
+  
 end

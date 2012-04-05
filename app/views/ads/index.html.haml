@@ -5,10 +5,10 @@
     %h3=:search.l
     = form_for @search, :url => ads_path, :html => {:class => "MainForm"} do |f|
 
-      = f.label :name.l
+      %label= :name.l
       = f.text_field :name_starts_with
       
-      = f.label :location.l
+      %label= :location.l
       = f.text_field :location_contains
 
       %p= f.submit :search.l

@@ -52,7 +52,7 @@ class AlbumsController < BaseController
           flash[:notice] = :album_was_successfully_created.l 
           format.html { redirect_to(user_photo_manager_index_path(current_user)) }       
         else
-          format.html { redirect_to(new_user_album_photo_path(current_user,@album)) }
+          format.html { redirect_to(new_user_album_photo_path(current_user, @album)) }
         end
       else
         format.html { render :action => 'new' }
@@ -71,7 +71,7 @@ class AlbumsController < BaseController
           flash[:notice] = :album_updated.l
           format.html { redirect_to(user_album_path(current_user, @album)) }
         else
-          format.html { redirect_to(new_user_album_photo_path(current_user,@album)) }
+          format.html { redirect_to(new_user_album_photo_path(current_user, @album)) }
         end
       else
         format.html { render :action => "edit" }

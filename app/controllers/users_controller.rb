@@ -192,9 +192,8 @@ class UsersController < BaseController
   
   def update_account
     @user             = current_user
-    @user.attributes  = params[:user]
 
-    if @user.save
+    if @user.update_attributes!(params[:user])
       flash[:notice] = :your_changes_were_saved.l
       respond_to do |format|
         format.html {redirect_to user_path(@user)}
@@ -215,9 +214,7 @@ class UsersController < BaseController
   def update_pro_details
     @user = User.find(params[:id])
     
-    @user.attributes = params[:user]
-
-    if @user.save!
+    if @user.update_attributes(params[:user])
       respond_to do |format|
         format.html { 
           flash[:notice] = :your_changes_were_saved.l

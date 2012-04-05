@@ -105,12 +105,7 @@ class SbPostTest < ActiveSupport::TestCase
     
     configatron.allow_anonymous_forum_posting = false    
   end
-  
-  def test_to_xml
-    #not really testing the output cause it's just calling Rails' to_xml
-    assert sb_posts(:shield_reply).to_xml
-  end
-  
+    
   def test_should_be_deleted_when_user_destroyed
     post = sb_posts(:shield_reply)
     id = post.id
