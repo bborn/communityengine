@@ -30,6 +30,7 @@ require 'prototype-rails'
 require 'rails_autolink'
 require 'meta_search'
 require 'tinymce-rails'
+require 'sanitize'
 
 
 include EnginesExtensions

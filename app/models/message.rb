@@ -56,9 +56,12 @@ class Message < ActiveRecord::Base
   
   def update_message_threads
     recipients_thread = MessageThread.find_or_create_by_recipient_id_and_parent_message_id(self.recipient_id, (self.parent_id || self.id))
-    recipients_thread.attributes = {:sender => sender, :recipient => recipient, :message => self, :parent_message => (self.parent || self)}
+    recipients_thread.sender = sender
+    recipients_thread.recipient = recipient
+    recipients_thread.message = self
+    recipients_thread.parent_message = (self.parent || self)
     recipients_thread.save
-    
+  
     if parent
       senders_thread = MessageThread.find_or_create_by_recipient_id_and_parent_message_id(self.sender_id, self.parent_id)
       senders_thread.message = self

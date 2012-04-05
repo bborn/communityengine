@@ -6,7 +6,7 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 3.1.3
+	- RAILS VERSION 3.2
 
 Getting CommunityEngine Running
 --------------------------------

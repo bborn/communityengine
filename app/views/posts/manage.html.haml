@@ -9,19 +9,19 @@
     %h3=:search.l
     = form_for @search, :url => manage_user_posts_path(current_user), :html => {:class => "MainForm"} do |f|
     
-      = f.label :title.l
+      %label= :title.l
       = f.text_field :title_like
 
       %p
-        = f.label :category.l
+        %label= :category.l
         = f.select :category_id_equals, Category.all.collect{|c| [c.name, c.id]}, :include_blank => true
 
       %p
-        =f.label :status.l
+        %label= :status.l
         = f.select :published_as_equals, [['Published','live'], ['Draft','draft']], :include_blank => true
 
       %p
-        = f.label :show.l
+        %label= :show.l
         = select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
 
       %p= f.submit :search.l

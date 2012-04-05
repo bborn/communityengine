@@ -222,16 +222,15 @@ Rails.application.routes.draw do
     resources :comments
     resources :photo_manager
 
-    scope ':user_id/photo_manager' do
-      resources :albums do
-        resources :photos do
-          collection do
-            post :swfupload
-            get :slideshow
-          end
+    resources :albums do
+      resources :photos do
+        collection do
+          post :swfupload
+          get :slideshow
         end
       end
-    end  
+    end
+
   end
 
   resources :votes

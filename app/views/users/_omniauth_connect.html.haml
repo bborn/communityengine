@@ -1,4 +1,4 @@
--if configatron.auth_providers
+-if !configatron.auth_providers.nil?
   -remaining_providers = configatron.auth_providers.to_hash.keys.map(&:to_s) - @authorizations.map(&:provider)
   #omniauth_connect
 

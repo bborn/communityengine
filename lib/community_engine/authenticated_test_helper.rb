@@ -1,47 +1,4 @@
 module AuthenticatedTestHelper
-  # Sets the current user in the session from the user fixtures.
-  def login_as(user)
-    UserSession.create(users(user))
-  end
-
-  def content_type(type)
-    @request.env['Content-Type'] = type
-  end
-
-  def accept(accept)
-    @request.env["HTTP_ACCEPT"] = accept
-  end
-
-  def authorize_as(user)
-    if user
-      @request.env["HTTP_AUTHORIZATION"] = "Basic #{Base64.encode64("#{users(user).login}:test")}"
-      accept       'application/xml'
-      content_type 'application/xml'
-    else
-      @request.env["HTTP_AUTHORIZATION"] = nil
-      accept       nil
-      content_type nil
-    end
-  end
-
-  # http://project.ioni.st/post/217#post-217
-  #
-  #  def test_new_publication
-  #    assert_difference(Publication, :count) do
-  #      post :create, :publication => {...}
-  #      # ...
-  #    end
-  #  end
-  # 
-  def assert_difference(object, method = nil, difference = 1)
-    initial_value = object.send(method)
-    yield
-    assert_equal initial_value + difference, object.send(method), "#{object}##{method}"
-  end
-
-  def assert_no_difference(object, method, &block)
-    assert_difference object, method, 0, &block
-  end
 
   # Assert the block redirects to the login
   # 

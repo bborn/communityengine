@@ -23,13 +23,10 @@ ActiveRecord::Base.class_eval do
       body.strip! if body.respond_to?(:strip!)
       self.body_html = body.blank? ? '' : body_html_with_formatting
       self.body = white_list(self.body)
-      
     end
     
     def body_html_with_formatting
       body_html = auto_link(body) { |text| truncate(text, :length => 50) }
-      # textilized = RedCloth.new(body_html, [ :hard_breaks ]) #not using this
-      # textilized.hard_breaks = true if textilized.respond_to?("hard_breaks=")
       white_list(body_html) 
     end
 end

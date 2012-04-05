@@ -232,11 +232,6 @@ class User < ActiveRecord::Base
     monitored_topics.find_by_id(topic.id)
   end
 
-  def to_xml(options = {})
-    options[:except] ||= []
-    super
-  end
-
   def recount_metro_area_users
     return unless self.metro_area
     ma = self.metro_area

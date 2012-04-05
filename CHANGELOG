@@ -1,36 +1,15 @@
 = TODO
-# * replace paginating find with will paginate
-# * replace att_fu with paperclip
-# * fix boot; 
-# * recaptcha constants
-# * rip out beta mode and teaser stuff
-# * clean up routes
-# * take out vendors/offerings stuff
-# * take out ez where
-# * remote_form_for is gone (use dynamic_form gem/prototype legacy helper)
-# * finding transparently by login is broken (fixed using friendly_id)
-# * can't dup nilclass error in Rails timezone conversion (fixed with a little patch, should get fixed in a new version of Rails)
-# * tinymce isn't working
-# * fix responds-to-parent
-# * replace white_list with something (sanitize?) (preserve stuff from white list initializer)
-# * fix rakismet initializer
-# * configure configatron from ruby, not yaml
-
-* mce_opts initializer
 * replace old multiple uploader
 * fix photo uploading from welcome_photo page
 * add back searching to users index
-* remove all the theming stuff
-* replace setup template with something else more sensible
-* allow overriding initializers, autoloading assets, etc
-* remove stylesheet customization
-* use aato instead of aatos (and fix pg problems)
-* authlogic has problems: not sure it's recording last_login magic columns, investigate
-* Bug in rails fixtures.rb on 849 - use fixtures_path.to_s.size instead
 * swap jquery for prototype
-* photo cropping is not working
-* fix commentable routing (path prefix)
-* use Sanitize or Loofah gem
+
+=2.0.0.beta4
+* Replace white_list plugin with Sanitize gem (white_list.rb initizlizer format has changed)
+* Upgrade to Rails 3.2
+* Use act_as_taggable_on
+* fix photo cropping
+* remove theme controller (no more theming functionality)
 
 =2.0.0.pre
 * Rails 3.1.0.beta1 compatibility
