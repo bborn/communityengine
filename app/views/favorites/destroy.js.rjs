@@ -5,7 +5,7 @@ case @favorite.favoritable.class.to_s.tableize
       element.replace(render(:partial => 'clippings/clipping', :object => @favorite.favoritable)) 
     end
     page.select("#clipping_#{@favorite.favoritable.id}_meta").each do |element|
-      element.replace(render(:partial => 'clippings/meta.html.haml', :locals => {:clipping => @favorite.favoritable}))    
+      element.replace(render(:partial => 'clippings/meta', :formats => [:html], :locals => {:clipping => @favorite.favoritable}))    
     end
 
 
