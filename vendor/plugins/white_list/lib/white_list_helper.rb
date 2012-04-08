@@ -6,7 +6,7 @@ module WhiteListHelper
   end  
   
   mattr_accessor_with_default :settings, {
-      :elements => %w(strong em b i p code pre tt output samp kbd var sub sup dfn cite big small address hr br div span h1 h2 h3 h4 h5 h6 ul ol li dt dd),
+      :elements => %w(img strong em b i p sub sup small hr br div span h1 h2 h3 h4 h5 h6 ul ol li),
       :attributes => { 
         'a'          => %w(href),
         'img'        => %w(src width height alt title), 
