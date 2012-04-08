@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :published_at, :if => Proc.new{|r| r.is_live? }
   
-  before_save :transform_post
+  before_save :transform_post, :if => Proc.new{|r| r.raw_post_changed? }
   before_validation :set_published_at
   
   after_save do |post|
