@@ -39,7 +39,7 @@ class ClippingsController < BaseController
   def index
     @user = User.find(params[:user_id])
 
-    @clippings = Clipping.includes(:tags).where(:user_id => @user.id).order("created_at DESC")
+    @clippings = Clipping.includes(:tags).where(:user_id => @user.id).order("clippings.created_at DESC")
 
     @clippings = @clippings.where('tags.name = ?', params[:tag_name]) if params[:tag_name]
 
