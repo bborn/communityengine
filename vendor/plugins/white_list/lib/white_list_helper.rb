@@ -6,14 +6,14 @@ module WhiteListHelper
   end  
   
   mattr_accessor_with_default :settings, {
-      :elements => %w(img strong em b i p sub sup small hr br div span h1 h2 h3 h4 h5 h6 ul ol li),
+      :elements => %w[ strong em b i p sub sup small hr br div span h1 h2 h3 h4 h5 h6 ul ol li img u strike object param embed iframe ],
       :attributes => { 
-        'a'          => %w(href),
-        'img'        => %w(src width height alt title), 
-        'blockquote' => %w(cite),
-        'del'        => %w(cite datetime),
-        'ins'        => %w(cite datetime),
-        :all         => %w(id class) 
+        'a'          => %w[href],
+        'img'        => %w[src width height alt title], 
+        'blockquote' => %w[cite],
+        'del'        => %w[cite datetime],
+        'ins'        => %w[cite datetime],
+        :all         => %w[id class style align] 
       },
       :protocols  => {
         'a' => {'href' => ['http', 'https', 'mailto', :relative]},
