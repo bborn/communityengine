@@ -80,7 +80,6 @@ class TopicsControllerTest < ActionController::TestCase
     old = counts.call
     
     login_as :aaron
-    get :new, :forum_id => forums(:rails).id
     post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sb_posts_attributes => { "0" => { :body => 'foo' } } }, :tag_list => 'tag1, tag2'
     assert assigns(:topic)
     assert assigns(:post)
