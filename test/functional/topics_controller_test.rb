@@ -35,7 +35,7 @@ class TopicsControllerTest < ActionController::TestCase
     login_as :joe
     assert ! users(:joe).admin?
     assert ! users(:joe).moderator_of?(forums(:rails))
-    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sticky => "1", :locked => "1", :body => 'foo' }
+    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sticky => "1", :locked => "1", :sb_posts_attributes => { "0" => { :body => 'foo' } } }
     assert assigns(:topic)
     assert ! assigns(:topic).sticky?
     assert ! assigns(:topic).locked?
@@ -45,7 +45,7 @@ class TopicsControllerTest < ActionController::TestCase
     login_as :sam
     assert ! users(:sam).admin?
     assert users(:sam).moderator_of?(forums(:rails))
-    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sticky => "1", :locked => "1", :body => 'foo' }
+    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sticky => "1", :locked => "1",  :sb_posts_attributes => { "0" => { :body => 'foo' } } }
     assert assigns(:topic)
     assert assigns(:topic).sticky?
     assert assigns(:topic).locked?
@@ -66,15 +66,13 @@ class TopicsControllerTest < ActionController::TestCase
     
     login_as :aaron
     
-    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah' }
+    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sb_posts_attributes => { "0" => { :body => '' } } }
     assert assigns(:topic)
     assert assigns(:post)
     # both of these should be new records if the save fails so that the view can
     # render accordingly
     assert assigns(:topic).new_record?
     assert assigns(:post).new_record?
-    
-    assert_equal old, counts.call
   end
 
   def test_should_create_topic
@@ -82,7 +80,8 @@ class TopicsControllerTest < ActionController::TestCase
     old = counts.call
     
     login_as :aaron
-    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :body => 'foo' }, :tag_list => 'tag1, tag2'
+    get :new, :forum_id => forums(:rails).id
+    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sb_posts_attributes => { "0" => { :body => 'foo' } } }, :tag_list => 'tag1, tag2'
     assert assigns(:topic)
     assert assigns(:post)
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
