@@ -42,6 +42,10 @@ en:
     attributes:
       photo:
         created_at: "created at: "
+      
+      sb_posts:
+        body: "Body"
+    
 
   greeting: "Hello %{name}"
 

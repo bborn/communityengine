@@ -7,7 +7,7 @@ class Topic < ActiveRecord::Base
   has_many :monitorships
   has_many :monitors, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :source => :user
 
-  has_many :sb_posts, :dependent => :destroy
+  has_many :sb_posts, :dependent => :destroy, :inverse_of => :topic
 
   belongs_to :replied_by_user, :foreign_key => "replied_by", :class_name => "User"
   
@@ -15,13 +15,11 @@ class Topic < ActiveRecord::Base
   before_create :set_default_replied_at_and_sticky
   after_save    :set_post_topic_id
   after_create  :create_monitorship_for_owner
-
-  attr_accessible :title
-  # to help with the create form
-  attr_accessor :body
+  
+  accepts_nested_attributes_for :sb_posts
+  attr_accessible :title, :sticky, :locked, :sb_posts_attributes, :forum_id
   
   scope :recently_replied, order('replied_at DESC')
-  
 
   def notify_of_new_post(post)
     monitorships.each do |m|
@@ -35,6 +33,10 @@ class Topic < ActiveRecord::Base
 
   def voices
     sb_posts.map { |p| p.user_id }.uniq.size
+  end
+  
+  def body
+    sb_posts.first
   end
   
   def hit!
