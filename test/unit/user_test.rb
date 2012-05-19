@@ -10,6 +10,19 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
+  
+  test "should prevent malicious chars inserted in email via newlines" do
+    user = User.new(:email => "valid@email.com%0A<script>alert('hello')</script>")
+    assert !user.valid?
+    assert user.errors[:email]
+  end
+  
+  test "should prevent malicious chars inserted in login via newlines" do
+    user = User.new(:login => "validlogin%0A<script>alert('hello')</script>")
+    assert !user.valid?
+    assert user.errors[:email]
+  end
+    
   test "should_trim_whitespace" do
     user = users(:quentin)
     user.login = 'quentin    '

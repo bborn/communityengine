@@ -107,7 +107,7 @@ class PhotosControllerTest < ActionController::TestCase
   end
 
   def test_should_create_photo_routing
-    assert_recognizes({:controller => 'photos', :action => 'create', :format => 'js'}, '/create_photo.js')
+    assert_recognizes({:controller => 'photos', :action => 'create', :format => 'js'}, {:path => '/create_photo.js', :method => :post})
   end
 
   def test_should_fail_to_create_photo

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  match '/base/:action' => 'base'
+  get '/base/:action' => 'base'
 
-  match '/forums/recent' => 'sb_posts#index', :as => :recent_forum_posts
+  get '/forums/recent' => 'sb_posts#index', :as => :recent_forum_posts
 
   resources :authorizations
   match '/auth/:provider/callback' => 'authorizations#create', :as => :callback
-  match '/auth/failure' => 'authorizations#failure'
+  get '/auth/failure' => 'authorizations#failure'
   
   resources :sb_posts, :as => 'all_sb_posts' do
     collection do
@@ -32,22 +32,22 @@ Rails.application.routes.draw do
     end
   end
 
-  match '/forums' => 'forums#index', :as => :forum_home
+  get '/forums' => 'forums#index', :as => :forum_home
 
-  match 'sitemap.xml' => 'sitemap#index', :format => 'xml'
-  match 'sitemap' => 'sitemap#index'
+  get 'sitemap.xml' => 'sitemap#index', :format => 'xml'
+  get 'sitemap' => 'sitemap#index'
   
-  match '/' => 'base#site_index', :as => :home
+  get '/' => 'base#site_index', :as => :home
   
   scope "/admin" do
-    match 'dashboard' => 'homepage_features#index', :as => :admin_dashboard
-    match 'users' => 'admin#users', :as => :admin_users
-    match 'messages' => 'admin#messages', :as => :admin_messages
-    match 'comments' => 'admin#comments', :as => :admin_comments
-    match 'tags' => 'tags#manage', :as => :admin_tags
-    match 'events' => 'admin#events', :as => :admin_events
-    match 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
-    match 'subscribers(.:format)' => "admin#subscribers", :as => :admin_subscribers
+    get 'dashboard' => 'homepage_features#index', :as => :admin_dashboard
+    get 'users' => 'admin#users', :as => :admin_users
+    get 'messages' => 'admin#messages', :as => :admin_messages
+    get 'comments' => 'admin#comments', :as => :admin_comments
+    get 'tags' => 'tags#manage', :as => :admin_tags
+    get 'events' => 'admin#events', :as => :admin_events
+    get 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
+    get 'subscribers(.:format)' => "admin#subscribers", :as => :admin_subscribers
     
     resources :pages, :as => :admin_pages do
       member do
@@ -56,43 +56,43 @@ Rails.application.routes.draw do
     end
   end
   
-  match 'pages/:id' => 'pages#show', :as => :pages
+  get 'pages/:id' => 'pages#show', :as => :pages
   
   
-  match '/login' => 'sessions#new', :as => :login
-  match '/signup' => 'users#new', :as => :signup
-  match '/logout' => 'sessions#destroy', :as => :logout
+  get '/login' => 'sessions#new', :as => :login
+  get '/signup' => 'users#new', :as => :signup
+  get '/logout' => 'sessions#destroy', :as => :logout
   
-  match '/signup/:inviter_id/:inviter_code' => 'users#new', :as => :signup_by_id
-  match '/forgot_password' => 'password_resets#new', :as => :forgot_password
+  get '/signup/:inviter_id/:inviter_code' => 'users#new', :as => :signup_by_id
+  get '/forgot_password' => 'password_resets#new', :as => :forgot_password
   resources :password_resets
-  match '/forgot_username' => 'users#forgot_username', :as => :forgot_username
-  match '/resend_activation' => 'users#resend_activation', :as => :resend_activation
+  get '/forgot_username' => 'users#forgot_username', :as => :forgot_username
+  post '/resend_activation' => 'users#resend_activation', :as => :resend_activation
   
-  match '/new_clipping' => 'clippings#new_clipping'
-  match '/clippings(/page/:page)' => 'clippings#site_index', :as => :site_clippings
-  match '/clippings.rss' => 'clippings#site_index', :as => :rss_site_clippings, :format => 'rss'
+  get '/new_clipping' => 'clippings#new_clipping'
+  get '/clippings(/page/:page)' => 'clippings#site_index', :as => :site_clippings
+  get '/clippings.rss' => 'clippings#site_index', :as => :rss_site_clippings, :format => 'rss'
   
-  match '/featured(/page/:page)' => 'posts#featured', :as => :featured
-  match '/featured.rss' => 'posts#featured', :as => :featured_rss, :format => 'rss'
-  match '/popular(/page/:page)' => 'posts#popular', :as => :popular
-  match '/popular.rss' => 'posts#popular', :as => :popular_rss, :format => 'rss'
-  match '/recent(/page/:page)' => 'posts#recent', :as => :recent
-  match '/recent.rss' => 'posts#recent', :as => :recent_rss, :format => 'rss'
-  match '/rss' => 'base#rss_site_index', :as => :rss_redirect
-  match '/site_index.rss' => 'base#site_index', :as => :rss, :format => 'rss'
-  match '/advertise' => 'base#advertise', :as => :advertise
-  match '/css_help' => 'base#css_help', :as => :css_help
-  match '/about' => 'base#about', :as => :about
-  match '/faq' => 'base#faq', :as => :faq
+  get '/featured(/page/:page)' => 'posts#featured', :as => :featured
+  get '/featured.rss' => 'posts#featured', :as => :featured_rss, :format => 'rss'
+  get '/popular(/page/:page)' => 'posts#popular', :as => :popular
+  get '/popular.rss' => 'posts#popular', :as => :popular_rss, :format => 'rss'
+  get '/recent(/page/:page)' => 'posts#recent', :as => :recent
+  get '/recent.rss' => 'posts#recent', :as => :recent_rss, :format => 'rss'
+  get '/rss' => 'base#rss_site_index', :as => :rss_redirect
+  get '/site_index.rss' => 'base#site_index', :as => :rss, :format => 'rss'
+  get '/advertise' => 'base#advertise', :as => :advertise
+  get '/css_help' => 'base#css_help', :as => :css_help
+  get '/about' => 'base#about', :as => :about
+  get '/faq' => 'base#faq', :as => :faq
 
-  match '/account/edit' => 'users#edit_account', :as => :edit_account_from_email
+  get '/account/edit' => 'users#edit_account', :as => :edit_account_from_email
 
-  match '/friendships.xml' => 'friendships#index', :as => :friendships_xml, :format => 'xml'
-  match '/friendships' => 'friendships#index', :as => :friendships
+  get '/friendships.xml' => 'friendships#index', :as => :friendships_xml, :format => 'xml'
+  get '/friendships' => 'friendships#index', :as => :friendships
 
-  match 'manage_photos' => 'photos#manage_photos', :as => :manage_photos
-  match 'create_photo.js' => 'photos#create', :as => :create_photo, :format => 'js'
+  get 'manage_photos' => 'photos#manage_photos', :as => :manage_photos
+  post 'create_photo.js' => 'photos#create', :as => :create_photo, :format => 'js'
 
   resources :sessions
   resources :statistics do
@@ -103,8 +103,8 @@ Rails.application.routes.draw do
   end
 
   resources :tags
-  match '/tags/:id/:type' => 'tags#show', :as => :show_tag_type
-  match '/search/tags' => 'tags#show', :as => :search_tags
+  get '/tags/:id/:type' => 'tags#show', :as => :show_tag_type
+  get '/search/tags' => 'tags#show', :as => :search_tags
   resources :categories
   
   resources :events do
@@ -125,7 +125,7 @@ Rails.application.routes.draw do
   scope "/:commentable_type/:commentable_id" do
     resources :comments, :as => :commentable_comments
   end
-  match '/comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
+  delete '/comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
   
   resources :homepage_features
   resources :metro_areas
@@ -162,10 +162,10 @@ Rails.application.routes.draw do
       
       post 'assume'               
       
-      match 'statistics'
-      match 'crop_profile_photo'
-      match 'upload_profile_photo'
-      match 'metro_area_update'
+      get 'statistics'
+      put 'crop_profile_photo'
+      put 'upload_profile_photo'
+      get 'metro_area_update'
     end
     
     resources :friendships do
@@ -193,7 +193,7 @@ Rails.application.routes.draw do
       end
       
       member do
-        match :send_to_friend
+        post :send_to_friend
         put :update_views
       end
     end
@@ -211,7 +211,7 @@ Rails.application.routes.draw do
 
     resources :favorites
     resources :messages do
-      match :auto_complete_for_username, :on => :collection
+      post :auto_complete_for_username, :on => :collection
       collection do
         post :delete_message_threads
         post :delete_selected
@@ -235,7 +235,6 @@ Rails.application.routes.draw do
 
   resources :votes
   resources :invitations
-  match '/users/:user_id/posts/category/:category_name' => 'posts#index', :as => :users_posts_in_category
+  get '/users/:user_id/posts/category/:category_name' => 'posts#index', :as => :users_posts_in_category
 
-  match ':controller(/:action(/:id(.:format)))'
 end
