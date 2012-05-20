@@ -11,7 +11,6 @@ require 'community_engine/url_upload'
 require 'community_engine/engines_extensions'  
 
 require 'configatron'
-require 'calendar_date_select'
 require 'hpricot'
 require 'htmlentities'
 require 'haml'
