@@ -10,9 +10,9 @@
     = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
     
     %label= :start_time.l
-    = f.date_select :start_time, :time => true 
+    = f.datetime_select :start_time
     %label= :end_time.l
-    = f.date_select :end_time, :time => true 
+    = f.datetime_select :end_time
 
     %label
       = f.check_box :allow_rsvp
