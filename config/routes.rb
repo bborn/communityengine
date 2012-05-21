@@ -85,6 +85,7 @@ Rails.application.routes.draw do
   get '/css_help' => 'base#css_help', :as => :css_help
   get '/about' => 'base#about', :as => :about
   get '/faq' => 'base#faq', :as => :faq
+  post 'footer_content', :as => :footer_content
 
   get '/account/edit' => 'users#edit_account', :as => :edit_account_from_email
 
