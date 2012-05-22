@@ -1,7 +1,8 @@
+# This migration comes from community_engine (originally 23)
 class AddDeniedFriendshipStatus < ActiveRecord::Migration
   def self.up
     FriendshipStatus.enumeration_model_updates_permitted = true    
-    FriendshipStatus.create :name => "denied"
+    FriendshipStatus.create({ :name => "denied" }, :without_protection => true)
     FriendshipStatus.enumeration_model_updates_permitted = false
   end
 
