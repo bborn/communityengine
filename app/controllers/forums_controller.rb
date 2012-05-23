@@ -40,7 +40,10 @@ class ForumsController < BaseController
 
   def update
     @forum.tag_list = params[:tag_list] || ''
-    @forum.update_attributes!(params[:forum])
+    @forum.name = params[:forum][:name]
+    @forum.position = params[:forum][:position]
+    @forum.description = params[:forum][:description]
+    @forum.save!
     respond_to do |format|
       format.html { redirect_to forums_path }
       format.xml  { head 200 }
@@ -57,7 +60,16 @@ class ForumsController < BaseController
   
   protected
     def find_or_initialize_forum
-      @forum = params[:id] ? Forum.find(params[:id]) : Forum.new(params[:forum])
+      if params[:id]
+        @forum = Forum.find(params[:id])
+      else
+        @forum = Forum.new
+        if params[:forum]
+          @forum.name = params[:forum][:name]
+          @forum.position = params[:forum][:position]
+          @forum.description = params[:forum][:description]
+        end
+      end
     end
     
     
