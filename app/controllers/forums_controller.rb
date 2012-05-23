@@ -40,7 +40,10 @@ class ForumsController < BaseController
 
   def update
     @forum.tag_list = params[:tag_list] || ''
-    @forum.update_attributes!(params[:forum])
+    @forum.name = params[:forum][:name]
+    @forum.position = params[:forum][:position]
+    @forum.description = params[:forum][:description]
+    @forum.save!
     respond_to do |format|
       format.html { redirect_to forums_path }
       format.xml  { head 200 }
