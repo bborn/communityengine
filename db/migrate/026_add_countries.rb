@@ -1,3 +1,4 @@
+# This migration comes from community_engine (originally 26)
 class AddCountries < ActiveRecord::Migration
   def self.up
     ["Abuja",
@@ -220,7 +221,7 @@ class AddCountries < ActiveRecord::Migration
     "Yemen",
     "Zambia",
     "Zimbabwe"].each do |c|
-      Country.create(:name => c)
+      Country.create({ :name => c }, :without_protection => true)
       end 
   end
 
