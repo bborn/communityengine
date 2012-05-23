@@ -1,3 +1,4 @@
+# This migration comes from community_engine (originally 16)
 class AddMetroAreas < ActiveRecord::Migration
   def self.up
     failed = []
@@ -280,7 +281,7 @@ class AddMetroAreas < ActiveRecord::Migration
 
       next if state.nil?
       
-      ma = MetroArea.new(:name => a[0], :state => state, :country_id => 0)
+      ma = MetroArea.new({:name => a[0], :state => state, :country_id => 0}, :without_protection => true)
       ma.save
     end
     if failed.size > 0

@@ -1,3 +1,4 @@
+# This migration comes from community_engine (originally 56)
 class CreateRoles < ActiveRecord::Migration
   def self.up
     create_table :roles do |t|
@@ -5,9 +6,9 @@ class CreateRoles < ActiveRecord::Migration
     end
 
     Role.enumeration_model_updates_permitted = true
-    Role.create(:name => 'admin')    
-    Role.create(:name => 'moderator')
-    Role.create(:name => 'member')            
+    Role.create({ :name => 'admin' }, :without_protection => true)    
+    Role.create({ :name => 'moderator' }, :without_protection => true)
+    Role.create({ :name => 'member' }, :without_protection => true)            
     Role.enumeration_model_updates_permitted = false
     
     add_column :users, :role_id, :integer
