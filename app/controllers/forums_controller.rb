@@ -57,7 +57,16 @@ class ForumsController < BaseController
   
   protected
     def find_or_initialize_forum
-      @forum = params[:id] ? Forum.find(params[:id]) : Forum.new(params[:forum])
+      if params[:id]
+        @forum = Forum.find(params[:id])
+      else
+        @forum = Forum.new
+        if params[:forum]
+          @forum.name = params[:forum][:name]
+          @forum.position = params[:forum][:position]
+          @forum.description = params[:forum][:description]
+        end
+      end
     end
     
     
