@@ -4,6 +4,7 @@ class Poll < ActiveRecord::Base
   validates_presence_of :post
   has_many :votes, :dependent => :destroy
   belongs_to :post
+  attr_accessible :question
       
   def voted?(user)
     !self.votes.find_by_user_id(user.id).nil?
