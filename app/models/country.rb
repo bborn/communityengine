@@ -1,5 +1,7 @@
 class Country < ActiveRecord::Base
   has_many :metro_areas
+
+  attr_accessible :name
   
   def self.get(name)
     case name

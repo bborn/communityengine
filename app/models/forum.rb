@@ -14,6 +14,8 @@ class Forum < ActiveRecord::Base
   belongs_to :owner, :polymorphic => true
 
   format_attribute :description
+
+  attr_accessible :name, :position, :description
   
   def to_param
     id.to_s << "-" << (name ? name.parameterize : '' )
