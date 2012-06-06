@@ -137,6 +137,14 @@ class SbPostTest < ActiveSupport::TestCase
     assert !post.reload.body.include?("<script")
   end
   
+  test "should not allow malicious chars in author email field" do
+    email = "valid@email.com%0A<script>alert('hello')</script>"    
+    post = topics(:pdi).sb_posts.new({:author_email => email})
+    post.save
+    assert !post.valid?
+    assert post.errors[:author_email]
+  end
+  
   protected
     def create_post(topic, options = {})
       topic.sb_posts.new(options).tap do |p|

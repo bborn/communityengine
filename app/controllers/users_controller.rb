@@ -292,7 +292,6 @@ class UsersController < BaseController
   end
 
   def resend_activation
-    return unless request.post?       
 
     if params[:email]
       @user = User.find_by_email(params[:email])    

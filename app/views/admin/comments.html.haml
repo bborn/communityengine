@@ -27,7 +27,7 @@
 
       = paginate @comments
 
-      = form_tag delete_selected_comments_path, :id => 'comments' do
+      = form_tag delete_selected_comments_path, :method => :delete, :id => 'comments' do
         %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%", :style => "table-layout:fixed;"}
           %thead
             %tr

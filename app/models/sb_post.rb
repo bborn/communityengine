@@ -19,7 +19,7 @@ class SbPost < ActiveRecord::Base
 
   validates_presence_of :user_id, :unless => Proc.new{|record| configatron.allow_anonymous_forum_posting }
   validates_presence_of :author_email, :unless => Proc.new{|record| record.user }  #require email unless logged in
-  validates_format_of :author_email, :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/, :unless => Proc.new{|record| record.user}
+  validates_format_of :author_email, :with => /\A([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})\z/, :unless => Proc.new{|record| record.user}
   validates_presence_of :author_ip, :unless => Proc.new{|record| record.user} #log ip unless logged in
 
   validates_presence_of :body, :topic
