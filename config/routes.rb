@@ -220,7 +220,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :comments
+    resources :comments do 
+      member do
+        get :unsubscribe
+      end
+    end
     resources :photo_manager
 
     resources :albums do

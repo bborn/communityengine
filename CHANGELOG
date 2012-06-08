@@ -4,6 +4,9 @@
 * add back searching to users index
 * swap jquery for prototype
 
+
+* Upgrade to bcrybt crypto method
+
 =2.0.0.beta4
 * Replace white_list plugin with Sanitize gem (white_list.rb initizlizer format has changed)
 * Upgrade to Rails 3.2

@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   FEMALE  = 'F'
   
   acts_as_authentic do |c|
-    c.crypto_provider = CommunityEngineSha1CryptoMethod
+    c.transition_from_crypto_providers = CommunityEngineSha1CryptoMethod
+    c.crypto_provider = Authlogic::CryptoProviders::BCrypt  
     
     c.validates_length_of_password_field_options = { :within => 6..20, :if => :password_required? }
     c.validates_length_of_password_confirmation_field_options = { :within => 6..20, :if => :password_required? }
