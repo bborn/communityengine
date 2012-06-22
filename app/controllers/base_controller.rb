@@ -11,7 +11,7 @@ class BaseController < ApplicationController
   helper_method :commentable_url
   before_filter :initialize_header_tabs
   before_filter :initialize_admin_tabs
-  before_filter :store_location
+  before_filter :store_location, :except => :footer_content
 
   caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
 
