@@ -48,4 +48,4 @@
           =link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} #{:delete_this_post.l}".html_safe, user_post_path(current_user, @post), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l
 
   -content_for :end_javascript do
-    = observe_field  "post_category_id", {:url => {:action => 'category_tips_update'}, :with => "post_category_id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}
+    = observe_field  "post_category_id", {:url => {:action => 'category_tips_update'}, :method => :get, :with => "post_category_id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}

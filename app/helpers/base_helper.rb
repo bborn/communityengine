@@ -29,9 +29,9 @@ module BaseHelper
     str << '><div class="box_top"></div>'
     str << "\n"
     
-    concat(str)
+    concat(str.html_safe)
     yield(content)
-    concat('<br class="clear" /><div class="box_bottom"></div></div>')
+    concat('<br class="clear" /><div class="box_bottom"></div></div>'.html_safe)
   end
   
   def block_to_partial(partial_name, html_options = {}, &block)
