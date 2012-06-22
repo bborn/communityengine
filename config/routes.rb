@@ -110,7 +110,7 @@ Rails.application.routes.draw do
   get '/search/tags' => 'tags#show', :as => :search_tags
   
   resources :categories
-  get '/categories/show_tips' => 'categories#show_tips', :as => :categories_show_tips
+  post '/categories/show_tips' => 'categories#show_tips', :as => :categories_show_tips
 
   resources :events do
     get 'page/:page', :action => :index, :on => :collection
@@ -170,7 +170,6 @@ Rails.application.routes.draw do
       get 'statistics'
       put 'crop_profile_photo'
       put 'upload_profile_photo'
-      get 'metro_area_update'
     end
     
     resources :friendships do
@@ -246,5 +245,6 @@ Rails.application.routes.draw do
   resources :votes
   resources :invitations
   get '/users/:user_id/posts/category/:category_name' => 'posts#index', :as => :users_posts_in_category
+  post '/users/metro_area_update' => 'users#metro_area_update', :as => :users_metro_area_update
 
 end
