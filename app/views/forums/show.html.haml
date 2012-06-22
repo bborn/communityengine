@@ -50,9 +50,9 @@
             - else
               = image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => :no_recent_activity.l+" #{post}", :plugin => "community_engine"
           %td.c2
-            = :sticky.l+": <strong>" if topic.sticky?
+            = :sticky.l+": <strong>".html_safe if topic.sticky?
             = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
-            = "</strong>" if topic.sticky?
+            = "</strong>".html_safe if topic.sticky?
             - if topic.paged? 
               %small= link_to :last.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page)
           %td.ca.inv.stat= topic.sb_posts_count
