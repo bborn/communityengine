@@ -12,7 +12,7 @@
         -if ( comment.can_be_deleted_by(current_user) )
           %li.delete=link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
         -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to_remote :edit.l, :url => {:controller => 'comments', :action => 'edit', :id => comment.id}, :method => :get
+          %li.edit=link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
     .entry-content= comment.comment.html_safe
 
 -else
@@ -31,7 +31,7 @@
         -if ( comment.can_be_deleted_by(current_user) )
           %li.delete=link_to_remote(:delete.l, {:url => commentable_comment_path_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
         -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to_remote :edit.l, :url => {:controller => 'comments', :action => 'edit', :id => comment.id}, :method => :get
+          %li.edit=link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
           
     .entry-content= comment.comment.html_safe
 
