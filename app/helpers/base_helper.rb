@@ -271,4 +271,10 @@ module BaseHelper
     user.gender ? (user.male? ? :his.l : :her.l)  : :their.l    
   end
 
+  def tiny_mce_init_if_needed
+    if !@uses_tiny_mce.blank?
+      tinymce_assets
+      tinymce :editor_selector => 'rich_text_editor'
+    end
+  end
 end
