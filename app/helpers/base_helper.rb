@@ -240,7 +240,7 @@ module BaseHelper
 
   def time_ago_in_words_or_date(date)
     if date.to_date.eql?(Time.now.to_date)
-      display = I18n.l(date.to_time, :format => :time_ago)
+      display = I18n.l(date.to_time.localtime, :format => :time_ago)
     elsif date.to_date.eql?(Time.now.to_date - 1)
       display = :yesterday.l
     else
