@@ -13,7 +13,9 @@ Getting CommunityEngine Running
 
 1. Copy the following into your `Gemfile`:
 
+    ```
     gem 'community_engine', github: 'bborn/communityengine', branch: 'rails3'
+    ``
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
 
