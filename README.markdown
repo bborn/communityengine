@@ -15,7 +15,7 @@ Getting CommunityEngine Running
 
     ```
     gem 'community_engine', github: 'bborn/communityengine', branch: 'rails3'
-    ``
+    ```
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
 
