@@ -15,18 +15,22 @@ class User < ActiveRecord::Base
   MALE    = 'M'
   FEMALE  = 'F'
   
-  acts_as_authentic do |c|
-    c.transition_from_crypto_providers = CommunityEngineSha1CryptoMethod
-    c.crypto_provider = Authlogic::CryptoProviders::BCrypt  
-    
-    c.validates_length_of_password_field_options = { :within => 6..20, :if => :password_required? }
-    c.validates_length_of_password_confirmation_field_options = { :within => 6..20, :if => :password_required? }
+  begin
+    acts_as_authentic do |c|
+      c.transition_from_crypto_providers = CommunityEngineSha1CryptoMethod
+      c.crypto_provider = Authlogic::CryptoProviders::BCrypt  
 
-    c.validates_length_of_login_field_options = { :minimum => 5, :unless => :omniauthed? }
-    c.validates_format_of_login_field_options = { :with => /\A[\sA-Za-z0-9_-]+\z/, :unless => :omniauthed? }
+      c.validates_length_of_password_field_options = { :within => 6..20, :if => :password_required? }
+      c.validates_length_of_password_confirmation_field_options = { :within => 6..20, :if => :password_required? }
 
-    c.validates_length_of_email_field_options = { :within => 3..100, :if => :email_required? }
-    c.validates_format_of_email_field_options = { :with => /\A([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})\z/, :if => :email_required? }
+      c.validates_length_of_login_field_options = { :minimum => 5, :unless => :omniauthed? }
+      c.validates_format_of_login_field_options = { :with => /\A[\sA-Za-z0-9_-]+\z/, :unless => :omniauthed? }
+
+      c.validates_length_of_email_field_options = { :within => 3..100, :if => :email_required? }
+      c.validates_format_of_email_field_options = { :with => /\A([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})\z/, :if => :email_required? }
+    end
+  rescue StandardError
+    puts 'Failed to initialize AuthLogic'
   end
   
   acts_as_taggable  
