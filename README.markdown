@@ -13,18 +13,20 @@ Getting CommunityEngine Running
 
 1. Copy the following into your `Gemfile`:
 
-		gem 'community_engine'
+    ```
+    gem 'community_engine', :github => 'bborn/communityengine', :branch => 'rails3'
+    ```
 
-2. From your app's root directory run:
+2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
+
+		configatron.community_name = "Your Application Name"
+		# See CE's application_config.rb to see all the other configuration options available
+
+3. From your app's root directory run:
 
 		$ bundle install --binstubs
 		$ bin/rake community_engine:install:migrations
 		$ bin/rake db:migrate
-
-3. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
-
-		configatron.community_name = "Your Application Name"
-		# See CE's application_config.rb to see all the other configuration options available
 
 4. Mount CommunityEngine in your `config/routes.rb` file:
 
