@@ -147,7 +147,7 @@ class CommentsControllerTest < ActionController::TestCase
     comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
     configatron.allow_anonymous_commenting = false
         
-    post :unsubscribe, :comment_id => comment.id, :token => comment.token_for('bar@foo.com'), :email => 'bar@foo.com'
+    get :unsubscribe, :commentable_type => comment.commentable_type, :commentable_id => comment.commentable_id, :id => comment.id, :token => comment.token_for('bar@foo.com'), :email => 'bar@foo.com'
     assert comment.reload.notify_by_email.eql?(false)
   end
   
@@ -156,7 +156,7 @@ class CommentsControllerTest < ActionController::TestCase
     comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
     configatron.allow_anonymous_commenting = false
         
-    post :unsubscribe, :commentable_type => 'User', :commentable_id => users(:quentin).to_param, :comment_id => comment.id, :token => 'badtokengoeshere' 
+    get :unsubscribe, :commentable_type => 'User', :commentable_id => users(:quentin).to_param, :id => comment.id, :token => 'badtokengoeshere' 
     assert comment.reload.notify_by_email.eql?(true)    
   end
   

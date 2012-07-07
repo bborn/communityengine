@@ -2,7 +2,7 @@ class Message < ActiveRecord::Base
   attr_accessor :to
   attr_accessor :reply_to
 
-  attr_accessible :to, :subject, :body
+  attr_accessible :to, :subject, :body, :recipient, :sender
   
   belongs_to :sender,     :class_name => 'User', :foreign_key => 'sender_id', :inverse_of => :sent_messages
   belongs_to :recipient,  :class_name => 'User', :foreign_key => 'recipient_id', :inverse_of => :received_messages
@@ -15,7 +15,7 @@ class Message < ActiveRecord::Base
   scope :already_read, where("read_at IS NOT NULL")
   scope :unread, where("read_at IS NULL")
   
-  validates_presence_of :body, :subject
+  validates_presence_of :body, :subject, :sender
   validates_presence_of :recipient, :message => "is invalid"
   validate :ensure_not_sending_to_self
   

@@ -148,7 +148,7 @@ class CommentsController < BaseController
 
   
   def unsubscribe
-    @comment = Comment.find(params[:comment_id])
+    @comment = Comment.find(params[:id])
     if @comment.token_for(params[:email]).eql?(params[:token])
       @comment.unsubscribe_notifications(params[:email])
       flash[:notice] = :comment_unsubscribe_succeeded.l

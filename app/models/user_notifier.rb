@@ -63,7 +63,7 @@ class UserNotifier < ActionMailer::Base
     @url  = commentable_url(comment)
     @comment = comment
 
-    @unsubscribe_link = url_for(:controller => 'comments', :action => 'unsubscribe', :comment_id => comment.id, :token => comment.token_for(email), :email => email)
+    @unsubscribe_link = url_for(:controller => 'comments', :action => 'unsubscribe', :commentable_type => comment.commentable_type, :commentable_id => comment.commentable_id, :id => comment.id, :token => comment.token_for(email), :email => email)
     mail(:to => @recipients, :subject => @subject)    
   end
 

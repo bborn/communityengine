@@ -128,8 +128,13 @@ Rails.application.routes.draw do
     resources :favorites
   end
   scope "/:commentable_type/:commentable_id" do
-    resources :comments, :as => :commentable_comments
+    resources :comments, :as => :commentable_comments do 
+      member do
+        get :unsubscribe
+      end      
+    end
   end
+  resources :comments
   delete '/comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
   
   resources :homepage_features
@@ -200,6 +205,7 @@ Rails.application.routes.draw do
         post :send_to_friend
         put :update_views
         get :category_tips_update
+        get :preview
       end
     end
 
@@ -224,11 +230,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :comments do 
-      member do
-        get :unsubscribe
-      end
-    end
+    resources :comments
     resources :photo_manager
 
     resources :albums do
