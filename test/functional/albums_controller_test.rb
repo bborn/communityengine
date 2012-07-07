@@ -42,9 +42,9 @@ class AlbumsControllerTest < ActionController::TestCase
 
   test "should update album" do
     login_as :quentin
-    put :update, :id => albums(:one).id, :album => { }, :go_to => 'only_create'
+    put :update, :id => albums(:one).id, :album => { }, :go_to => 'only_create', :user_id => users(:quentin)
     assert_redirected_to user_album_path(users(:quentin), albums(:one))
-    put :update, :id => albums(:one).id, :album => { }, :go_to => ''
+    put :update, :id => albums(:one).id, :album => { }, :go_to => '', :user_id => users(:quentin)
     assert_redirected_to new_user_album_photo_path(users(:quentin),albums(:one))
   end
 
@@ -72,13 +72,13 @@ class AlbumsControllerTest < ActionController::TestCase
   
   test "Non owners should update counter" do
     login_as :quentin
-    get :show, :id => 2
+    get :show, :id => 2, :user_id => users(:quentin)
     assert_equal assigns(:album).reload.view_count, 1
   end  
   
   # Public access
   test "should show album and not update counter" do
-    get :show, :id => 1
+    get :show, :id => 1, :user_id => users(:quentin)
     assert_response :success
     assert assigns(:album)
     assert_equal assigns(:album_photos).size, 1  

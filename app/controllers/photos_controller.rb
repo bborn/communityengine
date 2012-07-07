@@ -1,4 +1,4 @@
-  require 'pp'
+require 'pp'
 
 class PhotosController < BaseController
   include Viewable  

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get '/base/:action' => 'base'
 
   get '/forums/recent' => 'sb_posts#index', :as => :recent_forum_posts
+  get '/photos/recent' => 'photos#recent', :as => :recent_photos
 
   resources :authorizations
   match '/auth/:provider/callback' => 'authorizations#create', :as => :callback
@@ -48,6 +49,8 @@ Rails.application.routes.draw do
     get 'events' => 'admin#events', :as => :admin_events
     get 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
     get 'subscribers(.:format)' => "admin#subscribers", :as => :admin_subscribers
+    get 'activate_user' => "admin#activate_user", :as => :admin_activate_user
+    get 'deactivate_user' => 'admin#deactivate_user', :as => :admin_deactivate_user
     
     resources :pages, :as => :admin_pages do
       member do
@@ -70,6 +73,7 @@ Rails.application.routes.draw do
   post '/resend_activation' => 'users#resend_activation', :as => :resend_activation
   
   get '/new_clipping' => 'clippings#new_clipping'
+  post '/load_images_from_uri' => 'clippings#load_images_from_uri', :format => 'js'  
   get '/clippings(/page/:page)' => 'clippings#site_index', :as => :site_clippings
   get '/clippings.rss' => 'clippings#site_index', :as => :rss_site_clippings, :format => 'rss'
   

@@ -86,6 +86,11 @@ class ClippingsControllerTest < ActionController::TestCase
     assert_response :success
     assert !assigns(@images).empty?
   end
+  
+  def test_load_images_from_uri
+    post :load_images_from_uri, :uri => 'http://www.google.com', :format => :js
+    assert_response :success
+  end
 
 
   def test_should_show_clipping

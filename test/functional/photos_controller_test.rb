@@ -32,7 +32,7 @@ class PhotosControllerTest < ActionController::TestCase
   def test_should_update
     login_as :quentin 
     assert_no_difference Photo ,:count do
-      post :update, :id => 1, :photo => {:name => 'Another name', :album_id => 2}
+      post :update, :id => 1, :user_id => users(:quentin).id, :photo => {:name => 'Another name', :album_id => 2}
     end
     assert_equal photos(:library_pic).name, 'Another name'
     assert_equal photos(:library_pic).album_id, 2    
@@ -133,7 +133,7 @@ class PhotosControllerTest < ActionController::TestCase
 
   def test_should_show_private_photo_if_logged_in
     login_as :quentin
-    get :show, :id => photos(:library_pic).id
+    get :show, :id => photos(:library_pic).id, :user_id => users(:quentin).id
     assert_response :success
   end
   
