@@ -273,8 +273,13 @@ module BaseHelper
 
   def tiny_mce_init_if_needed
     if !@uses_tiny_mce.blank?
-      tinymce_assets
-      tinymce :editor_selector => 'rich_text_editor'
+      tinymce_js = ""
+      
+      @tiny_mce_configurations.each do |c|
+        tinymce_js += tinymce_javascript(c.options)
+      end
+      
+      javascript_tag(tinymce_js)
     end
   end
 end

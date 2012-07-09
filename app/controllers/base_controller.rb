@@ -67,10 +67,10 @@ class BaseController < ApplicationController
     if block_given?
       options = block.call
     end
-
-    configuration = TinyMCE::Rails.configuration.merge(options)
-
-    # Set instance cars in the current class
+    
+    configuration = TinyMCE::Rails.configuration.merge(options.delete(:options))      
+    
+    # Set instance vars in the current class
     p = Proc.new do |c|
       configurations = c.instance_variable_get(:@tiny_mce_configurations) || []
       configurations << configuration
