@@ -177,7 +177,9 @@ Rails.application.routes.draw do
       post 'assume'               
       
       get 'statistics'
+      get 'crop_profile_photo'
       put 'crop_profile_photo'
+      get 'upload_profile_photo'
       put 'upload_profile_photo'
     end
     
