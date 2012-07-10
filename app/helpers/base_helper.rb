@@ -273,12 +273,7 @@ module BaseHelper
 
   def tiny_mce_init_if_needed
     if !@uses_tiny_mce.blank?
-      tinymce_js = ""
-      
-      @tiny_mce_configurations.each do |c|
-        tinymce_js += tinymce_javascript(c.options)
-      end
-      
+      tinymce_js = tinymce_javascript(@tiny_mce_configuration)      
       javascript_tag(tinymce_js)
     end
   end

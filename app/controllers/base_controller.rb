@@ -68,14 +68,13 @@ class BaseController < ApplicationController
       options = block.call
     end
     
-    configuration = TinyMCE::Rails.configuration.merge(options.delete(:options))      
+    new_configuration = TinyMCE::Rails.configuration.merge(options.delete(:options)).options
     
     # Set instance vars in the current class
     p = Proc.new do |c|
-      configurations = c.instance_variable_get(:@tiny_mce_configurations) || []
-      configurations << configuration
+      configuration = c.instance_variable_get(:@tiny_mce_configuration) || {}
 
-      c.instance_variable_set(:@tiny_mce_configurations, configurations)
+      c.instance_variable_set(:@tiny_mce_configuration, configuration.merge(new_configuration))
       c.instance_variable_set(:@uses_tiny_mce, true)
     end
 
