@@ -7,7 +7,7 @@
   .yui-b
     -box do 
       %h3= :editing_clipping.l
-      %img{"src"=>"#{h @clipping.image_uri}"}
+      %img{"src"=>"#{h @clipping.image_uri(:large)}"}
       = form_for(:clipping, :url => user_clipping_path(@user, @clipping), :html => { :method => :put, :class => "MainForm" }) do |f|
         %label= :url.l
         = f.text_field :url

@@ -88,7 +88,6 @@ class ClippingsController < BaseController
     begin
       doc = Hpricot( open( uri ) )
     rescue
-      render :inline => "<h1>Sorry, there was an error fetching the images from the page you requested</h1><a href='#{params[:uri]}'>Go back...</a>"
       return
     end
     @page_title = (doc/"title")
