@@ -48,8 +48,9 @@
           %ul#clipping_image_list
             = image_tag 'spinner.gif', :plugin => "community_engine"
             =:loading_images.l
+            = javascript_include_tag 'community_engine'
             %script{"type"=>"text/javascript"}
-              = remote_function(:url => { :controller => 'clippings', :action => "load_images_from_uri", :uri => params[:uri] } )
+              = remote_function(:url => { :controller => 'clippings', :action => "load_images_from_uri", :uri => params[:uri] }, :method => :post )
           %small
             %a{"href"=>"#{ params[:uri] }"}
               =:cancel_and_go_back_to.l
