@@ -10,7 +10,7 @@
   .yui-b
     -box :class=>'entry-content event-content' do 
       = render :partial=>'event', :locals=>{:event=>@event, :show_details_link=>false}
-      = @event.description
+      = @event.description.html_safe
       - unless @event.attendees.blank?
         %p
           %b=:attendees.l+':'
