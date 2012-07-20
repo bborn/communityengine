@@ -1,6 +1,6 @@
 #location_chooser
   %label= :country.l
-  = select_tag(:country_id, options_from_collection_for_select(Country.find_countries_with_metros, "id", "name", selected_country))
+  = select_tag(:country_id, options_from_collection_for_select(Country.find_countries_with_metros, "id", "name", selected_country), {:include_blank => true})
 
   %br
   %label= :state.l 
