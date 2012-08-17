@@ -51,6 +51,20 @@ class AdminControllerTest < ActionController::TestCase
     assert !users(:quentin).reload.active?    
   end
   
+  test "should list users" do
+    login_as :admin
+    get :users
+    assert_response :success
+    assert !assigns(:users).empty?
+  end
+  
+  test "should search users" do
+    login_as :admin
+    get :users, :login => 'admin'
+    assert_response :success
+    assert !assigns(:users).empty?
+  end
+  
   test "should clear cache" do
     login_as :admin
     get :clear_cache

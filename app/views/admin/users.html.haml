@@ -8,7 +8,7 @@
         = configatron.community_name
         = :members.l
 
-      = form_tag admin_users_url, :class => 'MainForm' do
+      = form_tag admin_users_url, :class => 'MainForm', :method => :get do
         %label= :user_login.l
         = text_field_tag 'login', params['login']
         %label= :user_e_mail.l

@@ -151,7 +151,7 @@ class CommentsControllerTest < ActionController::TestCase
     assert comment.reload.notify_by_email.eql?(false)
   end
   
-  def test_should_no_unsubscribe_with_bad_token
+  def test_should_not_unsubscribe_with_bad_token
     configatron.allow_anonymous_commenting = true
     comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
     configatron.allow_anonymous_commenting = false
