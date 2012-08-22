@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
 
       c.validates_length_of_email_field_options = { :within => 3..100, :if => :email_required? }
       c.validates_format_of_email_field_options = { :with => /\A([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})\z/, :if => :email_required? }
+      c.validates_uniqueness_of_email_field_options :case_sensitive => false
     end
   rescue StandardError
     puts 'Failed to initialize AuthLogic'
@@ -121,7 +122,7 @@ class User < ActiveRecord::Base
   ## Class Methods
 
   def self.find_by_login_or_email(string)
-    self.where("email = ? OR login = ?", string, string).first
+    self.first(:conditions => ["LOWER(email) = ? OR LOWER(login) = ?", string.downcase, string.downcase])
   end
 
   def self.find_country_and_state_from_search_params(search)
