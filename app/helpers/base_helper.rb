@@ -41,6 +41,31 @@ module BaseHelper
   def box(html_options = {}, &block)
     block_to_partial('shared/box', html_options, &block)
   end  
+  
+  
+  
+  def widget(html_options = {}, &block)
+    @widgets ||= ''
+    @widgets << render(:partial => 'shared/widget', :locals => {:body => capture(&block), :html_options => html_options})
+    return ''
+  end
+  
+  def render_widgets
+    if @widgets
+      @widgets.html_safe
+    end
+  end
+  
+  def hero_unit(html_options = {}, &block)
+    @hero_unit = render(:partial => 'shared/hero_unit', :locals => {:body => capture(&block), :html_options => html_options})
+    return ''
+  end
+  
+  def render_hero_unit
+    if @hero_unit
+      @hero_unit.html_safe
+    end
+  end
     
   def city_cloud(cities, classes)
     max, min = 0, 0
@@ -147,6 +172,67 @@ module BaseHelper
 
     title
   end
+  
+  def container_title
+    app_base = configatron.community_name
+    title = app_base
+
+    case controller.controller_name
+      when 'pages'
+        if @page and @page.title
+          title = @page.title
+        end
+      when 'posts'
+        if @post and @post.title
+          title = @post.title
+          @canonical_url = user_post_url(@post.user, @post)
+        end
+      when 'users'
+        if @user && !@user.new_record? && @user.login 
+          title = @user.login
+          @canonical_url = user_url(@user)          
+        else
+          title = :showing_users.l
+        end
+      when 'photos'
+        if @user and @user.login
+          title = :users_photos.l(:user => @user.login)
+        end
+      when 'clippings'
+        if @user and @user.login
+          title = :user_clippings.l(:user => @user.login)
+        end
+      when 'tags'
+        case controller.action_name
+          when 'show'
+            if params[:type]
+              title = I18n.translate('all_' + params[:type].downcase.pluralize + '_tagged', :tag_name => @tags.map(&:name).join(', '))
+            else
+              title = :posts_photos_and_bookmarks.l(:name => @tags.map(&:name).join(', '))
+            end
+            title += " (#{:related_tags.l}: #{@related_tags.join(', ')})" if @related_tags
+            @canonical_url = tag_url(URI.escape(URI.escape(@tags_raw), /[\/.?#]/)) if @tags_raw
+          else
+            title = "Showing tags"
+          end
+      when 'categories'
+        if @category and @category.name
+          title = :posts_photos_and_bookmarks.l(:name => @category.name)
+        else
+          title = :showing_categories.l          
+        end
+      when 'sessions'
+        title = :login.l         
+    end
+
+    if @page_title
+      title = @page_title
+    elsif title == app_base          
+      title = :showing.l + ' ' + controller.controller_name
+    end
+
+    title
+  end
 
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
@@ -173,10 +259,10 @@ module BaseHelper
   end
   
   def more_comments_links(commentable)
-    html = link_to "&raquo; ".html_safe + :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
+    html = link_to '<i class="icon-plus-sign"></i> '.html_safe + :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
     html += "<br />".html_safe
-		html += link_to "&raquo; ".html_safe + :comments_rss.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
-		html.html_safe
+    html += link_to '<i class="icon-rss"></i> '.html_safe + :comments_rss.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
+    html.html_safe
   end
     
   def show_footer_content?
@@ -275,6 +361,14 @@ module BaseHelper
     if !@uses_tiny_mce.blank?
       tinymce_js = tinymce_javascript(@tiny_mce_configuration)      
       javascript_tag(tinymce_js)
+    end
+  end
+  
+  def flash_class(level)
+    case level
+      when :notice then "alert-info"
+      when :error then "alert-error"
+      when :alert then "alert-warning"
     end
   end
 end

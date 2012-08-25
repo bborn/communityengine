@@ -1,0 +1,12 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://fonts.googleapis.com/css?family=Satisfy);
+
+$sansFontFamily: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$serifFontFamily: Georgia, 'Times New Roman', Times, serif;
+$monoFontFamily: Menlo, Monaco, Consolas, 'Courier New', monospace;
+$baseFontSize: 13px;
+$baseFontFamily: $sansFontFamily;
+$baseLineHeight: 18px;
+$altFontFamily: $serifFontFamily;
+$headingsFontFamily: 'Satisfy';
+$headingsFontWeight: bold;

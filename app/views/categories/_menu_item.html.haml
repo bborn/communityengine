@@ -1,0 +1,8 @@
+- if Category.all.any?
+  %li.dropdown
+    %a.dropdown-toggle{:href => categories_path, 'data-target' => '#', 'data-toggle' => 'dropdown'}
+      =:categories.l
+      %b.caret
+    %ul.dropdown-menu
+      -for category in Category.order('name')
+        %li=link_to category.name, category
