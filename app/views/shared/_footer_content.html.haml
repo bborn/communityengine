@@ -1,13 +1,11 @@
-.yui-u.first
-  -box :class => "fresh" do 
+.span9
     %h3=:whats_fresh.l
     - @recent_activity.each do |activity|
       =render :partial => "activities/activity", :locals => {:activity => activity }
     %i.icon-plus-sign.pull-left
     = link_to :see_all_activity.l, activities_path
 
-.yui-u
-  -box do 
+.span3
     %h3=:tags.l
     - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |tag, css_class|
       = link_to tag.name, tag_path(tag.to_param), :class => css_class
