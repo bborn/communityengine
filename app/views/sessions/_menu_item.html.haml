@@ -5,8 +5,8 @@
       %b.caret
     %ul.dropdown-menu
       -if current_user.admin?
-          %li= link_to :admin_dashboard.l, admin_dashboard_path %></li>
-          %li.divider
+        %li= link_to :admin_dashboard.l, admin_dashboard_path %></li>
+        %li.divider
       %li= link_to :edit_profile.l, edit_user_path(current_user) %></li>
       %li= link_to :edit_account.l, edit_account_user_path(current_user) %></li>
       %li= link_to :manage_posts.l, manage_user_posts_path(current_user) %></li>
