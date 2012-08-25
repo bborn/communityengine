@@ -1,35 +1,36 @@
 -@section = 'my_clippings'
-.yui-b
-  =render :partial => 'posts/author_profile', :locals => {:user => @user}
 
-  - if @is_current_user
-    -box :class => "alt" do 
-      %h3=:help.l
-      %p=:clippings_let_you_to_save_cool_images_from_around_the_web.l
-      %p=:drag_the_bookmarklet.l :site => configatron.community_name
-      %p=:when_you_see_an_image_you_like_on_the_web.l :site => configatron.community_name
+- if @is_current_user
+  -widget :id => 'clipping_tools' do
+    %ul.nav.nav-list
+      %li.nav-header=:bookmarklet.l
+      %li=:drag_this_to_your_bookmarks_toolbar.l
+      %li= link_to "Clip it!", clippings_link, :class => 'btn btn-primary', :title=>"#{configatron.community_name} "+:scrapbook.l
+
+  -widget do
+    %ul.nav.nav-list
+      %li.nav-header=:help.l
+      %li=:clippings_let_you_to_save_cool_images_from_around_the_web.l
+      %li=:drag_the_bookmarklet.l :site => 'Clip'
+      %li=:when_you_see_an_image_you_like_on_the_web.l :site => configatron.community_name
+
+=render :partial => 'posts/author_profile', :locals => {:user => @user}
       
-    -box :class => 'alt', :id => 'clipping_tools' do
-      %h3=:bookmarklet.l
-      %p=:drag_this_to_your_bookmarks_toolbar.l
-      %p= link_to "#{configatron.community_name} it!", clippings_link, :style=>"border:1px solid #ccc; background:#efefef; padding: 5px;", :title=>"#{configatron.community_name} "+:scrapbook.l
+-widget :id => 'tag_list' do
+  %ul.nav.nav-list
+    %li.nav-header=:tags.l
+  - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
+    - css_class = css_class + (name.eql?(params[:tag_name]) ? " selected": "")
+    = link_to name, user_clippings_path(:user_id => @user, :tag_name => name), :class => css_class
+    
+-box :class => "hfeed", :id => 'clippings' do
+  - if @clippings.any?
+    -if @clippings.total_count > 1
+      .pagination=paginating_links @clippings
+    
+    %ul.thumbnails
+    - @clippings.each do |clipping|
+      %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+  - else
+    %p= @is_current_user ? :you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some.l : :no_clippings_yet.l
 
-#yui-main
-  .yui-b
-    -box :class => "hfeed", :id => 'clippings' do
-      %h3= link_to "#{:user_clippings.l :user =>@user.login}", user_clippings_path(@user)
-      - if @clippings.any?
-        -if @clippings.total_count > 1
-          .pagination=paginating_links @clippings
-
-        - @clippings.each do |clipping|
-          %a{"href"=>"#{user_clipping_url(@user, clipping) }"}
-            %img.polaroid.clipping{"class"=>"polaroid clipping", "src"=>"#{h clipping.image_uri(:thumb) }"}/
-      - else
-        %p= @is_current_user ? :you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some.l : :no_clippings_yet.l
-
-    -box :class => 'alt', :id => 'tag_list' do
-      %h3=:tags.l
-      - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
-        - css_class = css_class + (name.eql?(params[:tag_name]) ? " selected": "")
-        = link_to name, user_clippings_path(:user_id => @user, :tag_name => name), :class => css_class

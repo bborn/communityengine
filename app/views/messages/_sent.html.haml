@@ -1,9 +1,7 @@
 #yui-main
   .yui-b
     -box do 
-
-      %h3= :sent_messages.l
-      %table.messages{:border => 0, :width => '100%'}
+      %table.table.table-bordered.table-striped
         %tbody
           - if @messages.empty?
             %tr
@@ -31,4 +29,4 @@
             %tr
               %td{ :colspan => "4" }
                 -if @messages.any?
-                  %p= submit_tag :delete.l
+                  %p= submit_tag :delete.l, :class => 'btn btn-danger'

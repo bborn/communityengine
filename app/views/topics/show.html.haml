@@ -11,78 +11,57 @@
       } else {
         #{remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete}
       }}
-
-
--box :class => "alt first_alt" do 
-  - if logged_in?
-    = form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
-      #monitor_topic
-        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
-        %label#monitor_label{"for"=>"monitor_checkbox"}
-          = @monitoring ? :watching_topic.l : :watch_topic.l
-        = hidden_field_tag '_method', 'delete' if @monitoring
-        = submit_tag :Set, :id => 'monitor_submit', :style => "display:none"
-        
+    Event.observe(window, 'load', function(){
+      if(document.location.href.include('#reply-form')){
+      ReplyForm.init();
+      }
+    })
+      
+-widget do 
   = link_to :forums.l, forum_home_path
   %span.arrow &rarr;
   = link_to h(@topic.forum.name), forum_path(@topic.forum)
   %span.arrow &rarr;
   = h @topic.title
-  
-    
+
+-widget do 
+  - if logged_in?
+    = form_tag forum_topic_monitorship_path(@forum, @topic) do
+      #monitor_topic
+        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
+        %label#monitor_label{"for"=>"monitor_checkbox"}
+          = @monitoring ? :watching_topic.l : :watch_topic.l
+        = hidden_field_tag '_method', 'delete' if @monitoring
+        = submit_tag :save.l, :id => 'monitor_submit', :style => "display:none"
     
 -box :class => "forum" do 
-  %h3#topic-title
-    = h @topic.title
-    - if @topic.locked?
-      %span= :locked2.l
-    - if logged_in?
-      %span#topic_mod{"style"=>"display:none;"}
-        - if @topic.editable_by?(current_user)
-          = link_to(:edit.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
-          |
-          = link_to(:delete.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => :delete_this_topic_forever.l)
+  - if @topic.locked?
+    %h2= :locked2.l
+  - if logged_in?
+    - if @topic.editable_by?(current_user)
+      = link_to(:edit.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
+      |
+      = link_to(:delete.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => :delete_this_topic_forever.l)     
 
-
-      -content_for :end_javascript do
-        :javascript
-          $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
-          $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
-
-  %p.subtitle
-    = feed_icon_tag @topic.title, forum_topic_path(@forum, @topic, :format => :rss)
+  %p
+    %a{:href => forum_topic_path(@forum, @topic, :format => :rss)}
+      %i.icon-rss
     = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
     -if @topic.tags.any?
-      =:tags.l
-      \:
-      =raw @topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag').html_safe }.join(" ")
-
-
+      %h2=:tags.l
+      %p=raw @topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag').html_safe }.join(" ")
   
+  %h2= :voices.l
   %ul.flat.talking
-    %li.label= :voices.l + ":"
     - @voices.each do |user|
       %li= link_to h(user.display_name), user_path(user)
 
-  - if logged_in? || configatron.allow_anonymous_forum_posting
-    %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
-  -else
-    %h6.all.right= link_to :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"  
-  
-  
-  - if @posts.total_count > 1
-    .pagination.clear= paginating_links @posts
-
-  %a{"name"=>"#{@posts.to_a.first.dom_id}", "id"=>"#{@posts.to_a.first.dom_id}"} &nbsp;
-  %br.clear
-  %br
-  %table#posts.wide{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0"}
+  %a{"name"=>"#{@posts.to_a.first.dom_id}"}
+  %table.table.table-bordered.table-striped
     - for post in @posts do
       =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
-
-  - if @posts.total_count > 1
-    .pagination= paginating_links @posts
+  =paginate @posts
 
   - if logged_in? || configatron.allow_anonymous_forum_posting  
     #edit
@@ -91,7 +70,8 @@
         = image_tag "clearbits/lock.gif", :class => "icon grey", :title => :topic_locked.l
         %label= :this_topic_is_locked.l
     - else
-      %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
+      %i.icon-plus.pull-left
+      = link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
       #reply.editbox
         .container
           =render :partial => 'sb_posts/reply_form'
@@ -102,17 +82,3 @@
   - else
     %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
 
--box :class => "alt" do 
-  = link_to :forums.l, forum_home_path
-  %span.arrow &rarr;
-  = link_to h(@topic.forum.name), forum_path(@topic.forum)
-  %span.arrow &rarr;
-  = h @topic.title
-  
--content_for :end_javascript do
-  :javascript
-    Event.observe(window, 'load', function(){
-      if(document.location.href.include('#reply-form')){
-      ReplyForm.init();
-      }
-    })

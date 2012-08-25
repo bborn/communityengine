@@ -3,7 +3,7 @@
     %label= :month.l+":"
     = select_month(@month)
     = select_year(@month, :start_year => 1.years.ago.year, :end_year => 1.years.from_now.year)
-    %p= submit_tag :go.l
+    %p= submit_tag :go.l, :class => 'btn btn-primary'
 
     - if current_user.admin?
       %p= link_to :back_to_all_statistics.l, statistics_path

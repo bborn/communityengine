@@ -1,5 +1,5 @@
+-@page_title= :new_metro_area.l
 -box do
-  %h3= :new_metro_area.l
 
   = error_messages_for :metro_area
   = form_for(:metro_area, :url => metro_areas_path, :html => {:class => "MainForm"}) do |f|
@@ -11,6 +11,4 @@
     = f.text_field :name
 
     %p
-      = submit_tag :create.l
-
-    = link_to :back.l, metro_areas_path
+      = submit_tag :create.l, :class => 'btn btn-primary'

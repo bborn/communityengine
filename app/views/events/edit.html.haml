@@ -1,6 +1,5 @@
-
+-@page_title = :edit_event.l
 -box do
-  %h3= :edit_event.l
   = error_messages_for :event
   = form_for(:event, :url => event_path(@event), :html => {:method => :put, :class => "MainForm"} ) do |f|
     %label= :name.l
@@ -25,10 +24,8 @@
     %label= :location.l
     = f.text_field :location
 
-    %h3= :metro_area.l
+    %h2= :metro_area.l
     = render :partial => 'shared/location_chooser', :locals => {:selected_country => @country_id, :selected_state => @state_id, :selected_metro_area => @metro_area_id, :states => @states, :metro_areas => @metro_areas}
 
     %p
-      = submit_tag :save.l
-
-  = link_to :back.l, :back
+      = submit_tag :save.l, :class => 'btn btn-primary'

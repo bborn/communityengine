@@ -1,22 +1,17 @@
 - @section = 'events'
+- @page_title = :events.l
+= :find_out_where_to_be_and_when_to_be_there.l
 
-.yui-b
-  - if @is_admin_user
-    -box :class => "alt first_alt" do 
-      = link_to_unless_current :past_events.l, past_events_path
-      = link_to_unless_current :upcoming_events.l, events_path
-      %br
-      = link_to :administer_events.l, admin_events_path
-  -box do 
-    %h3= :events.l
-    = :find_out_where_to_be_and_when_to_be_there.l
-  =render :partial=>'subscribe'
-#yui-main
-  .yui-b
-    -box do 
-    
-      .pagination=paginating_links @events if @events.total_count > 1      
+- if @is_admin_user
+  -widget do 
+    = link_to_unless_current :past_events.l, past_events_path
+    = link_to_unless_current :upcoming_events.l, events_path
+    %br
+    = link_to :administer_events.l, admin_events_path
+=render :partial=>'subscribe'
 
-      = render :partial=>'event', :collection=>@events, :locals=>{:show_details_link=>true}
+-box do     
 
-      .pagination=paginating_links @events if @events.total_count > 1      
+  = render :partial=>'event', :collection=>@events, :locals=>{:show_details_link=>true}
+
+  =paginate @events     

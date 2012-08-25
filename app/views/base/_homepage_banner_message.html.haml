@@ -1,19 +1,5 @@
-#welcome
-  .yui-gc
-    .yui-u.first
-      -box do 
-        %h2
-          =:get_started_banner.l :site=>configatron.community_name
-        %p
-          =:homepage_banner_msg.l
-        %h4
-          %a{:href=>"http://www.missingmethod.com/projects/community_engine"}
-            =:homepage_banner_download_msg.l
-    .yui-u
-      -box do 
-        %h2
-          =:homepage_banner_signup_prompt.l
-        %p
-          =:create_your_account.l
-        %h4 
-          =link_to :sign_up.l, signup_path
+-hero_unit do
+  %h1
+    =:get_started_banner.l :site=>configatron.community_name
+  %p.lead
+    =link_to :sign_up.l, signup_path

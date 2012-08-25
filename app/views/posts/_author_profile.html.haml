@@ -1,5 +1,6 @@
--box :class => 'alt first_alt' do
-  %h3=:author.l
+-widget do
+  %ul.nav.nav-list
+    %li.nav-header=:author.l
   %dl.vcard
     %dt.photo
       = link_to tag(:img, :src => user.avatar_photo_url(:thumb), "height"=>"50", "alt"=>"#{user.login}", "width"=>"50" ), user_path(user), :title => "#{user.login}'s"+ :profile.l

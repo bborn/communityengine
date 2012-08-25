@@ -1,37 +1,49 @@
 -if comment.user
-  .hentry{:id => "comment_#{comment.id}"}
-    .vcard.author
-      %h5= link_to image_tag(comment.user.avatar_photo_url(:thumb), :height => '50', :width => '50', :alt => "#{comment.user.login}"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login)
-      %ul
+  .clearfix
+    .span3.pull-right
+      %ul.nav.nav-list
+        %li= link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => "#{comment.user.login}"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'thumbnail'
         %li.fn
+          %i.icon-hand-right.pull-left
           = link_to comment.user.login, user_path(comment.user), :class => 'url'
         %li.update
+          %i.icon-calendar.pull-left
           %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
             %abbr.published{"title"=>"#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
-        -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
         -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+          %li.edit
+            %i.icon-edit.pull-left
+            =link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+        -if ( comment.can_be_deleted_by(current_user) )
+          %li.delete
+            %i.icon-trash.pull-left
+            =link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
     .entry-content= comment.comment.html_safe
 
 -else
-  .hentry{:id => "comment_#{comment.id}"}
-    .vcard.author
-      %h5
-        %a{:href => '#', :rel => 'bookmark', :class => 'photo', :onclick => 'return false;'}
-          = image_tag(configatron.photo.missing_thumb, :height => '50', :width => '50')
-      %ul
+  .clearfix
+    .span3.pull-right
+      %ul.nav.nav-list
+        %li
+          %a{:href => '#', :rel => 'bookmark', :class => 'photo', :onclick => 'return false;'}
+            = image_tag(configatron.photo.missing_thumb, :height => '50', :width => '50')
         %li.fn
+          %i.icon-hand-right.pull-left
           =link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }
         %li.update
+          %i.icon-calendar.pull-left
           %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
             %abbr.published{"title"=>"#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
-        -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to_remote(:delete.l, {:url => commentable_comment_path_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
         -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+          %li.edit
+            %i.icon-edit.pull-left
+            =link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+        -if ( comment.can_be_deleted_by(current_user) )
+          %li.delete
+            %i.icon-trash.pull-left
+            =link_to_remote(:delete.l, {:url => commentable_comment_path_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
           
     .entry-content= comment.comment.html_safe
 
@@ -40,3 +52,4 @@
   :javascript
     =visual_effect :highlight, "comment_#{comment.id}", :duration => 1 
 
+%hr

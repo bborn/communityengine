@@ -40,11 +40,10 @@
         %em="(#{:optional.l})"
       = f.text_field :author_url, :size => 35
 
-    
     %p
-      = submit_tag :add_comment.l
+      = submit_tag :add_comment.l, :class => 'btn btn-primary'
       = image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner'
 - else
-  = link_to :log_in_to_leave_a_comment.l, new_commentable_comment_path(commentable.class, commentable.id)
-  = :or.l
-  = link_to :create_an_account.l, signup_path
+  .btn-group
+    = link_to :log_in_to_leave_a_comment.l, new_commentable_comment_path(commentable.class, commentable.id), :class => 'btn btn-primary'
+    = link_to :create_an_account.l, signup_path, :class => 'btn btn-primary'

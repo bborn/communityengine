@@ -1,8 +1,4 @@
-.yui-b= render :partial => 'users/profile_user_info_sidebar'
-
-#yui-main
-  .yui-b
-    -box :id => "friends" do
-      %h3
-        =:denied_friendships.l
-      .user_list= render :partial => "friendships/friendship", :collection => @friendships
+-@page_title = :denied_friendships.l
+= render :partial => 'users/profile_user_info_sidebar'
+%ul.thumbnails
+  = render :partial => "friendships/friendship", :collection => @friendships

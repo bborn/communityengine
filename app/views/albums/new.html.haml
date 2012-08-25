@@ -1,15 +1,16 @@
+-@page_title= :new_album.l
 .yui-b
   -box do 
     %h3 Tips
     %p 
       =:album_tip.l :community_name => configatron.community_name
 
-  -box :class => 'alt' do
+  -widget do
     = link_to :back_to_photo_manager.l, user_photo_manager_index_path(current_user)
 
 #yui-main
   .yui-b
     -box :id => "single_upload", :class => ".yui-b" do
-      %h3= :new_album.l
+      %h3= 'Album Details'
       = form_for(@album, :url => user_albums_path(current_user.id), :html => {:class => "MainForm"}) do |f|
         = render :partial => 'form', :locals => {:f => f, :button1 => :create_and_add_photos.l, :button2 => :create_album.l }

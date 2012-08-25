@@ -1,69 +1,67 @@
-.yui-b
-  -box :class => "alt first_alt" do 
-    %h3
-      =:get_started.l + ' ' + :tell_us_about_yourself.l
+-@page_title=:about_you.l
+-widget do 
+  %ul.nav.nav-list
+    %li.nav-header=:get_started.l + ' ' + :tell_us_about_yourself.l
     = render :partial => 'shared/bio_help'
-    %p
+    %li
       =:remember_you_can_always_change_this_later.l
-    %p
+    %li
       = link_to :skip_this_step.l, welcome_invite_user_path(@user)
-      %br
+    %li
       = link_to :go_to_your_profile.l, user_path(@user)
 
-  - if @user.avatar_photo_url
-    -box :class => "alt" do 
-      %h3=:your_profile_photo.l
-      .centered
-        = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
-        = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid", :style=>"width:250px" )
-      =link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)        
+- if @user.avatar_photo_url
+  -widget do 
+    %h3=:your_profile_photo.l
+    = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
+    = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid", :style=>"width:250px" )
+    =link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)        
 
-#yui-main
-  -box :class => "yui-b" do
-    = form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "MainForm" do
-      %h3=:about_you.l
-      = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
-      
-      %h3=:gender.l
-      %fieldset
-        %label
-          = radio_button :user, :gender, User::MALE
-          =:male.l
-        %label
-          = radio_button :user, :gender, User::FEMALE
-          =:female.l
-                
-      %h3=:more_about_you.l
-      .yui-g
-        .yui-u.first
-          -box :class => "alt" do 
-            %h3
-              =:choose_your_location.l
-            %br
-            =:postal_code.l
-            %br
-            = text_field :user, :zip, :size => 10
-            %br
-            %br
-            = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
-        .yui-u
-          -box :class => "alt" do 
-            %h3= :tag_yourself.l
-            = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
-            #tag_list_auto_complete.auto_complete/
-            
-            -content_for :end_javascript do
-              = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+-box do
+  = form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "MainForm" do
+    
+    = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
+    
+    %h3=:gender.l
+    %fieldset
+      %label
+        = radio_button :user, :gender, User::MALE
+        =:male.l
+      %label
+        = radio_button :user, :gender, User::FEMALE
+        =:female.l
+              
+    %h3=:more_about_you.l
+    .yui-g
+      .yui-u.first
+        -widget do 
+          %h3
+            =:choose_your_location.l
+          %br
+          =:postal_code.l
+          %br
+          = text_field :user, :zip, :size => 10
+          %br
+          %br
+          = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
+      .yui-u
+        -widget do 
+          %h3= :tag_yourself.l
+          = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
+          #tag_list_auto_complete.auto_complete/
+          
+          -content_for :end_javascript do
+            = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
+          %br
+          %small
+            =:comma_separated_keywords_that_describe_you.l
             %br
-            %small
-              =:comma_separated_keywords_that_describe_you.l
-              %br
-              =:you_could_tag_yourself.l
-              - if @user.vendor?
-                =:custom_friendly_local.l
-              - else
-                = configatron.meta_keywords.split(",")[0..3].join(', ')
+            =:you_could_tag_yourself.l
+            - if @user.vendor?
+              =:custom_friendly_local.l
+            - else
+              = configatron.meta_keywords.split(",")[0..3].join(', ')
 
 
-        %p= submit_tag :save_and_continue_to_step_three.l
+      %p= submit_tag :save_and_continue_to_step_three.l, :class => 'btn btn-primary'

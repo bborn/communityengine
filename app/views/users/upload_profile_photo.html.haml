@@ -1,8 +1,8 @@
+-@page_title=:profile_photo.l
 -box :id => "profile_details" do
   = form_for :avatar, :url => upload_profile_photo_user_url(@user), :method => 'put', :multipart =>true, :html => {:class => 'MainForm'} do |f|
 
     = error_messages_for :avatar
-    %h3=:profile_photo.l
       
     = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
     = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )

@@ -1,22 +1,9 @@
+-@page_title=:showing_metro_area_details.l
 -box do
-
-  %h3=:showing_metro_area_details.l
-  
-  %p
-    %b
-      =:country.l
-      \:
-    = h @metro_area.country.name
-  %p
-    %b
-      =:state.l
-      \:
-    = @metro_area.state.name if @metro_area.state
-  %p
-    %b
-      =:name.l
-      \:
-    = @metro_area.name
-  = link_to :edit.l, edit_metro_area_path(@metro_area)
-  |
-  = link_to :back.l, metro_areas_path
+  %dl.dl-horizontal
+    %dt=:country.l
+    %dd= h @metro_area.country.name
+    %dt=:state.l
+    %dd= @metro_area.state.name if @metro_area.state
+    %dt=:name.l
+    %dd= @metro_area.name

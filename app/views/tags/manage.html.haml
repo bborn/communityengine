@@ -1,39 +1,35 @@
-.yui-b.sidebar
-  = render :partial => 'shared/admin_nav'
+-@page_title=:tags.l
+= render :partial => 'shared/admin_nav'
   
-  -box do
-    %h3=:search.l
-    = form_for @search, :url => tags_path, :html => {:class => "MainForm"} do |f|
+-box do
+  %h3=:search.l
+  = form_for @search, :url => tags_path, :html => {:class => "MainForm"} do |f|
 
-      %label= :name.l
-      = f.text_field :name_starts_with
+    %label= :name.l
+    = f.text_field :name_starts_with
 
-      %p= f.submit :search.l
-  
-#yui-main
-  .yui-b
-    -box do 
-      %h3=:tags.l
+    %p= f.submit :search.l
 
-      %table{:width=>"100%"}
-        %tr 
-          %th
-            =sort_link @search, :name, :name.l            
-          %th 
-            =sort_link @search, :taggings_count, :taggings.l
-          %th=:actions.l
+-box do 
 
-        - for tag in @tags
-          %tr
-            %td= tag.name
-            %td= tag.taggings.size	
-            %td
-              = link_to :show.l, tag_path(tag)
-              | 
-              = link_to :edit.l, edit_tag_path(tag)
-              |
-              = link_to :destroy.l, tag_path(tag), :confirm => :are_you_sure.l, :method => :delete
+  %table.table.table-bordered.table-striped
+    %tr 
+      %th
+        =sort_link @search, :name, :name.l            
+      %th 
+        =sort_link @search, :taggings_count, :taggings.l
+      %th=:actions.l
+
+    - for tag in @tags
+      %tr
+        %td= tag.name
+        %td= tag.taggings.count	
+        %td
+          = link_to :show.l, tag_path(tag)
+          | 
+          = link_to :edit.l, edit_tag_path(tag)
+          |
+          = link_to :destroy.l, tag_path(tag), :confirm => :are_you_sure.l, :method => :delete
               
-
-    .pagination=paginate @tags if @tags.total_count > 1
+    =paginate @tags
 

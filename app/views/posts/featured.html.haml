@@ -2,10 +2,11 @@
 
 .yui-b
 
-  -box :class => "alt first_alt" do 
-    %h3= :featured_writers.l
-    - @featured_writers.each do |user|
-      = render :partial => "users/sidebar_user", :locals => {:user => user}
+  -widget do 
+    %ul.nav.nav-list
+      %li.nav-header= :featured_writers.l
+      - @featured_writers.each do |user|
+        = render :partial => "users/sidebar_user", :locals => {:user => user}
 
 #yui-main
   .yui-b

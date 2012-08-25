@@ -19,9 +19,9 @@
                 &raquo;
                 =:log_in.l
 
-  -box :class => "alt" do 
-    %h3= :this_month_best.l 
-    %ul.list.page    
+  -widget do 
+    %ul.nav.nav-list
+      %li.nav-header=:this_month_best.l
       - @monthly_popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
 

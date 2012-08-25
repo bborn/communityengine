@@ -1,56 +1,52 @@
 -@section = 'my_clippings'
 - @meta = { :description => "#{@clipping.description}.",:keywords => "#{@clipping.tags.join(', ') if @clipping.tags}"}
 
-.yui-b
-  =render :partial => 'posts/author_profile', :locals => {:user => @user}
+=render :partial => 'posts/author_profile', :locals => {:user => @user}
 
-  - if @previous || @next
-    -box :class => "alt" do 
-      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ".html_safe, user_clipping_path(@user, @previous), :class => 'left' if @previous
-      = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;".html_safe, user_clipping_path(@user, @next), :class => 'right' if @next
+- if @previous || @next
+  -widget do 
+    = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ".html_safe, user_clipping_path(@user, @previous), :class => 'left' if @previous
+    = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;".html_safe, user_clipping_path(@user, @next), :class => 'right' if @next
 
-  - if @related.any?
-    -box :class => "alt" do 
-      %h3=:related_clippings_all_members.l
-      .centered
-        - @related.each do |clipping|
-          = link_to image_tag(clipping.image_uri(:thumb), :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
+- if @related.any?
+  -widget do 
+    %h3=:related_clippings_all_members.l
+    - @related.each do |clipping|
+      = link_to image_tag(clipping.image_uri(:thumb), :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
 
-#yui-main
-  .yui-b
-    -box :class => "hfeed" do 
-      %h3= link_to :user_clippings.l(:user =>@user.login), user_clippings_path(@user)
-      .hentry.main
-        - if @is_current_user
-          = link_to :delete.l, user_clipping_path(@user, @clipping), :confirm => :are_you_sure.l, :method => :delete
-          |
-          = link_to :edit.l, edit_user_clipping_path(@user, @clipping)
+-box :class => "hfeed" do 
+  %h3= link_to :user_clippings.l(:user =>@user.login), user_clippings_path(@user)
+  .hentry.main
+    - if @is_current_user
+      = link_to :delete.l, user_clipping_path(@user, @clipping), :confirm => :are_you_sure.l, :method => :delete
+      |
+      = link_to :edit.l, edit_user_clipping_path(@user, @clipping)
 
-        %p.centered
-          %a{"href"=>"#{h @clipping.url }"}
-            %img{:src=>"#{h @clipping.image_uri(:large)}", :class=>"clipping", :alt=> "#{h @clipping.description}"}
+    %p.centered
+      %a{"href"=>"#{h @clipping.url }"}
+        %img{:src=>"#{h @clipping.image_uri(:large)}", :class=>"clipping", :alt=> "#{h @clipping.description}"}
 
-        %p
-          =:from.l
-          %a{"href"=>"#{h @clipping.url }", "title"=>"#{h @clipping.description }"}
-            = h truncate(@clipping.url, :length => 95)
+    %p
+      =:from.l
+      %a{"href"=>"#{h @clipping.url }", "title"=>"#{h @clipping.description }"}
+        = h truncate(@clipping.url, :length => 95)
 
-        %p
-          =:description.l
-          \:
-          =h @clipping.description
+    %p
+      =:description.l
+      \:
+      =h @clipping.description
 
-        %p
-          =:tags.l
-          \:
-        %ul.tags
-          - @clipping.tags.each do |t|
-            %li=link_to( t.name, tag_url(t), :rel => 'tag')
+    %p
+      =:tags.l
+      \:
+    %ul.tags
+      - @clipping.tags.each do |t|
+        %li=link_to( t.name, tag_url(t), :rel => 'tag')
 
-    -box :class => 'hfeed comments', :id => 'comments' do
-      %h3=:clipping_comments.l
-      %h2=:add_your_comment.l
-      = render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
-      %a#newest_comment
-      = render :partial => 'comments/comment', :collection => @clipping.comments
-      %span#more_comments_links= more_comments_links(@clipping)
+-box :class => 'hfeed comments', :id => 'comments' do
+  %h3=:clipping_comments.l
+  %h2=:add_your_comment.l
+  = render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
+  %a#newest_comment
+  = render :partial => 'comments/comment', :collection => @clipping.comments
+  %span#more_comments_links= more_comments_links(@clipping)

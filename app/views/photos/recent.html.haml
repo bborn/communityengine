@@ -1,8 +1,9 @@
+-@page_title=:recent_photos.l
 -box do
-  %h3=:recent_photos.l
 
-  .pagination= paginating_links @photos if @photos.total_count > 1
-
-  %ul
+  %ul.thumbnails
     - @photos.each do |photo|
-      %li= image_tag photo.photo.url(:thumb) 
+      %li.span4
+        = link_to tag('img', :src => photo.photo.url(:medium)), user_photo_path(photo.user, photo), :class => 'thumbnail'
+
+  =paginate @photos

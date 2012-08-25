@@ -1,43 +1,41 @@
-.yui-b
-  = render :partial => 'shared/admin_nav'
+-@page_title = :ads.l
+= render :partial => 'shared/admin_nav'
+
+-box do
+  %h3=:search.l
+  = form_for @search, :url => ads_path, :html => {:class => "MainForm"} do |f|
+
+    %label= :name.l
+    = f.text_field :name_starts_with
+    
+    %label= :location.l
+    = f.text_field :location_contains
+
+    %p= f.submit :search.l, :class => 'btn'
   
-  -box do
-    %h3=:search.l
-    = form_for @search, :url => ads_path, :html => {:class => "MainForm"} do |f|
 
-      %label= :name.l
-      = f.text_field :name_starts_with
-      
-      %label= :location.l
-      = f.text_field :location_contains
+-box do
+  %h3= :ads.l
+  %table.table.table-bordered.table-striped
+    %tr
+      %th
+        =sort_link @search, :name, :name.l                    
+      %th 
+        =sort_link @search, :published, :published.l
+      %th
+        =sort_link @search, :location, :location.l                              
+      %th &nbsp;
 
-      %p= f.submit :search.l
-  
-
-#yui-main
-  .yui-b  
-    -box do
-      %h3= :ads.l
-      %table{"width"=>"100%"}
-        %tr
-          %th=sort_link @search, :name, :name.l                    
-          %th 
-            =sort_link @search, :published, :published.l
-          %th
-            =sort_link @search, :location, :location.l                              
-          %th &nbsp;
-
-        - for ad in @ads
-          %tr
-            %td= link_to h(ad.name), ad_path(ad)
-            %td= h ad.published?
-            %td= h ad.location
-            %td{:colspan => 3}
-              = link_to :edit.l, edit_ad_path(ad)
-              |
-              = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
-            
-      .pagination=paginate @ads
-      
-      %br
-      = link_to :new_ad.l, new_ad_path
+    - for ad in @ads
+      %tr
+        %td= link_to h(ad.name), ad_path(ad)
+        %td= h ad.published?
+        %td= h ad.location
+        %td{:colspan => 3}
+          = link_to :edit.l, edit_ad_path(ad)
+          |
+          = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
+        
+  .pagination=paginate @ads
+  %i.icon-plus.pull-left
+  = link_to :new_ad.l, new_ad_path

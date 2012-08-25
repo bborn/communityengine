@@ -2,21 +2,16 @@
 - @section = 'forums'
 - @page_title = @forum.name
 
--box :class => "alt first_alt" do 
-  = link_to :forums.l, forum_home_path
-  %span.arrow
-    &rarr;
-  = h @forum.name   
-
 -box do 
+  - unless @forum.description.blank?
+    =raw @forum.description_html
   %p.subtitle
-    = feed_icon_tag @forum.name, forum_sb_posts_path(@forum, :format => :rss)
+    %a{:href => forum_sb_posts_path(@forum, :format => :rss)}
+      %i.icon-rss
     = pluralize @forum.topics_count, :topic.l 
     , 
     = pluralize @forum.sb_posts_count, :post.l
 
-  - unless @forum.description.blank?
-    =raw @forum.description_html
   
   - if @forum.moderators.any?
     = "#{:moderators.l}:"
@@ -28,17 +23,19 @@
 
   - if @topics.total_count > 1
     - if logged_in?
-      %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
+      %i.icon-plus.pull-left
+      = link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
   
-    .pagination= paginating_links @topics
+    =paginate @topics
 
   - unless @topics.empty?
-    %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
+    %table.table.table-bordered.table-striped
       %tr
-        %th.la{:colspan=>"2"}= :topics.l
-        %th{:width=>"1%"}= :posts.l
-        %th{:width=>"1%"}= :view_count.l 
-        %th.la= :last_post.l
+        %th
+        %th= :topics.l
+        %th= :posts.l
+        %th= :view_count.l 
+        %th= :last_post.l
         
       - for topic in @topics
         %tr
@@ -46,9 +43,8 @@
             - icon, color, post = icon_and_color_and_post_for topic
 
             - if recent_topic_activity(topic)
-              = image_tag "clearbits/#{icon}.gif", :class => "icon green", :title => :recent_activity.l+" #{post}", :plugin => "community_engine"
-            - else
-              = image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => :no_recent_activity.l+" #{post}", :plugin => "community_engine"
+              %span.badge.badge-warning
+                %i.icon-fire.icon-white
           %td.c2
             = :sticky.l+": <strong>".html_safe if topic.sticky?
             = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
@@ -68,9 +64,11 @@
     = paginate @topics
 
   - if logged_in?
-    %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
+    %i.icon-plus.pull-left
+    = link_to :post_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
   - else
-    %h6.all.right= link_to :log_in_to_create_a_new_topic.l, new_forum_topic_path(@forum)
+    %i.icon-plus.pull-left
+    = link_to :log_in_to_create_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
 
   - if @topics.size < 10
     - @related = Post.limit(10).tagged_with(@forum.tag_list, :any => true)

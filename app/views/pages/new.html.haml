@@ -1,14 +1,10 @@
-#yui-main
-  .yui-b
-    -box do 
-      %h3= :new_page.l
-      = error_messages_for :page
-      = form_for(:page, :url => admin_pages_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|
+-@page_title= :new_page.l
+-box do
+  = error_messages_for :page
+  = form_for(:page, :url => admin_pages_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|
 
-        =render :partial => 'form', :locals => {:f => f}
-        
-        %p
-          = submit_tag :save.l
-          =:or.l 
-          = link_to :cancel_and_go_back_to_pages.l, admin_pages_path
+    =render :partial => 'form', :locals => {:f => f}
+    
+    %p
+      = submit_tag :save.l, :class => 'btn btn-primary'
 

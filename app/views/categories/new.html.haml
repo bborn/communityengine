@@ -1,9 +1,6 @@
+-@page_title= :new_category.l
 -box do
-  %h3= :new_category.l
-
   = form_for(:category, :url => categories_path, :html => {:class => "MainForm"}) do |f|
     %label= :name.l
     = f.text_field :name
-    %p= submit_tag :create.l
-
-  = link_to :back.l, categories_path 
+    %p= submit_tag :create.l, :class => 'btn btn-primary'

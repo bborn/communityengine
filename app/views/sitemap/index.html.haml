@@ -1,21 +1,16 @@
-.col_full.sitemap
-  -box do
-    %h2= "#{configatron.community_name} Sitemap"
-    
-    .yui-g
-      .yui-g.first
-        %h3 Categories
-        %ul
-          - @categories.each do |c|
-            %li= link_to c.name, category_path(c)      
-      .yui-g
-        %h3= :pages.l
-        %ul
-          %li=link_to :home.l, '/'
-          %li= link_to t('sitemaps.index.users'), users_path
-          - Page.find(:all).each do |page|
-            - if (logged_in? || page.page_public)
-              %li= link_to page.title, pages_path(page)
-          %li=link_to :log_in.l, '/login'
-          
+-@page_title= "#{configatron.community_name} Sitemap"
+-box do
+  %h2 Categories
+  %ul
+    - @categories.each do |c|
+      %li= link_to c.name, category_path(c)      
+  %h2= :pages.l
+  %ul
+    %li=link_to :home.l, '/'
+    %li= link_to t('sitemaps.index.users'), users_path
+    - Page.find(:all).each do |page|
+      - if (logged_in? || page.page_public)
+        %li= link_to page.title, pages_path(page)
+    %li=link_to :log_in.l, '/login'
+        
 

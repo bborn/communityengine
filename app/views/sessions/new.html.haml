@@ -1,27 +1,26 @@
-.yui-b.sidebar=render :partial => 'shared/login_sidebar'
+-@page_title=:log_in_to_site.l(:site => configatron.community_name)
+=render :partial => 'shared/login_sidebar'
   
-#yui-main
-  .yui-b.main_column
-    -box do
-      %h3
-        =:log_in_to_site.l(:site => configatron.community_name)
-      = form_tag sessions_path, :class => 'MainForm' do
-        %label{"for"=>"email"}=:email.l
-        = text_field_tag 'email', nil, :size => 35
-        %label{"for"=>"password"}=:password.l
-        = password_field_tag 'password', nil, :size => 35
-        %fieldset
-          %label{"for"=>"remember_me"}
-            =:remember_me.l
-            = check_box_tag 'remember_me'
-        %p
-          = submit_tag :log_in.l
+-box do
+  %h3
+  = form_tag sessions_path, :class => 'MainForm' do
+    %label{"for"=>"email"}=:email.l
+    = text_field_tag 'email', nil, :size => 35
+    %label{"for"=>"password"}=:password.l
+    = password_field_tag 'password', nil, :size => 35
+    %fieldset
+      %label{"for"=>"remember_me"}
+        =:remember_me.l
+        = check_box_tag 'remember_me'
+    %p
+      = submit_tag :log_in.l, :class => 'btn btn-primary'
 
-    -if configatron.auth_providers.to_hash.keys.any?      
-      -box :class => "alt" do
-        %h3= t 'sessions.new.omniauth.header'
-        -configatron.auth_providers.to_hash.keys.each do |provider|
-          -alt = t('sessions.new.omniauth.button_alt', :provider => provider.capitalize)
-          = link_to(image_tag("auth/#{provider.to_s}_64.png", :alt => alt), "/auth/#{provider.to_s}", :title => alt)
+-if configatron.auth_providers.to_hash.keys.any?      
+  -widget do
+    %ul.nav.nav-list
+      %li.nav-header= t 'sessions.new.omniauth.header'
+      -configatron.auth_providers.to_hash.keys.each do |provider|
+        -alt = t('sessions.new.omniauth.button_alt', :provider => provider)
+        %li= link_to(image_tag("auth/#{provider.to_s}_64.png", :alt => alt), "/auth/#{provider.to_s}", :title => alt)
 
         

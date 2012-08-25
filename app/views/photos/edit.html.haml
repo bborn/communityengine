@@ -1,41 +1,38 @@
-.yui-b
-  -box do 
-    %h3= :help.l
-    %p
-      = :tags_are_keywords_you_use_to_organize_your_photos.l
-    = link_to :show_this_photo.l, user_photo_path(@user, @photo)
-    |
-    = link_to :back_to_my_photos.l, user_photos_path(@user)
+-@page_title= :editing_photo.l  
+    
+-widget do 
+  %h3= :help.l
+  %p
+    = :tags_are_keywords_you_use_to_organize_your_photos.l
+  = link_to :show_this_photo.l, user_photo_path(@user, @photo)
+  |
+  = link_to :back_to_my_photos.l, user_photos_path(@user)
 
-  -box :class => 'alt' do
+  -widget do
     = link_to :delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_photo.l
 
-#yui-main
-  -box :class => "yui-b" do
-    %h3= :editing_photo.l  
+-box do
 
-    = error_messages_for :photo
-    = form_for(:photo, :url => user_photo_path(@user, @photo), :html => { :method => :put, :class => "MainForm" }) do |f|
-      
-      = image_tag( @photo.photo.url(:medium), :id => 'photo', :class => 'polaroid' )
-      
-      %label 
-        = :tags.l
-        %em="(#{:optional_keywords_describing_this_photo_separated_by_commas.l})"
-      = text_field_tag 'tag_list', @photo.tag_list.join(', '), {:autocomplete => "off", :size => 35}
-      #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"} 
-      -content_for :end_javascript do
-        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+  = error_messages_for :photo
+  = form_for(:photo, :url => user_photo_path(@user, @photo), :html => { :method => :put, :class => "MainForm" }) do |f|
+    
+    = image_tag( @photo.photo.url(:medium), :id => 'photo', :class => 'polaroid' )
+    
+    %label 
+      = :tags.l
+      %em="(#{:optional_keywords_describing_this_photo_separated_by_commas.l})"
+    = text_field_tag 'tag_list', @photo.tag_list.join(', '), {:autocomplete => "off", :size => 35}
+    #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"} 
+    -content_for :end_javascript do
+      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
-      %label= :title.l + ":"
-      = f.text_field :name, :size => 35
-      %label= :description.l + ":"
-      = f.text_area :description, :size => "58x5"
-      %label= :album.l + ":"
-      = f.select(:album_id, current_user.albums.collect {|album| [album.title, album.id ] }, { :include_blank => true })
+    %label= :title.l + ":"
+    = f.text_field :name, :size => 35
+    %label= :description.l + ":"
+    = f.text_area :description, :size => "58x5"
+    %label= :album.l + ":"
+    = f.select(:album_id, current_user.albums.collect {|album| [album.title, album.id ] }, { :include_blank => true })
 
-      %p
-        = submit_tag :update.l
-        = :or.l
-        = link_to :cancel_and_go_back_to_my_photos.l, user_photos_path(@user)
+    %p
+      = submit_tag :update.l, :class => 'btn btn-primary'
 

@@ -1,5 +1,5 @@
+-@page_title=:new_ad.l
 -box do
-  %h3=:new_ad.l
   = error_messages_for :ad
   = form_for(:ad, :url => ads_path, :html => {:class => "MainForm" }) do |f|
     %label=:name.l
@@ -40,6 +40,4 @@
     = f.text_field :location
 
     %p
-      = submit_tag :create.l
-
-  = link_to :back.l, ads_path
+      = submit_tag :create.l, :class => 'btn btn-primary'

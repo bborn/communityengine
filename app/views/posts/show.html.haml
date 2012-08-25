@@ -11,25 +11,43 @@
       %h3=:users_blog.l :user=>  @user.login
       .hentry.main
         %h4.entry-title= link_to @post.title, user_post_path(@user, @post), :rel => 'bookmark'
-        .vcard.author
-          %ul
-            %li.update
+        .pull-right.span3.vcard.author
+          %ul.nav.nav-list
+            %li
+              %i.icon-calendar.pull-left
               %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
                 %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display(:literal_date)
-            %li.view= "#{:view_count.l} (#{@post.view_count})"
-            %li.comments= link_to "#{:comments.l} (#{@post.comments.count})", user_post_path(@user, @post), :anchor => 'comments'                  
+            %li
+              %i.icon-eye-open.pull-left
+              = :view_count.l
+              %span.badge= @post.view_count
+            %li
+              %i.icon-list.pull-left
+              %a{:href=>user_post_path(@user, @post),:name=>'comments'}
+                = :comments.l
+                %span.badge.badge-info=@post.comments.count             
             - if current_user and current_user.can_request_friendship_with(@post.user)
-              %li.addfriend= add_friend_link(@post.user)
-            %li.print
-              %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}= :print.l
-            %li.email
-              %a{:href=>"#", :title=>:email_this_story_to_friends.l}= :email_to_friends.l
-            %li.share
+              %li
+                %i.icon-heart.pull-left
+                = add_friend_link(@post.user)
+            %li
+              %i.icon-print.pull-left
+              %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}
+                = :print.l
+            %li
+              %i.icon-envelope.pull-left
+              %a{:href=>"#", :title=>:email_this_story_to_friends.l}
+                = :email_to_friends.l
+            %li
               %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;button=false"}
               =sharethis_options(@post)
             -if @is_current_user || admin? || moderator?
-              %li.edit= link_to :edit.l, edit_user_post_path(@post.user, @post)
-              %li.delete= link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
+              %li
+                %i.icon-edit.pull-left
+                = link_to :edit.l, edit_user_post_path(@post.user, @post)
+              %li
+                %i.icon-trash.pull-left
+                = link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
 
               
           -content_for :end_javascript do
@@ -51,9 +69,13 @@
           = @post.post.html_safe
           = render :partial => 'polls/poll_ui', :locals => {:poll => @post.polls.first} unless @post.polls.empty?
           - unless @post.tags.empty?
-            %ul.tags
-              - @post.tags.each do |t|
-                %li=link_to( t.name, tag_url(t), :rel => 'tag')
+            .clearfix
+              %ul.unstyled.tags
+                - @post.tags.each do |t|
+                  %li
+                    %a.label.label-info{:href => tag_url(t), :rel => 'tag'}
+                      %i.icon-tag.icon-white
+                      =t.name
         / entry-content
       / ends hentry
       
@@ -72,16 +94,16 @@
   =render :partial => 'author_profile', :locals => {:user => @user}
 
   - unless @related.empty?
-    -box :class => 'alt' do
-      %h3=:related_posts.l
-      %ul.list.page
+    -widget do
+      %ul.nav.nav-list
+        %li.nav-header=:related_posts.l
         - @related.each do |post|
           %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)      
 
   - unless @popular_posts.empty?
-    -box :class => 'alt' do
-      %h3=:popular_posts.l
-      %ul.list.page
+    -widget do
+      %ul.nav.nav-list
+        %li.nav-header=:popular_posts.l
         - @popular_posts.each do |post|
           %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)      
 / sidebar

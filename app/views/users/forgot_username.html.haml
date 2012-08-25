@@ -1,13 +1,10 @@
-.yui-b.sidebar
-  =render :partial => 'shared/login_sidebar'
+-@page_title=:forgot_your_username.l
+=render :partial => 'shared/login_sidebar'
 
-#yui-main
-  .yui-b.main_column
-    -box do
-      %h3=:forgot_your_username.l
 
-      = form_tag forgot_username_url, :class => 'MainForm' do
-        %label{"for"=>"email"}=:enter_your_email_address.l+":"
-        = text_field_tag 'email', nil, :size => 35
-        %p
-          = submit_tag :send_me_my_username.l
+-box do
+  = form_tag forgot_username_path, :class => 'MainForm' do
+    %label{"for"=>"email"}=:enter_your_email_address.l+":"
+    = text_field_tag 'email', nil, :size => 35
+    %p
+      = submit_tag :send_me_my_username.l, :class => 'btn btn-primary'
