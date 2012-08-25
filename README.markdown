@@ -14,6 +14,8 @@ Getting CommunityEngine Running
 1. Copy the following into your `Gemfile`:
 
     ```
+    gem 'bootstrap-sass'
+	gem 'font-awesome-sass-rails'
     gem 'community_engine', :github => 'bborn/communityengine', :branch => 'rails3'
     ```
 
