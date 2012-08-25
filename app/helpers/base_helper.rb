@@ -374,6 +374,7 @@ module BaseHelper
   
   def icon_link_to(icon_class, content, href)
     icon_html = '<i class="'+icon_class+'"></i> '
-    link_to icon_class.html_safe + content, href
+    link_html = link_to icon_class.html_safe + content, href
+    link_html.html_safe
   end
 end
