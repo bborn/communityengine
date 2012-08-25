@@ -371,4 +371,9 @@ module BaseHelper
       when :alert then "alert-warning"
     end
   end
+  
+  def icon_link_to(icon_class, content, href)
+    icon_html = '<i class="'+icon_class+'"></i> '
+    link_to icon_class.html_safe + content, href
+  end
 end
