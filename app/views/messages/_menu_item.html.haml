@@ -2,6 +2,6 @@
   - if current_user.unread_messages?
     %li
       %a{:href => user_messages_path(current_user)}
-        %span class="badge badge-success"
+        %span.badge.badge-success
           =current_user.unread_message_count
           %i.icon-white.icon-envelope
