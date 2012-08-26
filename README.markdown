@@ -34,9 +34,13 @@ Getting CommunityEngine Running
 
 		mount CommunityEngine::Engine => "/"
 
-5. Delete the default `views/layouts/application.html.erb` that Rails created for you. Delete `public/index.html` if you haven't already.
+5. Change `config.active_record.whitelist_attributes = true` in `application.rb` to
+		
+		config.active_record.whitelist_attributes = false
 
-6. Start your server! 
+6. Delete the default `views/layouts/application.html.erb` that Rails created for you. Delete `public/index.html` if you haven't already.
+
+7. Start your server! 
 
 		$ bin/rails server
 
@@ -74,7 +78,6 @@ To use Amazon S3 as the backend for your file uploads,you'll need to add a file 
 You'll need to change your configuration in your `application_config.rb` to tell CommunityEngine to use s3 as the photo backend. For more, see the Paperclip documentation on S3 storage for uploads: https://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/storage/s3.rb
 
 Finally, you'll need an S3 account for S3 photo uploading.
-
 
 
 Roles
