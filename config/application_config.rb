@@ -49,11 +49,12 @@ configuration = {
     :paperclip_options => {
       :styles => {
         :thumb => {
-          :geometry => "100x100#",
+          :geometry => "100x66#",
           :processors => [:cropper]
         },
-        :medium => "290x320#",
-        :large => "465>"        
+        :medium => "300x200#",
+        :large => "600x400#",   
+        :original => "1024>"       
       }
     },
     :validation_options => {
@@ -64,12 +65,12 @@ configuration = {
   
   :feature => {
     :use_thumbs => true,
-    :dimensions => [150, 635],
     :paperclip_options => {
       :styles => {
-        :original => '465>',
-        :thumb => "45x45#",
-        :large => "635x150#"              
+        :thumb => "100x66#",
+        :medium => '300x200#',
+        :large => "600x400#",
+        :original => '1024>'             
       }
     },
     :validation_options => {
@@ -81,9 +82,10 @@ configuration = {
   :clipping => {
     :paperclip_options => {
       :styles => {
-        :thumb => "100x100#",
-        :medium => "290x320#",
-        :large => "465>"      
+        :thumb => "100x66#",
+        :medium => "300x200#",
+        :large => "600x400#",
+        :original => '1024>'     
       }
     },
     :validation_options => {
