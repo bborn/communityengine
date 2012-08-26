@@ -2,6 +2,8 @@ class Photo < ActiveRecord::Base
   acts_as_commentable
   belongs_to :album
   
+  attr_accessible :album_id
+  
   has_attached_file :photo, configatron.photo.paperclip_options.to_hash
   validates_attachment_presence :photo
   validates_attachment_content_type :photo, :content_type => configatron.photo.validation_options.content_type
