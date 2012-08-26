@@ -14,7 +14,5 @@
       %p
         - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |tag, css_class|
           = link_to tag.name, tag_path(tag.to_param), :class => css_class
-      %p
-        %i.icon-plus-sign.pull-left
-        =link_to :all_tags.l.downcase.capitalize, tags_path
+      %p=icon_link_to 'icon-plus-sign', :all_tags.l.downcase.capitalize, tags_path
 

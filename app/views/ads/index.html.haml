@@ -37,5 +37,4 @@
           = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
         
   .pagination=paginate @ads
-  %i.icon-plus.pull-left
-  = link_to :new_ad.l, new_ad_path
+  = icon_link_to 'icon-plus', :new_ad.l, new_ad_path

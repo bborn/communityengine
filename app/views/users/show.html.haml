@@ -12,9 +12,8 @@
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
       %li
-        %a{:href=>accepted_user_friendships_path(@user)}
-          %i.icon-plus-sign
-          =:see_all.l.downcase.capitalize
+        =icon_link_to 'icon-plus-sign', :see_all.l, accepted_user_friendships_path(@user)
+   
 - if @photos.empty? and @recent_posts.empty?
   -widget do 
     %ul.nav.nav-list
@@ -76,8 +75,7 @@
         %li.span4
           = link_to image_tag( photo.photo.url(:medium)), user_photo_path(@user, photo), :class => "thumbnail"
     %p
-      %i.icon-plus-sign.pull-left 
-      = link_to :view_all_my_photos.l, user_photos_path(@user)
+      = icon_link_to 'icon-plus-sign', :view_all_my_photos.l, user_photos_path(@user)
     %p=link_to(:add_a_photo.l, new_user_photo_path(@user)) if @is_current_user
 
 - unless @recent_posts.empty?
@@ -92,8 +90,7 @@
     %ul.thumbnails
       - @clippings.each do |clipping|
         %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
-    %i.icon-plus-sign.pull-left
-    = link_to :view_all_my_clippings.l, user_clippings_path(@user)
+    = icon_link_to 'icon-plus-sign', :view_all_my_clippings.l, user_clippings_path(@user)
 
 .clearfix
   %h2=:profile_comments.l

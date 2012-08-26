@@ -18,36 +18,33 @@
               %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
                 %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display(:literal_date)
             %li
-              %i.icon-eye-open.pull-left
+              %i.icon-eye-open
               = :view_count.l
               %span.badge= @post.view_count
             %li
-              %i.icon-list.pull-left
               %a{:href=>user_post_path(@user, @post),:name=>'comments'}
+                %i.icon-comment
                 = :comments.l
                 %span.badge.badge-info=@post.comments.count             
             - if current_user and current_user.can_request_friendship_with(@post.user)
               %li
-                %i.icon-heart.pull-left
                 = add_friend_link(@post.user)
             %li
-              %i.icon-print.pull-left
               %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}
+                %i.icon-print
                 = :print.l
             %li
-              %i.icon-envelope.pull-left
               %a{:href=>"#", :title=>:email_this_story_to_friends.l}
+                %i.icon-envelope
                 = :email_to_friends.l
             %li
               %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;button=false"}
               =sharethis_options(@post)
             -if @is_current_user || admin? || moderator?
               %li
-                %i.icon-edit.pull-left
-                = link_to :edit.l, edit_user_post_path(@post.user, @post)
+                = icon_link_to 'icon-edit', :edit.l, edit_user_post_path(@post.user, @post)
               %li
-                %i.icon-trash.pull-left
-                = link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
+                = icon_link_to 'icon-trash', :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
 
               
           -content_for :end_javascript do

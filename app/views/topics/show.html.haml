@@ -70,7 +70,7 @@
         = image_tag "clearbits/lock.gif", :class => "icon grey", :title => :topic_locked.l
         %label= :this_topic_is_locked.l
     - else
-      %i.icon-plus.pull-left
+      %i.icon-plus
       = link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
       #reply.editbox
         .container

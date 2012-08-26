@@ -20,5 +20,4 @@
           = link_to :edit.l, edit_category_path(category)
           |
           = link_to :destroy.l, category_path(category), :confirm => :are_you_sure.l, :method => :delete
-  %i.icon-plus.pull-left
-  = link_to :new_category.l, new_category_path
+  = icon_link_to 'icon-plus', :new_category.l, new_category_path

@@ -23,8 +23,7 @@
 
   - if @topics.total_count > 1
     - if logged_in?
-      %i.icon-plus.pull-left
-      = link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
+      = icon_link_to 'icon-plus', :post_a_new_topic.l, new_forum_topic_path(@forum)
   
     =paginate @topics
 
@@ -64,11 +63,9 @@
     = paginate @topics
 
   - if logged_in?
-    %i.icon-plus.pull-left
-    = link_to :post_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
+    = icon_link_to 'icon-plus', :post_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
   - else
-    %i.icon-plus.pull-left
-    = link_to :log_in_to_create_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
+    = icon_link_to 'icon-plus', :log_in_to_create_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
 
   - if @topics.size < 10
     - @related = Post.limit(10).tagged_with(@forum.tag_list, :any => true)

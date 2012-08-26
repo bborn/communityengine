@@ -6,8 +6,7 @@
       - if @is_admin_user
         = link_to :administer_events.l, admin_events_path
     %li
-      %i.icon-plus-sign.pull-left
-      = link_to :see_all_events.l, events_path
+      = icon_link_to 'icon-plus-sign', :see_all_events.l, events_path
 =render :partial=>'subscribe'
 
 -box do 

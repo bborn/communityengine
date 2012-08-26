@@ -13,8 +13,7 @@
   %p.clearfix
     -tag_cloud @related_tags, %w(css1 css2 css3 css4) do |tag, css_class|
       =link_to h(tag.name), tag_path(tag), :class => css_class
-  %i.icon-plus-sign.pull-left
-  = link_to :all_tags.l, tags_path  
+  = icon_link_to 'icon-plus-sign', :all_tags.l, tags_path  
 
 .clearfix    
   - if @posts.any?
@@ -25,8 +24,7 @@
           %li
             = link_to( truncate(post.display_title, :length => 75), user_post_path(post.user, post), :title => :by.l(:login => post.user.login) )
             %p.post_excerpt= truncate_words(post.post, 35, '...' )
-      %i.icon-plus-sign.pull-left
-      = link_to :all_posts_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Post') unless params[:type]
+      = icon_link_to 'icon-plus-sign', :all_posts_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Post') unless params[:type]
     -else 
       = render :partial => 'posts/post', :collection => @posts      
       = paginate @posts
@@ -37,8 +35,7 @@
     %ul.thumbnails
       - @photos.each do |photo|
         %li.span3= link_to image_tag(photo.photo.url(:thumb), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})"), user_photo_path(photo.user, photo), :class => "thumbnail"
-    %i.icon-plus-sign.pull-left
-    = link_to :all_photos_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Photo') unless params[:type]
+    = icon_link_to 'icon-plus-sign', :all_photos_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Photo') unless params[:type]
 
 .clearfix
   - if @users.any?
@@ -46,8 +43,7 @@
     %ul.thumbnails
       - @users.each do |user|
         %li.span3= link_to image_tag(user.avatar_photo_url(:thumb)), user_path(user), :title => user.login, :class => "thumbnail"
-    %i.icon-plus-sign.pull-left
-    = link_to :all_users_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'User') unless params[:type]
+    = icon_link_to 'icon-plus-sign', :all_users_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'User') unless params[:type]
 
 .clearfix
   - unless @clippings.empty?
@@ -55,8 +51,7 @@
     %ul.thumbnails
       - @clippings.each do |clipping|
         %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
-    %i.icon-plus-sign.pull-left
-    = link_to :all_clippings_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Clipping') unless params[:type]
+    = icon_link_to 'icon-plus-sign', :all_clippings_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Clipping') unless params[:type]
 
 - if @pages && !params[:type].eql?('Post')
   = paginate @pages

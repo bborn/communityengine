@@ -7,5 +7,5 @@
     
     %p
       = submit_tag :update.l, :class => 'btn btn-primary'
-      =link_to '<i class="icon-white icon-trash"></i> '.html_safe+:delete_this_page.l, admin_page_path(@page), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_page.l, :class => 'btn btn-danger'
+      =link_to :delete_this_page.l, admin_page_path(@page), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_page.l, :class => 'btn btn-danger'
 

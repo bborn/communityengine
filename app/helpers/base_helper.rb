@@ -236,7 +236,7 @@ module BaseHelper
 
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
-    html += link_to_remote :request_friendship.l,
+    html += link_to_remote '<i class="icon-heart"></i> ':request_friendship.l,
 				{ :update => "friend_request_#{user.id}",
 					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
@@ -259,9 +259,9 @@ module BaseHelper
   end
   
   def more_comments_links(commentable)
-    html = link_to '<i class="icon-plus-sign"></i> '.html_safe + :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
+    html = icon_link_to 'icon-plus-sign', :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
     html += "<br />".html_safe
-    html += link_to '<i class="icon-rss"></i> '.html_safe + :comments_rss.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
+    html += icon_link_to 'icon-rss', :comments_rss.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
     html.html_safe
   end
     

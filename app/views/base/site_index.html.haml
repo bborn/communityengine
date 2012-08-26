@@ -8,8 +8,7 @@
   %h2
     =:recent_posts.l
   = render :partial => 'posts/post', :collection => @posts
-  %i.icon-plus-sign.pull_left
-  = link_to :see_all_recent_posts.l, recent_path
+  =icon_link_to 'icon-plus-sign', :see_all_recent_posts.l, recent_path
 
 =render :partial => 'shared/explore'
 
@@ -18,10 +17,7 @@
     %li.nav-header= :whats_hot.l
     -@popular_posts.each do |post|
       =render :partial => 'posts/sidebar_post', :locals => {:post => post}
-    %li
-      %i.icon-plus-sign.pull-left
-      %a{:href=>popular_url}
-        = :see_all.l.downcase.capitalize
+    %li=icon_link_to 'icon-plus-sign', :see_all.l, popular_url
 
 -widget do 
   %ul.nav.nav-list
