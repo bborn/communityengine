@@ -1,3 +1,4 @@
+//= require jquery
 //= require prototype
 //= require rails
 //= require effects
@@ -6,7 +7,7 @@
 //= require controls
 //= require lightbox
 //= require prototip-min
-//= require tinymce
+//= require tinymce-jquery
 
 function scrollToAnchor(anchor){
   loc = document.location.toString();
