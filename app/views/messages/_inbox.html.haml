@@ -37,5 +37,5 @@
               -if @messages.any?
                 %p= submit_tag :delete_selected.l              
       
-      .pagination=paginating_links @messages if @messages.total_count > 1                
+      -paginate @messages               
 

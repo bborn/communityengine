@@ -33,14 +33,14 @@
             = link_to :add_photos.l, new_user_album_photo_path(current_user,album)
             = " | "
             = link_to :destroy.l, user_album_path(current_user,album), :confirm => :delete_album_and_photos.l, :method => :delete
-  .pagination= paginating_links(@albums,{:name => "page_albums"}) if @albums.total_count > 1
+  =paginate @albums
 
 
   %h3= :not_assigned_photos.l
   #photos.yui-u.box
     - @photos_no_albums.each do |photo|
       = link_to image_tag( photo.photo.url(:thumb), :class => "polaroid"), user_photo_path(current_user, photo)
-    .pagination= paginating_links @photos_no_albums if @photos_no_albums.total_count > 1
+    =paginate @photos_no_albums
 
 
 

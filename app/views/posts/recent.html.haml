@@ -26,4 +26,4 @@
 
       = render :partial => 'posts/post', :collection => @posts      
       
-      .pagination=paginating_links @posts
+      =paginate @posts

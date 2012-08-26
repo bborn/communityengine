@@ -26,5 +26,5 @@
 
   %p= link_to :new_event.l, new_event_path
 
-.pagination=paginating_links @events if @events.total_count > 1
+=paginate %events
 
