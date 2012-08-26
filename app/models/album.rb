@@ -6,7 +6,7 @@ class Album < ActiveRecord::Base
   acts_as_commentable
   validates_presence_of :title  
 
-  attr_accessible :title, :description, :album_id
+  attr_accessible :title, :description
 
   def owner
     self.user

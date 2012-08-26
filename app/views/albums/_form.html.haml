@@ -1,13 +1,15 @@
--if @album.id
-  - url = [@user, @album]
-  - button1 = :edit_and_add_photos.l
-  - button2 = :edit_album.l
--else
-  - url = @album
+-if @album.new_record?
+  - url = user_albums_path(@user)
+  - object = @album
   - button1 = :create_and_add_photos.l
   - button2 = :create_album.l
+-else
+  - url = user_album_path(@user, @album)
+  - object = [@user, @album]
+  - button1 = :edit_and_add_photos.l
+  - button2 = :edit_album.l
   
-=bootstrap_form_for url, :html => {:class => 'form form-horizontal'} do |f|
+=bootstrap_form_for object, :url => url, :html => {:class => 'form form-horizontal'} do |f|
   = f.text_field :title
   = f.text_area :description
   = hidden_field_tag :go_to

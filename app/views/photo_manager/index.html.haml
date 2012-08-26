@@ -41,7 +41,7 @@
     %li.span2
       = link_to image_tag( photo.photo.url(:thumb)), user_photo_path(current_user, photo), :class => 'thumbnail'
       = link_to :show.l, user_photo_path(current_user, photo), :class => 'btn btn-mini'
-      = link_to :edit.l, edit_user_photo_path(current_user, photo), :class => 'btn btn-primary btn-mini'
+      = link_to :edit.l, edit_user_photo_path(current_user, photo), :class => 'btn btn-warning btn-mini'
       = link_to :delete.l, edit_user_photo_path(current_user, photo), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger btn-mini'
 
   =paginate @photos_no_albums
