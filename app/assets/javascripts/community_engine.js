@@ -7,6 +7,8 @@
 //= require controls
 //= require lightbox
 //= require prototip-min
+//= require bootstrap
+//= require bootstrap-dropdown
 //= require tinymce-jquery
 
 function scrollToAnchor(anchor){
