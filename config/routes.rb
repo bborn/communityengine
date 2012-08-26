@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   get '/forgot_password' => 'password_resets#new', :as => :forgot_password
   resources :password_resets
   get '/forgot_username' => 'users#forgot_username', :as => :forgot_username
+  post '/forgot_username' => 'users#forgot_username', :as => :forgot_username
   post '/resend_activation' => 'users#resend_activation', :as => :resend_activation
   
   get '/new_clipping' => 'clippings#new_clipping'
@@ -126,10 +127,6 @@ Rails.application.routes.draw do
       get :clone
     end
     resources :rsvps
-  end
-
-  scope '/:favoritable_type/:favoritable_id' do
-    resources :favorites
   end
   scope "/:commentable_type/:commentable_id" do
     resources :comments, :as => :commentable_comments do 
@@ -248,6 +245,10 @@ Rails.application.routes.draw do
       end
     end
 
+  end
+
+  scope '/:favoritable_type/:favoritable_id' do
+    resources :favorites
   end
 
   resources :votes
