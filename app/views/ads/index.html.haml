@@ -3,19 +3,14 @@
 
 -box do
   %h3=:search.l
-  = form_for @search, :url => ads_path, :html => {:class => "MainForm"} do |f|
-
-    %label= :name.l
+  = bootstrap_form_for @search, :url => ads_path, :html => {:class => "form form-horizontal"} do |f|
     = f.text_field :name_starts_with
-    
-    %label= :location.l
     = f.text_field :location_contains
-
-    %p= f.submit :search.l, :class => 'btn'
+    .controls
+      = f.submit :search.l
   
 
 -box do
-  %h3= :ads.l
   %table.table.table-bordered.table-striped
     %tr
       %th
@@ -24,17 +19,18 @@
         =sort_link @search, :published, :published.l
       %th
         =sort_link @search, :location, :location.l                              
-      %th &nbsp;
+      %th
+        =:actions.l
 
     - for ad in @ads
       %tr
         %td= link_to h(ad.name), ad_path(ad)
         %td= h ad.published?
         %td= h ad.location
-        %td{:colspan => 3}
-          = link_to :edit.l, edit_ad_path(ad)
-          |
-          = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
+        %td
+          = link_to :show.l, ad_path(ad), :class => 'btn'
+          = link_to :edit.l, edit_ad_path(ad), :class => 'btn btn-primary'
+          = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
         
   =paginate @ads
   = icon_link_to 'icon-plus', :new_ad.l, new_ad_path

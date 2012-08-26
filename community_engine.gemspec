@@ -52,7 +52,7 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<bborn-acts-as-taggable-on>, ['~> 2.2.1'])
   s.add_dependency(%q<sanitize>, [">= 2.0.3"])
   s.add_dependency(%q<bootstrap-sass>, [">= 0"])
-  s.add_dependency(%q<bootstrap_builder>, [">= 0"])
+  s.add_dependency(%q<bootstrap_forms>, [">= 0"])
   s.add_dependency(%q<font-awesome-sass-rails>, [">= 0"])
 end
 

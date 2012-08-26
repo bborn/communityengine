@@ -2,6 +2,10 @@ class AdsController < BaseController
   
   before_filter :login_required
   before_filter :admin_required  
+  
+  uses_tiny_mce do
+    {:only => [:new, :edit, :create, :update], :options => configatron.default_mce_options}
+  end
 
   # GET /ads
   # GET /ads.xml

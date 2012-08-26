@@ -15,6 +15,7 @@ Getting CommunityEngine Running
 
     ```
     gem 'bootstrap-sass'
+    gem 'bootstrap_forms'
 	gem 'font-awesome-sass-rails'
     gem 'community_engine', :github => 'bborn/communityengine', :branch => 'rails3'
     ```
