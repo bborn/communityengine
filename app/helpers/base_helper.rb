@@ -236,7 +236,7 @@ module BaseHelper
 
   def add_friend_link(user = nil)
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
-    html += link_to_remote '<i class="icon-heart"></i> ':request_friendship.l,
+    html += link_to_remote '<i class="icon-heart"></i> '.html_safe + :request_friendship.l,
 				{ :update => "friend_request_#{user.id}",
 					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
