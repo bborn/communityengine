@@ -1,7 +1,7 @@
 -@page_title = :editing_ad.l
-.pull-right
+%p
   = link_to :back.l, ads_path, :class => 'btn'
   = link_to :show.l, ad_path(@ad), :class => 'btn'
   = link_to :destroy.l, ad_path(@ad), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
     
-=render 'form'
+= render 'form'

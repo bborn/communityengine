@@ -1,10 +1,8 @@
 -@page_title=:showing_ad.l
-
-.pull-right
+%p
   = link_to :back.l, ads_path, :class => 'btn'
   = link_to :edit.l, edit_ad_path(@ad), :class => 'btn btn-primary'
   = link_to :destroy.l, ad_path(@ad), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
-
 
 %dl.dl-horizontal
   %dt=:name.l

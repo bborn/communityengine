@@ -1,36 +1,29 @@
 -@page_title = :ads.l
 = render :partial => 'shared/admin_nav'
 
--box do
-  %h3=:search.l
-  = bootstrap_form_for @search, :url => ads_path, :html => {:class => "form form-horizontal"} do |f|
-    = f.text_field :name_starts_with
-    = f.text_field :location_contains
-    .controls
-      = f.submit :search.l
+%h2=:search.l
+= bootstrap_form_for @search, :url => ads_path, :html => {:class => "form form-horizontal"} do |f|
+  = f.text_field :name_starts_with
+  = f.text_field :location_contains
+  .controls
+    = f.submit :search.l
   
+%table.table.table-bordered.table-striped
+  %tr
+    %th=sort_link @search, :name, :name.l                    
+    %th=sort_link @search, :published, :published.l
+    %th=sort_link @search, :location, :location.l                              
+    %th=:actions.l
 
--box do
-  %table.table.table-bordered.table-striped
+  - for ad in @ads
     %tr
-      %th
-        =sort_link @search, :name, :name.l                    
-      %th 
-        =sort_link @search, :published, :published.l
-      %th
-        =sort_link @search, :location, :location.l                              
-      %th
-        =:actions.l
-
-    - for ad in @ads
-      %tr
-        %td= link_to h(ad.name), ad_path(ad)
-        %td= h ad.published?
-        %td= h ad.location
-        %td
-          = link_to :show.l, ad_path(ad), :class => 'btn'
-          = link_to :edit.l, edit_ad_path(ad), :class => 'btn btn-primary'
-          = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
-        
-  =paginate @ads
-  = icon_link_to 'icon-plus', :new_ad.l, new_ad_path
+      %td= link_to h(ad.name), ad_path(ad)
+      %td= h ad.published?
+      %td= h ad.location
+      %td
+        = link_to :show.l, ad_path(ad), :class => 'btn'
+        = link_to :edit.l, edit_ad_path(ad), :class => 'btn btn-primary'
+        = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+      
+= paginate @ads
+= link_to :new_ad.l, new_ad_path, :class => 'btn btn-success'
