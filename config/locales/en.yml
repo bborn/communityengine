@@ -478,9 +478,9 @@ en:
   #en: enter_a_message: Enter a message
   enter_a_message: Enter a message
   #en: enter_e_mail_addresses: Enter e-mail addresses
-  enter_e_mail_addresses: Enter e-mail addresses
+  enter_e_mail_addresses: Enter email addresses
   #en: enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
-  enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
+  enter_e_mail_addresses_comma_sep: Enter email addresses (comma-separated)
   #en: enter_your_email_address: "Enter your email address"
   enter_your_email_address: "Enter your email address"
   #en: error: Error!
