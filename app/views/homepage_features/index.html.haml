@@ -1,28 +1,24 @@
 -@page_title = :homepage_features.l
 = render :partial => 'shared/admin_nav'
   
--box do 
+%table.table.table-bordered.table-striped
+  %tr
+    %th= :date_title.l
+    %th= :title.l
+    %th= :description.l
+    %th= :image.l
+    %th= :actions.l
 
-  %table.table.table-bordered.table-striped
+  - for homepage_feature in @homepage_features
     %tr
-      %th= :date_title.l
-      %th= :title.l
-      %th= :description.l
-      %th= :image.l
-      %th= :actions.l
+      %td=h I18n.l(homepage_feature.created_at, :format => :short_published_date)
+      %td
+        %a{:href=>"#{h homepage_feature.url}"}=h homepage_feature.title
+      %td=h truncate(homepage_feature.description, :length => 250).html_safe
+      %td= image_tag homepage_feature.image.url(:thumb)
+      %td
+        = link_to :show.l, homepage_feature_path(homepage_feature), :class => 'btn'
+        = link_to :edit.l, edit_homepage_feature_path(homepage_feature), :class => 'btn btn-warning'
+        = link_to :delete.l, homepage_feature_path(homepage_feature), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
 
-    - for homepage_feature in @homepage_features
-      %tr
-        %td=h I18n.l(homepage_feature.created_at, :format => :short_published_date)
-        %td
-          %a{:href=>"#{h homepage_feature.url}"}=h homepage_feature.title
-        %td=h truncate(homepage_feature.description, :length => 250)
-        %td= image_tag homepage_feature.image.url(:thumb)
-        %td
-          = link_to :show.l, homepage_feature_path(homepage_feature)
-          %br
-          = link_to :edit.l, edit_homepage_feature_path(homepage_feature)
-          %br
-          = link_to :destroy.l, homepage_feature_path(homepage_feature), :confirm => :are_you_sure.l, :method => :delete
-
-  = link_to :new_homepage_feature.l, new_homepage_feature_path 
+= link_to :new_homepage_feature.l, new_homepage_feature_path, :class => 'btn btn-success'

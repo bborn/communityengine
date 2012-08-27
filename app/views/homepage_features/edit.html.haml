@@ -1,17 +1,8 @@
 - @page_title = :editing_homepage_feature.l
-= error_messages_for :homepage_feature
-= form_for(:homepage_feature, :url => homepage_feature_path(@homepage_feature), :html => { :multipart => true, :method => :put }) do |f|
-  = f.label :url
-  = f.text_field :url
-  
-  = f.label :title
-  = f.text_field :title
-  
-  = f.label :description
-  = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
 
-  = f.label :image
-  = f.file_field :image
-  
-  = submit_tag :update.l, :class => 'btn btn-primary'
+%p
+  = link_to :back.l, homepage_features_path, :class => 'btn'
+  = link_to :show.l, homepage_feature_path(@homepage_feature), :class => 'btn'
+  = link_to :delete.l, homepage_feature_path(@homepage_feature), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
 
+= render 'form'
