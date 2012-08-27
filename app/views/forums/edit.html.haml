@@ -1,9 +1,9 @@
 -@page_title = :edit_forum.l
--box do
-  
-  %p= link_to :delete_this_forum.l, forum_path(@forum), :method => :delete, :class => "utility", :confirm => :are_you_sure.l
-  = form_for :forum, :url  => forum_path(@forum), :html => { :class => "MainForm", :method => :put } do |f|
-    = render :partial => "form", :object => f
-    %p
-      = submit_tag :save_forum.l, :class => "btn btn-primary"
+
+%p
+  = link_to :back.l, forums_path, :class => 'btn'
+  = link_to :show.l, forum_path(@forum), :class => 'btn'
+  = link_to :delete.l, forum_path(@forum), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
+
+= render :partial => "form"
 

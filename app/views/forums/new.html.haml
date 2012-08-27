@@ -1,7 +1,6 @@
 -@page_title = :new_forum.l
--box do
-  = form_for :forum, :url => forums_path, :html => {:class => "MainForm"} do |f|
-    = render :partial => "form", :object => f
-    %p
-      = submit_tag :create.l, :class => 'btn btn-primary'
 
+%p
+  = link_to :back.l, forums_path, :class => 'btn'
+  
+= render :partial => "form"

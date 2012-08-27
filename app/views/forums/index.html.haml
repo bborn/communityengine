@@ -1,61 +1,62 @@
 - @meta = { :description => "#{configatron.community_name} forums.",:keywords => "#{configatron.meta_keywords}", :robots => configatron.robots_meta_list_content}
 -@section = 'forums'
 -@page_title = :forums.l
--if admin?
-  -widget do
-    %ul.nav.nav-list
-      %li.nav-header= :admin.l
-      %li= link_to :create_new_forum.l, new_forum_path, :class => "utility"
 
--box do 
-  .pull-right=link_to :recent_posts.l, recent_forum_posts_path
-  %p.subtitle
-    %a{:href => recent_forum_posts_path(:format => 'rss')}
-      %i.icon-rss
-    = number_with_delimiter(Topic.count) 
-    = "#{:topics.l},"
-    = number_with_delimiter(SbPost.count)
-    = "#{:posts.l},"
-    = number_with_delimiter(User.count(:conditions => "sb_posts_count>0"))
-    = :voices.l
+.pull-right=link_to :recent_posts.l, recent_forum_posts_path
+%p.subtitle
+  %a{:href => recent_forum_posts_path(:format => 'rss')}
+    %i.icon-rss
+  = number_with_delimiter(Topic.count) 
+  = "#{:topics.l},"
+  = number_with_delimiter(SbPost.count)
+  = "#{:posts.l},"
+  = number_with_delimiter(User.count(:conditions => "sb_posts_count>0"))
+  = :voices.l
 
-  %table.table.table-bordered
+%table.table.table-bordered
+  %tr
+    %th= :forum.l
+    %th= :last_post.l
+    -if admin?
+      %th= :actions.l
+
+  -for forum in @forums do
     %tr
-      %th= :forum.l
-      %th= :last_post.l
-      %th
-
-    -for forum in @forums do
-      %tr
+      %td
+        = link_to h(forum.name), forum_path(forum), :class => "title"
+        %p=raw forum.description_html
+        - unless forum.topics_count.zero?
+          = number_with_delimiter(forum.topics_count)
+          = :topics.l
+          ,
+          = number_with_delimiter(forum.sb_posts_count)
+          = :posts.l
+      %td
+        - if recent_forum_activity(forum)
+          %span.badge.badge-warning
+            %i.icon-fire.icon-white
+        - if forum.sb_posts.last
+          = time_ago_in_words(forum.sb_posts.last.created_at)
+          %br
+          -if forum.sb_posts.last.user
+            %strong= :by.l :login => forum.sb_posts.last.user.display_name
+          %span
+            (
+            = link_to :view.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
+            )
+      -if admin?
         %td
-          = link_to h(forum.name), forum_path(forum), :class => "title"
-          %p=raw forum.description_html
-          - unless forum.topics_count.zero?
-            = number_with_delimiter(forum.topics_count)
-            = :topics.l
-            ,
-            = number_with_delimiter(forum.sb_posts_count)
-            = :posts.l
-        %td
-          - if recent_forum_activity(forum)
-            %span.badge.badge-warning
-              %i.icon-fire.icon-white
-          - if forum.sb_posts.last
-            = time_ago_in_words(forum.sb_posts.last.created_at)
-            %br
-            -if forum.sb_posts.last.user
-              %strong= :by.l :login => forum.sb_posts.last.user.display_name
-            %span
-              (
-              = link_to :view.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
-              )
+          = link_to :show.l, forum_path(forum), :class => 'btn'
+          = link_to :edit.l, edit_forum_path(forum), :class => 'btn btn-warning'
+          = link_to :delete.l, forum_path(forum), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
 
-        %td
-          = link_to :edit.l, edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin?
+-if admin?
+  = link_to :new_forum.l, new_forum_path, :class => 'btn btn-success'
 
-  - online_users = User.currently_online 
+
+- online_users = User.currently_online 
+- unless online_users.empty? 
   - unless online_users.empty? 
-    - unless online_users.empty? 
-      %dl.dl-horizontal
-        %dt= :users_online.l
-        %dd= online_users.map{ |u| link_to u.login, user_path(u) }.join(", ").html_safe
+    %dl.dl-horizontal
+      %dt= :users_online.l
+      %dd= online_users.map{ |u| link_to u.login, user_path(u) }.join(", ").html_safe
