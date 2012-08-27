@@ -4,10 +4,10 @@
 
 - if @is_admin_user
   -widget do 
-    = link_to_unless_current :past_events.l, past_events_path
-    = link_to_unless_current :upcoming_events.l, events_path
-    %br
-    = link_to :administer_events.l, admin_events_path
+    %ul.nav.nav-list
+      %li= link_to_unless_current :past_events.l, past_events_path
+      %li= link_to_unless_current :upcoming_events.l, events_path
+      %li= link_to :administer_events.l, admin_events_path
 =render :partial=>'subscribe'
 
 -box do     

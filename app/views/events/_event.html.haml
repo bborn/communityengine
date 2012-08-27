@@ -1,13 +1,14 @@
 %h2
   = event.name
   = !event.metro_area.nil? ? " (#{event.metro_area.to_s})" : ''
+  
 - if (logged_in? && (event.user.eql?(current_user) || admin?))
-  .event-edit-link
-    = link_to :edit.l, edit_event_path(event)
-    |
-    = link_to :clone.l, clone_event_path(event)
-    |
-    = link_to :destroy.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete
+  %p
+    = link_to :show.l, event_path(event), :class => 'btn'
+    = link_to :clone.l, clone_event_path(event), :class => 'btn btn-success'
+    = link_to :edit.l, edit_event_path(event), :class => 'btn btn-warning'
+    = link_to :delete.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+
 %dl.dl-horizontal
   %dt=:when.l
   %dd=event.time_and_date
