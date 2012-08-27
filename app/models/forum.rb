@@ -15,7 +15,7 @@ class Forum < ActiveRecord::Base
 
   format_attribute :description
 
-  attr_accessible :name, :position, :description
+  attr_accessible :name, :position, :description, :tag_list
   
   def to_param
     id.to_s << "-" << (name ? name.parameterize : '' )
