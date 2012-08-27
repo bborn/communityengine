@@ -8,54 +8,46 @@
     = javascript_include_tag 'lightbox'
     = stylesheet_link_tag 'lightbox'
     = stylesheet_link_tag 'application'
+    = stylesheet_link_tag 'layout'
   %body
-    -box do
+    .hero-unit
       %h1 
         =:create_a_clipping.l
       %p
         =:click_on_an_image_below_to_clip_it.l
-      %ul#clipping_image_list
-        = image_tag 'spinner.gif', :plugin => "community_engine"
-        =:loading_images.l
-        = javascript_include_tag 'community_engine'
-        %script{"type"=>"text/javascript"}
-          = remote_function(:url => { :controller => 'clippings', :action => "load_images_from_uri", :uri => params[:uri] }, :method => :post )
-      %small
-        %a{"href"=>"#{ params[:uri] }"}
-          =:cancel_and_go_back_to.l
-          = @clipping.url
-      #form_div{"style"=>"display:none;"}
-        = form_for(:clipping, :url => user_clippings_path(@user), :html => {:class => "MainForm"} ) do |f|
-          %label=:url.l
-          = f.text_field :url
+    %ul#clipping_image_list.thumbnails
+      = image_tag 'spinner.gif', :plugin => "community_engine"
+      =:loading_images.l
+      = javascript_include_tag 'community_engine'
+      %script{"type"=>"text/javascript"}
+        = remote_function(:url => { :controller => 'clippings', :action => "load_images_from_uri", :uri => params[:uri] }, :method => :post )
+    =link_to :cancel_and_go_back_to.l+ @clipping.url, params[:uri], :class => 'btn btn-mini'
+    #form_div{"style"=>"display:none;"}
+      = bootstrap_form_for(:clipping, :url => user_clippings_path(@user), :html => {:class => "form form-horizontal"} ) do |f|
+        = f.text_field :url
 
-          %img#clipping_preview{"src"=>nil, "width"=>"175px", "style"=>"float:right"}
-          
-          %label=:image_url.l
-          = f.text_field :image_url
+        %img#clipping_preview{"src"=>nil, "width"=>"100px", "style"=>"float:right"}
+        
+        = f.text_field :image_url
 
-          %label
-            =:tags.l
-            %em="(#{:optional_keywords_describing_this_clipping_separated_by_commas.l})"
-          = text_field_tag 'tag_list', @clipping.tag_list, {:autocomplete => "off",:id => 'clipping_tag_list'}
+        = f.text_field :tag_list, {:help_inline => :optional_keywords_describing_this_clipping_separated_by_commas.l, :autocomplete => "off",:id => 'clipping_tag_list'}
 
-          #clipping_tag_list_auto_complete.auto_complete
-          = auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :update => 'clipping_tag_list_auto_complete' }
+        #clipping_tag_list_auto_complete.auto_complete
+        = auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :update => 'clipping_tag_list_auto_complete' }
 
-          %label=:description.l
-          = f.text_field :description
+        = f.text_field :description
 
-          %p= submit_tag :create.l, :class => 'btn btn-primary'
+        .controls= f.submit :create.l
 
-    :javascript
-      image_list = $('clipping_image_list')
-      Event.observe(image_list, 'click', function(e){
-        element = Event.element(e);
-        if (element.parentNode.tagName.toLowerCase() == 'li' ){
-          $('clipping_image_url').value = element.src;
-          $('clipping_preview').src = element.src;
-          new Lightbox.base('form_div');
-        }
-        return;
-      });
+  :javascript
+    image_list = $('clipping_image_list')
+    Event.observe(image_list, 'click', function(e){
+      element = Event.element(e);
+      if (element.parentNode.tagName.toLowerCase() == 'li' ){
+        $('clipping_image_url').value = element.src;
+        $('clipping_preview').src = element.src;
+        new Lightbox.base('form_div');
+      }
+      return;
+    });
 

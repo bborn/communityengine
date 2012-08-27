@@ -23,12 +23,12 @@
     - css_class = css_class + (name.eql?(params[:tag_name]) ? " selected": "")
     = link_to name, user_clippings_path(:user_id => @user, :tag_name => name), :class => css_class
     
--box :class => "hfeed", :id => 'clippings' do
-  - if @clippings.any?
-    %ul.thumbnails
-    - @clippings.each do |clipping|
-      %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
-    =paginate @clippings
-  - else
-    %p= @is_current_user ? :you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some.l : :no_clippings_yet.l
+
+- if @clippings.any?
+  %ul.thumbnails
+  - @clippings.each do |clipping|
+    %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+  =paginate @clippings
+- else
+  %p= @is_current_user ? :you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some.l : :no_clippings_yet.l
 

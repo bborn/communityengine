@@ -1,5 +1,4 @@
-.thumbnail{ :id => "clipping_#{clipping.id}"}
-    
+%div{ :id => "clipping_#{clipping.id}"}
   - if favorite = clipping.has_been_favorited_by(current_user, request.remote_ip)
     .favorite
       = link_to_remote '<span class="badge badge-info"><i class="icon-heart"></i>'.html_safe+clipping.favorited_count.to_s+'</span>'.html_safe, :url => favorite_path('clipping', clipping.id, favorite.id), :method => :delete, :loading => "new Effect.Fade($$('#clipping_#{clipping.id} .favorite i').first())", :title => :un_favorite_this.l if logged_in?
@@ -10,4 +9,9 @@
   %a{:href=>"#{user_clipping_url(clipping.user, clipping)}", :title => h(truncate_words(clipping.description)) }     
     = h(truncate_words(clipping.description))
     %br
-    = link_to image_tag( clipping.image_uri(:medium)), user_clipping_url(clipping.user, clipping)
+    = link_to image_tag( clipping.image_uri(:medium)), user_clipping_url(clipping.user, clipping), :class => 'thumbnail'
+  %br
+    -if clipping.user = current_user
+      =link_to :show.l, [current_user, clipping], :class => 'btn btn-mini'
+      =link_to :edit.l, edit_user_clipping_path(current_user, clipping), :class => 'btn btn-mini btn-warning'
+      =link_to :delete.l, [current_user, clipping], :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-mini btn-danger'

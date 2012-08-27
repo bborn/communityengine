@@ -1,24 +1,12 @@
 -@page_title= :new_clipping.l
--box do 
+-widget do 
   %h3= :help.l
   %p= :clippings_are_a_way_to_save_images_you_like_from_around_the_web.l
 
--box do 
-  %img{"src"=>"#{h @clipping.image_uri}"}
-  = form_for(:clipping, :url => user_clippings_path(@user), :html => { :class => "MainForm" }) do |f|
-    %label= :url.l
-    = f.text_field :url
+%p
+  =link_to :back.l, user_clippings_path(@user), :class => 'btn'
 
-    %label= :image_url.l
-    = f.text_field :image_url
-    
-    %label= :description.l
-    = f.text_field :description
+-if @clipping.image_uri
+  =image_tag @clipping.image_uri(:large), :class => 'thumbnail'
 
-    %label
-      =:tags.l
-      %em="(#{:optional_keywords_describing_this_clipping_separated_by_commas.l})"
-    = text_field_tag 'tag_list', @clipping.tag_list
-
-    %p
-      = submit_tag :create.l, :class => 'btn btn-primary'
+=render 'form'

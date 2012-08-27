@@ -4,19 +4,12 @@
   %h3= :help.l
   %p= :tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas.l
 
--box do 
-  %img{"src"=>"#{h @clipping.image_uri(:large)}"}
-  = form_for(:clipping, :url => user_clipping_path(@user, @clipping), :html => { :method => :put, :class => "MainForm" }) do |f|
-    %label= :url.l
-    = f.text_field :url
-    
-    %label= :description.l
-    = f.text_field :description
+%p
+  =link_to :back.l, user_clippings_path(@user), :class => 'btn'
+  =link_to :show.l, user_clipping_path(@user, @clipping), :class => 'btn'
+  =link_to :delete.l, user_clipping_path(@user, @clipping), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
+  
 
-    %label
-      =:tags.l
-      %em="(#{:optional_keywords_describing_this_clipping_separated_by_commas.l})"
-    = text_field_tag 'tag_list', @clipping.tag_list
+=image_tag @clipping.image_uri(:large), :class => 'thumbnail'
 
-    %p
-      = submit_tag :save.l, :class => 'btn btn-primary'
+=render 'form'

@@ -5,8 +5,9 @@
 
 - if @previous || @next
   -widget do 
-    = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ".html_safe, user_clipping_path(@user, @previous), :class => 'left' if @previous
-    = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;".html_safe, user_clipping_path(@user, @next), :class => 'right' if @next
+    .clearfix
+      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ".html_safe, user_clipping_path(@user, @previous), :class => 'pull-left' if @previous
+      = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;".html_safe, user_clipping_path(@user, @next), :class => 'pull-right' if @next
 
 - if @related.any?
   -widget do 
@@ -14,39 +15,38 @@
     - @related.each do |clipping|
       = link_to image_tag(clipping.image_uri(:thumb), :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
 
--box :class => "hfeed" do 
-  %h3= link_to :user_clippings.l(:user =>@user.login), user_clippings_path(@user)
-  .hentry.main
-    - if @is_current_user
-      = link_to :delete.l, user_clipping_path(@user, @clipping), :confirm => :are_you_sure.l, :method => :delete
-      |
-      = link_to :edit.l, edit_user_clipping_path(@user, @clipping)
+%p
+  - if @is_current_user
+    = link_to :back.l, user_clippings_path(@user), :class => 'btn'
+    = link_to :edit.l, edit_user_clipping_path(@user, @clipping), :class => 'btn btn-warning'
+    = link_to :delete.l, user_clipping_path(@user, @clipping), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
 
-    %p.centered
-      %a{"href"=>"#{h @clipping.url }"}
-        %img{:src=>"#{h @clipping.image_uri(:large)}", :class=>"clipping", :alt=> "#{h @clipping.description}"}
+= link_to image_tag(@clipping.image_uri(:large), :alt=> @clipping.description, :class => 'thumbnail'), @clipping.url
 
-    %p
-      =:from.l
+%dl.dl-horizontal
+  -unless @clipping.url.blank?
+    %dt=:from.l
+    %dd
       %a{"href"=>"#{h @clipping.url }", "title"=>"#{h @clipping.description }"}
         = h truncate(@clipping.url, :length => 95)
+        
+  -unless @clipping.description.blank?
+    %dt=:description.l
+    %dd=h @clipping.description
+  
+  -if @clipping.tags.any?  
+    %dt=:tags.l
+    %dd
+      %ul.unstyled
+        - @clipping.tags.each do |t|
+          %li
+            %a.label.label-info{:href => tag_url(t), :rel => 'tag'}
+              %i.icon-tag.icon-white
+              =t.name
 
-    %p
-      =:description.l
-      \:
-      =h @clipping.description
-
-    %p
-      =:tags.l
-      \:
-    %ul.tags
-      - @clipping.tags.each do |t|
-        %li=link_to( t.name, tag_url(t), :rel => 'tag')
-
--box :class => 'hfeed comments', :id => 'comments' do
-  %h3=:clipping_comments.l
-  %h2=:add_your_comment.l
-  = render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
-  %a#newest_comment
-  = render :partial => 'comments/comment', :collection => @clipping.comments
-  %span#more_comments_links= more_comments_links(@clipping)
+%h2=:clipping_comments.l
+%h3=:add_your_comment.l
+= render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
+%a#newest_comment
+= render :partial => 'comments/comment', :collection => @clipping.comments
+%span#more_comments_links= more_comments_links(@clipping)
