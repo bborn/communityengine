@@ -6,7 +6,7 @@
 -else 
   %a
     = render :partial => 'comments/comment', :collection => @comments
-  =paginate @comments
+  =paginate @comments, :theme => 'bootstrap'
 
 %h3=:add_your_comment.l
 %p= render :partial => 'comments/comment_form', :locals => {:commentable => @commentable}  

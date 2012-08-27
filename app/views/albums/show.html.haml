@@ -14,7 +14,7 @@
   - @album_photos.each do |photo|
     %li.span2
       = link_to image_tag(photo.photo.url(:thumb)), user_photo_path(photo.user, photo), :class => 'thumbnail'
-= paginate @album_photos
+= paginate @album_photos, :theme => 'bootstrap'
 
 -box :id => 'comments' do
   %h2=:album_comments.l

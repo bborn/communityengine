@@ -10,8 +10,5 @@
       %li= link_to :administer_events.l, admin_events_path
 =render :partial=>'subscribe'
 
--box do     
-
-  = render :partial=>'event', :collection=>@events, :locals=>{:show_details_link=>true}
-
-  =paginate @events     
+= render :partial=>'event', :collection=>@events, :locals=>{:show_details_link=>true}
+=paginate @events , :theme => 'bootstrap'    

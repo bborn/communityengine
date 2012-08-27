@@ -6,4 +6,4 @@
 -box :class => "user_list" do
   %ul.thumbnails
     = render :partial => "users/user", :collection => @users
-  = paginate @users
+  = paginate @users, :theme => 'bootstrap'

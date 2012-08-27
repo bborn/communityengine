@@ -36,7 +36,7 @@
       
 
       -if @posts.total_count > 1
-        = paginate @posts
+        = paginate @posts, :theme => 'bootstrap'
 
       %table{:border => 0, :width => '100%'}
         %thead

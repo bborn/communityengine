@@ -9,7 +9,7 @@
     %p
       %input{:type=>"submit", :value=> :search_users.l, :class => 'btn' }
 
-    = paginate @users
+    = paginate @users, :theme => 'bootstrap'
 
   = form_tag delete_selected_users_path, :id => 'users' do
     %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
@@ -55,7 +55,7 @@
                   %br
                 = submit_tag :delete_selected.l, :class => 'btn btn-danger'
 
-    = paginate @users
+    = paginate @users, :theme => 'bootstrap'
 
 -content_for :end_javascript do
   :javascript

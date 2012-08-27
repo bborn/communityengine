@@ -1,7 +1,7 @@
 = render :partial => 'show_image_list', :locals => { :photos => photos }
 
 #image_list_pages.clear
-  = paginate @photos
+  = paginate @photos, :theme => 'bootstrap'
 
 :javascript
   $('image_list_pages').select('a').invoke('observe', 'click', remote_paginate )

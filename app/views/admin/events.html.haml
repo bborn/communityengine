@@ -20,7 +20,7 @@
         = link_to :edit.l, edit_event_path(event), :class => 'btn btn-warning'
         = link_to :delete.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
 
-=paginate @events
+=paginate @events, :theme => 'bootstrap'
 
 %p= link_to :new_event.l, new_event_path, :class => 'btn btn-success'
 

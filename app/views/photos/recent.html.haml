@@ -6,4 +6,4 @@
       %li.span4
         = link_to tag('img', :src => photo.photo.url(:medium)), user_photo_path(photo.user, photo), :class => 'thumbnail'
 
-  =paginate @photos
+  =paginate @photos, :theme => 'bootstrap'

@@ -274,7 +274,7 @@ module BaseHelper
   end
   
   def paginating_links(paginator, options = {}, html_options = {})
-    paginate paginator
+    paginate paginator, :theme => 'bootstrap'
   end  
   
   def last_active

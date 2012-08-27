@@ -13,7 +13,7 @@
     -box :class => "hfeed" do 
       %h3=:featured_posts.l
 
-      =paginate @posts
+      =paginate @posts, :theme => 'bootstrap'
 
       = render :partial => 'posts/post', :collection => @posts
   

@@ -43,5 +43,5 @@
             = link_to h(post.topic_title), forum_topic_path(post.forum, post.topic)
           =raw post.body
         
-  =paginate @posts
+  =paginate @posts, :theme => 'bootstrap'
 

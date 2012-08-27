@@ -8,11 +8,9 @@
     - @clippings.each do |clipping|
       %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
   -if @clippings.total_count > 1      
-    =paginate @clippings
+    =paginate @clippings, :theme => 'bootstrap'
           
 -widget do 
-  %h3 &nbsp;
-  
   =:clippings_let_you_to_save_cool_images_from_around_the_web.l
   -if logged_in?
     =link_to :go_to_your_clippings_page_to_get_started.l, user_clippings_path(current_user)

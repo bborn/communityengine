@@ -61,7 +61,7 @@
     - for post in @posts do
       =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
-  =paginate @posts
+  =paginate @posts, :theme => 'bootstrap'
 
   - if logged_in? || configatron.allow_anonymous_forum_posting  
     #edit

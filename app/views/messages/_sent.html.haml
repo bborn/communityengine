@@ -20,4 +20,4 @@
         %td
           = time_ago_in_words_or_date(message.created_at)                                  
   = submit_tag :delete_selected.l, :class => 'btn btn-danger'  
-  =paginate @messages
+  =paginate @messages, :theme => 'bootstrap'

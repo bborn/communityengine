@@ -46,7 +46,7 @@
       %a.btn{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
       = submit_tag :delete_selected.l, :class => 'btn btn-danger'          
 
-= paginate @comments
+= paginate @comments, :theme => 'bootstrap'
 
 -content_for :end_javascript do
   :javascript

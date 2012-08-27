@@ -27,7 +27,7 @@
       = icon_link_to 'icon-plus-sign', :all_posts_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Post') unless params[:type]
     -else 
       = render :partial => 'posts/post', :collection => @posts      
-      = paginate @posts
+      = paginate @posts, :theme => 'bootstrap'
       
 .clearfix
   - if @photos.any?
@@ -54,4 +54,4 @@
     = icon_link_to 'icon-plus-sign', :all_clippings_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Clipping') unless params[:type]
 
 - if @pages && !params[:type].eql?('Post')
-  = paginate @pages
+  = paginate @pages, :theme => 'bootstrap'

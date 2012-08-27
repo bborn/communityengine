@@ -17,5 +17,5 @@
         = link_to :show.l, metro_area_path(metro_area), :class => 'btn' 
         = link_to :edit.l, edit_metro_area_path(metro_area), :class => 'btn btn-warning'
         = link_to :delete.l, metro_area_path(metro_area), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
-= paginate @metro_areas
+= paginate @metro_areas, :theme => 'bootstrap'
 = link_to :new_metro_area.l, new_metro_area_path, :class => 'btn btn-success'

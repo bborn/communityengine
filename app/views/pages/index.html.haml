@@ -27,5 +27,5 @@
               = t(:no)
           %td= page.is_live? ? link_to(:published.l, pages_path(page)) : :draft.l
     
-  =paginate @pages
+  =paginate @pages, :theme => 'bootstrap'
   %p=link_to :new_page.l, new_admin_page_path

@@ -5,7 +5,7 @@
     -box :class => "fresh" do 
       %h3= :whats_fresh.l
       =render :partial => "activities/activity", :collection => @activities
-      =paginate @activities
+      =paginate @activities, :theme => 'bootstrap'
       
   .yui-u
     -widget do 

@@ -32,7 +32,7 @@
           = link_to :edit.l, edit_user_album_path(current_user,album), :class => 'btn btn-warning'
           = link_to :add_photos.l, new_user_album_photo_path(current_user,album), :class => 'btn btn-primary'
           = link_to :delete.l, user_album_path(current_user,album), :confirm => :delete_album_and_photos.l, :method => :delete, :class => 'btn btn-danger'
-=paginate @albums
+=paginate @albums, :theme => 'bootstrap'
 =link_to :new_album.l, new_user_album_path(current_user), :class => 'btn btn-success'
 
 %h2= :not_assigned_photos.l
@@ -44,7 +44,7 @@
       = link_to :edit.l, edit_user_photo_path(current_user, photo), :class => 'btn btn-warning btn-mini'
       = link_to :delete.l, edit_user_photo_path(current_user, photo), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger btn-mini'
 
-  =paginate @photos_no_albums
+  =paginate @photos_no_albums, :theme => 'bootstrap'
 =link_to :new_photo.l, new_user_photo_path(current_user), :class => 'btn btn-success'
 
 

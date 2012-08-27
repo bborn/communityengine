@@ -8,7 +8,7 @@
       %table{:width => "100%"}
         =render :partial => "activities/activity", :collection => @activities
       -if @activities.total_count > 1
-        = paginate @activities
+        = paginate @activities, :theme => 'bootstrap'
     -else
       =:you_have_no_network_activity_yet.l 
       = link_to :add_some_friends_to_get_started.l, users_path
