@@ -1,4 +1,5 @@
 = render :partial => 'users/profile_user_info_sidebar'
 -@page_title= :pending_friendships.l
-  %ul.thumbnails
-    = render :partial => "friendships/friendship", :collection => @friendships
+
+%ul.thumbnails
+  = render :partial => "friendships/friendship", :collection => @friendships
