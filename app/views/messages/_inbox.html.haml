@@ -11,10 +11,6 @@
         %td
           = check_box_tag "delete[]", message_thread.id
         %td
-          =link_to h(message_thread.subject), user_message_path(@user, message)
-          -if !message_thread.read?
-            %span.label.label-success
-              =:new.l
           -if children.any?
             -if message_thread.read?
               %span.badge
@@ -22,6 +18,10 @@
             -else
               %span.badge.badge-success
                 = children.size
+          =link_to h(message_thread.subject), user_message_path(@user, message)
+          -if !message_thread.read?
+            %span.label.label-success
+              =:new.l
           %br
           %em
             =message.sender.login
