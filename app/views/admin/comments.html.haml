@@ -1,57 +1,52 @@
 -@page_title = 'Comments'
 = render :partial => 'shared/admin_nav'
 
--box do
-  = form_for @search, :url => admin_comments_path, :html => {:class => "form form-horizontal"} do |f|
-    %label= :commentable_type.l
-    = f.text_field :commentable_type_like
-    %label= :commentable_id.l
-    = f.text_field :commentable_id_equals
-    %label= :email.l
-    = f.text_field :author_email_or_user_email_like
-    %p= f.submit :search.l, :class => 'btn'
+= bootstrap_form_for @search, :url => admin_comments_path, :html => {:class => "form form-horizontal"} do |f|
+  %h2=:search.l
+  = f.text_field :commentable_type_like, :label => :commentable_type.l
+  = f.text_field :commentable_id_equals, :label => :commentable_id.l
+  = f.text_field :author_email_or_user_email_like, :label => :email.l
+  .controls= f.submit :search.l
 
--box do
-  %h2
-    = configatron.community_name
-    = :comments.l
-
-  = paginate @comments
-
-  = form_tag delete_selected_comments_path, :method => :delete, :id => 'comments' do
-    %table.table.table-bordered.table-striped
-      %tr
-        %th{:width => '30px', :colspan => '2'}
-        %th=:author.l          
-        %th{:width => "250px"}=:body_text.l
-        %th=:on_commentable.l
-      - @comments.each do |comment|
-        %tr{:id => "comment_#{comment.id}"}
-          %td=link_to_remote(image_tag('icons/delete.png'), {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )                                                
-          %td= check_box_tag "delete[]", comment.id
-          %td
-            .left
-              -if comment.user
-                = link_to h(comment.user.login), user_path(comment.user)
-                %br
-                %small= comment.user.email
-              -else
-                = link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }              
-                %br
-                %small=comment.author_email
-                %br
-                %small="(#{comment.author_url})"
-          %td{:style => 'overflow:hidden;'}
-            = comment.comment
-          %td
+= form_tag delete_selected_comments_path, :method => :delete, :id => 'comments' do
+  %table.table.table-bordered.table-striped
+    %tr
+      %th=:delete.l
+      %th=:author.l          
+      %th{:width => "50%"}=:body_text.l
+      %th=:on_commentable.l
+      %th=:actions.l
+    - @comments.each do |comment|
+      %tr{:id => "comment_#{comment.id}"}                                
+        %td= check_box_tag "delete[]", comment.id
+        %td
+          .left
+            -if comment.user
+              = link_to h(comment.user.login), user_path(comment.user)
+              %br
+              %small= comment.user.email
+            -else
+              = link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }              
+              %br
+              %small=comment.author_email
+              %br
+              %small="(#{comment.author_url})"
+        %td{:style => 'overflow:hidden;'}
+          = comment.comment.html_safe
+        %td
+          -if comment.commentable_name.blank?
+            =link_to comment.commentable_type, commentable_url(comment)
+          -else
             =link_to comment.commentable_name, commentable_url(comment)
-      %tr
-        %td{ :colspan => "4" }
-          -if @comments.any?
-            %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
-            %p= submit_tag :delete_selected.l, :class => 'btn btn-danger'          
+        %td
+          =link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"}, :class => 'btn btn-danger' )
+    
+  -if @comments.any?
+    %p
+      %a.btn{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
+      = submit_tag :delete_selected.l, :class => 'btn btn-danger'          
 
-  = paginate @comments
+= paginate @comments
 
 -content_for :end_javascript do
   :javascript
