@@ -1,23 +1,13 @@
-.yui-b
-  = render :partial => 'posts/author_profile', :locals => {:user => @user} if @user
+= render :partial => 'posts/author_profile', :locals => {:user => @user} if @user
+-@page_title = :comments.l + " on " + @title
 
-#yui-main
-  -box :class => 'yui-b hfeed comments', :id => 'comments' do
-  
-  
-    %h3
-      = :comments.l + " -"
-      = link_to @title, @back_url
+- if @comments.empty?
+  = :no_comments_found.l_with_args(:type => @commentable.class.to_s.underscore)
+-else 
+  %a
+    = render :partial => 'comments/comment', :collection => @comments
+  =paginate @comments
 
-    - if @comments.empty?
-      #emptycomments= :no_comments_found.l_with_args(:type => @commentable.class.to_s.underscore)
-
-
-    %a#newest_comment
-      = render :partial => 'comments/comment', :collection => @comments
-
-    =paginate @comments
-
-    %h3=:add_your_comment.l
-    %p= render :partial => 'comments/comment_form', :locals => {:commentable => @commentable}  
+%h3=:add_your_comment.l
+%p= render :partial => 'comments/comment_form', :locals => {:commentable => @commentable}  
       

@@ -1,11 +1,11 @@
-div{:id => "comment_#{comment.id}"}
+%div{:id => "comment_#{comment.id}"}
   -if comment.user
     .clearfix
       .span3.pull-right
         %ul.nav.nav-list
           %li= link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => "#{comment.user.login}"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'thumbnail'
           %li
-            = icon_link_to 'icon-hand-right', comment.user.login, user_path(comment.user), :class => 'url'
+            = icon_link_to 'icon-hand-right', comment.user.login, user_path(comment.user)
           %li
             %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
               %i.icon-calendar.pull-left
@@ -13,11 +13,11 @@ div{:id => "comment_#{comment.id}"}
                 = I18n.l(comment.created_at, :format => :short_literal_date)
           -if logged_in? && (current_user.admin? || current_user.moderator?)
             %li
-              =icon_link_to 'icon-edit', :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+              =link_to_remote '<i class="icon-edit"></i>'.html_safe + :edit.l, {:url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment, :format => 'js'), :method => :get}
           -if ( comment.can_be_deleted_by(current_user) )
             %li.delete
-              =icon_link_to 'icon-trash', :delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l}
-      .entry-content= comment.comment.html_safe
+              =link_to_remote '<i class="icon-trash"></i>'.html_safe + :delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l}
+      = comment.comment.html_safe
   
   -else
     .clearfix
@@ -43,7 +43,7 @@ div{:id => "comment_#{comment.id}"}
             %li
               =link_to_remote('<i class="icon-trash"></i>'.html_safe + :delete.l, {:url => commentable_comment_path_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
             
-      .entry-content= comment.comment.html_safe
+      = comment.comment.html_safe
   
   - highlighted ||= nil
   - if highlighted

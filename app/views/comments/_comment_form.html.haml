@@ -11,37 +11,22 @@
       document.location.href = loc;
     }
       
-  .errors
-  = form_remote_for(:comment, @comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
-    %label
-      %em=:comment_character_limit.l
-    
-    = f.text_area :comment, {:size => "86x5", :class => "rich_text_editor"}
+  = bootstrap_form_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
+    = f.text_area :comment, :rows => 5, :class => "rich_text_editor", :help_inline => :comment_character_limit.l
     
     - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key 
-      .right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
-      %label{"for"=>"comment[author_name"}
-        =:name.l
-        %em="(#{:optional.l})"
-      = f.text_field :author_name, :size => 35
-      %label{"for"=>"comment[author_email"}
-        ="#{:email.l}:"
-        %em="(#{:comment_author_email_required.l})"
-      = f.text_field :author_email, :size => 35        
-      %br
-      %label 
-        =f.check_box :notify_by_email, :style => 'width: 10px;'
-        =:notify_me_of_follow_ups_via_email.l
-        -if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
-          %em="(#{:comment_notifications_off.l})"
-      
-      %label{"for"=>"comment[author_url"}
-        =:comment_web_site_label.l
-        %em="(#{:optional.l})"
-      = f.text_field :author_url, :size => 35
+      .pull-right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
+      = f.text_field :author_name
+      = f.text_field :author_email, :required => true     
+      -if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
+        =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l, :help_inline => :comment_notifications_off.l
+      -else
+        =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l
+     
+      = f.text_field :author_url, :label => :comment_web_site_label.l
 
-    %p
-      = submit_tag :add_comment.l, :class => 'btn btn-primary'
+    .controls
+      = f.submit :add_comment.l
       = image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner'
 - else
   .btn-group

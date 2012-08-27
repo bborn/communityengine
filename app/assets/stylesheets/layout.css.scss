@@ -17,3 +17,6 @@ body {
     content: '(*Required) ';
     display: inline;
 }
+[class*='span'].pull-right {
+  float: right;
+}
