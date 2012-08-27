@@ -8,3 +8,12 @@ body {
 }
 @import 'bootstrap-responsive';
 @import 'font-awesome';
+
+.required {
+    font-weight: bold;
+}
+.required:before {
+    color: $red;
+    content: '(*Required) ';
+    display: inline;
+}
