@@ -1,43 +1,40 @@
 - @meta = { :description => "#{@category.name} posts.",:keywords => "#{@category.name}"}
 - @section = @category.name
 
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:top_writers.l
-    - @active_users.each do |user|
-      = render :partial => "users/sidebar_user", :locals => {:user => user} 
-    
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:popular_category.l(:name => @category.name) 
-    - @popular_posts.each do |post|
-      =render :partial => 'posts/sidebar_post', :locals => {:post => post}
+-unless @active_users.empty?
+  -widget do 
+    %ul.nav.nav-list
+      %li.nav-header=:top_writers.l
+      - @active_users.each do |user|
+        = render :partial => "users/sidebar_user", :locals => {:user => user} 
 
--box do 
-  - if logged_in?
-    %h2.signup=:have_something_to_contribute.l
-    %ul.list.checks
-      %li= link_to @category.display_new_post_text() || :write_new_post.l(:category=>@category.name), new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
-  - else
-    %h2.signup= @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)
-    %ul.list.checks
-      %li
-        %a{:href=>signup_url, :title=>:sign_up_for_a_.l+" #{configatron.community_name} "+:account.l}=:sign_up_for_an_account.l
-        %br
-          %small
-            =:have_an_account.l
-            %a{:href=>login_url, :title=>:log_in_to_your.l+" #{configatron.community_name} "+:account.l}
-              &raquo;
-              =:login.l
+-unless @popular_posts.empty?
+  -widget do 
+    %ul.nav.nav-list
+      %li.nav-header=:popular_category.l(:name => @category.name) 
+      - @popular_posts.each do |post|
+        =render :partial => 'posts/sidebar_post', :locals => {:post => post}
 
+- if logged_in?
+  %h2.signup=:have_something_to_contribute.l
+  %ul.unstyled
+    %li=icon_link_to 'icon-check', @category.display_new_post_text() || :write_new_post.l(:category=>@category.name), new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
+- else
+  %h2.signup= @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)
+  %ul.unstyled
+    %li
+      =icon_link_to 'icon-check', :sign_up_for_an_account.l, signup_url
+    %li
+      %small
+        =:have_an_account.l
+        =icon_link_to 'icon-arrow-right', :login.l, login_url
 
--box :class => "hfeed" do 
-  %h2      
-    =:show_category.l :category => @category.name
-  %ul.subnav
-    %li= link_to :recent.l, category_path(@category), {:class => (params[:popular] ? '' : 'active')}
-    %li= link_to :popular.l, category_path(@category, :popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
+%h2      
+  =:show_category.l :category => @category.name
+%ul
+  %li= link_to :recent.l, category_path(@category), {:class => (params[:popular] ? '' : 'active')}
+  %li= link_to :popular.l, category_path(@category, :popular => 'DESC'), {:class => (params[:popular] ? 'active' : '')}  
 
-  = render :partial => 'posts/post', :collection => @posts      
-  - if @posts.total_count > 1
-    = paginate @posts
+= render :partial => 'posts/post', :collection => @posts      
+= paginate @posts
+  

@@ -1,28 +1,4 @@
 -@page_title = :editing_category.l
 = render :partial => 'shared/admin_nav'
 
--box do
-  = form_for(:category, :url => category_path(@category), :html => { :method => :put, :class => "MainForm" }) do |f|
-
-    %label
-      =:name.l
-      \:
-    = f.text_field :name
-
-    %label
-      =:posting_tips.l
-      \:
-    = f.text_area :tips, :rows => 3
-
-    %label
-      =:new_post_text.l
-      \:
-    = f.text_field :new_post_text
-
-    %label
-      =:navigation_menu_text.l
-      \:
-    = f.text_field :nav_text
-
-    %p
-      = submit_tag :update.l, :class => 'btn btn-primary'
+=render 'form'
