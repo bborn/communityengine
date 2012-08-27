@@ -53,7 +53,6 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<sanitize>, [">= 2.0.3"])
   s.add_dependency(%q<bootstrap-sass>, [">= 0"])
   s.add_dependency(%q<bootstrap_forms>, [">= 0"])
-  s.add_dependency(%q<bootstrap_kaminari>, [">= 0"])
   s.add_dependency(%q<font-awesome-sass-rails>, [">= 0"])
 end
 
