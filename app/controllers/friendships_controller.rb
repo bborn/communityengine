@@ -11,8 +11,8 @@ class FriendshipsController < BaseController
     @users = User.find(:all, :conditions => ['users.id in (?)', @friendships.collect{|f| f.friend_id }])    
     
     respond_to do |format|
-      format.html 
-      format.xml { render :action => 'index.rxml', :layout => false}    
+      format.html {redirect_to accepted_user_friendships_path(params[:user_id])}
+      # format.xml { render :action => 'index.rxml', :layout => false} # Not working, no such template exists
     end
   end
   
