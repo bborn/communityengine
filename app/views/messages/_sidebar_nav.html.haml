@@ -1,13 +1,12 @@
-.yui-b.sidebar
-  -widget do 
-    %ul.nav.nav-list
-      %li.nav-header= :links.l
-      %li
-        %a{:href=>user_messages_path(@user)}
-          =:inbox.l
-          - if @user.unread_messages?
-            %span.badge.badge-success
-              = "#{@user.unread_message_count}"
-              %i.icon-envelope.icon-white 
-      %li.sent= link_to :sent_messages.l, user_messages_path(@user, :mailbox => :sent)
-      %li.compose= link_to :compose.l, new_user_message_path(@user)
+-widget do 
+  %ul.nav.nav-list
+    %li.nav-header= :links.l
+    %li
+      %a{:href=>user_messages_path(@user)}
+        =:inbox.l
+        - if @user.unread_messages?
+          %span.badge.badge-success
+            = "#{@user.unread_message_count}"
+            %i.icon-envelope.icon-white 
+    %li.sent= link_to :sent_messages.l, user_messages_path(@user, :mailbox => :sent)
+    %li.compose= link_to :compose.l, new_user_message_path(@user)

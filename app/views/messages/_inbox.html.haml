@@ -1,41 +1,36 @@
+-@page_title = :inbox.l
 
-
-#yui-main
-  .yui-b
-    -box do 
-      %h3= :inbox.l
-
-      %table.messages{:border => 0, :width => '100%'}
-        %tbody
-          - if @messages.empty?
-            %tr
-              %td{ :colspan => "5" }
-                = :no_messages.l
-          -else
-            - @messages.each do |message_thread|
-              - message = message_thread.message
-              - children = message_thread.parent_message.children              
-              %tr{:class => message_thread.read? ? :read.l : :unread.l}
-                %td{:width => '10px'}
-                  %fieldset.inline
-                    = check_box_tag "delete[]", message_thread.id
-                %td
-                  =link_to h(message_thread.subject), user_message_path(@user, message)
-                  =children.any? ? "(#{children.size} messages)" : ''
-                  %br
-                  %em
-                    =message.sender.login
-                    \: 
-                    =truncate(message.body)
-                
-                %td.meta{:width => '150px'}
-                  =time_ago_in_words_or_date(message_thread.updated_at)                
-                  
-        %tfoot
-          %tr
-            %td{ :colspan => "5" }
-              -if @messages.any?
-                %p= submit_tag :delete_selected.l              
-      
-      -paginate @messages               
+- if @messages.empty?
+  %p= :no_messages.l
+-else
+  %table.table.table-bordered
+    - @messages.each do |message_thread|
+      - message = message_thread.message
+      - children = message_thread.parent_message.children              
+      %tr{:class => message_thread.read? ? '' : 'alert-success'}
+        %td
+          = check_box_tag "delete[]", message_thread.id
+        %td
+          =link_to h(message_thread.subject), user_message_path(@user, message)
+          -if !message_thread.read?
+            %span.label.label-success
+              =:new.l
+          -if children.any?
+            -if message_thread.read?
+              %span.badge
+                = children.size
+            -else
+              %span.badge.badge-success
+                = children.size
+          %br
+          %em
+            =message.sender.login
+            \: 
+            =truncate(message.body)
+        
+        %td
+          =time_ago_in_words_or_date(message_thread.updated_at)    
+  = submit_tag :delete_selected.l, :class => 'btn btn-danger'           
+        
+  =paginate @messages               
 
