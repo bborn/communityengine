@@ -1,25 +1,13 @@
-%label
-  =:title.l
-  %em="(#{:required.l})"
-= f.text_field :title
+- if @page.new_record?
+  - url = admin_pages_path
+- else
+  - url = admin_page_path(@page)
 
-%label
-  =:body_text.l
-  %em="(#{:required.l})"
-= f.text_area :body, :style => "width:95%;", :class => "rich_text_editor"
-
-%label
-  = f.check_box :page_public
-  =:make_page_public.l
-  %br
-  %em
-    =:when_checked_this_page_will_be_visible_to_anyone.l
-  %br
-  %em
-    =:when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to.l
-    = "#{configatron.community_name}."
-
-%label
-  =:save_page_as.l
-= f.select(:published_as, [[:published.l, 'live'], [:draft.l, 'draft']])
-
+= bootstrap_form_for @page, :url => url, :html => {:class => "form form-horizontal"} do |f|
+  = f.text_field :title
+  = f.text_area :body, :class => "rich_text_editor"
+  = f.check_box :page_public, :label => :make_page_public.l, :help_block => :when_checked_this_page_will_be_visible_to_anyone.l + :when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to.l + configatron.community_name
+  = f.select :published_as, [[:published.l, 'live'], [:draft.l, 'draft']], :label => :save_page_as.l
+  .controls
+    = f.submit :save.l
+  

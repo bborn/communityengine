@@ -1,11 +1,4 @@
 -@page_title= :edit_page.l
--box do 
-  = error_messages_for :page
-  = form_for(:page, :url => admin_page_path(@page), :html => {:method => :put, :class => "MainForm", :id => 'post_form'}) do |f|
 
-    =render :partial => 'form', :locals => {:f => f}
-    
-    %p
-      = submit_tag :update.l, :class => 'btn btn-primary'
-      =link_to :delete_this_page.l, admin_page_path(@page), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_page.l, :class => 'btn btn-danger'
+=render 'form'
 
