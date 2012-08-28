@@ -1,51 +1,14 @@
-.yui-b
-  -box :id => 'category_tips' do
-    - if @post.category
-      = render :partial => "categories/tips", :locals => {:category => @post.category}
-    - else
-      = render :partial => "categories/tips", :locals => {:category => nil}
+-@page_title = :editing_post.l
 
-#yui-main
-  .yui-b
-    -box do 
-      %h3=:editing_post.l
+-widget :id => 'category_tips' do
+  - if @post.category
+    = render :partial => "categories/tips", :locals => {:category => @post.category}
+  - else
+    = render :partial => "categories/tips", :locals => {:category => nil}
 
-      = error_messages_for :post
-      = form_for(:post, :url => user_post_path(@user, @post), :html => { :method => :put, :class =>'MainForm' }) do |f|
-        %label 
-          =:title.l
-          %em= '('+:required.l+')'
-        = f.text_field :title
-        %label
-          =:category.l
-          \:
-        = f.collection_select(:category_id, Category.find(:all), :id, :name, {}, {})
-        %label
-          =:body_text.l
-          %em= '('+:required.l+')'
-        = f.text_area :raw_post, :size => "86x15", :class => "rich_text_editor"
-        %label
-          =:tags.l
-          %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
-        = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35}
-        #tag_list_auto_complete.auto_complete
-        -content_for :end_javascript do
-          = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-          
-        %label=:save_post_as.l
-        = f.select(:published_as, [[:published.l, 'live'], [:draft.l, 'draft']])
+%p
+  =link_to :back.l, manage_user_posts_path(@post.user), :class => 'btn'
+  =link_to :show.l, user_post_path(@post.user, @post), :class => 'btn'
+  =link_to :delete.l, user_post_path(@post.user, @post), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
         
-        %label
-          = f.check_box :send_comment_notifications        
-          =:send_comment_notifications.l        
-
-        
-        %p
-          = submit_tag :update.l
-          = :or.l
-          =link_to :cancel.l, user_post_path(current_user, @post)
-        %p
-          =link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} #{:delete_this_post.l}".html_safe, user_post_path(current_user, @post), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l
-
-  -content_for :end_javascript do
-    = observe_field  "post_category_id", {:url => {:action => 'category_tips_update'}, :method => :get, :with => "post_category_id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}
+= render 'form'

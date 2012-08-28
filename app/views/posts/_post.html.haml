@@ -27,8 +27,8 @@
           = add_friend_link(post.user)
   
   = truncate_words(post.post, 75, '...' ).html_safe
-  
+%p
   = render :partial => 'polls/excerpt', :locals => {:poll => post.poll} if post.poll
-
-  =link_to :read_more.l, user_post_path(post.user, post), :rel=> 'bookmark'
+%p
+  = link_to :read_more.l, user_post_path(post.user, post), :rel=> 'bookmark'
   

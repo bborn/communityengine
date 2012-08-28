@@ -8,12 +8,11 @@
       - @popular_posts.each do |post|
         %li= link_to truncate(post.title, :length => 75), user_post_path(@user, post)
 
--box :class => "posts hfeed" do 
-  %h2
-    = @category ? "&raquo; #{link_to(@category.name.upcase, users_posts_in_category_path(@user, @category.name))}".html_safe : ''
+%h2
+  = @category ? "&raquo; #{link_to(@category.name.upcase, users_posts_in_category_path(@user, @category.name))}".html_safe : ''
 
-  = link_to( :new_post.l, new_user_post_path(@user), {:class => "right"})  if @is_current_user
+= link_to( :new_post.l, new_user_post_path(@user), {:class => "right"})  if @is_current_user
 
-  = render :partial => 'post', :collection => @posts
+= render :partial => 'post', :collection => @posts
 
-  = paginate @posts, :theme => 'bootstrap'
+= paginate @posts, :theme => 'bootstrap'
