@@ -38,10 +38,9 @@
           
       
       -if show_footer_content?    
-        .row
-          .span12#footer_content
-            = image_tag 'spinner.gif', :plugin => 'community_engine'
-            =:loading_recent_content.l  
+        .row#footer_content
+          = image_tag 'spinner.gif', :plugin => 'community_engine'
+          =:loading_recent_content.l  
               
       .row
         .span12
