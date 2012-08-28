@@ -3,8 +3,8 @@
     =time_ago_in_words(activity.created_at)
   %dd
     -if activity.can_be_deleted_by?(current_user)
-      =link_to_remote '<i class="icon-remove"></i>'.html_safe, :url => activity_path(activity), :method => :delete, :html => {:class => 'right'}, :class => 'btn btn-danger'
-  
+      =link_to_remote '<i class="icon-remove"></i>'.html_safe, :url => activity_path(activity), :method => :delete, :html => {:class => 'pull-right btn btn-danger'}
+      
     =link_to activity.user.login.capitalize, user_path(activity.user.friendly_id)  
     - if activity.item
       - case activity.item_type
