@@ -2,7 +2,7 @@
   %h3
     = link_to post.title, user_post_path(post.user, post), :rel => 'bookmark'
   
-  .span3.pull-right
+  .span3.pull-right.offset9
     %ul.nav.nav-list
       %li
         %a{:href=>"#{user_post_path(post.user, post)}", :class=>"photo", :rel=>"bookmark"}

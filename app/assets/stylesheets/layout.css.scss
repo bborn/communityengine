@@ -17,6 +17,6 @@ body {
     content: '(*Required) ';
     display: inline;
 }
-[class*='span'].pull-right {
+.row-fluid [class*='span'].pull-right, .row [class*='span'].pull-right{
   float: right;
 }
