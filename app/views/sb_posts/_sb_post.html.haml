@@ -1,26 +1,29 @@
 %tr
   
-  %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
-    = link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if logged_in?
-    = raw post.body
-  %td
-    -if post.user
-      .pull-right= avatar_for post.user    
-      %span.fn
-        = link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)
-      %span.posts= pluralize post.user.sb_posts_count, :post.l
-    -else
-      = image_tag(configatron.photo.missing_thumb, :height => '32', :width => '32', :class => 'photo')        
-      %span.fn
-        =truncate(h(post.username), :length => 15)
-    %a{"href"=>"##{post.dom_id}", "rel"=>"bookmark"}
-      %abbr.updated{"title"=>"#{post.created_at.xmlschema}"}= time_ago_in_words(post.created_at)
-
-    - if logged_in? && post.editable_by?(current_user)
-      %p
-        %span.edit
-          = ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif"
-          = link_to_remote(:edit_post.l, {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, {:class => "utility"})
-        - if admin? && post.user && !post.user.admin?
-          %div{"class"=>"make-moderator-#{post.user_id}"}
-            = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
+  %td{"id"=>"post-body-#{post.id}", :width => '85%'}
+    - if logged_in?
+      = link_to_function '<i class="icon-comment"></i>'.html_safe, "$('reply').toggle(); window.location.hash='reply';"
+    = post.body.html_safe
+  %td{:style => 'border-left:0'}
+    %ul.nav.nav-list
+      -if post.user
+        %li= link_to avatar_for(post.user), post.user    
+        %li= link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)
+        %li
+          = :post.l.pluralize
+          %span.badge.badge-info
+            =post.user.sb_posts_count
+      -else
+        %li= image_tag(configatron.photo.missing_thumb, :class => 'thumbnail')        
+        %li= truncate(h(post.username), :length => 15)
+      %li
+        %a{"href"=>"##{post.dom_id}", "rel"=>"bookmark"}
+          %abbr.updated{"title"=>"#{post.created_at.xmlschema}"}= time_ago_in_words(post.created_at)
+  
+      - if logged_in? && post.editable_by?(current_user)
+        %li
+          = ajax_spinner_for "edit-post-#{post.id}", "spinner_black.gif"    
+          = link_to_remote :edit_post.l, {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }
+      - if admin? && post.user && !post.user.admin?
+        %li{"class"=>"make-moderator-#{post.user_id}"}
+          = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}

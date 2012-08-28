@@ -1,0 +1,13 @@
+%tr
+  %td
+    = image_tag "clearbits/comment.gif", :class => "icon grey", :title => :no_recent_activity.l+" #{post}", :plugin => "community_engine"
+  %td
+    = link_to h(post.title), user_post_path(post.user, post), :class => "entry-title", :rel => "bookmark", :target => '_blank'
+  %td
+    = post.comments.count
+  %td
+    = number_with_delimiter(post.view_count)
+  %td
+    \by
+    %strong
+      = h(post.user.display_name)
