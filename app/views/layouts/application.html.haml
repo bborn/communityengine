@@ -21,14 +21,14 @@
       
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container-fluid.clearfix
-          .row-fluid
+        .container.clearfix
+          .row
             = render :partial => "shared/header"
             
-    .container-fluid
-      .row-fluid
+    .container
+      .row
         = render_hero_unit
-      .row-fluid
+      .row
         .span9
           %h1=container_title
           = render :partial => "shared/messages"
@@ -36,14 +36,14 @@
         .span3
           = render :partial => "shared/sidebar"
           
-      .row-fluid
+      .row
         .span12
           -if show_footer_content?    
             #footer_content
               = image_tag 'spinner.gif', :plugin => 'community_engine'
               =:loading_recent_content.l  
               
-      .row-fluid
+      .row
         .span12
           %ul.nav.nav-pills
             %li
