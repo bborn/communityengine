@@ -1,8 +1,8 @@
-- if category 
-  %h2= category.name
+- if !category.nil? && !category.tips.blank?
+  %h3= category.name
   %p= category.tips
 - else 
-  %h2=:we_need_you.l
+  %h3=:we_need_you.l
   %p
     %em
       =:every_person_has_something_to_say.l
