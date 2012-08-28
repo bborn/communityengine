@@ -18,7 +18,7 @@ class PagesController < BaseController
   end
 
   def preview
-    @page = Page.find(params[:id])
+    @page = Page.unscoped.find(params[:id])
     render :action => :show
   end
 
@@ -31,6 +31,14 @@ class PagesController < BaseController
   rescue
     flash[:error] = :page_not_found.l
     redirect_to home_path
+  end
+  
+  def new
+    @page = Page.new
+  end 
+  
+  def edit
+    @page = Page.unscoped.find(params[:id])
   end
 
   def create
@@ -61,7 +69,7 @@ class PagesController < BaseController
   private
   
   def require_moderator
-    @page ||= Page.find(params[:id]) if params[:id]
+    @page ||= Page.unscoped.find(params[:id]) if params[:id]
     unless admin? || moderator?
       redirect_to :controller => 'sessions', :action => 'new' and return false
     end
