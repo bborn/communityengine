@@ -33,7 +33,7 @@ class Post < ActiveRecord::Base
     
   attr_accessor :invalid_emails
 
-  attr_accessible :category_id, :title, :raw_post, :published_as, :send_comment_notifications
+  attr_accessible :category_id, :title, :raw_post, :published_as, :send_comment_notifications, :tag_list
   
   # Class Methods
   class << self
