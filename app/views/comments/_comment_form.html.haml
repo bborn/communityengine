@@ -11,7 +11,7 @@
       document.location.href = loc;
     }
       
-  = bootstrap_form_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
+  = bootstrap_form_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:class => "form form-horizontal"}) do |f|
     = f.text_area :comment, :rows => 5, :class => "rich_text_editor", :help_inline => :comment_character_limit.l
     
     - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key 

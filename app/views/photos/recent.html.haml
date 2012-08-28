@@ -1,9 +1,8 @@
 -@page_title=:recent_photos.l
--box do
 
-  %ul.thumbnails
-    - @photos.each do |photo|
-      %li.span4
-        = link_to tag('img', :src => photo.photo.url(:medium)), user_photo_path(photo.user, photo), :class => 'thumbnail'
+%ul.thumbnails
+  - @photos.each do |photo|
+    %li.span3
+      = link_to image_tag(photo.photo.url(:medium)), user_photo_path(photo.user, photo), :class => 'thumbnail'
 
-  =paginate @photos, :theme => 'bootstrap'
+=paginate @photos, :theme => 'bootstrap'

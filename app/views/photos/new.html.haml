@@ -8,35 +8,7 @@
   %p 
     =:photo_tip_2.l
 
--box :id => "single_upload" do
-  = error_messages_for :photo
+%p
+  = link_to :back.l, user_photos_path(@user), :class => 'btn'
 
-  = form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
-  
-    = f.file_field :photo
-    
-    %label
-      %em= " " + :megabyte_upload_limit.l(:count => configatron.photo.validation_options.max_size)
-
-    %label=:title.l
-    = f.text_field :name, :size => 35
-
-    %label 
-      = :tags.l
-      %em="(#{:optional_keywords_describing_this_photo_separated_by_commas.l})"
-    = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
-
-    #tag_list_auto_complete.auto_complete
-    -content_for :end_javascript do        
-      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-
-    %label=:description.l + ":"
-    = f.text_area :description, :size => "58x5"
-
-    - unless params[:album_id] || current_user.albums.empty?
-      %label=:assign_album.l + ":"
-      = select_tag 'album_selected', options_for_select([''] +current_user.albums.collect{ |album| [album.title, album.id] })
-
-
-    %p
-      = submit_tag :create.l, :class => 'btn btn-primary'
+=render 'form'
