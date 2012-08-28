@@ -107,7 +107,6 @@ class PostsController < BaseController
     @user = User.find(params[:user_id])
     @post = Post.new(params[:post])
     @post.user = @user
-    @post.tag_list = params[:tag_list] || ''
     
     respond_to do |format|
       if @post.save
@@ -134,7 +133,6 @@ class PostsController < BaseController
   def update
     @post = Post.unscoped.find(params[:id])
     @user = @post.user
-    @post.tag_list = params[:tag_list] || ''
     
     respond_to do |format|
       if @post.update_attributes(params[:post])
