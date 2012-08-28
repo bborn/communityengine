@@ -5,8 +5,8 @@
   .span3.pull-right
     %ul.nav.nav-list
       %li
-        %a.thumbnail{:href=>"#{user_post_path(post.user, post)}", :class=>"photo", :rel=>"bookmark"}
-          =image_tag((post.first_image_in_body || post.user.avatar_photo_url(:medium)), :alt=>"")
+        %a{:href=>"#{user_post_path(post.user, post)}", :class=>"photo", :rel=>"bookmark"}
+          =image_tag (post.first_image_in_body || post.user.avatar_photo_url(:medium)), :class => 'thumbnail'
       %li
         =icon_link_to 'icon-hand-right', post.user.login, user_path(post.user)
       %li
