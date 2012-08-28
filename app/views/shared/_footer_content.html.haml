@@ -8,6 +8,7 @@
 .span3
   %hr
   %h2=:tags.l
-  - tag_cloud @popular_tags, %w(nube1 nube2 nube3 nube4 nube5) do |tag, css_class|
+  - tag_cloud @popular_tags, %w(css1 css2 css3 css4 css5) do |tag, css_class|
     = link_to tag.name, tag_path(tag.to_param), :class => css_class
-  =icon_link_to 'icon-plus-sign', :all_tags.l, tags_path
+  %p
+    =icon_link_to 'icon-plus-sign', :all_tags.l, tags_path

@@ -1,13 +1,12 @@
 -@page_title=:editing_tag.l
 = render :partial => 'shared/admin_nav'
 
--box do
-  = form_for(:tag, :url => tag_path(@tag), :html => { :method => :put, :class => "MainForm" }) do |f|
+%p
+  =link_to :back.l, admin_tags_path, :class => 'btn'
+  =link_to :show.l, tag_path(@tag), :class => 'btn'
+  =link_to :delete.l, tag_path(@tag), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
 
-    %label
-      =:name.l
-      \:
-    = f.text_field :name
-
-    %p
-      = submit_tag :update.l, :class => 'btn btn-primary'
+= bootstrap_form_for :tag, :url => tag_path(@tag), :html => {:method => 'put', :class => "form form-horizontal"} do |f|
+  = f.text_field :name
+  .controls
+    = f.submit :update.l

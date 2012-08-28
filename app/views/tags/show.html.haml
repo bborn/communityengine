@@ -9,11 +9,12 @@
       %li= link_to h(tag.name), tag_path(tag)
        
 -if @related_tags.to_a.size > 0
-  %h2.tags=:related_tags.l
-  %p.clearfix
-    -tag_cloud @related_tags, %w(css1 css2 css3 css4) do |tag, css_class|
+  -widget do
+    %h3=:related_tags.l
+    -tag_cloud @related_tags, %w(css1 css2 css3 css4 css5) do |tag, css_class|
       =link_to h(tag.name), tag_path(tag), :class => css_class
-  = icon_link_to 'icon-plus-sign', :all_tags.l, tags_path  
+    %p
+      = icon_link_to 'icon-plus-sign', :all_tags.l, tags_path  
 
 .clearfix    
   - if @posts.any?
@@ -34,7 +35,7 @@
     %h2=:photos.l(:count => @photos.size)
     %ul.thumbnails
       - @photos.each do |photo|
-        %li.span3= link_to image_tag(photo.photo.url(:thumb), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})"), user_photo_path(photo.user, photo), :class => "thumbnail"
+        %li.span3= link_to image_tag(photo.photo.url(:medium), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})"), user_photo_path(photo.user, photo), :class => "thumbnail"
     = icon_link_to 'icon-plus-sign', :all_photos_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Photo') unless params[:type]
 
 .clearfix
@@ -42,7 +43,7 @@
     %h2= t('tags.show.users')
     %ul.thumbnails
       - @users.each do |user|
-        %li.span3= link_to image_tag(user.avatar_photo_url(:thumb)), user_path(user), :title => user.login, :class => "thumbnail"
+        %li.span3= link_to image_tag(user.avatar_photo_url(:medium)), user_path(user), :title => user.login, :class => "thumbnail"
     = icon_link_to 'icon-plus-sign', :all_users_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'User') unless params[:type]
 
 .clearfix
