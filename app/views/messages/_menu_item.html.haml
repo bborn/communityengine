@@ -1,6 +1,10 @@
 - if logged_in?
   - if current_user.unread_messages?
-    %li
+    -if params[:controller] == 'messages'
+      -css_class = 'active'
+    -else 
+      -css_class = 'inactive'
+    %li{:class => css_class}
       %a{:href => user_messages_path(current_user)}
         %span.badge.badge-success
           =current_user.unread_message_count

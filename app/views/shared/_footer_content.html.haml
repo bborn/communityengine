@@ -5,7 +5,7 @@
     =render :partial => "activities/activity", :locals => {:activity => activity }
   =icon_link_to 'icon-plus-sign', :see_all_activity.l, activities_path
 
-.span3
+.span3.pull-right
   %hr
   %h2=:tags.l
   - tag_cloud @popular_tags, %w(css1 css2 css3 css4 css5) do |tag, css_class|

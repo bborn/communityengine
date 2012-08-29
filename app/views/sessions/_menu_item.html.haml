@@ -1,5 +1,9 @@
 -if logged_in?
-  %li.dropdown
+  - if !current_page?(users_path) && (params[:controller] == 'users' && !@user.nil? && @user == current_user)
+    - css_class = 'active'
+  - else 
+    - css_class = 'inactive'
+  %li{:class => 'dropdown ' + css_class}
     %a.dropdown-toggle{:href=>dashboard_user_path(current_user), 'data-target'=> '#', 'data-toggle' => 'dropdown'}
       =:logged_in.l + ' ' + current_user.login
       %b.caret

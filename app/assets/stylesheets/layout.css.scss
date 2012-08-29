@@ -20,6 +20,10 @@ body {
 .row-fluid [class*='span'].pull-right, .row [class*='span'].pull-right{
   float: right;
 }
+.row>[class*='span']:first-child {
+  margin-left: 0;
+}
+
 .css1 { font-size: 1.0em; }
 .css2 { font-size: 1.2em; }
 .css3 { font-size: 1.4em; }

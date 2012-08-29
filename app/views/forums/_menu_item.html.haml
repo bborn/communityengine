@@ -1,1 +1,6 @@
-%li= link_to :forums.l, forums_path
+- if params[:controller] == 'forums'
+  - css_class = 'active'
+- else
+  - css_class = 'inactive'
+  
+%li{:class => css_class}= link_to :forums.l, forums_path

@@ -1,5 +1,10 @@
+- if params[:controller] == 'categories'
+  - css_class = 'active'
+- else
+  - css_class = 'inactive'
+
 - if Category.all.any?
-  %li.dropdown
+  %li{:class => 'dropdown ' + css_class}
     %a.dropdown-toggle{:href => categories_path, 'data-target' => '#', 'data-toggle' => 'dropdown'}
       =:categories.l
       %b.caret
