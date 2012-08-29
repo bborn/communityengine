@@ -1,8 +1,8 @@
 -@page_title=:go_check_your_e_mail.l
--box do
-  %ul.list.checks
-    %li= :look_for_a_message_from.l :from => configatron.community_name
-    %li= :see_you_back_here_in_a_short_while.l        
 
-  %h2= :no_activation_email.l
-  = link_to(:resend_my_activation_e_mail.l, "/resend_activation?id=#{@user.to_param}", :method => 'post')
+%ul
+  %li= :look_for_a_message_from.l :from => configatron.community_name
+  %li= :see_you_back_here_in_a_short_while.l        
+
+%h2= :no_activation_email.l
+= link_to(:resend_my_activation_e_mail.l, "/resend_activation?id=#{@user.to_param}", :method => 'post')

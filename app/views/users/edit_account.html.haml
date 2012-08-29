@@ -7,43 +7,40 @@
   = render :partial => "omniauth_connect"
   
   
-= form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
-  = error_messages_for :user
+= form_tag update_account_user_url(@user), :method => 'put', :class => "form form-horizontal", :multipart => true do
+  .control-group 
+    %label.control-label=:username.l
+    .controls= text_field :user, :login
+  .control-group 
+    %label.control-label=:e_mail_address.l
+    .controls= text_field :user, :email
+  .control-group 
+    %label.control-label=:password.l
+    .controls= password_field :user, :password
+  .control-group 
+    %label.control-label=:confirm_password.l
+    .controls= password_field :user, :password_confirmation
 
-  -box do
+    %h2=:e_mail_notification.l
 
-    %label=:username.l
-    = text_field :user, :login, :size => "28"
-
-    %label=:e_mail_address.l
-    = text_field :user, :email, :size => "28"
-
-    %label=:password.l
-    = password_field :user, :password, :size => "28"
-
-    %label=:confirm_password.l
-    = password_field :user, :password_confirmation, :size => "28"
-
-    %h3=:e_mail_notification.l
-
-    %fieldset
-      %label 
+    %fieldset.control-group
+      %label.controls
         = check_box :user, :notify_friend_requests        
         =:notify_of_friend_requests.l :site => configatron.community_name
       
-      %label
+      %label.controls
         = check_box :user, :notify_comments         
         = :notify_of_comments.l :site => configatron.community_name
       
-      %label
+      %label.controls
         = check_box :user, :notify_community_news
         =:notify_email_updates.l :site => configatron.community_name
       
 
-    %h3=:profile_privacy.l
+    %h2=:profile_privacy.l
 
-    %fieldset
-      %label
+    %fieldset.control-group
+      %label.controls
         = check_box :user, :profile_public
         =:make_my_profile_public.l
         %br

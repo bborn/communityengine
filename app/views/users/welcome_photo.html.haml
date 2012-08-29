@@ -7,19 +7,14 @@
     %li= link_to :skip_this_step.l, welcome_about_user_path(@user)
     %li= link_to :go_to_your_profile.l, user_path(@user)
 
--box do 
-  = form_for( @user, :url => user_path(:welcome => 'about'), :method => :put, :multipart => true, :html => {:class => "MainForm"}) do |f|      
-    = image_tag( @user.avatar_photo_url(:medium), :class => "right" )
-        
-    = f.fields_for :avatar, @avatar do |avatar_form|
-      %label
-        =:choose_a_photo_to_upload.l
-        %em          
-          - if @user.vendor?
-            =:vendor_avatar_hint.l
-          =:photos_should_be_x_pixels.l
-
-      = avatar_form.file_field :photo, :size => '15'
-        
-    %p
-      = submit_tag :upload_and_continue_to_step_two.l, :class => 'btn btn-primary'
+= bootstrap_form_for @user, :url => user_path(:welcome => 'about'), :method => :put, :multipart => true, :html => {:class => "form form-horizontal"} do |f|      
+  -if @user.avatar_photo_url
+    = image_tag @user.avatar_photo_url(:medium), :class => "pull-right"
+      
+  = f.fields_for :avatar, @avatar do |avatar_form|
+    - if @user.vendor?
+      =:vendor_avatar_hint.l
+    = avatar_form.file_field :photo, :label => :choose_a_photo_to_upload.l, :help_inline => :photos_should_be_x_pixels.l
+      
+  .controls
+    = f.submit :upload_and_continue_to_step_two.l

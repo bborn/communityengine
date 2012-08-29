@@ -12,17 +12,12 @@
     %li
       =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends.l
 
--box do 
-  = form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "MainForm"} ) do |f|
-    .right
-      %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
-        %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/
-    %label{"for"=>"email_addresses"} 
-      =:enter_e_mail_addresses.l 
-      %em= :comma_separated.l
-    = f.text_area :email_addresses , :rows => "5"
-    %label{"for"=>"message"}= :write_a_message.l
-    = f.text_area :message, :rows => "5"
+= bootstrap_form_for :invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "form form-horizontal"} do |f|
+  .pull-right
+    %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
+      %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}
+  = f.text_area :email_addresses , :rows => "5", :label => :enter_e_mail_addresses.l 
+  = f.text_area :message, :rows => "5", :label => :write_a_message.l
 
-    %p
-      = submit_tag :send_invitations.l, :class => 'btn btn-primary'
+  .controls
+    = f.submit :send_invitations.l

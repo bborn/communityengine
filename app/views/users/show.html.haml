@@ -6,8 +6,8 @@
   %ul.nav.nav-list
     %li.nav-header=:my_friends.l
     %li= link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
-    %li= link_to "&raquo; #{:invite_a_friend.l :site => configatron.community_name}".html_safe, invite_user_path(@user) if @is_current_user
-    %li= link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})".html_safe, pending_user_friendships_path(@user) if @is_current_user
+    %li= link_to "#{:invite_a_friend.l :site => configatron.community_name}", invite_user_path(@user) if @is_current_user
+    %li= link_to "#{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
     - @accepted_friendships.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
@@ -72,7 +72,7 @@
     %h2=:my_photos.l
     %ul.thumbnails
       - @photos.each do |photo|
-        %li.span4
+        %li.span3
           = link_to image_tag( photo.photo.url(:medium)), user_photo_path(@user, photo), :class => "thumbnail"
     %p
       = icon_link_to 'icon-plus-sign', :view_all_my_photos.l, user_photos_path(@user)

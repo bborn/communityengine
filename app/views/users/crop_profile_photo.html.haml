@@ -6,17 +6,14 @@
   %h3=:profile_photo.l
   #previewWrap
     
--box :class => "yui-b" do
-  = image_tag( @photo.photo.url, :id => 'photo' )
+= image_tag( @photo.photo.url, :id => 'photo' )
 
-  = error_messages_for :photo
+= form_for(:photo, :url => crop_profile_photo_user_path(@user), :method => :put, :html => { :class => "MainForm" }) do |f|
+  - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
+    %input{ :type=>"hidden", :name=>attribute, :id=>attribute, :size=>"4"}
 
-  = form_for(:photo, :url => crop_profile_photo_user_path(@user), :method => :put, :html => { :class => "MainForm" }) do |f|
-    - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
-      %input{ :type=>"hidden", :name=>attribute, :id=>attribute, :size=>"4"}
-  
-    %p
-      = submit_tag :update.l, :class => 'btn btn-primary'
+  %p
+    = submit_tag :update.l, :class => 'btn btn-primary'
 
 -content_for :end_javascript do
   = javascript_include_tag "cropper"

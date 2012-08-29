@@ -3,7 +3,6 @@
 
 = render :partial => 'users/search_options'
 
--box :class => "user_list" do
-  %ul.thumbnails
-    = render :partial => "users/user", :collection => @users
-  = paginate @users, :theme => 'bootstrap'
+%ul.thumbnails
+  = render :partial => "users/user", :collection => @users
+= paginate @users, :theme => 'bootstrap'

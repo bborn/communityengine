@@ -1,34 +1,33 @@
 -widget do 
   %ul.nav.nav-list
     %li.nav-header=:you_are_editing_your_profile.l
-    %li= link_to "&raquo; ".html_safe + :edit_your_account_settings_instead.l, edit_account_user_path(@user)
+    %li= link_to :edit_your_account_settings_instead.l, edit_account_user_path(@user)
 
 -widget do 
   =:tips.l
   = render :partial => 'shared/bio_help'
   =:feel_free_to_embed_images_or_videos.l  
 
-= form_for @user, :html => {:class => 'MainForm', :multipart =>true} do |f|
-  = error_messages_for :user
-  -box do
-    %h2=:profile_photo.l
-    = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
-    = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
-    = f.fields_for :avatar, @avatar do |avatar_form|
-      %label=:choose_a_photo_for_your_profile.l
-      = avatar_form.file_field :photo, :size => '15'
+= bootstrap_form_for @user, :html => {:class => 'form form-horizontal', :multipart =>true} do |f|
+  %h2=:profile_photo.l
+  = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
+  = image_tag( @user.avatar_photo_url(:medium), :class => "thumbnail" )
+  = f.fields_for :avatar, @avatar do |avatar_form|
+    %label=:choose_a_photo_for_your_profile.l
+    = avatar_form.file_field :photo, :size => '15'
     
-    %h2= :location.l
-    = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
+  %h2= :location.l
+  .control-group
+    %label.control-label= :location.l
+    .controls= render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
 
-    %label
-      =:zippostal_code.l
-    = text_field :user, :zip, :style=>"width:90px"
+  = f.text_field :zip, :label => :zippostal_code.l
 
-    %h2=:birthday_gender.l
-    %fieldset
-      %legend
-        =:gender.l
+  %h2=:birthday_gender.l
+  %fieldset.control-group
+    %legend.control-label
+      =:gender.l
+    .controls
       %label
         = radio_button :user, :gender, User::MALE
         =:male.l
@@ -36,35 +35,32 @@
         = radio_button :user, :gender, User::FEMALE
         =:female.l
 
-    %label
-      =:birthday.l
-      \:
-    = date_select :user, :birthday, {:start_year => 1926, :end_year => Time.now.year - 1}
-     
-    %h2=:about_me.l
-    = text_area :user, :description, :class => "rich_text_editor", :style => "width:100%"
+  = f.date_select :birthday, {:start_year => 1926, :end_year => Time.now.year - 1}
+   
+  %h2=:about_me.l
+  = f.text_area :description, :class => "rich_text_editor"
+  
+  %h2= :tags.l
+  #user_tags
+    = f.text_field :tag_list, {:autocomplete => "off"}
+    #tag_list_auto_complete.auto_complete
+    -content_for :end_javascript do
+      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
     
-    %h2= :tags.l
-    #user_tags
-      = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
-      #tag_list_auto_complete.auto_complete
-      -content_for :end_javascript do
-        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-      
-      %label
-        %em
-          =:you_could_tag_yourself.l
-          - if @user.vendor?
-            =:custom_friendly_local.l
-          - else
-            = configatron.meta_keywords.split(",")[0..3].join(", ")
-          %br
-          =:tags_are_comma_separated_keywords_that_describe_you.l
-          %br
-          =:you_can_browse_all_content_and_users_on.l
-          = configatron.community_name
-          =:by_looking_at_the.l
-          = link_to :tags_page.l, tags_path
+    %label.controls
+      %em
+        =:you_could_tag_yourself.l
+        - if @user.vendor?
+          =:custom_friendly_local.l
+        - else
+          = configatron.meta_keywords.split(",")[0..3].join(", ")
+        %br
+        =:tags_are_comma_separated_keywords_that_describe_you.l
+        %br
+        =:you_can_browse_all_content_and_users_on.l
+        = configatron.community_name
+        =:by_looking_at_the.l
+        = link_to :tags_page.l, tags_path
 
-    %p
-      = submit_tag :save_changes.l, :class => 'btn btn-primary'
+  .controls
+    = f.submit :save_changes.l

@@ -979,8 +979,8 @@ en:
   plural_photos:
     one: 1 Photo
     other: "%{count} Photos"
-  #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
-  photos_should_be_x_pixels: Photos should be 300x300 pixels.
+  #en: photos_should_be_x_pixels: Photos should be 300x200 pixels.
+  photos_should_be_x_pixels: Photos should be 300x200 pixels.
   #en: photos_tagged: Photos tagged
   photos_tagged: "Photos tagged"
   #en: photo_tip_1: Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.

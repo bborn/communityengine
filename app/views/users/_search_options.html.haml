@@ -1,9 +1,8 @@
   
 -widget do
-  %ul.nav.nav-list
-    %li.nav-header= :metro_areas.l
+  %h3= :metro_areas.l
   %p
-    - city_cloud @metro_areas_for_cloud, %w(nube1 nube2 nube3 nube4 nube5) do |city, css_class|
+    - city_cloud @metro_areas_for_cloud, %w(css1 css2 css3 css4 css5) do |city, css_class|
       = link_to city.name, users_path(:metro_area_id => city.id), :class => css_class
 
 - if current_user
