@@ -31,6 +31,9 @@ require 'rails_autolink'
 require 'meta_search'
 require 'tinymce-rails'
 require 'sanitize'
+require 'bootstrap-sass'
+require 'bootstrap_forms'
+require 'font-awesome-sass-rails'
 
 
 include EnginesExtensions
