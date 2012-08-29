@@ -1,14 +1,14 @@
+///////////////////////////////////////////
+// BASE JAVASCRIPT FUNCTIONALITY         //
+///////////////////////////////////////////
 //= require jquery
-//= require prototype
-//= require rails
-//= require effects
-//= require builder
-//= require dragdrop
-//= require controls
-//= require lightbox
-//= require prototip-min
+//= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-dropdown
+//
+///////////////////////////////////////////
+// UTILITIES                             //
+///////////////////////////////////////////
 //= require tinymce-jquery
 
 function scrollToAnchor(anchor){
