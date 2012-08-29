@@ -1,6 +1,6 @@
 # lib/paperclip_processors/cropper.rb
 module Paperclip
-  class Cropper < Processor
+  class Cropper < Thumbnail
     def transformation_command
       if crop_command
         crop_command + super.join(" ").sub(/ -crop \S+/, '').split(" ")        
