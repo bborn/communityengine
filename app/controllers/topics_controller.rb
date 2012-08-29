@@ -55,8 +55,6 @@ class TopicsController < BaseController
     if (!@post.nil?)
       @post.user = current_user
     end
-      
-    @topic.tag_list = params[:tag_list] || ''
 
     if !@topic.save
       respond_to do |format|
@@ -78,7 +76,6 @@ class TopicsController < BaseController
   
   def update
     assign_protected
-    @topic.tag_list = params[:tag_list] || ''
     @topic.update_attributes!(params[:topic])
     respond_to do |format|
       format.html { redirect_to forum_topic_path(@forum, @topic) }

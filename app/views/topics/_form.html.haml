@@ -1,30 +1,29 @@
-%label{"for"=>"topic_title"}= :title.l
-= form.text_field :title, :class => "primary"
+-if @topic.new_record?
+  -url = forum_topics_path(@forum)
+  -object = @topic
+-else
+  -url = forum_topic_path(@forum, @topic)
+  -object = [@forum, @topic]
 
-- if admin? or current_user.moderator_of?(@topic.forum)
-  %fieldset
-    %label
-      = form.check_box :sticky
-      = :sticky.l
-    %label
-      = form.check_box :locked
-      = :locked.l
-
-%label
-  = :tags.l
-  %em="(#{:optional_keywords_describing_this_topic_separated_by_commas.l})"
-= text_field_tag 'tag_list', @topic.tag_list, {:autocomplete => "off", :size => 35}
-#tag_list_auto_complete.auto_complete
-
--content_for :end_javascript do
-  = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-
-- if @topic.new_record?
-  %label{"for"=>"topic_body"}= :body_text.l
-  = form.fields_for :sb_posts do |x|
-    = x.text_area :body, :rows => 12, :class => 'rich_text_editor'
+= bootstrap_form_for object, :url => url, :html => {:class => "form form-horizontal" } do |f|
+  = f.text_field :title
   
+  - if admin? or current_user.moderator_of?(@topic.forum)
+    %fieldset
+      = f.check_box :sticky
+      = f.check_box :locked
+  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l, :help_inline => :optional_keywords_describing_this_topic_separated_by_commas.l
+  #tag_list_auto_complete.auto_complete
+  
+  -content_for :end_javascript do
+    = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+  
+  - if @topic.new_record?
+    = f.fields_for :sb_posts do |x|
+      = x.text_area :body, :rows => 12, :class => 'rich_text_editor', :label => :body_text.l
+    
   - if admin? and not @topic.new_record?
-    %p#topic_forum_id
-      %label{"for"=>"topic_forum_id"}= :forum.l
-      = form.select :forum_id, Forum.find(:all, :order => "position").map {|x| [x.name, x.id] }
+    = f.select :forum_id, Forum.find(:all, :order => "position").map {|x| [x.name, x.id] }, :label => :forum.l
+    
+  .controls
+    = f.submit :save.l, :class => 'btn btn-primary'

@@ -1,7 +1,8 @@
 -@page_title= :edit_topic.l
--box do
-  = error_messages_for :topic
-  = form_for :topic,:url  => forum_topic_path(@forum, @topic), :html => { :method => :put, :class => "MainForm" } do |f|
-    = render :partial => "form", :object => f 
-    %p
-      = submit_tag :save_changes.l, :class => 'btn btn-primary'
+
+%p
+  =link_to :back.l, @forum, :class => 'btn'
+  =link_to :show.l, [@forum, @topic], :class => 'btn'
+  =link_to :delete.l, [@forum, @topic], :class => 'btn', :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
+
+=render 'form'

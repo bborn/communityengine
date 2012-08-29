@@ -16,13 +16,6 @@
       ReplyForm.init();
       }
     })
-      
--widget do 
-  = link_to :forums.l, forum_home_path
-  %span.arrow &rarr;
-  = link_to h(@topic.forum.name), forum_path(@topic.forum)
-  %span.arrow &rarr;
-  = h @topic.title
 
 -widget do 
   - if logged_in?
@@ -34,14 +27,13 @@
         = hidden_field_tag '_method', 'delete' if @monitoring
         = submit_tag :save.l, :id => 'monitor_submit', :style => "display:none"
     
--box :class => "forum" do 
-  - if @topic.locked?
-    %h2= :locked2.l
-  - if logged_in?
-    - if @topic.editable_by?(current_user)
-      = link_to(:edit.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
-      |
-      = link_to(:delete.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => :delete_this_topic_forever.l)     
+- if @topic.locked?
+  %h2= :locked2.l
+- if logged_in? && @topic.editable_by?(current_user)
+  %p
+    = link_to :back.l, @forum, :class => 'btn'
+    = link_to :edit.l, edit_forum_topic_path(@forum, @topic), :class => "btn btn-warning"
+    = link_to :delete.l, forum_topic_path(@forum, @topic), :class => "btn btn-danger", :method => :delete, :confirm => :delete_this_topic_forever.l
 
   %p
     %a{:href => forum_topic_path(@forum, @topic, :format => :rss)}
@@ -67,14 +59,12 @@
     #edit
     - if @topic.locked?
       %p
-        = image_tag "clearbits/lock.gif", :class => "icon grey", :title => :topic_locked.l
+        %i.icon-lock
         %label= :this_topic_is_locked.l
     - else
-      %i.icon-plus
-      = link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
+      = link_to_function '<i class="icon-plus"></i> '.html_safe + :reply_to_topic.l, "ReplyForm.init()"
       #reply.editbox
-        .container
-          =render :partial => 'sb_posts/reply_form'
+        =render :partial => 'sb_posts/reply_form'
           
     -content_for :end_javascript do      
       = javascript_tag "$('reply').hide();"
