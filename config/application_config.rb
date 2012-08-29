@@ -48,12 +48,20 @@ configuration = {
     :missing_medium => "/assets/icon_missing_medium.gif",
     :paperclip_options => {
       :styles => {
-        :thumb => "100x66#",
-        :medium => "300x200#",
-        :large => "600x400#",   
+        :thumb => {
+          :geometry => "100x66#",
+          :processors => [:cropper]
+        },
+        :medium => {
+          :geometry => "300x200#", 
+          :processors => [:cropper]
+        },
+        :large => {
+          :geometry => "600x400#", 
+          :processors => [:cropper]
+        },   
         :original => "1024>"       
-      }, 
-      :processors => [:cropper]
+      }
     },
     :validation_options => {
       :max_size => 3,
