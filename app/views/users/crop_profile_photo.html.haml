@@ -1,30 +1,36 @@
--@page_title= :profile_photo_crop.l  
--widget do 
-  = link_to :profile_photo_change.l, upload_profile_photo_user_path(@user)
+-@page_title= :profile_photo_crop.l 
   
 -widget do 
-  %h3=:profile_photo.l
-  #previewWrap
+  %h3=:preview.l
+  #preview 
+  
+-widget do 
+  = link_to :profile_photo_change.l, upload_profile_photo_user_path(@user)
     
-= image_tag( @photo.photo.url, :id => 'photo' )
+= image_tag @photo.photo.url(:original), :id => 'croppable'
 
-= form_for(:photo, :url => crop_profile_photo_user_path(@user), :method => :put, :html => { :class => "MainForm" }) do |f|
+= form_for :photo, :url => crop_profile_photo_user_path(@user), :method => :put, :html => { :class => "form form-horizontal" } do |f|
   - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
-    %input{ :type=>"hidden", :name=>attribute, :id=>attribute, :size=>"4"}
+    %input{ :type=>"hidden", :name=>attribute, :id=>attribute, :value => ''}
 
   %p
     = submit_tag :update.l, :class => 'btn btn-primary'
 
 -content_for :end_javascript do
+  = stylesheet_link_tag 'cropper'
   = javascript_include_tag "cropper"
   :javascript
-    function onEndCrop( coords, dimensions ) {
-      $( 'crop_x' ).value = coords.x1;
-      $( 'crop_y' ).value = coords.y1;
-      $( 'crop_w' ).value = dimensions.width;
-      $( 'crop_h' ).value = dimensions.height;
-    }
-    function loadCropper() {
-      new Cropper.ImgWithPreview( 'photo', { previewWrap: 'previewWrap', minWidth: 100, minHeight: 66, ratioDim: { x: 300, y: 200 }, onEndCrop: onEndCrop } );      
-    }
-    Event.observe( window, 'load', function() { loadCropper(); } );      
+    jQuery(function($) {
+      // Settings for the cropper
+      minWidth = 300; // min width of crop area, also the starting width
+      minHeight = 200; // min height of crop area, also the starting height
+      previewRatio = 1/4; // i.e. preview to croppable ratio
+      bgColor = 'black';
+      bgOpacity = .4;
+      croppable_id = 'croppable'
+      preview_id = 'preview'
+      
+      // Then initialize the cropper, telling it where to find the croppable image's id and
+      // the preview div's id.
+      cropInit();
+    });
