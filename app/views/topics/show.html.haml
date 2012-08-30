@@ -5,23 +5,6 @@
 
 -content_for :end_javascript do
   =javascript_include_tag 'forum'
-  :javascript
-    $('.editor-toggle').click(function () {
-      $('.editable').removeClass('hide');
-      $('.editor').addClass('hide');
-      post_body_name = '#' + $(this).attr('data-target');
-      $(post_body_name).children('.editable').addClass('hide');
-      $(post_body_name).children('.editor').removeClass('hide');
-      event.preventDefault();
-    });
-    
-    $('.editor form').submit(function(){
-      event.preventDefault();
-      rich_text_editor = $(this).children('.rich_text_editor');
-      rich_text_editor.tinymce().save();
-      new_content = rich_text_editor.html();
-      alert(new_content);
-    });
 
 -widget do 
   - if logged_in?
@@ -55,7 +38,7 @@
       %li= link_to h(user.display_name), user_path(user)
 
   %a{"name"=>"#{@posts.to_a.first.dom_id}"}
-  %table.table.table-bordered.table-striped
+  %table.table.table-bordered.table-striped#posts-table
     - for post in @posts do
       =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
@@ -68,13 +51,10 @@
         %i.icon-lock
         %label= :this_topic_is_locked.l
     - else
-      = link_to_function '<i class="icon-plus"></i> '.html_safe + :reply_to_topic.l, "ReplyForm.init()"
-      #reply.editbox
+      = link_to '<i class="icon-plus"></i> '.html_safe + :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => 'reply-toggle'
+      .reply
         =render :partial => 'sb_posts/reply_form'
-          
-    -content_for :end_javascript do      
-      = javascript_tag "$('reply').hide();"
       
   - else
-    %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
+    %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic)
 

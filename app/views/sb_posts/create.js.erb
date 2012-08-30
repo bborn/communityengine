@@ -1,0 +1,28 @@
+<% if @post.new_record? %> 
+  reply = $('.reply');
+  reply.prepend("<%= (render 'shared/messages').gsub('"', "'").gsub("\n", '').html_safe %>");
+  message = reply.children('.alert')
+  message.scrollTo();
+<% else %>
+  reply = $('.reply');
+  posts_table = $('#posts-table');
+  posts_table.append("<%= (render :partial => 'sb_posts/sb_post', :locals => {:post => @post}).gsub('"', "'").gsub("\n", '').html_safe %>")
+  
+  my_post = $('#post-body-<%= @post.id %>')
+  my_post.scrollTo();
+  editable = my_post.children('.editable');
+  editable.switchClass('','alert alert-info', 500,'easeOutCubic',function(){
+	editable.switchClass('alert alert-info','normal', 3000,'easeInCubic');
+  });
+  editor = reply.find('textarea');
+  editorStandIn = reply.find('.mceContentBody');
+  editor.html('');
+  editorStandIn.html('');
+  
+  reply.addClass('hide');
+<% end %>
+<% if configatron.recaptcha_pub_key %>
+	if($('dynamic_recaptcha')){
+		Recaptcha.create('#{configatron.recaptcha_pub_key}', $('dynamic_recaptcha') )
+	}
+<% end %>
