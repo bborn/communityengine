@@ -20,6 +20,26 @@ jQuery.fn.keepUpdatedFromUrl = function (url_to_load) {
   $(this).html($.get(url_to_load));
 }
 
+$('.delete-via-ajax').click(function(){
+	$.ajax({
+		type: $(this).attr('method'),
+		url: $(this).attr('action').replace('?', '.js?'),
+	    dataType: 'script',
+	    success: function(response) {
+	      if(response) {
+	        console.log('Return script received.');
+	      } else {
+	        console.log('Failed to receive return script.');
+	      }
+	    },
+	    error: function(jqXHR, textStatus, errorThrown) {
+	      console.log(jqXHR);
+	      console.log(textStatus);
+	      console.log(errorThrown);
+	    }
+	});
+})
+
 
 $('.submit-via-ajax').submit(function(){
   console.log('Attempting to save via AJAX...');
