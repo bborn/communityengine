@@ -61,8 +61,7 @@ configuration = {
           :processors => [:cropper]
         },   
         :original => "1024>"       
-      }, 
-      :processors => [:cropper]
+      }
     },
     :validation_options => {
       :max_size => 3,
