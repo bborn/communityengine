@@ -115,7 +115,8 @@ class User < ActiveRecord::Base
     :firstname, :fullname, :gender, :lastname, :login, :metro_area_id,
     :middlename, :notify_comments, :notify_community_news,
     :notify_friend_requests, :password, :password_confirmation,
-    :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip, :avatar_attributes, :birthday
+    :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip, :avatar_attributes, 
+    :birthday, :tag_list
 
   attr_accessor :authorizing_from_omniauth
 
