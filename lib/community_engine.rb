@@ -27,7 +27,6 @@ require 'acts_as_commentable'
 require 'recaptcha/rails'
 require 'omniauth'
 require 'authlogic'
-require 'prototype-rails'
 require 'rails_autolink'
 require 'meta_search'
 require 'tinymce-rails'
@@ -35,6 +34,8 @@ require 'sanitize'
 require 'bootstrap-sass'
 require 'bootstrap_forms'
 require 'font-awesome-sass-rails'
+require 'jquery-rails'
+require 'jquery-ui-rails'
 
 
 include EnginesExtensions
