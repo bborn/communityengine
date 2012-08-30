@@ -1,4 +1,4 @@
-%dl.dl-horizontal{:id => 'activity-' + activity.id }
+%dl.dl-horizontal{:id => 'activity-' + activity.id.to_s }
   %dt
     =time_ago_in_words(activity.created_at)
   %dd
