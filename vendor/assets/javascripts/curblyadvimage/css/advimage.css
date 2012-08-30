@@ -1,0 +1,84 @@
+#src_list, #over_list, #out_list {width:280px;}
+.mceActionPanel {margin-top:7px;}
+.alignPreview {border:1px solid #000; width:140px; height:140px; overflow:hidden; padding:5px;}
+.checkbox {border:0;}
+.panel_wrapper div.current {height:245px;}
+#prev {margin:0; border:1px solid #000; width:99%; height:150px; overflow:auto;}
+#align, #classlist {width:150px;}
+#width, #height {vertical-align:middle; width:50px; text-align:center;}
+#vspace, #hspace, #border {vertical-align:middle; width:30px; text-align:center;}
+#class_list {width:180px;}
+input {width: 280px;}
+input.submit {
+	width: auto;
+	margin: 0;
+	}
+#constrain, #onmousemovecheck {width:auto;}
+#id, #dir, #lang, #usemap, #longdesc {width:200px;}
+
+ul.curblyadvimage_list {
+	list-style: none;
+	margin:0;
+	padding:0;
+	}
+	ul.curblyadvimage_list li {
+		display:block;
+		width: 75px;
+		float: left;
+		margin-right: 8px;
+		margin-bottom:5px;
+		}
+		ul.curblyadvimage_list li img {
+			width: 75px;
+			}
+		ul.curblyadvimage_list li a {		
+			outline:none;
+			}
+	ul.curblyadvimage_list li.selected a img {
+		border: 2px solid red;
+		}
+	ul.curblyadvimage_list li .thumbs {
+		display:none;
+		background: #efefef;
+		position: absolute;
+		width:65px;
+		margin: 45px 5px 5px 25px;
+		border-right: 2px solid #666;
+		border-bottom: 2px solid #333;
+		border-top: 2px solid #efefef;		
+		border-left: 2px solid #efefef;		
+		}
+		ul.curblyadvimage_list li .thumbs a {		
+			margin-bottom: 5px;
+			line-height: 1.5em;
+			text-decoration: none;
+			}
+			ul.curblyadvimage_list li .thumbs a {					
+				text-decoration: underline;
+				}
+	ul.curblyadvimage_list li.selected .thumbs {
+		display:block;
+		}
+
+.right {
+	float:right;
+}
+.left {
+	float:left;
+}
+.clear {
+	clear:both;
+}
+.pagination a {
+  border: 1px solid #7DA807;
+  color: #7DA807;
+  margin-right: .3em;
+  padding: .3em; }
+.pagination a:hover {
+  background: #7DA807;
+  border: 1px solid #7DA807;
+  color: #ffffff; }
+.pagination a.active {
+  background: #1EA2C1;
+  border: none;
+  color: #ffffff; }
