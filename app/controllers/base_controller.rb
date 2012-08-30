@@ -69,6 +69,7 @@ class BaseController < ApplicationController
     end
     
     new_configuration = TinyMCE::Rails.configuration.merge(options.delete(:options)).options
+    new_configuration.stringify_keys!
     
     # Set instance vars in the current class
     p = Proc.new do |c|
