@@ -68,7 +68,7 @@ class SbPostsController < BaseController
     end
 
     @forum = @topic.forum
-    @post  = @topic.sb_posts.new(params[:post])
+    @post  = @topic.sb_posts.new(params[:sb_post])
 
     @post.user = current_user if current_user
     @post.author_ip = request.remote_ip #save the ip address for everyone, just because    
@@ -81,7 +81,7 @@ class SbPostsController < BaseController
         format.js
       end
     else
-      flash.now[:notice] = @post.errors.full_messages.to_sentence
+      flash.now[:error] = @post.errors.full_messages.to_sentence
       respond_to do |format|
         format.html do
           redirect_to forum_topic_path({:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => 'reply-form', :page => (params[:page] || '1')}.merge({:post => params[:post]}))
@@ -99,7 +99,7 @@ class SbPostsController < BaseController
   end
   
   def update
-    @post.update_attributes!(params[:post])
+    @post.update_attributes!(params[:sb_post])
   rescue ActiveRecord::RecordInvalid
     flash[:bad_reply] = :an_error_occurred.l
   ensure
