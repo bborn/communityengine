@@ -1,10 +1,4 @@
-#edit
-  = remote_form_for :post, @post, :url => sb_post_path(:forum_id => @post.forum_id, :topic_id => @post.topic_id, :id => @post), :html => { :method => :put, :class => "MainForm" }, :before => "$('editbox_spinner').show();tinyMCE.triggerSave();" do |f|
-    = f.text_area :body, :rows => 10, :id => "edit_post_body", :class => "rich_text_editor"
-
-    = ajax_spinner_for "editbox", "spinner_black.gif"
-    = submit_tag :save_changes.l, :class => 'btn btn-primary'
-    %p
-      = link_to :delete_this_post.l, sb_post_path( @post.topic.forum, @post.topic, @post, :page => params[:page]), :class => "utility", :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l), :class => 'btn btn-danger'
+= bootstrap_form_for post, :url => sb_post_path(:forum_id => post.forum_id, :topic_id => post.topic_id, :id => post), :html => {:class => "form form-horizontal" } do |f|
+  = f.text_area :body, :rows => 10, :id => "edit_post_body_" + post.id.to_s, :class => "rich_text_editor"
+  = submit_tag :save_changes.l, :class => 'btn btn-primary'
   
-= tiny_mce_init_if_needed

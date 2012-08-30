@@ -359,8 +359,9 @@ module BaseHelper
 
   def tiny_mce_init_if_needed
     if !@uses_tiny_mce.blank?
-      tinymce_js = tinymce_javascript(@tiny_mce_configuration)      
-      javascript_tag(tinymce_js)
+      selector = @tiny_mce_configuration['editor_selector']
+      javascript = '$(".' + selector + '").tinymce(' + @tiny_mce_configuration.to_json + ')'
+      javascript_tag(javascript)
     end
   end
   

@@ -1,10 +1,14 @@
 %tr
   
-  %td{"id"=>"post-body-#{post.id}", :width => '85%'}
-    - if logged_in?
-      = link_to_function '<i class="icon-comment"></i>'.html_safe, "$('reply').toggle(); window.location.hash='reply';"
-    = post.body.html_safe
-  %td{:style => 'border-left:0'}
+  %td{:id=>"post-body-#{post.id}"}
+    .editable
+      - if logged_in?
+        = link_to_function '<i class="icon-comment"></i>'.html_safe, "$('reply').toggle(); window.location.hash='reply';"
+      = post.body.html_safe
+    .editor.hide
+      = render :partial => 'sb_posts/edit', :locals => {:post => post}
+    
+  %td.span3{:style => 'border-left:0'}
     %ul.nav.nav-list
       -if post.user
         %li= link_to avatar_for(post.user), post.user    
@@ -23,7 +27,7 @@
       - if logged_in? && post.editable_by?(current_user)
         %li
           = ajax_spinner_for "edit-post-#{post.id}", "spinner_black.gif"    
-          = link_to_remote :edit_post.l, {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }
+          = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :class => 'editor-toggle', 'data-target' => "post-body-#{post.id}"
       - if admin? && post.user && !post.user.admin?
         %li{"class"=>"make-moderator-#{post.user_id}"}
           = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
