@@ -360,7 +360,7 @@ module BaseHelper
   def tiny_mce_init_if_needed
     if !@uses_tiny_mce.blank?
       selector = @tiny_mce_configuration['editor_selector']
-      javascript = '$(".' + selector + '").tinymce(' + @tiny_mce_configuration.to_json + ')'
+      javascript = '$(".' + selector + '").tinymce(' + @tiny_mce_configuration.to_json + ')'.html_safe
       javascript_tag(javascript)
     end
   end
