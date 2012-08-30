@@ -4,4 +4,4 @@
 
 -if show_footer_content?        
   :javascript
-    #{remote_function(:update => "footer_content", :method => :get, :url =>  footer_content_url )}
+    $('#footer_content').keepUpdatedFromUrl("#{footer_content_path}")

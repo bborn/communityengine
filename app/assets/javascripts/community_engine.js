@@ -16,6 +16,10 @@ jQuery.fn.scrollTo = function () {
   $('html,body').animate({scrollTop: $(this).offset().top - space_at_top},'slow');
 }
 
+jQuery.fn.keepUpdatedFromUrl = function (url_to_load) {
+  $(this).html($.get(url_to_load));
+}
+
 
 $('.submit-via-ajax').submit(function(){
   console.log('Attempting to save via AJAX...');
