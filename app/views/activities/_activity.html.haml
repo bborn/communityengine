@@ -3,7 +3,7 @@
     =time_ago_in_words(activity.created_at)
   %dd
     -if activity.can_be_deleted_by?(current_user)
-      =link_to '<i class="icon-remove"></i>'.html_safe, :url => activity_path(activity), :method => :delete, :confirm => :are_you_sure.l, :class => 'pull-right btn btn-danger delete-via-ajax'
+      =link_to '<i class="icon-remove"></i>'.html_safe, activity_path(activity), :method => :delete, :confirm => :are_you_sure.l, :class => 'pull-right btn btn-danger delete-via-ajax'
       
     =link_to activity.user.login.capitalize, user_path(activity.user.friendly_id)  
     - if activity.item
