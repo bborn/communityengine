@@ -31,29 +31,35 @@ function updateElementFromUrl(element, url_to_load) {
 		element.html(data);
 	});
 }
-
-$('.delete-via-ajax').click(function(){
-	$.ajax({
-		type: $(this).attr('method'),
-		url: $(this).attr('action').replace('?', '.js?'),
-	    dataType: 'script',
-	    success: function(response) {
-	      if(response) {
-	        console.log('Return script received.');
-	      } else {
-	        console.log('Failed to receive return script.');
-	      }
-	    },
-	    error: function(jqXHR, textStatus, errorThrown) {
-	      console.log(jqXHR);
-	      console.log(textStatus);
-	      console.log(errorThrown);
-	    }
-	});
+	
+$('.delete-via-ajax').live('click', function(event){
+	event.preventDefault();
+	if(confirm($(this).attr('data-manual-confirm'))) {
+		console.log('Attempting to delete via AJAX...');
+		$.ajax({
+			type: 'POST',
+			data: {'_method': 'delete'},
+			url: $(this).attr('href') + '.js',
+		    dataType: 'script',
+		    success: function(response) {
+		      if(response) {
+		        console.log('Return script received.');
+		      } else {
+		        console.log('Failed to receive return script.');
+		      }
+		    },
+		    error: function(jqXHR, textStatus, errorThrown) {
+		      console.log(jqXHR);
+		      console.log(textStatus);
+		      console.log(errorThrown);
+		    }
+		});
+	}
 })
 
 
 $('.submit-via-ajax').submit(function(){
+  event.preventDefault();
   console.log('Attempting to save via AJAX...');
   $.ajax({
     type: $(this).attr('method'),
@@ -73,7 +79,6 @@ $('.submit-via-ajax').submit(function(){
       console.log(errorThrown);
     }
   });
-  event.preventDefault();
 });
 
 $('.submit-via-ajax').bind('form-pre-serialize', function(e) {

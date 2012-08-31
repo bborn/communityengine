@@ -1,8 +1,9 @@
 .span9
   %hr
   %h2=:whats_fresh.l
-  - @recent_activity.each do |activity|
-    =render :partial => "activities/activity", :locals => {:activity => activity }
+  %table{:width => '100%'}
+    - @recent_activity.each do |activity|
+      =render :partial => "activities/activity", :locals => {:activity => activity }
   =icon_link_to 'icon-plus-sign', :see_all_activity.l, activities_path
 
 .span3.pull-right
