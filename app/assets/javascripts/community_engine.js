@@ -16,8 +16,20 @@ jQuery.fn.scrollTo = function () {
   $('html,body').animate({scrollTop: $(this).offset().top - space_at_top},'slow');
 }
 
-jQuery.fn.keepUpdatedFromUrl = function (url_to_load) {
-  $(this).html($.get(url_to_load));
+jQuery.fn.keepUpdatedFromUrl = function (url_to_load, frequency) {
+	updateElementFromUrl($(this), url_to_load);
+	setInterval(
+		function() {
+			updateElementFromUrl($(this), url_to_load);
+		}, 
+		frequency
+	);
+}
+
+function updateElementFromUrl(element, url_to_load) {
+	$.get(url_to_load, function(data) {
+		element.html(data);
+	});
 }
 
 $('.delete-via-ajax').click(function(){

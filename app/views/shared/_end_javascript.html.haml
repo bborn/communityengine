@@ -4,4 +4,6 @@
 
 -if show_footer_content?        
   :javascript
-    $('#footer_content').keepUpdatedFromUrl("#{footer_content_path}");
+    $(function() {
+      $('#footer-content').keepUpdatedFromUrl("#{footer_content_path}", 30000);
+    });
