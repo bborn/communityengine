@@ -29,7 +29,7 @@ class FavoritesController < BaseController
   end
   
   def index  
-    @favorites = Favorite.recent.by_user(@user).find :all, :page => {:current => params[:page]}
+    @favorites = Favorite.recent.by_user(@user).page(params[:page])
   end
   
   

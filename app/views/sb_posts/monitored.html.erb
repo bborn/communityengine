@@ -13,7 +13,7 @@
   <%= :post_found.l(:count => @posts.size) %>
 </p>
 
-<% if @posts.page_count > 1 -%>
+<% if @posts.total_count > 1 -%>
 <div class="pagination"><%= "#{:pages.l}:" %> <strong><%= paginating_links @posts %></strong></div>
 <% end -%>
 
@@ -50,10 +50,6 @@
 <% end %>
 </table>
 
-<% if @posts and @posts.next_page %>
-<p style="float:right;"><%= link_to :next_page.l, { :page => @posts.next_page }.merge(params.reject{|k,v| k=="page"})  %></p>
-<% end %>
-
-<% if @posts.page_count > 1 -%>
+<% if @posts.total_count > 1 -%>
 <div class="pagination"><%= :pages.l %> <strong><%= paginating_links @posts %></strong></div>
 <% end -%>

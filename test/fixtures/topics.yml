@@ -4,8 +4,8 @@ pdi:
   forum_id: 1
   user_id: 2
   title: PDI this!
-  created_at: <%= 4.days.ago.to_s :db %>
-  replied_at: <%= 2.days.ago.to_s :db %>
+  created_at: <%= 4.days.ago.iso8601 %>
+  replied_at: <%= 2.days.ago.iso8601 %>
   replied_by: 1
   last_post_id: 3
   sb_posts_count: 3
@@ -14,9 +14,9 @@ sticky:
   forum_id: 1
   user_id: 2
   title: upgrade now
-  created_at: <%= 123.hours.ago.to_s :db %>
-  updated_at: <%= 123.hours.ago.to_s :db %>
-  replied_at: <%= 123.hours.ago.to_s :db %>
+  created_at: <%= 123.hours.ago.iso8601 %>
+  updated_at: <%= 123.hours.ago.iso8601 %>
+  replied_at: <%= 123.hours.ago.iso8601 %>
   replied_by: 2
   last_post_id: 5
   sb_posts_count: 1
@@ -26,9 +26,9 @@ ponies:
   forum_id: 1
   user_id: 11
   title: ponies
-  created_at: <%= 47.hours.ago.to_s :db %>
+  created_at: <%= 47.hours.ago.iso8601 %>
   sb_posts_count: 1
-  replied_at: <%= 47.hours.ago.to_s :db %>
+  replied_at: <%= 47.hours.ago.iso8601 %>
   replied_by: 2
   last_post_id: 4 
 galactus:
@@ -36,9 +36,9 @@ galactus:
   forum_id: 2
   user_id: 2
   title: Galactus is coming
-  created_at: <%= 2.hours.ago.to_s :db %>
+  created_at: <%= 2.hours.ago.iso8601 %>
   sb_posts_count: 2
-  replied_at: <%= 2.hours.ago.to_s :db %>
+  replied_at: <%= 2.hours.ago.iso8601 %>
   replied_by: 1
   last_post_id: 6
 shield:
@@ -46,9 +46,9 @@ shield:
   forum_id: 2
   user_id: 11
   title: Agent of SHIELD
-  created_at: <%= 1.hour.ago.to_s :db %>
+  created_at: <%= 1.hour.ago.iso8601 %>
   sb_posts_count: 2
-  replied_at: <%= 1.hour.ago.to_s :db %>
+  replied_at: <%= 1.hour.ago.iso8601 %>
   replied_by: 1
   last_post_id: 9
 il8n:
@@ -56,8 +56,8 @@ il8n:
   forum_id: 1
   user_id: 2
   title: il8n in rails?
-  created_at: <%= 4.minutes.ago.to_s :db %>
-  replied_at: <%= 2.minutes.ago.to_s :db %>
+  created_at: <%= 4.minutes.ago.iso8601 %>
+  replied_at: <%= 2.minutes.ago.iso8601 %>
   sb_posts_count: 1
   replied_by: 1
   last_post_id: 10

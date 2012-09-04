@@ -1,8 +1,8 @@
-=calendar_date_select_includes
+
 -box do
   %h3= :edit_event.l
   = error_messages_for :event
-  - form_for(:event, :url => event_path(@event), :html => {:method => :put, :class => "MainForm"} ) do |f|
+  = form_for(:event, :url => event_path(@event), :html => {:method => :put, :class => "MainForm"} ) do |f|
     %label= :name.l
     = f.text_field :name
     
@@ -10,10 +10,10 @@
     = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
     
     %label= :start_time.l
-    = f.calendar_date_select :start_time, :time => true 
+    = f.datetime_select :start_time
     
     %label= :end_time.l
-    = f.calendar_date_select :end_time, :time => true 
+    = f.datetime_select :end_time
 
     %label
       = f.check_box :allow_rsvp

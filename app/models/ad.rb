@@ -16,7 +16,7 @@ class Ad < ActiveRecord::Base
         location.to_s, true, false, Time.now, Time.now, audiences_for(logged_in) ])
         
     ad = random_weighted(ads.map{|a| [a, a.frequency] })
-    ad ? ad.html : ''
+    ad ? ad.html.html_safe : ''
   end
     
   def self.audiences_for(logged_in)

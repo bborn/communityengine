@@ -1,12 +1,12 @@
 -box do
   %h3=:new_ad.l
   = error_messages_for :ad
-  - form_for(:ad, :url => ads_path, :html => {:class => "MainForm" }) do |f|
+  = form_for(:ad, :url => ads_path, :html => {:class => "MainForm" }) do |f|
     %label=:name.l
     = f.text_field :name
 
     %label=:html.l
-    = f.text_area :html, :size => '80x10'
+    = f.text_area :html, :size => '80x10', :class => "rich_text_editor"
 
     %label=:frequency.l
     = f.select :frequency, Ad.frequencies_for_select
@@ -32,8 +32,9 @@
       %label=:end_date.l
       = f.datetime_select :end_date
 
-    %script{"type"=>"text/javascript", "charset"=>"utf-8"}
-      Event.observe("ad_time_constrained", "click", function(){$('time_constraints').toggle()})
+    -content_for :end_javascript do
+      :javascript
+        Event.observe("ad_time_constrained", "click", function(){$('time_constraints').toggle()})
 
     %label=:location.l
     = f.text_field :location

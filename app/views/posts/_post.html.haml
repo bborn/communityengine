@@ -13,7 +13,7 @@
         %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark"}
           %abbr.published{:title=>"#{post.published_at}"}= post.published_at_display(:short_literal_date)
       %li.view
-        = :views.l
+        = :view_count.l
         = "(#{post.view_count})"
       %li.comments
         = link_to :comments.l+" (#{post.comments.count})", user_post_path(post.user, post)+'#comments'      
@@ -21,7 +21,7 @@
         %li.addfriend= add_friend_link(post.user)
 
   .entry-content
-    = truncate_words(post.post, 75, '...' )
+    = truncate_words(post.post, 75, '...' ).html_safe
     
     = render :partial => 'polls/excerpt', :locals => {:poll => post.poll} if post.poll
     

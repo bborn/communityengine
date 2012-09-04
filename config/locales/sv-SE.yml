@@ -1,0 +1,1528 @@
+sv:
+
+  authorizations:
+    create:
+      success_existing_user: "Inloggning via %{provider} har lagts till"
+      success_message: "Välkommen %{provider}-användare. Du är nu inloggad."
+    failure:
+      notice: "Tyvärr, auktoriseringen misslyckades"
+    destroy:
+      notice: "Inloggning via %{provider} borttagen."
+  sessions:
+    new:
+      omniauth:
+        header: "Logga in med:"
+        button_alt: "Logga in med ditt %{provider}-konto"
+  users:
+    edit_account:
+      omniauth:
+        confirm_remove: "Är du säker på att du vill ta bort möjligheten att logga in via %{provider}?"
+        title_remove: "Ta bort möjligheten att logga in via %{provider}?"
+  tags:
+    show:
+      users: "Användare"
+  sitemaps:
+    index:
+      users: "Användare"
+
+  date:
+    formats:
+      published_date: "%Y-%m-%d"
+      date_ago: "%b %Y"
+
+  time:
+    formats:
+      published_date: "%Y-%m-%d"
+      short_published_date: "%y-%m-%d"
+      literal_date: "%d %B, %Y"
+      short_literal_date: "%d %b, %Y"
+      time_ago: "%H:%M"
+
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "skapades: "
+  #en: a_few_seconds_ago:  a few seconds ago
+  a_few_seconds_ago: några sekunder sedan
+  #en: about: About
+  about: Om
+  #en: about_me: About Me
+  about_me: Om mig
+  #en: about_site: About %{site}
+  about_site: "Om %{site}"
+  #en: about_you: About You
+  about_you: Om dig
+  #en: accept: Accept
+  accept: Godkänn
+  #en: accepted: accepted
+  accepted: godkänt
+  #en: accepted_friendships: Accepted Friendships
+  accepted_friendships: Bekräftade kompisar
+  #en: accept_this_request: Accept this request
+  accept_this_request: Bekräfta den här begäran
+  #en: account: account
+  account: konto
+  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.
+  account_activation_error: "Kontoaktiveringen misslyckade. Ditt konto kanske redan är aktiverat? Prova att logga in, eller skicka ett mejl till %{email} så får du hjälp."
+  #en: account_settings: Account settings
+  account_settings: Kontoinställningar
+  #en: actions: Actions
+  actions: Actions
+  #en: activate: Activate
+  activate: Aktivera
+  #en: activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
+  activation_email_not_sent_message: Aktiverings-mejl kunde inte skickas. Är användaren kanske redan aktiverad?
+  #en: activation_email_resent_message: An activation e-mail was resent to the e-mail address you used to sign up.
+  activation_email_resent_message: Aktiveringsmejlet skickades om till den adress du använde när du registrerade dig.  
+  #en: active: active
+  active: aktiv
+  #en: active_users: Active Users
+  active_users: Aktiva användare
+  #en: activity_from_your_network: Activity from your network
+  activity_from_your_network: Aktivitet i ditt nätverk
+  #en: ad_was_successfully_created: Ad was successfully created.
+  ad_was_successfully_created: Annonsen skapad
+  #en: ad_was_successfully_updated: Ad was successfully updated.
+  ad_was_successfully_updated: Annonsen uppdaterad.
+  #en: add_a_photo: Add a photo
+  add_a_photo: Lägg till bild
+  #en: add_a_poll: Add a poll
+  add_a_poll: Lägg till en omröstning
+  #en: add_comment: Add Comment
+  add_comment: Kommentera
+  #en: add_from_my_address_book: "Add from my address book"
+  add_from_my_address_book: "Lägg till från min adressbok"
+  #en: add_some_friends_to_get_started: Add some friends to get started!
+  add_some_friends_to_get_started: Lägg till några kompisar för att komma igång!
+  #en: add_your_comment: Add Your Comment!
+  add_your_comment: Kommentera!
+  #en: added_a_clipping: "added a clipping:"
+  added_a_clipping: "la till ett urklipp:"
+  #en: added_to_a_forum_topic: "added to a forum topic:"
+  added_to_a_forum_topic: "la till i ett forum-ämne:"
+  #en: admin: Admin
+  admin: Admin
+  #en: admin_controls: Admin Controls
+  admin_controls: Admin-kontroller
+  #en: admin_dashboard: Admin dashboard
+  admin_dashboard: Admin-översikt
+  #en: ads: Ads
+  ads: Annonser
+  #en: advertise: Advertise
+  advertise: Annonsera
+  #en: advertise_on: Advertise on
+  advertise_on: Annonsera på
+  #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
+  after_signing_up_youll_receive_an_e_mail_confirmation_message: "Du kommer att få en bekräftelse via mejl när du har registrerat dig."
+  #en: all_clippings_tagged: All clippings tagged %{tag_name}
+  all_clippings_tagged: "Alla urklipp med etiketten %{tag_name}"
+  #en: all_comments: All comments
+  all_comments: Alla kommentarer
+  #en: all_photos_tagged: All photos tagged %{tag_name}
+  all_photos_tagged: "Alla bilder med etiketten %{tag_name}"
+  #en: all_posts_tagged: All posts tagged %{tag_name}
+  all_posts_tagged: "Alla inlägg med etiketten %{tag_name}"
+  #en: all_tags: All tags
+  all_tags: Alla etiketter
+  #en: all_users_tagged: All users tagged %{tag_name}
+  all_users_tagged: "Alla användare med etiketten %{tag_name}"
+  #en: already_have_an_account: Already have an account?
+  already_have_an_account: Har du redan ett konto?
+  #en: an_error_occurred: An error occurred
+  an_error_occurred: Ett fel inträffade
+  #en: are_you_sure: Are you sure?
+  are_you_sure: Är du säker?
+  #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
+  are_you_sure_you_want_to_delete_this_photo: "Är du säker på att du vill ta bort den här bilden?"
+  #en: are_you_sure_you_want_to_delete_this_post: "Are you sure you want to delete this post?"
+  are_you_sure_you_want_to_delete_this_post: "Är du säker på att du vill ta bort det här inlägget??"
+  #en: are_you_sure_you_want_to_permanently_delete_this_comment: "Are you sure you want to permanently delete this comment?"
+  are_you_sure_you_want_to_permanently_delete_this_comment: "Är du säker på att du vill ta bort den här kommentaren permanent?"
+  #en: are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
+  are_you_sure_you_want_to_permanently_delete_this_user: Är du säker på att du vill ta bort den här användaren permanent?
+  #en: assume_id: Assume ID
+  assume_id: Anta ID
+  #en: assume_user_id: "Assume this user's ID"
+  assume_user_id: "Anta den här användarens identitet"
+  #en: assign_role: Assign role
+  assign_role: Tilldela roll
+  #en: audience: Audience
+  audience: Publik
+  #en: author: Author
+  author: Författare
+  #en: back: Back
+  back: Tillbaka
+  #en: back_to_all_users: Back to all users
+  back_to_all_users: Tillbaka till alla användare
+  #en: back_to_my_photos: Back to my photos
+  back_to_my_photos: Tillbaka till mina bilder
+  #en: back_to_all_statistics: Back to all statistics
+  back_to_all_statistics: Tillbaka till all statistik
+  #en: banner_subtitle_required: "Banner subtitle (required):"
+  banner_subtitle_required: "Banner-underrubrik (obligatorisk):"
+  #en: banner_title_required: "Banner title (required):"
+  banner_title_required: "Banner-rubrik (obligatorisk):"
+  #en: becomes: becomes.
+  becomes: blir.
+  #en: begin: begin
+  begin: start
+  #en: begin_required: begin (required)
+  begin_required: start (obligatorisk)
+  #en: bigger_font_size_more_popular_tag: "Bigger font size = more popular tag"
+  bigger_font_size_more_popular_tag: "Större teckenstorlek = populärare etikett"
+  #en: birthday: Birthday
+  birthday: Födelsedag
+  #en: birthday_gender: Birthday & Gender
+  birthday_gender: "Födelsedag & Kön"
+  #en: blog: Blog
+  blog: Blogg
+  #en: blog_posts: Blog posts
+  blog_posts: blogginlägg
+  #en: body_text: Body Text
+  body_text: Text
+  #en: body_text_reqiured: Body Text (required)
+  body_text_required: Text (obligatorisk)
+  #en: bookmarklet: bookmarklet
+  bookmarklet: bokmärkesfunktion
+  #en: browse_all_members: browse all members
+  browse_all_members: lista alla medlemmar
+  #en: browse_content_by_tags: Browse content by tags
+  browse_content_by_tags: Visa innehåll för etiketter
+  #en: by: by
+  by: för
+  #en: by_looking_at_the: by looking at the
+  by_looking_at_the: genom att titta på
+  #en: cancel: Cancel
+  cancel: Avbryt
+  #en: cancel_and_go_back_to: cancel and go back to
+  cancel_and_go_back_to: avbryt och gå tillbaka til
+  #en: cancel_and_go_back_to_all_features: cancel and go back to all features
+  cancel_and_go_back_to_all_features: avbryt och gå tillbaka till alla funktioner
+  #en: cancel_and_go_back_to_my_clippings: cancel and go back to my clippings
+  cancel_and_go_back_to_my_clippings: avbryt och gå tillbaka till mina urklipp
+  #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
+  cancel_and_go_back_to_my_photos: avbryt och gå tillbaka till mina bilder
+  #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
+  cancel_and_go_back_to_my_posts: avbryt och gå tillbaka till mina inlägg
+  #en: categories: Categories
+  categories: Kategorier
+  #en: category: Category
+  category: Kategori
+  #en: category_was_successfully_created: Category was successfully created.
+  category_was_successfully_created: Kategorin skapad.
+  #en: choices: Choices
+  choices: Val
+  #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
+  choose_a_photo_for_your_profile: "Välj en bild för din profil:"
+  #en: choose_a_photo_to_upload: "Choose a photo to upload:"
+  choose_a_photo_to_upload: "Välj en bild att ladda upp:"
+  #en: choose_your_location: Choose your location
+  choose_your_location: Välj plats
+  #en: click_here: click here
+  click_here: klicka här
+  #en: click_here_to_retrieve_it: Click here to retrieve it
+  click_here_to_retrieve_it: Klicka här för att hämta den
+  #en: click_here_to_sign_up: Click here to sign up
+  click_here_to_sign_up: Klicka här för att registrera dig
+  #en: click_here_to_sign_up_for_an_account_and_enter: Click here to sign up for an account and enter
+  click_here_to_sign_up_for_an_account_and_enter: Klicka här för att registrera ett användarkonto och komma in
+  #en: click_here_to_upload_one: Click here to upload one!
+  click_here_to_upload_one: Klicka här för att ladda upp en!
+  #en: click_here_to_view_as_a_list: Click here to view as a list
+  click_here_to_view_as_a_list: Klicka här för att visa som lista
+  #en: click_on_an_image_below_to_clip_it: Click on an image below to clip it
+  click_on_an_image_below_to_clip_it: Klicka på en bild nedan för att ha den som urklipp
+  #en: click_the_activation_link_in_the_e_mail_to_log_in: Click the activation link in the e-mail to log in.
+  click_the_activation_link_in_the_e_mail_to_log_in: Klicka på aktiveringslänken i mejlet för att logga in.
+  #en: click_to_accept_it: Click to accept it!
+  click_to_accept_it: Klicka för att godta den!
+  #en: clipping_comments: Clipping Comments
+  clipping_comments: Kommentarer på urklipp
+  #en: clipping_was_successfully_created: Clipping was successfully created.
+  clipping_was_successfully_created: Urklippet skapades.
+  #en: clippings: Clippings
+  clippings: Urklipp
+  #en: clippings_are_a_way_to_save_images_you_like_from_around_the_web: Clippings are a way to save images you like from around the Web
+  clippings_are_a_way_to_save_images_you_like_from_around_the_web: Urklipp är ett sätt att spara bilder du gillar från webben
+  #en: clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
+  clippings_let_you_to_save_cool_images_from_around_the_web: Urklipp låter dig spara coola bilder från webben.
+  #en: close_this_message: Close this message
+  close_this_message: Stäng det här meddelandet
+  #en: comma_separated: (comma separated)
+  comma_separated: (kommateckenseparerade)
+  #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
+  comma_separated_keywords_that_describe_you: Kommaseparerade nyckelord som beskriver dig.
+  #en: comment_character_limit: (2000 character limit)
+  comment_character_limit: (max 2000 tecken)
+  #en: comment_could_not_be_deleted: Comment could not be deleted.
+  comment_could_not_be_deleted: Kommentaren kunde inte tas bort.
+  #en: comment_save_error: Your comment couldn't be saved.
+  comment_save_error: 'Din kommentar kunde inte sparas: %{error}'
+  #en: comment_was_successfully_created: Comment was successfully created.
+  comment_was_successfully_created: Kommentaren skapad.
+  #en: comments: Comments
+  comments: Kommentarer
+  #en: comments_rss: Comments RSS
+  comments_rss: RSS för kommentarer
+  #en: community_tagline: CommunityEngine Rocks!
+  community_tagline: CommunityEngine Rockar!
+  #en: compose: Compose
+  compose: Skriv
+  #en: compose_message: Compose message
+  compose_message: Skriv meddelande
+  #en: confirm_password: Confirm Password
+  confirm_password: Bekräfta lösenord
+  #en: country: Country
+  country: Land
+  #en: create: Create
+  create: Skapa
+  #en: create_an_account: Create an account
+  create_an_account: Skapa ett konto
+  #en: create_a_clipping: Create a clipping
+  create_a_clipping: Skapa ett urklipp
+  #en: create_a_post: Create a post
+  create_a_post: Skapa ett inlägg
+  #en: create_new_forum: Create new forum
+  create_new_forum: Skapa nytt forum
+  #en: create_your_account: Create Your Account
+  create_your_account: Skapa ditt konto
+  #en: created_at: Created at
+  created_at: Skapades
+  #en: custom_friendly_local: custom, friendly, local
+  custom_friendly_local: "custom, friendly, local"
+  #en: dashboard: Dashboard
+  dashboard: Översikt
+  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on %{site} here
+  dashboard_friends: "När du börjar lägga till kompisar kommer du att kunna se deras aktivitet på %{site} här"
+  #en: date: Date
+  date_title: Datum
+  #en: date_created: Date Created
+  date_created: Skapat datum
+  #en: date_published: Date Published
+  date_published: Publicerat datum
+  #en: days_ago: days ago
+  days_ago: dagar sedan
+  #en: deactivate_link: Click here to deactivate your account
+  deactivate_link: Klicka här för att avaktivera ditt användarkonto
+  #en: deactivate_tip: Deactivating your account will remove your profile from the site. 
+  deactivate_tip: Om du avaktiverar ditt användarkonto tas din profil bort från sajten. 
+  #en: deactivate_confirmation: Are you sure you want to deactivate your account?
+  deactivate_confirmation: Är du säker på att du vill avaktivera ditt användarkonto?
+  #en: deactivate_completed: Thanks. Your account has been deactivated and you have been logged out.
+  deactivate_completed: Tack. Ditt användarkonto är avaktiverat och du har blivit utloggad.
+  #en: delete: Delete
+  delete: Ta bort
+  #en: delete_selected: Delete selected
+  delete_selected: Ta bort markerade
+  #en: delete_this_event: Delete this event
+  delete_this_event: Ta bort den här händelsen
+  #en: delete_this_forum: Delete this forum
+  delete_this_forum: Ta bort det här forumet
+  #en: delete_this_photo: Delete this photo
+  delete_this_photo: Ta bort den här bilden
+  #en: delete_this_post: Delete this post?
+  delete_this_post: Ta bort det här inlägget?
+  #en: delete_this_topic_forever: Delete this topic forever?
+  delete_this_topic_forever: Ta bort det här ämnet permanent?
+  #en: delete_this_user: Delete this user
+  delete_this_user: Ta bort den här användaren
+  #en: deny: Deny
+  deny: Avslå
+  #en: denied: denied
+  denied: avslagen
+  #en: denied_friendships: Denied Friendships
+  denied_friendships: Avslagna kompisförfrågningar
+  #en: description: Description
+  description: Beskrivning
+  #en: destroy: Destroy
+  destroy: Ta bort
+  #en: dont_have_an_account: Don't have an account?
+  dont_have_an_account: Har du inget användarkonto?
+  #en: dont_wait_its: Don't wait! It's
+  dont_wait_its: Vänta inte! Det är
+  #en: draft: draft
+  draft: utkast
+  #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
+  drag_the_bookmarklet: "Drag the %{site}-It! bookmarklet to your bookmarks toolbar."
+  #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
+  drag_this_to_your_bookmarks_toolbar: Dra denna till ditt bokmärkesverktygsfält
+  #en: e_mail: E-mail
+  e_mail: Mejl
+  #en: e_mail_address: E-mail address
+  e_mail_address: Mejladress
+  #en: e_mail_notification: E-mail Notification
+  e_mail_notification: Mejlnotifiering
+  #en: edit: Edit
+  edit: Redigera
+  #en: edit_account: Edit account
+  edit_account: Redigera konto
+  #en: edit_event: Edit event
+  edit_event: Redigera händelse
+  #en: edit_forum: Edit forum
+  edit_forum: Redigera forum
+  #en: edit_post: Edit post
+  edit_post: Redigera inlägg
+  #en: edit_profile: Edit profile
+  edit_profile: Redigera profil
+  #en: edit_this_event: Edit this event
+  edit_this_event: Redigera den här händelsen
+  #en: edit_this_photo_details: Edit this photo's details
+  edit_this_photo_details: Redigera detaljerna för den här bilden
+  #en: edit_topic: Edit topic
+  edit_topic: Redigera ämne
+  #en: edit_your_account_settings_instead: "Edit your account settings instead?"
+  edit_your_account_settings_instead: "Redigera dina kontoinställingar istället?"
+  #en: edit_your_user_profile: Edit your user profile?
+  edit_your_user_profile: Redigera din användarprofil?
+  #en: editing_ad: Editing ad
+  editing_ad: Redigerar annons
+  #en: editing_category: Editing category
+  editing_category: Redigerar kategori
+  #en: editing_clipping: Editing clipping
+  editing_clipping: Redigerar urklipp
+  #en: editing_homepage_feature: Editing homepage feature
+  editing_homepage_feature: Redigerar hemsidesfunktion
+  #en: editing_metro_area: Editing Metro Area
+  editing_metro_area: Redigerar storstadsområde
+  #en: editing_photo: Editing photo
+  editing_photo: Redigerar bild
+  #en: editing_post: Editing post
+  editing_post: Redigerar inlägg
+  #en: email_addresses: Email Addresses
+  email_addresses: Mejladresser
+  #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
+  email_signup_thanks: "Tack för att du registrerat dig. Du ska inom kort ha fått ett mejl, till adressen %{email}"
+  #en: email_this_story_to_friends: "E-mail this story to friends"
+  email_this_story_to_friends: "Mejla den här berättelsen till kompisar"
+  #en: email_to_friends: E-mail to friends
+  email_to_friends: Mejla kompisar
+  #en: end: end
+  end: slut
+  #en: end_date: End date
+  end_date: Slutdatum
+  #en: end_required: end (required)
+  end_required: slut (obligatoriskt)
+  #en: end_tome: End time
+  end_tome: Sluttid
+  #en: enter_a_message: Enter a message
+  enter_a_message: Skriv in ett meddelande
+  #en: enter_e_mail_addresses: Enter e-mail addresses
+  enter_e_mail_addresses: Skriv in dina mejladresser
+  #en: enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
+  enter_e_mail_addresses_comma_sep: Skriv in dina mejladresser (kommateckenseparerat)
+  #en: enter_your_email_address: "Enter your email address"
+  enter_your_email_address: "Skriv in din mejladress"
+  #en: error: Error!
+  error: Fel!
+  #en: estimated_total_for_this_month: Estimated total for this month
+  estimated_total_for_this_month: Estimated total for this month
+  #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
+  estimated_writers_costs_this_month: "Estimated writers' costs this month"
+  #en: event_was_successfully_created: Event was successfully created.
+  event_was_successfully_created: Händelsen skapad.
+  #en: events: Events
+  events: Händelser
+  #en: every_person_has_something_to_say: Every single person has something to say, something to give, something that will help someone else.  Join in!
+  every_person_has_something_to_say: "Varje individ har något att säga, något att ge, något som kan hjälpa någon annan. Kom med!"
+  #en: explore_site: Explore %{site}
+  explore_site: "Utforska %{site}"
+  #en: failed: failed
+  failed: misslyckades
+  #en: faq: FAQ
+  faq: FAQ
+  #en: faq_section: FAQ section
+  faq_section: FAQ-avdelning
+  #en: favorites: Favorites
+  favorites: Favoriter
+  #en: favorite_this: Favorite this
+  favorite_this: Gör detta till en favorit
+  #en: featured_posts: Featured posts
+  featured_posts: Utvalda inlägg
+  #en: featured_writer: Featured writer
+  featured_writer: Utvald skribent
+  #en: featured_writers: Featured writers
+  featured_writers: Utvalda skribenter
+  #en: features: Features
+  features: Funktioner
+  #en: feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
+  feel_free_to_embed_images_or_videos: Lägg gärna till bilder eller filmsnuttar.
+  #en: female: Female
+  female: Kvinna
+  #en: filename: Filename
+  filename: Filnamn
+  #en: find_an_expert: Find an Expert
+  find_an_expert: Hitta en expert
+  #en: find_an_expert_in: Find an Expert in
+  find_an_expert_in: Hitta en expert på
+  #en: find_experts: Find experts
+  find_experts: Hitta experter
+  #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
+  find_out_where_to_be_and_when_to_be_there: "Få reda på var man ska vara, och när man ska vara där."
+  #en: for_more_information_on_tags_check_out_the: For more information on tags check out the
+  for_more_information_on_tags_check_out_the: Om du vill ha mer information om etiketter kollar du in
+  #en: forgot_your_password: Forgot your password?
+  forgot_your_password: Glömt ditt lösenord?
+  #en: forgot_your_username: Forgot your username?
+  forgot_your_username: Glömt ditt användarnamn?
+  #en: forum: Forum
+  forum: Forum
+  #en: forums: Forums
+  forums: Forum
+  #en: found: found
+  found: hittade
+  #en: frequency: Frequency
+  frequency: Frekvens
+  #en: frequent_asked_questions: Frequent Asked Questions
+  frequent_asked_questions: Frequent Asked Questions
+  #en: frequently_asked_questions: Frequently Asked Questions
+  frequently_asked_questions: Frequently Asked Questions
+  #en: friend: friend
+  friend: kompis
+  #en: friends: Friends
+  friends: Kompisar
+  #en: friendship_could_not_be_created: Friendship could not be created
+  friendship_could_not_be_created: Kunde inte knyta upp kompis
+  #en: friendship_request_detail: Friendship request detail
+  friendship_request_detail: Detaljer för kompisförfrågan
+  #en: friendship_requested: Requested friendship with %{friend}.
+  friendship_requested: "Skickade en kompisförfrågan till %{friend}."
+  #en: from: From
+  from: Från
+  #en: from2: From
+  from2: Från
+  #en: gender: Gender
+  gender: Kön
+  #en: get_help_from_someone_who_knows: Get help from someone who knows
+  get_help_from_someone_who_knows: Få hjälp från nån som kan
+  #en: get_popular: Get popular.
+  get_popular: Bli populär.
+  #en: get_started_banner: Get started with <a href="/">%{site}</a> today!
+  get_started_banner: "Kom igång med <a href='/'>%{site}</a> idag!"
+  #en: get_started_invite_some_friends: "Get Started: Invite some friends!"
+  get_started_invite_some_friends: "Kom igång: bjud in några kompisar!"
+  #en: get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
+  get_started_tell_us_about_yourself: "Kom igång: berätta om dig själv"
+  #en: get_started_upload_a_profile_photo: "Get Started: Upload a profile photo"
+  get_started_upload_a_profile_photo: "Kom igång: ladda upp en profilbild"
+  #en: go: Go
+  go: Gå
+  #en: go2: Go
+  go2: Gå
+  #en: go_check_your_e_mail: Go check your e-mail!
+  go_check_your_e_mail: Kolla dina mejl!
+  #en: go_to_the_forums: go to the forums
+  go_to_the_forums: gå till forumen
+  #en: go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
+  go_to_your_clippings_page_to_get_started: Gå till din urklippssida för att komma igång.
+  #en: go_to_your_profile: Go to your profile
+  go_to_your_profile: Gå till din profil
+  #en: have_an_account: "Have an account? "
+  have_an_account: "Har du ett konto? "
+  #en: have_something_to_contribute: Have something to contribute?
+  have_something_to_contribute: Har du något att bidra med?
+  #en: help: Help
+  help: Hjälp
+  #en: home: Home
+  home: Hem
+  #en: homepage_banner_download_msg: Download it now and get started
+  homepage_banner_download_msg: Download it now and get started
+  #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
+  homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
+  #en: homepage_banner_signup_prompt: See how it works
+  homepage_banner_signup_prompt: Se hur det fungerar
+  #en: homepage_features: Homepage Features
+  homepage_features: Funktioner på hemsidan
+  #en: hours_ago: hours ago
+  hours_ago: timmar sedan
+  #en: how_do_i_do_that: How do I do that?
+  how_do_i_do_that: Hur gör jag det?
+  #en: html: HTML
+  html: HTML
+  #en: image: Image
+  image: Bild
+  #en: image_url: Image URL
+  image_url: Bild-adress
+  #en: in_the_forums: In the forums
+  in_the_forums: I forumen
+  #en: in_your_favorites: In your favorites
+  in_your_favorites: I dina favoriter
+  #en: inactive: inactive
+  inactive: ej aktiv
+  #en: inbox: Inbox
+  inbox: Inkorg
+  #en: insert: Insert
+  insert: Lägg till
+  #en: invite_a_friend: Invite a friend
+  invite_a_friend: Bjud in en kompis
+  #en: invitation_was_successfully_created: Invitation was successfully created.
+  invitation_was_successfully_created: Inbjudan är skapad.
+  #en: invite_message: The more people you invite the better %{site} becomes.
+  invite_message: "Ju fler du bjuder in desto bättre blir %{site}."
+  #en: invite_some_customers: Invite some customers!
+  invite_some_customers: Bjud in några kunder!
+  #en: invite_your_friends_to_join: Invite Your Friends To Join!
+  invite_your_friends_to_join: Bjud in dina kompisar!
+  #en: invited_friends: invited some friends to join!
+  invited_friends: bjöd in några kompisar!
+  #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
+  is_great_check_it_out_youll_love_it: "är toppen, kolla in den!"
+  #en: items: Items
+  items: Items
+  #en: joined: joined
+  joined: blev medlem för
+  #en: just_uploading_one_photo: Just uploading one photo?
+  just_uploading_one_photo: Är det bara en bild som ska laddas upp?
+  #en: keywords: Keywords
+  keywords: Nyckelord
+  #en: large: Large
+  large: Stor
+  #en: last: last
+  last: sist
+  #en: last_post: Last post
+  last_post: Senaste inlägg
+  #en: left_a_comment: "left a comment:"
+  left_a_comment: "lämnade en kommentar:"
+  #en: links: Links
+  links: Länkar
+  #en: listing_invitations: Listing invitations
+  listing_invitations: Listar inbjudningar
+  #en: loading_images: Loading images
+  loading_images: Laddar bilder
+  #en: loading_recent_content: Loading recent content...
+  loading_recent_content: Laddar aktuellt innehåll...
+  #en: location: Location
+  location: Plats
+  #en: log_in: Log in
+  log_in: Logga in
+  #en: log_in_to_create_a_new_topic: Log in to create a new topic
+  log_in_to_create_a_new_topic: Logga in för att skapa ett nytt ämne
+  #en: log_in_to_leave_a_comment: Log in to leave a comment
+  log_in_to_leave_a_comment: Logga in för att lämna en kommentar
+  #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
+  log_in_to_reply_to_this_topic: Logga in för att svara på detta ämne
+  #en: log_in_to_site: Log in to %{site}
+  log_in_to_site: "Logga in på %{site}"
+  #en: log_in_to_vote: Log in to vote
+  log_in_to_vote: Logga in för att rösta
+  #en: log_in_to_your: Log in to your
+  log_in_to_your: Logga in på din
+  #en: log_out: Log Out
+  log_out: Logga ut
+  #en: log_out_of_your: Log out of your 
+  log_out_of_your: Logga ut från din
+  #en: logged_in: "Logged in:"
+  logged_in: "Inloggad som:"
+  #en: logged_into_the_site: logged into the site
+  logged_into_the_site: logged in på sajten
+  #en: login: Login
+  login: Inloggning
+  #en: logins: Logins
+  logins: Inloggningar
+  #en: location: Location
+  location: Plats
+  #en: locked: Locked
+  locked: Låst
+  #en: locked2: (locked)
+  locked2: (låst)
+  #en: look_for_a_message_from: "Look for a message from: %{from}"
+  look_for_a_message_from: "Sök efter ett meddelande från: %{from}"
+  #en: looking_for_most_x: Looking for %{link}
+  looking_for_most_x: "Sökte du %{link}"
+  #en: make_moderator: Make moderator
+  make_moderator: Gör till moderator
+  #en: make_my_profile_public: Make my profile public
+  make_my_profile_public: Gör min profil offentlig
+  #en: make_this_my_profile_photo: Make this my profile photo
+  make_this_my_profile_photo: Gör detta till min profilbild
+  #en: male: Male
+  male: Man
+  #en: manage_my: "Manage my:"
+  manage_my: "Hantera min:"
+  #en: manage_posts: Manage Posts
+  manage_posts: Hantera inlägg
+  #en: medium: Medium
+  medium: Medium
+  #en: megabyte_upload_limit: megabyte upload limit
+  megabyte_upload_limit: megabyte uppladdningsgräns
+  #en: megabyte_upload_limit_per_file: megabyte upload limit per file.
+  megabyte_upload_limit_per_file: megabyte per fil är uppladdningsgränsen.
+  #en: member: Member
+  member: Medlem
+  #en: members: Members
+  members: Medlemmar
+  #en: member_since: Member since
+  member_since: Medlem sedan
+  #en: message: Message
+  message: Meddelande
+  #en: messages_deleted: Messages deleted
+  messages_deleted: Meddelandet borttaget
+  #en: messages_sent: Messages sent!
+  messages_sent: Meddelanden skickade!
+  #en: message_sent: Message sent!
+  message_sent: Meddelandet skickat!
+  #en: metro_area: Metro Area
+  metro_area: Storstadsområde
+  #en: metro_areas: Metro Areas
+  metro_areas: Storstadsområden
+  #en: metro_area_was_successfully_created: MetroArea was successfully created.
+  metro_area_was_successfully_created: Storstadsområde skapat.
+  #en: minutes_ago: minutes ago
+  minutes_ago: minuter sedan
+  #en: moderator: Moderator
+  moderator: Moderator
+  #en: moderators: Moderators
+  moderators: Moderatorer
+  #en: monitored_topics: Monitored Topics
+  monitored_topics: Övervakade ämnen
+  #en: month: Month
+  month: Månad
+  #en: more: More
+  more: Mer
+  #en: more_about_you: More about you
+  more_about_you: Mer om dig
+  #en: most_active_1_month: Most active (1 month)
+  most_active_1_month: Mest aktiv (1 månad)
+  #en: my_details: My Details
+  my_details: Mina detaljer
+  #en: my_friends: My Friends
+  my_friends: Mina kompisar
+  #en: my_profile: My Profile
+  my_profile: Min profil
+  #en: my_recent_comments: My recent comments
+  my_recent_comments: Mina senaste kommentarer
+  #en: my_tags: My tags
+  my_tags: Mina etiketter
+  #en: name: Name
+  name: Namn
+  #en: navigation_menu_text: Navigation menu text
+  navigation_menu_text: Text i navigeringsmenyn
+  #en: need_some_help_contact_our: Need some help?  Check out our
+  need_some_help_contact_our: Behöver du hjälp? Kolla in vår
+  #en: need_to_contact_us: Need to contact us?
+  need_to_contact_us: Vill du komma i kontakt med oss?
+  #en: new_ad: New Ad
+  new_ad: Ny annons
+  #en: new_category: New category
+  new_category: Ny kategori
+  #en: new_clipping: New clipping
+  new_clipping: Nytt urklipp
+  #en: new_event: New Event
+  new_event: Ny händelse
+  #en: new_forum: New Forum
+  new_forum: Nytt forum
+  #en: new_homepage_feature: New Homepage Feature
+  new_homepage_feature: Ny hemsidesfunktion
+  #en: new_invitation: New Invitation
+  new_invitation: Ny inbjudan
+  #en: new_invitation_from: New Invitation from
+  new_invitation_from: Ny inbjudan från
+  #en: new_metro_area: New Metro Area
+  new_metro_area: Nytt storstadsområde
+  #en: new_photo: New photo.
+  new_photo: Ny bild.
+  #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
+  new_photos_multiple_uploader: "Nya bilder &raquo; multiuppladdare"
+  #en: new_post: New post
+  new_post: Nytt inlägg
+  #en: new_post_for_category: New %{category}
+  new_post_for_category: "Ny %{category}"
+  #en: new_post_text: New Post text
+  new_post_text: Text i nytt inlägg
+  #en: new_today: New today
+  new_today: Nytt idag
+  #en: new_topic: New topic
+  new_topic: Nytt ämne
+  #en: new_yesterday: New yesterday
+  new_yesterday: Nytt igår
+  #en: next: next
+  next: nästa
+  #en: no_activation_email: No activation e-mail?
+  no_activation_email: Inget aktiveringsmejl?
+  #en: no_comments_found: Sorry, we couldn't find any comments for that %{type}
+  no_comments_found: "Tyvärr kunde vi inte hitta några kommentarer för %{type}"
+  #en: no_images_uploaded_yet: No images uploaded yet.
+  no_images_uploaded_yet: Inga bilder uppladdade ännu.
+  #en: no_messages: no messages
+  no_messages: inga meddelanden
+  #en: no_profile_photo: "No profile photo?"
+  no_profile_photo: "Ingen profilbild?"
+  #en: no_recent_activity: No recent activity
+  no_recent_activity: Ingen aktivitet nyligen
+  #en: no_tags: No tags
+  no_tags: Inga etiketter
+  #en: notify_email_updates: Notify of community news
+  notify_email_updates: Meddela mig om community-nyheter
+  #en: notify_me_of_follow_ups_via_email: Notify me of follow ups via e-mail  
+  notify_me_of_follow_ups_via_email: Meddela mig om meddelanden via mejl
+  #en: notify_of_comments: Notify of comments
+  notify_of_comments: Meddela om kommentarer
+  #en: notify_of_friend_requests: Notify of friend requests
+  notify_of_friend_requests: Meddela om kompisförfrågan
+  #en: of: of
+  of: av
+  #en: on_commentable: On
+  on_commentable: 'På'
+  #en: one_day_ago: one day ago
+  one_day_ago: en dag sedan
+  #en: one_hour_ago: one hour ago
+  one_hour_ago: en timme sedan
+  #en: one_minute_ago: one minute ago
+  one_minute_ago: en minut sedan
+  #en: optional: optional
+  optional: ej obligatoriskt
+  #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
+  optional_keywords_describing_this_post_separated_by_commas: "nyckelord som beskriver det här inlägget, kommaseparerade"
+  #en: or: or
+  or: eller
+  #en: page: page
+  page: sida
+  #en: pages: "Pages:"
+  pages: "Sidor:"
+  #en: password: Password
+  password: Lösenord
+  #en: pending: pending
+  pending: utestående
+  #en: pending_friendships: Pending Friendships
+  pending_friendships: Utestående kompisförfrågningar
+  #en: people: People
+  people: Personer
+  #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends
+  people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: Personer som registrerar sig via din inbjudan kommer automatiskt att läggas till som dina kompisar.
+  #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
+  people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: Personer som registrerar sig via din inbjudan kommer automatiskt att läggas till som dina kompisar på
+  #en: permanently_delete_this_clipping: Permanently delete this clipping?
+  permanently_delete_this_clipping: Ta bort det här urklippet permanent?
+  #en: permanently_delete_this_event: Permanently delete this event?
+  permanently_delete_this_event: Ta bort den här händelsen permanenet?
+  #en: permanently_delete_this_post: Permanently delete this post?
+  permanently_delete_this_post: Ta bort det här inlägget permanent?
+  #en: photo_comments: Photo Comments
+  photo_comments: Bildkommentarer
+  #en: photo_from_user: "Photo from %{user}"
+  photo_from_user: "Bild från %{user}"
+  #en: photo_description_from_user: "%{photo_description} from %{user}"
+  photo_description_from_user: "%{photo_description} från %{user}"
+  #en: photo_message: Your profile photo represents you on %{site}. You can change it later.
+  photo_message: "Din profilbild representerar dig på %{site}. Du kan ändra den senare."
+  #en: photo_was_successfully_created: Photo was successfully created.
+  photo_was_successfully_created: Bilden skapad.
+  #en: photos: Photos
+  photos: bilder
+  #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
+  photos_should_be_x_pixels: Bilder ska vara 300x300 pixlar (punkter).
+  #en: photo_tip_1: Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.
+  photo_tip_1: "Bilder visar världen hur kreativ du är. Välj ut dina bästa bilder och ge dem bra titlar och beskrivningar."
+  #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
+  photo_tip_2: Använd etiketter för att organisera dina bilder. Separera etiketterna med kommatecken.
+  #en: please_log_in: Please log in.
+  please_log_in: Logga in, är du snäll.
+  #en: please_post_something_at_least: Please post something at least...
+  please_post_something_at_least: Skriv något åtminstone...
+  #en: plural_posts: "%{count} posts"
+  plural_posts: "%{count} inlägg"
+  #en: popular: Popular
+  popular: Populära
+  #en: popular_catgory: Popular %{name}
+  popular_category: "Populära %{name}"
+  #en: popular_posts: Popular Posts
+  popular_posts: Populära inlägg
+  #en: popular_posts_on: Popular Posts on
+  popular_posts_on: Populära inlägg om
+  #en: popular_polls: Popular Polls
+  popular_polls: Populära omröstningar
+  #en position: Position
+  position: Position
+  #en: post: Post
+  post: Inlägg
+  #en: posts: Posts
+  posts: Inlägg
+  #en: post_a_new_topic: Post a new topic
+  post_a_new_topic: Skapa ett nytt ämne
+  #en: post_an_event: Post an event
+  post_an_event: Posta en händelse
+  #en: post_created_for_category: Your '%{category}' post was successfully created.
+  post_created_for_category: "Ditt inlägg i kategorin '%{category}' har skapats."
+  #en: post_comments: Post Comments
+  post_comments: Kommentarer på inlägget
+  #en: postal_code: "Postal code:"
+  postal_code: "Postnr:"
+  #en: posting_tips: "Posting Tips"
+  posting_tips: "Tips för inlägg"
+  #en: post_topic: Post topic
+  post_topic: Spara ämne
+  #en: posts_photos_and_bookmarks: %{name} posts, photos and bookmarks
+  posts_photos_and_bookmarks: "%{name} inlägg, bilder och bokmärken"
+  #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
+  posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Inlägg sparade som 'utkast' kommer inte att synas i din blogg förrän du publicerat dem."
+  #en: preview: Preview
+  preview: Förhandsgranska
+  #en: previewing_your_post: Previewing your post
+  previewing_your_post: Förhandsgranska inlägget
+  #en: previous: previous
+  previous: förra
+  #en: print: Print
+  print: Skriv ut
+  #en: print_this_story: "Print this story"
+  print_this_story: "Skriv ut den här berättelsen"
+  #en: profile: Profile
+  profile: Profil
+  #en: profile_comments: Profile Comments
+  profile_comments: Profilkommentarer
+  #en: profile_photo: Profile Photo
+  profile_photo: Profilbild
+  #en: profile_photo_change: Change profile photo
+  profile_photo_change: Ändra profilbild
+  #en: profile_photo_crop: Crop profile photo
+  profile_photo_crop: Beskär profilbild
+  #en: profile_privacy: Profile Privacy
+  profile_privacy: Profilskydd
+  #en: profile_views: profile views
+  profile_views: profilvisningar
+  #en: pros: Pros
+  pros: Proffs
+  #en: published: Published
+  published: Publicerad
+  #en: question: Question
+  question: Fråga
+  #en: re_type_your_password_to_confirm: "Re-type your password to confirm:"
+  re_type_your_password_to_confirm: "Ange ditt lösenord igen för att bekräfta:"
+  #en: read_more: read more
+  read_more: läs mer
+  #en: recent: Recent
+  recent: Senaste
+  #en: recent_activity: Recent activity
+  recent_activity: Senaste aktiviteten
+  #en: recent_blog_posts: Recent Blog Posts
+  recent_blog_posts: Senaste blogginläggen
+  #en: recent_posts: Recent Posts
+  recent_posts: Senaste inläggen
+  #en: recommended_posts: Recommended Posts
+  recommended_posts: Rekommenderade inlägg
+  #en: related_clippings_all_members: Related Clippings (all members)
+  related_clippings_all_members: Relaterade urklipp (från alla medlemmar)
+  #en: related_photos_all_members: Related Photos (all members)
+  related_photos_all_members: Relaterade bilder (från alla medlemmar)
+  #en: related_posts: Related Posts
+  related_posts: Relaterade inlägg
+  #en: related_tags: Related Tags
+  related_tags: Relaterade etiketter
+  #en: remember_me: Remember me
+  remember_me: Kom ihåg mig
+  #en: remember_you_can_always_change_this_later: Remember, you can always change this later.
+  remember_you_can_always_change_this_later: "Kom ihåg att du kan ändra på detta senare."
+  #en: remove_moderator: Remove moderator
+  remove_moderator: Ta bort moderator
+  #en: remove_this_friend: Remove this friend
+  remove_this_friend: Ta bort den här kompisen
+  #en: reply: Reply
+  reply: Svara
+  #en: reply_to_topic: Reply
+  reply_to_topic: Svara
+  #en: request_friendship: Request friendship
+  request_friendship: Skicka kompisförfrågan
+  #en: requested: requested
+  requested: förfrågan skickad
+  #en: requested_friendship_with: Requested friendship with
+  requested_friendship_with: Har skickat kompisförfrågan till
+  #en: requesting_friendship: Requesting friendship
+  requesting_friendship: Kompisförfrågan
+  #en: required: required
+  required: obligatorisk
+  #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
+  required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Obligatoriskt: Vi skickar ett bekräftelsemejl till adressen du anger.)"
+  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least %{min_age} years old to sign up.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Obligatoriskt: Du måste vara minst %{min_age} år gammal för att registrera dig.)"
+  #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
+  required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Obligatoriskt: Ditt användarnamn får inte innehålla siffror, blanksteg eller specialtecken.)"
+  #en: resend_my_activation_e_mail: Resend my activation e-mail
+  resend_my_activation_e_mail: Skicka om mitt aktiveringsmejl
+  #en: resend_your_activation_e_mail: Resend your activation e-mail
+  resend_your_activation_e_mail: Skicka om ditt aktiveringsmejl
+  #en: reset_my_password: Reset my password
+  reset_my_password: Återställ mitt lösenord
+  #en: rss: RSS
+  rss: RSS
+  #en: rss_feed: RSS feed
+  rss_feed: RSS-feed
+  #en: run: Run
+  run: Kör
+  #en: save: Save
+  save: Spara
+  #en: save_and_continue_to_step_three: Save, and continue to step three
+  save_and_continue_to_step_three: "Spara och fortsätt till steg tre"
+  #en: save_changes: Save Changes
+  save_changes: Spara ändringar
+  #en: save_forum: Save Forum
+  save_forum: Spara forum
+  #en: save_post_as: "Save post as:"
+  save_post_as: "Spara inlägg som:"
+  #en: save_reply: Save reply
+  save_reply: Spara svar
+  #en: says: says
+  says: säger
+  #en: sb_post_was_deleted: Post '%{title}' was deleted.
+  sb_post_was_deleted: "Inlägget '%{title}' togs bort."
+  #en: scrapbook: Scrapbook
+  scrapbook: Klippbok
+  #en: search: Search
+  search: Sök
+  #en: search_users: Search Users
+  search_users: Sök användare
+  #en: searching_for: Searching for
+  searching_for: Söker efter
+  #en: see_all: SEE ALL
+  see_all: VISA ALLA
+  #en: see_all_activity: See all activity
+  see_all_activity: Visa all aktivitet
+  #en: see_all_events: See all events
+  see_all_events: Visa alla händelser
+  #en: see_you_back_here_in_a_short_while: See you back here in a short while.
+  see_you_back_here_in_a_short_while: Vi ses snart igen.
+  #en: select_images_to_upload: Select Images to Upload
+  select_images_to_upload: Välj bilder som ska laddas upp
+  #en: send: "Send"
+  send: "Skicka"
+  #en: send_invitations: Send Invitations!
+  send_invitations: Skicka inbjudningar!
+  #en: send_me_my_username: Send me my username
+  send_me_my_username: Skicka mitt användarnamn till mig
+  #en: sent_messages: Sent messages
+  sent_messages: Skickade meddelanden
+  #en: send_this_story_to_friends: Send this message to friends
+  send_this_story_to_friends: Skicka det här meddelandet till kompisar
+  #en: service_could_not_be_deleted: Service could not be deleted.
+  service_could_not_be_deleted: Tjänsten kunde inte tas bort.
+  #en: share_the_love: Share the love
+  share_the_love: Dela på nöjet
+  #en: show: Show
+  show: Visa
+  #en: show_category: %{category}
+  show_category: "%{category}"
+  #en: show_this_photo: Show this photo
+  show_this_photo: Visa den här bilden
+  #en: showing: Showing
+  showing: Visar
+  #en: showing_ad: Showing Ad
+  showing_ad: Visar annons
+  #en: showing_categories: Showing categories
+  showing_categories: Visar kategorier
+  #en: showing_metro_area_details: Showing Metro Area Details
+  showing_metro_area_details: Visar detaljer för storstadsområden
+  #en: showing_users: Showing users
+  showing_users: Visar användare
+  #en: sign_up: Sign Up!
+  sign_up: Registrea dig!
+  #en: sign_up_for_an_account: Sign up for an account.
+  sign_up_for_an_account: Registrera dig för att få ett användarkonto.
+  #en: sign_up_for_a_: Sign up for a
+  sign_up_for_a_: Registrera dig för 
+  #en: sign_up_reason_1: Some reason to sign up
+  sign_up_reason_1: En anledning att registrera sig
+  #en: sign_up_reason_2: Some reason to sign up
+  sign_up_reason_2: En till anledning att registrera sig
+  #en: singular_posts: "%{count} post"
+  singular_posts: "%{count} inlägg"
+  #en: site_members: "%{site} members"
+  site_members: "Medlemmar hos %{site}"
+  #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
+  skip_this_and_go_to_your_profile: Hoppa över det här och gå till din profil
+  #en: skip_this_step: Skip this step
+  skip_this_step: Hoppa över detta steg
+  #en: small_profile: "%{user} doesn't have much here yet. Stay tuned."
+  small_profile: "%{user} har inte lagt upp mycket här än. Kom snart tillbaka."
+  #en: sorry_there_was_an_error: "Sorry, there was an error."
+  sorry_there_was_an_error: "Tyvärr blev det ett fel."
+  #en: sorry_there_was_an_error_requesting_friendship: "Sorry, there was an error requesting friendship."
+  sorry_there_was_an_error_requesting_friendship: "Tyvärr blev det ett fel vid kompisförfrågan."
+  #en: sorry_there_was_an_error_uploading_the_photo: "Sorry, there was an error uploading the photo."
+  sorry_there_was_an_error_uploading_the_photo: "Tyvärr blev det ett fel vid uppladdningen av bilden."
+  #en: sorry_we_dont_recognize_that_email_address: "Sorry. We don't recognize that email address."
+  sorry_we_dont_recognize_that_email_address: "Tyvärr, vi känner inte igen din mejladress."
+  #en: spread_the_word: Spread the word
+  spread_the_word: Sprid budskapet
+  #en: start_date: Start date
+  start_date: Startdatum
+  #en: start_time: Start time
+  start_time: Starttid
+  #en: started_a_topic: "started a topic:"
+  started_a_topic: "startade ett ämne:"
+  #en: state: State
+  state: Stat
+  #en: statistics: Statistics
+  statistics: Statistik
+  #en: stats: Stats
+  stats: Stats
+  #en: status: Status
+  status: Status
+  #en: sticky: Sticky
+  sticky: Klibbig
+  #en: subject: Subject
+  subject: Ämne
+  #en: subscribe_to: Subscribe to
+  subscribe_to: Prenumerera på
+  #en: tag_does_not_exists: The tag %{tag} does not exist
+  tag_does_not_exists: "Etiketten %{tag} finns inte"
+  #en: tag_name: Tag name
+  tag_name: Etikettnamn
+  #en: tag_yourself: tag yourself
+  tag_yourself: sätt en etikett på dig själv
+  #en: tags: Tags
+  tags: Etiketter
+  #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
+  tags_are_comma_separated_keywords_that_describe_you: Etiketter är kommaseparerade nyckelord som beskriver dig.
+  #en: tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Tags are keywords you use to organize your clippings. Separate multiple tags with commas.
+  tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Etiketter är nyckelord som använder för att organisera dina urklipp. För att ange flera etiketter så separerar du dem med kommatecken.
+  #en: tags_are_keywords_you_use_to_organize_your_photos: Tags are keywords you use to organize your photos. Separate multiple tags with commas.
+  tags_are_keywords_you_use_to_organize_your_photos: Etiketter är nyckelord som använder för att organisera dina bilder. För att ange flera etiketter så separerar du dem med kommatecken.
+  #en: tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Tags are one-word descriptors user assign to blog posts, pictures and clippings on
+  tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Etiketter är ettordsbeskrivningar som användare kan sätta på blogginlägg, bilder och urklipp på
+  #en: tagged: tagged
+  tagged: taggad
+  #en: tags_page: tags page
+  tags_page: etikettsidan
+  #en: thanks_for_activating_your_account: Thanks for activating your account!
+  thanks_for_activating_your_account: Tack för att du aktiverat ditt användarkonto!
+  #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
+  thanks_youre_now_logged_in: Tack! Nu är du inloggad.
+  #en: the_comment_was_deleted: The comment was deleted.
+  the_comment_was_deleted: Kommentaren är borttagen.
+  #en: the_community_team: "The %{community} team"
+  the_community_team: "%{community}-teamet"
+  #en: the_friendship_was_accepted: The friendship was accepted.
+  the_friendship_was_accepted: Kompisförfrågan bekräftad.
+  #en: the_friendship_was_denied: The friendship was denied.
+  the_friendship_was_denied: Kompisförfrågan fick avslag.
+  #en: the_more_people_you_invite_the_better: The more people you invite, the better
+  the_more_people_you_invite_the_better: "Ju fler du bjuder in desto bättre"
+  #en: the_service_was_deleted: The service was deleted.
+  the_service_was_deleted: Tjänsten är borttagen.
+  #en: the_slideshow_is_disabled: The slideshow is disabled.
+  the_slideshow_is_disabled: Bildspelet är avstängt.
+  #en: the_user_was_activated: The user was activated
+  the_user_was_activated: Användarkontot är aktiverat
+  #en: the_user_was_deleted: The user was deleted.
+  the_user_was_deleted: Användaren är borttagen.
+  #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
+  this_forum_is_still_getting_started: "Det här forumet håller på att dra igång... här är några inlägg som kanske väcker några tankar..."
+  #en: this_friendship_is_pending: This Friendship is pending.
+  this_friendship_is_pending: Kompisförfrågan är inte besvarad ännu.
+  #en: this_is_your_dashboard: This is your dashboard.
+  this_is_your_dashboard: Här är din översikt.
+  #en: this_month_best: "This month's Best"
+  this_month_best: "Månadens bästa"
+  #en: this_story_is_awesome: "This story is awesome!"
+  this_story_is_awesome: "Berättelsen är fantastisk!"
+  #en: this_topic_is_locked: This topic is locked.
+  this_topic_is_locked: Ämnet är låst
+  #en: private_user_profile_message: This user's profile is not public. You'll need to create an account and log in to access it.
+  private_user_profile_message: Den här användarens profil är inte offentlig. Du måste skapa ett användarkonto och logga in för att kunna se den.
+  #en: thumb: Thumb
+  thumb: Miniatyr
+  #en: time_constrained: Time constrained
+  time_constrained: Tidsbegränsad
+  #en: tips: "Tips:"
+  tips: "Tips:"
+  #en: title: Title
+  title: Titel
+  #en: title_required: "Title (required)"
+  title_required: "Titel (obligatorisk)"
+  #en: to: To
+  to: Till
+  #en: to_accept: to accept
+  to_accept: för att acceptera
+  #en: to_get_recommended_content_on_your_dashboard: to start getting recommended content on your dashboard.
+  to_get_recommended_content_on_your_dashboard: för att börja få rekommenderat innehåll till din översikt.
+  #en: to_get_started_with_clippings_first: To get started with clippings, first 
+  to_get_started_with_clippings_first: "För att komma igång med urklipp kan du "
+  #en: to_start_adding_friends: To start adding friends, you can
+  to_start_adding_friends: "För att lägga till kompisar kan du"
+  #en: to_you: You
+  to_you: Du
+  #en: toggle: Toggle
+  toggle: Växla
+  #en_ top_pros: Top Pros
+  top_pros: Proffs på topplistan
+  #en: top_writers: Top Writers
+  top_writers: Författare på topplistan
+  #en: topic: Topics
+  topic: Ämne
+  #en: topics: Topics
+  topics: Ämnen
+  #en: topic_deleted: Topic '%{topic}' was deleted.
+  topic_deleted: "Ämnet '%{topic}' är borttaget."
+  #en: topic_locked: Topic locked
+  topic_locked: Ämnet låst
+  #en: total_users: Total users
+  total_users: Totalt antal användare
+  #en: total_votes: Total votes
+  total_votes: Totalt antal röster
+  #en: type_a_username: Type a username
+  type_a_username: Ange ett användarnamn
+  #en: type_your_password: "Type your password:"
+  type_your_password: "Ange ditt lösenord:"
+  #en: uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: "Uh oh. We couldn't log you in with the username and password you entered. Try again?"
+  uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: Vi kunde tyvärr inte logga in dig med det användarnamn och lösenord som du angav. Försök igen?
+  #en: un_favorite_this: Un-favorite this
+  un_favorite_this: Ta bort detta från favoritlistan
+  #en: unactivated_users: Unactivated users
+  unactivated_users: Ej aktiverade användare
+  #en: uncategorized: Uncategorized
+  uncategorized: Ej kategoriserad
+  #en: update: Update
+  update: Uppdatera
+  #en: update_profile_and_tag_yourself: Update your profile and tag yourself
+  update_profile_and_tag_yourself: Uppdatera din profil och sätt en etikett på dig själv
+  #en: update_your_profile: update your profile
+  update_your_profile: uppdatera din profil
+  #en: updated_at: Updated at
+  updated_at: Uppdaterades
+  #en: updated_their_profile: updated their profile
+  updated_their_profile: uppdaterade sin profil
+  #en: upload_an_image_for_your_post: Upload an image for your post
+  upload_an_image_for_your_post: Ladda upp en bild till ditt inlägg
+  #en: upload_and_continue_to_step_two: Upload, and continue to step two
+  upload_and_continue_to_step_two: "Ladda upp och fortsätt till steg två"
+  #en: uploaded_a_photo: "uploaded a photo:"
+  uploaded_a_photo: "laddade upp en bild:"
+  #en: uploaded_by: uploaded by
+  uploaded_by: uppladdad av
+  #en: url: Url
+  url: Webbadress
+  #en: user_e_mail: "User e-mail:"
+  user_e_mail: "Mejladress:"
+  #en: username: Username
+  username: Användarnamn
+  #en: user: User
+  user: Användare
+  #en: users: Users
+  users: Användare
+  #en: users_blog: "%{user}'s Blog"
+  users_blog: "%{user}s blogg"
+  #en: user_clippings: Clippings of %{user}
+  user_clippings: "Urklipp från %{user}"
+  #en: user_login: User login
+  user_login: Användarnamn
+  #en: users_online: Users online
+  users_online: Inloggade användare
+  #en: users_photos: "%{user}'s Photos"
+  users_photos: "%{user}s bilder"
+  #en: user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
+  user_vendor_offer: "<p>Beskriv produkten eller tjänsten du har att erbjuda:<ul><li> Berätta vad du gör</li><li> Förklara varför du älskar ditt jobb</li><li> Hur kan man komma i kontakt med dig? Vad är din webbadress?</li></ul></p>"
+  #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
+  user_bio_help: "<p>Din beskrivning är det första man ser av din profil. Den kan t.ex. innehålla:<ul><li> Beskriv din känsla för stil</li><li> Beskriv vad du känner starkt för i livet.</li><li> Vad var det senaste du köpte åt en kompis?</li></ul></p>"
+  #en: view: View
+  view: Vy
+  #en: views_count: Views
+  view_count: Visningar
+  #en: view_all_my_clippings: View all my clippings
+  view_all_my_clippings: Visa alla mina urklipp
+  #en: view_all_my_friend_requests: View all my friend requests
+  view_all_my_friend_requests: Visa alla mina kompisförfrågningar
+  #en: view_all_my_photos: View all my photos
+  view_all_my_photos: Visa alla mina bilder
+  #en: view_comment: View Comment
+  view_comment: Visa kommentar
+  #en: view_my: "View my:"
+  view_my: "Visa min:"
+  #en: view_my_blog: View my blog
+  view_my_blog: Visa min blogg
+  #en: view_profile: View profile
+  view_profile: Visa profil
+  #en: voice: voice
+  voice: Person
+  #en: voices: Voices
+  voices: Personer
+  #en_ vote: Vote
+  vote: Rösta
+  #en: vote_now: Vote now!
+  vote_now: Rösta nu!
+  #en: votes: votes
+  votes: röster
+  #en: waiting_for: Waiting for
+  waiting_for: Väntar på
+  #en: walkthrough_complete: You've completed the %{site} walk-through. Now you can continue exploring!
+  walkthrough_complete: "Du är nu klar med genomgången av %{site}. Nu kan du fortsätta utforska på egen hand!"
+  #en: want_to_be_popular: Want to be popular?
+  want_to_be_popular: Vill du bli populär?
+  #en: want_to_list_your_services_on: Want to list your services on
+  want_to_list_your_services_on: Vill du lista dina tjänster på
+  #en: want_to_post_in_this_category: Want to post in this category?
+  want_to_post_in_this_category: Vill du göra ett inlägg i den här kategorin?
+  #en: want_to_upload_multiple_files_at_once: Want to upload multiple files at once?
+  want_to_upload_multiple_files_at_once: Vill du ladda upp flera filer på en gång?
+  #en: watch: Watch
+  watch: Håll koll
+  #en: watch_ing: ing
+  watch_ing: ...
+  #en: watch_topic: Watch topic
+  watch_topic: Håll koll på ämnet
+  #en: watching_topic: Watching topic
+  watching_topic: Håller koll på ämnet
+  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: %{email}"
+  we_just_sent_an_e_mail_to: "Vi skickade just ett mejl till: %{email}"
+  #en: we_need_you: We need you
+  we_need_you: Vi behöver dig
+  #en: welcome_message: Welcome! %{login_link} or %{signup_link}
+  welcome_message: "Välkommen! %{login_link} eller %{signup_link}"
+  #en: what_are_tags: 'What are "Tags"?'
+  what_are_tags: 'Vad är "Etiketter"?'
+  #en: what_is_popular: What's Popular
+  what_is_popular: Det populäraste
+  #en: whats_fresh: What's fresh
+  whats_fresh: Det senaste
+  #en: whats_hot: What's Hot
+  whats_hot: Det hetaste
+  #en: whats_popular: What's Popular
+  whats_popular: Det mest populära
+  #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
+  when_checked_your_profile_will_be_visible_to_anyone: "När denna är markerad kan alla se din profil."
+  #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
+  when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "När denna inte är markerad kan din profil bara visas för personer som är inloggad på "
+  #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to %{site}
+  when_you_see_an_image_you_like_on_the_web: "Om du ser en bild på nätet som du tycker om, klicka på bokmärket så sparas det på %{site}"
+  #en: why_sign_up: Why Sign up?
+  why_sign_up: Varför registrera sig?
+  #en: write_a_blog_post: Write a blog post!
+  write_a_blog_post: Skriv ett blogginlägg!
+  #en: write_a_message: "Write a message:"
+  write_a_message: "Skriv ett meddelande:"
+  #en: write_new_post: Write a '%{category}' post
+  write_new_post: "Skriv ett inlägg under '%{category}'"
+  #en: wrote_a_post: "wrote a post:"
+  wrote_a_post: "skrev ett inlägg:"
+  #en: yesterday: Yesterday
+  yesterday: Igår
+  #en: you_are_editing_your_account: You are editing your account.
+  you_are_editing_your_account: Du redigerar ditt konto.
+  #en: you_are_editing_your_profile: "You're editing your profile."
+  you_are_editing_your_profile: "Du redigerar din profil."
+  #en: you_can_browse_all_content_and_users_on: You can browse all content and users on
+  you_can_browse_all_content_and_users_on: DU kan bläddra bland innehåll och användare på
+  #en: you_cant_delete_that_user: You can't delete that user.
+  you_cant_delete_that_user: Du kan inte ta bort den användaren.
+  #en: you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
+  you_can_select_up_to_5_files_at_a_time: Du kan markera upp till fem filer åt gången.
+  #en: you_could_tag_yourself: You could tag yourself
+  you_could_tag_yourself: Sätt en etikett på dig själv
+  #en: you_have: You have
+  you_have: Du har
+  #en: you_have_already_voted: You have already voted.
+  you_have_already_voted: Du har redan röstat.
+  #en: you_have_created: You have created
+  you_have_created: Du har skapat
+  #en: you_have_left: You have left
+  you_have_left: Du har kvar
+  #en: you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
+  you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: Du har inga urklipp. Använd bokmärkesfunktionen till höger om du vill lägga till några.
+  #en: you_have_no_network_activity_yet: You have no network activity yet.
+  you_have_no_network_activity_yet: Det är ingen aktivitet i ditt nätverk ännu.
+  #en: you_have_pending_friendship_requests: You have pending friendship requests.
+  you_have_pending_friendship_requests: Du har utestående kompisförfrågningar.
+  #en: you_have_uploaded: You have uploaded
+  you_have_uploaded: Du har laddat upp
+  #en: you_have_written: You have written
+  you_have_written: Du har skrivit
+  #en: you_last_logged_in_on: You last logged in on
+  you_last_logged_in_on: Du loggade senast in
+  #en: you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "You may want to use your company logo, or a photo of one of your products. "
+  you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "Använd din företagslogo eller logon för någon av dina produkter. "
+  #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
+  you_must_vote_to_see_the_results: Du måste rösta för att se resultaten.
+  #en: your_about_text_goes_here: Your About Text Goes Here
+  your_about_text_goes_here: Din "Om"-text ska in här
+  #en: your_changes_were_saved: Your changes were saved.
+  your_changes_were_saved: Dina förändringar är sparade.
+  #en: your_password_reset_instructions_have_been_emailed_to_you: Your password has been reset and emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: Ditt lösenord är återställt och är mejlat till dig.
+  #en: your_post_was_deleted: Your post was deleted.
+  your_post_was_deleted: Ditt inlägg är borttaget.
+  #en: your_post_was_successfully_created: Your post was successfully created.
+  your_post_was_successfully_created: Ditt inlägg har skapats.
+  #en: your_profile_photo: "Your profile photo:"
+  your_profile_photo: "Din profilbild:"
+  #en: your_username_was_emailed_to_you: Your username was emailed to you.
+  your_username_was_emailed_to_you: Ditt användarnamn är mejlat till dig.
+  #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
+  youve_been_logged_out_hope_you_come_back_soon: Du är nu utloggad. Välkommen tillbaka snart igen!
+  #en: zippostal_code: "ZIP/Postal code:"
+  zippostal_code: "Postnr:"
+
+
+  # Did not get translation plugin working so adding missing localization keys here
+
+  greeting: "Välkommen %{name}"
+  admin_pages: "Sidor"
+  administer_events: "Administrera event"
+  allow_rsvp: "Tillåt svar"
+  anonymous: "Anonym"
+  are_attending_this_event: "ska närvara på evenemanget"
+  is_attending_this_event: "ska närvara på evenemanget"
+  are_you_sure_you_want_to_delete_this_page: "Är du säker på att du vill ta bort den här sidan?"
+  attendees: "Deltagare"
+  cache_cleared: "Cachen har rensats"
+  cache_clear_link: "Rensa cachen"
+  cancel_and_go_back_to_pages: "avbryt och gå tillbaks till sidor"
+  cannot_rsvp_for_an_event_that_has_already_happened: "Kan inte svara till ett event som redan har varit."
+  check_out_this_story_on: "Kolla in den här storyn på %{site}"
+  clipping_from_user: "Urklipp av %{user}"
+  clone: "Klona"
+  clippings_tagged: "Urklipp taggade"
+  commentable_type: "Kommenterbar typ (Inlägg, Användare, etc.)"
+  commentable_id: "Kommenterbart ID"
+  comment_notifications_off: "Notifieringar om kommentarer är för närvarande avstängda."
+  comment_author_email_required: "Obligatorisk, kommer inte visas på sidan."
+  comment_web_site_label: "Websida (inkludera http://)"
+  comment_spam_error: "Kommentaren har flaggats som spam. Se till att du inte använder spammiga ord eller länkar och försök igen"
+  comments_count:
+    one: "En kommentar"
+    other: "%{count} kommentarer"
+  comments_deleted: "Kommentarer borttagna"
+  comment_unsubscribe_succeeded: "Tack, vi har nu tagit bort din prenumeration på nofifieringar på den här kommentaren."
+  delete_selected_mark_as_spam: "Markera som spam"
+  delete_this_page: "Ta bort den här sidan"
+  edit_page: "Redigera sidan"
+  edit_rsvp_for: "Redigera svar för"
+  editing_tag: "Redigera tag"
+  email: "Email"
+  end_time: "Sluttid"
+  event_details: "Evenemangsinformation"
+  event_comments: "Kommentarer om evenemanget"
+  event_does_not_allow_rsvp: "Detta evenemang tillåter inte att man OSAr."
+  expert_in: "expert på"
+  favorited: "favorit"
+  post_found:
+    one: "1 inlägg funnet"
+    other: "%{count} inlägg funna"
+  friendship_request_accepted: "Vänförfrågan accepterad!"
+  get_started: "Kom igång:"
+  invite_some_friends: "Bjud in några vänner!"
+  tell_us_about_yourself: "Berätta om dig själv"
+  upload_a_profile_photo: "Ladda upp en profilbild"
+  has_commented_on_something_that_you_also_commented_on: "%{user} har kommenterat en %{item} som du också kommenterat."
+  has_posted_in_a_thread_you_are_monitoring: "%{user} has skrivit i en tråd som du övervakar."
+  has_something_to_say_to_you_on: "%{user} har något att berätta för dig på %{site}!"
+  his: "hans"
+  her: "hennes"
+  homepage_feature_created: "Hemsidesfunktion skapad"
+  items_tagged: "Object taggade med"
+  joined_the_site: "gick med i %{site}"
+  most_recent: "senaste"
+  most_popular: "mest populära"
+  make_page_public: "Gör den här sidan publik"
+  manage: "Hantera:"
+  manage_pages: "Hantera sidor"
+  map_it: "Lägg in det på kartan!"
+  read: "läst"
+  unread: "oläst"
+  unread_messages:
+    one: "1 oläst meddelande"
+    other: "%{count} olästa meddelanden"
+  my_account: "Mitt konto"
+  my_blog: "Min blogg"
+  my_blog_posts: "Mina inlägg"
+  my_clippings: "Mina urklipp"
+  my_photos: "Mina foton"
+  new_page: "Ny sida"
+  no_clippings_yet: "Inga urklipp ännu."
+  number_of_attendees: "Antal deltagare (dig inkluderat)"
+  optional_keywords_describing_this_clipping_separated_by_commas: "valfria nyckelord som beskriver det här urklippet, separerade med komma"
+  optional_keywords_describing_this_forum_separated_by_commas: "valfria nyckelord som beskriver det här forumet, separerade med komma"
+  optional_keywords_describing_this_photo_separated_by_commas: "valfria nyckelord som beskriver det här fotot, separerade med komma"
+  optional_keywords_describing_this_topic_separated_by_commas: "valfria nyckelord som beskriver det här ämnet, separerade med komma"
+  true: "sant"
+  false: "falskt"
+  page_not_found: "Sidan du försökte visa har flyttats eller existerar inte längre."
+  page_not_public_warning: "Den här sidan är inte publik, du måste skapa ett konto och logga in för att få access till den"
+  page_was_successfully_created: "Sidan har skapats."
+  page_was_successfully_deleted: "Sidan har tagits bort."
+  page_was_successfully_updated: "Sidan har uppdaterats."
+  page_tips: "Sidor är ett bra ställe att sätta statiskt innehåll som du inte vill lägga i en blog eller i ett forum."
+  plural_photos:
+    one: "1 Foto"
+    other: "%{count} Foton"
+  photos_tagged: "Foton taggade med"
+  please_activate_your_new_account: "Vänligen aktivera ditt nya %{site}-konto"
+  posted_an_event: "la upp ett evenemang:"
+  upcoming_events: "Kommande evenemang"
+  past_events: "Tidigare evenemang"
+  posts_tagged: "Inlägg taggade med"
+  pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: "Sidor sparade med statusen 'utkast' kommer inte visas på sidan förrän du publicerar dom."
+  public: "Publik"
+  recent_photos: "Nya foton"
+  retract_rsvp: "Ta tillbaka svar"
+  rsvp_for: "Svar för"
+  rsvped_for_an_event: "OSAde till ett event:"
+  rsvp: "Svar"
+  rsvps: "Svar"
+  save_page_as: "Spara sida som:"
+  see_all_recent_posts: "Se alla nya inlägg"
+  select_your_city: "Välj din stad"
+  send_comment_notifications: "Skicka notifieringar om kommentarer?"
+  send_me_a_message: "Skicka ett meddelande till mig"
+  sent_you_a_private_message: "%{user} har sänt ett privat meddelande till dig!"
+  sharethis: "ShareThis"
+  subscribe_events_instructions: "Håll dig uppdaterad om evenemang med hjälp av ditt favoritprogram (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) eller onlinetjänst (Google Calendar, AirSet, iScrybe, etc.)."
+  taggings: "Taggningar"
+  tag_was_successfully_updated: "Taggen har uppdaterats"
+  tag_was_successfully_deleted: "Taggen har tagits bort"
+  the_team: "Teamet bakom %{site} <%{email}>"
+  the_user_was_deactivated: "Användaren har deaktiverats"
+  their: "deras"
+  update_rsvp: "Uppdatera svar"
+  user_information: "%{site} Användarinformation"
+  users_profile: "%{user}'s profil"
+  users_tagged: "Användare taggade med"
+  vendor_avatar_hint: "Du kanske vill använda ditt företags logga, ett foto eller en av dina produkter. "
+  what_is_site: "Vad är %{site}"
+  when: "När"
+  where: "Var"
+  when_checked_this_page_will_be_visible_to_anyone: "När denna ruta är ikryssad, kommer sidan vara synlig för alla."
+  when_checked_users_will_be_able_to_rsvp_for_this_event: "När denna ruta är ikryssad, kommer inloggade användare att kunna OSA till eventet."
+  when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: "När rutan inte är ikryssad, kommer sidan bara vara synlig för dom som är inloggade på"
+  would_like_to_be_friends_with_you_on: "%{user} vill bli vän med dig på %{site}!"
+  would_like_you_to_join: "%{user} skulle vilja att du gick med i %{site}!"
+  you_have_friends:
+    one: "Du har 1 vän."
+    other: "Du har %{count} vänner."
+  you_have_added_clippings:
+    one: "Du har lagt till 1 urklipp."
+    other: "Du har lagt till %{count} urklipp."
+  you_have_already_rsvped_for_this_event: "Du har redan OSAt till det här evenemanget."
+  you_have_left_comments:
+    one: "Du har skrivit 1 kommentar."
+    other: "Du har skrivit %{count} kommentarer."
+  you_have_uploaded_photos:
+    one: "Du har laddat upp 1 foto."
+    other: "Du har laddat upp %{count} foton."
+  you_have_written_blog_posts:
+    one: "Du har skrivit 1 inlägg."
+    other: "Du har skrivit %{count} inlägg."
+  your_account_has_been_activated: "Ditt %{site}-konto har aktiverats!"
+  your_faq_text_goes_here: "Din FAQ text sätter du här."
+  your_rsvp_has_been_retracted: "Ditt svar har tagits tillbaka."
+  your_rsvp_was_successfully_created: "Ditt svar har lagrats."
+  your_rsvp_was_successfully_updated: "Ditt svar har uppdaterats."
+  photo_manager: "Fotohanterare"
+  album: "Album"
+  albums: "Album"
+  album_added_photos: "Foton har lagts till i albumet"
+  album_updated: "Albumet har uppdaterats"
+  album_comments: "Albumkommentarer"
+  album_tip: "Album låter dig organisera dina foton. Dela dina erfarenheter med andra %{community_name}-användare"
+  delete_album_and_photos: "Ta bort albumet och tillhörande foton?"
+  album_was_successfully_created: "Albumet har skapats"
+  view_more: "Visa mer"
+  assign_album: "Tilldela album"
+  new_album: "Nytt album"
+  created_an_album: "Skapade ett album"
+  add_photos: "Lägg till foton"
+  view_my_album: "Visa mitt album"
+  photos_of_this_album: "Foton från det här albumet"
+  not_assigned_photos: "Foton som inte hör till något album"
+  create_and_add_photos: "Skapa och lägg till foton till det här albumet."
+  edit_and_add_photos: "Redigera och lägg till foton till det här albumet."
+  create_album: "Skapa album"
+  edit_album: "Redigera album"
+  cancel_and_go_back_to_photo_manager: "Avbryt och gå tillbaka till fotohanteraren"
+  back_to_photo_manager: "Tillbaka till fotohanteraren"

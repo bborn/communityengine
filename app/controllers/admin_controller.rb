@@ -16,41 +16,27 @@ class AdminController < BaseController
     redirect_to admin_dashboard_path and return    
   end
   
-  def contests
-    @contests = Contest.find(:all)
-
-    respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @contests.to_xml }
-    end    
-  end
-
   def events
-    @events = Event.find(:all, :order => 'start_time DESC', :page => {:current => params[:page]})
+    @events = Event.order('start_time DESC').page(params[:page])
   end
   
   def messages
     @user = current_user
-    @messages = Message.find(:all, :page => {:current => params[:page], :size => 50}, :order => 'created_at DESC')
+    @messages = Message.order('created_at DESC').page(params[:page]).per(50)
   end
   
   def users
-    cond = Caboose::EZ::Condition.new
+    @users = User.recent
+    user = User.arel_table
+
     if params['login']    
-      cond.login =~ "%#{params['login']}%"
+      @users = @users.where('`users`.login LIKE ?', "%#{params['login']}%")
     end
     if params['email']
-      cond.email =~ "%#{params['email']}%"
+      @users = @users.where('`users`.email LIKE ?', "%#{params['email']}%")
     end        
-    if params['featured']
-      cond.featured_writer == true
-    end        
-    if params['id']    
-      cond.id == params['id']
-    end
-    
-    
-    @users = User.recent.find(:all, :page => {:current => params[:page], :size => 100}, :conditions => cond.to_sql)      
+
+    @users = @users.page(params[:page]).per(100)
     
     respond_to do |format|
       format.html
@@ -62,8 +48,8 @@ class AdminController < BaseController
   
   def comments
     @search = Comment.search(params[:search])
-    @search.order ||= :descend_by_created_at        
-    @comments = @search.find(:all, :page => {:current => params[:page], :size => 100})
+    @search.meta_sort ||= 'created_at.desc'
+    @comments = @search.page(params[:page]).per(100)
   end
   
   def activate_user

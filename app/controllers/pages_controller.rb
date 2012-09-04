@@ -1,6 +1,6 @@
 class PagesController < BaseController
-  uses_tiny_mce(:only => [:new, :edit, :update, :create ]) do
-    AppConfig.default_mce_options
+  uses_tiny_mce do
+    {:only => [:new, :edit, :update, :create ], :options => configatron.default_mce_options}
   end
 
   cache_sweeper :page_sweeper, :only => [:create, :update, :destroy]
@@ -14,7 +14,7 @@ class PagesController < BaseController
   before_filter :require_moderator, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
 
   def index
-    @pages = Page.find_without_published_as(:all, :order => 'created_at DESC')
+    @pages = Page.unscoped.order('created_at DESC').page(params[:page])
   end
 
   def preview

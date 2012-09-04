@@ -4,6 +4,7 @@ class Poll < ActiveRecord::Base
   validates_presence_of :post
   has_many :votes, :dependent => :destroy
   belongs_to :post
+  attr_accessible :question
       
   def voted?(user)
     !self.votes.find_by_user_id(user.id).nil?
@@ -11,7 +12,7 @@ class Poll < ActiveRecord::Base
   
   def add_choices(choices)
     choices.each do |description|
-      choice = self.choices.build(:description => description)
+      choice = self.choices.new(:description => description)
       choice.save
     end
   end
@@ -33,12 +34,7 @@ class Poll < ActiveRecord::Base
 
   def self.find_popular_in_category(category, options = {})
     options.reverse_merge! :limit => 5
-    
-    find(:all, :order => "polls.votes_count desc", 
-      :limit => options[:limit], 
-      :include => [:post => :user],
-      :conditions => ['posts.category_id = ?', category.id]
-      )    
+    self.includes(:post).order('polls.votes_count desc').limit(options[:limit]).where('posts.category_id = ?', category.id)
   end
 
 end

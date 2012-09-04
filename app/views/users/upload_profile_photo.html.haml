@@ -1,13 +1,15 @@
-- form_tag upload_profile_photo_user_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
+-box :id => "profile_details" do
+  = form_for :avatar, :url => upload_profile_photo_user_url(@user), :method => 'put', :multipart =>true, :html => {:class => 'MainForm'} do |f|
 
-  = error_messages_for :avatar
-  -box :id => "profile_details" do
+    = error_messages_for :avatar
     %h3=:profile_photo.l
+      
     = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
     = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+
     %label
       =:choose_a_photo_for_your_profile.l
-    = file_field :avatar, :uploaded_data, :size => "20"
-    
-  %p
-    = submit_tag :save_changes.l
+    = f.file_field :photo, :size => "20"
+  
+    %p
+      = submit_tag :save_changes.l

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class ClippingImageTest < ActiveSupport::TestCase
   fixtures :clippings, :users, :roles
@@ -8,10 +8,10 @@ class ClippingImageTest < ActiveSupport::TestCase
   end
     
   def test_should_be_created
-    ci = ClippingImage.new(:attachable => clippings(:google))
-    io = ci.data_from_url('http://www.google.com/intl/en_ALL/images/logo.gif')            
-    ci.uploaded_data = io
-    assert ci.save!
+    image = ClippingImage.new(:attachable => clippings(:google))
+    io = image.data_from_url('http://www.google.com/intl/en_ALL/images/logo.gif')            
+    image.asset = io
+    assert image.save!
   end
 
 end

@@ -3,12 +3,12 @@
   
   -box do
     %h3=:search.l
-    - form_for @search, :html => {:class => "MainForm"} do |f|
+    = form_for @search, :url => ads_path, :html => {:class => "MainForm"} do |f|
 
-      = f.label :name.l
-      = f.text_field :name_begins_with
+      %label= :name.l
+      = f.text_field :name_starts_with
       
-      = f.label :location.l
+      %label= :location.l
       = f.text_field :location_contains
 
       %p= f.submit :search.l
@@ -20,12 +20,11 @@
       %h3= :ads.l
       %table{"width"=>"100%"}
         %tr
-          %th=order @search, :by => :name, :as => :name.l                    
+          %th=sort_link @search, :name, :name.l                    
           %th 
-            =order @search, :by => :published, :as => :published.l                              
-            \?
+            =sort_link @search, :published, :published.l
           %th
-            =order @search, :by => :location, :as => :location.l                              
+            =sort_link @search, :location, :location.l                              
           %th &nbsp;
 
         - for ad in @ads
@@ -38,7 +37,7 @@
               |
               = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
             
-      .pagination=paginating_links @ads if @ads.page_count > 1
+      .pagination=paginate @ads
       
       %br
       = link_to :new_ad.l, new_ad_path

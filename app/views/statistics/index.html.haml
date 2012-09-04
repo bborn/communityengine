@@ -3,7 +3,7 @@
 #yui-main
   -box :class => "yui-b main_column" do
     %h3= :statistics.l
-    = ziya_chart( activities_chart_statistics_url(:range => params[:range]), {:bgcolor => '#ffffff', :width => 600, :height => 400, :id => "Activities", :swf_path => "/plugin_assets/community_engine/charts/"} )
+
     %h3
       = :total_users.l+":"
       = @total_users
@@ -27,7 +27,7 @@
 
     %h3
       = :active.l+":"
-      = pluralize @active_users_count, :user.l, :users.l
+      = pluralize @active_users_count, :user.l
       (
       = number_to_percentage((@active_users_count/@total_users.to_f)*100, :precision => 1)
       =", 1 "+:month.l+")"
@@ -54,16 +54,3 @@
     %ul
       - @featured_writers.each do |w|
         %li= link_to w.login, statistics_user_path(w)
-
-    %h3
-      =:estimated_writers_costs_this_month.l
-    $
-    = @estimated_payment
-    \-
-    = @posts.length
-    = :posts.l
-    ($
-    = (@estimated_payment.to_i / @posts.length.to_i) rescue "0"
-    \/
-    =:post.l
-    )

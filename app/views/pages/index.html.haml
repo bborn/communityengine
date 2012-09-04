@@ -24,5 +24,11 @@
               %td
                 = link_to page.title, edit_admin_page_path(page)
                 = link_to("(#{:preview.l})", preview_admin_page_path(page), :target => '_blank') unless page.is_live?
-              %td= page.page_public ? :yes_status.l : :no_status.l
+              %td
+                -if page.is_public? 
+                  = t(:yes)
+                -else
+                  = t(:no)
               %td= page.is_live? ? link_to(:published.l, pages_path(page)) : :draft.l
+        
+      =paginate @pages

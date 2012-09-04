@@ -50,6 +50,6 @@ def create_admin_user
   end      
 end
 
-load File.join(RAILS_ROOT, 'vendor', 'plugins', 'community_engine', 'app', 'models', 'user.rb')
+load File.join(Rails.root, 'vendor', 'plugins', 'community_engine', 'app', 'models', 'user.rb')
 
 create_admin_user 

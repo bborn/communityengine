@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class ModeratorsControllerTest < ActionController::TestCase
   all_fixtures
@@ -8,7 +8,7 @@ class ModeratorsControllerTest < ActionController::TestCase
     assert users(:sam).moderator_of?(forums(:rails))
     login_as :admin
     assert_difference Moderatorship, :count, -1 do
-      delete :destroy, :user_id => users(:sam).id, :id => moderatorships(:sam_rails).id
+      delete :destroy, :forum_id => forums(:rails).id, :id => moderatorships(:sam_rails).id
     end
     assert !users(:sam).moderator_of?(forums(:rails))
   end
@@ -16,7 +16,7 @@ class ModeratorsControllerTest < ActionController::TestCase
   def test_should_only_allow_admins_to_delete_moderatorships
     login_as :sam
     assert_difference Moderatorship, :count, 0 do
-      delete :destroy, :user_id => users(:sam).id, :id => moderatorships(:sam_rails).id
+      delete :destroy, :forum_id => forums(:rails).id, :id => moderatorships(:sam_rails).id
     end
   end
 end

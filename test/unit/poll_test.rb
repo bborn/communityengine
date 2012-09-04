@@ -1,17 +1,17 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class PollTest < ActiveSupport::TestCase
 
   def test_should_be_invalid_without_question
     p = Poll.new(:question => nil)
     assert !p.valid?
-    assert p.errors.on(:question)
+    assert p.errors[:question]
   end
   
   def test_should_be_invalid_without_post
     p = Poll.new(:post => nil)
     assert !p.valid?
-    assert p.errors.on(:post)
+    assert p.errors[:post]
   end
   
   def test_should_create_poll

@@ -2,72 +2,71 @@
   = render :partial => 'shared/admin_nav'
 
   -box do
-    - form_for @search, :html => {:class => "MainForm"} do |f|
+    = form_for @search, :url => admin_comments_path, :html => {:class => "MainForm"} do |f|
     
-      = f.label :commentable_type.l
+      %label= :commentable_type.l
       = f.text_field :commentable_type_like
 
-      =f.label :commentable_id.l
-      =f.text_field :commentable_id
+      %label= :commentable_id.l
+      = f.text_field :commentable_id_equals
 
-      =f.label :email.l
-      =f.text_field :author_email_or_user_email_like
-
+      %label= :email.l
+      = f.text_field :author_email_or_user_email_like
 
       %p= f.submit :search.l
   
 
 
-- form_tag delete_selected_comments_path, :id => 'comments' do
-  #yui-main
-    -box :class => "yui-b" do
+
+#yui-main
+  .yui-b
+    -box do
       %h3
-        = AppConfig.community_name
+        = configatron.community_name
         = :comments.l
 
-      -if @comments.page_count > 1
-        .pagination= paginating_links @comments, :link_to_current_page => true
+      = paginate @comments
 
-      %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%", :style => "table-layout:fixed;"}
-        %thead
-          %tr
-            %th{:width => '30px', :colspan => '2'}
-            %th=:author.l          
-            %th{:width => "250px"}=:body_text.l
-            %th=:on_commentable.l
+      = form_tag delete_selected_comments_path, :method => :delete, :id => 'comments' do
+        %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%", :style => "table-layout:fixed;"}
+          %thead
+            %tr
+              %th{:width => '30px', :colspan => '2'}
+              %th=:author.l          
+              %th{:width => "250px"}=:body_text.l
+              %th=:on_commentable.l
 
-        %tbody
-          - @comments.each do |comment|
-            %tr{:id => "comment_#{comment.id}"}
-              %td=link_to_remote(image_tag('icons/delete.png', :plugin => 'community_engine'), {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )                                                
-              %td= check_box_tag "delete[]", comment.id
-              %td
-                .left
-                  -if comment.user
-                    = link_to h(comment.user.login), user_path(comment.user)
-                    %br
-                    %small= comment.user.email
-                  -else
-                    = link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }              
-                    %br
-                    %small=comment.author_email
-                    %br
-                    %small="(#{comment.author_url})"
-              %td{:style => 'overflow:hidden;'}
-                = comment.comment
-              %td
-                =link_to comment.commentable_name, commentable_url(comment)
-        %tfoot
-          %tr
-            %td{ :colspan => "4" }
-              -if @comments.any?
-                %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
-                %p= submit_tag :delete_selected.l              
+          %tbody
+            - @comments.each do |comment|
+              %tr{:id => "comment_#{comment.id}"}
+                %td=link_to_remote(image_tag('icons/delete.png'), {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )                                                
+                %td= check_box_tag "delete[]", comment.id
+                %td
+                  .left
+                    -if comment.user
+                      = link_to h(comment.user.login), user_path(comment.user)
+                      %br
+                      %small= comment.user.email
+                    -else
+                      = link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }              
+                      %br
+                      %small=comment.author_email
+                      %br
+                      %small="(#{comment.author_url})"
+                %td{:style => 'overflow:hidden;'}
+                  = comment.comment
+                %td
+                  =link_to comment.commentable_name, commentable_url(comment)
+          %tfoot
+            %tr
+              %td{ :colspan => "4" }
+                -if @comments.any?
+                  %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
+                  %p= submit_tag :delete_selected.l              
 
+      = paginate @comments
 
-      -if @comments.page_count > 1
-        .pagination= paginating_links @comments, :link_to_current_page => true
-
-%script{:type => 'text/javascript'}
-  var form = $('comments');
-  checkboxes = form.getInputs('checkbox');
+-content_for :end_javascript do
+  :javascript
+    var form = $('comments');
+    checkboxes = form.getInputs('checkbox');

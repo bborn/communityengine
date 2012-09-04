@@ -6,17 +6,17 @@
   -box :class => "alt first_alt" do 
     %h3=:spread_the_word.l
     %p
-      =:invite_message.l(:site => AppConfig.community_name)
+      =:invite_message.l(:site => configatron.community_name)
     %p
       =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on.l
-      = AppConfig.community_name
+      = configatron.community_name
       \.
 
 #yui-main
   .yui-b
     -box do 
       %h3=:invite_your_friends_to_join.l
-      - form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "MainForm"} ) do |f|
+      = form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "MainForm"} ) do |f|
         .right
           %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
             %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/

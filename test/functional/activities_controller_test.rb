@@ -1,11 +1,22 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class ActivitiesControllerTest < ActionController::TestCase
   fixtures :users, :categories, :posts, :comments, :roles
 
+  test "should get index" do
+    login_as :quentin
+    users(:quentin).track_activity(:updated_profile)
+        
+    get :index
+    
+    assert_response :success
+    assert assigns(:activities).any?
+    assert assigns(:popular_tags).any?
+  end
+
   def test_should_get_network
     login_as :quentin
-    get :network, :id => users(:quentin)
+    get :network, :user_id => users(:quentin).to_param
     assert_response :success
   end
   

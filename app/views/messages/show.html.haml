@@ -5,7 +5,9 @@
     -box do 
       %h3
         -if @message_thread
-          %em="#{link_to @message_thread.parent_message.sender.login, @message_thread.parent_message.sender}: "        
+          %em 
+            =link_to @message_thread.parent_message.sender.login, @message_thread.parent_message.sender
+            \: 
           =h @message_thread.parent_message.subject
         -else
           =h @message.subject
@@ -21,7 +23,9 @@
         - children = @message_thread.parent_message.children
         - children.each do |child|      
           .right=h I18n.l(child.created_at, :format => :literal_date)
-          ="<em>#{child.sender.login}</em>:"
+          %em
+            =child.sender.login
+            \:
           %br
           %pre.message_body= auto_link child.body
           %br

@@ -3,6 +3,7 @@ require 'open-uri'
 require 'pp'
 
 class BaseController < ApplicationController
+
   include AuthenticatedSystem
   include LocalizedApplication
   around_filter :set_locale  
@@ -10,20 +11,13 @@ class BaseController < ApplicationController
   helper_method :commentable_url
   before_filter :initialize_header_tabs
   before_filter :initialize_admin_tabs
+  before_filter :store_location, :except => :footer_content
 
   caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
+
   def cache_action?
     !logged_in? && controller_name.eql?('base') && params[:format].blank? 
   end  
-  
-  if AppConfig.closed_beta_mode
-    before_filter :beta_login_required, :except => [:teaser]
-  end    
-  
-  def teaser
-    redirect_to home_path and return if logged_in?
-    render :layout => 'beta'
-  end
   
   def rss_site_index
     redirect_to :controller => 'base', :action => 'site_index', :format => 'rss'
@@ -36,12 +30,12 @@ class BaseController < ApplicationController
   def site_index
     @posts = Post.find_recent
 
-    @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
+    @rss_title = "#{configatron.community_name} "+:recent_posts.l
     @rss_url = rss_url
     respond_to do |format|
       format.html { get_additional_homepage_data }
       format.rss do
-        render_rss_feed_for(@posts, { :feed => {:title => "#{AppConfig.community_name} "+:recent_posts.l, :link => recent_url},
+        render_rss_feed_for(@posts, { :feed => {:title => "#{configatron.community_name} "+:recent_posts.l, :link => recent_url},
                               :item => {:title => :title,
                                         :link =>  Proc.new {|post| user_post_url(post.user, post)},
                                          :description => :post,
@@ -67,6 +61,25 @@ class BaseController < ApplicationController
   
   def css_help
   end
+
+  protected
+  def self.uses_tiny_mce(options = {}, &block)
+    if block_given?
+      options = block.call
+    end
+    
+    new_configuration = TinyMCE::Rails.configuration.merge(options.delete(:options)).options
+    
+    # Set instance vars in the current class
+    p = Proc.new do |c|
+      configuration = c.instance_variable_get(:@tiny_mce_configuration) || {}
+
+      c.instance_variable_set(:@tiny_mce_configuration, configuration.merge(new_configuration))
+      c.instance_variable_set(:@uses_tiny_mce, true)
+    end
+
+    before_filter p, options
+  end
   
   
   private
@@ -82,7 +95,7 @@ class BaseController < ApplicationController
       if @user = User.active.find(params[:user_id] || params[:id])
         @is_current_user = (@user && @user.eql?(current_user))
         unless logged_in? || @user.profile_public?
-          flash[:error] = :this_users_profile_is_not_public_youll_need_to_create_an_account_and_log_in_to_access_it.l
+          flash[:error] = :private_user_profile_message.l
           access_denied 
         else
           return @user
@@ -101,15 +114,8 @@ class BaseController < ApplicationController
       return @user
     end
 
-    def popular_tags(limit = nil, order = ' tags.name ASC', type = nil)
-      sql = "SELECT tags.id, tags.name, count(*) AS count 
-        FROM taggings, tags 
-        WHERE tags.id = taggings.tag_id "
-      sql += " AND taggings.taggable_type = '#{type}'" unless type.nil?      
-      sql += " GROUP BY tags.id, tags.name"
-      sql += " ORDER BY #{order}"
-      sql += " LIMIT #{limit}" if limit
-      Tag.find_by_sql(sql).sort{ |a,b| a.name.downcase <=> b.name.downcase}
+    def popular_tags(limit = 20, type = nil)
+      ActsAsTaggableOn::Tag.popular(limit, type)
     end
   
 
@@ -117,7 +123,7 @@ class BaseController < ApplicationController
       @recent_clippings = Clipping.find_recent(:limit => 10)
       @recent_photos = Photo.find_recent(:limit => 10)
       @recent_comments = Comment.find_recent(:limit => 13)
-      @popular_tags = popular_tags(30, ' count DESC')
+      @popular_tags = popular_tags(30)
       @recent_activity = User.recent_activity(:size => 15, :current => 1)
     
     end
@@ -125,7 +131,7 @@ class BaseController < ApplicationController
     def get_additional_homepage_data
       @sidebar_right = true
       @homepage_features = HomepageFeature.find_features
-      @homepage_features_data = @homepage_features.collect {|f| [f.id, f.public_filename(:large) ]  }    
+      @homepage_features_data = @homepage_features.collect {|f| [f.id, f.image.url(:large) ]  }
     
       @active_users = User.find_by_activity({:limit => 5, :require_avatar => false})
       @featured_writers = User.find_featured
@@ -134,7 +140,6 @@ class BaseController < ApplicationController
     
       @topics = Topic.find(:all, :limit => 5, :order => "replied_at DESC")
 
-      @active_contest = Contest.get_active
       @popular_posts = Post.find_popular({:limit => 10})    
       @popular_polls = Poll.find_popular(:limit => 8)
     end
@@ -151,14 +156,6 @@ class BaseController < ApplicationController
         polymorphic_url(comment.commentable)+"#comment_#{comment.id}"      
       end
     end
-
-    def commentable_comments_url(commentable)
-      if commentable.owner && commentable.owner != commentable
-        "#{polymorphic_path([commentable.owner, commentable])}#comments"      
-      else
-        "#{polymorphic_path(commentable)}#comments"      
-      end    
-    end 
     
     def initialize_header_tabs
       # This hook allows plugins or host apps to easily add tabs to the header by adding to the @header_tabs array

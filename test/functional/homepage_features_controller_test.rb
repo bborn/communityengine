@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class HomepageFeaturesControllerTest < ActionController::TestCase
   fixtures :all
@@ -18,8 +18,8 @@ class HomepageFeaturesControllerTest < ActionController::TestCase
   
   def test_should_create_homepage_feature
     login_as :admin
-    assert_difference HomepageFeature, :count, 3 do
-      post :create, :homepage_feature => {:title => 'feature', :url => 'example.com', :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') } 
+    assert_difference HomepageFeature, :count, 1 do
+      post :create, :homepage_feature => {:title => 'feature', :url => 'example.com', :image => fixture_file_upload('/files/library.jpg', 'image/jpg') } 
     end
     assert_redirected_to homepage_feature_path(assigns(:homepage_feature))
   end
@@ -54,7 +54,7 @@ class HomepageFeaturesControllerTest < ActionController::TestCase
   def test_should_fail_to_update_homepage_feature
     login_as :admin
     put :update, :id => 1, :homepage_feature => { :url => nil }
-    assert assigns(:homepage_feature).errors.on(:url)
+    assert assigns(:homepage_feature).errors[:url]
     assert_response :success
   end
 

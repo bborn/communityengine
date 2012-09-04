@@ -1,7 +1,7 @@
 class SqlSessionStoreSetup < ActiveRecord::Migration
 
   # SqlSessionStore is no longer included as the default session store.
-  # If you want to use it, you'll need to install the plugin and run the appropraite migration and environment setup.
+  # If you want to use it, you'll need to install the plugin and run the appropriate migration and environment setup.
   # class Session < ActiveRecord::Base; end
   # 
   # def self.up

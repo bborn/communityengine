@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class BaseControllerTest < ActionController::TestCase
   fixtures :clippings, :users, :photos, :homepage_features, :taggings, :tags, :posts, :categories, :roles
@@ -21,11 +21,6 @@ class BaseControllerTest < ActionController::TestCase
 
   def test_should_get_footer_content
     get :footer_content
-    assert_response :success
-  end
-  
-  def test_should_get_teaser
-    get :teaser
     assert_response :success
   end
   

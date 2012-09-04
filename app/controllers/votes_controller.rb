@@ -8,7 +8,7 @@ class VotesController < BaseController
   end
   
   def create
-    @vote = @choice.votes.build(:user => current_user, :poll => @choice.poll )
+    @vote = @choice.votes.new(:user => current_user, :poll => @choice.poll )
     
     @vote.save
     respond_to do |format|

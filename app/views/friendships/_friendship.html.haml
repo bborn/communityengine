@@ -5,7 +5,9 @@
   .yui-g
     .yui-u.first
       %h2= link_to user.login, user_path(user)
-      = "#{:from.l} #{user.location}<br/>" if user.metro_area      
+      - if user.metro_area      
+        = "#{:from.l} #{user.location}"
+        %br 
       %p= friendship.friendship_status.name.l
       %p
         =:requested.l

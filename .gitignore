@@ -1,2 +1,15 @@
+.bundle/
+log/*.log
+test/testapp/db/*.sqlite3
+test/testapp/log/*.log
+Gemfile.lock
+
 .DS_Store
 *~
+.rvmrc
+test/testapp/public/system/
+coverage
+bin/
+
+pkg
+*.gem

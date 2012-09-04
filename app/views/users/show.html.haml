@@ -1,15 +1,15 @@
-- @meta = { :description => "#{@user.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
+- @meta = { :description => "#{@user.login}'s profile on #{configatron.community_name}.", :keywords => "#{@user.login}, #{@user.tags.join(", ") unless @user.tags.nil?}", :robots => configatron.robots_meta_show_content }
 - @section = @user.eql?(current_user) ? 'my_profile' : 'users'
 - @sidebar_left = true
 
 
-- if @is_current_user and @user.vendor? and (@user.offerings.empty? or @user.description.nil? )
+- if @is_current_user and @user.vendor? and @user.description.nil?
   %p
     ? Hey, you're a
-    = AppConfig.community_name
+    = configatron.community_name
     Pro! You should
     = link_to :update_your_profile.l, edit_user_path(@user)
-    \! Add your skills, contact info and Web site.
+    \! Add your contact info and Web site.
 
 
 .yui-b
@@ -20,15 +20,15 @@
     -box :id => "about_me" do
       %h3
         =:about_me.l
-      %p= @user.description
+      %p= @user.description.html_safe
 
   -box :class => 'alt', :id => 'friends' do
     %h3
       =:my_friends.l
       = link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
     %p
-      = link_to "&raquo; #{:invite_a_friend.l :site => AppConfig.community_name}", invite_user_path(@user) if @is_current_user
-      %br= link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
+      = link_to "&raquo; #{:invite_a_friend.l :site => configatron.community_name}".html_safe, invite_user_path(@user) if @is_current_user
+      %br= link_to "&raquo; #{:view_all_my_friend_requests.l} (#{@pending_friendships_count})".html_safe, pending_user_friendships_path(@user) if @is_current_user
     - @accepted_friendships.each do |user|
       =render :partial => "users/sidebar_user", :locals => {:user => user}
     -if @accepted_friendships.size > 4
@@ -45,11 +45,11 @@
               = link_to image_tag(comment.recipient.avatar_photo_url(:thumb), :alt => "#{comment.recipient.login}", :width => '50', :height => '50'), commentable_url(comment)
           %dd.fn
             - if comment.commentable.eql?(comment.recipient)
-              %strong= :to.l + ": #{link_to comment.recipient.login, commentable_url(comment)}"
+              %strong= :to.l + ": #{link_to comment.recipient.login, commentable_url(comment)}".html_safe
             - else
-              %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type.l})"
+              %strong= :on_commentable.l + ": #{link_to comment.commentable_name, commentable_url(comment)} (#{comment.commentable_type.l})".html_safe
           %dd
-            %p= "\"#{truncate_words( comment.comment, 10, '...')}\""
+            %p= truncate_words( comment.comment, 10, '...').html_safe
 
 
   - unless @photo_comments.empty?
@@ -58,12 +58,12 @@
       - @photo_comments.each do |comment|
         %dl.vcard
           %dt.photo
-            = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))
+            = link_to(image_tag((comment.user && comment.user.avatar_photo_url(:thumb) || configatron.photo.missing_thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))            
           %dd.fn= "#{comment.username}" + " " + :says.l + ":"
           %dd
-            = truncate_words(comment.comment, 10)
+            = truncate_words(comment.comment, 10).html_safe
             %br
-            = link_to "&raquo; " + :view_comment.l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
+            = link_to "&raquo; ".html_safe + :view_comment.l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
 
 #yui-main
   .yui-b
@@ -75,10 +75,10 @@
       -box :id => "photos" do
         %h3=:my_photos.l
         - @photos.each do |photo|
-          = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
+          = link_to image_tag( photo.photo.url(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
 
         %h6.all.right= link_to :view_all_my_photos.l, user_photos_path(@user)
-        = "#{link_to(:add_a_photo.l, new_user_photo_path(@user))}" if @is_current_user
+        =link_to(:add_a_photo.l, new_user_photo_path(@user)) if @is_current_user
 
     - unless @recent_posts.empty?
       -box :id => "posts" do
@@ -100,4 +100,4 @@
       = render :partial => 'comments/comment_form', :locals => {:commentable => @user}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @comments
-      %span#more_comments_links= more_user_comments_links
+      %span#more_comments_links= more_comments_links(@user)

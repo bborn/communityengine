@@ -1,0 +1,672 @@
+es-MX: 
+  date:
+    order: 
+    - :day
+    - :month
+    - :year
+    day_names: [Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    formats:
+      published_date: "%Y/%m/%d"
+      date_ago: "%b %Y"
+
+  time:
+    formats:
+      published_date: "%Y/%m/%d"      
+      time_ago: "%l:%M%p"
+    pm: PM
+    am: AM
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "creado: "
+
+  want_to_post_in_this_category: ¿Desea escribir en esta categoría?
+  unactivated_users: Usuarios no activados
+  active_users: Usuarios activos
+  popular_posts: Publicaciones Populares
+  audience: Audiencia
+  by_looking_at_the: mirando
+  title: Título
+  remember_you_can_always_change_this_later: Recuerde, usted puede cambiar esto despues.
+  new_ad: Nuevo Anúncio
+  you_can_select_up_to_5_files_at_a_time: Usted puede seleccionar hasta 5 archivos al mismo tiempo.
+  type_a_username: Escriba un nombre de usuario
+  recent: Reciente
+  author: Autor
+  minutes_ago: minutos atras
+  friendship_could_not_be_created: La amistad no pudo ser creada
+  dont_have_an_account: "¿No tienes una cuenta?"
+  birthday__gender: "Cumpleaños Y Género"
+  body: Cuerpo
+  when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: Cuando no está marcado, tu perfil será visible solo para la gente que se encuentre presente en
+  what_is_popular: Lo Popular
+  the_more_people_you_invite_the_better: Entre más gente invites, mejor
+  need_to_contact_us: ¿Necesitas contactarnos?
+  birthday: "Cumpleaños"
+  monitored_topics: Temas Monitoreados
+  delete: Eliminar
+  deactivate_tip: Desactivar su cuenta, removerá su perfil del sitio.
+  keywords: Palabras Claves
+  post_created_for_category: Su publicación de '%{category}' fué creado exitosamente.
+  confirm_password: "Confirma la Contraseña"
+  log_in_to_site: Ingresar a %{site}
+  favorited: favorito
+  to_you: a tí
+  spread_the_word: Pasa la voz
+  becomes: convierte.
+  cancel_and_go_back_to_my_posts: cancelar y volver a mis publicaciones
+  female: Mujer
+  edit_forum: Editar Foro
+  profile_photo: Foto de Perfil
+  hours_ago: horas atras
+  message_sent: "¡Mensaje enviado!"
+  deactivate_link: Haga click aquí para desactivar su cuenta
+  you_can_browse_all_content_and_users_on: Usted puede navegar todo el contenido y usuarios en
+  profile_privacy: Privacidad del Perfil
+  photos: Fotos
+  editing_clipping: Editando recorte
+  view: Vista
+  logged_in: "Ingresado:"
+  cancel_and_go_back_to_my_photos: cancelar y regresar a mis fotos
+  voices: Voces
+  manage_my: "Administrar mi:"
+  location: Unicación
+  metro_areas: Ciudades
+  photo_tip_1: Las fotos muestran al mundo tu creatividad. Escoge las mejores, y dales buenos títulos y descripciones.
+  find_out_where_to_be_and_when_to_be_there: Descubre cuando y donde estar.
+  add_comment: "Añadir Comentario"
+  photo_tip_2: Utiliza las etiquetas para organizar tus fotos. Separalas con comas.
+  welcome_message: Bienvenido! %{login_link} o %{signup_link}
+  see_all_activity: Ver toda la actividad
+  banner_subtitle_required: "Subtítulo del Anúncio (requerido):"
+  click_here: click aquí
+  friendship_request_detail: Detalle de petición de amistad
+  created_at: Creado
+  showing_categories: Mostrando categorias
+  show: Mostrar
+  comment_could_not_be_deleted: No se pudo borrar el comentario.
+  date_created: Fecha Creada
+  gender: Género
+  loading_recent_content: Cargando contenido reciente ...
+  estimated_total_for_this_month: Total estimado para este mes
+  cancel: cancelar
+  account_activation_error: "Activación de cuenta falló. Tal vez ya está activa. Intenta conectarte o manda un correo electrónico a %{email} para obtener ayuda."
+  more_about_you: Más sobre tí
+  email_addresses: Direcciones de Correo Electrónico
+  blog_posts: "Publicaciones de la blog"
+  admin: Administrador
+  create_a_clipping_: Crear un recorte
+  this_month_best: Lo Mejor del Mes
+  posts: Publicaciones
+  click_the_activation_link_in_the_e_mail_to_log_in: "Haz click en el enlace de activación en el correo electrónico para entrar."
+  sent_messages: Mensajes Enviados
+  active_users: Usuarios Activos
+  birthday_gender: Cumpleaños & Género
+  friends: Amigos
+  new_post: Nueva publicación
+  added_a_clipping: "añadió un recorte:"
+  assume_id: "Asumir la Identidad"
+  url: Url
+  profile_comments: Comentarios del Perfil
+  editing_metro_area: Editando Ciudad
+  users: Usuarios
+  post_an_event: Publicar un evento
+  friend: amigo
+  you_have_pending_friendship_requests: Usted tiene solicitudes de amistad pendientes.
+  user_clippings: Recortes de %{user}
+  thanks_youre_now_logged_in: ¡Gracias! Ha sido ingresado.
+  start_date: Fecha de inicio
+  ad_was_successfully_created: El anuncio se ha creado correctamente.
+  edit_your_user_profile: ¿Editar su perfil de usuario?
+  edit_topic: Editar Tema
+  click_here_to_retrieve_it: "Haz click aquí para recuperarlo."
+  recent_posts: Publicaciones Recientes
+  email_this_story_to_friends: Mandar por E-mail esta historia a tus amigos
+  click_to_accept_it: ¡Haz click para aceptar!
+  permanently_delete_this_clipping: ¿Desea eliminar permanentemente este recorte?
+  medium: Mediano
+  the_user_was_activated: El usuario fué activado
+  sticky: Importante
+  comment_was_successfully_created: "El comentario se creó satisfactoriamente."
+  comma_separated: (separado por comas)
+  back_to_my_photos: Regresar a mis fotos
+  custom_friendly_local: costumbre, amistoso, local
+  new_event: Nuevo Evento
+  favorites: Favorites
+  select_images_to_upload: Seleccionar Imagenes a Subir
+  previous: previo
+  enter_e_mail_addresses: "Entra la dirección de correo electrónico"
+  date_published: Fecha Publicada
+  loading_images: Cargando imagenes
+  user: Usuario
+  updated_at: Actualizado
+  reset_my_password: Restaurar mi password
+  month: Mes
+  events: Eventos
+  log_in_to_your: Ingresar a tu
+  editing_photo: Editando foto
+  email_to_friends: E-mail a amigos
+  you_are_editing_your_profile: Estas editando tu perfil.
+  title_required: Título (requerido)
+  searching_for: Buscando
+  save_post_as: "Guardar publicación como:"
+  homepage_banner_signup_prompt: Ver como funciona
+  forum: Foro
+  estimated_writers_costs_this_month: Costos estimados de escritores este mes
+  upload_and_continue_to_step_two: Subir, y continuar al paso dos
+  the_slideshow_is_disabled: El visor de diapositivas está deshabilitado.
+  previewing_your_post: Vista previa de su publicación
+  accepted: aceptado
+  drag_the_bookmarklet: Arrastre el bookmarklet %{site}-Me! a su barra de herramientas de favoritos.
+  invitation_was_successfully_created: La invitación fué creada exitosamente.
+  filename: Nombre de archivo
+  says: dice
+  e_mail_notification: "Notificación de correo electrónico"
+  are_you_sure_you_want_to_delete_this_photo: ¿Está seguro que desea eliminar esta foto??
+  all_photos_tagged: Todas las fotos marcadas con la etiqueta %{tag_name}
+  event_was_successfully_created: "El evento se creó con éxito"
+  new_photos_multiple_uploader: Nuevas Fotos &raquo; Subir Archivos Multiples
+  delete_this_post_forever: "¿Suprimir esta publicación para siempre?"
+  vote: Votar
+  related_photos_all_members: Fotos Relacionadas (todos los miembros)
+  end: fin
+  view_all_my_friend_requests: Ver todas mis solicitudes de amistad
+  the_service_was_deleted: El servicio fué eliminado.
+  all_clippings_tagged: Todos los recortes marcados con la etiqueta %{tag_name}
+  delete_this_forum: Suprimir este foro
+  e_mail: "Correo electrónico"
+  log_out_of_your: Salir de su
+  you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: No tienes recortes. Usa el bookmarklet a la derecha para agregar algunos.
+  yesterday: Ayer
+  waiting_for: Esperando por
+  tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Las Etiquetas son palabras clave que usas para organizar tus recortes. Separa multiples etiquetas con comas.
+  print_this_story: Imprimir esta historia
+  invite_your_friends_to_join: Invita a tus amigos a unirse al sitio!
+  blog: "Blog"
+  we_just_sent_an_e_mail_to: "Enviamos un e-mail a: %{email}"
+  resend_my_activation_e_mail: Re-enviar mi e-mail de activación
+  click_on_an_image_below_to_clip_it: Haz click en una imágen para recortarla.
+  cancel_and_go_back_to: "cancelar, y volver atrás"
+  accept_this_request: Aceptar esta petición
+  browse_all_members: Ver todos los miembros
+  login: Usuario
+  new_today: Nuevo Hoy
+  uploaded_a_photo: "subiste una foto:"
+  status: Estatus
+  show_this_photo: Mostrar esta foto
+  run: Correr
+  you_have_no_network_activity_yet: Usted no tiene actividad de red aún.
+  you_have_already_voted: Usted ya ha votado.
+  write_a_blog_post: Escribe una publicación para tu blog!
+  post_topic: Publicar Tema
+  accept: Aceptar
+  inbox: Bandeja de Entrada
+  member_since: Miembro desde
+  please_post_something_at_least: Por favor publica algo! ...
+  we_need_you: Te necesitamos
+  showing: Mostrando
+  assume_user_id: Asumir la identidad de este usuario
+  delete_post: "Eliminar publicación"
+  when_checked_your_profile_will_be_visible_to_anyone: Cuando está activado, su perfil es visible a todos.
+  private_user_profile_message: El perfil de este usuario no es público. usted necesita crear una cuenta e ingrsar para poder verlo.
+  state: Estado
+  singular_posts: "%{count} publicación"
+  your_post_was_deleted: Su publicación fue eliminada.
+  votes: votos
+  to_get_recommended_content_on_your_dashboard: para empezar a recibir contenido recomendado en su panel.
+  editing_ad: Editando anuncio
+  activate: Activar
+  topic_deleted: El tema '%{topic}' fué eliminado.
+  top_pros: Mejores Profesionales
+  editing_post: "Editando publicación"
+  deactivate_completed: Gracias. Tu cuenta ha sido desactivada y has salido del sitio.
+  ad_was_successfully_updated: El anuncio se ha actualizado correctamente.
+  write_a_message: "Escribe tu mensaje:"
+  thumb: Muestra
+  preview: Vista Previa
+  look_for_a_message_from: "Busca un mensaje de: %{from}"
+  friendship_requested: Se pidió la amistad de %{friend}.
+  photo_was_successfully_created: Foto creada exitosamente.
+  no_recent_activity: No hay actividad reciente
+  write_new_post: Escribir una poublicación sobre '%{category}'
+  watch_ing: ando
+  get_started_tell_us_about_yourself: "¡Iniciate!: Cuentanos sobre tí"
+  back_to_all_statistics: Regresar a todas las estadísticas
+  are_you_sure_you_want_to_permanently_delete_this_user: "¿Estás seguro de querer eliminar permanentemente a este usuario?"
+  click_here_to_sign_up_for_an_account_and_enter: Haz click aquí para registrarte y entrar
+  male: Hombre
+  inactive: inactivo
+  please_log_in: Por favor ingresa.
+  users_blog: "Blog de %{user}"
+  photo_message: Tu foto de perfil te representa en %{site}. Puedes cambiarla más tarde.
+  create_new_forum: Crear Nuevo Foro
+  to_start_adding_friends: Para empezar a añadir amigos, puedes
+  subscribe_to: Suscribirse a
+  search: Buscar
+  comments: Comentarios
+  community_tagline: "¡Prueba CommunityEngine!"
+  plural_posts: "%{count} publicaciones"
+  in_the_forums: En los foros
+  your_changes_were_saved: Tus cambios han sido guardados.
+  thanks_for_activating_your_account: !Gracias por activar su cuenta!
+  tags_are_keywords_you_use_to_organize_your_photos: Las Etiquetas son palabras clave que usas para organizar tus fotos. Separa multiples etiquetas con comas.
+  started_a_topic: "iniciaste un tema:"
+  in_your_favorites: En tus favoritos
+  member: Miembro
+  pending: pendiente
+  update_your_profile: actualiza tu perfil
+  tags_page: página de etiquetas
+  sorry_there_was_an_error_uploading_the_photo: Lo lamentamos, ocurrió un error subiendo la foto.
+  deactivate_confirmation: ¿Está seguro que deseas desactivar tu cuenta?
+  no_images_uploaded_yet: No hay imágenes aún.
+  new_post_text: Texto de la nueva Publicación
+  uncategorized: Sin Categorizar
+  the_user_was_deleted: El usuario fue eliminado.
+  feel_free_to_embed_images_or_videos: Puedes incluir imágenes o vídeos.
+  choose_a_photo_to_upload: "Elige una foto para subir:"
+  messages_deleted: Mensajes eliminados
+  make_my_profile_public: Hacer público mi perfil
+  showing_users: Mostrando usuarios
+  showing_metro_area_details: Mostrando Detalles de Ciudad
+  pages: "Páginas:"
+  dashboard: Panel de Control
+  deny: Denegar
+  optional: opcional
+  admin_dashboard: Panel de Control del Administrador
+  banner_title_required: "Título del Anúncio (required):"
+  email_signup_thanks: "¡Gracias por registrarte! Deberías recibir la confirmación de un correo electrónico dentro de poco en %{email}"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Requerido: debes tener mínimo %{min_age} años para registarte.)"
+  create_a_clipping: Crear un Recorte
+  activation_email_not_sent_message: El e-mail de activación no pudo ser enviado. ¿Tal vez el usuario ya ha sido activado?
+  post_a_new_topic: Publicar un nuevo Tema
+  image: Imagen
+  stats: Estadísticas
+  statistics: Estadísticas
+  new_homepage_feature: Nuevo Block de Página de Inicio
+  create_a_post: "Crear una publicación"
+  clipping_was_successfully_created: "El recorte se creó satisfactoriamente."
+  walkthrough_complete: Ha completado la mini-gira por el sitio. ¡Ahora puedes explorar por tu cuenta!
+  topic: Temas
+  delete_selected: Eliminar Seleccionados
+  close_this_message: Cierra este mensaje
+  found: encontrado
+  vote_now: Vota ahora!
+  this_is_your_dashboard: Este es tu panel de control.
+  drag_this_to_your_bookmarks_toolbar: Arrastra este bookmarklet a tu barra de favoritos
+  delete_this_topic_forever: "¿Eliminar este tema para siempre?"
+  clippings_let_you_to_save_cool_images_from_around_the_web: Los recortes le dejan guardar imagenes de toda la Web.
+  you_last_logged_in_on: Ingresaste la última vez el 
+  moderator: Moderador
+  your_password_reset_instructions_have_been_emailed_to_you: Tu password ha sido reiniciado y enviado por correo a tu e-mail.
+  to_get_started_with_clippings_first: Para iniciar con tus recortes, primero
+  sorry_we_dont_recognize_that_email_address: Lo sentimos. No reconocemos ese e-mail.
+  recent_activity: Actividad Reciente
+  permanently_delete_this_post: ¿Eliminar permanentemente esta publicación?
+  get_popular: Hazte Popular.
+  for_more_information_on_tags_check_out_the: Para más información sobre etiquetas, ve el
+  save_reply: Guardar Respuesta
+  comma_separated_keywords_that_describe_you: Palabras clave separadas por coma que te describen.
+  country: País
+  edit_your_account_settings_instead: "¿Deseas editar tus opciones de la cuenta?"
+  from: De
+  related_tags: Etiquetas Relacionadas
+  edit_profile: Editar perfil
+  watch_topic: Ver Tema
+  user_login: Nombre de Usuario
+  re_type_your_password_to_confirm: "Re-escribe tu password para confirmar:"
+  denied: denegado
+  comment_save_error: "No se pudo guardar tu comentario. %{error}"
+  send: Enviar
+  left_a_comment: "dejó un comentario:"
+  have_an_account: "¿Tienes una cuenta? "
+  you_cant_delete_that_user: No puede eliminar ese usuario.
+  username: Nombre de Usuario
+  my_profile: Mi Perfil
+  view_all_my_clippings: Ver todos mis recortes
+  service_could_not_be_deleted: El servicio no pudo ser eliminado.
+  read_more: leer mas
+  you_are_editing_your_account: Ested está editando su cuenta.
+  tag_does_not_exists: La etiqueta %{tag} no existe
+  password: Contraseña
+  are_you_sure_you_want_to_permanently_delete_this_comment: ¿Está seguro que desea eliminar permanentemente este comentario?
+  the_comment_was_deleted: El comentario fué suprimido.
+  cancel_and_go_back_to_all_features: cancelar y regresar a todos los bloques
+  enter_your_email_address: "Ingresa tu dirección de correo electrónico"
+  editing_category: "Editando categoría"
+  ads: Anuncio
+  you_have_uploaded: Has subido
+  user_e_mail: "E-mail del usuario:"
+  rss: RSS
+  requested_friendship_with: Se pidió la amistad de
+  an_error_occurred: "Ocurrió un error"
+  links: Enlaces
+  add_from_my_address_book: Agregar desde mi libreta de direcciones
+  you_have: Tu tienes
+  sb_post_was_deleted: La publicación '%{title}' fué eliminada.
+  requested: pedido
+  moderators: Moderadores
+  error: Error!
+  html: HTML
+  invited_friends: invitó amigos a unirse!
+  begin: iniciar
+  featured_writer: Escritor Destacado
+  see_all: VER TODO
+  reply_to_topic: Responder
+  homepage_banner_download_msg: Descargalo ahora e inicia
+  photo_comments: Comentarios de Foto
+  end_required: fin (requerido)
+  accepted_friendships: Amistades Aceptadas
+  this_story_is_awesome: ¡Buena Historia!
+  related_posts: Publicaciones Relacionadas
+  add_a_poll: "Añadir una encuesta"
+  cancel_and_go_back_to_my_clippings: cancelar y regresar a mis recortes
+  insert: Insertar
+  log_out: Salir
+  post: Publicación
+  name: Nombre
+  find_an_expert: Buscar un Experto
+  comments_count: comentarios %{count} %{count}
+  view_all_my_photos: Ver todas mis fotos
+  tags_are_comma_separated_keywords_that_describe_you: Las etiquetas son palabras clave separadas por comas que te describen.
+  posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Publicaciones guardadas como 'borrador' no blog hasta que las publiques.
+  favorite_this: Hacer Favorito
+  go: Ir
+  navigation_menu_text: Texto del menú de navegación
+  account: cuenta
+  view_my: "Ver mi:"
+  search_users: Buscar Usuarios
+  requesting_friendship: Solicitando amistad
+  get_started_upload_a_profile_photo: "Inicia: Sube una foto a tu perfil"
+  comment_character_limit: "(límite de 2000 caracteres)"
+  tag_yourself: etiquetate
+  profile: Perfil
+  edit_this_event: Editar este evento
+  log_in_to_create_a_new_topic: Ingresar para crear un nuevo tema
+  edit_post: "Editar Publicación"
+  watch: Observar
+  sorry_there_was_an_error_requesting_friendship: Lo sentimos, ocurrió en la solicitud de amistad.
+  see_all_events: Ver todos los eventos
+  frequency: Frecuencia
+  homepage_banner_msg: CommunityEngine es la mejor forma de is de cero a 100 en un momento
+  get_help_from_someone_who_knows: Obtén ayuda de alguien que sabe
+  tags: Etiquetas
+  about_site: Acerca de %{site}
+  one_minute_ago: hace un minuto
+  request_friendship: Solicitar amistad
+  remove_this_friend: Eliminar este amigo
+  end_tome: Tiempo final
+  body_text: Texto del Cuerpo
+  log_in_to_vote: Ingresa para votar
+  sorry_there_was_an_error: Lo sentimos, ocurrió un error.
+  compose: Escribir
+  body_text_required: Texto Principal (requerido)
+  back: Regresar
+  just_uploading_one_photo: ¿Subiendo solo una foto?
+  clippings_are_a_way_to_save_images_you_like_from_around_the_web: Los recortes son una forma de guardar imagenes que te gusten de la Web
+  new_photo: Nueva foto.
+  by: por
+  last: último
+  zippostal_code: "Código Postal:"
+  my_recent_comments: Mis comentarios recientes
+  editing_homepage_feature: Editango Bloque de Página Inicial
+  edit_event: Editar evento
+  about_me: "Acerca de Mí"
+  go_check_your_e_mail: ¡Ve a checar tu e-mail!
+  edit: Editar
+  people: Gente
+  help: Ayuda
+  you_have_written: Haz escrito
+  frequently_asked_questions: Preguntas Frecuentes
+  my_details: Mis Detalles
+  locked: Cerrado
+  your_username_was_emailed_to_you: Tu nombre de usuario ha sido enviado por e-mail.
+  sign_up_reason_1: Alguna razón para registrarse
+  published: Publicado
+  profile_views: Vistas de perfil
+  posting_tips: Consejos para tus Publicaciones
+  homepage_features: Bloques de Página de Inicio
+  click_here_to_view_as_a_list: Haz click aquí para ver como lista
+  choices: Opciones
+  view_count: Vistas
+  users_online: Usuarios en línea
+  sign_up_reason_2: Alguna razón para regsitrarseSome reason to sign up
+  actions: Acciones
+  edit_this_photo_details: Editar los detalles de esta foto
+  add_a_photo: "Añadir una foto"
+  create: Crear
+  want_to_be_popular: ¿Quieres ser popular?
+  see_you_back_here_in_a_short_while: Te esperamos pronto.
+  save_changes: Guardar Cambios
+  categories: "Categorías"
+  update_profile_and_tag_yourself: Actualiza tu perfil y etiquetate a ti mismo
+  topics: Temas
+  you_could_tag_yourself: Puedes etiquetarte tu mismo
+  update: Actualizar
+  type_your_password: "Escribe tu contraseña:"
+  sign_up: ¡Registrate!
+  go2: Ir
+  new_clipping: Nuevo recorte
+  messages_sent: ¡Mensajes enviados!
+  voice: voz
+  forums: Foros
+  new_forum: Nuevo Foro
+  popular_posts_on: Publicaciones Populares en
+  optional_keywords_describing_this_post_separated_by_commas: palabras clave opcionales describiendo esta publicación, separadas por comas
+  whats_hot: Lo Mejor
+  new_invitation: Nueva Invitación
+  explore_site: Explora %{site}
+  users_photos: "Fotos de %{user}"
+  time_constrained: Restringido por Tiempo
+  tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Las etiquetas son descripciones de una sola palabra que los usuarios asignan a las publicaciones de su blog, fotos y recortes en
+  small_profile: "%{user} no tiene mucho aquí aún. ¡Espera un poco más y ponte atento!."
+  all_users_tagged: Todos los usuarios marcados con la etiqueta %{tag_name}
+  create_an_account: Crear una cuenta
+  days_ago: dias atras
+  notify_email_updates: Email de Noticias de la Comunidad
+  faq_section: Seccion de Preguntas Frecuentes
+  last_post: Última publicación
+  you_must_vote_to_see_the_results: Debe votar para ver los resultados.
+  more: Más
+  all_posts_tagged: Todas las publicaciones marcadas con la etiqueta %{tag_name}
+  end_date: Fecha final
+  assume_this_users_id: "Asumir esta identificación de usuario"
+  whats_popular: Lo Popular
+  all_tags: Todas las etiquetas
+  from2: De
+  already_have_an_account: "¿Ya tienes una cuenta?"
+  category_was_successfully_created: "La categoría se creó satisfactoriamente."
+  subject: Asunto
+  question: Pregunta
+  destroy: Destruir
+  activity_from_your_network: Actividad de tu red
+  advertise: Anunciarse
+  no_comments_found: Lo sentimos, no encontramos ningún comentario sobre %{type}
+  send_invitations: ¡Enviar Invitaciones!
+  rss_feed: RSS feed
+  page: página
+  find_experts: Encontrar Expertos
+  metro_area: Ciudad
+  my_friends: Mis Amigos
+  go_to_your_clippings_page_to_get_started: Ir a tu página de recortes, para iniciar.
+  forgot_your_username: ¿Olvidaste tu nombre de usuario?
+  people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: Quienes se registren usando tu invitación serán automaticamente agrgados como tus amigos en
+  the_friendship_was_accepted: La solicitud de amistad fué aceptada.
+  get_started_invite_some_friends: "Inicia: ¡Invita algunos amigos!"
+  new_invitation_from: Nueva invitación de
+  how_do_i_do_that: ¿Como hago eso?
+  metro_area_was_successfully_created: Ciudad añadida exitosamente.
+  this_topic_is_locked: Este tema esta cerrado.
+  edit_account: Editar cuenta
+  forgot_your_password: ¿Olvidaste tu contraseña?
+  date_title: Fecha
+  back_to_all_users: Volver a todos los usuarios
+  go_to_your_profile: Ir a tu perfil
+  no_profile_photo: ¿Sin foto de perfil?
+  description: "Descripción"
+  large: Grande
+  choose_a_photo_for_your_profile: "Elige una foto para tu perfil:"
+  are_you_sure: "¿Estás seguro?"
+  wrote_a_post: "escribió una publicación:"
+  position: Posición
+  need_some_help_contact_our: ¿Necesitas ayuda? Ve nuestra
+  new_topic: Nuevo tema
+  recommended_posts: Publicaciones Recomendadas
+  click_here_to_sign_up: "Haz click aquí para registrarte"
+  megabyte_upload_limit_per_file: límite de megabytes por archivo.
+  after_signing_up_youll_receive_an_e_mail_confirmation_message: "Después de registrarte, recibirás un mensaje de confirmación."
+  skip_this_and_go_to_your_profile: Saltar esto e ir directo a tu perfil
+  is_great_check_it_out_youll_love_it: es excelente, ¡velo y te gustará!
+  photos_should_be_x_pixels: las fotos deben ser de 300x300 pixels.
+  delete_this_event: Eliminar este evento
+  sign_up_for_an_account: Registrarse.
+  required: requerido
+  postal_code: "Código postal:"
+  faq: "Preguntas más frecuentes"
+  most_active_1_month: Más Activo (1 month)
+  clippings: Recortes
+  featured_posts: Publicaciones Destacadas
+  add_some_friends_to_get_started: "¡Añade algunos amigos para empezar!"
+  to: A
+  the_friendship_was_denied: La solicitud de amistad fue negada.
+  manage_posts: Administrar Publicaciones
+  find_an_expert_in: Encontrar un Experto en
+  uploaded_by: subido por
+  or: o
+  bookmarklet: Marcador
+  view_comment: Ver Comentario
+  this_forum_is_still_getting_started: Este foro aún está empezando ... estas son algunas publicaciones para pensar ...
+  share_the_love: Comparte
+  post_comments: Publicar Comentarios
+  one_hour_ago: una hora atras
+  dont_wait_its: "¡No esperes! Es"
+  message: Mensaje
+  new_metro_area: Nueva Ciudad
+  comments_rss: Comentarios en RSS
+  view_profile: Ver Perfil
+  topic_locked: Tema Cerrado
+  looking_for_most_x: Buscando por %{link}
+  total_votes: Total de votos
+  resend_your_activation_e_mail: Reenviar tu e-mail de activación
+  sign_up_for_a_: Registrarse por
+  frequent_asked_questions: Preguntas Frecuentes
+  updated_their_profile: actualizó su perfil
+  tips: "Tips:"
+  add_your_comment: "¡Añade Tu Comentario!"
+  are_you_sure_you_want_to_delete_this_post: ¿Estas seguro que deseas eliminar esta publicación?
+  invite_message: Entre más gente invites, %{site} se vuelve mejor.
+  start_time: Hora de inicio
+  save_and_continue_to_step_three: Guardar y continuar al paso tres
+  required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Requerido: Tu nombre de usuario no deberá contener números, espacios o caracteres especiales.)"
+  get_started_banner: ¡Iniciate con <a href="/">%{site}</a> hoy mismo!
+  invite_a_friend: Invita un amigo
+  new_yesterday: Nuevo Ayer
+  posts_photos_and_bookmarks: "%{name} publicaciones, fotos y favvoritos"
+  go_to_the_forums: ir a los foros
+  your_post_was_successfully_created: Tu publicación fue creada con éxito.
+  this_friendship_is_pending: Esta amistad está pendiente.
+  remove_moderator: Eliminar moderador
+  advertise_on: Anunciarse en
+  on_commentable: "Encendido"
+  popular_catgory: Popular %{name}
+  browse_content_by_tags: Navegar contenido por etiquetas
+  whats_fresh: Lo Nuevo
+  total_users: Total de usuarios
+  delete_this_user: Eliminar este usuario
+  popular_polls: Encuestas Populares
+  click_here_to_upload_one: "¡Haz click aquí para subir uno!"
+  category: "Categoría"
+  you_have_created: Haz creado
+  log_in: Ingresar
+  view_my_blog: Ver mi blog
+  about_you: "Acerca de Tí"
+  denied_friendships: Amistades Negadas
+  new_post_for_category: Nueva %{category}
+  compose_message: Escribir Mensaje
+  your_profile_photo: "Foto de tu perfil:"
+  you_may_want_to_use_your_company_logo_or_a_photo_of_one_of_your_products_: "Puedes usar el logo de tu negocio, o una foto de uno de tus productos. "
+  save: Guardar
+  dashboard_friends: "Una vez que agregas amigos, puedes seguir sus actividades en %{site} aquí"
+  listing_invitations: Listado de Invitaciones
+  want_to_upload_multiple_files_at_once: ¿Deseas subir múltiples archivos juntos?
+  uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: No pudimos ingresarte con ese usuario y contraseña. ¿Quieres intentar de nuevo?
+  tagged: etiquetado
+  reply: Responder
+  failed: falló
+  next: siguiente
+  notify_of_friend_requests: Notificar de solicitudes de amistad
+  skip_this_step: Saltar este paso
+  remember_me: Recordarme
+  enter_e_mail_addresses_comma_sep: Ingresa los e-mails (separados por comas)
+  recent_blog_posts: Publicaciones de Blog Recientes
+  logged_into_the_site: ingresó al sitio
+  un_favorite_this: Quitar de favoritos
+  top_writers: Mejores Escritores
+  toggle: Alternar
+  to_accept: para aceptar
+  tag_name: Nombre de etiqueta
+  save_forum: Guardar Foro
+  delete_this_photo: Eliminar esta foto
+  my_tags: Mis etiquetas
+  choose_your_location: "Elige tu ubicación"
+  what_are_tags: ¿Que son las "Etiquetas"?
+  show_category:  "%{category}"
+  home: Inicio
+  why_sign_up: ¿Por que Registrarme?
+  make_this_my_profile_photo: Haz esta la foto de tu perfil
+  image_url: URL de Imagen
+  pending_friendships: Amistades Pendientes
+  added_to_a_forum_topic: "añadido a un tema del foro"
+  youve_been_logged_out_hope_you_come_back_soon: Haz salido. ¡Tes esperamos pronto!
+  your_about_text_goes_here: Su texto de Acerca De va aquí
+  joined: se unió
+  logins: Nombres de Usuario
+  one_day_ago: hace un día
+  megabyte_upload_limit: límite de megabytes para subir
+  about: "Quiénes somos"
+  scrapbook: Bloc de notas
+  make_moderator: Hacer moderador
+  admin_controls: Administración
+  members: Miembros
+  items: Elementos
+  enter_a_message: Ingresar un Mensaje
+  watching_topic: Observando tema
+  upload_an_image_for_your_post: Subir una imágen para tu publicación
+  required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Requerido: Te enviaremos un e-mail de confirmación a la dirección que nos diste.)"
+  no_tags: No hay etiquetas
+  active: activo
+  bigger_font_size_more_popular_tag: Letras más grandes = Etiqueta más popular
+  e_mail_address: "Dirección de correo electrónico"
+  permanently_delete_this_event: ¿Eliminar permanentemente este evento?
+  invite_some_customers: ¡Invita algunos clientes!
+  you_have_left: Has dejado
+  send_this_story_to_friends: Enviar este mensaje a tus amigos
+  log_in_to_leave_a_comment: Ingresar para dejar un comentario
+  notify_of_comments: Notificar comentarios
+  no_messages: sin mensajes
+  assign_role: Asignar Rol
+  have_something_to_contribute: ¿Tienes algo que contribuir?
+  draft: borrador
+  want_to_list_your_services_on: Deseas listar tus servicios en
+  send_me_my_username: Enviarme mi nombre de usuario
+  a_few_seconds_ago: hace unos segundos
+  all_comments: Todos los comentarios
+  clipping_comments: Comentarios de Recortes
+  locked2: (cerrado)
+  related_clippings_all_members: Recortes Relacionados (todos los miembros)
+  print: Imprimir
+  features: Destacados
+  delete_this_post: ¿Eliminar esta publicación?
+  new_category: Nueva Categoría
+  create_your_account: Crea Tu Cuenta
+  log_in_to_reply_to_this_topic: Ingresar para responder en este tema
+  account_settings: "Configuración de cuenta"
+  when_you_see_an_image_you_like_on_the_web: Cuando ves una imagen que te guste en la Web, haz click en el bookmarklet para guardarla en %{site}
+  site_members: "Miembros de %{site}"
+  showing_ad: Mostrando Anuncio
+  pros: Profesionales
+  begin_required: inicio (requerido)
+  popular: Popular

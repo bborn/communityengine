@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class VotesControllerTest < ActionController::TestCase
   fixtures :users, :posts, :roles
@@ -17,7 +17,7 @@ class VotesControllerTest < ActionController::TestCase
     
     login_as :quentin
     assert_difference Vote, :count, 1 do
-      post :create, :choice_id => Choice.find(:first).id
+      post :create, :choice_id => Choice.find(:first).id, :format => 'js'
     end
     assert_response :success
     

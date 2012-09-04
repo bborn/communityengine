@@ -1,0 +1,7 @@
+if params[:cancel]
+  page << "tinyMCE.execCommand('mceFocus', false, $$('#edit_comment_#{@comment.id}_form textarea')[0]); tinyMCE.execCommand('mceRemoveControl', false, $$('#edit_comment_#{@comment.id}_form textarea')[0]);"
+  page.replace "comment_#{@comment.id}", :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}   
+else
+  page.replace_html "comment_#{@comment.id}", :partial => 'comments/edit_form', :locals => {:comment => @comment}
+  page << "tinyMCE.execCommand('mceAddControl', true, $$('#edit_comment_#{@comment.id}_form textarea')[0]);"
+end

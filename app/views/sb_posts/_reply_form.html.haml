@@ -1,0 +1,37 @@
+= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply]
+.errors
+= remote_form_for :post, @post, :url => sb_posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page), :html => {:class => "MainForm"}, :before => "$('editbox_spinner').show();tinyMCE.triggerSave()" do |f|
+  %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
+    %tr
+      %td{"rowspan"=>"2", "width"=>"60%"}
+        = f.text_area :body, :style => "width: 99%; height: 300px;", :class => "rich_text_editor"
+      - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key 
+        %td{"style"=>"vertical-align:top;"}
+          %label{"for"=>"comment[author_name"}
+            =:name.l
+            %em="(#{:optional.l})"
+          = f.text_field :author_name, :size => 35
+
+          %label{"for"=>"comment[author_email"}
+            ="#{:email.l}:"
+            %em="(#{:comment_author_email_required.l})"
+          = f.text_field :author_email, :size => 35        
+
+          %label{"for"=>"comment[author_url"}
+            =:comment_web_site_label.l
+            %em="(#{:optional.l})"
+          = f.text_field :author_url, :size => 35                  
+        %td{"style"=>"vertical-align:top; text-align: center;padding-left: 20px;"}
+          = recaptcha_tags :ajax => true
+          %p
+            = ajax_spinner_for "editbox", "spinner_black.gif"                    
+            = submit_tag :save_reply.l
+            =:or.l + " #{link_to_function :cancel.l, "$('reply').hide()"}"
+      -else
+        %td{"style"=>"vertical-align:top;"}
+          %p
+            = ajax_spinner_for "editbox", "spinner_black.gif"                    
+            = submit_tag :save_reply.l
+            ="#{:or.l} #{link_to_function :cancel.l, "$('reply').hide()"}".html_safe                  
+    %tr
+      %td{"style"=>"vertical-align: bottom; padding-bottom:15px;"}

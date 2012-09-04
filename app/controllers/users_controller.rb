@@ -1,24 +1,13 @@
-require "RMagick"
-
 class UsersController < BaseController
   include Viewable
   cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]  
   
-  if AppConfig.closed_beta_mode
-    skip_before_filter :beta_login_required, :only => [:new, :create, :activate]
-    before_filter :require_invitation, :only => [:new, :create]
-    
-    def require_invitation
-      redirect_to home_path and return false unless params[:inviter_id] && params[:inviter_code]
-      redirect_to home_path and return false unless User.find(params[:inviter_id]).valid_invite_code?(params[:inviter_code])
-    end
-  end    
-
-  uses_tiny_mce(:only => [:new, :create, :update, :edit, :welcome_about]) do
-    AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"})
+  uses_tiny_mce do
+    {:only => [:new, :create, :update, :edit, :welcome_about], :options => configatron.default_mce_options}
   end
-  uses_tiny_mce(:only => [:show]) do
-    AppConfig.simple_mce_options
+  
+  uses_tiny_mce do
+    {:only => [:show], :options => configatron.simple_mce_options}
   end
 
   # Filters
@@ -41,11 +30,11 @@ class UsersController < BaseController
     if @user and @user.activate
       self.current_user = @user
       @user.track_activity(:joined_the_site)
-      redirect_to welcome_photo_user_path(@user)
-      flash[:notice] = :thanks_for_activating_your_account.l 
-      return
+      flash[:notice] = :thanks_for_activating_your_account.l       
+      redirect_to welcome_photo_user_path(@user) and return
     end
-    flash[:error] = :account_activation_error.l_with_args(:email => AppConfig.support_email) 
+
+    flash[:error] = :account_activation_error.l_with_args(:email => configatron.support_email) 
     redirect_to signup_path     
   end
   
@@ -57,13 +46,11 @@ class UsersController < BaseController
   end
 
   def index
-    cond, @search, @metro_areas, @states = User.paginated_users_conditions_with_search(params)    
+    @users, @search, @metro_areas, @states = User.search_conditions_with_metros_and_states(params)
     
-    @users = User.recent.find(:all,
-      :conditions => cond.to_sql, 
-      :include => [:tags], 
-      :page => {:current => params[:page], :size => 20}
-      )
+    @users = @users.active.recent.includes(:tags).page(params[:page]).per(20)
+    
+    @metro_areas, @states = User.find_country_and_state_from_search_params(params)
     
     @tags = User.tag_counts :limit => 10
     
@@ -83,9 +70,9 @@ class UsersController < BaseController
 
     @comments       = @user.comments.find(:all, :limit => 10, :order => 'created_at DESC')
     @photo_comments = Comment.find_photo_comments_for(@user)    
-    @users_comments = Comment.find_comments_by_user(@user, :limit => 5)
+    @users_comments = Comment.find_comments_by_user(@user).limit(5)
 
-    @recent_posts   = @user.posts.find(:all, :limit => 2, :order => "published_at DESC")
+    @recent_posts   = @user.posts.recent.find(:all, :limit => 2)
     @clippings      = @user.clippings.find(:all, :limit => 5)
     @photos         = @user.photos.find(:all, :limit => 5)
     @comment        = Comment.new(params[:comment])
@@ -99,15 +86,13 @@ class UsersController < BaseController
     @user         = User.new( {:birthday => Date.parse((Time.now - 25.years).to_s) }.merge(params[:user] || {}) )
     @inviter_id   = params[:id]
     @inviter_code = params[:code]
-
-    render :action => 'new', :layout => 'beta' and return if AppConfig.closed_beta_mode    
   end
 
   def create
     @user       = User.new(params[:user])
     @user.role  = Role[:member]
 
-    if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
+    if (!configatron.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
       create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email) 
       redirect_to signup_completed_user_path(@user)
@@ -118,13 +103,10 @@ class UsersController < BaseController
     
   def edit 
     @metro_areas, @states = setup_locations_for(@user)
-    @skills               = Skill.find(:all)
-    @offering             = Offering.new
-    @avatar               = Photo.new
+    @avatar     = (@user.avatar || @user.build_avatar)
   end
   
   def update
-    @user.attributes      = params[:user]
     @metro_areas, @states = setup_locations_for(@user)
 
     unless params[:metro_area_id].blank?
@@ -135,14 +117,11 @@ class UsersController < BaseController
       @user.metro_area = @user.state = @user.country = nil
     end
   
-    @avatar       = Photo.new(params[:avatar])
-    @avatar.user  = @user
-
-    @user.avatar  = @avatar if @avatar.save
-    
     @user.tag_list = params[:tag_list] || ''
 
-    if @user.save!
+    params[:user][:avatar_attributes].merge!(:user_id => @user.id) if params[:user] && params[:user][:avatar_attributes]
+
+    if @user.update_attributes(params[:user])
       @user.track_activity(:updated_profile)
       
       flash[:notice] = :your_changes_were_saved.l
@@ -151,9 +130,9 @@ class UsersController < BaseController
       else
         redirect_to :action => "welcome_#{params[:welcome]}", :id => @user
       end
+    else
+      render :action => 'edit'
     end
-  rescue ActiveRecord::RecordInvalid
-    render :action => 'edit'
   end
   
   def destroy
@@ -189,16 +168,7 @@ class UsersController < BaseController
     end
     return unless request.put?
     
-    if @photo
-      if params[:x1]
-        img = Magick::Image::read(@photo.path_or_s3_url_for_image).first.crop(params[:x1].to_i, params[:y1].to_i,params[:width].to_i, params[:height].to_i, true)
-        img.format = @photo.content_type.split('/').last
-        crop = {'tempfile' => StringIO.new(img.to_blob), 'content_type' => @photo.content_type, 'filename' => "custom_#{@photo.filename}"}
-        @photo.uploaded_data = crop
-        @photo.save!
-      end
-    end
-
+    @photo.update_attributes(:crop_x => params[:crop_x], :crop_y => params[:crop_y], :crop_w => params[:crop_w], :crop_h => params[:crop_h])
     redirect_to user_path(@user)
   end
   
@@ -216,14 +186,14 @@ class UsersController < BaseController
     
   def edit_account
     @user             = current_user
+    @authorizations   = current_user.authorizations
     @is_current_user  = true
   end
   
   def update_account
     @user             = current_user
-    @user.attributes  = params[:user]
 
-    if @user.save
+    if @user.update_attributes!(params[:user])
       flash[:notice] = :your_changes_were_saved.l
       respond_to do |format|
         format.html {redirect_to user_path(@user)}
@@ -243,11 +213,8 @@ class UsersController < BaseController
 
   def update_pro_details
     @user = User.find(params[:id])
-    @user.add_offerings(params[:offerings]) if params[:offerings]
     
-    @user.attributes = params[:user]
-
-    if @user.save!
+    if @user.update_attributes(params[:user])
       respond_to do |format|
         format.html { 
           flash[:notice] = :your_changes_were_saved.l
@@ -278,8 +245,8 @@ class UsersController < BaseController
           :friend_id => friend.id, 
           :friendship_status => accepted )
           
-        @friendship.save
-        reverse_friendship.save
+        @friendship.save!
+        reverse_friendship.save!
       end
     end
   end
@@ -287,11 +254,11 @@ class UsersController < BaseController
   def signup_completed
     @user = User.find(params[:id])
     redirect_to home_path and return unless @user
-    render :action => 'signup_completed', :layout => 'beta' if AppConfig.closed_beta_mode    
   end
   
   def welcome_photo
     @user = User.find(params[:id])
+    @avatar = (@user.avatar || @user.build_avatar)    
   end
 
   def welcome_about
@@ -308,15 +275,15 @@ class UsersController < BaseController
   end
   
   def welcome_complete
-    flash[:notice] = :walkthrough_complete.l_with_args(:site => AppConfig.community_name) 
+    flash[:notice] = :walkthrough_complete.l_with_args(:site => configatron.community_name) 
     redirect_to user_path
   end
 
   def forgot_username  
     return unless request.post?   
-    
+
     if @user = User.active.find_by_email(params[:email])
-      UserNotifier.deliver_forgot_username(@user)
+      UserNotifier.forgot_username(@user).deliver
       redirect_to login_url
       flash[:info] = :your_username_was_emailed_to_you.l      
     else
@@ -325,7 +292,6 @@ class UsersController < BaseController
   end
 
   def resend_activation
-    return unless request.post?       
 
     if params[:email]
       @user = User.find_by_email(params[:email])    
@@ -335,7 +301,7 @@ class UsersController < BaseController
     
     if @user && !@user.active?
       flash[:notice] = :activation_email_resent_message.l
-      UserNotifier.deliver_signup_notification(@user)    
+      UserNotifier.signup_notification(@user).deliver    
       redirect_to login_path and return
     else
       flash[:notice] = :activation_email_not_sent_message.l
@@ -344,7 +310,12 @@ class UsersController < BaseController
   
   def assume
     user = User.find(params[:id])
-    redirect_to user_path(self.assume_user(user).record)
+    
+    if assumed_user_session = self.assume_user(user)
+      redirect_to user_path(assumed_user_session.record)
+    else
+      redirect_to users_path
+    end
   end
 
   def return_admin
@@ -355,12 +326,12 @@ class UsersController < BaseController
   
     country = Country.find(params[:country_id]) unless params[:country_id].blank?
     state   = State.find(params[:state_id]) unless params[:state_id].blank?
-    states  = country ? country.states.sort_by{|s| s.name} : []
+    states  = country ? country.states : []
     
     if states.any?
-      metro_areas = state ? state.metro_areas.all(:order => "name") : []
+      metro_areas = state ? state.metro_areas.order("name ASC").all : []
     else
-      metro_areas = country ? country.metro_areas : []
+      metro_areas = country ? country.metro_areas.order("name ASC").all : []
     end
 
     respond_to do |format|
@@ -370,7 +341,8 @@ class UsersController < BaseController
           :metro_areas => metro_areas, 
           :selected_country => params[:country_id].to_i, 
           :selected_state => params[:state_id].to_i, 
-          :selected_metro_area => nil }        
+          :selected_metro_area => nil,
+          :js => true }        
       }
     end
   end
@@ -397,7 +369,7 @@ class UsersController < BaseController
     end
     
     start_date  = @month.beginning_of_month
-    end_date    = @month.end_of_month + 1.day
+    end_date    = @month.end_of_month.end_of_day
     
     @posts = @user.posts.find(:all, 
       :conditions => ['? <= published_at AND published_at <= ?', start_date, end_date])    
@@ -413,6 +385,20 @@ class UsersController < BaseController
       }
     end
   end    
+  
+  def delete_selected
+    if params[:delete] 
+      params[:delete].each { |id|
+        user = User.find(id)
+        unless user.admin? || user.featured_writer?
+          user.spam! if params[:spam] && !configatron.akismet_key.nil?          
+          user.destroy 
+        end
+      }
+    end
+    flash[:notice] = :the_user_was_deleted.l                
+    redirect_to admin_users_path
+  end  
 
   protected  
     def setup_metro_areas_for_cloud

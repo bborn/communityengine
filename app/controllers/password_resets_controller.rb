@@ -45,7 +45,6 @@ class PasswordResetsController < BaseController
     @user = User.find_using_perishable_token(params[:id])
     unless @user
       flash[:error] = :an_error_occurred.l
-
       redirect_to login_path
     end
   end

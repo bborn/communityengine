@@ -15,16 +15,18 @@
     %h3= :editing_photo.l  
 
     = error_messages_for :photo
-    - form_for(:photo, :url => user_photo_path(@user, @photo), :html => { :method => :put, :class => "MainForm" }) do |f|
+    = form_for(:photo, :url => user_photo_path(@user, @photo), :html => { :method => :put, :class => "MainForm" }) do |f|
       
-      = image_tag( @photo.public_filename(:medium), :id => 'photo', :class => 'polaroid' )
+      = image_tag( @photo.photo.url(:medium), :id => 'photo', :class => 'polaroid' )
       
       %label 
         = :tags.l
         %em="(#{:optional_keywords_describing_this_photo_separated_by_commas.l})"
-      = text_field_tag 'tag_list', @photo.tag_list, {:autocomplete => "off", :size => 35}
+      = text_field_tag 'tag_list', @photo.tag_list.join(', '), {:autocomplete => "off", :size => 35}
       #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"} 
-      = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+      -content_for :end_javascript do
+        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+
       %label= :title.l + ":"
       = f.text_field :name, :size => 35
       %label= :description.l + ":"

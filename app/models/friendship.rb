@@ -11,23 +11,24 @@ class Friendship < ActiveRecord::Base
   validates_presence_of   :user
   validates_presence_of   :friend
   validates_uniqueness_of :friend_id, :scope => :user_id
-  
-  # named scopes
-  named_scope :accepted, lambda {
-    #hack: prevents FriendshipStatus[:accepted] from getting called before the friendship_status records are in the db (only matters in testing ENV)
-    {:conditions => ["friendship_status_id = ?", FriendshipStatus[:accepted].id]    }
-  }
+  validate :cannot_request_if_daily_limit_reached
   validates_each :user_id do |record, attr, value|
     record.errors.add attr, 'can not be same as friend' if record.user_id.eql?(record.friend_id)
   end
   
-  def validate  
+  # named scopes
+  scope :accepted, lambda {
+    #hack: prevents FriendshipStatus[:accepted] from getting called before the friendship_status records are in the db (only matters in testing ENV)
+    {:conditions => ["friendship_status_id = ?", FriendshipStatus[:accepted].id]    }
+  }
+  
+  def cannot_request_if_daily_limit_reached  
     if new_record? && initiator && user.has_reached_daily_friend_request_limit?
-      errors.add_to_base("Sorry, you'll have to wait a little while before requesting any more friendships.")       
+      errors.add(:base, "Sorry, you'll have to wait a little while before requesting any more friendships.") 
     end
   end  
     
-  before_validation_on_create :set_pending
+  before_validation(:on => :create){:set_pending}
   after_save :notify_requester, :if => Proc.new{|fr| fr.accepted? && fr.initiator }
 
   attr_protected :friendship_status_id
@@ -53,7 +54,7 @@ class Friendship < ActiveRecord::Base
   end
   
   def notify_requester
-    UserNotifier.deliver_friendship_accepted(self)
+    UserNotifier.friendship_accepted(self).deliver
   end
     
   private

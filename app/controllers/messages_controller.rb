@@ -4,6 +4,10 @@ class MessagesController < BaseController
   before_filter :require_ownership_or_moderator, :except => [:auto_complete_for_username]
 
   skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_username]
+
+  uses_tiny_mce do
+    {:options => configatron.default_mce_options}
+  end
   
   def auto_complete_for_username
     @users = User.find(:all, :conditions => [ 'LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%' ])
@@ -12,9 +16,9 @@ class MessagesController < BaseController
     
   def index
     if params[:mailbox] == "sent"
-      @messages = @user.sent_messages.find(:all, :page => {:current => params[:page], :size => 20})
+      @messages = @user.sent_messages.page(params[:page]).per(20)
     else
-      @messages = @user.message_threads_as_recipient.find(:all, :page => {:current => params[:page], :size => 20}, :order => 'updated_at DESC')
+      @messages = @user.message_threads_as_recipient.order('updated_at DESC').page(params[:page]).per(20)
     end
   end
   
