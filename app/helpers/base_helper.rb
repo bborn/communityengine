@@ -360,7 +360,20 @@ module BaseHelper
   def tiny_mce_init_if_needed
     if !@uses_tiny_mce.blank?
       selector = @tiny_mce_configuration['editor_selector']
-      javascript = '$(".' + selector + '").tinymce(' + @tiny_mce_configuration.to_json + ')'.html_safe
+      javascript = '$(".' + selector + '").each(function(){
+          var options = ' + @tiny_mce_configuration.to_json + ';
+          $this = $(this);
+          
+          // fix tinymce bug with html5 and required fields
+          if($this.is("[required]")){
+              options.oninit = function(editor){
+                  $this.closest("form").find(":submit").on("click", function(){
+                    editor.save();
+                  });
+              }
+          }
+          $this.tinymce(options);
+        })'.html_safe
       javascript_tag(javascript)
     end
   end
