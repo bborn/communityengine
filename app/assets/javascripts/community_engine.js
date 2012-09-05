@@ -33,6 +33,7 @@ function updateElementFromUrl(element, url_to_load) {
 }
 
 function submitViaAjax(form) {
+  $('#'+ form.attr('id') + '_spinner').removeClass('hide');
   console.log('Attempting to save via AJAX...');
   $.ajax({
     type: form.attr('method'),
@@ -91,6 +92,7 @@ $('.submit-via-ajax').bind('form-pre-serialize', function(e) {
 $('.edit-via-ajax').live('click', function(){
   event.preventDefault();
   console.log('Attempting to retrieve edit form via AJAX...');
+  $('#'+ $(this).attr('id') + '_spinner').removeClass('hide');
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('href').replace('?', '.js?'),
