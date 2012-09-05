@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   get '/forgot_password' => 'password_resets#new', :as => :forgot_password
   resources :password_resets
   get '/forgot_username' => 'users#forgot_username', :as => :forgot_username
+  post '/forgot_username' => 'users#forgot_username'
   post '/resend_activation' => 'users#resend_activation', :as => :resend_activation
   
   get '/new_clipping' => 'clippings#new_clipping'
