@@ -16,3 +16,13 @@ $('.reply-toggle').click(function () {
     $('.reply').addClass('hide');
   }
 });
+
+$('#monitor_checkbox').live('change', function(){
+  form = $(this).closest('form');
+  if ($(this).is(':checked')) {
+    form.attr('method', 'post');
+  } else {
+    form.attr('method', 'delete');
+  }
+  submitViaAjax(form);
+});
