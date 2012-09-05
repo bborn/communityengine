@@ -84,3 +84,25 @@ $('.submit-via-ajax').submit(function(){
 $('.submit-via-ajax').bind('form-pre-serialize', function(e) {
         tinyMCE.triggerSave();
 });
+
+$('.edit-via-ajax').live('click', function(){
+  event.preventDefault();
+  console.log('Attempting to retrieve edit form via AJAX...');
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action').replace('?', '.js?'),
+    dataType: 'script',
+    success: function(response) {
+      if(response) {
+        console.log('Return script received.');
+      } else {
+        console.log('Failed to receive return script.');
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+  });
+});
