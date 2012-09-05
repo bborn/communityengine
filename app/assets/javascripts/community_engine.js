@@ -31,6 +31,28 @@ function updateElementFromUrl(element, url_to_load) {
 		element.html(data);
 	});
 }
+
+function submitViaAjax(form) {
+  console.log('Attempting to save via AJAX...');
+  $.ajax({
+    type: form.attr('method'),
+    url: form.attr('action').replace('?', '.js?'),
+    data: form.serialize(),
+    dataType: 'script',
+    success: function(response) {
+      if(response) {
+        console.log('Return script received.');
+      } else {
+        console.log('Failed to receive return script.');
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+  });
+}
 	
 $('.delete-via-ajax').live('click', function(event){
 	event.preventDefault();
@@ -57,28 +79,9 @@ $('.delete-via-ajax').live('click', function(event){
 	}
 })
 
-
-$('.submit-via-ajax').submit(function(){
+$('.submit-via-ajax').live('submit', function(event){
   event.preventDefault();
-  console.log('Attempting to save via AJAX...');
-  $.ajax({
-    type: $(this).attr('method'),
-    url: $(this).attr('action').replace('?', '.js?'),
-    data: $(this).serialize(),
-    dataType: 'script',
-    success: function(response) {
-      if(response) {
-        console.log('Return script received.');
-      } else {
-        console.log('Failed to receive return script.');
-      }
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR);
-      console.log(textStatus);
-      console.log(errorThrown);
-    }
-  });
+  submitViaAjax($(this));
 });
 
 $('.submit-via-ajax').bind('form-pre-serialize', function(e) {
@@ -90,7 +93,7 @@ $('.edit-via-ajax').live('click', function(){
   console.log('Attempting to retrieve edit form via AJAX...');
   $.ajax({
     type: $(this).attr('method'),
-    url: $(this).attr('action').replace('?', '.js?'),
+    url: $(this).attr('href').replace('?', '.js?'),
     dataType: 'script',
     success: function(response) {
       if(response) {

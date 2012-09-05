@@ -6,7 +6,6 @@
         = link_to '<i class="icon-comment"></i>'.html_safe, new_forum_topic_sb_post_path(post.topic.forum, post.topic), :class => 'reply-toggle'
       = post.body.html_safe
     .editor.hide
-      = render :partial => 'sb_posts/edit', :locals => {:post => post}
     
   %td.span3{:style => 'border-left:0'}
     %ul.nav.nav-list
@@ -27,7 +26,7 @@
       - if logged_in? && post.editable_by?(current_user)
         %li
           = ajax_spinner_for "edit-post-#{post.id}", "spinner_black.gif"    
-          = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :class => 'editor-toggle', 'data-target' => "post-body-#{post.id}"
+          = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :class => 'edit-via-ajax'
       - if admin? && post.user && !post.user.admin?
         %li{"class"=>"make-moderator-#{post.user_id}"}
           = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}

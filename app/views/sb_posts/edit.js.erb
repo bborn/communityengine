@@ -1,0 +1,27 @@
+post = $('#post-body-<%= @post.id %>');
+editor = post.children('.editor');
+editable = post.children('.editable');
+
+editable.addClass('hide');
+editor.html("<%= (render :partial => 'sb_posts/edit', :locals => {:post => @post}).gsub('"', "'").gsub("\n", '').html_safe %>");
+
+// Because the dom is loaded already we have to set up the tinymce config.
+$(".rich_text_editor").each(function(){
+    var options = <%= @tiny_mce_configuration.to_json.html_safe %>;
+    $this = $(this);
+    
+    // fix tinymce bug with html5 and required fields
+    if($this.is("[required]")){
+        options.oninit = function(editor){
+            $this.closest("form").find(":submit").on("click", function(){
+              editor.save();
+            });
+        }
+    }
+    $this.tinymce(options);
+ });
+
+post.scrollTo();
+editor.switchClass('hide','alert alert-info', 500,'easeOutCubic',function(){
+	editor.switchClass('alert alert-info','normal', 3000,'easeInCubic');
+});

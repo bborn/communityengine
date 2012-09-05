@@ -5,7 +5,7 @@ editable = post.children('.editable');
 console.log('The post was saved.');
 
 editor.addClass('hide');
-editable.html('<%= @post.body.html_safe %>');
+editable.html("<%= @post.body.gsub('"', "'").gsub("\n", '').html_safe %>");
 post.scrollTo();
 editable.switchClass('hide','alert alert-info', 500,'easeOutCubic',function(){
 	editable.switchClass('alert alert-info','normal', 3000,'easeInCubic');
