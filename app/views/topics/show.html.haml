@@ -9,11 +9,10 @@
 -widget do 
   - if logged_in?
     = form_tag forum_topic_monitorship_path(@forum, @topic) do
-      #monitor_topic
-        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
+      #monitor_topic.form.form-horizontal
+        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring}
         %label#monitor_label{"for"=>"monitor_checkbox"}
           = @monitoring ? :watching_topic.l : :watch_topic.l
-        = hidden_field_tag '_method', 'delete' if @monitoring
         = submit_tag :save.l, :id => 'monitor_submit', :style => "display:none"
     
 - if @topic.locked?
