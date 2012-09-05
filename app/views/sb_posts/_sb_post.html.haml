@@ -25,8 +25,8 @@
   
       - if logged_in? && post.editable_by?(current_user)
         %li
-          = ajax_spinner_for "edit-post-#{post.id}", "spinner_black.gif"    
-          = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :class => 'edit-via-ajax'
+          = ajax_spinner_for "edit-post-#{post.id}"   
+          = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :class => 'edit-via-ajax', :id => "edit-post-#{post.id}"
       - if admin? && post.user && !post.user.admin?
         %li{"class"=>"make-moderator-#{post.user_id}"}
           = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}

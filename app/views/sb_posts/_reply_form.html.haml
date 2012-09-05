@@ -1,4 +1,4 @@
-= bootstrap_form_for @post, :url => sb_posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page), :html => {:class => "form form-horizontal submit-via-ajax"} do |f|
+= bootstrap_form_for @post, :url => sb_posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page), :html => {:class => "form form-horizontal submit-via-ajax", :id => "reply"} do |f|
   %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
     %tr{"style"=>"vertical-align:top;"}
       %td
@@ -22,15 +22,15 @@
         %td
           = recaptcha_tags :ajax => true
           %p
-            = ajax_spinner_for "editbox", "spinner_black.gif"                    
-            = submit_tag :save_reply.l, :class => 'btn btn-primary'
+            = ajax_spinner_for "reply"                    
+            = f.submit :save_reply.l
             = :or.l 
             = link_to_function :cancel.l, :class => 'reply-toggle'
       -else
         %td
           %p
-            = ajax_spinner_for "editbox", "spinner_black.gif"                    
-            = submit_tag :save_reply.l, :class => 'btn btn-primary'
+            = ajax_spinner_for "reply"                
+            = f.submit :save_reply.l
             = :or.l 
             = link_to :cancel.l, '#', :class => 'reply-toggle'  
             

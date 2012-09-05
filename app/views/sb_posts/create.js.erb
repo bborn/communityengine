@@ -10,6 +10,7 @@
   
   my_post = $('#post-body-<%= @post.id %>')
   my_post.scrollTo();
+  $('#reply_spinner').addClass('hide');
   editable = my_post.children('.editable');
   editable.switchClass('','alert alert-info', 500,'easeOutCubic',function(){
 	editable.switchClass('alert alert-info','normal', 3000,'easeInCubic');

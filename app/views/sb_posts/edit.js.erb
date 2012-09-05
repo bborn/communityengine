@@ -22,6 +22,7 @@ $(".rich_text_editor").each(function(){
  });
 
 post.scrollTo();
+$('#edit-post-<%= @post.id %>_spinner').addClass('hide');
 editor.switchClass('hide','alert alert-info', 500,'easeOutCubic',function(){
 	editor.switchClass('alert alert-info','normal', 3000,'easeInCubic');
 });
