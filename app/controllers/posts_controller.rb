@@ -166,10 +166,13 @@ class PostsController < BaseController
     end
     @post = Post.find(params[:id])
     if @post.send_to(params[:emails], params[:message], (current_user || nil))
-      render :inline => "It worked!"            
+      flash[:notice] = "Your message has been sent."      
     else
-      render :inline => "You entered invalid addresses: <ul>"+ @post.invalid_emails.collect{|email| '<li>'+email+'</li>' }.join+"</ul> Please correct these and try again.", :status => 500
+      flash[:error] = "You entered invalid addresses: "+ @post.invalid_emails.join(', ')+". Please correct these and try again."
     end
+    respond_to do |format|
+      format.js
+    end 
   end
 
 

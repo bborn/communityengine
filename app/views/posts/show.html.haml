@@ -46,9 +46,10 @@
           %i.icon-print
           = :print.l
       %li
-        %a{:href=>"#", :title=>:email_this_story_to_friends.l}
+        %a.email{:href=>"#", :title=>:email_this_story_to_friends.l}
           %i.icon-envelope
           = :email_to_friends.l
+        #send_to_friend.modal.hide.fade{:style => 'padding-top: 60px;'}
       %li
         %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;button=false"}
         =sharethis_options(@post)
@@ -78,19 +79,11 @@
 %span#more_comments_links= more_comments_links(@post)
 
 -content_for :end_javascript do
-  :javascript
-    Event.observe( window, 'load', function() { 
-      $$(".email").invoke('observe', 'click', showSendToFriend);
-    });      
-
-  
-    function showSendToFriend(){
-      if ($('send_to_friend')){
-        new Lightbox.base('send_to_friend');                        
-      } else {
-        #{remote_function(:url => { :action => "send_to_friend", :params => {:user_id => @user.id, :id => @post.id} }, :success => "new Insertion.Top($('bd'), request.responseText)", :complete => "new Lightbox.base('send_to_friend'); return false;Element.toggle('send_to_friend');", :method => 'post')}
-      }}
-    
--content_for :end_javascript do
-  :javascript
-    #{remote_function :url => update_views_user_post_path(@post.user, @post), :method => :put}
+  :javascript   
+    $('.email').live('click', function(e){
+      e.preventDefault();
+      $.post("#{send_to_friend_user_post_path(:user_id => @user.id, :id => @post.id)}", function(response){
+        $('#send_to_friend').html(response);
+      });
+      $('#send_to_friend').modal();
+    });

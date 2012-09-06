@@ -1,0 +1,3 @@
+$('#emails').val('');
+$('#send_to_friend .modal-body').prepend("<%= (render 'shared/messages').gsub('"', '\\"').gsub("\n", "").html_safe %>");
+$('#send_to_friend_form_spinner').addClass("hide");

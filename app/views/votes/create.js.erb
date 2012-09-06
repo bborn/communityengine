@@ -1,0 +1,5 @@
+<% if @vote.valid? %>
+  $("#poll_ui_<%= @choice.poll.id.to_s %>").html("<%= (render :partial => 'polls/poll_ui', :locals => {:poll => @choice.poll}).gsub('"', '\\"').gsub("\n", "").html_safe %>");
+<% else %>
+  alert("<%= @vote.errors.full_messages.join(', ') %>");
+<% end %>
