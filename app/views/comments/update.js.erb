@@ -1,0 +1,9 @@
+<% if @comment.errors.any? %>
+  comment = $('#comment-<%= @comment.id.to_s %>');
+  comment.prepend("<%= (render 'shared/messages').gsub('"', '\\"').gsub("\n", '').html_safe %>");
+  comment.scrollTo();
+<% else %>
+  $('#comment-<%= @comment.id %>').html("<%= (render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}).gsub('"', '\\\"').gsub("\n", "").html_safe %>")
+<% end %>
+          
+

@@ -22,7 +22,10 @@ class CommentsController < BaseController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update_attributes(params[:comment])    
+    @comment.update_attributes!(params[:comment])   
+  rescue ActiveRecord::RecordInvalid
+    flash[:error] = :an_error_occurred.l
+  ensure 
     respond_to do |format|
       format.js
     end    
@@ -125,10 +128,7 @@ class CommentsController < BaseController
     end
     respond_to do |format|
       format.html { redirect_to users_url }
-      format.js   {
-        render :inline => flash[:error], :status => 500 if flash[:error]
-        render :nothing => true if flash[:notice]
-      }
+      format.js
     end
   end
   

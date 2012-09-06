@@ -11,6 +11,20 @@
 ///////////////////////////////////////////
 //= require tinymce-jquery
 
+jQuery.fn.RichTextEditor = function (options) {
+  $this = $(this);
+  console.log($this);
+  // fix tinymce bug with html5 and required fields
+  if($this.is("[required]")){
+      options.oninit = function(editor){
+          $this.closest("form").find(":submit").on("click", function(){
+            editor.save();
+          });
+      }
+  }
+  $this.tinymce(options);
+}
+
 jQuery.fn.scrollTo = function () {
   space_at_top = $('.navbar').height() + 20;
   $('html,body').animate({scrollTop: $(this).offset().top - space_at_top},'slow');

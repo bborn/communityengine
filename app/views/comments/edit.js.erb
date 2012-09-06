@@ -1,0 +1,7 @@
+<% if params[:cancel] %>
+  $('#comment-<%= @comment.id %>').html("<%= (render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}).gsub('"', '\\\"').gsub("\n", "").html_safe %>")
+<% else %>
+  $('#comment-<%= @comment.id %>').html("<%= (render :partial => 'comments/edit_form', :locals => {:comment => @comment}).gsub('"', '\\\"').gsub("\n", "").html_safe %>");
+  $('#comment-<%= @comment.id %>').scrollTo();
+  <%= tiny_mce_js.html_safe %>
+<% end %>

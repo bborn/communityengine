@@ -1,18 +1,7 @@
 - if logged_in? || configatron.allow_anonymous_commenting
-  :javascript
-    function scrollToNewestComment(){
-      loc = document.location.toString();
-      if (loc.indexOf("#") != -1){
-        parts = loc.split('#')
-        loc = parts[0] + "#newest_comment"
-      } else {
-        loc = loc + "#newest_comment";
-      }
-      document.location.href = loc;
-    }
       
-  = bootstrap_form_for(:comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:class => "form form-horizontal"}) do |f|
-    = f.text_area :comment, :rows => 5, :class => "rich_text_editor", :help_inline => :comment_character_limit.l
+  = bootstrap_form_for(:comment, :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:class => "form form-horizontal submit-via-ajax", :id => 'comment'}) do |f|
+    = f.text_area :comment, :rows => 5, :style => 'width: 99%', :class => "rich_text_editor", :help_inline => :comment_character_limit.l
     
     - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key 
       .pull-right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
@@ -27,7 +16,7 @@
 
     .controls
       = f.submit :add_comment.l
-      = image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner'
+      = ajax_spinner_for 'comment'
 - else
   .btn-group
     = link_to :log_in_to_leave_a_comment.l, new_commentable_comment_path(commentable.class, commentable.id), :class => 'btn btn-primary'

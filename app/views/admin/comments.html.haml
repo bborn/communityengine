@@ -17,7 +17,7 @@
       %th=:on_commentable.l
       %th=:actions.l
     - @comments.each do |comment|
-      %tr{:id => "comment_#{comment.id}"}                                
+      %tr{:id => "comment-#{comment.id}"}                                
         %td= check_box_tag "delete[]", comment.id
         %td
           .left
@@ -39,8 +39,7 @@
           -else
             =link_to comment.commentable_name, commentable_url(comment)
         %td
-          =link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"}, :class => 'btn btn-danger' )
-    
+          =link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => "Are you sure you want to permanently delete this comment", :class => 'btn btn-danger delete-via-ajax', 'data-target' => "comment_#{comment.id}"
   -if @comments.any?
     %p
       %a.btn{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              

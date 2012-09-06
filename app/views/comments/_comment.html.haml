@@ -1,4 +1,4 @@
-%div{:id => "comment_#{comment.id}"}
+%div{:id => "comment-#{comment.id}"}
   -if comment.user
     .clearfix
       .span3.pull-right
@@ -13,10 +13,10 @@
                 = I18n.l(comment.created_at, :format => :short_literal_date)
           -if logged_in? && (current_user.admin? || current_user.moderator?)
             %li
-              =link_to_remote '<i class="icon-edit"></i>'.html_safe + :edit.l, {:url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment, :format => 'js'), :method => :get}
+              =link_to '<i class="icon-edit"></i>'.html_safe + :edit.l, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax'
           -if ( comment.can_be_deleted_by(current_user) )
             %li.delete
-              =link_to_remote '<i class="icon-trash"></i>'.html_safe + :delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l}
+              =link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :class => 'delete-via-ajax'
       = comment.comment.html_safe
   
   -else

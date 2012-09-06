@@ -1,5 +1,5 @@
-= bootstrap_form_for @comment, :loading => "$$('#comment_#{comment.id} .errors')[0].innerHTML = '';", :before => "tinyMCE.activeEditor.save();", :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :method => :put, :html => {:id => "edit_comment_#{comment.id}_form", :class => "form form-horizontal"} do |f|
-  = f.text_area :comment, :rows => 5, :class => "rich_text_editor", :help_inline => :comment_character_limit.l
+= bootstrap_form_for @comment, :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :html => {:id => "edit_comment_#{comment.id}_form", :class => "form form-horizontal submit-via-ajax"} do |f|
+  = f.text_area :comment, :rows => 5, :style => 'width: 99%;', :class => "rich_text_editor", :help_inline => :comment_character_limit.l, :id => "comment_#{comment.id}_comment"
   -if !logged_in? && configatron.allow_anonymous_commenting
     = f.text_field :author_name
     = f.text_field :author_email       
@@ -10,4 +10,4 @@
     = f.text_field :author_url
   .controls
     = f.submit :save.l
-    = link_to_remote :cancel.l, :url => {:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true}, :method => :get    
+    = link_to :cancel.l, {:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true}, :class => 'edit-via-ajax'
