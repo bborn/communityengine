@@ -13,7 +13,6 @@
 
 jQuery.fn.RichTextEditor = function (options) {
   $this = $(this);
-  console.log($this);
   // fix tinymce bug with html5 and required fields
   if($this.is("[required]")){
       options.oninit = function(editor){
@@ -114,6 +113,40 @@ $('.edit-via-ajax').live('click', function(){
     success: function(response) {
       if(response) {
         console.log('Return script received.');
+      } else {
+        console.log('Failed to receive return script.');
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+  });
+});
+
+$('.act-via-ajax').live('click', function(event){
+  event.preventDefault();
+  console.log('Attempting to act via AJAX...');
+  $this = $(this);
+  $('#'+ $this.attr('id') + '_spinner').removeClass('hide');
+  if($this.is("input") || $this.is("button")) {
+  	action = $this.closest('form').attr('action');
+  	method = $this.closest('form').attr('method');
+  } else if ($this.is("a")) {
+  	action = $this.attr('href');
+  	method = $this.attr('method');
+  } else {
+  	console.log('Could not identify element type.');
+  	return false;
+  }
+  $.ajax({
+    type: method,
+    url: action.replace('?', '.js?'),
+    dataType: 'html',
+    success: function(response) {
+      if(response) {
+        $this.replaceWith('<div class="alert alert-info">' + response + '</div>');
       } else {
         console.log('Failed to receive return script.');
       }

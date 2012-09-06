@@ -41,3 +41,7 @@ body {
 .clear-all, .clear-both {
   clear: both;
 }
+
+form.button_to, form.button_to div {
+  display: inline;
+}
