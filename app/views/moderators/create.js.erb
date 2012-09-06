@@ -1,0 +1,5 @@
+<% if @moderatorship.valid? %>
+  <%= render :partial => '/moderators/toggle', :locals => {:forum => @moderatorship.forum, :user => @moderatorship.user } %>
+<% else %>
+  <%= :failed.l %>
+<% end %>
