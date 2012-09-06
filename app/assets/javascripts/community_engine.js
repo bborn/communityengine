@@ -5,6 +5,7 @@
 //= require jquery-ui
 //= require bootstrap
 //= require bootstrap-dropdown
+//= require bootstrap-modal
 //
 ///////////////////////////////////////////
 // UTILITIES                             //
@@ -60,11 +61,7 @@ function submitViaAjax(form) {
         console.log('Failed to receive return script.');
       }
     },
-    error: function(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR);
-      console.log(textStatus);
-      console.log(errorThrown);
-    }
+    error: logError
   });
 }
 	
@@ -84,11 +81,7 @@ $('.delete-via-ajax').live('click', function(event){
 		        console.log('Failed to receive return script.');
 		      }
 		    },
-		    error: function(jqXHR, textStatus, errorThrown) {
-		      console.log(jqXHR);
-		      console.log(textStatus);
-		      console.log(errorThrown);
-		    }
+		    error: logError
 		});
 	}
 })
@@ -117,11 +110,7 @@ $('.edit-via-ajax').live('click', function(){
         console.log('Failed to receive return script.');
       }
     },
-    error: function(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR);
-      console.log(textStatus);
-      console.log(errorThrown);
-    }
+    error: logError
   });
 });
 
@@ -135,7 +124,7 @@ $('.act-via-ajax').live('click', function(event){
   	method = $this.closest('form').attr('method');
   } else if ($this.is("a")) {
   	action = $this.attr('href');
-  	method = $this.attr('method');
+  	method = $this.attr('data-method');
   } else {
   	console.log('Could not identify element type.');
   	return false;
@@ -146,15 +135,19 @@ $('.act-via-ajax').live('click', function(event){
     dataType: 'html',
     success: function(response) {
       if(response) {
-        $this.replaceWith('<div class="alert alert-info">' + response + '</div>');
+        $this.effect("pulsate", { times:1 }, 250);
+        $this.replaceWith(response);
+        $('#' + $this.attr('id')).effect("pulsate", { times:2 }, 500);
       } else {
         console.log('Failed to receive return script.');
       }
     },
-    error: function(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR);
-      console.log(textStatus);
-      console.log(errorThrown);
-    }
+    error: logError
   });
 });
+
+function logError(jqXHR, textStatus, errorThrown) {
+  console.log(jqXHR);
+  console.log(textStatus);
+  console.log(errorThrown);
+}

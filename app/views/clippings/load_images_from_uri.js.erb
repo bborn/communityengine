@@ -1,0 +1,1 @@
+$('#clipping_image_list').html("<%= @images ? render(:partial => 'clippings/images', :formats => [:html], :locals => {:images => @images}).gsub('"', '\\"').gsub("\n", "").html_safe : "<h1>Sorry, there was an error fetching the images from the page you requested</h1><a href='#{params[:uri]}'>Go back...</a>" %>")

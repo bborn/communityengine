@@ -5,8 +5,7 @@
       = configatron.community_name
       \- 
       =:new_clipping.l
-    = javascript_include_tag 'lightbox'
-    = stylesheet_link_tag 'lightbox'
+    = javascript_include_tag 'community_engine'
     = stylesheet_link_tag 'application'
     = stylesheet_link_tag 'layout'
   %body
@@ -18,11 +17,10 @@
     %ul#clipping_image_list.thumbnails
       = image_tag 'spinner.gif', :plugin => "community_engine"
       =:loading_images.l
-      = javascript_include_tag 'community_engine'
       %script{"type"=>"text/javascript"}
-        = remote_function(:url => { :controller => 'clippings', :action => "load_images_from_uri", :uri => params[:uri] }, :method => :post )
-    =link_to :cancel_and_go_back_to.l+ @clipping.url, params[:uri], :class => 'btn btn-mini'
-    #form_div{"style"=>"display:none;"}
+        ="$('#clipping_image_list').html($.post('#{load_images_from_uri_path(:uri => params[:uri]).html_safe}'));"
+    =link_to :cancel_and_go_back_to.l + ' ' + @clipping.url, params[:uri], :class => 'btn btn-mini btn-primary'
+    #lightbox.modal.hide.fade{:style => 'padding-top: 60px;'}
       = bootstrap_form_for(:clipping, :url => user_clippings_path(@user), :html => {:class => "form form-horizontal"} ) do |f|
         = f.text_field :url
 
@@ -40,14 +38,9 @@
         .controls= f.submit :create.l
 
   :javascript
-    image_list = $('clipping_image_list')
-    Event.observe(image_list, 'click', function(e){
-      element = Event.element(e);
-      if (element.parentNode.tagName.toLowerCase() == 'li' ){
-        $('clipping_image_url').value = element.src;
-        $('clipping_preview').src = element.src;
-        new Lightbox.base('form_div');
-      }
-      return;
+    $("#clipping_image_list img").live('click', function(){
+      $('#clipping_image_url').val($(this).attr('src'));
+      $('#clipping_preview').attr('src', $(this).attr('src'));
+      $('#lightbox').modal();
     });
 

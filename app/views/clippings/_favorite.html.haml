@@ -1,0 +1,7 @@
+- if favorite = clipping.has_been_favorited_by(current_user, request.remote_ip)
+  .favorite
+    = link_to '<span class="badge badge-info"><i class="icon-heart"></i>'.html_safe+clipping.favorited_count.to_s+'</span>'.html_safe + ' <span class="label label-info">'.html_safe + :in_your_favorites.l + '</span>'.html_safe, favorite_path('clipping', clipping.id, favorite.id), :method => :delete, :class => 'act-via-ajax', :id => 'favorite-clipping-'+clipping.id.to_s if logged_in?
+- else
+  .favorite  
+    = link_to '<span class="badge"><i class="icon-heart"></i>'.html_safe+clipping.favorited_count.to_s+'</span>'.html_safe, favorites_path('clipping', clipping.id), :method => :post, :class => 'act-via-ajax', :id => 'favorite-clipping-'+clipping.id.to_s
+  
