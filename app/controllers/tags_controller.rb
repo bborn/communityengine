@@ -9,8 +9,14 @@ class TagsController < BaseController
   end  
 
   def auto_complete_for_tag_name
-    @tags = ActsAsTaggableOn::Tag.find(:all, :limit => 10, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
-    render :inline => "<%= auto_complete_result(@tags, 'name') %>"
+    @tags = ActsAsTaggableOn::Tag.find(:all)
+    @tag_names = []
+    for tag in @tags
+      @tag_names << tag.name
+    end
+    respond_to do |format|
+      format.json {render :inline => @tag_names.to_json}       
+    end
   end
   
   def index  

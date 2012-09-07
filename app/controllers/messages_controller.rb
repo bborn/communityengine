@@ -10,8 +10,14 @@ class MessagesController < BaseController
   end
   
   def auto_complete_for_username
-    @users = User.find(:all, :conditions => [ 'LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%' ])
-    render :inline => "<%= auto_complete_result(@users, 'login') %>"
+    @users = User.find_all_by_profile_public(true)
+    @users_list = []
+    for user in @users
+      @users_list << user.login
+    end
+    respond_to do |format|
+      format.json {render :inline => @users_list.to_json}       
+    end
   end
     
   def index

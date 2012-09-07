@@ -8,7 +8,7 @@
     .auto_complete#message_to_auto_complete
     
     -content_for :end_javascript do
-      = auto_complete_field 'message_to', {:url => auto_complete_for_username_user_messages_path(user), :tokens=>','}
+      = auto_complete_field 'message_to', {:url => {:controller => 'messages', :action => 'auto_complete_for_username', :user => user}, :method=>'post'}
 
   -if @reply  
     = f.hidden_field :subject  

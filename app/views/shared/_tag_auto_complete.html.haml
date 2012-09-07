@@ -8,8 +8,9 @@
       url: '#{url_for options[:url]}',
       success: function(data){
         values = data;
-        $('##{id}').autocomplete({
-          source: values
+        $('##{id}').tagit({
+          availableTags: values,
+          allowSpaces: true
         });
       }
     });
