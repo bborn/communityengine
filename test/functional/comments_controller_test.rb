@@ -179,10 +179,10 @@ class CommentsControllerTest < ActionController::TestCase
     login_as :quentin
     
     edited_text = 'edited the comment body'    
-    put :update, :id => comments(:quentins_comment_on_his_own_post), :comment => {:comment => edited_text}, :format => "js"
+    put :update, :id => comments(:quentins_comment_on_his_own_post).id, :comment => {:comment => edited_text}, :format => "js"
     
     assert_response :success #js redirect
-    assert_not_equal(comments(:quentins_comment_on_his_own_post).comment, edited_text)
+    assert_not_equal(comments(:quentins_comment_on_his_own_post).reload.comment, edited_text)
   end
 
 
