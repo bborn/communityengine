@@ -12,7 +12,7 @@
       .controls= text_field_tag 'id', params[:id], :autocomplete => "off", :placeholder => 'search tags'
     #id_auto_complete.auto_complete
     -content_for :end_javascript do
-      = auto_complete_field 'id', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+      = tag_auto_complete_field 'id', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
     .controls
       = submit_tag :go.l, :class => 'btn btn-primary'
 

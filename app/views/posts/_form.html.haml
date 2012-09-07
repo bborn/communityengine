@@ -28,7 +28,7 @@
   = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l, :help_inline => :optional_keywords_describing_this_post_separated_by_commas.l
   #tag_list_auto_complete.auto_complete
   -content_for :end_javascript do
-    = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+    = tag_auto_complete_field 'post_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
    
   = f.select :published_as, [[:published.l, 'live'], [:draft.l, 'draft']], :label => :save_post_as.l
   = f.check_box :send_comment_notifications     

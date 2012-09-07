@@ -31,7 +31,7 @@
         = f.text_field :tag_list, {:help_inline => :optional_keywords_describing_this_clipping_separated_by_commas.l, :autocomplete => "off",:id => 'clipping_tag_list'}
 
         #clipping_tag_list_auto_complete.auto_complete
-        = auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :update => 'clipping_tag_list_auto_complete' }
+        = tag_auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :update => 'clipping_tag_list_auto_complete' }
 
         = f.text_field :description
 
