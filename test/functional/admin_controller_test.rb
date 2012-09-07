@@ -20,7 +20,7 @@ class AdminControllerTest < ActionController::TestCase
     users(:quentin).update_attribute('activation_code', 'test')
     users(:quentin).update_attribute('activated_at', nil)    
         
-    put :activate_user, :id => 1
+    get :activate_user, :id => 1
     assert !users(:quentin).active?
     assert_redirected_to login_path
   end
