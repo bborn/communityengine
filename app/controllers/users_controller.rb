@@ -312,9 +312,15 @@ class UsersController < BaseController
     user = User.find(params[:id])
     
     if assumed_user_session = self.assume_user(user)
-      redirect_to user_path(assumed_user_session.record)
+      respond_to do |format|
+        format.html {redirect_to user_path(assumed_user_session.record)}
+        format.js {render :inline => 'Success'}
+      end
     else
-      redirect_to users_path
+      respond_to do |format|
+        format.html {redirect_to users_path}
+        format.js {render :inline => 'Failure'}
+      end
     end
   end
 
