@@ -2,6 +2,7 @@
 // BASE JAVASCRIPT FUNCTIONALITY         //
 ///////////////////////////////////////////
 //= require jquery
+//= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
 //= require bootstrap-dropdown
@@ -165,3 +166,14 @@ function logError(jqXHR, textStatus, errorThrown) {
   console.log(textStatus);
   console.log(errorThrown);
 }
+
+$('.check-all').live('click', function(e){
+	e.preventDefault();
+	first_val = $(this).closest('form').find(':checkbox').attr('checked');
+	if(first_val) {
+		new_val = false
+	} else {
+		new_val = 'checked'
+	}
+	$(this).closest('form').find(':checkbox').attr('checked', new_val);
+});

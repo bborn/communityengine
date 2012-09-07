@@ -13,51 +13,45 @@
 
   = form_tag delete_selected_users_path, :id => 'users' do
     %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
-      %thead
-        %tr
-          %th{:width => '60px', :colspan => '3'}
-          %th=:login.l
-          %th=:e_mail.l
-          %th=:status.l
-          %th=:actions.l
+      %tr
+        %th
+        %th
+        %th
+        %th
+        %th=:login.l
+        %th=:e_mail.l
+        %th=:status.l
+        %th=:actions.l
 
-      %tbody
-        - @users.each do |user|
-          %tr{:id => "user_#{user.id}"}
-            %td
-              = link_to image_tag('icons/delete.png'), user_path(user), :method => :delete, :confirm => "Are you sure you want to permanently delete this user", :class => 'delete-via-ajax'                                                                     
-            %td
-              -if !configatron.akismet_key.nil?                
-                = link_to image_tag('icons/bad-flag.png'), user_path(user, :spam => true), :method => :delete, :confirm => "Are you sure you want to permanently delete this user and mark it as spam!?"                                               
-            %td= check_box_tag "delete[]", user.id
-            
-            %td
-              -if user.avatar
-                = image_tag user.avatar.photo.url(:thumb), :width => 25, :height => 25
-              = link_to h(user.login), user_path(user)
-            %td
-              = h user.email
-            %td
-              = user.active? ? :active.l : :inactive.l
-            %td
-              = link_to( :assume_id.l , assume_user_path(user), :method => :post )
-              = " | #{link_to(:activate.l, :controller => "/admin", :action => "activate_user", :id => user.id)}".html_safe unless user.active?
+      - @users.each do |user|
+        %tr{:id => "user_#{user.id}"}
+          %td
+            = link_to '<i class="icon-trash"></i>'.html_safe, user_path(user), :method => :delete, 'data-manual-confirm' => "Are you sure you want to permanently delete this user", :class => 'delete-via-ajax'                                                                     
+          %td
+            -if !configatron.akismet_key.nil?                
+              = link_to image_tag('icons/bad-flag.png'), user_path(user, :spam => true), :method => :delete, :confirm => "Are you sure you want to permanently delete this user and mark it as spam!?", :class => 'delete-via-ajax'                                             
+          %td= check_box_tag "delete[]", user.id
+          
+          %td
+            -if user.avatar
+              = image_tag user.avatar.photo.url(:thumb), :width => 25
+          %td
+            = link_to h(user.login), user_path(user)
+          %td
+            = h user.email
+          %td
+            = user.active? ? :active.l : :inactive.l
+          %td
+            = link_to :assume_id.l , assume_user_path(user), :method => 'post', :class => 'btn'
+            -unless user.active?
+              = link_to :activate.l, admin_activate_user_path(user), :class => 'btn btn-success'
 
-      %tfoot
-        %tr
-          %td{ :colspan => "4" }
-            -if @users.any?
-              %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
-              %p
-                -if !configatron.akismet_key.nil?
-                  = check_box_tag :spam
-                  =:delete_selected_mark_as_spam.l
-                  %br
-                = submit_tag :delete_selected.l, :class => 'btn btn-danger'
+    -if @users.any?         
+      -if !configatron.akismet_key.nil?
+        = check_box_tag :spam
+        =:delete_selected_mark_as_spam.l
+        %br
+      %a.btn.check-all{:href=>"#"} Toggle all     
+      = submit_tag :delete_selected.l, :class => 'btn btn-danger'
 
     = paginate @users, :theme => 'bootstrap'
-
--content_for :end_javascript do
-  :javascript
-    var form = $('#users');
-    checkboxes = form.getInputs('checkbox');
