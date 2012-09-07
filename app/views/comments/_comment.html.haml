@@ -48,6 +48,6 @@
   - highlighted ||= nil
   - if highlighted
     :javascript
-      =visual_effect :highlight, "comment_#{comment.id}", :duration => 1 
+      $("comment_#{comment.id}").scrollTo().effect("highlight", 1000);
   
   %hr
