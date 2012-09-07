@@ -10,7 +10,7 @@ class SbPostsControllerTest < ActionController::TestCase
     old_equal  = equal.call
 
     login_as :aaron
-    post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah' }
+    post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :sb_post => { :body => 'blah' }
     assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1')
     assert_equal topics(:pdi), assigns(:topic)
     [forums(:rails), users(:aaron), topics(:pdi)].each &:reload
@@ -22,16 +22,16 @@ class SbPostsControllerTest < ActionController::TestCase
   def test_should_update_topic_replied_at_upon_replying
     old=topics(:pdi).replied_at
     login_as :aaron
-    post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah' }
+    post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :sb_post => { :body => 'blah' }
     assert_not_equal(old, topics(:pdi).reload.replied_at)
     assert old < topics(:pdi).reload.replied_at
   end
 
-  def test_should_reply_with_no_body
+  def test_should_not_reply_with_no_body
     assert_difference SbPost, :count, 0 do
       login_as :aaron
-      post :create, :forum_id => forums(:rails).to_param, :topic_id => sb_posts(:pdi).to_param, :post => {:body => ''}
-      assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => sb_posts(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge(:post => {:body => ''}))
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => sb_posts(:pdi).to_param, :sb_post => {:body => ''}
+      assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => sb_posts(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge(:sb_post => {:body => ''}))
     end
   end
 
@@ -155,7 +155,7 @@ class SbPostsControllerTest < ActionController::TestCase
   test "should create anonymous reply" do
     configatron.allow_anonymous_forum_posting = true    
     assert_difference SbPost, :count, 1 do
-      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo@bar.com' }
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :sb_post => { :body => 'blah', :author_email => 'foo@bar.com' }
       assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1'
     end
     configatron.allow_anonymous_forum_posting = false    
@@ -165,8 +165,8 @@ class SbPostsControllerTest < ActionController::TestCase
     configatron.allow_anonymous_forum_posting = true        
     assert_difference SbPost, :count, 0 do
       post_params = { :body => 'blah', :author_email => 'foo' }
-      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => post_params
-      assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge({:post => post_params}))
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :sb_post => post_params
+      assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge({:sb_post => post_params}))
     end
     configatron.allow_anonymous_forum_posting = false        
   end
