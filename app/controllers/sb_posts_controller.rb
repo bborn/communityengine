@@ -84,7 +84,7 @@ class SbPostsController < BaseController
       flash.now[:error] = @post.errors.full_messages.to_sentence
       respond_to do |format|
         format.html do
-          redirect_to forum_topic_path({:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => 'reply-form', :page => (params[:page] || '1')}.merge({:post => params[:post]}))
+          redirect_to forum_topic_path({:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => 'reply-form', :page => (params[:page] || '1')}.merge({:sb_post => params[:sb_post]}))
         end
         format.js
       end
