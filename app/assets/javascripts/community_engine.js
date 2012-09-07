@@ -46,6 +46,20 @@ function updateElementFromUrl(element, url_to_load) {
 	});
 }
 
+function updateElementFromPost(element, url_to_load) {
+  $('#'+element.attr('id')+'_spinner').removeClass('hide');
+  $.ajax({
+    type: 'POST',
+    url: url_to_load,
+    dataType: 'html',
+    success: function(data) {
+		element.html(data);
+  		$('#'+element.attr('id')+'_spinner').addClass('hide');
+	},
+    error: logError
+  });
+}
+
 function submitViaAjax(form) {
   $('#'+ form.attr('id') + '_spinner').removeClass('hide');
   console.log('Attempting to save via AJAX...');
