@@ -5,8 +5,9 @@ class FriendshipsControllerTest < ActionController::TestCase
   fixtures :friendships, :friendship_statuses, :users, :roles
 
   test "should get index" do
-    get :index
-    assert_response :success
+    login_as :quentin
+    get :index, :user_id => users(:quentin).id
+    assert_redirected_to accepted_user_friendships_path(users(:quentin).id)
   end
 
   def test_should_get_accepted_friends_list
