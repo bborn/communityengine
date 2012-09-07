@@ -374,7 +374,7 @@ module BaseHelper
   
   def auto_complete_field(id, options = {})
     html = ""
-    html << render :partial => 'shared/auto_complete', :locals => {:id => id, :options => options}
+    html << render(:partial => 'shared/auto_complete', :locals => {:id => id, :options => options})
     html.html_safe
   end
 end
