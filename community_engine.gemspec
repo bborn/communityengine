@@ -55,5 +55,6 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<font-awesome-sass-rails>, [">= 0"])
   s.add_dependency(%q<jquery-rails>, [">= 0"])
   s.add_dependency(%q<jquery-ui-rails>, [">= 0"])
+  s.add_dependency(%q<jquery-ui-themes>, [">= 0"])
 end
 
