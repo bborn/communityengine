@@ -36,6 +36,7 @@ require 'bootstrap_forms'
 require 'font-awesome-sass-rails'
 require 'jquery-rails'
 require 'jquery-ui-rails'
+require 'jquery-ui-themes'
 
 
 include EnginesExtensions
