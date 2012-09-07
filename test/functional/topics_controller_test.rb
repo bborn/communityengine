@@ -80,7 +80,7 @@ class TopicsControllerTest < ActionController::TestCase
     old = counts.call
     
     login_as :aaron
-    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sb_posts_attributes => { "0" => { :body => 'foo' } } }, :tag_list => 'tag1, tag2'
+    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sb_posts_attributes => { "0" => { :body => 'foo' } }, :tag_list => 'tag1, tag2' }
     assert assigns(:topic)
     assert assigns(:post)
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
