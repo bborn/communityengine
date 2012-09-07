@@ -165,7 +165,7 @@ class TopicsControllerTest < ActionController::TestCase
   
   def test_should_update_own_post
     login_as :sam
-    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { }, :tag_list => 'tagX, tagY'
+    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => {:tag_list => 'tagX, tagY' }
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
     assert_equal ['tagX', 'tagY'], topics(:ponies).reload.tag_list
   end
