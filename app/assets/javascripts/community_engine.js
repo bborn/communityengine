@@ -87,6 +87,9 @@ $('.delete-via-ajax').live('click', function(event){
 		$.ajax({
 			type: 'POST',
 			data: {'_method': 'delete'},
+      beforeSend: function(xhr, settings) {
+        xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
+      },      
 			url: $(this).attr('href') + '.js',
 		    dataType: 'script',
 		    success: function(response) {
@@ -107,7 +110,7 @@ $('.submit-via-ajax').live('submit', function(event){
 });
 
 $('.submit-via-ajax').bind('form-pre-serialize', function(e) {
-        tinyMCE.triggerSave();
+  tinyMCE.triggerSave();
 });
 
 $('.edit-via-ajax').live('click', function(){
