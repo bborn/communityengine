@@ -1,19 +1,25 @@
 function select_image(element){
   element = $(element);
-  element.up('ul').select('li').invoke("removeClassName", "selected");
-  element.up('li').addClassName('selected');
+  element.parents('li').siblings().removeClass("selected");
+  element.parents('li').addClass('selected');
   }
+
 function select_thumb(event) {
-  element = Event.element(event);
-  src = element.getAttribute('href');
-  curbly_insert_image(src, element.getAttribute('alt') );
-  Event.stop(event);  
+  element = $(this);
+  src = element.attr('href');
+  curbly_insert_image(src, element.attr('alt') );
+  event.stopPropagation();
   return false;
 }
 
 function upload_image_callback(url, alt_text, photo_id){
-        $('image_uploaded_data').clear();
-  new Ajax.Request("/manage_photos?photo_id="+photo_id, {asynchronous:true, evalScripts:true, method:'get'});
+    //$('#image_uploaded_data').clear();
+    $.ajax("/manage_photos?photo_id="+photo_id, {
+        type: 'GET',                
+        beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
+        }
+    });
 }
 
 function curbly_insert_image(url, alt_text){
@@ -27,7 +33,8 @@ function formElement() {
         return document.forms[1];
         }
 function ts_onload(){
-        $('dynamic_images_list').update("Uploading...<br /><img src='/assets/spinner.gif'>");
+        $('#dynamic_images_list').html("Uploading...<br /><img src='/assets/spinner.gif'>");
+
         mcTabs.displayTab('dynamic_select_tab','dynamic_select_panel');
 
         var iframe1=ts_ce('iframe','html_editor_image_upload_frame');
@@ -38,8 +45,8 @@ function ts_onload(){
         iframe1.style.height="1px";
         iframe1.style.visibility="hidden";
         iframe1.setAttribute('id','html_editor_image_upload_frame');
-        $('image-upload').appendChild(iframe1);
-        $('image_upload_form').setAttribute("action", ts_upload_image_path());
+        $('#image-upload').append(iframe1);
+        $('#image_upload_form').attr("action", ts_upload_image_path());
         }
         function ts_upload_image_path() {
           // path_prefix = window.parent.location.pathname.split("/")[1];

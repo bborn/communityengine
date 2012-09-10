@@ -56,7 +56,7 @@ class PhotosController < BaseController
         @photos = @photos.where('tags.name = ?', params[:tag_name])
       end
       @selected = params[:photo_id]
-      @photos = @photos.page(params[:page]).per(10)
+      @photos = @photos.page(params[:page]).per(15)
     end
     respond_to do |format|
       format.js
@@ -123,9 +123,7 @@ class PhotosController < BaseController
         }
         format.js {
           responds_to_parent do
-            render :update do |page|
-              page << "upload_image_callback('#{@photo.photo.url()}', '#{@photo.display_name}', '#{@photo.id}');"
-            end
+            render
           end
         }
       else
