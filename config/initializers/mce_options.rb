@@ -19,7 +19,8 @@ configatron.default_mce_options = {
   :editor_deselector => "mceNoEditor",
   :editor_selector => "rich_text_editor",  
   :extended_valid_elements => "img[class|src|flashvars|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|obj|param|embed|scale|wmode|salign|style],embed[src|quality|scale|salign|wmode|bgcolor|width|height|name|align|type|pluginspage|flashvars],object[align<bottom?left?middle?right?top|archive|border|class|classid|codebase|codetype|data|declare|dir<ltr?rtl|height|hspace|id|lang|name|style|tabindex|title|type|usemap|vspace|width]",
-  :media_strict => false    
+  :media_strict => false,
+  :content_css => "/assets/application.css"
   }
   
 configatron.simple_mce_options = {

@@ -18,7 +18,7 @@
   = image_tag( @user.avatar_photo_url(:medium))    
 
   - if current_user and current_user.can_request_friendship_with(@user)
-    = add_friend_link(@user)
+    %p= add_friend_link(@user)
 
   %ul
     %li.update

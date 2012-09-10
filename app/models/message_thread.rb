@@ -15,7 +15,7 @@ class MessageThread < ActiveRecord::Base
   end
   
   def self.for(message, user)
-    find(:first, :conditions => {:parent_message_id => (message.parent_id || message.id), :recipient_id => user.id})
+    where(:parent_message_id => (message.parent_id || message.id), :recipient_id => user.id).first
   end
   
   def mark_messages_deleted

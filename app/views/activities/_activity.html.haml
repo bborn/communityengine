@@ -53,5 +53,5 @@
           = " #{activity.action.humanize.downcase }"
   %td
     -if activity.can_be_deleted_by?(current_user)
-      =link_to '<i class="icon-remove"></i>'.html_safe, activity, :remote => true, :method => 'delete', 'data-manual-confirm' => :are_you_sure.l, :class => 'clear-right pull-right btn btn-danger delete-via-ajax'
+      =link_to '<i class="icon-remove"></i>'.html_safe, activity, :remote => true, :method => 'delete', 'data-manual-confirm' => :are_you_sure.l, :class => 'clear-right pull-right btn btn-danger btn-mini delete-via-ajax'
      

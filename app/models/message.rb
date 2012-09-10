@@ -74,7 +74,7 @@ class Message < ActiveRecord::Base
   def self.new_reply(sender, message_thread = nil, params = {})
     message = new(params[:message])
     message.to ||= params[:to] if params[:to]
-  
+    
     if message_thread
       message.parent = message_thread.parent_message
       message.reply_to = message_thread.message

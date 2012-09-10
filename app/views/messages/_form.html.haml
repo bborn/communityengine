@@ -4,7 +4,7 @@
     =f.hidden_field :to
     =f.hidden_field :parent_id
   -else
-    = f.text_field :to, :required => true, :autocomplete => "off", :id => "message_to", :label => :to.l, :help_inline => :type_a_username.l
+    = f.text_field :to, :required => true, :autocomplete => "off", :id => "message_to", :label => :to.l, :placeholder => :type_a_username.l
     .auto_complete#message_to_auto_complete
     
     -content_for :end_javascript do
@@ -15,7 +15,7 @@
   -else
     = f.text_field :subject
 
-  = f.text_area :body, :label => :message.l, :rows => 10
+  = f.text_area :body, :label => :message.l, :rows => 10, :class => "span6"
 
   .controls
     = f.submit :send.l
