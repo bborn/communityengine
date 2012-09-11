@@ -16,7 +16,7 @@ $('#comment_spinner').addClass('hide');
 
 <% if configatron.recaptcha_pub_key %>
   $('#dynamic_recaptcha').each(function(){
-    Recaptcha.create('<%= configatron.recaptcha_pub_key %>', $(this) )
+    Recaptcha.create('<%= configatron.recaptcha_pub_key %>', this )
   });
 <% end %>
           
