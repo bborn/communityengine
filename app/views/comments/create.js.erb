@@ -4,10 +4,10 @@
   comment.scrollTo();
 <% else %>
   <% if @comment.user && @comment.user.facebook? %>
-    FB.ui(<%= FacebookPublisher.comment_created_hash(truncate_words(@comment.comment), commentable_url(@comment)) %>)
+    FB.ui(<%= raw FacebookPublisher.comment_created_hash(truncate_words(@comment.comment), commentable_url(@comment)) %>)
   <% end %>  
   
-  $('#newest_comment').after("<%= (render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}).gsub('"', '\\"').gsub("\n", '').html_safe %>");  
+  $('#newest_comment').after("<%= escape_javascript(render(:partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment})) %>");  
   tinyMCE.activeEditor.setContent('');
   $('#comment-<%= @comment.id.to_s %>').scrollTo();
 <% end %>
@@ -15,9 +15,9 @@
 $('#comment_spinner').addClass('hide');
 
 <% if configatron.recaptcha_pub_key %>
-  if($('dynamic_recaptcha')){
-  	Recaptcha.create('<%= configatron.recaptcha_pub_key %>', $('dynamic_recaptcha') )
-  }
+  $('#dynamic_recaptcha').each(function(){
+    Recaptcha.create('<%= configatron.recaptcha_pub_key %>', $(this) )
+  });
 <% end %>
           
 

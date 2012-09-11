@@ -45,9 +45,4 @@
       
       = comment.comment.html_safe
   
-  - highlighted ||= nil
-  - if highlighted
-    :javascript
-      $("comment_#{comment.id}").scrollTo().effect("highlight", 1000);
-  
   %hr
