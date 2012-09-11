@@ -1,33 +1,31 @@
-%li.span3
-  .thumbnail
+.row.well
+  .span2= link_to image_tag( user.avatar_photo_url(:medium) ), user_path(user)
+  
+  .span6
+    %h4= link_to user.login, user_path(user)
 
-    = link_to image_tag( user.avatar_photo_url(:medium) ), user_path(user)
+    %p
+      - if @search && @search['description']
+        = truncate_words_with_highlight user.description, @search['description']
+      - else
+        = truncate_words user.description, 18, '...'
+
+
+    %ul
+      - if user.metro_area        
+        %li.geo
+          = :from2.l
+          =user.location
+      %li.update
+        %abbr.published{:title=>"#{user.created_at}"}
+          =:joined.l + " #{time_ago_in_words_or_date user.created_at}"
+      - if current_user and current_user.can_request_friendship_with(user)
+        %li.addfriend= add_friend_link(user)
     
-    .caption
-      %h4= link_to user.login, user_path(user)
 
-      %p
-        - if @search && @search['description']
-          = truncate_words_with_highlight user.description, @search['description']
-        - else
-          = truncate_words user.description, 18, '...'
+    -unless user.tags.empty?
+      %p=raw user.tags[0...6].compact.collect{|t| link_to( t.name, tag_url(t), :class => "tag") }.join(" ")
+
+    - if current_user && current_user.admin?
+      %p= button_to :assume_id.l, assume_user_path(user), :class => 'btn'
     
-
-      %ul
-        - if user.metro_area        
-          %li.geo
-            = :from2.l
-            =user.location
-        %li.update
-          %abbr.published{:title=>"#{user.created_at}"}
-            =:joined.l + " #{time_ago_in_words_or_date user.created_at}"
-        - if current_user and current_user.can_request_friendship_with(user)
-          %li.addfriend= add_friend_link(user)
-      
-
-      -unless user.tags.empty?
-        %p=raw user.tags[0...6].compact.collect{|t| link_to( t.name, tag_url(t), :class => "tag") }.join(" ")
-
-      - if current_user && current_user.admin?
-        %p= button_to :assume_id.l, assume_user_path(user), :class => 'btn'
-      

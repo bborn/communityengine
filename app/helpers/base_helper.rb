@@ -355,7 +355,7 @@ module BaseHelper
   
   def tiny_mce_js
     selector = @tiny_mce_configuration['editor_selector']
-    '$(".' + selector + '").RichTextEditor(' + @tiny_mce_configuration.to_json + ');'.html_safe
+    'jQuery(".' + selector + '").RichTextEditor(' + @tiny_mce_configuration.to_json + ');'.html_safe
   end
   
   def flash_class(level)

@@ -3,6 +3,6 @@
 
 = render :partial => 'users/search_options'
 
-%ul.thumbnails
-  = render :partial => "users/user", :collection => @users
+= render :partial => "users/user", :collection => @users
+
 = paginate @users, :theme => 'bootstrap'
