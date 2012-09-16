@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<kaminari>, [">= 0"])
   s.add_dependency(%q<dynamic_form>, [">= 0"])
   s.add_dependency(%q<friendly_id>, ["~> 3.3"])
-  s.add_dependency(%q<paperclip>, ["~> 2.4.3"])
+  s.add_dependency(%q<paperclip>, ["~> 3.2.0"])
   s.add_dependency(%q<acts_as_commentable>, ["= 3.0.1"])
   s.add_dependency(%q<recaptcha>, [">= 0"])
   s.add_dependency(%q<omniauth>, ["= 0.3.2"])

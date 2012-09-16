@@ -54,7 +54,10 @@ configuration = {
         },
         :medium => "290x320#",
         :large => "465>"        
-      }
+      },
+      :default_url => "",
+      :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+      :url => "/system/:attachment/:id/:style/:filename"
     },
     :validation_options => {
       :max_size => 3,
@@ -70,7 +73,10 @@ configuration = {
         :original => '465>',
         :thumb => "45x45#",
         :large => "635x150#"              
-      }
+      },
+      :default_url => "",
+      :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+      :url => "/system/:attachment/:id/:style/:filename"
     },
     :validation_options => {
       :max_size => 3,
@@ -84,7 +90,10 @@ configuration = {
         :thumb => "100x100#",
         :medium => "290x320#",
         :large => "465>"      
-      }
+      },
+      :default_url => "",
+      :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+      :url => "/system/:attachment/:id/:style/:filename"
     },
     :validation_options => {
       :max_size => 3,

@@ -131,19 +131,19 @@ class User < ActiveRecord::Base
     metro_area  = MetroArea.find(search['metro_area_id']) if !search['metro_area_id'].blank?
 
     if metro_area && metro_area.country
-      country ||= metro_area.country 
+      country ||= metro_area.country
       state   ||= metro_area.state
       search['country_id'] = metro_area.country.id if metro_area.country
-      search['state_id'] = metro_area.state.id if metro_area.state      
+      search['state_id'] = metro_area.state.id if metro_area.state
     end
-    
+
     states  = country ? country.states.sort_by{|s| s.name} : []
     if states.any?
       metro_areas = state ? state.metro_areas.all(:order => "name") : []
     else
       metro_areas = country ? country.metro_areas : []
-    end    
-    
+    end
+
     return [metro_areas, states]
   end
 
@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
     search['country_id'] = params[:country_id] || nil
     search
   end
-  
+
   def self.build_conditions_for_search(search)
     user = User.arel_table
     users = User.active
@@ -191,8 +191,8 @@ class User < ActiveRecord::Base
       :limit => options[:limit]
       )
     activities.map{|a| find(a.user_id) }
-  end  
-    
+  end
+
   def self.find_featured
     self.featured
   end
@@ -215,26 +215,26 @@ class User < ActiveRecord::Base
   def self.currently_online
     User.find(:all, :conditions => ["sb_last_seen_at > ?", Time.now.utc-5.minutes])
   end
-  
+
   def self.search(query, options = {})
     with_scope :find => { :conditions => build_search_conditions(query) } do
       find :all, options
     end
   end
-  
+
   def self.build_search_conditions(query)
     query
-  end  
-  
-  ## End Class Methods  
-  
-  
+  end
+
+  ## End Class Methods
+
+
   ## Instance Methods
-  
+
   def moderator_of?(forum)
     moderatorships.count(:all, :conditions => ['forum_id = ?', (forum.is_a?(Forum) ? forum.id : forum)]) == 1
   end
-  
+
   def monitoring_topic?(topic)
     monitored_topics.find_by_id(topic.id)
   end
@@ -249,7 +249,7 @@ class User < ActiveRecord::Base
   def this_months_posts
     self.posts.find(:all, :conditions => ["published_at > ?", DateTime.now.to_time.at_beginning_of_month])
   end
-  
+
   def last_months_posts
     self.posts.find(:all, :conditions => ["published_at > ? and published_at < ?", DateTime.now.to_time.at_beginning_of_month.months_ago(1), DateTime.now.to_time.at_beginning_of_month])
   end
@@ -286,7 +286,7 @@ class User < ActiveRecord::Base
     end
     UserNotifier.activation(self).deliver    
   end
-  
+
   def active?
     activation_code.nil? && !activated_at.nil?
   end
@@ -294,19 +294,19 @@ class User < ActiveRecord::Base
   def valid_invite_code?(code)
     code == invite_code
   end
-  
+
   def invite_code
     Digest::SHA1.hexdigest("#{self.id}--#{self.email}--#{self.password_salt}")
   end
-  
+
   def location
     metro_area && metro_area.name || ""
   end
-  
+
   def full_location
     "#{metro_area.name if self.metro_area}#{" , #{self.country.name}" if self.country}"
   end
-  
+
   def reset_password
      new_password = newpass(8)
      self.password = new_password
@@ -320,7 +320,7 @@ class User < ActiveRecord::Base
      1.upto(len) { |i| new_password << chars[rand(chars.size-1)] }
      return new_password
   end
-  
+
   def owner
     self
   end
@@ -328,7 +328,7 @@ class User < ActiveRecord::Base
   def staff?
     featured_writer?
   end
-  
+
   def can_request_friendship_with(user)
     !self.eql?(user) && !self.friendship_exists_with?(user)
   end
@@ -354,7 +354,7 @@ class User < ActiveRecord::Base
     page.reverse_merge! :per_page => 10, :page => 1
     friend_ids = self.friends_ids
     metro_area_people_ids = self.metro_area ? self.metro_area.users.map(&:id) : []
-    
+
     ids = ((friends_ids | metro_area_people_ids) - [self.id])[0..100] #don't pull TOO much activity for now
     
     Activity.recent.since(since).by_users(ids).page(page[:page]).per(page[:per_page])          
@@ -370,18 +370,18 @@ class User < ActiveRecord::Base
     return [] if accepted_friendships.empty?
     accepted_friendships.map{|fr| fr.friend_id }
   end
-  
+
   def recommended_posts(since = 1.week.ago)
     return [] if tags.empty?
     rec_posts = Post.tagged_with(tags.map(&:name), :any => true).where(['posts.user_id != ? AND published_at > ?', self.id, since ])
     rec_posts = rec_posts.order('published_at DESC').limit(10)
     rec_posts
   end
-  
+
   def display_name
     login
   end
-  
+
   def admin?
     role && role.eql?(Role[:admin])
   end
@@ -393,13 +393,13 @@ class User < ActiveRecord::Base
   def member?
     role && role.eql?(Role[:member])
   end
-  
+
   def male?
     gender && gender.eql?(MALE)
   end
-  
+
   def female
-    gender && gender.eql?(FEMALE)    
+    gender && gender.eql?(FEMALE)
   end
 
   def update_last_seen_at
