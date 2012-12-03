@@ -28,17 +28,18 @@ class ActionController::TestCase
   setup :activate_authlogic
 end
 
-class ActiveSupport::TestCase      
+class ActiveSupport::TestCase
   setup :activate_authlogic
   include AuthenticatedTestHelper
-  
-  set_fixture_class :tags => ActsAsTaggableOn::Tag, :taggings => ActsAsTaggableOn::Tagging  
-  
+  include ActionDispatch::TestProcess
+
+  set_fixture_class :tags => ActsAsTaggableOn::Tag, :taggings => ActsAsTaggableOn::Tagging
+
   def self.all_fixtures
     # fixtures :forums, :users, :sb_posts, :topics, :moderatorships, :monitorships, :categories
     fixtures :all
-  end  
-  
+  end
+
   def teardown
     UserSession.find && UserSession.find.destroy
   end
@@ -52,12 +53,12 @@ class ActiveSupport::TestCase
 
   def assert_no_difference(object, method, &block)
     assert_difference object, method, 0, &block
-  end 
-  
+  end
+
   def login_as(user)
     UserSession.create(users(user))
-  end  
-  
+  end
+
   def authorize_as(user, mime_type = 'application/xml')
     @request.env["HTTP_AUTHORIZATION"] = user ? "Basic #{Base64.encode64("#{users(user).login}:test")}" : nil
     accept       mime_type
@@ -71,7 +72,7 @@ class ActiveSupport::TestCase
   def accept(accept)
     @request.env["HTTP_ACCEPT"] = accept
   end
-  
+
   def assert_js_redirected_to(options={}, message=nil)
     clean_backtrace do
       assert_response(:success, message)
@@ -91,15 +92,15 @@ class ActiveSupport::TestCase
       end
     end
   end
-   
+
 end
 
 # Redefining this so we don't have to go out to the interwebs everytime we create a clipping in a test
 # file paramater must equal http://www.google.com/intl/en_ALL/images/logo.gif; all other strings are considered an invalid URL
 module UrlUpload
-  include ActionDispatch::TestProcess  
-  attr_accessor :data 
-  
+  include ActionDispatch::TestProcess
+  attr_accessor :data
+
   def data_from_url(uri)
     data ||= Rack::Test::UploadedFile.new("#{File.dirname(__FILE__)}/fixtures/files/library.jpg", 'image/jpg', false)
     if ['http://www.google.com/intl/en_ALL/images/logo.gif', 'http://us.i1.yimg.com/us.yimg.com/i/ww/beta/y3.gif'].include?(uri)
@@ -107,5 +108,5 @@ module UrlUpload
     else
       nil
     end
-  end      
+  end
 end
