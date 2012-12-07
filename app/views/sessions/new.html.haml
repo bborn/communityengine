@@ -1,5 +1,5 @@
 .yui-b.sidebar=render :partial => 'shared/login_sidebar'
-  
+
 #yui-main
   .yui-b.main_column
     -box do
@@ -17,11 +17,11 @@
         %p
           = submit_tag :log_in.l
 
-    -if configatron.auth_providers.to_hash.keys.any?      
+    -if configatron.auth_providers.to_hash.keys.any?
       -box :class => "alt" do
         %h3= t 'sessions.new.omniauth.header'
         -configatron.auth_providers.to_hash.keys.each do |provider|
-          -alt = t('sessions.new.omniauth.button_alt', :provider => provider.capitalize)
+          -alt = t('sessions.new.omniauth.button_alt', :provider => provider.to_s.capitalize)
           = link_to(image_tag("auth/#{provider.to_s}_64.png", :alt => alt), "/auth/#{provider.to_s}", :title => alt)
 
-        
+
