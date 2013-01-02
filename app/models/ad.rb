@@ -4,33 +4,36 @@ class Ad < ActiveRecord::Base
 
   validates_presence_of :html
   validates_inclusion_of :audience, :in => AUDIENCES
-  validates_inclusion_of :frequency, :in => FREQUENCIES  
-  
+  validates_inclusion_of :frequency, :in => FREQUENCIES
+
+  attr_accessible :html, :name, :frequency, :audience, :published, :time_constrained, :start_date, :end_date, :location
+
+
   def self.display(location, logged_in = false)
     return nil if location.blank?
-    ads = find(:all, 
-      :conditions => ["location = ? 
-        AND published = ? 
+    ads = find(:all,
+      :conditions => ["location = ?
+        AND published = ?
         AND (time_constrained = ? OR (start_date > ? AND end_date < ?))
-        AND (audience IN (?) )", 
+        AND (audience IN (?) )",
         location.to_s, true, false, Time.now, Time.now, audiences_for(logged_in) ])
-        
+
     ad = random_weighted(ads.map{|a| [a, a.frequency] })
     ad ? ad.html.html_safe : ''
   end
-    
+
   def self.audiences_for(logged_in)
     ["all", "logged_#{logged_in ? 'in' : 'out'}"]
   end
-  
+
   def self.frequencies_for_select
     FREQUENCIES.map{|f| [f, f.to_s]}
   end
-  
+
   def self.audiences_for_select
     AUDIENCES.map{|a| [a, a.to_s]}
-  end  
-  
+  end
+
   def self.random_weighted(items)
     total = 0
     pick = nil
@@ -38,6 +41,6 @@ class Ad < ActiveRecord::Base
       pick = item if rand(total += weight) < weight
     end
     pick
-  end    
+  end
 
 end

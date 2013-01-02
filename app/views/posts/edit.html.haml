@@ -7,12 +7,12 @@
 
 #yui-main
   .yui-b
-    -box do 
+    -box do
       %h3=:editing_post.l
 
       = error_messages_for :post
       = form_for(:post, :url => user_post_path(@user, @post), :html => { :method => :put, :class =>'MainForm' }) do |f|
-        %label 
+        %label
           =:title.l
           %em= '('+:required.l+')'
         = f.text_field :title
@@ -27,19 +27,19 @@
         %label
           =:tags.l
           %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
-        = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35}
+        = text_field_tag 'tag_list', @post.tag_list.to_s, {:autocomplete => "off", :size => 35}
         #tag_list_auto_complete.auto_complete
         -content_for :end_javascript do
           = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-          
+
         %label=:save_post_as.l
         = f.select(:published_as, [[:published.l, 'live'], [:draft.l, 'draft']])
-        
-        %label
-          = f.check_box :send_comment_notifications        
-          =:send_comment_notifications.l        
 
-        
+        %label
+          = f.check_box :send_comment_notifications
+          =:send_comment_notifications.l
+
+
         %p
           = submit_tag :update.l
           = :or.l
