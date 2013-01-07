@@ -3,7 +3,7 @@
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
 
 - @section = (@post.category && @post.category.name)
-- @meta = { :title => "#{@post.title}", :description => "#{truncate_words(@post.post, 75, '...' )}", :keywords => "#{@post.tags.join(", ") unless @post.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
+- @meta = { :title => "#{@post.title}", :description => "#{truncate_words(@post.post, 75, '...' )}", :keywords => "#{@post.tags.join(", ") unless @post.tags.nil?}", :robots => configatron.robots_meta_show_content }
 
 #yui-main
   .yui-b
@@ -16,14 +16,14 @@
             %li.update
               %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
                 %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display(:literal_date)
-            %li.view= :views.l+" (#{@post.view_count})"
-            %li.comments= link_to :comments.l+" (#{@post.comments.size})", user_post_path(@user, @post)+'#comments'      
+            %li.view= "#{:view_count.l} (#{@post.view_count})"
+            %li.comments= link_to "#{:comments.l} (#{@post.comments.count})", user_post_path(@user, @post), :anchor => 'comments'                  
             - if current_user and current_user.can_request_friendship_with(@post.user)
               %li.addfriend= add_friend_link(@post.user)
             %li.print
               %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}= :print.l
             %li.email
-              %a{:href=>"#", :onclick=>"showSendTo_friend(); return false;", :title=>:email_this_story_to_friends.l}= :email_to_friends.l
+              %a{:href=>"#", :title=>:email_this_story_to_friends.l}= :email_to_friends.l
             %li.share
               %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;button=false"}
               =sharethis_options(@post)
@@ -32,19 +32,23 @@
               %li.delete= link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
 
               
-          %script{:type => 'text/javascript'}
-            :plain
-              function showSendTo_friend(){
+          -content_for :end_javascript do
+            :javascript
+              Event.observe( window, 'load', function() { 
+                $$(".email").invoke('observe', 'click', showSendToFriend);
+              });      
+
+            
+              function showSendToFriend(){
                 if ($('send_to_friend')){
                   new Lightbox.base('send_to_friend');				                
                 } else {
-            = remote_function(:url => { :action => "send_to_friend", :params => {:user_id => @user.id, :id => @post.id} }, :success => "new Insertion.Top($('bd'), request.responseText)", :complete => "new Lightbox.base('send_to_friend'); return false;Element.toggle('send_to_friend');", :method => 'post')                 
-            :plain
-              }}
+                  #{remote_function(:url => { :action => "send_to_friend", :params => {:user_id => @user.id, :id => @post.id} }, :success => "new Insertion.Top($('bd'), request.responseText)", :complete => "new Lightbox.base('send_to_friend'); return false;Element.toggle('send_to_friend');", :method => 'post')}
+                }}
               
         / vcard
         .entry-content
-          = @post.post
+          = @post.post.html_safe
           = render :partial => 'polls/poll_ui', :locals => {:poll => @post.polls.first} unless @post.polls.empty?
           - unless @post.tags.empty?
             %ul.tags
@@ -52,6 +56,7 @@
                 %li=link_to( t.name, tag_url(t), :rel => 'tag')
         / entry-content
       / ends hentry
+      
     -box :class => 'hfeed comments', :id => 'comments' do      
       %h3= :post_comments.l 
       %h2= :add_your_comment.l
@@ -81,5 +86,6 @@
           %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)      
 / sidebar
 
-%script{:type=>"text/javascript", :charset=>"utf-8"}
-  = remote_function :url => {:controller => 'posts', :action => 'update_views', :user_id => @post.user, :id => @post}, :method => :put
+-content_for :end_javascript do
+  :javascript
+    #{remote_function :url => update_views_user_post_path(@post.user, @post), :method => :put}

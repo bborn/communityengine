@@ -13,7 +13,7 @@ module ForumsHelper
     return false unless logged_in? && forum.topics.first
     return false unless last_active || session[:forums]
      
-    return forum.recent_topics.first.replied_at > (last_active || session[:forums][forum.id])
+    return forum.topics.order("replied_at desc").first.replied_at > (last_active || session[:forums][forum.id])
   end
   
   def icon_and_color_and_post_for(topic)

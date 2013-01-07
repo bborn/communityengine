@@ -3,8 +3,7 @@ class AddCategoryTips < ActiveRecord::Migration
     add_column :categories, :tips, :text
   end
 
-  def self.down
-    
+  def self.down    
     remove_column :categories, :tips
   end
 end

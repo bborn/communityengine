@@ -3,7 +3,7 @@
     -box do 
       %h3= :edit_page.l
       = error_messages_for :page
-      - form_for(:page, :url => admin_page_path(@page), :html => {:method => :put, :class => "MainForm", :id => 'post_form'}) do |f|
+      = form_for(:page, :url => admin_page_path(@page), :html => {:method => :put, :class => "MainForm", :id => 'post_form'}) do |f|
 
         =render :partial => 'form', :locals => {:f => f}
         
@@ -12,5 +12,5 @@
           =:or.l 
           = link_to :cancel_and_go_back_to_pages.l, admin_pages_path
         %p
-          =link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine} "+:delete_this_page.l, admin_page_path(@page), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_page.l
+          =link_to "#{image_tag 'icons/delete.png', :plugin => :community_engine}".html_safe+:delete_this_page.l, admin_page_path(@page), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_page.l
 

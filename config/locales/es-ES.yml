@@ -1,0 +1,340 @@
+es-ES:
+  date:
+    order: 
+    - :day
+    - :month
+    - :year
+    day_names: [Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]    
+    formats:
+      published_date: "%Y/%m/%d"
+      date_ago: "%b %Y"
+
+  time:
+    formats:
+      published_date: "%Y/%m/%d"      
+      short_published_date: "%m/%d/%y"
+      literal_date: "%B %d, %Y"
+      short_literal_date: "%b %d, %Y"
+      time_ago: "%l:%M%p"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "creado: "
+  #en: about: About
+  about: "Qui\xC3\xA9nes somos"
+  #en: about_me: About Me
+  about_me: "Acerca de M\xC3\xAD"
+  #en: about_site: About %{site}
+  about_site: Acerca de %{site}
+  #en: about_you: About You
+  about_you: "Acerca de T\xC3\xAD"
+  #en: accepted_friendships: Accepted Friendships
+  accepted_friendships: 'Amistades Aceptadas'
+  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.
+  account_activation_error: "Activaci\xC3\xB3n de cuenta fallada. Tal vez ya est\xC3\xA9 activa. Intenta conectarte o manda un correo electr\xC3\xB3nico a %{email} para obtener ayuda."
+  #en: account_settings: Account settings
+  account_settings: "Configuraci\xC3\xB3n de cuenta"
+  #en: actions: Actions
+  actions: 'Acciones'
+  #en: activate: Activate
+  activate: 'Activar'
+  #en: active: active
+  active: 'activo'
+  #en: active_users: Active Users
+  active_users: 'Usuarios Activos'
+  #en: activity_from_your_network: Activity from your network
+  activity_from_your_network: 'Actividad de tu red'
+  #en: ad_was_successfully_created: Ad was successfully created.
+  ad_was_successfully_created: 'El anuncio se ha creado correctamente.'
+  #en: ad_was_successfully_updated: Ad was successfully updated.
+  ad_was_successfully_updated: "El anuncio se ha actualizado correctamente."
+  #en: add_a_photo: Add a photo
+  add_a_photo: "A\xC3\xB1adir una foto"
+  #en: add_a_poll: Add a poll
+  add_a_poll: "A\xC3\xB1adir una encuesta"
+  #en: add_comment: Add Comment
+  add_comment: "A\xC3\xB1adir Comentario"
+  #en: add_some_friends_to_get_started: Add some friends to get started!
+  add_some_friends_to_get_started: "\xC2\xA1A\xC3\xB1ade algunos amigos para empezar!"
+  #en: add_your_comment: Add Your Comment!
+  add_your_comment: "\xC2\xA1A\xC3\xB1ade Tu Comentario!"
+  #en: added_a_clipping: "added a clipping:"
+  added_a_clipping: "a\xC3\xB1adi\xC3\xB3 un recorte:"
+  #en: added_to_a_forum_topic: "added to a forum topic:"
+  added_to_a_forum_topic: "a\xC3\xB1adido a un tema del foro"
+  #en: admin: Admin
+  admin: "Administrador"
+  #en: admin_controls: Admin Controls
+  admin_controls: "Controles del Administrador"
+  #en: admin_dashboard: Admin dashboard
+  admin_dashboard: "Panel de control del Administrador"
+  #en: ads: Ads
+  ads: "Anuncio"
+  #en: advertise: Advertise
+  advertise: "Anunciarse"
+  #en: advertise_on: Advertise on
+  advertise_on: "Anunciarse en"
+  #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
+  after_signing_up_youll_receive_an_e_mail_confirmation_message: "Despu\xC3\xA9s de registrarte, recibir\xC3\xA1s un mensaje de confirmaci\xC3\xB3n."
+  #en: all_clippings_tagged: All clippings tagged %{tag_name}
+  all_clippings_tagged: "Todos los recortes marcados con la etiqueta %{tag_name}"
+  #en: all_comments: All comments
+  all_comments: "Todos los comentarios"
+  #en: all_photos_tagged: All photos tagged %{tag_name}
+  all_photos_tagged: "Todas las fotos marcadas con la etiqueta %{tag_name}"
+  #en: all_posts_tagged: All posts tagged %{tag_name}
+  all_posts_tagged: "Todas las publicaciones marcadas con la etiqueta %{tag_name}"
+  #en: all_tags: All tags
+  all_tags: "Todas las etiquetas"
+  #en: all_users_tagged: All users tagged %{tag_name}
+  all_users_tagged: "Todos los usuarios marcados con la etiqueta %{tag_name}"
+  #en: already_have_an_account: Already have an account?
+  already_have_an_account: "\xC2\xBFYa tienes una cuenta?"
+  #en: an_error_occurred: An error occurred
+  an_error_occurred: "Ocurri\xC3\xB3 un error"
+  #en: are_you_sure: Are you sure?
+  are_you_sure: "\xC2\xBFEst\xC3\xA1s seguro?"
+  #en: are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
+  are_you_sure_you_want_to_permanently_delete_this_user: "\xC2\xBFEst\xC3\xA1s seguro de querer eliminar permanentemente a este usuario?"
+  #en: assign_role: Assign role
+  assign_role: Asignar el rol
+  #en: assume_id: Assume ID
+  assume_id: "Asumir la Identificaci\xC3\xB3n"
+  #en: assume_this_users_id: Assume this user's ID
+  assume_this_users_id: "Asumir esta identificaci\xC3\xB3n de usuario"
+  #en: audience: Audience
+  audience: "Audiencia"
+  #en: author: Author
+  author: "Autor"
+  #en: back: Back
+  back: "Atr\xC3\xA1s"
+  #en: back_to_all_users: Back to all users
+  back_to_all_users: "Volver a todos los usuarios"
+  #en: birthday: Birthday
+  birthday: "Cumplea\xC3\xB1os"
+  #en: birthday__gender: Birthday & Gender
+  birthday__gender: "Cumplea\xC3\xB1os Y G\xC3\xA9nero"
+  #en: blog: Blog
+  blog: "Bit\xC3\xA1cora"
+  #en: blog_posts: Blog posts
+  blog_posts: "Publicaciones de la bit\xC3\xA1cora"
+  #en: body: Body
+  body: "Cuerpo"
+  #en: body_text: Body Text
+  body_text: "Texto del Cuerpo"
+  #en: bookmarklet: Bookmarklet
+  bookmarklet: "Marcador"
+  #en: browse_all_members: browse all members
+  browse_all_members: "Mirar todos los miembros"
+  #en: by: by
+  by: "por"
+  #en: by_looking_at_the: by looking at the
+  by_looking_at_the: "mirando"
+  #en: cancel: cancel
+  cancel: "cancelar"
+  #en: cancel_and_go_back_to: Cancel, and go back to
+  cancel_and_go_back_to: "cancelar, y volver atr\xC3\xA1s"
+  #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
+  cancel_and_go_back_to_my_posts: "cancelar y volver a mis publicaciones"
+  #en: categories: Categories
+  categories: "Categor\xC3\xADas"
+  #en: category: Category
+  category: "Categor\xC3\xADa"
+  #en: category_was_successfully_created: Category was successfully created.
+  category_was_successfully_created: "La categor\xC3\xADa se cre\xC3\xB3 satisfactoriamente."
+  #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
+  choose_a_photo_for_your_profile: "Elige una foto para tu perfil:"
+  #en: choose_a_photo_to_upload: "Choose a photo to upload:"
+  choose_a_photo_to_upload: "Elige una foto para subir:"
+  #en: choose_your_location: Choose your location
+  choose_your_location: "Elige tu ubicaci\xC3\xB3n"
+  #en: click_here_to_retrieve_it: Click here to retrieve it
+  click_here_to_retrieve_it: "Picha aqu\xC3\xAD para recuperarlo."
+  #en: click_here_to_sign_up: Click here to sign up
+  click_here_to_sign_up: "Picha aqu\xC3\xAD para registrarte"
+  #en: click_here_to_upload_one: Click here to upload one!
+  click_here_to_upload_one: "\xC2\xA1Picha aqu\xC3\xAD para subir uno!"
+  #en: click_on_an_image_below_to_clip_it: Click on an image below to clip it.
+  click_on_an_image_below_to_clip_it: "Pincha en una imagen de abajo para recortarla."
+  #en: click_the_activation_link_in_the_e_mail_to_log_in: Click the activation link in the e-mail to log in.
+  click_the_activation_link_in_the_e_mail_to_log_in: "Pincha el enlace de activaci\xC3\xB3n en el correo electr\xC3\xB3nico para entrar."
+  #en: clipping_comments: Clipping Comments
+  clipping_comments: "Comentarios de Recortes"
+  #en: clipping_was_successfully_created: Clipping was successfully created.
+  clipping_was_successfully_created: "El recorte se cre\xC3\xB3 satisfactoriamente."
+  #en: clippings: Clippings
+  clippings: "Recortes"
+  #en: close_this_message: Close this message
+  close_this_message: "Cierra este mensaje"
+  #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
+  comma_separated_keywords_that_describe_you: "Palabras clave separadas por coma que te describen."
+  #en: comment_character_limit: (2000 character limit)
+  comment_character_limit: "(l\xC3\xADmite de 2000 caracteres)"
+  #en: comment_could_not_be_deleted: Comment could not be deleted.
+  comment_could_not_be_deleted: "No se pudo borrar el comentario."
+  #en: comment_save_error: Your comment couldn't be saved. %{error}
+  comment_save_error: "No se pudo guardar tu comentario. %{error}"
+  #en: comment_was_successfully_created: Comment was successfully created.
+  comment_was_successfully_created: "El comentario se cre\xC3\xB3 satisfactoriamente."
+  #en: comments: Comments
+  comments: "Comentarios"
+  #en: comments_count: "%{count} %{count} comments"
+  comments_count: "comentarios %{count} %{count}"
+  #en: comments_rss: Comments RSS
+  comments_rss: "Comentarios de RSS"
+  #en: community_tagline: CommunityEngine Rocks!
+  community_tagline: "\xC2\xA1CommunityEngine Mola!"
+  #en: confirm_password: Confirm Password
+  confirm_password: "Confirma la Contrase\xC3\xB1a"
+  #en: country: Country
+  country: "Pa\xC3\xADs"
+  #en: create: Create
+  create: "Crear"
+  #en: create_a_clipping_: "Create a clipping "
+  create_a_clipping_: "Crear un recorte"
+  #en: create_a_post: Create a post
+  create_a_post: "Crear una publicaci\xC3\xB3n"
+  #en: create_an_account: Create an account
+  create_an_account: "Crear una cuenta"
+  #en: create_new_forum: Create New Forum
+  create_new_forum: "Crear Nuevo Foro"
+  #en: create_your_account: Create Your Account
+  create_your_account: Crea Tu Cuenta
+  #en: custom_friendly_local: custom, friendly, local
+  custom_friendly_local: "costumbre, amistoso, local"
+  #en: dashboard: Dashboard
+  dashboard: "Panel de control"
+  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on %{site} here
+  dashboard_friends: "Una vez que empiezas a\xC3\xB1adiendo amigos, ser\xC3\xA1s capaz de seguir su actividad en %{site} aqu\xC3\xAD"
+  #en: date_created: Date Created
+  date_created: "Fecha Creada"
+  #en: date_published: Date Published
+  date_published: "Fecha Publicada"
+  #en: delete: Delete
+  delete: "Eliminar"
+  #en: delete_post: Delete post
+  delete_post: "Eliminar publicaci\xC3\xB3n"
+  #en: delete_this_event: Delete this event
+  delete_this_event: "Suprimir este evento"
+  #en: delete_this_forum: Delete this forum
+  delete_this_forum: "Suprimir este foro"
+  #en: delete_this_post_forever: Delete this post forever?
+  delete_this_post_forever: "\xC2\xBFSuprimir esta publicaci\xC3\xB3n para siempre?"
+  #en: delete_this_topic_forever: Delete this topic forever?
+  delete_this_topic_forever: "\xC2\xBFSuprimir este tema para siempre?"
+  #en: delete_this_user: Delete this user
+  delete_this_user: "Suprimir este usuario"
+  #en: description: Description
+  description: "Descripci\xC3\xB3n"
+  #en: destroy: Destroy
+  destroy: "Destruir"
+  #en: dont_have_an_account: Don't have an account?
+  dont_have_an_account: "\xC2\xBFNo tienes una cuenta?"
+  #en: dont_wait_its: Don't wait! It's
+  dont_wait_its: "\xC2\xA1No esperes! Es"
+  #en: draft: draft
+  draft: "borrador"
+  #en: e_mail: E-mail
+  e_mail: "Correo electr\xC3\xB3nico"
+  #en: e_mail_address: E-mail address
+  e_mail_address: "Direcci\xC3\xB3n de correo electr\xC3\xB3nico"
+  #en: e_mail_notification: E-mail Notification
+  e_mail_notification: "Notificaci\xC3\xB3n de correo electr\xC3\xB3nico"
+  #en: edit: Edit
+  edit: "Editar"
+  #en: edit_account: Edit account
+  edit_account: "Editar cuenta"
+  #en: edit_forum: Edit Forum
+  edit_forum: "Editar Foro"
+  #en: edit_post: Edit Post
+  edit_post: "Editar Publicaci\xC3\xB3n"
+  #en: edit_profile: Edit profile
+  edit_profile: "Editar perfil"
+  #en: edit_this_event: Edit this event
+  edit_this_event: "Editar este evento"
+  #en: edit_topic: Edit Topic
+  edit_topic: "Editar Tema"
+  #en: edit_your_account_settings_instead: Edit your account settings instead?
+  edit_your_account_settings_instead: "\xC2\xBFEditar tus opciones de la cuenta en su lugar?"
+  #en: editing_ad: Editing ad
+  editing_ad: "Editando anuncio"
+  #en: editing_category: Editing category
+  editing_category: "Editando categor\xC3\xADa"
+  #en: editing_post: Editing post
+  editing_post: "Editando publicaci\xC3\xB3n"
+  #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
+  email_signup_thanks: "\xC2\xA1Gracias por registrarte! Deber\xC3\xADas recibir la confirmaci\xC3\xB3n de un correo electr\xC3\xB3nico dentro de poco en %{email}"
+  #en: end_date: End date
+  end_date: "Fecha final"
+  #en: enter_e_mail_addresses: Enter e-mail addresses
+  enter_e_mail_addresses: "Entra la direcci\xC3\xB3n de correo electr\xC3\xB3nico"
+  #en: enter_your_email_address: "Enter your email address:"
+  enter_your_email_address: "Entra tu direcci\xC3\xB3n de correo electr\xC3\xB3nico"
+  #en: event_was_successfully_created: Event was successfully created.
+  event_was_successfully_created: "El evento se cre\xC3\xB3 con \xC3\xA9xito"
+  #en: events: Events
+  events: "Eventos"
+  #en: explore_site: Explore %{site}
+  explore_site: "Explora %{site}"
+  #en: faq: FAQ
+  faq: "Preguntas m\xC3\xA1s frecuentes"
+  #en: favorited: favorited
+  favorited: 'favorito'
+  #en: featured_posts: Featured Posts
+  featured_posts: 'Publicaciones Destacadas'
+  #en: featured_writer: Featured Writer
+  featured_writer: 'Escritor Destacado'
+  #en: features: Features
+  features: 'Destacados'
+  #en: female: Female
+  female: 'Hembra'
+  #en: find_an_expert: Find an Expert
+  find_an_expert: 'Buscar un Experto'
+  #en photo_manager: "Photo manager"
+  photo_manager: "Administrador de fotos"
+  #en: album_tip: "Albums let you organize yout photos. Share whole experiencies with other %{community_name} users"
+  album_tip: "Los álbunes te permiten organizar fotos. Comparte experiencias completas con otros usuarios de %{community_name}"  
+  #en: albums: "Albums"
+  albums: "Álbumes"
+  # en album_updated: "Album updated"
+  album_updated: "Àlbum actualizado"
+  #en: album_comments: "Comentarios de álbum"
+  album_comments: "Comentarios de álbum"
+  #en: delete_album_and_photos: Delete album and its associated photos?
+  delete_album_and_photos: "¿Borrar álbum y sus fotos asociadas?"
+  #en: album_was_successfully_created: "Album was successfully created"
+  album_was_successfully_created: "Album creado con éxito"    
+  #en: album: "Album"
+  album: "Álbum"
+  #en: view_more: "View more"
+  view_more: "Ver más"
+  #en: assign_album: "Assign album"
+  assign_album: "Asignar álbum" 
+  #en: new_album: "New album"
+  new_album: "Nuevo álbum"
+  #en: created_an_album: "Created an album"
+  created_an_album: "Álbum creado"
+  #en: add_photos: "Add photos"
+  add_photos: "Añadir fotos"
+  #en: view_my_album: "View my album"
+  view_my_album: "Ver mi álbum"
+  #en: photos_of_this_album: "Photos of this album"
+  photos_of_this_album: "Fotos de este álbum"
+  #en: not_assigned_photos: "Photos not assigned to an album"
+  not_assigned_photos: "Fotos no asignadas a álbumes"
+  #en: create_and_add_photos: "Create and add photos to this album"
+  create_and_add_photos: "Crear y añadir fotos a este álbum"
+  #en: edit_and_add_photos: "Edit and add photos to this album"
+  edit_and_add_photos: "Editar y añadir fotos a este álbum"
+  #en: create_album: "Create album"
+  create_album: "Crear álbum"
+  #en: edit_album: "Edit album"
+  edit_album: "Editar álbum"
+  #en; cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
+  cancel_and_go_back_to_photo_manager: "Cancelar y volver al administrador de fotos"
+  #en: back_to_photo_manager: "Back to photo manager"
+  back_to_photo_manager: "Volver al administrador de fotos"

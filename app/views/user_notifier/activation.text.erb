@@ -1,0 +1,11 @@
+Hi <%= @user.login %>, 
+Just a quick note to let you know your <%= configatron.community_name %> account has been activated. There's always a lot going on at <%= configatron.community_name %>, so come check out what's new:
+
+<%= @url %>
+
+* As a <%= configatron.community_name %> member, you'll receive occasional e-mails from us (with news, contest announcements, and updates on the site). If you don't want them, you can change your e-mail preferences here:
+
+<%= edit_account_user_url(@user.to_param) %>
+
+Thanks for joining <%= configatron.community_name %>!
+The <%= configatron.community_name %> Team

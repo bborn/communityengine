@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class SbPostsControllerTest < ActionController::TestCase
   all_fixtures
@@ -109,56 +109,38 @@ class SbPostsControllerTest < ActionController::TestCase
   def test_should_view_recent_posts
     get :index
     assert_response :success
-    assert_models_equal [sb_posts(:il8n), sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus), sb_posts(:ponies), sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi), sb_posts(:sticky)], assigns(:posts)
+    assert_equal [sb_posts(:il8n), sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus), sb_posts(:ponies), sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi), sb_posts(:sticky)], assigns(:posts)
   end
 
   def test_should_view_posts_by_forum
     get :index, :forum_id => forums(:comics).to_param
     assert_response :success
-    assert_models_equal [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
+    assert_equal [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
 
   def test_should_view_posts_by_user
     get :index, :user_id => users(:sam).id
     assert_response :success
-    assert_models_equal [sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:ponies), sb_posts(:pdi_reply), sb_posts(:sticky)], assigns(:posts)
+    assert_equal [sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:ponies), sb_posts(:pdi_reply), sb_posts(:sticky)], assigns(:posts)
   end
   
   def test_should_view_monitored_posts
     get :monitored, :user_id => users(:aaron).id
-    assert_models_equal [sb_posts(:pdi_reply)], assigns(:posts)
+    assert_equal [sb_posts(:pdi_reply)], assigns(:posts)
   end
 
   def test_should_search_recent_posts
     get :search, :q => 'pdi'
     assert_response :success
-    assert_models_equal [sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi)], assigns(:posts)
+    assert_equal [sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi)], assigns(:posts)
   end
 
   def test_should_search_posts_by_forum
     get :search, :forum_id => forums(:comics).to_param, :q => 'galactus'
     assert_response :success
-    assert_models_equal [sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
+    assert_equal [sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
   end
-  
-  def test_should_view_recent_posts_as_rss
-    get :index, :format => 'rss'
-    assert_response :success
-    assert_models_equal [sb_posts(:il8n), sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus), sb_posts(:ponies), sb_posts(:pdi_rebuttal), sb_posts(:pdi_reply), sb_posts(:pdi), sb_posts(:sticky)], assigns(:posts)
-  end
-
-  def test_should_view_posts_by_forum_as_rss
-    get :index, :forum_id => forums(:comics).to_param, :format => 'rss'
-    assert_response :success
-    assert_models_equal [sb_posts(:shield_reply), sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:galactus)], assigns(:posts)
-  end
-
-  def test_should_view_posts_by_user_as_rss
-    get :index, :user_id => users(:sam).id, :format => 'rss'
-    assert_response :success
-    assert_models_equal [sb_posts(:shield), sb_posts(:silver_surfer), sb_posts(:ponies), sb_posts(:pdi_reply), sb_posts(:sticky)], assigns(:posts)
-  end
-  
+    
   def test_disallow_new_post_to_locked_topic
     galactus = topics(:galactus)
     galactus.locked = true
@@ -171,22 +153,37 @@ class SbPostsControllerTest < ActionController::TestCase
   
   
   test "should create anonymous reply" do
-    AppConfig.allow_anonymous_forum_posting = true    
+    configatron.allow_anonymous_forum_posting = true    
     assert_difference SbPost, :count, 1 do
       post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo@bar.com' }
-      assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param
+      assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1'
     end
-    AppConfig.allow_anonymous_forum_posting = false    
+    configatron.allow_anonymous_forum_posting = false    
   end
 
   test "should fail creating an anonymous reply" do
-    AppConfig.allow_anonymous_forum_posting = true        
+    configatron.allow_anonymous_forum_posting = true        
     assert_difference SbPost, :count, 0 do
-      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => { :body => 'blah', :author_email => 'foo' }
-      assert_response :redirect
+      post_params = { :body => 'blah', :author_email => 'foo' }
+      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :post => post_params
+      assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge({:post => post_params}))
     end
-    AppConfig.allow_anonymous_forum_posting = false        
+    configatron.allow_anonymous_forum_posting = false        
   end
+
+  test "should show recent with anonymous posts" do
+    configatron.allow_anonymous_forum_posting = true
+    
+    topic = topics(:pdi)
+      
+    assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
+    
+    get :index    
+    assert_response :success
+    
+    configatron.allow_anonymous_forum_posting = false        
+  end
+  
 
   
 end

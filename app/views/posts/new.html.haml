@@ -1,14 +1,9 @@
 .yui-b
   -box :id => 'category_tips' do
-    -if @post.contest
-      = render :partial => "contest"
-    -elsif @post.category
-      = render :partial => "/categories/tips", :locals => {:category => @post.category}
+    -if @post.category
+      = render :partial => "categories/tips", :locals => {:category => @post.category}
     - else 
-      = render :partial => "/categories/tips", :locals => {:category => nil}
-
-  -box :class => "alt" do 
-    %a.button.positive{:href => '#', :onclick => "tinyMCE.execCommand('mceCurblyAdvImage');return false;"}=:upload_an_image_for_your_post.l
+      = render :partial => "categories/tips", :locals => {:category => nil}
     
 #yui-main
   .yui-b
@@ -17,8 +12,8 @@
         =@post.category ? (:new_post_for_category.l :category => @post.category.name) : :new_post.l
 
       = error_messages_for :post
-      - form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
-        - unless @post.category || @post.contest || @categories.blank?        
+      = form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
+        - unless @post.category || @categories.blank?        
           %label
             =:category.l
           %select{:id=>"post_category_id", :name=>"post[category_id]"}
@@ -26,7 +21,6 @@
               %option{:value=>"#{category.id}"}= h(category.name)
         -else
           = f.hidden_field :category_id
-          = f.hidden_field :contest_id
 
         %label
           =:title.l
@@ -36,18 +30,21 @@
         %label
           =:body_text.l
           %em="(#{:required.l})"
-        = f.text_area :raw_post, :style => "width:95%;"
+        = f.text_area :raw_post, :style => "width:95%;", :class => 'rich_text_editor'
 
         %label
           =:tags.l
           %em="(#{:optional_keywords_describing_this_post_separated_by_commas.l})"
         = text_field_tag 'tag_list', @post.tag_list, {:autocomplete => "off", :size => 35}
         .auto_complete#tag_list_auto_complete
+        
+        -content_for :end_javascript do        
           = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
         
         %label
           %a{:href=> "#", :onclick => "$('poll-ui').toggle(); return false;"}
-            = "#{image_tag 'icons/poll.png', :plugin => 'community_engine' } " + :add_a_poll.l
+            = image_tag 'icons/poll.png'
+            = :add_a_poll.l
           %em=:optional.l
         #poll-ui{:style => 'display:none'}=render :partial => 'polls/new'
 
@@ -66,4 +63,5 @@
           =:or.l 
           = link_to :cancel_and_go_back_to_my_posts.l, user_posts_path(@user)
 
-  = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}
+  -content_for :end_javascript do
+    = observe_field  "post_category_id", {:url => {:controller => 'categories', :action => 'show_tips'}, :with => "id", :update => "category_tips", :complete => visual_effect(:highlight, "category_tips", :duration => 0.5)}

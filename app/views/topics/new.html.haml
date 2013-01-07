@@ -8,15 +8,15 @@
 -box do 
   %h3#new_topic= :new_topic.l
   %p.subtitle
-    = :by.l
-    = current_user.display_name
+    = :by.l :login => current_user.display_name
     
   = error_messages_for :topic
-  - form_for :topic, :url  => forum_topics_path(@forum), :html => {:class => "MainForm"} do |f|
+  = form_for @topic, :url  => forum_topics_path(@forum), :html => {:class => "MainForm"} do |f|
     = render :partial => "form", :object => f
     %p
       = submit_tag :post_topic.l
       = :or.l
       = link_to(:cancel.l, forum_path(@forum))
 
-  = javascript_tag "$('topic_title').focus();"
+  -content_for :end_javascript do
+    = javascript_tag "$('topic_title').focus();"

@@ -8,8 +8,8 @@ message_from_kevin_to_aaron:
   subject: Test message
   body: Test body
   read_at: nil
-  created_at: <%= 2.days.ago.to_s :db %>
-  updated_at: <%= 2.days.ago.to_s :db %>
+  created_at: <%= 2.days.ago.iso8601 %>
+  updated_at: <%= 2.days.ago.iso8601 %>
 message_from_aaron_to_leopoldo:
   id: 2
   sender_id: 6
@@ -19,6 +19,6 @@ message_from_aaron_to_leopoldo:
   subject: Test message
   body: Test body
   read_at: nil
-  created_at: <%= 2.days.ago.to_s :db %>
-  updated_at: <%= 2.days.ago.to_s :db %>
+  created_at: <%= 2.days.ago.iso8601 %>
+  updated_at: <%= 2.days.ago.iso8601 %>
 

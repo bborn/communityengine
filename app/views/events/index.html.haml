@@ -15,8 +15,8 @@
   .yui-b
     -box do 
     
-      .pagination=paginating_links @events if @events.page_count > 1      
+      .pagination=paginating_links @events if @events.total_count > 1      
 
       = render :partial=>'event', :collection=>@events, :locals=>{:show_details_link=>true}
 
-      .pagination=paginating_links @events if @events.page_count > 1      
+      .pagination=paginating_links @events if @events.total_count > 1      

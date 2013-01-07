@@ -6,9 +6,9 @@
     %p
       =:remember_you_can_always_change_this_later.l
     %p
-      = link_to "&raquo; "+  :skip_this_step.l, welcome_invite_user_path(@user)
+      = link_to :skip_this_step.l, welcome_invite_user_path(@user)
       %br
-      = link_to "&raquo; " + :go_to_your_profile.l, user_path(@user)
+      = link_to :go_to_your_profile.l, user_path(@user)
 
   - if @user.avatar_photo_url
     -box :class => "alt" do 
@@ -20,7 +20,7 @@
 
 #yui-main
   -box :class => "yui-b" do
-    - form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "MainForm" do
+    = form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "MainForm" do
       %h3=:about_you.l
       = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
       
@@ -32,10 +32,7 @@
         %label
           = radio_button :user, :gender, User::FEMALE
           =:female.l
-          
-      - if @user.vendor?
-        %p= render :partial => 'offerings/chooser'
-      
+                
       %h3=:more_about_you.l
       .yui-g
         .yui-u.first
@@ -54,7 +51,10 @@
             %h3= :tag_yourself.l
             = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
             #tag_list_auto_complete.auto_complete/
-            = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+            
+            -content_for :end_javascript do
+              = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+
             %br
             %small
               =:comma_separated_keywords_that_describe_you.l
@@ -63,7 +63,7 @@
               - if @user.vendor?
                 =:custom_friendly_local.l
               - else
-                = AppConfig.meta_keywords.split(",")[0..3].join(', ')
+                = configatron.meta_keywords.split(",")[0..3].join(', ')
 
 
         %p= submit_tag :save_and_continue_to_step_three.l

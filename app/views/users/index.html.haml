@@ -6,13 +6,13 @@
 #yui-main
   .yui-b
     -box :class => "user_list" do
-      %h3=:site_members.l :site => AppConfig.community_name
+      %h3=:site_members.l :site => configatron.community_name
 
-      .pagination= paginating_links @users, :params => params if @users.page_count > 1
+      = paginate @users
   
       %br.clear
   
       = render :partial => "users/user", :collection => @users
       
       %br.clear
-      .pagination= paginating_links @users, :params => params if @users.page_count > 1
+      = paginate @users

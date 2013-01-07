@@ -23,7 +23,7 @@
       = :updated_at.l
     = h @homepage_feature.updated_at
   %p
-    = image_tag @homepage_feature.public_filename(:large)
+    = image_tag @homepage_feature.image.url(:large)
   = link_to :edit.l, edit_homepage_feature_path(@homepage_feature)
   |
   = link_to :back.l, homepage_features_path

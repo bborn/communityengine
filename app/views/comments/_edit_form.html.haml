@@ -1,8 +1,8 @@
-- form_remote_for(:comment, :loading => "$$('#comment_#{comment.id} .errors')[0].innerHTML = '';", :before => "tinyMCE.activeEditor.save();", :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :method => :put, :html => {:id => "edit_comment_#{comment.id}_form", :class => "MainForm"}) do |f|
+= form_remote_for(:comment, @comment, :loading => "$$('#comment_#{comment.id} .errors')[0].innerHTML = '';", :before => "tinyMCE.activeEditor.save();", :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :method => :put, :html => {:id => "edit_comment_#{comment.id}_form", :class => "MainForm"}) do |f|
   .errors
   %label
     %em=:comment_character_limit.l
-  = text_area :comment, :comment, {:size => "86x5", :class => "rich_text_editor"}
+  = f.text_area :comment, {:size => "86x5", :class => "rich_text_editor"}  
   
   %label{"for"=>"comment[author_name"}
     =:name.l

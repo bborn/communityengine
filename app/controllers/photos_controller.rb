@@ -3,41 +3,38 @@ require 'pp'
 class PhotosController < BaseController
   include Viewable  
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :swfupload]
-  before_filter :find_user, :only => [:new, :edit, :index, :show, :slideshow, :swfupload]
-  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :swfupload]
+  before_filter :find_user, :only => [:new, :edit, :index, :show]
+  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
 
   skip_before_filter :verify_authenticity_token, :only => [:create] #because the TinyMCE image uploader can't provide the auth token
 
-  uses_tiny_mce(:only => [:show]) do
-    AppConfig.simple_mce_options
+  uses_tiny_mce do
+    {:only => [:show], :options => configatron.simple_mce_options}
   end
 
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
 
   def recent
-    @photos = Photo.recent.find(:all, :page => {:current => params[:page]})
+    @photos = Photo.recent.page(params[:page])
   end
   
-  # GET /photos
-  # GET /photos.xml
   def index
     @user = User.find(params[:user_id])
 
-    cond = Caboose::EZ::Condition.new
-    cond.user_id == @user.id
+    @photos = Photo.where(:user_id => @user.id).includes(:tags)
     if params[:tag_name]
-      cond.append ['tags.name = ?', params[:tag_name]]
+      @photos = @photos.where('tags.name = ?', params[:tag_name])
     end
-
-    @photos = Photo.recent.find(:all, :conditions => cond.to_sql, :include => :tags, :page => {:current => params[:page], :size => 30})
-
-    @tags = Photo.tag_counts :conditions => { :user_id => @user.id }, :limit => 20
-
-    @rss_title = "#{AppConfig.community_name}: #{@user.login}'s photos"
+    
+    @photos = @photos.recent.page(params[:page]).per(20)
+  
+    @tags = Photo.includes(:taggings).where(:user_id => @user.id).tag_counts(:limit => 20)
+  
+    @rss_title = "#{configatron.community_name}: #{@user.login}'s photos"
     @rss_url = user_photos_path(@user,:format => :rss)
 
     respond_to do |format|
-      format.html # index.rhtml
+      format.html 
       format.rss {
         render_rss_feed_for(@photos,
            { :feed => {:title => @rss_title, :link => url_for(:controller => 'photos', :action => 'index', :user_id => @user) },
@@ -53,16 +50,13 @@ class PhotosController < BaseController
 
   def manage_photos
     if logged_in?
-      @user = current_user
-      cond = Caboose::EZ::Condition.new
-      cond.user_id == @user.id
+      @user = current_user      
+      @photos = current_user.photos.recent.includes(:tags)      
       if params[:tag_name]
-        cond.append ['tags.name = ?', params[:tag_name]]
+        @photos = @photos.where('tags.name = ?', params[:tag_name])
       end
-
       @selected = params[:photo_id]
-      @photos = Photo.recent.find :all, :conditions => cond.to_sql, :include => :tags, :page => {:size => 10, :current => params[:page]}
-
+      @photos = @photos.page(params[:page]).per(10)
     end
     respond_to do |format|
       format.js
@@ -117,8 +111,6 @@ class PhotosController < BaseController
 
     respond_to do |format|
       if @photo.save
-        #start the garbage collector
-        GC.start
         flash[:notice] = :photo_was_successfully_created.l
 
         format.html {      
@@ -132,7 +124,7 @@ class PhotosController < BaseController
         format.js {
           responds_to_parent do
             render :update do |page|
-              page << "upload_image_callback('#{@photo.public_filename()}', '#{@photo.display_name}', '#{@photo.id}');"
+              page << "upload_image_callback('#{@photo.photo.url()}', '#{@photo.display_name}', '#{@photo.id}');"
             end
           end
         }
@@ -152,19 +144,6 @@ class PhotosController < BaseController
     end
   end
 
-  def swfupload
-    # swfupload action set in routes.rb
-    @photo = Photo.new :uploaded_data => params[:Filedata]
-    @photo.user = current_user
-    @photo.album_id =  params[:album_id] if params[:album_id]
-    @photo.album_id = params[:album_selected] unless params[:album_selected].blank?
-    @photo.save!
-
-    # This returns the thumbnail url for handlers.js to use to display the thumbnail
-    render :text => @photo.public_filename(:thumb)
-  rescue
-    render :text => "Error: #{$!}", :status => 500
-  end
 
   # PUT /photos/1
   # PUT /photos/1.xml
@@ -200,15 +179,11 @@ class PhotosController < BaseController
     end
   end
 
-  def slideshow
-    @xml_file = user_photos_url( {:user_id => @user, :format => :xml}.merge(:tag_name => params[:tag_name]) )
-    render :action => 'slideshow'
-  end
 
   protected
 
   def description_for_rss(photo)
-    "<a href='#{user_photo_url(photo.user, photo)}' title='#{photo.name}'><img src='#{photo.public_filename(:large)}' alt='#{photo.name}' /><br />#{photo.description}</a>"
+    "<a href='#{user_photo_url(photo.user, photo)}' title='#{photo.name}'><img src='#{photo.photo.url(:large)}' alt='#{photo.name}' /><br />#{photo.description}</a>"
   end
 
 end

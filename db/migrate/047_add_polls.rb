@@ -15,11 +15,7 @@ class AddPolls < ActiveRecord::Migration
     end
     
     create_table :votes do |t|
-      #t.column :user_id, :string
-      # workaround for postgres users until rails bug 1036 is fixed
-      # uncomment the line below and comment the line above, see also 061_postgres_compatibility_changes.rb
       t.column :user_id, :integer
-
       t.column :poll_id, :integer
       t.column :choice_id, :integer
       t.column :created_at, :datetime

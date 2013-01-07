@@ -5,20 +5,19 @@
         .thumbs
           = :insert.l + ":"
           %br
-          %a{:href=>p.public_filename(:thumb), :alt => p.display_name}
+          %a{:href=>p.photo.url(:thumb), :alt => p.display_name}
             = :thumb.l
-          %a{:href=>p.public_filename(:medium), :alt => p.display_name}
+          %a{:href=>p.photo.url(:medium), :alt => p.display_name}
             = :medium.l
-          %a{:href=>p.public_filename(:large), :alt => p.display_name}
+          %a{:href=>p.photo.url(:large), :alt => p.display_name}
             = :large.l
           %br
           %a{:href=>'#', :onclick=>"$(this).up('li').removeClassName('selected');return false;", :style => 'float:right; font-size: 10px;'}
             = :cancel.l
         %a{:href=>'#', :onclick=>"select_image(this);return false;"}
-          = image_tag( p.public_filename(:thumb), :alt => p.display_name )
+          = image_tag( p.photo.url(:thumb), :alt => p.display_name )
           
-  %script{:type => 'text/javascript'}
-    :plain
-      $$('.thumbs a').invoke("observe", 'click', select_thumb)
+  :javascript
+    $$('.thumbs a').invoke("observe", 'click', select_thumb)
 - else
   = :no_images_uploaded_yet.l

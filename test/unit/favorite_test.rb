@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class FavoriteTest < ActiveSupport::TestCase
   fixtures :clippings, :users, :roles
@@ -15,7 +15,7 @@ class FavoriteTest < ActiveSupport::TestCase
   def test_should_be_invalid_without_favoritable
     f = Favorite.new(:ip_address => '127.0.0.1')
     assert !f.valid?
-    assert f.errors.on(:favoritable)    
+    assert f.errors[:favoritable]
   end
   
   def test_should_update_counter_on_clipping

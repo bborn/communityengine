@@ -1,21 +1,17 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class SbPostTest < ActiveSupport::TestCase
   all_fixtures
-  include ActionController::TestProcess
+  include ActionDispatch::TestProcess
 
-  def test_should_select_posts
-    assert_equal [sb_posts(:pdi), sb_posts(:pdi_reply), sb_posts(:pdi_rebuttal)], topics(:pdi).sb_posts
-  end
-  
-  def test_should_find_topic
+    def test_should_find_topic
     assert_equal topics(:pdi), sb_posts(:pdi_reply).topic
   end
 
   def test_should_require_body_for_post
     p = topics(:pdi).sb_posts.build
     p.valid?
-    assert p.errors.on(:body)
+    assert p.errors[:body]
   end
 
   def test_should_create_reply
@@ -100,21 +96,16 @@ class SbPostTest < ActiveSupport::TestCase
   end
   
   test "should not monitor for anonymous posts" do
-    AppConfig.allow_anonymous_forum_posting = true
+    configatron.allow_anonymous_forum_posting = true
     
     assert_difference Monitorship, :count, 0 do
       topic = topics(:pdi)
       topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")      
     end
     
-    AppConfig.allow_anonymous_forum_posting = false    
+    configatron.allow_anonymous_forum_posting = false    
   end
-  
-  def test_to_xml
-    #not really testing the output cause it's just calling Rails' to_xml
-    assert sb_posts(:shield_reply).to_xml
-  end
-  
+    
   def test_should_be_deleted_when_user_destroyed
     post = sb_posts(:shield_reply)
     id = post.id
@@ -123,28 +114,42 @@ class SbPostTest < ActiveSupport::TestCase
   end
 
   test "should not allow anonymous posting" do
-    AppConfig.allow_anonymous_forum_posting = false    
+    configatron.allow_anonymous_forum_posting = false    
     topic = topics(:pdi)      
     post = topic.sb_posts.create(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
     assert !post.valid?
-    assert post.errors.on(:user_id)
+    assert post.errors[:user_id]
   end
   
-  test "should allow anonymous posting if AppConfig specifies it's ok" do
-    AppConfig.allow_anonymous_forum_posting = true
+  test "should allow anonymous posting if configatron specifies it's ok" do
+    configatron.allow_anonymous_forum_posting = true
     
     topic = topics(:pdi)
       
     assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
     
-    AppConfig.allow_anonymous_forum_posting = false    
+    configatron.allow_anonymous_forum_posting = false    
+  end
+  
+  test "should tranform body before saving" do
+    body = "<script type='text/javascript'>alert('xss attack!')</script> I hacked you!"    
+    post = create_post(topics(:pdi), {:body => body})
+    assert !post.reload.body.include?("<script")
+  end
+  
+  test "should not allow malicious chars in author email field" do
+    email = "valid@email.com%0A<script>alert('hello')</script>"    
+    post = topics(:pdi).sb_posts.new({:author_email => email})
+    post.save
+    assert !post.valid?
+    assert post.errors[:author_email]
   end
   
   protected
     def create_post(topic, options = {})
-      returning topic.sb_posts.build(options) do |p|
+      topic.sb_posts.new(options).tap do |p|
         p.user = users(:aaron)
-        p.save
+        p.save!
       end
     end
 end

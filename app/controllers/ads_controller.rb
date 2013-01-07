@@ -7,12 +7,11 @@ class AdsController < BaseController
   # GET /ads.xml
   def index
     @search = Ad.search(params[:search])
-    @search.order ||= :descend_by_created_at
-    @ads = @search.find(:all, :page => {:current => params[:page], :size => 15})
+    @search.meta_sort ||= 'created_at.desc'    
+    @ads = @search.page(params[:page]).per(15)
 
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @ads.to_xml }
+      format.html
     end
   end
 
@@ -22,8 +21,7 @@ class AdsController < BaseController
     @ad = Ad.find(params[:id])
 
     respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @ad.to_xml }
+      format.html 
     end
   end
 
@@ -46,10 +44,8 @@ class AdsController < BaseController
       if @ad.save
         flash[:notice] = :ad_was_successfully_created.l
         format.html { redirect_to ad_url(@ad) }
-        format.xml  { head :created, :location => ad_url(@ad) }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @ad.errors.to_xml }
       end
     end
   end
@@ -63,10 +59,8 @@ class AdsController < BaseController
       if @ad.update_attributes(params[:ad])
         flash[:notice] = :ad_was_successfully_updated.l
         format.html { redirect_to ad_url(@ad) }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @ad.errors.to_xml }
       end
     end
   end

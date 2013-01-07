@@ -1,3 +1,5 @@
 page.edit_form.cancel
-page.replace_html "post-body-#{@post.id}", @post.body_html
+page.replace_html "post-body-#{@post.id}", @post.body.html_safe
 page.visual_effect :highlight, "post-body-#{@post.id}", :duration => 1.5
+
+page << "scrollToAnchor('post-body-#{@post.id}');"

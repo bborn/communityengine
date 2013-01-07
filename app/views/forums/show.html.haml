@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@forum.name.capitalize} discussion forum.",:keywords => "#{@forum.tags.join(', ') if @forum.tags}",:robots => AppConfig.robots_meta_show_content}
+- @meta = { :description => "#{@forum.name.capitalize} discussion forum.",:keywords => "#{@forum.tags.join(', ') if @forum.tags}",:robots => configatron.robots_meta_show_content}
 - @section = 'forums'
 - @page_title = @forum.name
 
@@ -16,7 +16,7 @@
     = pluralize @forum.sb_posts_count, :post.l
 
   - unless @forum.description.blank?
-    = @forum.description_html
+    =raw @forum.description_html
   
   - if @forum.moderators.any?
     = "#{:moderators.l}:"
@@ -26,7 +26,7 @@
     
   %br.clear
 
-  - if @topics.page_count > 1
+  - if @topics.total_count > 1
     - if logged_in?
       %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
   
@@ -37,7 +37,7 @@
       %tr
         %th.la{:colspan=>"2"}= :topics.l
         %th{:width=>"1%"}= :posts.l
-        %th{:width=>"1%"}= :views.l 
+        %th{:width=>"1%"}= :view_count.l 
         %th.la= :last_post.l
         
       - for topic in @topics
@@ -50,22 +50,22 @@
             - else
               = image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => :no_recent_activity.l+" #{post}", :plugin => "community_engine"
           %td.c2
-            = :sticky.l+": <strong>" if topic.sticky?
+            = :sticky.l+": <strong>".html_safe if topic.sticky?
             = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
-            = "</strong>" if topic.sticky?
+            = "</strong>".html_safe if topic.sticky?
             - if topic.paged? 
               %small= link_to :last.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page)
           %td.ca.inv.stat= topic.sb_posts_count
           %td.ca.inv.stat= number_with_delimiter(topic.views)
           %td.lp
-            %abbr.updated{:title=>"#{topic.replied_at}"}= time_ago_in_words(topic.replied_at)
-            = :by.l
+            %abbr.updated{:title=>"#{topic.replied_at.xmlschema}"}= time_ago_in_words(topic.replied_at)
             %span.author
-              %strong.fn= h(topic.replied_by_user.display_name)
+              %strong.fn
+                =:by.l :login => topic.replied_by_user.display_name
             %span= link_to :view.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
   
-  - if @topics.page_count > 1
-    .pagination= paginating_links @topics  
+  - if @topics.total_count > 1
+    = paginate @topics
 
   - if logged_in?
     %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
@@ -73,13 +73,13 @@
     %h6.all.right= link_to :log_in_to_create_a_new_topic.l, new_forum_topic_path(@forum)
 
   - if @topics.size < 10
-    - @related = Post.find_tagged_with(@forum.tag_list, :limit => 10)
+    - @related = Post.limit(10).tagged_with(@forum.tag_list, :any => true)
     - unless @related.empty?
       %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
         %tr
           %th.la{:colspan=>"2"}= :this_forum_is_still_getting_started.l
           %th{:width=>"1%"}= :comments.l
-          %th{:width=>"1%"}= :views.l
+          %th{:width=>"1%"}= :view_count.l
           %th.la= :author.l
           -@related.each do |post|
             = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}

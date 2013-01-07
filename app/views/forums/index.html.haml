@@ -1,4 +1,4 @@
-- @meta = { :description => "#{AppConfig.community_name} forums.",:keywords => "#{AppConfig.meta_keywords}", :robots => AppConfig.robots_meta_list_content}
+- @meta = { :description => "#{configatron.community_name} forums.",:keywords => "#{configatron.meta_keywords}", :robots => configatron.robots_meta_list_content}
 -@section = 'forums'
 
 -if admin?
@@ -41,7 +41,7 @@
               = number_with_delimiter(forum.sb_posts_count)
               = :posts.l
 
-          %p.desc= forum.description_html
+          %p.desc=raw forum.description_html
 
         %td.c3
           = link_to :edit.l, edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin?
@@ -50,8 +50,8 @@
           - if forum.sb_posts.last
             = time_ago_in_words(forum.sb_posts.last.created_at)
             %br
-            = :by.l
-            %strong= h(forum.sb_posts.last.username)
+            -if forum.sb_posts.last.user
+              %strong= :by.l :login => forum.sb_posts.last.user.display_name
             %span
               (
               = link_to :view.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
@@ -66,5 +66,5 @@
       .users
         - unless online_users.empty? 
           = :users_online.l + ':'
-          = online_users.map { |u| link_to "<strong>#{h u.display_name}</strong>", user_path(u) } * ", " 
+          = online_users.map{ |u| link_to u.login, user_path(u) }.join(", ").html_safe
           %br

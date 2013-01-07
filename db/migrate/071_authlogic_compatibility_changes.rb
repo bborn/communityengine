@@ -1,7 +1,5 @@
 class AuthlogicCompatibilityChanges < ActiveRecord::Migration
   def self.up
-
-    # Remove varchar(40) so users can specify alternate encryption methods without schema changes
     change_column :users, :crypted_password, :string, :limit => 255
     change_column :users, :salt, :string, :limit => 255
 
@@ -13,14 +11,12 @@ class AuthlogicCompatibilityChanges < ActiveRecord::Migration
     change_table :users do |t|
       t.column :single_access_token, :string
       t.column :perishable_token, :string
-
-      # Magic columns, just like ActiveRecord's created_at and updated_at. These are automatically maintained by Authlogic if they are present.
-      t.column :login_count,         :integer, :default => 0 # optional, see Authlogic::Session::MagicColumns
-      t.column :failed_login_count,  :integer, :default => 0 # optional, see Authlogic::Session::MagicColumns
-      t.column :last_request_at,     :datetime                               # optional, see Authlogic::Session::MagicColumns
-      t.column :current_login_at,    :datetime                               # optional, see Authlogic::Session::MagicColumns
-      t.column :current_login_ip,    :string                                 # optional, see Authlogic::Session::MagicColumns
-      t.column :last_login_ip,       :string                                 # optional, see Authlogic::Session::MagicColumns
+      t.column :login_count,         :integer, :default => 0 
+      t.column :failed_login_count,  :integer, :default => 0 
+      t.column :last_request_at,     :datetime               
+      t.column :current_login_at,    :datetime               
+      t.column :current_login_ip,    :string                 
+      t.column :last_login_ip,       :string                 
     end
 
     add_index :users, :login
@@ -42,10 +38,6 @@ class AuthlogicCompatibilityChanges < ActiveRecord::Migration
 
     add_column :users, :remember_token_expires_at, :datetime, :default => nil
     rename_column :users, :password_salt, :salt
-
-    # DANGEROUS! if passwords were migrated to a longer than 40 char crypt then this is a bad idea!
-    change_column :users, :crypted_password, :string, :limit => 40
-    change_column :users, :salt, :string, :limit => 40
   end
 
 end

@@ -1,13 +1,13 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class PhotosControllerTest < ActionController::TestCase
   fixtures :photos, :users, :roles, :albums
 
   def test_should_create_photo
     login_as :quentin 
-    assert_difference Photo, :count, 4 do
+    assert_difference Photo, :count, 1 do
       post :create,
-        :photo => { :uploaded_data => fixture_file_upload('files/library.jpg', 'image/jpg') },
+        :photo => { :photo => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
         :tag_list => 'tag1, tag2',
         :album_id => '1'
@@ -17,26 +17,12 @@ class PhotosControllerTest < ActionController::TestCase
       assert_equal albums(:one).photos.count, 2
     end
   end
-
-  def test_should_create_photo_with_swf
-    login_as :quentin 
-    assert_difference Photo, :count, 4 do
-      post :swfupload,
-        :Filedata => fixture_file_upload('files/library.jpg', 'image/jpg'),
-        :user_id => users(:quentin).id,
-        :album_id => '1'
-      photo = Photo.find(assigns(:photo).id)
-      assert_equal users(:quentin), photo.user
-
-      assert_equal albums(:one).photos.count, 2
-    end
-  end  
   
   def test_should_not_be_an_activity
     login_as :quentin 
     assert_no_difference Activity, :count  do
      post :create,
-        :photo => { :uploaded_data => fixture_file_upload('files/library.jpg', 'image/jpg') },
+        :photo => { :photo => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
         :tag_list => 'tag1, tag2',
         :album_id => '1'
@@ -46,7 +32,7 @@ class PhotosControllerTest < ActionController::TestCase
   def test_should_update
     login_as :quentin 
     assert_no_difference Photo ,:count do
-      post :update, :id => 1, :photo => {:name => 'Another name', :album_id => 2}
+      post :update, :id => 1, :user_id => users(:quentin).id, :photo => {:name => 'Another name', :album_id => 2}
     end
     assert_equal photos(:library_pic).name, 'Another name'
     assert_equal photos(:library_pic).album_id, 2    
@@ -69,16 +55,12 @@ class PhotosControllerTest < ActionController::TestCase
     assert_equal assigns(:photo).reload.view_count, 0
   end
   
-
-
-
   def test_should_get_index
     get :index, :user_id => users(:quentin).id
     assert_response :success
     assert assigns(:photos)
   end
-
-
+  
   def test_should_get_index_rss
     get :index, :user_id => users(:quentin).id, :format => 'rss'
     assert_response :success
@@ -112,9 +94,9 @@ class PhotosControllerTest < ActionController::TestCase
   
   def test_should_create_photo_without_album_id
     login_as :quentin
-    assert_difference Photo, :count, 4 do
+    assert_difference Photo, :count, 1 do
       post :create,
-        :photo => { :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg') },
+        :photo => { :photo => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
         :tag_list => 'tag1, tag2'
 
@@ -125,7 +107,7 @@ class PhotosControllerTest < ActionController::TestCase
   end
 
   def test_should_create_photo_routing
-    assert_recognizes({:controller => 'photos', :action => 'create', :format => 'js'}, '/create_photo.js')
+    assert_recognizes({:controller => 'photos', :action => 'create', :format => 'js'}, {:path => '/create_photo.js', :method => :post})
   end
 
   def test_should_fail_to_create_photo
@@ -139,7 +121,7 @@ class PhotosControllerTest < ActionController::TestCase
   def test_should_fail_content_type
     login_as :quentin
     assert_no_difference Photo, :count do
-      post :create, :photo => {:uploaded_data => fixture_file_upload('/files/Granite.bmp', 'image/bmp') }, :user_id => users(:quentin).id
+      post :create, :photo => {:photo => fixture_file_upload('/files/Granite.bmp', 'image/bmp') }, :user_id => users(:quentin).id
     end
     assert_response :success
   end
@@ -151,7 +133,7 @@ class PhotosControllerTest < ActionController::TestCase
 
   def test_should_show_private_photo_if_logged_in
     login_as :quentin
-    get :show, :id => photos(:library_pic).id
+    get :show, :id => photos(:library_pic).id, :user_id => users(:quentin).id
     assert_response :success
   end
   
@@ -217,11 +199,5 @@ class PhotosControllerTest < ActionController::TestCase
     end
     assert users(:quentin).reload.avatar.nil?
   end
-  
-  def test_should_get_slideshow
-    get :slideshow, :user_id => users(:quentin)
-    assert_response :success
-  end
-  
   
 end

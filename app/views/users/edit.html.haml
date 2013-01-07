@@ -1,7 +1,7 @@
-- form_tag user_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
+= form_for @user, :html => {:class => 'MainForm', :multipart =>true} do |f|
   -box :class => "alt first_alt" do 
     %h3=:you_are_editing_your_profile.l
-    = link_to "&raquo; " + :edit_your_account_settings_instead.l, edit_account_user_path(@user)
+    = link_to "&raquo; ".html_safe + :edit_your_account_settings_instead.l, edit_account_user_path(@user)
   
   = error_messages_for :user
 
@@ -11,9 +11,9 @@
       %h3=:profile_photo.l
       = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
       = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
-      %label
-        =:choose_a_photo_for_your_profile.l
-      = file_field :avatar, :uploaded_data, :size => "20"
+      = f.fields_for :avatar, @avatar do |avatar_form|
+        %label=:choose_a_photo_for_your_profile.l
+        = avatar_form.file_field :photo, :size => '15'
       
       %h3= :location.l
       = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
@@ -48,16 +48,14 @@
         =:tips.l
         = render :partial => 'shared/bio_help'
         =:feel_free_to_embed_images_or_videos.l
-
-      - if @user.vendor? 
-        = render :partial => 'offerings/chooser'
       
       -box do 
         %h3= :tags.l
         #user_tags
           = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
           #tag_list_auto_complete.auto_complete
-          = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+          -content_for :end_javascript do
+            = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
           
           %label
             %em
@@ -65,12 +63,12 @@
               - if @user.vendor?
                 =:custom_friendly_local.l
               - else
-                = AppConfig.meta_keywords.split(",")[0..3].join(", ")
+                = configatron.meta_keywords.split(",")[0..3].join(", ")
               %br
               =:tags_are_comma_separated_keywords_that_describe_you.l
               %br
               =:you_can_browse_all_content_and_users_on.l
-              = AppConfig.community_name
+              = configatron.community_name
               =:by_looking_at_the.l
               = link_to :tags_page.l, tags_path
 

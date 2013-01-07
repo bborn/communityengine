@@ -3,10 +3,10 @@
   
   -box do
     %h3=:search.l
-    - form_for @search, :html => {:class => "MainForm"} do |f|
+    = form_for @search, :url => tags_path, :html => {:class => "MainForm"} do |f|
 
-      = f.label :name.l
-      = f.text_field :name_begins_with
+      %label= :name.l
+      = f.text_field :name_starts_with
 
       %p= f.submit :search.l
   
@@ -18,9 +18,9 @@
       %table{:width=>"100%"}
         %tr 
           %th
-            =order @search, :by => :name, :as => :name.l            
+            =sort_link @search, :name, :name.l            
           %th 
-            =order @search, :by => :taggings_count, :as => "##{:taggings.l}"
+            =sort_link @search, :taggings_count, :taggings.l
           %th=:actions.l
 
         - for tag in @tags
@@ -33,5 +33,7 @@
               = link_to :edit.l, edit_tag_path(tag)
               |
               = link_to :destroy.l, tag_path(tag), :confirm => :are_you_sure.l, :method => :delete
-    .pagination=paginating_links @tags if @tags.page_count > 1
+              
+
+    .pagination=paginate @tags if @tags.total_count > 1
 

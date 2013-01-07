@@ -2,7 +2,7 @@
   -box do 
     %h3 Tips
     %p 
-      =:album_tip.l :community_name => AppConfig.community_name
+      =:album_tip.l :community_name => configatron.community_name
 
   -box :class => 'alt' do
     = link_to :back_to_photo_manager.l, user_photo_manager_index_path(current_user)
@@ -11,5 +11,5 @@
   .yui-b
     -box :id => "single_upload", :class => ".yui-b" do
       %h3= :new_album.l
-      - form_for(@album, :url => user_albums_path(current_user.id), :html => {:class => "MainForm"}) do |f|
+      = form_for(@album, :url => user_albums_path(current_user.id), :html => {:class => "MainForm"}) do |f|
         = render :partial => 'form', :locals => {:f => f, :button1 => :create_and_add_photos.l, :button2 => :create_album.l }

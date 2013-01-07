@@ -15,7 +15,7 @@
               =render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
             .clear
       
-      -if @clippings.page_count > 1      
+      -if @clippings.total_count > 1      
         .pagination=paginating_links @clippings
       .clear
       %br
@@ -31,4 +31,4 @@
       =:to_get_started_with_clippings_first.l+" " 
       =link_to :create_an_account.l, signup_path
   -box :class => "alt" do 
-    =link_to :view.l+" #{params[:recent] ? :popular.l : :recent.l} "+:clippings.l, site_clippings_path(:recent => !params[:recent])
+    =link_to "#{:view.l} #{params[:recent] ? :popular.l : :recent.l} #{:clippings.l}", site_clippings_path(:recent => params[:recent] ? nil : 'true')

@@ -21,7 +21,7 @@
             %td
               %a{:href=>"#{h homepage_feature.url}"}=h homepage_feature.title
             %td=h truncate(homepage_feature.description, :length => 250)
-            %td= image_tag homepage_feature.public_filename(:thumb)
+            %td= image_tag homepage_feature.image.url(:thumb)
             %td
               = link_to :show.l, homepage_feature_path(homepage_feature)
               %br

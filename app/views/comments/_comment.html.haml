@@ -10,17 +10,17 @@
             %abbr.published{"title"=>"#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
         -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to_remote(:delete.l, {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
+          %li.delete=link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
         -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to_remote :edit.l, :url => {:controller => 'comments', :action => 'edit', :id => comment.id}, :method => :get
-    .entry-content= comment.comment
+          %li.edit=link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+    .entry-content= comment.comment.html_safe
 
 -else
   .hentry{:id => "comment_#{comment.id}"}
     .vcard.author
       %h5
         %a{:href => '#', :rel => 'bookmark', :class => 'photo', :onclick => 'return false;'}
-          = image_tag(AppConfig.photo['missing_thumb'], :height => '50', :width => '50')
+          = image_tag(configatron.photo.missing_thumb, :height => '50', :width => '50')
       %ul
         %li.fn
           =link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }
@@ -29,14 +29,14 @@
             %abbr.published{"title"=>"#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
         -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to_remote(:delete.l, {:url => comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
+          %li.delete=link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
         -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to_remote :edit.l, :url => {:controller => 'comments', :action => 'edit', :id => comment.id}, :method => :get
-          
-    .entry-content= comment.comment
+          %li.edit=link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+
+    .entry-content= comment.comment.html_safe
 
 - highlighted ||= nil
 - if highlighted
-  %script{"type"=>"text/javascript"}
-    =visual_effect :highlight, "comment_#{comment.id}", :duration => 1 
+  :javascript
+    =visual_effect :highlight, "comment_#{comment.id}", :duration => 1
 

@@ -4,33 +4,21 @@ class EventsController < BaseController
   caches_page :ical
   cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
  
-  #These two methods make it easy to use helpers in the controller.
-  #This could be put in application_controller.rb if we want to use
-  #helpers in many controllers
-  def help
-    Helper.instance
-  end
 
-  class Helper
-    include Singleton
-    include ActionView::Helpers::SanitizeHelper
-    extend ActionView::Helpers::SanitizeHelper::ClassMethods
-  end
-
-  uses_tiny_mce(:only => [:new, :edit, :create, :update, :clone ]) do
-    AppConfig.default_mce_options
+  uses_tiny_mce do
+    {:only => [:new, :edit, :create, :update, :clone ], :options => configatron.default_mce_options}
   end
   
-  uses_tiny_mce(:only => [:show]) do
-    AppConfig.simple_mce_options
+  uses_tiny_mce do
+    {:only => [:show], :options => configatron.simple_mce_options}
   end
 
   before_filter :admin_required, :except => [:index, :show, :ical]
 
   def ical
     @calendar = RiCal.Calendar
-    @calendar.add_x_property 'X-WR-CALNAME', AppConfig.community_name
-    @calendar.add_x_property 'X-WR-CALDESC', "#{AppConfig.community_name} #{:events.l}"
+    @calendar.add_x_property 'X-WR-CALNAME', configatron.community_name
+    @calendar.add_x_property 'X-WR-CALDESC', "#{configatron.community_name} #{:events.l}"
     Event.find(:all).each do |ce_event|
       rical_event = RiCal.Event do |event|
         event.dtstart = ce_event.start_time
@@ -54,12 +42,12 @@ class EventsController < BaseController
 
   def index
     @is_admin_user = (current_user && current_user.admin?)
-    @events = Event.upcoming.find(:all, :page => {:current => params[:page]})
+    @events = Event.upcoming.page(params[:page])
   end
 
   def past
     @is_admin_user = (current_user && current_user.admin?)
-    @events = Event.past.find(:all, :page => {:current => params[:page]})
+    @events = Event.past.page(params[:page])
     render :template => 'events/index'
   end
 
@@ -127,8 +115,6 @@ class EventsController < BaseController
     end
   end
   
-  # DELETE /homepage_features/1
-  # DELETE /homepage_features/1.xml
   def destroy
     @event = Event.find(params[:id])
     @event.destroy

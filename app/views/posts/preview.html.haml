@@ -1,0 +1,27 @@
+#yui-main
+  .yui-b
+    -box :class => 'hfeed' do  
+      %h3=:users_blog.l :user=>  @user.login
+      .hentry.main
+        %h4.entry-title= link_to @post.title, user_post_path(@user, @post), :rel => 'bookmark'
+        .vcard.author
+          %ul
+            %li.update
+              %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
+                %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display(:literal_date)
+            -if @is_current_user || admin? || moderator?
+              %li.edit= link_to :edit.l, edit_user_post_path(@post.user, @post)
+              %li.delete= link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
+              
+        / vcard
+        .entry-content
+          = @post.post
+          = render :partial => 'polls/poll_ui', :locals => {:poll => @post.polls.first} unless @post.polls.empty?
+          - unless @post.tags.empty?
+            %ul.tags
+              - @post.tags.each do |t|
+                %li=link_to( t.name, tag_url(t), :rel => 'tag')
+        / entry-content
+
+.yui-b
+  =render :partial => 'author_profile', :locals => {:user => @user}

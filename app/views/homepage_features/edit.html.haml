@@ -3,7 +3,7 @@
     %h1
       = :editing_homepage_feature.l
     = error_messages_for :homepage_feature
-    - form_for(:homepage_feature, :url => homepage_feature_path(@homepage_feature), :html => { :multipart => true, :method => :put }) do |f|
+    = form_for(:homepage_feature, :url => homepage_feature_path(@homepage_feature), :html => { :multipart => true, :method => :put }) do |f|
       %p
         %b
           URL
@@ -23,7 +23,7 @@
         %b
           = :filename.l
         %br
-        = f.file_field :uploaded_data
+        = f.file_field :image
       %p
         = submit_tag :update.l
         or

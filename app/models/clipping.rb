@@ -11,36 +11,36 @@ class Clipping < ActiveRecord::Base
   validates_presence_of :image
   after_save :save_image
   
-  has_one  :image, :as => :attachable, :dependent => :destroy, :class_name => "ClippingImage"  
+  has_one  :image, :as => :attachable, :class_name => "ClippingImage", :dependent => :destroy
   has_many :favorites, :as => :favoritable, :dependent => :destroy
   
   acts_as_taggable
   acts_as_activity :user
     
-  named_scope :recent, :order => 'clippings.created_at DESC'    
-  named_scope :tagged_with, lambda {|tag_name|
-    {:conditions => ["tags.name = ?", tag_name], :include => :tags}
-  }
+  scope :recent, :order => 'clippings.created_at DESC'    
     
     
   def self.find_related_to(clipping, options = {})
-    merged_options = options.merge({:limit => 8, 
+    options.reverse_merge!({:limit => 8, 
         :order => 'created_at DESC',
         :conditions => [ 'clippings.id != ?', clipping.id ]
     })
 
-    find_tagged_with(clipping.tags.collect{|t| t.name }, merged_options).uniq
+    limit(options[:limit]).
+      order(options[:order]).
+      where(options[:conditions]).
+      tagged_with(clipping.tags.collect{|t| t.name }, :any => true)
   end
 
   def self.find_recent(options = {:limit => 5})
-    find(:all, :conditions => "created_at > '#{7.days.ago.to_s :db}'", :order => "created_at DESC", :limit => options[:limit])
+    find(:all, :conditions => "created_at > '#{7.days.ago.iso8601}'", :order => "created_at DESC", :limit => options[:limit])
   end
 
   def previous_clipping
-    self.user.clippings.find(:first, :conditions => ['created_at < ?', self.created_at], :order => 'created_at DESC')
+    self.user.clippings.order('created_at DESC').where('created_at < ?', self.created_at).first
   end
   def next_clipping
-    self.user.clippings.find(:first, :conditions => ['created_at > ?', self.created_at], :order => 'created_at ASC')
+    self.user.clippings.where('created_at > ?', self.created_at).order('created_at ASC').first    
   end
 
   def owner
@@ -48,7 +48,7 @@ class Clipping < ActiveRecord::Base
   end
   
   def image_uri(size = '')
-    image && image.public_filename(size) || image_url
+    image && image.asset.url(size) || image_url
   end
   
   def title_for_rss
@@ -62,9 +62,10 @@ class Clipping < ActiveRecord::Base
   
   def add_image
     begin
-      self.image = ClippingImage.new
-      uploaded_data = self.image.data_from_url(self.image_url)
-      self.image.uploaded_data = uploaded_data
+      clipping_image = ClippingImage.new
+      uploaded_data = clipping_image.data_from_url(self.image_url)
+      clipping_image.asset = uploaded_data
+      self.image = clipping_image
     rescue
       nil
     end

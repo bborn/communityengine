@@ -1,7 +1,7 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class PhotoTest < ActiveSupport::TestCase
-  include ActionController::TestProcess
+  include ActionDispatch::TestProcess
 
   fixtures :all
 
@@ -32,8 +32,8 @@ class PhotoTest < ActiveSupport::TestCase
   end
   
   def test_should_create_photo
-    assert_difference Photo, :count, 4 do
-      photo = Photo.new :uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')
+    assert_difference Photo, :count, 1 do
+      photo = Photo.new :photo => fixture_file_upload('/files/library.jpg', 'image/jpg')
       photo.user = users(:quentin)
       photo.save!      
     end

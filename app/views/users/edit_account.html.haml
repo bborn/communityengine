@@ -1,41 +1,45 @@
-- form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
+= form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
   -box :class => "alt first_alt" do 
     %h3=:you_are_editing_your_account.l
     = link_to :edit_your_user_profile.l, edit_user_path(@user)
 
   = error_messages_for :user
 
-  .yui-b
-    -box do
-      %h3=:username.l
-      = text_field :user, :login, :size => "28"
+  -box :class => "yui-b" do
 
-      %h3=:e_mail_address.l
-      = text_field :user, :email, :size => "28"
+    %h3=:username.l
+    = text_field :user, :login, :size => "28"
 
-      %h3=:password.l
-      = password_field :user, :password, :size => "28"
+    %h3=:e_mail_address.l
+    = text_field :user, :email, :size => "28"
 
-      %label=:confirm_password.l
-      = password_field :user, :password_confirmation, :size => "28"
+    %h3=:password.l
+    = password_field :user, :password, :size => "28"
+
+    %label=:confirm_password.l
+    = password_field :user, :password_confirmation, :size => "28"
 
   #yui-main
     .yui-b
+    
+      -box :class => 'alt first_alt' do
+        = render :partial => "omniauth_connect"
+    
       -box do
         %h3=:e_mail_notification.l
 
         %fieldset
           %label 
             = check_box :user, :notify_friend_requests        
-            =:notify_of_friend_requests.l :site => AppConfig.community_name
+            =:notify_of_friend_requests.l :site => configatron.community_name
           
           %label
             = check_box :user, :notify_comments         
-            = :notify_of_comments.l :site => AppConfig.community_name
+            = :notify_of_comments.l :site => configatron.community_name
           
           %label
             = check_box :user, :notify_community_news
-            =:notify_email_updates.l :site => AppConfig.community_name
+            =:notify_email_updates.l :site => configatron.community_name
           
 
         %h3=:profile_privacy.l
@@ -50,7 +54,7 @@
             %br
             %em
               =:when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to.l
-              = "#{AppConfig.community_name}."
+              = "#{configatron.community_name}."
         %p= submit_tag :save_changes.l  
 
         %p

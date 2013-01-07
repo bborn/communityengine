@@ -1,7 +1,7 @@
 quentin_rsvp_for_future_event:
   id: 1
   attendees_count: 2
-  created_at: <%= 5.days.ago.to_s :db %>
-  updated_at: <%= 5.days.ago.to_s :db %>  
+  created_at: <%= 5.days.ago.iso8601 %>
+  updated_at: <%= 5.days.ago.iso8601 %>  
   user_id: 1
   event_id: 2

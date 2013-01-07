@@ -1,0 +1,1699 @@
+ru-RU:
+  authorizations:
+    create:
+      success_existing_user: "Успешно добавлена %{provider} аутентификация"
+      success_message: "Добро пожаловать, пользователь %{provider}. Вы подключились."      
+    failure:
+      notice: "Извините, вы не авторизованы"
+    destroy:
+      notice: "Успешно удалена %{provider} аутентификация."
+  sessions:
+    new:
+      omniauth:
+        header: "Подключиться к:"
+        button_alt: "подключиться с учетной записью %{provider}"
+  users:
+    edit_account:
+      omniauth:
+        confirm_remove: "Вы уверены, что хотите удалить опцию аутентификации %{provider}"
+        title_remove: "Удалить опцию аутентификации %{provider}?"
+  tags:
+    show:
+      users: Пользователи
+  sitemaps:
+    index:
+      users: Пользователи
+  date:
+    formats:
+      published_date: "%d.%m.%Y"
+      date_ago: "%d %B"
+    order:
+    - :day
+    - :month
+    - :year
+    day_names: [~, Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье]
+    abbr_day_names: [~, Пн, Вт, Ср, Чт, Пт, Сб, Вс]
+    month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
+    abbr_month_names: [~, Янв, Фев, Мар, Апр, Май, Июн, Июл, Авг, Сен, Окт, Ноя, Дек]
+  time:
+    formats:
+      published_date: "%d.%m.%Y"      
+      short_published_date: "%d.%m.%y"
+      literal_date: "%d %B %Y"
+      short_literal_date: "%d %b %Y"
+      time_ago: "%H:%M"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "создано: "
+
+  greeting: "Добро пожаловать, %{name}"
+
+  #en: a_few_seconds_ago:  a few seconds ago
+  a_few_seconds_ago:  несколько секунд назад
+  #en: about: About
+  about: О
+  #en: about_me: About Me
+  about_me: Обо мне
+  #en: about_site: About %{site}
+  about_site: "О %{site}"
+  #en: about_you: About You
+  about_you: О тебе
+  #en: admin_pages: Pages
+  admin_pages: Страницы
+  #en: accept: Accept
+  accept: Принять
+  #en: accepted: accepted
+  accepted: принято
+  #en: accepted_friendships: %{count} Accepted Friendships
+  accepted_friendships:
+    one: Добавлен один друг
+    few: "Добавлено %{count} друга" 
+    many: "Добавлено %{count} друзей"
+    other: "Добавлено %{count} друга"
+  #en: accept_this_request: Accept this request
+  accept_this_request: Этот запрос принят
+  #en: account: account
+  account: учетная запись
+  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.
+  account_activation_error: "Ошибка при активации учетной записи. Ваша учетная запись возможно уже активна. Попытайтесь подключиться или направьте e-mail %{email} для помощи."
+  #en: account_settings: Account settings
+  account_settings: Установка учетной записи
+  #en: actions: Actions
+  actions: Действия
+  #en: activate: Activate
+  activate: Активация
+  #en: activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
+  activation_email_not_sent_message: e-mail для активации не может быть послан. Возможно этот пользователь уже активирован
+  #en: activation_email_resent_message: An activation e-mail was resent to the e-mail address you used to sign up.
+  activation_email_resent_message: e-mail для активации бы послан повторно по адресу, с которым вы регистрировались.  
+  #en: active: active
+  active: активен
+  #en: active_users: Active Users
+  active_users: Активные пользователи
+  #en: activity_from_your_network: Activity from your network
+  activity_from_your_network: Активность из вашей сети
+  #en: ad_was_successfully_created: Ad was successfully created.
+  ad_was_successfully_created: Объявление было успешно создано.
+  #en: ad_was_successfully_updated: Ad was successfully updated.
+  ad_was_successfully_updated: Объявление было успешно обновлено.
+  #en: add_a_photo: Add a photo
+  add_a_photo: Добавить фото
+  #en: add_a_poll: Add a poll
+  add_a_poll: Добавить голосование
+  #en: add_comment: Add Comment
+  add_comment: Добавить комментарий
+  #en: add_from_my_address_book: "Add from my address book"
+  add_from_my_address_book: "Добавить из моей адресной книги"
+  #en: add_some_friends_to_get_started: Add some friends to get started!
+  add_some_friends_to_get_started: Добавить некоторых друзей для начала!!
+  #en: add_your_comment: Add Your Comment!
+  add_your_comment: Добавьте ваш комментарий!
+  #en: added_a_clipping: "added a clipping:"
+  added_a_clipping: "добавил вырезку:"
+  #en: added_to_a_forum_topic: "added to a forum topic:"
+  added_to_a_forum_topic: "добавлена статья для форума:"
+  #en: admin: Admin
+  admin: Администратор
+  #en: admin_controls: Admin Controls
+  admin_controls: Управление администратором
+  #en: admin_dashboard: Admin dashboard
+  admin_dashboard: Панель админа
+  #en: administer_events: Administer events
+  administer_events: Администрирование событий
+  #en: ads: Ads
+  ads: Объявления
+  #en: advertise: Advertise
+  advertise: Реклама
+  #en: advertise_on: Advertise on
+  advertise_on: Размещение рекламы
+  #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
+  after_signing_up_youll_receive_an_e_mail_confirmation_message: "После регистрации вы получите e-mail с сообщением о подтверждении."
+  #en: all_clippings_tagged: All clippings tagged %{tag_name}
+  all_clippings_tagged: "Все выписки помечены ярлыком %{tag_name}"
+  #en: all_comments: All comments
+  all_comments: Все комментарии
+  #en: all_photos_tagged: All photos tagged %{tag_name}
+  all_photos_tagged: "Все фото помечены ярлыком %{tag_name}"
+  #en: all_posts_tagged: All posts tagged %{tag_name}
+  all_posts_tagged: "Все сообщения помечены ярлыком %{tag_name}"
+  #en: all_tags: All tags
+  all_tags: Все ярлыки
+  #en: all_users_tagged: All users tagged %{tag_name}
+  all_users_tagged: "Все пользователи помечены ярлыком %{tag_name}"
+  #en: allow_rsvp: Allow RSVPs
+  allow_rsvp: Разрешить приглашение
+  #en: already_have_an_account: Already have an account?
+  already_have_an_account: Учетная запись уже есть?
+  #en: anonymous: Anonymous
+  anonymous: Анонимный пользователь  
+  #en: an_error_occurred: An error occurred
+  an_error_occurred: Возникла ошибка
+  #en: are_attending_this_event: are attending this event
+  are_attending_this_event: посещающих это событие
+  #en: is_attending_this_event: is attending this event
+  is_attending_this_event: посетили это событие
+  #en: are_you_sure: Are you sure?
+  are_you_sure: Вы уверены?
+  #en: are_you_sure_you_want_to_delete_this_page: "Are you sure you want to delete this page?"
+  are_you_sure_you_want_to_delete_this_page: "Вы уверены, что хотите удалить эту страницу?"
+  #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"  
+  are_you_sure_you_want_to_delete_this_photo: "Вы уверены, что хотите удалить это фото?"
+  #en: are_you_sure_you_want_to_delete_this_post: "Are you sure you want to delete this post?"
+  are_you_sure_you_want_to_delete_this_post: "Вы уверены, что хотите удалить это сообщение?"
+  #en: are_you_sure_you_want_to_permanently_delete_this_comment: "Are you sure you want to permanently delete this comment?"
+  are_you_sure_you_want_to_permanently_delete_this_comment: "Вы уверены, что хотите совсем удалить это сообщение?"
+  #en: are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
+  are_you_sure_you_want_to_permanently_delete_this_user: Вы уверены, что хотите совсем удалить этого пользователя?
+  #en: assume_id: Assume ID
+  assume_id: Присваивание ID
+  #en: assume_user_id: "Assume this user's ID"
+  assume_user_id: "Присвоить ID этого пользователя"
+  #en: assign_role: Assign role
+  assign_role: Присвоить роль
+  #en: attendees: Attendees
+  attendees: Участники
+  #en: audience: Audience
+  audience: Публика
+  #en: author: Author
+  author: Автор
+  #en: back: Back
+  back: Вернуться
+  #en: back_to_all_users: Back to all users
+  back_to_all_users: Вернуться для всех пользователей
+  #en: back_to_my_photos: Back to my photos
+  back_to_my_photos: Вернуться к моим фото
+  #en: back_to_all_statistics: Back to all statistics
+  back_to_all_statistics: Вернуться ко всем статистикам
+  #en: banner_subtitle_required: "Подзаголовок баннера (требуется):"
+  banner_subtitle_required: "Banner subtitle (required):"
+  #en: banner_title_required: "Banner title (required):"
+  banner_title_required: "Заголовок баннера (требуется):"
+  #en: begin: begin
+  begin: Начать
+  #en: begin_required: begin (required)
+  begin_required: начать (требуется)
+  #en: bigger_font_size_more_popular_tag: "Bigger font size = more popular tag"
+  bigger_font_size_more_popular_tag: "Больший размер шрифта = наиболее популярные ярлыки"
+  #en: birthday: Birthday
+  birthday: День рождения
+  #en: birthday_gender: Birthday & Gender
+  birthday_gender: "День рождения и пол"
+  #en: blog: Blog
+  blog: Блог
+  #en: body_text: Body Text
+  body_text: Основной текст
+  #en: body_text_reqiured: Body Text (required)
+  body_text_required: Основной текст (требуется)
+  #en: bookmarklet: bookmarklet
+  bookmarklet: bookmarklet
+  #en: browse_all_members: browse all members
+  browse_all_members: просмотреть всех участников
+  #en: browse_content_by_tags: Browse content by tags
+  browse_content_by_tags: Просмотреть содержимое по ярлыкам
+  #en: by: by %{login}
+  by: " %{login}"
+  #en: by_looking_at_the: by looking at the
+  by_looking_at_the: глядя на
+  #en: cache_cleared: The cache was cleared
+  cache_cleared: Кэш был очищен
+  #en: cache_clear_link: Clear the cache
+  cache_clear_link: Очистка кэша  
+  #en: cancel: Cancel
+  cancel: Отменить
+  #en: cancel_and_go_back_to: cancel and go back to
+  cancel_and_go_back_to: отменить и вернуться к 
+  #en: cancel_and_go_back_to_all_features: cancel and go back to all features
+  cancel_and_go_back_to_all_features: отменить и вернуться ко всем функциям
+  #en: cancel_and_go_back_to_my_clippings: cancel and go back to my clippings
+  cancel_and_go_back_to_my_clippings: отменить и вернуться к моим вырезкам
+  #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
+  cancel_and_go_back_to_my_photos: отменить и вернуться к моим фото
+  #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
+  cancel_and_go_back_to_my_posts: отменить и вернуться к моим сообщениям
+  #en: cancel_and_go_back_to_pages: cancel and go back to pages
+  cancel_and_go_back_to_pages: отменить и вернуться к страницам
+  #en: cannot_rsvp_for_an_event_that_has_already_happened: Cannot RSVP for an event that has already happened.
+  cannot_rsvp_for_an_event_that_has_already_happened: Невозможно пригласить, так как это уже произошло ранее.
+  #en: categories: Categories
+  categories: Категории
+  #en: category: Category
+  category: Категория
+  #en: category_was_successfully_created: Category was successfully created.
+  category_was_successfully_created: Категория была успешно создана.
+  #en: check_out_this_story_on: Check out this story on %{site}
+  check_out_this_story_on: Проверьте эту статью на  %{site}
+  #en: choices: Choices
+  choices: Выбор
+  #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
+  choose_a_photo_for_your_profile: "Выбор фото для вашего профиля:"
+  #en: choose_a_photo_to_upload: "Choose a photo to upload:"
+  choose_a_photo_to_upload: "Выбор фото для загрузки:"
+  #en: choose_your_location: Choose your location
+  choose_your_location: Выбор вашего местонахождения
+  #en: click_here: click here
+  click_here: Нажмите здесь
+  #en: click_here_to_retrieve_it: Click here to retrieve it
+  click_here_to_retrieve_it: Нажмите здесь для его получения
+  #en: click_here_to_sign_up: Click here to sign up
+  click_here_to_sign_up: Нажмите здесь для регистрации
+  #en: click_here_to_sign_up_for_an_account_and_enter: Click here to sign up for an account and enter
+  click_here_to_sign_up_for_an_account_and_enter: Нажмите здесь для регистрации учетной записи и входа
+  #en: click_here_to_upload_one: Click here to upload one!
+  click_here_to_upload_one: Загрузить!
+  #en: click_here_to_view_as_a_list: Нажмите здесь для просмотра списка
+  click_here_to_view_as_a_list: Click here to view as a list
+  #en: click_on_an_image_below_to_clip_it: Click on an image below to clip it
+  click_on_an_image_below_to_clip_it: Нажмите на картинку ниже, чтобы ее вырезать
+  #en: click_the_activation_link_in_the_e_mail_to_log_in: Click the activation link in the e-mail to log in.
+  click_the_activation_link_in_the_e_mail_to_log_in: Нажмите на ссылку активации в почтовом сообщении, чтобы подключиться.
+  #en: click_to_accept_it: Click to accept it!
+  click_to_accept_it: Нажмите, чтобы принять это!
+  #en: clipping_comments: Clipping Comments
+  clipping_comments: Вырезка комментариев
+  #en: clipping_from_user: Clipping from %{user}
+  clipping_from_user: "Вырезано %{user}"
+  #en: clipping_was_successfully_created: Clipping was successfully created.
+  clipping_was_successfully_created: Вырезка была успешно создана.
+  #en: clippings: Clippings
+  clippings: вырезки
+  #en: clippings_are_a_way_to_save_images_you_like_from_around_the_web: Clippings are a way to save images you like from around the Web
+  clippings_are_a_way_to_save_images_you_like_from_around_the_web: Вырезки - это способ сохранить понравившиеся вам изображения из интернета
+  #en: clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
+  clippings_let_you_to_save_cool_images_from_around_the_web: Вырезки позволяют вам сохранять замечательные изображения из интернета.
+  #en: clone: Clone
+  clone: Клон
+  #en: clippings_tagged: Clippings tagged
+  clippings_tagged: "Вырезки ярлыков"
+  #en: close_this_message: Close this message
+  close_this_message: Закрыть это сообщение
+  #en: comma_separated: (разделенные запятой)
+  comma_separated: (comma separated)
+  #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
+  comma_separated_keywords_that_describe_you: Определенные вами ключевые слова, разделенные запятыми.
+  #en: commentable_type: "Commentable Type (Post, User, etc.)"
+  commentable_type: "Вид комментируемости (Post, User, etc.)"
+  #en: commentable_id: "Commentable ID"
+  commentable_id: "ID комментируемости"
+  #en: comment_character_limit: (2000 character limit)
+  comment_character_limit: (ограничение в 2000 символов)
+  #en: comment_could_not_be_deleted: Comment could not be deleted.
+  comment_could_not_be_deleted: Комментирий не может быть удален.
+  #en: comment_notifications_off: Comment notifications are currently off
+  comment_notifications_off: Уведомления о комментарии в данный момент отключено  
+  #en: comment_save_error: Your comment couldn't be saved.
+  comment_save_error: "Ваш комментирай не может быть сохранен: %{error}"
+  #en: comment_was_successfully_created: Comment was successfully created.
+  comment_was_successfully_created: Комментарий был успешно создан.
+  #en: comment_author_email_required: Required, won't be shown on the site.
+  comment_author_email_required: "Обязателен, не будет отображаться на сайте."
+  #en: comment_web_site_label: "Web site (include http://)"
+  comment_web_site_label: "Вебсайт (включая http://)"  
+  #en: comment_spam_error: "Comment was flagged as spam. Please make sure you aren't including any spammy words or links and try again."  
+  comment_spam_error: "Комментарий был отмечен как спам. Убедитесь, что вы не набрали спамовые слова или ссылки и попытайтесь еще раз"  
+  #en: comments: Comments
+  comments: Комментарии
+  #en: comments_count: %{count} comments
+  comments_count: 
+    one: Один комментарий
+    few: "%{count} комментария"
+    many: "%{count} комментариев"
+    other: "%{count} комментария"
+  #en: comments_deleted: Comments deleted
+  comments_deleted: Комментарии стерты
+  #en: comments_rss: Comments RSS
+  comments_rss: Комментарии RSS
+  #en: community_tagline: CommunityEngine Rocks!
+  community_tagline: CommunityEngine Rocks!
+  #en: comment_unsubscribe_succeeded: Thanks, you have been unsubscribed from notifications on this comment.  
+  comment_unsubscribe_succeeded: "Спасибо, вы были отписаны от уведомлений на этот комментарий."
+  #en: compose: Compose
+  compose: Создать
+  #en: compose_message: Compose message
+  compose_message: Создать сообщение
+  #en: confirm_password: Confirm Password
+  confirm_password: Подтвердить пароль
+  #en: country: Country
+  country: Страна
+  #en: create: Create
+  create: Создать
+  #en: create_an_account: Create an account
+  create_an_account: Создать учетную запись
+  #en: create_a_clipping: Create a clipping
+  create_a_clipping: Создать вырезку
+  #en: create_a_post: Create a post
+  create_a_post: Создаьь сообщение
+  #en: create_new_forum: Create new forum
+  create_new_forum: Создать новый форум
+  #en: create_your_account: Create Your Account
+  create_your_account: Создайте свою учетную запись
+  #en: created_at: Created at
+  created_at: Создано 
+  #en: custom_friendly_local: custom, friendly, local
+  custom_friendly_local: "обычный, дружелюбный, местный"
+  #en: dashboard: Dashboard
+  dashboard: Панель
+  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on %{site} here
+  dashboard_friends: "Как только вы начнете добавлять друзей, вы сможете отслеживать их активность на %{site}"
+  #en: date: Date
+  date_title: Дата
+  #en: date_created: Date Created
+  date_created: Дата создания
+  #en: date_published: Date Published
+  date_published: Дата публикации
+  #en: days_ago: %{count} days ago
+  days_ago: 
+    one: "один день назад"
+    few: "%{count} дня назад"
+    many: "%{count} дней назад"
+    other: "%{count} дня назад"
+  #en: deactivate_link: Click here to deactivate your account
+  deactivate_link: Нажмите здесь для деактивации учетной записи
+  #en: deactivate_tip: Deactivating your account will remove your profile from the site. 
+  deactivate_tip: При деактивации вашей учетной записи с сайта будет удален ваш профиль. 
+  #en: deactivate_confirmation: Are you sure you want to deactivate your account?
+  deactivate_confirmation: Вы уверены, что хотите деактивировать вашу учетную запись?
+  #en: deactivate_completed: Thanks. Your account has been deactivated and you have been logged out.
+  deactivate_completed: Спасибо. Ваша учетная запись была деактивирована и вы были отключены.
+  #en: delete: Delete
+  delete: Стереть
+  #en: delete_selected: Delete selected
+  delete_selected: Удалить выбранное
+  #en: delete_this_event: Delete this event
+  delete_this_event: Удалить это событие
+  #en: delete_this_forum: Delete this forum
+  delete_this_forum: Удалить этот форум
+  #en: delete_this_photo: Delete this photo
+  delete_this_photo: Удалить это фото
+  #en: delete_this_page: Delete this page
+  delete_this_page: Удалить эту страницу
+  #en: delete_this_post: Delete this post?
+  delete_this_post: Удалить это сообщение?
+  #en: delete_this_topic_forever: Delete this topic forever?
+  delete_this_topic_forever: Совсем удалить эту тему?
+  #en: delete_this_user: Delete this user
+  delete_this_user: Удалить этого пользователя
+  #en: deny: Deny
+  deny: Отменить
+  #en: denied: denied
+  denied: отменено
+  #en: denied_friendships: Denied Friendships
+  denied_friendships: Отказаться от дружбы
+  #en: description: Description
+  description: Описание
+  #en: destroy: Destroy
+  destroy: Удалить
+  #en: dont_have_an_account: Don't have an account?
+  dont_have_an_account: Не имеете учетной записи?
+  #en: dont_wait_its: Don't wait! It's
+  dont_wait_its: Не ждите! Это 
+  #en: draft: draft
+  draft: черновик
+  #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
+  drag_the_bookmarklet: "Перетащите %{site}-It! bookmarklet на вашу панель закладок."
+  #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
+  drag_this_to_your_bookmarks_toolbar: Перетащите это на вашу панель закладок
+  #en: e_mail: E-mail
+  e_mail: E-mail
+  #en: e_mail_address: E-mail address
+  e_mail_address: Адрес e-mail
+  #en: e_mail_notification: E-mail Notification
+  e_mail_notification: E-mail уведомление
+  #en: edit: Edit
+  edit: Редактировать
+  #en: edit_account: Edit account
+  edit_account: Редактировать учетную запись
+  #en: edit_event: Edit event
+  edit_event: Редактировать событие
+  #en: edit_forum: Edit forum
+  edit_forum: Редактировать форум
+  #en: edit_page: Edit page
+  edit_page: Редактировать страницу
+  #en: edit_post: Edit post
+  edit_post: Редактировать сообщение
+  #en: edit_profile: Edit profile
+  edit_profile: Редактировать профиль
+  #en: edit_rsvp_for: Edit RSVP for
+  edit_rsvp_for: Редактировать приглашение для
+  #en: edit_this_event: Edit this event
+  edit_this_event: Редактировать это событие
+  #en: edit_this_photo_details: Edit this photo's details
+  edit_this_photo_details: "Редактировать детали этого фото"
+  #en: edit_topic: Edit topic
+  edit_topic: Редактировать тему
+  #en: edit_your_account_settings_instead: "Edit your account settings instead?"
+  edit_your_account_settings_instead: "Изменить установки вашей учетной записи?"
+  #en: edit_your_user_profile: Edit your user profile?
+  edit_your_user_profile: Редактировать ваш пользовательский профиль?
+  #en: editing_ad: Editing ad
+  editing_ad: Редактирование объявления
+  #en: editing_category: Editing category
+  editing_category: Редактирование категории
+  #en: editing_clipping: Editing clipping
+  editing_clipping: Редактирование вырезки
+  #en: editing_homepage_feature: Editing homepage feature
+  editing_homepage_feature: Редактирование деталей домашней страницы
+  #en: editing_metro_area: Editing Metro Area
+  editing_metro_area: Редактирование области
+  #en: editing_photo: Editing photo
+  editing_photo: Редактирование фото
+  #en: editing_post: Editing post
+  editing_post: Редактирование сообщения
+  #en: editing_tag: Editing tag
+  editing_tag: Редактирование ярлыка
+  #en: email: Email
+  email: Email
+  #en: email_addresses: Email Addresses
+  email_addresses: Адреса email
+  #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
+  email_signup_thanks: "Спасибо за регистрацию! Вы должны получить e-mail с коротким подтверждением на %{email}"
+  #en: email_this_story_to_friends: "E-mail this story to friends"
+  email_this_story_to_friends: "Отправьте эту историю друзьям по e-mail"
+  #en: email_to_friends: E-mail to friends
+  email_to_friends: E-mail друзьям
+  #en: end: end
+  end: окончание
+  #en: end_date: End date
+  end_date: Дата окончания
+  #en: end_required: end (required)
+  end_required: окончание (требуется)
+  #en: end_time: End time
+  end_time: Время окончания
+  #en: enter_a_message: Enter a message
+  enter_a_message: Введите сообщение
+  #en: enter_e_mail_addresses: Enter e-mail addresses
+  enter_e_mail_addresses: Введите адрес e-mail
+  #en: enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
+  enter_e_mail_addresses_comma_sep: Введите адреса e-mail (разделенные запятой)
+  #en: enter_your_email_address: "Enter your email address"
+  enter_your_email_address: "введите ваш адрес email"
+  #en: error: Error!
+  error: Ошибка!
+  #en: estimated_total_for_this_month: Estimated total for this month
+  estimated_total_for_this_month: Всего примерно за этот месяц
+  #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
+  estimated_writers_costs_this_month: "Примерная писательская оценка в этом месяце"
+  #en: event_details: Event Details
+  event_details: Детали события
+  #en: event_comments: Event Comments
+  event_comments: Комментарии события
+  #en: event_does_not_allow_rsvp: This event does not allow SVPs.
+  #ut where to be, and when to be thereuOA
+  event_does_not_allow_rsvp: Это событие не разрешает приглашения.
+  #en: event_was_successfully_created: Event was successfully created.
+  event_was_successfully_created: Событие были успешно создано.
+  #en: events: Events
+  events: События
+  #en: every_person_has_something_to_say: Every single person has something to say, something to give, something that will help someone else.  Join in!
+  every_person_has_something_to_say: "Каждая отдельная личность что-то говорит, что-то дает, что может еще кому-нибудь помочь. Присоединяйтесь!"
+  #en: expert_in: expert in
+  expert_in: эксперт по 
+  #en: explore_site: Explore %{site}
+  explore_site: Исследование %{site}
+  #en: failed: failed
+  failed: не удалось
+  #en: faq: FAQ
+  faq: FAQ
+  #en: faq_section: FAQ section
+  faq_section: секция FAQ
+  #en: favorited: favorited
+  favorited: избранное
+  #en: favorites: Favorites
+  favorites: Избранное
+  #en: favorite_this: Favorite this
+  favorite_this: Это любимое
+  #en: featured_posts: Featured posts
+  featured_posts: Лучшие сообщения
+  #en: featured_writer: Featured writer
+  featured_writer: Лучший автор
+  #en: featured_writers: Featured writers
+  featured_writers: Лучшие авторы
+  #en: features: Features
+  features: Лучшее
+  #en: feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
+  feel_free_to_embed_images_or_videos: Не стесняйтесь вставлять фото или видео.
+  #en: female: Female
+  female: женский
+  #en: filename: Filename
+  filename: Имя файла
+  #en: find_an_expert: Find an Expert
+  find_an_expert: Найти и проверить
+  #en: find_an_expert_in: Find an Expert in
+  find_an_expert_in: найти и проверить в 
+  #en: find_experts: Find experts
+  find_experts: Найти экспертов
+  #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
+  find_out_where_to_be_and_when_to_be_there: "Узнайти, где должны быть, и когда, чтобы быть там."
+  #en: for_more_information_on_tags_check_out_the: For more information on tags check out the
+  for_more_information_on_tags_check_out_the: Более подробную информацию о ярлыках проверьте 
+  #en: forgot_your_password: Forgot your password?
+  forgot_your_password: Забыли свой пароль?
+  #en: forgot_your_username: Forgot your username?
+  forgot_your_username: Забыли свое имя пользователя?
+  #en: forum: Forum
+  forum: Форум
+  #en: forums: Forums
+  forums: Форумы
+  #en: post_found: %{count} posts found
+  post_found:
+    one: 1 сообщение найдено
+    few: "%{count} сообщения найдено"
+    many: "%{count} сообщений найдено"
+    other: "%{count} сообщения найдено"
+  #en: frequency: Frequency
+  frequency: Частота
+  #en: frequent_asked_questions: Frequent Asked Questions
+  frequent_asked_questions: Часто задаваемые вопросы
+  #en: frequently_asked_questions: Frequently Asked Questions
+  frequently_asked_questions: Часто задаваемые вопросы
+  #en: friend: friend
+  friend: друг
+  #en: friends: Friends
+  friends: Друзья
+  #en: friendship_could_not_be_created: Friendship could not be created
+  friendship_could_not_be_created: Друг не может быть создан
+  #en: friendship_request_accepted: Friendship request accepted!
+  friendship_request_accepted: Запрос дружбы принят!
+  #en: friendship_request_detail: Friendship request detail
+  friendship_request_detail: Детали запроса дружбы
+  #en: friendship_requested: Requested friendship with %{friend}.
+  friendship_requested: "Запрошена дружба с %{friend}."
+  #en: from: From
+  from: От 
+  #en: from2: From
+  from2: От 
+  #en: gender: Gender
+  gender: Пол
+  #en: get_help_from_someone_who_knows: Get help from someone who knows
+  get_help_from_someone_who_knows: Получить помощь от кого-нибудь, кто знает
+  #en: get_popular: Get popular.
+  get_popular: Стань известным
+  #en: get_started: "Get started:"
+  get_started: "Начать:"
+  #en: get_started_banner: Get started with <a href="/">%{site}</a> today!
+  get_started_banner: "Начни сегодня с <a href='/'>%{site}</a>!"
+  #en: invite_some_friends: "Invite some friends!"
+  invite_some_friends: "Пригласить друзей!"
+  #en: tell_us_about_yourself: "Tell us about yourself"
+  tell_us_about_yourself: "Расскажи нам о себе"
+  #en: upload_a_profile_photo: "Upload a profile photo"
+  upload_a_profile_photo: "Загрузка фото профиля"
+  #en: go: Go
+  go: Вперед
+  #en: go2: Go
+  go2: Вперед
+  #en: go_check_your_e_mail: Go check your e-mail!
+  go_check_your_e_mail: Проверьте ваш e-mail!
+  #en: go_to_the_forums: go to the forums
+  go_to_the_forums: перейти на форумы
+  #en: go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
+  go_to_your_clippings_page_to_get_started: Перейти на вашу страницу вырезок для начала работы.
+  #en: go_to_your_profile: Go to your profile
+  go_to_your_profile: Перейти нв ваш профиль
+  #en: has_commented_on_something_that_you_also_commented_on: %{user} has commented on a %{item} that you also commented on.
+  has_commented_on_something_that_you_also_commented_on: "%{user} прокомментировал %{item}, которую вы уже прокомментировали."
+  #en: has_posted_in_a_thread_you_are_monitoring: %{user} has posted in a thread you are monitoring.
+  has_posted_in_a_thread_you_are_monitoring: "%{user} разместил сообщение в потоке, которые вы контролируете."
+  #en: has_something_to_say_to_you_on: %{user} has something to say to you on %{site}!
+  has_something_to_say_to_you_on: "%{user} хочет что-то сказать вам на %{site}!"
+  #en: have_an_account: "Have an account? "
+  have_an_account: "Имеете учетную запись? "
+  #en: have_something_to_contribute: Have something to contribute?
+  have_something_to_contribute: Хотите пожертвовать?
+  #en: his: his
+  his: его
+  #en: her: her
+  her: ее
+  #en: help: Help
+  help: Помощь
+  #en: home: Home
+  home: На главную
+  #en: homepage_banner_download_msg: Download it now and get started
+  homepage_banner_download_msg: Проходит процесс отладки сайта...
+  #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
+  homepage_banner_msg: CommunityEngine - лучший способ стать узнаваемым
+  #en: homepage_banner_signup_prompt: See how it works
+  homepage_banner_signup_prompt: Как это работает
+  #en: homepage_features: Homepage Features
+  homepage_features: Функции домашней страницы
+  #en: homepage_feature_created: Homepage feature created
+  homepage_feature_created: Функция домашней страницы создана 
+  #en: hours_ago: %{count} hours ago
+  hours_ago:
+    one: "один час назад"
+    few: "%{count} часа назад"
+    many: "%{count} часов назад"
+    other: "%{count} часа назад"
+  #en: how_do_i_do_that: How do I do that?
+  how_do_i_do_that: Как могу я это сделать?
+  #en: html: HTML
+  html: HTML
+  #en: image: Image
+  image: Изображение
+  #en: image_url: Image URL
+  image_url: URL изображения
+  #en: in_the_forums: In the forums
+  in_the_forums: На форумах
+  #en: in_your_favorites: In your favorites
+  in_your_favorites: В избранное
+  #en: inactive: inactive
+  inactive: неактивный
+  #en: inbox: Inbox
+  inbox: Почтовый ящик
+  #en: insert: Insert
+  insert: Ввести
+  #en: invite_a_friend: Invite a friend
+  invite_a_friend: Пригласить друга
+  #en: invitation_was_successfully_created: Invitation was successfully created.
+  invitation_was_successfully_created: Приглашение было успешно создано.
+  #en: invite_message: The more people you invite the better %{site} becomes.
+  invite_message: "Чем больше людей вы приглашаете, тем лучше %{site} становится."
+  #en: invite_some_customers: Invite some customers!
+  invite_some_customers: Пригласите некоторых клиентов!
+  #en: invite_your_friends_to_join: Invite Your Friends To Join!
+  invite_your_friends_to_join: Пригласите ваших друзей присоединиться!
+  #en: invited_friends: invited some friends to join!
+  invited_friends: Пригласил своих друзей присоединиться!
+  #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
+  is_great_check_it_out_youll_love_it: "это здорово, попробовав вы полюбите его!"
+  #en: items: Items
+  items: Items
+  #en: items_tagged: Items tagged
+  items_tagged: "Отмеченное ярлыком"
+  #en: joined: joined
+  joined: зарегистрирован
+  #en: joined_the_site: joined %{site}
+  joined_the_site: зарегистрировался на %{site}
+  #en: just_uploading_one_photo: Just uploading one photo?
+  just_uploading_one_photo: Загрузить только одно фото?
+  #en: keywords: Keywords
+  keywords: Ключевые слова
+  #en: large: Large
+  large: Большой
+  #en: last: last
+  last: последний
+  #en: last_post: Last post
+  last_post: Последнее сообщение
+  #en: left_a_comment: "left a comment:"
+  left_a_comment: "оставил комментарий:"
+  #en: links: Links
+  links: Ссылки
+  #en: listing_invitations: Listing invitations
+  listing_invitations: Просмотр приглашений
+  #en: loading_images: Loading images
+  loading_images: Загрузки изображений
+  #en: loading_recent_content: Loading recent content...
+  loading_recent_content: Загрузка недавнего содержимого...
+  #en: location: Location
+  location: Местоположение
+  #en: log_in: Log in
+  log_in: Вход
+  #en: log_in_to_create_a_new_topic: Log in to create a new topic
+  log_in_to_create_a_new_topic: Подключиться для создания новой темы
+  #en: log_in_to_leave_a_comment: Log in to leave a comment
+  log_in_to_leave_a_comment: Подключиться, чтобы оставить комментарий
+  #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
+  log_in_to_reply_to_this_topic: Подключиться для ответа на эту тему
+  #en: log_in_to_site: Log in to %{site}
+  log_in_to_site: "Поключиться к %{site}"
+  #en: log_in_to_vote: Log in to vote
+  log_in_to_vote: Подключиться для голосования
+  #en: log_in_to_your: Log in to your
+  log_in_to_your: Подключиться к своему 
+  #en: log_out: Log Out
+  log_out: Выход
+  #en: log_out_of_your: Log out of your 
+  log_out_of_your: Отключиться от своего 
+  #en: logged_in: "Logged in:"
+  logged_in: "Вошли как:"
+  #en: logged_into_the_site: logged into the site
+  logged_into_the_site: Подключились к сайту
+  #en: login: Login
+  login: Вход
+  #en: logins: Logins
+  logins: Вход
+  #en: location: Location
+  location: Местоположение
+  #en: locked: Locked
+  locked: Заперто
+  #en: locked2: (locked)
+  locked2: (заперто)
+  #en: look_for_a_message_from: "Look for a message from: %{from}"
+  look_for_a_message_from: "Искать сообщение от: %{from}"
+  #en: looking_for_most_x: Looking for %{link}
+  looking_for_most_x: "Искать %{link}"
+  #en: most_recent: most recent
+  most_recent: недавние
+  #en: most_popular: most popular
+  most_popular: самые популярные
+  #en: make_moderator: Make moderator
+  make_moderator: Создать модератора
+  #en: make_page_public: Make this page public
+  make_page_public: Сделать эту страницу открытой
+  #en: make_my_profile_public: Make my profile public
+  make_my_profile_public: Сделать мой профиль открытым
+  #en: make_this_my_profile_photo: Make this my profile photo
+  make_this_my_profile_photo: Сделать его моим профильным фото
+  #en: male: Male
+  male: мужской
+  #en: manage: "Manage:"
+  manage: "Управлять:"
+  #en: manage_my: "Manage my:"
+  manage_my: "Управлять моим:"
+  #en: manage_pages: Manage Pages
+  manage_pages: Управлять страницами
+  #en: manage_posts: Manage Posts
+  manage_posts: Управлять сообщениями
+  #en: medium: Medium
+  medium: Средний
+  #en: map_it: Map It!
+  map_it: Его карта!
+  #en: megabyte_upload_limit: %{count} megabytes upload limit
+  megabyte_upload_limit:
+    one: "ограничение загрузки в 1 мегабайт"
+    few: "ограничение загрузки в %{count} мегабайта"
+    other: "ограничение загрузки в %{count} мегабайт"
+  #en: megabyte_upload_limit_per_file: %{count} megabytes upload limit per file.
+  megabyte_upload_limit_per_file:
+    one: "ограничение загрузки файла размером в 1 мегабайт."
+    few: "ограничение загрузки файла размером в %{count} мегабайта."
+    many: "ограничение загрузки файла размером %{count} мегабайт."
+    other: "ограничение загрузки файла размером %{count} мегабайта."
+  #en: member: Member
+  member: Член
+  #en: members: Members
+  members: Члены
+  #en: member_since: Member since
+  member_since: Участник с 
+  #en: message: Message
+  message: Сообщение
+  #en: messages_deleted: Messages deleted
+  messages_deleted: Сообщения удалены
+  #en: messages_sent: Messages sent!
+  messages_sent: Сообщения посланы!
+  #en: message_sent: Message sent!
+  message_sent: Сообщение послано!
+  #en: read: read
+  read: прочитано
+  #en: unread: unread
+  unread: не прочитано
+  #en: unread_messages: %{count} unread messages
+  unread_messages:
+    one: 1 непрочитанное сообщение
+    few: "%{count} непрочитанных сообщения"
+    many: "%{count} непрочитанных сообщений"
+    other: "%{count} непрочитанных сообщения"
+  #en: metro_area: Metro Area
+  metro_area: Область
+  #en: metro_areas: Metro Areas
+  metro_areas: Области
+  #en: metro_area_was_successfully_created: MetroArea was successfully created.
+  metro_area_was_successfully_created: Области были успешно созданы.
+  #en: minutes_ago: %{count} minutes ago
+  minutes_ago:
+    one: "одна минута назад"
+    few: "%{count} минуты назад"
+    many: "%{count} минут назад"
+    other: "%{count} минуты назад"
+  #en: moderator: Moderator
+  moderator: Модератор
+  #en: moderators: Moderators
+  moderators: Модераторы
+  #en: monitored_topics: Monitored Topics
+  monitored_topics: Отслеженные темы
+  #en: month: Month
+  month: Месяц
+  #en: more: More
+  more: Еще
+  #en: more_about_you: More about you
+  more_about_you: Еще о вас
+  #en: most_active_1_month: Most active (1 month)
+  most_active_1_month: Наиболее активный (1 месяц)
+  #en: my_account: My Account
+  my_account: Моя учетная запись
+  #en: my_blog: My Blog
+  my_blog: Мой блог
+  #en: my_blog_posts: My Blog Posts
+  my_blog_posts: Сообщения моего блога
+  #en: my_clippings: My Clippings
+  my_clippings: Мои вырезки
+  #en: my_details: My Details
+  my_details: Мои детали
+  #en: my_friends: My Friends
+  my_friends: Мои друзья
+  #en: my_photos: My Photos
+  my_photos: Мои фото
+  #en: my_profile: My Profile
+  my_profile: Мой профиль
+  #en: my_recent_comments: My recent comments
+  my_recent_comments: Мои недавние комментарии
+  #en: my_tags: My tags
+  my_tags: Мои ярлыки
+  #en: name: Name
+  name: Название
+  #en: navigation_menu_text: Navigation menu text
+  navigation_menu_text: Текст навигационного меню
+  #en: need_some_help_contact_our: Need some help?  Check out our
+  need_some_help_contact_our: Нужна помощь? Проверить наши 
+  #en: need_to_contact_us: Need to contact us?
+  need_to_contact_us: Нужна связь с нами?
+  #en: new_ad: New Ad
+  new_ad: Новое объявление
+  #en: new_category: New category
+  new_category: Новая категория
+  #en: new_clipping: New clipping
+  new_clipping: Новая вырезка
+  #en: new_event: New Event
+  new_event: Новое событие
+  #en: new_forum: New Forum
+  new_forum: Новый форум
+  #en: new_homepage_feature: New Homepage Feature
+  new_homepage_feature: Новая функция домашней страницы
+  #en: new_invitation: New Invitation
+  new_invitation: Новое приглашение
+  #en: new_invitation_from: New Invitation from
+  new_invitation_from: новое приглашение от 
+  #en: new_metro_area: New Metro Area
+  new_metro_area: Новая область
+  #en: new_page: New Page
+  new_page: Новая страница
+  #en: new_photo: New photo.
+  new_photo: Новое фото
+  #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
+  new_photos_multiple_uploader: "Новые фотографии &raquo; Множественная загрузка"
+  #en: new_post: New post
+  new_post: Новое сообщение
+  #en: new_post_for_category: New %{category}
+  new_post_for_category: "Новая %{category}"
+  #en: new_post_text: New Post text
+  new_post_text: Текст новой темы
+  #en: new_today: New today
+  new_today: Новое сегодня
+  #en: new_topic: New topic
+  new_topic: новая тема
+  #en: new_yesterday: New yesterday
+  new_yesterday: новое вчера
+  #en: next: next
+  next: следующая  
+  #en: no_activation_email: No activation e-mail?
+  no_activation_email: Не активирован e-mail?
+  #en: no_comments_found_for_that_item: Sorry, we couldn't find any comments for that %{type}
+  no_comments_found: "К сожалению мы не можем найти комментарии к этому %{type}"
+  #en: no_clippings_yet: No clippings saved yet.
+  no_clippings_yet: Еще не сохранены вырезки.
+  #en: no_images_uploaded_yet: No images uploaded yet.
+  no_images_uploaded_yet: Еще не загружены изображения.
+  #en: no_messages: no messages
+  no_messages: нет сообщений
+  #en: no_profile_photo: "No profile photo?"
+  no_profile_photo: "Нет профильного фото?"
+  #en: no_recent_activity: No recent activity
+  no_recent_activity: Нет активности
+  #en: no_tags: No tags
+  no_tags: Нет ярлыков
+  #en: notify_email_updates: Notify of community news
+  notify_email_updates: Уведомлять о новостях сообщества
+  #en: notify_me_of_follow_ups_via_email: Notify me of follow ups via e-mail
+  notify_me_of_follow_ups_via_email: Уведомить меня через e-mail  
+  #en: notify_of_comments: Notify of comments
+  notify_of_comments: Уведомлять о комментариях
+  #en: notify_of_friend_requests: Notify of friend requests
+  notify_of_friend_requests: Уведомлять о запросах друзей
+  #en: number_of_attendees: Number of attendees (including you)
+  number_of_attendees: Количество участников (включая вас)
+  #en: of: of
+  of: из
+  #en: on_commentable: On
+  on_commentable: 'На'
+  #en: optional: optional
+  optional: необязательный
+  #en: optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  optional_keywords_describing_this_clipping_separated_by_commas: Необязательные ключевые слова, описывающие эту вырезку, разделенные запятыми 
+  #en: optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  optional_keywords_describing_this_forum_separated_by_commas: Необязательные ключевые слова, описывающие этот форум, разделенные запятыми
+  #en: optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
+  optional_keywords_describing_this_photo_separated_by_commas: Необязательные ключевые слова, описывающие это фото, разделенные запятыми
+  #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
+  optional_keywords_describing_this_post_separated_by_commas: "Необязательные ключевые слова, описывающие это сообщение, разделенные запятыми"
+  #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
+  optional_keywords_describing_this_topic_separated_by_commas: Необязательные ключевые слова, описывающие эту тему, разделенные запятыми
+  #en: yes_status: yes
+  yes: да
+  #en: no_status: no
+  no: нет
+  #en: or: or
+  or: или
+  #en: page: page
+  page: страница
+  #en: page_not_found: The page you are trying to view has been moved or no longer exists.
+  page_not_found: Страница, которую вы пытаетесь посмотреть была перемещена или отсутствует.
+  #en: page_not_public_warning: This page is not public, you'll need to create an account and log in to access it
+  page_not_public_warning: "Эта страница закрыта, вы должны создать учетную запись и подключиться для доступа к ней"
+  #en: page_was_successfully_created: Page was successfully created.
+  page_was_successfully_created: Страница была успешно создана.
+  #en: page_was_successfully_deleted: Page was successfully deleted.
+  page_was_successfully_deleted: Страница была успешно удалена.
+  #en: page_was_successfully_updated: Page was successfully updated.
+  page_was_successfully_updated: Страница была успешно обновлена.
+  #en: pages: Pages
+  pages: Страницы
+  #en: page_tips: "Pages are a good place to put static content that you would rather not post to the blog or the forums."
+  page_tips: "Страницы это хорошее место для размещения постоянного содержимого, которое вы скорее всего не опубликуете в блоге или форуме."
+  #en: password: Password
+  password: Пароль
+  #en: pending: pending
+  pending: в ожидании
+  #en: pending_friendships: Pending Friendships
+  pending_friendships: Ожидание дружбы
+  #en: people: People
+  people: Люди
+  #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends
+  people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: Те, кто зарегистрировался, используя ваше приглашение будут автоматически добавлены в ваши друзья.
+  #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
+  people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: Те, кто зарегистрировался, используя ваше приглашение будут автоматические добавлены в ваши друзья на 
+  #en: permanently_delete_this_clipping: Permanently delete this clipping?
+  permanently_delete_this_clipping: Совсем удалить эту вырезку?
+  #en: permanently_delete_this_event: Permanently delete this event?
+  permanently_delete_this_event: Совсем удалить это событие?
+  #en: permanently_delete_this_post: Permanently delete this post?
+  permanently_delete_this_post: Совсем удалить эту тему?
+  #en: photo_comments: Photo Comments
+  photo_comments: Комментарии к фото
+  #en: photo_description_from_user: "%{photo_description} from %{user}"
+  photo_description_from_user: "%{photo_description} от %{user}"
+  #en: photo_from_user: "Photo from %{user}"
+  photo_from_user: "Фото от %{user}"
+  #en: photo_message: Your profile photo represents you on %{site}. You can change it later.
+  photo_message: "Ваше профильное фото представляет вас на %{site}. В дальнейшем вы можете изменить его."
+  #en: photo_was_successfully_created: Photo was successfully created.
+  photo_was_successfully_created: Фото было успешно создано.
+  #en: photos: Photos
+  photos: Фото
+  #en: plural_photos: %{count} Photos
+  plural_photos:
+    one: 1 фото
+    few: "%{count} фото"
+    many: "%{count} фото"
+    other: "%{count} фото"
+  #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
+  photos_should_be_x_pixels: Фото должны быть размером 300x300 px.
+  #en: photos_tagged: Photos tagged
+  photos_tagged: "Ярлыки фото"
+  #en: photo_tip_1: Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.
+  photo_tip_1: "С помощью фото вы показываете миру свое творчество. Выбирайте лучшие фото и давайте им хорошие заголовки и описания."
+  #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
+  photo_tip_2: Используйте ярлыки для организации ваших фото. Разделяйте ярлыки с помощью запятых.
+  #en: please_activate_your_new_account: Please activate your new %{site} account
+  please_activate_your_new_account: "Пожалуйста активируйте свою новую %{site} учетную запись"
+  #en: please_log_in: Please log in.
+  please_log_in: Пожалуйста, войдите.
+  #en: please_post_something_at_least: Please post something at least...
+  please_post_something_at_least: Пожалуйста, разместите что-нибудь, по крайней мере...
+  #en: plural_posts: "%{count} posts"
+  plural_posts: 
+    one: "%{count} сообщение"
+    few: "%{count} сообщения"
+    many: "%{count} сообщений"
+    other: "%{count} сообщения"
+  #en: popular: Popular
+  popular: Популярное
+  #en: popular_category: Popular %{name}
+  popular_category: "Популярный %{name}"
+  #en: popular_posts: Popular Posts
+  popular_posts: Популярные сообщения
+  #en: popular_posts_on: Popular Posts on
+  popular_posts_on: Популярные сообщения на 
+  #en: popular_polls: Popular Polls
+  popular_polls: Популярные опросы
+  #en position: Position
+  position: Размещение
+  #en: post: Post
+  post: Сообщение
+  #en: posts: Posts
+  posts: Сообщений
+  #en: post_a_new_topic: Post a new topic
+  post_a_new_topic: Разместить новую тему
+  #en: post_an_event: Post an event
+  post_an_event: Разместить событие
+  #en: posted_an_event: "posted an event:"
+  posted_an_event: "размещенное событие:"
+  #en: upcoming_events: Upcoming Events
+  upcoming_events: Предстоящие события
+  #en: past_events: Past Events
+  past_events: Прошедшие события
+  #en: post_created_for_category: Your '%{category}' post was successfully created.
+  post_created_for_category: "Ваше '%{category}' сообщение было успешно создано."
+  #en: post_comments: Post Comments
+  post_comments: Комментарии сообщения
+  #en: postal_code: "Postal code:"
+  postal_code: "Почтовый код:"
+  #en: posting_tips: "Posting Tips"
+  posting_tips: "Типы записи"
+  #en: post_topic: Post topic
+  post_topic: Разместить статью
+  #en: posts_photos_and_bookmarks: %{name} posts, photos and bookmarks
+  posts_photos_and_bookmarks: "%{name} сообщения, фото и закладки"
+  #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
+  posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Сообщения, сохраненные со статусом 'черновик' не будут показаны в вашем блоге пока вы не опубликуете их."
+  #en: posts_tagged: Posts tagged
+  posts_tagged: "Ярлыки сообщений"
+  #en: pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
+  pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Страницы, сохраненные со статусом "черновик" не будут показаны на сайте, пока вы не опубликуете их.
+  #en: public: Public
+  public: Открытые
+  #en: preview: Preview
+  preview: Просмотр
+  #en: previewing_your_post: Previewing your post
+  previewing_your_post: Предварительный просмотр вашего сообщения
+  #en: previous: previous
+  previous: предыдущая
+  #en: print: Print
+  print: Печатать
+  #en: print_this_story: "Print this story"
+  print_this_story: "Печатать эту статью"
+  #en: profile: Profile
+  profile: Профиль
+  #en: profile_comments: Profile Comments
+  profile_comments: Профиль комментариев
+  #en: profile_photo: Profile Photo
+  profile_photo: Профиль фото
+  #en: profile_photo_change: Change profile photo
+  profile_photo_change: Изменить профиль фото
+  #en: profile_photo_crop: Crop profile photo
+  profile_photo_crop: Обрезать профиль фото
+  #en: profile_privacy: Profile Privacy
+  profile_privacy: Профиль конфиденциальности
+  #en: profile_views: profile views
+  profile_views: просмотр профиля
+  #en: pros: Pros
+  pros: Pros
+  #en: published: Published
+  published: опубликованное
+  #en: question: Question
+  question: Вопрос
+  #en: re_type_your_password_to_confirm: "Re-type your password to confirm:"
+  re_type_your_password_to_confirm: "Повторно введите пароль для подтверждения:"
+  #en: read_more: read more
+  read_more: еще читать
+  #en: recent: Recent
+  recent: Недавнее
+  #en: recent_activity: Recent activity
+  recent_activity: Недавняя активность
+  #en: recent_blog_posts: Recent Blog Posts
+  recent_blog_posts: Недавние сообщения в блоге
+  #en: recent_photos: Recent Photos
+  recent_photos: Недавние фото
+  #en: recent_posts: Recent Posts
+  recent_posts: Недавние сообщения
+  #en: recommended_posts: Recommended Posts
+  recommended_posts: Рекомендуемые сообщения
+  #en: related_clippings_all_members: Related Clippings (all members)
+  related_clippings_all_members: Связанные вырезки (все участники)
+  #en: related_photos_all_members: Related Photos (all members)
+  related_photos_all_members: Связанные фото (все участники)
+  #en: related_posts: Related Posts
+  related_posts: Связанные сообщения
+  #en: related_tags: Related Tags
+  related_tags: Связанные ярлыки
+  #en: remember_me: Remember me
+  remember_me: Запомнить меня
+  #en: remember_you_can_always_change_this_later: Remember, you can always change this later.
+  remember_you_can_always_change_this_later: "Помните, вы можете всегда изменить это позже."
+  #en: remove_moderator: Remove moderator
+  remove_moderator: Удалить модератора
+  #en: remove_this_friend: Remove this friend
+  remove_this_friend: Удалить этого друга
+  #en: reply: Reply
+  reply: Ответить
+  #en: reply_to_topic: Reply
+  reply_to_topic: Ответить
+  #en: request_friendship: Request friendship
+  request_friendship: Запросить дружбу
+  #en: requested: requested
+  requested: запрошено
+  #en: requested_friendship_with: Requested friendship with
+  requested_friendship_with: Запрошена дружба с 
+  #en: requesting_friendship: Requesting friendship
+  requesting_friendship: Запрос дружбы
+  #en: required: required
+  required: требуется
+  #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
+  required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Внимание: Мы пошлем e-mail для подтверждения на адрес, который вы ввели.)"
+  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least %{min_age} years old to sign up.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Внимание: для регистрации ваш возраст должен быть не менее %{min_age} лет.)"
+  #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain spaces or special characters.)"
+  required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Внимание: Ваше имя пользователя не должно содержать пробелов и специальных символов.)"
+  #en: resend_my_activation_e_mail: Resend my activation e-mail
+  resend_my_activation_e_mail: Повторно послать мне e-mail активации
+  #en: resend_your_activation_e_mail: Resend your activation e-mail
+  resend_your_activation_e_mail: Повторный e-mail вашей активации
+  #en: reset_my_password: Reset my password
+  reset_my_password: Сброс моего пароля
+  #en: retract_rsvp: Retract RSVP
+  retract_rsvp: Отказаться от запроса
+  #en: rss: RSS
+  rss: RSS
+  #en: rss_feed: RSS feed
+  rss_feed: загрузка RSS
+  #en: rsvp_for: RSVP for
+  rsvp_for: Запрос для 
+  #en: rsvped_for_an_event: "RSVPed for an event:"
+  rsvped_for_an_event: "Запрошено для события:"
+  #en: rsvp: RSVP  
+  rsvp: Запрос
+  #en: rsvps: RSVPs
+  rsvps: Запросы
+  #en: run: Run
+  run: Запустить
+  #en: save: Save
+  save: Сохранить
+  #en: save_and_continue_to_step_three: Save, and continue to step three
+  save_and_continue_to_step_three: "Сохранить, и продолжить и перейти к третьему шагу"
+  #en: save_changes: Save Changes
+  save_changes: Сохранить изменения
+  #en: save_forum: Save Forum
+  save_forum: Сохранить форум
+  #en: save_page_as: "Save page as:"
+  save_page_as: "Сохранить страницу как:"
+  #en: save_post_as: "Save post as:"
+  save_post_as: "Сохранить сообщение как:"
+  #en: save_reply: Save reply
+  save_reply: Сохранить ответ
+  #en: says: says
+  says: сказал
+  #en: sb_post_was_deleted: Post '%{title}' was deleted.
+  sb_post_was_deleted: "Сообщение '%{title}' было удалено."
+  #en: scrapbook: Scrapbook
+  scrapbook: Альбом
+  #en: search: Search
+  search: Поиск
+  #en: search_users: Search Users
+  search_users: Поиск пользователей
+  #en: searching_for: Searching for
+  searching_for: Поиск для
+  #en: see_all: SEE ALL
+  see_all: Посмотреть все
+  #en: see_all_activity: See all activity
+  see_all_activity: Посмотреть всю активность
+  #en: see_all_events: See all events
+  see_all_events: Посмотреть все события
+  #en: see_all_recent_posts: See all recent posts
+  see_all_recent_posts: Посмотреть все недавние события
+  #en: see_you_back_here_in_a_short_while: See you back here in a short while.
+  see_you_back_here_in_a_short_while: Надеемся скоро увидеть вас.
+  #en: select_images_to_upload: Select Images to Upload
+  select_images_to_upload: Выбрать изображения для загрузки
+  #en: select_your_city: Select your city
+  select_your_city: Выберите ваш город
+  #en: send: "Send"
+  send: "Послать"
+  #en: send_comment_notifications: Send comment notifications?
+  send_comment_notifications: Послать уведомление о сообщении?  
+  #en: send_me_a_message: "Send me a message"
+  send_me_a_message: "Послать мне сообщение"
+  #en: send_invitations: Send Invitations!
+  send_invitations: Послать приглашение!
+  #en: send_me_my_username: Send me my username
+  send_me_my_username: Послать мне мое имя пользователя
+  #en: send_this_story_to_friends: Send this message to friends
+  send_this_story_to_friends: Послать это сообщение друзьям
+  #en: sent_messages: Sent messages
+  sent_messages: Послать сообщения
+  #en: sent_you_a_private_message: %{user} sent you a private message!
+  sent_you_a_private_message: "%{user} послал вам личное сообщение!"
+  #en: service_could_not_be_deleted: Service could not be deleted.
+  service_could_not_be_deleted: Сервис не можем быть удален.
+  #en: share_the_love: Share the love
+  share_the_love: Поделиться
+  #en: sharethis: ShareThis
+  sharethis: Поделиться
+  #en: show: Show
+  show: Показать
+  #en: show_category: %{category}
+  show_category: "%{category}"
+  #en: show_this_photo: Show this photo
+  show_this_photo: Показать это фото
+  #en: showing: Showing
+  showing: Показ
+  #en: showing_ad: Showing Ad
+  showing_ad: Показ объявления
+  #en: showing_categories: Showing categories
+  showing_categories: Показ категорий
+  #en: showing_metro_area_details: Showing Metro Area Details
+  showing_metro_area_details: Показ деталей области
+  #en: showing_users: Showing users
+  showing_users: Показ пользователей
+  #en: sign_up: Sign Up!
+  sign_up: Регистрация!
+  #en: sign_up_for_an_account: Sign up for an account.
+  sign_up_for_an_account: Регистрация учетной записи.
+  #en: sign_up_for_a_: Sign up for a
+  sign_up_for_a_: Регистрация для 
+  #en: sign_up_reason_1: Some reason to sign up
+  sign_up_reason_1: Несколько причин для регистрации
+  #en: sign_up_reason_2: Some reason to sign up
+  sign_up_reason_2: ""  
+  #en: singular_posts: "%{count} post"
+  singular_posts: 
+    one: "%{count} сообщение"
+    few: "%{count} сообщения"
+    many: "%{count} сообщений"
+    other: "%{count} сообщения"
+  #en: site_members: "%{site} members"
+  site_members: "Участники %{site}"
+  #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
+  skip_this_and_go_to_your_profile: Пропустите это и перейдите на ваш профиль
+  #en: skip_this_step: Skip this step
+  skip_this_step: Пропустите этот шаг
+  #en: small_profile: "%{user} doesn't have much here yet. Stay tuned."
+  small_profile: "%{user} недавно здесь. Оставайтесь с нами."
+  #en: sorry_there_was_an_error: "Sorry, there was an error."
+  sorry_there_was_an_error: "Извините, это была ошибка."
+  #en: sorry_there_was_an_error_requesting_friendship: "Sorry, there was an error requesting friendship."
+  sorry_there_was_an_error_requesting_friendship: "Извините, это была ошибка запроса дружбы."
+  #en: sorry_there_was_an_error_uploading_the_photo: "Sorry, there was an error uploading the photo."
+  sorry_there_was_an_error_uploading_the_photo: "Извините, это была ошибка загрузки фото."
+  #en: sorry_we_dont_recognize_that_email_address: "Sorry. That e-mail address is not associated with an active account. Are you sure you typed it correctly? Have you signed up and activated your account?"
+  sorry_we_dont_recognize_that_email_address: "Извините. Адрес этого e-mail не связан с активной учетной записью. Проверьте, правильно ли вы написали. Зарегистрированы ли вы и активирована ли ваша учетная запись?"
+  #en: spread_the_word: Spread the word
+  spread_the_word: Записать слово
+  #en: start_date: Start date
+  start_date: Дата начала
+  #en: start_time: Start time
+  start_time: Время начала
+  #en: started_a_topic: "started a topic:"
+  started_a_topic: "начата тема:"
+  #en: state: State
+  state: Штат
+  #en: statistics: Statistics
+  statistics: Статистика
+  #en: stats: Stats
+  stats: Статистика
+  #en: status: Status
+  status: Статус
+  #en: sticky: Sticky
+  sticky: Прилепить
+  #en: subject: Subject
+  subject: Тема
+  #en: subscribe_to: Subscribe to
+  subscribe_to: Подписаться на 
+  #en: subscribe_events_instructions:  Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.).
+  subscribe_events_instructions:  "Будьте в курсе событий с помощью вашей любимой программы (Outlook, Lightning / Thunderbird, Sunbird, iCal, и т.д.) или в сетевом сервисе (Google Calendar, AirSet, iScrybe, и т.д.)."
+  #en: tag_does_not_exists: The tag %{tag} does not exist
+  tag_does_not_exists: "Ярлык %{tag} не существует"
+  #en: tag_name: Tag name
+  tag_name: Имя ярлыка
+  #en: tag_yourself: tag yourself
+  tag_yourself: Собственный ярлык
+  #en: tags: Tags
+  tags: Ярлыки
+  #en: taggings: Taggings
+  taggings: Taggings
+  #en: tag_was_successfully_updated: Tag was successfully updated
+  tag_was_successfully_updated: Ярлык был успешно обновлен
+  #en: tag_was_successfully_deleted: Tag was successfully deleted
+  tag_was_successfully_deleted: Ярлык был успешно удален
+  #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
+  tags_are_comma_separated_keywords_that_describe_you: Ярлыки - это описываемые вами ключевые слова, разделенные запятой.
+  #en: tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Tags are keywords you use to organize your clippings. Separate multiple tags with commas.
+  tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Ярлыки - это ключевые слова для организации ваших вырезок. Разделяйте множественные ярлыки запятыми.
+  #en: tags_are_keywords_you_use_to_organize_your_photos: Tags are keywords you use to organize your photos. Separate multiple tags with commas.
+  tags_are_keywords_you_use_to_organize_your_photos: Ярлыки - это ключевые слова, которые вы используете для организацииж ваших фото. Разделяйте множественные ярлыки запятыми.
+  #en: tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Tags are one-word descriptors user assign to blog posts, pictures and clippings on
+  tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Ярлыки это однословные описания пользователем для сообщений блогов, картинок и вырезок на
+  #en: tagged: tagged
+  tagged: присвоен ярлык
+  #en: tags_page: tags page
+  tags_page: ярлыки страницы
+  #en: thanks_for_activating_your_account: Thanks for activating your account!
+  thanks_for_activating_your_account: Спасибо за активацию вашей учетной записи!
+  #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
+  thanks_youre_now_logged_in: Спасибо! Вы подключились.
+  #en: the_comment_was_deleted: The comment was deleted.
+  the_comment_was_deleted: Комментарий был удален.
+  #en: the_community_team: "The %{community} team"
+  the_community_team: "%{community} команда"
+  #en: the_friendship_was_accepted: The friendship was accepted.
+  the_friendship_was_accepted: Дружба была принята.
+  #en: the_friendship_was_denied: The friendship was denied.
+  the_friendship_was_denied: В дружбе было отказано.
+  #en: the_more_people_you_invite_the_better: The more people you invite, the better
+  the_more_people_you_invite_the_better: "Чем больше людей вы приглашаете, тем лучше"
+  #en: the_service_was_deleted: The service was deleted.
+  the_service_was_deleted: Сервис был удален.
+  #en: the_slideshow_is_disabled: The slideshow is disabled.
+  the_slideshow_is_disabled: Слайд-шоу было отключено.
+  #en: the_team: The %{site} Team <%{email}>
+  the_team: "%{site} <%{email}>"
+  #en: the_user_was_activated: The user was activated
+  the_user_was_activated: Пользователь был активирован
+  #en: the_user_was_deactivated: The user was deactivated
+  the_user_was_deactivated: Пользователь был деактивирован 
+  #en: the_user_was_deleted: The user was deleted.
+  the_user_was_deleted: Пользователь был удален.
+  #en: their: their
+  their: их
+  #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
+  this_forum_is_still_getting_started: "Этот форум по-прежнему работает ... Вот некоторые сообщения блога, чтобы вы задумались ..."
+  #en: this_friendship_is_pending: This Friendship is pending.
+  this_friendship_is_pending: Эта дружба в ожидании.
+  #en: this_is_your_dashboard: This is your dashboard.
+  this_is_your_dashboard: Это ваша панель.
+  #en: this_month_best: "This month's Best"
+  this_month_best: "Лучшее в этом месяце"
+  #en: this_story_is_awesome: "This story is awesome!"
+  this_story_is_awesome: "Эта статья удивительна!"
+  #en: this_topic_is_locked: This topic is locked.
+  this_topic_is_locked: Эта тема заблокирована.
+  #en: private_user_profile_message: This user's profile is not public. You'll need to create an account and log in to access it.
+  private_user_profile_message: Профиль этого пользователя не общедоступный. Вам необходимо создать учетную запись и войти, чтобы получить доступ к нему.
+  #en: thumb: Thumb
+  thumb: Thumb
+  #en: time_constrained: Time constrained
+  time_constrained: Время ограничения
+  #en: tips: "Tips:"
+  tips: "Советы:"
+  #en: title: Title
+  title: Заголовок
+  #en: title_required: "Title (required)"
+  title_required: "Заголовок (требуется)"
+  #en: to: To
+  to: Для
+  #en: to_accept: to accept
+  to_accept: принять
+  #en: to_get_recommended_content_on_your_dashboard: to start getting recommended content on your dashboard.
+  to_get_recommended_content_on_your_dashboard: для получения рекомендованного контента на вашей панеле.
+  #en: to_get_started_with_clippings_first: To get started with clippings, first 
+  to_get_started_with_clippings_first: "Чтобы начать работу с вырезками, сначала "
+  #en: to_start_adding_friends: To start adding friends, you can
+  to_start_adding_friends: "Перед тем, как добавить друзей, вы можете "
+  #en: to_you: You
+  to_you: Вы
+  #en: toggle: Toggle
+  toggle: Переключатель
+  #en_ top_pros: Top Pros
+  top_pros: Топ профи
+  #en: top_writers: Top Writers
+  top_writers: Топ писателей
+  #en: topic: Topics
+  topic: Статья
+  #en: topics: Topics
+  topics: Статей
+  #en: topic_deleted: Topic '%{topic}' was deleted.
+  topic_deleted: "Статья '%{topic}' была удалена."
+  #en: topic_locked: Topic locked
+  topic_locked: Статья заблокирована
+  #en: total_users: Total users
+  total_users: Всего пользователей
+  #en: total_votes: Total votes
+  total_votes: Всего голосов
+  #en: type_a_username: Type a username
+  type_a_username: Введите имя пользователя
+  #en: type_your_password: "Type your password:"
+  type_your_password: "Введите ваш пароль:"
+  #en: uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: "Uh oh. We couldn't log you in with the username and password you entered. Try again?"
+  uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: Извините, но мы не можем вас подключить с именем пользователя и паролем, который вы ввели. Попытаетесь снова?
+  #en: un_favorite_this: Un-favorite this
+  un_favorite_this: Это нелюбимое
+  #en: unactivated_users: Unactivated users
+  unactivated_users: Неактивизированные пользователи
+  #en: uncategorized: Uncategorized
+  uncategorized: Без рубрики
+  #en: update: Update
+  update: Обновить
+  #en: update_rsvp: Update RSVP
+  update_rsvp: Обновление запроса
+  #en: update_profile_and_tag_yourself: Update your profile and tag yourself
+  update_profile_and_tag_yourself: Обновить свой профиль и отметить себя
+  #en: update_your_profile: update your profile
+  update_your_profile: обновление вашего профиля
+  #en: updated_at: Updated at
+  updated_at: Обновлено в 
+  #en: updated_their_profile: updated their profile
+  updated_their_profile: обновил свой профиль
+  #en: upload_an_image_for_your_post: Upload an image for your post
+  upload_an_image_for_your_post: Загрузка изображения для вашего сообщения
+  #en: upload_and_continue_to_step_two: Upload, and continue to step two
+  upload_and_continue_to_step_two: "Загрузите и перейдите к следующему шагу"
+  #en: uploaded_a_photo: "uploaded a photo:"
+  uploaded_a_photo: "загрузил фото:"
+  #en: uploaded_by: uploaded by
+  uploaded_by: загружено 
+  #en: url: Url
+  url: Url
+  #en: user_e_mail: "User e-mail:"
+  user_e_mail: "e-mail пользователя:"
+  #en: username: Username
+  username: Имя пользователя
+  #en: user: User
+  user: Пользователь
+  #en: user_information: %{site} User information
+  user_information: "Информация пользователя %{site}"
+  #en: users_blog: "%{user}'s Blog"
+  users_blog: "Блог %{user}"
+  #en: user_clippings: %{user}'s Clippings
+  user_clippings: "Вырезки %{user}"
+  #en: user_login: User login
+  user_login: Логин пользователя
+  #en: users_online: Users online
+  users_online: Пользователи в онлайн
+  #en: users_photos: "%{user}'s Photos"
+  users_photos: "Фото %{user}"
+  #en: users_profile: %{user}'s profile
+  users_profile: "Профиль %{user}"
+  #en: users_tagged: Users tagged
+  users_tagged: "Ярлыки пользователей"
+  #en: user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
+  user_vendor_offer: "<p>Опишите продукт или услугу, который вы предлагаете:<ul><li> Скажите людям, что вы делаете</li><li> Объясните, почему вы любите свою работу</li><li> Как люди могут с вами связаться? Каков ваш веб-сайт?</li></ul></p>"
+  #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
+  user_bio_help: "<p>Ваше био это первое, что люди видят на вашем профиле. Некоторые идеи:<ul><li> Опишите свое чувство стиля</li><li> Объясните, что вам нравится в жизни.</li><li> Что последнее, что вы приобрели для друга?</li></ul></p>"
+  #en: vendor_avatar_hint: "You may want to use your company logo, or a photo of one of your products. "
+  vendor_avatar_hint: "Вы можете использовать логотип компании или фото одного из ваших продуктов. "
+  #en: view: View
+  view: Просмотр
+  #en: views_count: Views
+  view_count: Просмотров
+  #en: view_all_my_clippings: View all my clippings
+  view_all_my_clippings: Просмотреть все мои вырезки
+  #en: view_all_my_friend_requests: View all my friend requests
+  view_all_my_friend_requests: Просмотреть все запросы моих друзей
+  #en: view_all_my_photos: View all my photos
+  view_all_my_photos: Посмотреть все мои фото
+  #en: view_comment: View Comment
+  view_comment: Просмотр комментария
+  #en: view_my_blog: View my blog
+  view_my_blog: Просмотр моего блога
+  #en: voice: voice
+  voice: голос
+  #en: voices: Voices
+  voices: Голосов
+  #en_ vote: Vote
+  vote: Голосование
+  #en: vote_now: Vote now!
+  vote_now: Голосуй сейчас!
+  #en: votes: votes
+  votes: голосов
+  #en: waiting_for: Waiting for
+  waiting_for: Ожидать
+  #en: walkthrough_complete: You've completed the %{site} walk-through. Now you can continue exploring!
+  walkthrough_complete: "Вы завершили просмотр %{site}. Теперь можете продолжить исследование!"
+  #en: want_to_be_popular: Want to be popular?
+  want_to_be_popular: Хотите быть популярным?
+  #en: want_to_list_your_services_on: Want to list your services on
+  want_to_list_your_services_on: Хотите составить список услуг по 
+  #en: want_to_post_in_this_category: Want to post in this category?
+  want_to_post_in_this_category: Хотите оставить сообщение в этой категории?
+  #en: want_to_upload_multiple_files_at_once: Want to upload multiple files at once?
+  want_to_upload_multiple_files_at_once: Хотите сразу загрузить несколько файлов?
+  #en: watch_topic: Watch topic
+  watch_topic: Смотреть статью
+  #en: watching_topic: Watching topic
+  watching_topic: Просмотр статьи
+  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: %{email}"
+  we_just_sent_an_e_mail_to: "Мы послали e-mail на: %{email}"
+  #en: we_need_you: We need you
+  we_need_you: Мы нуждаемся в вас
+  #en: welcome_message: Welcome! %{login_link} or %{signup_link}
+  welcome_message: "Добро пожаловать! %{login_link} или %{signup_link}"
+  #en: what_are_tags: 'What are "Tags"?'
+  what_are_tags: 'Что такое "Ярлыки"?'
+  #en: what_is: What is %{site}
+  what_is_site: "Что такое %{site}"
+  #en: what_is_popular: What's Popular
+  what_is_popular: Что популярно
+  #en: whats_fresh: What's fresh
+  whats_fresh: Что нового
+  #en: whats_hot: What's Hot
+  whats_hot: Самое горячее
+  #en: whats_popular: What's Popular
+  whats_popular: что популярно
+  #en: when: When
+  when: Когда
+  #en: where: Where
+  where: Где
+  #en: when_checked_this_page_will_be_visible_to_anyone: "When checked, this page will be visible to anyone."
+  when_checked_this_page_will_be_visible_to_anyone: "После отметки эта страница станет видна любому."
+  #en: when_checked_users_will_be_able_to_rsvp_for_this_event: "When checked, logged in users will be able to RSVP for this event."
+  when_checked_users_will_be_able_to_rsvp_for_this_event: "После отметки подключенные пользователи смогут посылать запросы для этого события."
+  #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
+  when_checked_your_profile_will_be_visible_to_anyone: "После отметки ваш профиль будет виден каждому."
+  #en: when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
+  when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: После снятия метки эта страница станет видна только тем, кто подключился
+  #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
+  when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "После снятия метки ваш профиль будет виден только тем, кто подключился к"
+  #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to %{site}
+  when_you_see_an_image_you_like_on_the_web: "Когда вы увидите в интернете изображение, которое вам понравится, нажмите на  bookmarklet для сохранения его на %{site}"
+  #en: why_sign_up: Why Sign up?
+  why_sign_up: Зачем регистрироваться?
+  #en: would_like_to_be_friends_with_you_on: %{user} would like to be friends with you on %{site}!
+  would_like_to_be_friends_with_you_on: "%{user} хочет быть вам другом на %{site}!"
+  #en: would_like_you_to_join: %{user} would like you to join %{site}!
+  would_like_you_to_join: "%{user} хочет пригласить вас на %{site}!"
+  #en: write_a_blog_post: Write a blog post!
+  write_a_blog_post: Напиши сообщение в блог!
+  #en: write_a_message: "Write a message:"
+  write_a_message: "Написать сообщение:"
+  #en: write_new_post: Write a '%{category}' post
+  write_new_post: "Написать '%{category}' сообщение"
+  #en: wrote_a_post: "wrote a post:"
+  wrote_a_post: "написал сообщение:"
+  #en: yesterday: Yesterday
+  yesterday: Вчера
+  #en: you_are_editing_your_account: You are editing your account.
+  you_are_editing_your_account: Вы редактируете свою учетную запись.
+  #en: you_are_editing_your_profile: "You're editing your profile."
+  you_are_editing_your_profile: "Вы редактируете свой профиль."
+  #en: you_can_browse_all_content_and_users_on: You can browse all content and users on
+  you_can_browse_all_content_and_users_on: Вы можете просмотреть все содержимое и пользователей на
+  #en: you_cant_delete_that_user: You can't delete that user.
+  you_cant_delete_that_user: Вы не можете удалить этого пользователя.
+  #en: you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
+  you_can_select_up_to_5_files_at_a_time: Вы можете выбрать до 5 файлов одновременно.
+  #en: you_could_tag_yourself: You could tag yourself
+  you_could_tag_yourself: Вы сами можете проставить ярлыки(?)
+  #en: you_have_friends: You have %{count} friends
+  you_have_friends:
+    one: Вы имеете одного друга.
+    few: "Вы имеете %{count} друга"
+    many: "Вы имеете %{count} друзей."
+    other: "Вы имеете %{count} друга."
+  #en: you_have_added_clippings: You have added %{count} clippings
+  you_have_added_clippings:
+    one: Вы добавили 1 вырезку.
+    few: "Вы добавили %{count} вырезки."
+    many: "Вы добавили %{count} вырезок."
+    other: "Вы добавили %{count} вырезки."
+  #en: you_have: You have
+  you_have: У вас есть 
+  #en: you_have_already_rsvped_for_this_event: You have already RSVPed for this event.
+  you_have_already_rsvped_for_this_event: Вы уже послали запрос для этого события.
+  #en: you_have_already_voted: You have already voted.
+  you_have_already_voted: Вы уже проголосовали.
+  #en: you_have_created: You have created
+  you_have_created: Вы создали
+  #en: you_have_left_comments: You have left %{count} comments
+  you_have_left_comments:
+    one: Вы оставили 1 комментарий.
+    few: "Вы оставили %{count} комментария."
+    many: "вы оставили %{count} комментариев."
+    other: "вы оставили %{count} комментария."
+  #en: you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
+  you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: У вас нет вырезок. Используйте bookmarklet справа для их добавления.
+  #en: you_have_no_network_activity_yet: You have no network activity yet.
+  you_have_no_network_activity_yet: Вы еще не активны в сети.
+  #en: you_have_pending_friendship_requests: You have pending friendship requests.
+  you_have_pending_friendship_requests: Вы в ожидании запроса дружбы.
+  #en: you_have_uploaded_photos: You have uploaded %{count} photos
+  you_have_uploaded_photos:
+    one: Вы загрузили 1 фото.
+    few: "Вы загрузили %{count} фото."
+    many: "Вы загрузили %{count} фото."
+    other: "Вы загрузили %{count} фото."
+  #en: you_have_written_blog_posts: You have written %{count} blog posts
+  you_have_written_blog_posts:
+    one: Вы написали в блог 1 сообщение.
+    few: "Вы написали в блог %{count} сообщения."
+    many: "Вы написали в блог %{count} сообщений."
+    other: "Вы написали в блог %{count} сообщения."
+  #en: you_last_logged_in_on: You last logged in on
+  you_last_logged_in_on: Ваше последнее подключение
+  #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
+  you_must_vote_to_see_the_results: Чтобы просмотреть результаты вы должны проголосовать.
+  #en: your_about_text_goes_here: Your About Text Goes Here
+  your_about_text_goes_here: Место для вашего текста
+  #en: your_account_has_been_activated: Your %{site} account has been activated!
+  your_account_has_been_activated: "Ваша %{site} учетная запись была активирована!"
+  #en: your_faq_text_goes_here: Your FAQ text goes here.
+  your_faq_text_goes_here: Текст для вашего FAQ.
+  #en: your_changes_were_saved: Your changes were saved.
+  your_changes_were_saved: Ваши изменения были сохранены.
+  #en:   your_password_reset_instructions_have_been_emailed_to_you: Instructions to reset your password have been emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: инструкции для сброса вашего пароля были посланы вам по e-mail.
+  #en: your_post_was_deleted: Your post was deleted.
+  your_post_was_deleted: ваше сообщение было удалено.
+  #en: your_post_was_successfully_created: Your post was successfully created.
+  your_post_was_successfully_created: Ваше сообшение было успешно создано.
+  #en: your_profile_photo: "Your profile photo:"
+  your_profile_photo: "ваше профильное фото:"
+  #en: your_rsvp_has_been_retracted: Your RSVP has been retracted.
+  your_rsvp_has_been_retracted: Ваш запрос был убран.
+  #en: your_rsvp_was_successfully_created: Your RSVP was successfully created.
+  your_rsvp_was_successfully_created: Ваш запрос был успешно создан.
+  #en: your_rsvp_was_successfully_updated: Your RSVP was successfully updated.
+  your_rsvp_was_successfully_updated: Ваш запрос был успешно обновлен.
+  #en: your_username_was_emailed_to_you: Your username was emailed to you.
+  your_username_was_emailed_to_you: Ваше имя пользователя была послано вам по e-mail.
+  #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
+  youve_been_logged_out_hope_you_come_back_soon: Вы были отключены. Надеемся увидеть вас снова!
+  #en: zippostal_code: "ZIP/Postal code:"
+  zippostal_code: "ZIP/Почтовый код:"
+
+
+  #This stuff needs to be checked
+  #en: photo_manager: "Photo manager"
+  photo_manager: "Управление фото"
+  #en: album: "Album"
+  album: "Альбом"  
+  #en: albums: "Albums"
+  albums: "Альбомы"
+  #en: album_added_photos: Photos added to album
+  album_added_photos: Фото добавлены в альбом
+  # en album_updated: "Album updated"
+  album_updated: "Альбом обновлен"
+  #en: album_comments: "Comentarios de álbum"
+  album_comments: "Комментарии альбома"
+  #en: album_tip: "Albums let you organize yout photos. Share whole experiencies with other %{community_name} users"
+  album_tip: "Альбомы позволяют вам организовать ваши фото. Поделитесь своим опытом с другими пользователями %{community_name}"  
+  #en: delete_album_and_photos: Delete album and its associated photos?
+  delete_album_and_photos: "Удалить альбом и все связанные с ним фото?"
+  #en: album_was_successfully_created: "Album was successfully created"
+  album_was_successfully_created: "Альбом был успешно создан"    
+  #en: view_more: "View more"
+  view_more: "Еще смотреть"
+  #en: assign_album: "Assign album"
+  assign_album: "Назначить альбом" 
+  #en: new_album: "New album"
+  new_album: "Новый альбом"
+  #en: created_an_album: "Created an album"
+  created_an_album: "создал альбом"
+  #en: add_photos: "Add photos"
+  add_photos: "Добавить фото"
+  #en: view_my_album: "View my album"
+  view_my_album: "Посмотреть мой альбом"
+  #en: photos_of_this_album: "Photos from this album"
+  photos_of_this_album: "фото из этого альбома"
+  #en: not_assigned_photos: "Photos not assigned to an album"
+  not_assigned_photos: "Фото, не предназначенные для альбома"
+  #en: create_and_add_photos: "Create and add photos to this album"
+  create_and_add_photos: "Создать и добавить фото в этот альбом"
+  #en: edit_and_add_photos: "Edit and add photos to this album"
+  edit_and_add_photos: "Отредактировать и добавить фото в этот альбом"
+  #en: create_album: "Create album"
+  create_album: "Создать альбом"
+  #en: edit_album: "Edit album"
+  edit_album: "Редактировать альбом"
+  #en; cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
+  cancel_and_go_back_to_photo_manager: "Отменить и вернуться к управлению фото"
+  #en: back_to_photo_manager: "Back to photo manager"
+  back_to_photo_manager: "Возврат к управлению фото"

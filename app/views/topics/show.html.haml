@@ -1,20 +1,21 @@
-- @meta = { :description => "#{@topic.title.capitalize} discussion.",:keywords => "#{@topic.tags.join(', ') if @topic.tags}", :robots => AppConfig.robots_meta_show_content}
+- @meta = { :description => "#{@topic.title.capitalize} discussion.",:keywords => "#{@topic.tags.join(', ') if @topic.tags}", :robots => configatron.robots_meta_show_content}
 - @section = 'forums'
 - @page_title = @topic.title
 - @monitoring = logged_in? && current_user.monitoring_topic?(@topic)
 
-%script{:type => 'text/javascript'}
-  function monitor_click(checkbox){
-  if (checkbox.checked) {
-  = remote_function :url => forum_topic_monitorship_path(@forum, @topic)
-  } else {
-  = remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete
-  }}
+-content_for :end_javascript do
+  :javascript
+    function monitor_click(checkbox){
+      if (checkbox.checked) {
+        #{remote_function :url => forum_topic_monitorship_path(@forum, @topic)}
+      } else {
+        #{remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete}
+      }}
 
 
 -box :class => "alt first_alt" do 
   - if logged_in?
-    - form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
+    = form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
       #monitor_topic
         %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
         %label#monitor_label{"for"=>"monitor_checkbox"}
@@ -41,45 +42,53 @@
           = link_to(:edit.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
           |
           = link_to(:delete.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => :delete_this_topic_forever.l)
-      %script{:type => "text/javascript"}
-        $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
-        $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
+
+
+      -content_for :end_javascript do
+        :javascript
+          $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
+          $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
 
   %p.subtitle
     = feed_icon_tag @topic.title, forum_topic_path(@forum, @topic, :format => :rss)
     = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
-    = ", #{:tags.l} : #{@topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ")}" unless @topic.tags.empty?
+    -if @topic.tags.any?
+      =:tags.l
+      \:
+      =raw @topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag').html_safe }.join(" ")
+
+
   
   %ul.flat.talking
     %li.label= :voices.l + ":"
     - @voices.each do |user|
       %li= link_to h(user.display_name), user_path(user)
 
-  - if logged_in? || AppConfig.allow_anonymous_forum_posting
+  - if logged_in? || configatron.allow_anonymous_forum_posting
     %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
   -else
     %h6.all.right= link_to :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"  
   
   
-  - if @posts.page_count > 1
+  - if @posts.total_count > 1
     .pagination.clear= paginating_links @posts
 
   %a{"name"=>"#{@posts.to_a.first.dom_id}", "id"=>"#{@posts.to_a.first.dom_id}"} &nbsp;
   %br.clear
   %br
-  %table.posts.wide#posts{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0"}
+  %table#posts.wide{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0"}
     - for post in @posts do
       =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
 
-  - if @posts.page_count > 1
+  - if @posts.total_count > 1
     .pagination= paginating_links @posts
 
-  - if logged_in? || AppConfig.allow_anonymous_forum_posting  
+  - if logged_in? || configatron.allow_anonymous_forum_posting  
     #edit
     - if @topic.locked?
       %p
-        = image_tag "clearbits/lock.gif", :class => "icon grey", :title => :topic_locked.l, :plugin => "community_engine"
+        = image_tag "clearbits/lock.gif", :class => "icon grey", :title => :topic_locked.l
         %label= :this_topic_is_locked.l
     - else
       %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
@@ -87,8 +96,9 @@
         .container
           =render :partial => 'sb_posts/reply_form'
           
-          
-    = javascript_tag "$('reply').hide();"
+    -content_for :end_javascript do      
+      = javascript_tag "$('reply').hide();"
+      
   - else
     %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
 
@@ -99,9 +109,10 @@
   %span.arrow &rarr;
   = h @topic.title
   
-%script{"type"=>"text/javascript", "charset"=>"utf-8"}
-  Event.observe(window, 'load', function(){
-  if(document.location.href.include('#reply-form')){
-  ReplyForm.init();
-  }
-  })
+-content_for :end_javascript do
+  :javascript
+    Event.observe(window, 'load', function(){
+      if(document.location.href.include('#reply-form')){
+      ReplyForm.init();
+      }
+    })
