@@ -499,7 +499,6 @@ ru-RU:
   #en: event_comments: Event Comments
   event_comments: Комментарии события
   #en: event_does_not_allow_rsvp: This event does not allow SVPs.
-  #ut where to be, and when to be thereuOA
   event_does_not_allow_rsvp: Это событие не разрешает приглашения.
   #en: event_was_successfully_created: Event was successfully created.
   event_was_successfully_created: Событие были успешно создано.
