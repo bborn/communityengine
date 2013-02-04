@@ -6,7 +6,7 @@ class AuthorizationTest < ActiveSupport::TestCase
   test "should find existing from hash" do
     auth = Authorization.create_from_hash(auth_hash)    
     assert_equal(auth.email, 'email@example.com')
-    existing = Authorization.find_or_create_from_hash(auth_hash.merge('user_info' => {'email' => 'changed@example.com'}))
+    existing = Authorization.find_or_create_from_hash(auth_hash.merge('info' => {'email' => 'changed@example.com'}))
     assert_equal(auth, existing)
     assert_equal(existing.email, 'changed@example.com')    
   end
@@ -45,7 +45,7 @@ class AuthorizationTest < ActiveSupport::TestCase
   def auth_hash
     OmniAuth.config.mock_auth[:default].merge({ 'provider' => 'twitter',
       'uid' => '12345',
-      'user_info' => {
+      'info' => {
         'nickname' => 'omniauthuser',
         'email' => 'email@example.com'        
       }
