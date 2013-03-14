@@ -49,8 +49,8 @@ class User < ActiveRecord::Base
 
   #validation
   validates_presence_of     :metro_area, :if => Proc.new { |user| user.state }
-  validates_uniqueness_of   :login
-  validates_exclusion_of    :login, :in => configatron.reserved_logins
+  validates_uniqueness_of   :login, :if => :requires_unique_login?
+  validates_exclusion_of    :login, :in => Proc.new{ configatron.reserved_logins }
 
   validate :valid_birthday, :if => :requires_valid_birthday?
   validate :check_spam
@@ -476,6 +476,10 @@ class User < ActiveRecord::Base
 
     def requires_valid_birthday?
       !omniauthed?
+    end
+
+    def requires_unique_login?
+      true
     end
 
     def omniauthed?

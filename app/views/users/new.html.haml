@@ -3,9 +3,9 @@
     %h3
       =:why_sign_up.l
     %ul.list.checks
-    %li 
+    %li
       = :sign_up_reason_1.l
-    %li 
+    %li
       = :sign_up_reason_2.l
 
   -box :class => 'alt' do
@@ -22,7 +22,7 @@
       %h3=:sign_up.l
       = error_messages_for :user
       = form_for :user, :url => users_path, :html => {:class => 'MainForm'} do |f|
-        %label{"for"=>"user_login"} 
+        %label{"for"=>"user_login"}
           =:username.l
           \:
           %em=:required_your_username_must_not_contain_numerals_spaces_or_special_characters.l
