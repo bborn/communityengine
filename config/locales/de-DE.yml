@@ -579,7 +579,7 @@ de-DE:
   #en: joined: joined
   joined: Mitglied seit
   #en: joined_the_site: joined %{site}
-  joined_the_site: %{site} beigetreten
+  joined_the_site: "%{site} beigetreten"
   #en: just_uploading_one_photo: Just uploading one photo?
   just_uploading_one_photo: Nur ein Foto hochladen?
   #en: keywords: Keywords

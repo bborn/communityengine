@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<cocaine>, ["0.3.2"])
   s.add_dependency(%q<acts_as_commentable>, ["= 3.0.1"])
   s.add_dependency(%q<recaptcha>, [">= 0"])
-  s.add_dependency(%q<omniauth>, ["= 0.3.2"])
+  s.add_dependency(%q<omniauth>, ["~> 1.1.0"])
   s.add_dependency(%q<prototype-rails>, [">= 0"])
   s.add_dependency(%q<rails_autolink>, [">= 0"])
   s.add_dependency(%q<meta_search>, ["= 1.1.3"])

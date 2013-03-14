@@ -58,6 +58,12 @@ You can allow users to sign up and log in using their accounts from other social
 	  provider :facebook, 'APP_ID', 'APP_SECRET'
 	  provider :linked_in, 'CONSUMER_KEY', 'CONSUMER_SECRET'
 	end
+                                                                                                                                   u
+You must also add the corresponding provider gem, for example to use facebook login you will need to add
+
+		gem 'omniauth-facebook'
+
+to your gemfile
 
 See the [OmniAuth Github repository](https://github.com/intridea/omniauth) for more information and configuration options.
 
