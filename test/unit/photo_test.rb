@@ -10,33 +10,41 @@ class PhotoTest < ActiveSupport::TestCase
     photos = Photo.find_related_to(photos(:library_pic))
     assert photos.empty?
   end
-  
+
   def test_should_find_recent
     photos = Photo.find_recent(:limit => 1)
     assert_equal photos.size, 1
   end
-  
+
   def test_should_find_previous_photo
     previous = photos(:library_pic).previous_photo
     assert_equal previous, photos(:another_pic)
   end
-  
+
   def test_should_find_next_photo
     next_photo = photos(:another_pic).next_photo
     assert_equal next_photo, photos(:library_pic)
-  end  
-  
+  end
+
   def test_display_name
     photos(:another_pic).name = nil
     assert photos(:another_pic).display_name
   end
-  
+
   def test_should_create_photo
     assert_difference Photo, :count, 1 do
       photo = Photo.new :photo => fixture_file_upload('/files/library.jpg', 'image/jpg')
       photo.user = users(:quentin)
-      photo.save!      
+      photo.save!
     end
   end
-  
+
+  def test_should_upload_from_url
+    assert_difference Photo, :count, 1 do
+      photo = Photo.new :photo_remote_url => 'http://www.google.com/intl/en_ALL/images/logo.gif'
+      photo.user = users(:quentin)
+      photo.save!
+    end
+  end
+
 end
