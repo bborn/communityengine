@@ -1,5 +1,5 @@
 -box do
-  = form_tag( statistics_user_path(@user), :class => "MainForm") do
+  = form_tag( statistics_user_path(@user), :class => "MainForm", :method => :get) do
     %label= :month.l+":"
     = select_month(@month)
     = select_year(@month, :start_year => 1.years.ago.year, :end_year => 1.years.from_now.year)
