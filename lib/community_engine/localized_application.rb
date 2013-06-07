@@ -58,24 +58,30 @@ module LocalizedApplication
   # Returns the UI locale that best matches with the parameter
   # or nil if not found
   def get_matching_ui_locale(locale)
+    if !locale
+      return nil
+    end
+
     lang = locale[0,2].downcase
     to_try = Array.new()
     if locale[3,5]
       country = locale[3,5].upcase
       logger.debug "[I18n] trying to match locale: #{lang}-#{country} and #{lang}-*"
       to_try << "#{lang}-#{country}".to_sym
-      to_try << "#{lang}-*".to_sym
     else
       logger.debug "[I18n] trying to match #{lang}-*"
-      to_try << "#{lang}-*".to_sym
     end
+
+    to_try << "#{lang}-*".to_sym
+    # Try locales without countries like "en", "es" and so on
+    to_try << "#{lang}".to_sym
 
     # Check with exact matching
     to_try.each do |possible_locale|
-      # if Globalite.ui_locales.values.include?(possible_locale)
-      #   logger.debug "[I18n] Globalite does include #{locale} matching #{possible_locale}"
-        return possible_locale
-      # end
+      matched_locale = I18n.available_locales.grep(/#{possible_locale}/)[0]
+      if matched_locale
+        return matched_locale
+      end
     end
 
     return nil
