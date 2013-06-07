@@ -15,8 +15,13 @@ module LocalizedApplication
         logger.debug "[I18n] loading locale: #{configatron.community_locale} from config"
         I18n.locale = configatron.community_locale
     else
+      domain_locale = get_matching_ui_locale( request.subdomains.first )
+      if domain_locale
+        I18n.locale = domain_locale
+      else
         I18n.locale = get_valid_lang_from_accept_header
         logger.debug "[I18n] found a valid http header locale: #{I18n.locale}"
+      end
     end
     
     logger.debug "[I18n] Locale set to #{I18n.locale}"
