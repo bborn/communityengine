@@ -1,9 +1,9 @@
 class Photo < ActiveRecord::Base
   acts_as_commentable
   belongs_to :album
-  
+
   attr_accessible :album_id, :tag_list
-  
+
   has_attached_file :photo, configatron.photo.paperclip_options.to_hash
   validates_attachment_presence :photo
   validates_attachment_content_type :photo, :content_type => configatron.photo.validation_options.content_type
@@ -11,20 +11,21 @@ class Photo < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_photo, :if => :cropping?
-  
+
   acts_as_taggable
 
   acts_as_activity :user, :if => Proc.new{|record| record.album_id.nil?}
-  
+
   validates_presence_of :user
-  
+
   belongs_to :user
   has_one :user_as_avatar, :class_name => "User", :foreign_key => "avatar_id", :inverse_of => :avatar
-  
+
   #Named scopes
   scope :recent, :order => "photos.created_at DESC"
   scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ?", 7.days.ago.iso8601]
-  attr_accessible :name, :description, :photo, :crop_x, :crop_y, :crop_w, :crop_h, :user_id
+  attr_accessible :name, :description, :photo, :crop_x, :crop_y, :crop_w, :crop_h, :user_id, :photo_remote_url
+
 
   def display_name
     (self.name && self.name.length>0) ? self.name : "#{:created_at.l.downcase}: #{I18n.l(self.created_at, :format => :published_date)}"
@@ -58,10 +59,10 @@ class Photo < ActiveRecord::Base
   def self.find_recent(options = {:limit => 3})
     self.new_this_week.find(:all, :limit => options[:limit])
   end
-  
+
   def self.find_related_to(photo, options = {})
-    options.reverse_merge!({:limit => 8, 
-        :order => 'created_at DESC', 
+    options.reverse_merge!({:limit => 8,
+        :order => 'created_at DESC',
         :conditions => ['photos.id != ?', photo.id]
     })
     limit(options[:limit]).order(options[:order]).where(options[:conditions]).tagged_with(photo.tags.collect{|t| t.name }, :any => true)
@@ -74,6 +75,13 @@ class Photo < ActiveRecord::Base
   def photo_geometry(style = :original)
     @geometry ||= {}
     @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
+  end
+
+
+  attr_reader   :photo_remote_url
+  def photo_remote_url=(url_value)
+    self.photo = URI.parse(url_value)
+    @photo_remote_url = url_value
   end
 
   private

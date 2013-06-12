@@ -12,19 +12,19 @@
 
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
-      
-    = render :partial => "shared/scripts_and_styles"      
-    
+
+    = render :partial => "shared/scripts_and_styles"
+
   %body
-    -unless configatron.auth_providers.facebook.key.blank?    
-      =render :partial => 'facebook/fb_require'    
-      
+    -unless configatron.auth_providers.facebook.key.blank?
+      =render :partial => 'facebook/fb_require'
+
     .navbar.navbar-fixed-top
       .navbar-inner
         .container.clearfix
           .row
             = render :partial => "shared/header"
-            
+
     .container
       .row
         = render_hero_unit
@@ -35,17 +35,17 @@
           = yield
         .span3.pull-right
           = render :partial => "shared/sidebar"
-          
-      
-      -if show_footer_content?    
+
+
+      -if show_footer_content?
         .row#footer-content
           = image_tag 'spinner.gif', :plugin => 'community_engine'
-          =:loading_recent_content.l  
-              
+          =:loading_recent_content.l
+
       .row
         .span12
           = render :partial => 'shared/footer_links'
-  
+
           %p= :community_tagline.l
 
     = render :partial => "shared/end_javascript"

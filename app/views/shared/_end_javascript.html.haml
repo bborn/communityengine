@@ -1,9 +1,8 @@
-= javascript_include_tag 'application'
 = javascript_include_tag 'community_engine'
 = tiny_mce_init_if_needed
 
--if show_footer_content?        
+-if show_footer_content?
   :javascript
     $(function() {
-      $('#footer-content').keepUpdatedFromUrl("#{footer_content_path}", 30000);
+      $('#footer-content').updateFromUrl("#{footer_content_path}")
     });

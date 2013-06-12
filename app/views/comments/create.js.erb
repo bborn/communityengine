@@ -5,19 +5,23 @@
 <% else %>
   <% if @comment.user && @comment.user.facebook? %>
     FB.ui(<%= raw FacebookPublisher.comment_created_hash(truncate_words(@comment.comment), commentable_url(@comment)) %>)
-  <% end %>  
-  
-  $('#newest_comment').after("<%= escape_javascript(render(:partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment})) %>");  
+  <% end %>
+
+  $('#newest_comment').after("<%= escape_javascript(render(:partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment})) %>");
   tinyMCE.activeEditor.setContent('');
   $('#comment-<%= @comment.id.to_s %>').scrollTo();
 <% end %>
 
 $('#comment_spinner').addClass('hide');
 
-<% if configatron.recaptcha_pub_key %>
+<% unless configatron.recaptcha_pub_key.blank? %>
   $('#dynamic_recaptcha').each(function(){
     Recaptcha.create('<%= configatron.recaptcha_pub_key %>', this )
   });
 <% end %>
-          
+
+if (typeof($.CE.commentCreatedCallback) != 'undefined'){
+  $.CE.commentCreatedCallback('<%= @comment.id %>')
+}
+
 
