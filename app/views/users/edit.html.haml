@@ -1,21 +1,22 @@
--widget do 
+-widget do
   %ul.nav.nav-list
     %li.nav-header=:you_are_editing_your_profile.l
     %li= link_to :edit_your_account_settings_instead.l, edit_account_user_path(@user)
 
--widget do 
+-widget do
   =:tips.l
   = render :partial => 'shared/bio_help'
-  =:feel_free_to_embed_images_or_videos.l  
+  =:feel_free_to_embed_images_or_videos.l
 
 = bootstrap_form_for @user, :html => {:class => 'form form-horizontal', :multipart =>true} do |f|
+
   %h2=:profile_photo.l
   = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
   = image_tag( @user.avatar_photo_url(:medium), :class => "thumbnail" )
   = f.fields_for :avatar, @avatar do |avatar_form|
     %label=:choose_a_photo_for_your_profile.l
     = avatar_form.file_field :photo, :size => '15'
-    
+
   %h2= :location.l
   .control-group
     %label.control-label= :location.l
@@ -36,17 +37,17 @@
         =:female.l
 
   = f.date_select :birthday, {:start_year => 1926, :end_year => Time.now.year - 1}
-   
+
   %h2=:about_me.l
   = f.text_area :description, :class => "rich_text_editor"
-  
+
   %h2= :tags.l
   #user_tags
     = f.text_field :tag_list, {:autocomplete => "off"}
     #tag_list_auto_complete.auto_complete
     -content_for :end_javascript do
       = tag_auto_complete_field 'user_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-    
+
     %label.controls
       %em
         =:you_could_tag_yourself.l
