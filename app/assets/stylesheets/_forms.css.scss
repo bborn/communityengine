@@ -1,0 +1,18 @@
+.rich_text_editor {
+	width: 100%;
+}
+
+
+.required {
+  font-weight: bold;
+  &:before {
+    color: $red;
+    content: '(*Required) ';
+    display: inline;
+  }
+}
+
+
+form.button_to, form.button_to div {
+  display: inline;
+}

@@ -1,0 +1,27 @@
+@import 'bootstrap';
+
+body {
+  padding-top: 60px;
+}
+
+
+.row-fluid [class*='span'].pull-right, .row [class*='span'].pull-right{
+  float: right;
+}
+.row>[class*='span']:first-child {
+  margin-left: 0;
+}
+
+
+.clear-right {
+  clear: right;
+}
+
+.clear-left {
+  clear: left;
+}
+
+.clear-all, .clear-both {
+  clear: both;
+}
+
