@@ -3,7 +3,7 @@
     .clearfix
       .span2.pull-right
         %ul.nav.nav-list
-          %li= link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => "#{comment.user.login}"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'thumbnail'
+          %li= link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'thumbnail'
           %li
             = icon_link_to 'icon-hand-right', comment.user.login, user_path(comment.user)
           %li

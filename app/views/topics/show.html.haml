@@ -6,7 +6,7 @@
 -content_for :end_javascript do
   =javascript_include_tag 'forum'
 
--widget do 
+-widget do
   - if logged_in?
     = form_tag forum_topic_monitorship_path(@forum, @topic) do
       #monitor_topic.form.form-horizontal
@@ -14,46 +14,47 @@
         %label#monitor_label{"for"=>"monitor_checkbox"}
           = @monitoring ? :watching_topic.l : :watch_topic.l
         = submit_tag :save.l, :id => 'monitor_submit', :style => "display:none"
-    
+
 - if @topic.locked?
   %h2= :locked2.l
+
 - if logged_in? && @topic.editable_by?(current_user)
   %p
     = link_to :back.l, @forum, :class => 'btn'
     = link_to :edit.l, edit_forum_topic_path(@forum, @topic), :class => "btn btn-warning"
     = link_to :delete.l, forum_topic_path(@forum, @topic), :class => "btn btn-danger", :method => :delete, :confirm => :delete_this_topic_forever.l
 
-  %p
-    %a{:href => forum_topic_path(@forum, @topic, :format => :rss)}
-      %i.icon-rss
-    = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
-    -if @topic.tags.any?
-      %h2=:tags.l
-      %p=raw @topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag').html_safe }.join(" ")
-  
-  %h2= :voices.l
-  %ul.flat.talking
-    - @voices.each do |user|
-      %li= link_to h(user.display_name), user_path(user)
+%p
+  %a{:href => forum_topic_path(@forum, @topic, :format => :rss)}
+    %i.icon-rss
+  = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
+  -if @topic.tags.any?
+    %h2=:tags.l
+    %p=raw @topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag').html_safe }.join(" ")
 
-  %a{"name"=>"#{@posts.to_a.first.dom_id}"}
-  %table.table.table-bordered.table-striped#posts-table
-    - for post in @posts do
-      =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
+%h2= :voices.l
+%ul.flat.talking
+  - @voices.each do |user|
+    %li= link_to h(user.display_name), user_path(user)
 
-  =paginate @posts, :theme => 'bootstrap'
+%a{"name"=>"#{@posts.to_a.first.dom_id}"}
+%table.table.table-bordered.table-striped#posts-table
+  - for post in @posts do
+    =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
-  - if logged_in? || configatron.allow_anonymous_forum_posting  
-    #edit
-    - if @topic.locked?
-      %p
-        %i.icon-lock
-        %label= :this_topic_is_locked.l
-    - else
-      = link_to '<i class="icon-plus"></i> '.html_safe + :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => 'reply-toggle'
-      .reply
-        =render :partial => 'sb_posts/reply_form'
-      
+=paginate @posts, :theme => 'bootstrap'
+
+- if logged_in? || configatron.allow_anonymous_forum_posting
+  #edit
+  - if @topic.locked?
+    %p
+      %i.icon-lock
+      %label= :this_topic_is_locked.l
   - else
-    %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic)
+    = link_to '<i class="icon-plus"></i> '.html_safe + :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => 'reply-toggle'
+    .reply
+      =render :partial => 'sb_posts/reply_form'
+
+- else
+  %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic)
 
