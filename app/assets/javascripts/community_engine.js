@@ -156,7 +156,7 @@
     $.ajax({
       type: method,
       url: action.replace('?', '.js?'),
-      dataType: 'html',
+      dataType: 'js',
       success: function(response) {
         if(response) {
           $this.effect("pulsate", { times:1 }, 250);

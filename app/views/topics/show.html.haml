@@ -38,7 +38,7 @@
     %li= link_to h(user.display_name), user_path(user)
 
 %a{"name"=>"#{@posts.to_a.first.dom_id}"}
-%table.table.table-bordered.table-striped#posts-table
+%table.table.table-bordered.table-striped#posts
   - for post in @posts do
     =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
