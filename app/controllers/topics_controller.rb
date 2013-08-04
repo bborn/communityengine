@@ -7,7 +7,7 @@ class TopicsController < BaseController
   end
 
   def index
-    @forum = Forum.find(params[:forum_id])    
+    @forum = Forum.find(params[:forum_id])
     respond_to do |format|
       format.html { redirect_to forum_path(params[:forum_id]) }
       format.xml do
@@ -21,7 +21,7 @@ class TopicsController < BaseController
     @topic = Topic.new(params[:topic])
     @topic.sb_posts.build
   end
-  
+
   def show
     respond_to do |format|
       format.html do
@@ -46,36 +46,36 @@ class TopicsController < BaseController
       end
     end
   end
-  
+
   def create
     @topic = @forum.topics.new(params[:topic])
     assign_protected
-      
+
     @post = @topic.sb_posts.first
     if (!@post.nil?)
       @post.user = current_user
     end
-      
+
     @topic.tag_list = params[:tag_list] || ''
 
     if !@topic.save
       respond_to do |format|
-        format.html { 
+        format.html {
           render :action => 'new' and return
         }
       end
     else
       respond_to do |format|
-        format.html { 
-          redirect_to forum_topic_path(@forum, @topic) 
+        format.html {
+          redirect_to forum_topic_path(@forum, @topic)
         }
-        format.xml  { 
-          head :created, :location => forum_topic_url(:forum_id => @forum, :id => @topic, :format => :xml) 
+        format.xml  {
+          head :created, :location => forum_topic_url(:forum_id => @forum, :id => @topic, :format => :xml)
         }
       end
     end
   end
-  
+
   def update
     assign_protected
     @topic.tag_list = params[:tag_list] || ''
@@ -85,30 +85,30 @@ class TopicsController < BaseController
       format.xml  { head 200 }
     end
   end
-  
+
   def destroy
     @topic.destroy
-    flash[:notice] = :topic_deleted.l_with_args(:topic => CGI::escapeHTML(@topic.title)) 
+    flash[:notice] = :topic_deleted.l_with_args(:topic => CGI::escapeHTML(@topic.title))
     respond_to do |format|
       format.html { redirect_to forum_path(@forum) }
       format.xml  { head 200 }
     end
   end
-  
-  protected  
+
+  protected
     def assign_protected
       @topic.sticky = @topic.locked = 0
       @topic.forum_id = @forum.id
       @topic.user = current_user if @topic.new_record?
-      
+
       # admins and moderators can sticky and lock topics
       return unless admin? or current_user.moderator_of?(@topic.forum)
-      @topic.sticky, @topic.locked = params[:topic][:sticky], params[:topic][:locked] 
+      @topic.sticky, @topic.locked = params[:topic][:sticky], params[:topic][:locked]
       # only admins can move
       return unless admin?
       @topic.forum_id = params[:topic][:forum_id] if params[:topic][:forum_id]
     end
-    
+
     def find_forum_and_topic
       @forum = Forum.find(params[:forum_id])
       @topic = @forum.topics.find(params[:id]) if params[:id]

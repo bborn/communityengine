@@ -10,6 +10,6 @@ xml.rss "version" => "2.0",
     xml.ttl "60"
     xml.tag! "atom:link", :rel => 'search', :type => 'application/opensearchdescription+xml', :href => "http://#{request.host_with_port}/open_search.xml"
     xml.description @topic.body
-    render :partial => "sb_posts/post.xml", :collection => @topic.sb_posts, :locals => {:xm => xml}
+    render :partial => "sb_posts/post.xml.builder", :collection => @topic.sb_posts, :locals => {:xm => xml}
   end
 end
