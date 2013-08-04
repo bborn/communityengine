@@ -12,7 +12,7 @@
       %label
         =:tags.l
         %em="(#{:optional_keywords_describing_this_forum_separated_by_commas.l})"
-      = text_field_tag 'tag_list', @forum.tag_list, {:autocomplete => "off", :size => 35}
+      = text_field_tag 'tag_list', @forum.tag_list.to_s, {:autocomplete => "off", :size => 35}
       #tag_list_auto_complete.auto_complete
       
       -content_for :end_javascript do
