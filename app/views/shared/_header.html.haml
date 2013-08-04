@@ -1,4 +1,9 @@
 #hd
+  - if !configatron.community_locale
+    %div
+      %a{:href=>url_for(:subdomain => 'ru', :only_path => false ), :title=>"#{configatron.community_locale} russian translation"}= "rus"
+      %a{:href=>url_for(:subdomain => 'en', :only_path =>false), :title=>"english translation" }= "eng"
+
   %h1
     %a{:href=>home_url, :title=>"#{configatron.community_name}"}= configatron.community_name
   - if logged_in?
