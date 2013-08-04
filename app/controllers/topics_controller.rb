@@ -42,7 +42,7 @@ class TopicsController < BaseController
       end
       format.rss do
         @posts = @topic.sb_posts.recent.limit(25)
-        render :action => 'show.xml.builder', :layout => false
+        render :action => 'show', :layout => false, :formats => [:xml]
       end
     end
   end
