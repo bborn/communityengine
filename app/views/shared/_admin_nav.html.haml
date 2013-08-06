@@ -3,17 +3,17 @@
 
   %ul.list
     %li= link_to_unless_current :features.l, homepage_features_path
-    - if feature_enabled?('categories')
-      %li= link_to_unless_current :categories.l, categories_path
-    - if feature_enabled?('contests')
-      %li= link_to_unless_current :contests.l, contests_path
+    %li= link_to_unless_current :categories.l, categories_path
     %li= link_to_unless_current :metro_areas.l, metro_areas_path
-    - if feature_enabled?('skills')
-      %li= link_to_unless_current :skills.l, new_skill_path 
-    - if feature_enabled?('events')
-      %li= link_to_unless_current :events.l, admin_events_path
+    %li= link_to_unless_current :events.l, admin_events_path
     %li= link_to_unless_current :statistics.l, statistics_path
     %li= link_to_unless_current :ads.l, ads_path 
     %li= link_to_unless_current :comments.l, admin_comments_path 
     %li= link_to_unless_current :tags.l, admin_tags_path
     %li= link_to_unless_current :admin_pages.l, admin_pages_path
+    - if @admin_nav_links.any?
+      - @admin_nav_links.each do |link|
+        %li=link_to link[:name], link[:url]
+    
+    
+    %li= link_to :cache_clear_link.l, admin_clear_cache_path, :confirm => :are_you_sure.l

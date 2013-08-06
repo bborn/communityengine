@@ -1,6 +1,46 @@
 = TODO
-* haml/sass propagation (desert)
-* upgrade documentation/rake tasks to fix old migrations
+* replace old multiple uploader
+* fix photo uploading from welcome_photo page
+* add back searching to users index
+* swap jquery for prototype
+* Upgrade to bcrybt crypto method
+
+=2.2.0
+* Upgrade omniauth to 1.1
+
+
+=2.0.0.beta4
+* Replace white_list plugin with Sanitize gem (white_list.rb initizlizer format has changed)
+* Upgrade to Rails 3.2
+* Use act_as_taggable_on
+* fix photo cropping
+* remove theme controller (no more theming functionality)
+
+=2.0.0.pre
+* Rails 3.1.0.beta1 compatibility
+
+=1.9.9
+
+* Rails 3.1 compatibility
+* Ruby 1.9.2 compatibility
+* Use Paperclip instead of attachment_fu
+* Add Omniauth
+* Remove lots of old, unused featured (contests, skills, offerings, etc.)
+
+=1.2.1
+* Anonymous forum replies
+* Turn comment notifications on or off by post
+* Allow admins/mods to edit comments (they can already delete them)
+* Fix security vulnerability in AuthenticatedSystem
+
+=1.2.0
+* Threaded private messages
+* Clear cache link in admin dashboard
+* Add support for using rakismet gem to check comments for spam (see README for instructions)
+
+=1.1.0
+* fixed time_ago formatting problem on user/index
+* user Authlogic's perishable token for doing password resets (instead of sending them a password)
 
 
 = 1.0.4.2
@@ -59,4 +99,4 @@
 = 0.10.7
 
 * Updating CE to be compatible with Rails 2.1.2
-* Lots of il8n refactoring, mainly using symbol tokens instead of string for localization in views. 
+* Lots of il8n refactoring, mainly using symbol tokens instead of string for localization in views.

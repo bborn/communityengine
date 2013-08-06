@@ -20,9 +20,11 @@
                 %td
                   = link_to h(message.subject), user_message_path(@user, message)                  
                   %br
-                  = :to.l + ':'
+                  = :to.l 
+                  \:
                   = link_to h(message.recipient.login), user_path(@user)                  
-                %td.meta{:width => '150px'}= h I18n.l(message.created_at, :format => :time_ago)
+                %td.meta{:width => '150px'}
+                  = time_ago_in_words_or_date(message.created_at)                                  
             
             
           %tfoot

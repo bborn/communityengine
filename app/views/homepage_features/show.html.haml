@@ -1,0 +1,29 @@
+-box do
+  = link_to :edit.l, edit_homepage_feature_path(@homepage_feature)
+  |
+  = link_to :back.l, homepage_features_path
+  %p
+    %b
+      Url:
+    = h @homepage_feature.url
+  %p
+    %b
+      = :title.l
+    = h @homepage_feature.title
+  %p
+    %b
+      = :description.l
+    = @homepage_feature.description
+  %p
+    %b
+      = :created_at.l
+    = h @homepage_feature.created_at
+  %p
+    %b
+      = :updated_at.l
+    = h @homepage_feature.updated_at
+  %p
+    = image_tag @homepage_feature.image.url(:large)
+  = link_to :edit.l, edit_homepage_feature_path(@homepage_feature)
+  |
+  = link_to :back.l, homepage_features_path

@@ -1,8 +1,8 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 require 'hpricot'
     
 class PostTest < ActiveSupport::TestCase
-  fixtures :posts, :users, :comments, :roles
+  fixtures :all
 
   def setup
     Favorite.destroy_all
@@ -11,7 +11,8 @@ class PostTest < ActiveSupport::TestCase
   def test_should_find_including_unpublished
     post = posts(:funny_post)
     post.save_as_draft
-    assert Post.find_without_published_as(:all).include?(post)
+    assert Post.unscoped.find(post.id)
+    assert Post.unscoped.all.include?(post)
   end
   
   def test_default_find_should_not_find_drafts
@@ -29,7 +30,7 @@ class PostTest < ActiveSupport::TestCase
 
   def test_should_find_popular
     posts = Post.find_popular(:limit => 3, :since => 10.days)
-    assert_equal posts.size, 3
+    assert_equal 3, posts.size
     posts = Post.find_popular(:limit => 3, :since => 1.days)
     assert_equal posts.size, 0
   end
@@ -156,7 +157,7 @@ class PostTest < ActiveSupport::TestCase
     assert post.published_at
   end
   
-  def test_should_not_set_published_at_if_republishing
+  def test_should_not_set_published_at_if_republishing  
     post = users(:quentin).posts.create!(:raw_post => 'Blog post message', :title => 'Title')
     post.save_as_live #publish
     published_at = post.published_at
@@ -168,7 +169,7 @@ class PostTest < ActiveSupport::TestCase
   
   def test_should_show_published_at_display
     post = posts(:funny_post)
-    assert_equal post.published_at_display, I18n.l(post.published_at, :format => 'published_date')
+    assert_equal post.published_at_display, I18n.l(post.published_at, :format => :published_date)
   end
 
   def test_should_show_published_at_display_for_draft
@@ -176,6 +177,36 @@ class PostTest < ActiveSupport::TestCase
     post.save_as_draft
     assert_equal post.published_at_display, 'Draft'
   end
+  
+  def test_should_not_notify_for_posts_without_comment_notification_on
+    post = posts(:funny_post)
+    post.send_comment_notifications = false
+    post.save!
+    
+    assert_difference ActionMailer::Base.deliveries, :length, 0 do    
+      comment = post.comments.create!(:comment => 'foo', :user => users(:aaron))
+      comment.send_notifications      
+    end
+    
+  end
 
+  test "should find related" do
+    p1 = posts(:funny_post)
+    p2 = posts(:not_funny_post)
+    
+    p1.tag_list = 'tag1, tag2'
+    p1.save!
+    p2.tag_list = 'tag2, tag3'
+    p2.save!
+    
+    assert Post.find_related_to(p1).include?(p2)
+
+    p2.tag_list = 'tag3, tag4'
+    p2.save!
+
+    assert !Post.find_related_to(p1).include?(p2)    
+
+    
+  end
       
 end

@@ -1,0 +1,8 @@
+= javascript_include_tag 'community_engine'
+= tiny_mce_init_if_needed
+- if forum_page?
+  = javascript_include_tag 'forum'
+
+-if show_footer_content?        
+  :javascript
+    #{remote_function(:update => "footer_content", :method => :get, :url =>  footer_content_url )}

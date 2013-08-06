@@ -1,0 +1,30 @@
+.col_full
+  - rounded do
+    %h1
+      = :new_homepage_feature.l
+    = error_messages_for :homepage_feature
+    = form_for(:homepage_feature, :url => homepage_features_path, :html => {:multipart =>true} ) do |f|
+      %p
+        %b
+          Url
+        %br
+        = f.text_field :url
+      %p
+        %b
+          = :title.l
+        %br
+        = f.text_field :title
+      %p
+        %b
+          = :description.l
+        %br
+        = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
+      %p
+        %b
+          = :filename.l
+        %br
+        = f.file_field :image
+      %p
+        = submit_tag :create.l
+        = :or.l
+        = link_to :cancel.l, homepage_features_path

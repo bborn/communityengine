@@ -1,0 +1,15 @@
+Hey <%= @user.login %>!
+
+<%= @comment.username %> has added a comment to a <%= @comment.commentable_type %> 
+that you commented on. Use this link to check it out:
+
+<%= @url %> 
+
+Thanks,
+The <%= configatron.community_name %> team
+
+---------------------------------------------------------------------------------
+If you don't want to receive e-mails like this one from <%= configatron.community_name %>, you can change 
+your e-mail preferences here:
+
+<%= home_url %>/<%= @user.friendly_id %>/edit_account

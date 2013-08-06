@@ -1,14 +1,13 @@
--unless AppConfig.closed_beta_mode
-  .yui-b.sidebar=render :partial => 'shared/login_sidebar'
-  
+.yui-b.sidebar=render :partial => 'shared/login_sidebar'
+
 #yui-main
   .yui-b.main_column
     -box do
       %h3
-        =:log_in_to_site.l(:site => AppConfig.community_name)
-      - form_tag sessions_path, :class => 'MainForm' do
-        %label{"for"=>"login"}=:username.l
-        = text_field_tag 'login', nil, :size => 35
+        =:log_in_to_site.l(:site => configatron.community_name)
+      = form_tag sessions_path, :class => 'MainForm' do
+        %label{"for"=>"email"}=:email.l
+        = text_field_tag 'email', nil, :size => 35
         %label{"for"=>"password"}=:password.l
         = password_field_tag 'password', nil, :size => 35
         %fieldset
@@ -17,3 +16,12 @@
             = check_box_tag 'remember_me'
         %p
           = submit_tag :log_in.l
+
+    -if configatron.auth_providers.to_hash.keys.any?
+      -box :class => "alt" do
+        %h3= t 'sessions.new.omniauth.header'
+        -configatron.auth_providers.to_hash.keys.each do |provider|
+          -alt = t('sessions.new.omniauth.button_alt', :provider => provider.to_s.capitalize)
+          = link_to(image_tag("auth/#{provider.to_s}_64.png", :alt => alt), "/auth/#{provider.to_s}", :title => alt)
+
+

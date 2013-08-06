@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
   fixtures :categories, :users, :roles
@@ -19,7 +19,7 @@ class CategoriesControllerTest < ActionController::TestCase
   def test_should_create_category
     login_as :admin
     assert_difference Category, :count, 1 do
-      post :create, :category => { }
+      post :create, :category => {:name => "Test Category"}
     end    
     assert_redirected_to category_path(assigns(:category))
   end

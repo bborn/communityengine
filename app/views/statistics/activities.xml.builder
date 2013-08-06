@@ -4,28 +4,28 @@ xml.rsp 'status_code' => 0, 'status_message' => 'Success' do
     current = (Time.now.midnight) - 8.days
     0.upto 7 do |i|
       current += 1.day
-      xml.count @logins[current.to_date.to_s(:db)].to_i, 'date' => current.to_s(:line_grapher)
+      xml.count @logins[current.to_date.iso8601].to_i, 'date' => current.to_s(:line_grapher)
     end
   end  
   xml.daily_counts 'type' => 'Comments' do
     current = (Time.now.midnight) - 8.days
     0.upto 7 do |i|
       current += 1.day
-      xml.count @comments[current.to_date.to_s(:db)].to_i, 'date' => current.to_s(:line_grapher)
+      xml.count @comments[current.to_date.iso8601].to_i, 'date' => current.to_s(:line_grapher)
     end
   end  
   xml.daily_counts 'type' => 'Posts' do
     current = (Time.now.midnight) - 8.days
     0.upto 7 do |i|
       current += 1.day
-      xml.count @posts[current.to_date.to_s(:db)].to_i, 'date' => current.to_s(:line_grapher)
+      xml.count @posts[current.to_date.iso8601].to_i, 'date' => current.to_s(:line_grapher)
     end
   end  
   xml.daily_counts 'type' => 'Photos' do
     current = (Time.now.midnight) - 8.days
     0.upto 7 do |i|
       current += 1.day
-      xml.count @photos[current.to_date.to_s(:db)].to_i, 'date' => current.to_s(:line_grapher)
+      xml.count @photos[current.to_date.iso8601].to_i, 'date' => current.to_s(:line_grapher)
     end
   end  
 

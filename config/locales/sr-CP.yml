@@ -1,0 +1,89 @@
+sr-CP:
+  date:
+    formats:
+      published_date: "%Y/%m/%d"
+      date_ago: "%b %Y"
+
+  time:
+    formats:
+      published_date: "%Y/%m/%d"      
+      short_date: "%y/%m/%d"
+      time_ago: "%l:%M%p"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "created at: "
+
+  #en: about: About
+  about: "\xC3\x9Cber"
+  #en: about_me: About Me
+  about_me: "\xC3\x9Cber mich"
+  #en: about_site: About %{site}
+  about_site: "\xC3\x9Cber %{site}"
+  #en: about_you: About You
+  about_you: "\xC3\x9Cber Dich"
+  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.
+  account_activation_error: "Aktivierung fehlgeschlagen. M\xC3\xB6glicherweise wurde Dein Konto bereits aktiviert. Bitte versuche Dich anzumelden oder schicke uns eine E-Mail %{email} f\xC3\xBCr weitere Hilfe."
+  #en: account_settings: Account settings
+  account_settings: Konto-Einstellungen
+  #en: activate: Activate
+  activate: Aktivieren
+  #en: active: active
+  active: Aktiv
+  #en: active_users: Active Users
+  active_users: Aktive Benutzer
+  #en: activity_from_your_network: Activity from your network
+  activity_from_your_network: Neues aus Deinem Netzwerk
+  #en: ad_was_successfully_created: Ad was successfully created.
+  ad_was_successfully_created: Werbung wurde erfolgreich erstellt.
+  #en: ad_was_successfully_updated: Ad was successfully updated.
+  ad_was_successfully_updated: Werbung wurde erfolgreich aktualisiert.
+  #en: add_a_photo: Add a photo
+  add_a_photo: "Foto hinzuf\xC3\xBCgen"
+  #en: add_a_poll: Add a poll
+  add_a_poll: "Umfrage hinzuf\xC3\xBCgen"
+  #en: add_comment: Add Comment
+  add_comment: "Kommentar hinzuf\xC3\xBCgen"
+  #en: add_your_comment: Add Your Comment!
+  add_your_comment: "Dein Kommentar hinzuf\xC3\xBCgen"
+  #en: author: Author
+  author: Autor
+  #en: back: Back
+  back: "Zur\xC3\xBCck"
+  #en: birthday: Birthday
+  birthday: Geburtstag
+  #en: birthday__gender: Birthday & Gender
+  birthday__gender: Geburtstag & Geschlecht
+  #en: blog: Blog
+  blog: Blog
+  #en: blog_posts: Blog posts
+  blog_posts: "Blog Beitr\xC3\xA4ge"
+  #en: find_an_expert: Find an Expert
+  find_an_expert: Experten finden
+  #en: forgot_your_passowrd: Forgot your passowrd?
+  forgot_your_passowrd: Passwort vergessen?
+  #en: forums: Forums
+  forums: Foren
+  #en: friends: Friends
+  friends: Freunde
+  #en: gender: Gender
+  gender: Geschlecht
+  #en: log_out: Log Out
+  log_out: Abmelden
+  #en: logged_in: "Logged in:"
+  logged_in: "Angemeldet:"
+  #en: login: Login
+  login: Anmelden
+  #en: male: Male
+  male: "M\xC3\xA4nnlich"
+  #en: members: Members
+  members: Mitglieder
+  #en: my_friends: My Friends
+  my_friends: Meine Freunde
+  #en: my_profile: My Profile
+  my_profile: Mein Profil
+  #en: name: Name
+  name: Name
+  #en: new_ad: New Ad
+  new_ad: Neue Werbung

@@ -1,4 +1,4 @@
-.hentry.yui-gf.row{"class"=>"#{user.vendor ? 'community_pro' : ''} #{user.featured_writer ? 'featured_writer' : ''}"}
+.hentry.yui-gf.row{"class"=>"#{user.authorizations.map(&:provider).join(' ')} #{user.vendor ? 'community_pro' : ''} #{user.featured_writer ? 'featured_writer' : ''}"}
   .vcard.author
     .yui-u.first.centered
       = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
@@ -8,16 +8,17 @@
       
         %ul
           - if user.metro_area        
-            %li.geo= :from2.l + " #{user.location}<br/>" 
+            %li.geo
+              = :from2.l
+              =user.location
           %li.update
             %abbr.published{:title=>"#{user.created_at}"}
-              =:joined.l + " #{time_ago_in_words user.created_at}"
-          - if user.offerings.any?
-            %li.skills= user.offerings.collect{|o| link_to o.skill.name, skill_url(o.skill) }.join(', ')
+              =:joined.l + " #{time_ago_in_words_or_date user.created_at}"
           - if current_user and current_user.can_request_friendship_with(user)
             %li.addfriend= add_friend_link(user)
 
-        = "<p>" + user.tags[0...6].collect{|t| link_to( t.name, tag_url(t), :class => "tag") if t }.join(" ") + "</p>" unless user.tags.empty?
+        -unless user.tags.empty?
+          %p=raw user.tags[0...6].compact.collect{|t| link_to( t.name, tag_url(t), :class => "tag") }.join(" ")
 
       .yui-u{"style"=>"overflow:hidden"}
         - if @search && @search['description']
@@ -27,4 +28,4 @@
 
         - if current_user && current_user.admin?
           %br
-          = link_to( :assume_id.l, assume_user_path(user) )
+          = link_to( :assume_id.l, assume_user_path(user), :method => :post )

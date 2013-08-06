@@ -14,8 +14,8 @@ class Favorite < ActiveRecord::Base
   validates_uniqueness_of :ip_address, :scope => [:favoritable_type, :favoritable_id], :message => 'has already favorited this item.', :if => Proc.new{|f| f.user.nil? }
   
   #named scopes
-  named_scope :recent, :order => "created_at DESC"
-  named_scope :by_user, lambda { |user|
+  scope :recent, :order => "created_at DESC"
+  scope :by_user, lambda { |user|
     {:conditions => ["user_id = ?", user.id] }
   }
 

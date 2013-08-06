@@ -1,0 +1,13 @@
+.yui-b.sidebar
+  =render :partial => 'shared/login_sidebar'
+
+#yui-main
+  .yui-b.main_column
+    -box do
+      %h3=:forgot_your_password.l
+
+      = form_tag password_resets_path, :class => 'MainForm' do
+        %label{"for"=>"email"}=:enter_your_email_address.l+":"
+        = text_field_tag 'email', nil, :size => 35
+        %p
+          = submit_tag :reset_my_password.l

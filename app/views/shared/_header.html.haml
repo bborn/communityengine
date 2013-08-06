@@ -1,6 +1,11 @@
 #hd
+  - if !configatron.community_locale
+    %div
+      %a{:href=>url_for(:subdomain => 'ru', :only_path => false ), :title=>"#{configatron.community_locale} russian translation"}= "rus"
+      %a{:href=>url_for(:subdomain => 'en', :only_path =>false), :title=>"english translation" }= "eng"
+
   %h1
-    %a{:href=>application_url, :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
+    %a{:href=>home_url, :title=>"#{configatron.community_name}"}= configatron.community_name
   - if logged_in?
     = render :partial => 'shared/user_menu'
     - if current_user.unread_messages?
@@ -8,34 +13,34 @@
         = link_to :unread_messages.l(:count => current_user.unread_message_count), user_messages_path(current_user)
   - else
     %h2
-      =:welcome_message.l(:login_link => (link_to :log_in.l, login_path), :signup_link => (link_to :sign_up.l, signup_path))
+      =:welcome_message.l(:login_link => link_to(:log_in.l, login_path), :signup_link => link_to(:sign_up.l, signup_path))
     
   #NavBar
     %ul
       - Category.find(:all).each do |c|
-        = topnav_tab c.name, {:url => category_path(c), :section => c.name}
-      = topnav_tab :forums.l, { :url => forums_path, :section => 'forums' }
-      = topnav_tab :popular.l, { :url => popular_path, :section => 'popular' }
-      = topnav_tab :people.l, { :url => users_path, :section => 'users' }
+        = topnav_tab c.name, {:url => category_path(c), :section => [c.name]}
+      = topnav_tab :forums.l, { :url => forums_path, :section => ['forums'] }
+      = topnav_tab :popular.l, { :url => popular_path, :section => ['popular'] }
+      = topnav_tab :people.l, { :url => users_path, :section => ['users'] }
       - if current_user 
-        = topnav_tab :my_profile.l, { :url => user_path(current_user), :section => 'my_profile'}   
+        = topnav_tab :my_profile.l, { :url => user_path(current_user), :section => ['my_profile']}   
       - if @header_tabs.any?
         - @header_tabs.each do |tab|
-          = topnav_tab tab[:name], {:url => tab[:url], :section => tab[:section] } 
+          = topnav_tab tab[:name], {:url => tab[:url], :section => [tab[:section]] } 
       
     / SiteSearch Google 
     %form{:method=>"get", :action=>"http://www.google.com/custom", :target=>"_top"}
-      %input{ :type=>"hidden", :name=>"domains", :value=>"#{application_url}"}
+      %input{ :type=>"hidden", :name=>"domains", :value=>"#{home_url}"}
       %label{ :for=>"search",  :style=>"display: none"}
-        = :search.l+" #{AppConfig.community_name}"
+        = :search.l+" #{configatron.community_name}"
       %input{ :type=>"text",:name=>"q", :size=>"17", :maxlength=>"255", :id=>"search"}
-      %input{ :type=>"hidden", :name=>"sitesearch", :value=>"#{application_url}", :id=>"ss1"}
+      %input{ :type=>"hidden", :name=>"sitesearch", :value=>"#{home_url}", :id=>"ss1"}
       %input{ :type=>"hidden", :name=>"client", :value=>"pub-9113954708528841"}
       %input{ :type=>"hidden", :name=>"forid", :value=>"1"}
       %input{ :type=>"hidden", :name=>"channel", :value=>"1842224655"}
       %input{ :type=>"hidden", :name=>"ie", :value=>"ISO-8859-1"}
       %input{ :type=>"hidden", :name=>"oe", :value=>"ISO-8859-1"}
-      %input{ :type=>"hidden", :name=>"cof", :value=>"GALT:#008000;GL:1;DIV:#FFFFFF;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0066CC;LC:0066CC;T:000000;GFNT:0000FF;GIMP:0000FF;LH:50;LW:90;S:http://#{application_url};FORID:1"}
+      %input{ :type=>"hidden", :name=>"cof", :value=>"GALT:#008000;GL:1;DIV:#FFFFFF;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0066CC;LC:0066CC;T:000000;GFNT:0000FF;GIMP:0000FF;LH:50;LW:90;S:http://#{home_url};FORID:1"}
       %input{ :type=>"hidden", :name=>"hl", :value=>"en"}
       
   / NavBar 

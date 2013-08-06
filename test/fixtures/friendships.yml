@@ -5,11 +5,11 @@ quentin_init_aaron_pending:
   friend_id: 2
   friendship_status_id: 1
   initiator: true
-  created_at: <%= 5.days.ago.to_s :db %>
+  created_at: <%= 5.days.ago.iso8601 %>
 aaron_receive_quentin_pending:
   id: 2
   user_id: 2
   friend_id: 1
   friendship_status_id: 1
   initiator: false
-  created_at: <%= 5.days.ago.to_s :db %>
+  created_at: <%= 5.days.ago.iso8601 %>

@@ -1,7 +1,0 @@
-CREATE DATABASE <%= "#{application}_development" %>;
-CREATE DATABASE <%= "#{application}_test" %>;
-CREATE DATABASE <%= "#{application}_production" %>;
-GRANT ALL PRIVILEGES ON <%= "#{application}_development" %>.* TO '<%= "#{database_username}'@'localhost'" %> IDENTIFIED BY '<%= "#{database_password}" %>';
-GRANT ALL PRIVILEGES ON <%= "#{application}_test.* TO '#{database_username}'@'localhost'" %> IDENTIFIED BY '<%= "#{database_password}" %>';
-GRANT ALL PRIVILEGES ON <%= "#{application}_production.* TO '#{database_username}'@'localhost'" %> IDENTIFIED BY '<%= "#{database_password}" %>';
-FLUSH PRIVILEGES;

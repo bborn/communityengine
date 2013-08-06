@@ -1,4 +1,6 @@
-if AppConfig.allow_anonymous_commenting || AppConfig.require_captcha_on_signup
-  ENV['RECAPTCHA_PUBLIC_KEY'] = AppConfig.recaptcha_pub_key
-  ENV['RECAPTCHA_PRIVATE_KEY'] = AppConfig.recaptcha_priv_key
+if !configatron.allow_anonymous_commenting.nil? || !configatron.require_captcha_on_signup.nil?
+  Recaptcha.configure do |config|
+    config.public_key  = configatron.recaptcha_pub_key
+    config.private_key = configatron.recaptcha_priv_key
+  end  
 end

@@ -12,27 +12,30 @@
               %td{ :colspan => "5" }
                 = :no_messages.l
           -else
-            - @messages.each do |message|
-              %tr
+            - @messages.each do |message_thread|
+              - message = message_thread.message
+              - children = message_thread.parent_message.children              
+              %tr{:class => message_thread.read? ? :read.l : :unread.l}
                 %td{:width => '10px'}
-                  %fieldset.inline= check_box_tag "delete[]", message.id
-                %td{:width => '60px'}
-                  .photo= link_to image_tag( message.sender.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.sender.login}", "width"=>"50px" ), user_path(message.sender), :title => :users_profile.l(:user => message.sender.login)
-
+                  %fieldset.inline
+                    = check_box_tag "delete[]", message_thread.id
                 %td
-                  = link_to h(message.subject), user_message_path(@user, message)                  
+                  =link_to h(message_thread.subject), user_message_path(@user, message)
+                  =children.any? ? "(#{children.size} messages)" : ''
                   %br
-                  = :from.l + ":"
-                  = link_to h(message.sender.login), user_path(message.sender)                  
-                %td{:width => '20px'}
                   %em
-                    = message.read? ? :read.l : :unread.l
-                %td.meta{:width => '150px'}= h I18n.l(message.created_at, :format => :time_ago)
+                    =message.sender.login
+                    \: 
+                    =truncate(message.body)
+                
+                %td.meta{:width => '150px'}
+                  =time_ago_in_words_or_date(message_thread.updated_at)                
+                  
         %tfoot
           %tr
             %td{ :colspan => "5" }
               -if @messages.any?
                 %p= submit_tag :delete_selected.l              
       
-      .pagination=paginating_links @messages if @messages.page_count > 1                
+      .pagination=paginating_links @messages if @messages.total_count > 1                
 

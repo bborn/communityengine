@@ -1,1 +1,1 @@
-page['clipping_image_list'].update render(:partial => 'clippings/images.html.haml', :locals => {:images => @images})
+page['clipping_image_list'].update( @images ? render(:partial => 'clippings/images', :formats => [:html], :locals => {:images => @images}) : "<h1>Sorry, there was an error fetching the images from the page you requested</h1><a href='#{params[:uri]}'>Go back...</a>" )

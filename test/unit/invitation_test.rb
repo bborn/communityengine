@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class InvitationTest < ActiveSupport::TestCase
   fixtures :invitations, :users, :roles
@@ -7,7 +7,7 @@ class InvitationTest < ActiveSupport::TestCase
     addresses = "valid@example.com, valid_2@example.com, invalid.invalid.com"
     invitation = Invitation.new(:email_addresses => addresses)
     assert !invitation.valid?
-    assert invitation.errors.on(:email_addresses)
+    assert invitation.errors[:email_addresses]
   end
   
   def test_send_with_names_in_emails

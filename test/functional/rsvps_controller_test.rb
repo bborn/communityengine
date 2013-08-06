@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class RsvpsControllerTest < ActionController::TestCase
   fixtures :users, :events, :rsvps
@@ -70,7 +70,7 @@ class RsvpsControllerTest < ActionController::TestCase
   def test_should_fail_to_update_rsvp
     login_as :quentin
     put :update, :event_id => "2", :id => 1, :rsvp => { :attendees_count => nil }
-    assert assigns(:rsvp).errors.on(:attendees_count)
+    assert assigns(:rsvp).errors[:attendees_count]
     assert_response :success
   end
 

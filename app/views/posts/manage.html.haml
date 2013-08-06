@@ -7,21 +7,21 @@
       
   -box do
     %h3=:search.l
-    - form_for @search, :html => {:class => "MainForm"} do |f|
+    = form_for @search, :url => manage_user_posts_path(current_user), :html => {:class => "MainForm"} do |f|
     
-      = f.label :title.l
+      %label= :title.l
       = f.text_field :title_like
 
       %p
-        = f.label :category.l
+        %label= :category.l
         = f.select :category_id_equals, Category.all.collect{|c| [c.name, c.id]}, :include_blank => true
 
       %p
-        =f.label :status.l
+        %label= :status.l
         = f.select :published_as_equals, [['Published','live'], ['Draft','draft']], :include_blank => true
 
       %p
-        = f.label :show.l
+        %label= :show.l
         = select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
 
       %p= f.submit :search.l
@@ -35,16 +35,16 @@
       %p=:posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them.l
       
 
-      -if @posts.page_count > 1
-        .pagination= paginating_links @posts, :link_to_current_page => true
+      -if @posts.total_count > 1
+        = paginate @posts
 
       %table{:border => 0, :width => '100%'}
         %thead
           %tr
             %th
-              =order @search, :by => :created_at, :as => :date_created.l
+              =sort_link @search, :created_at, :date_created.l
             %th
-              =order @search, :by => :published_at, :as => :date_published.l
+              =sort_link @search, :published_at, :date_published.l
             %th=:title.l
             %th=:category.l
             %th=:tags.l

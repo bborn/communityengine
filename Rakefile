@@ -1,22 +1,54 @@
-require 'rake'
-require 'rake/testtask'
-require 'rake/rdoctask'
-
-desc 'Default: run unit tests.'
-task :default => :test
-
-desc 'Test the community_engine plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+#!/usr/bin/env rake
+begin
+  require 'bundler/setup'
+rescue LoadError
+  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-desc 'Generate documentation for the community_engine plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'CommunityEngine'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+APP_RAKEFILE = File.expand_path("../test/testapp/Rakefile", __FILE__)
+puts APP_RAKEFILE
+load 'rails/tasks/engine.rake'
+
+require 'rake/testtask'
+task :default => :test
+
+desc 'Runs test:units, test:functionals'
+task :test do
+  tests_to_run = %w(test:units test:functionals)
+  errors = tests_to_run.collect do |task|
+    begin
+      Rake::Task[task].invoke
+      nil
+    rescue => e
+      task
+    end
+  end.compact
+  abort "Errors running #{errors * ', '}!" if errors.any?
+end
+
+namespace :test do
+
+  Rake::TestTask.new(:functionals) do |t|
+    t.libs << "lib"
+    t.libs << "test"
+    t.pattern = 'test/functional/**/*_test.rb'
+    t.verbose = true
+  end
+  
+  Rake::TestTask.new(:units) do |t|
+    t.libs << "lib"
+    t.libs << "test"
+    t.pattern = 'test/unit/**/*_test.rb'
+    t.verbose = true    
+  end  
+  
+end
+
+
+task :build do
+  system "gem build community_engine.gemspec"
+end
+ 
+task :release => :build do
+  system "gem push community_engine-#{CommunityEngine::Version::STRING}.gem"
 end

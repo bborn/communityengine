@@ -7,17 +7,18 @@
 #yui-main
   .yui-b
     -box do 
-      %h3= random_greeting(@user)
+      %h3= :greeting.l :name => @user.login
     
       -if @user.pending_friendships.any?
-        %p=link_to "#{image_tag 'icons/user_add.png', :plugin => 'community_engine'} "+:you_have_pending_friendship_requests.l, pending_user_friendships_path(@user)
+        %p
+          =link_to "#{image_tag 'icons/user_add.png'} #{:you_have_pending_friendship_requests.l}".html_safe, pending_user_friendships_path(@user)
     
     
       -if @network_activity.empty? && @recommended_posts.empty?
         %p
           =:this_is_your_dashboard.l
         %p
-          =:dashboard_friends.l :site => AppConfig.community_name
+          =:dashboard_friends.l :site => configatron.community_name
           %br
           =:to_start_adding_friends.l
           =link_to :browse_all_members.l, users_path
@@ -39,4 +40,5 @@
           %ul
             -@recommended_posts.each do |post|
               %li
-                = link_to( "#{post.tag_for_first_image_in_body} #{truncate(post.display_title, :length => 75)} <span class='post_excerpt'>#{ truncate_words(post.post, 35, '...' )} (:by.l #{post.user.login})</span>", user_post_path(post.user, post), :title => ":by.l #{post.user.login}" )
+                = link_to( "#{post.tag_for_first_image_in_body} #{truncate(post.display_title, :length => 75)} <span class='post_excerpt'>#{ truncate_words(post.post, 35, '...' )} (#{:by.l :login => post.user.login})</span>".html_safe, user_post_path(post.user, post), :title => :by.l(:login => post.user.login) )
+                

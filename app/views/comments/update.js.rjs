@@ -1,0 +1,9 @@
+if @comment.errors.any?
+  page.select("#comment_#{@comment.id} .errors").invoke('update', @comment.errors.full_messages.to_sentence)
+  page << "new Effect.Highlight($$('#comment_#{@comment.id} .errors')[0]);"  
+else
+  page << "tinyMCE.execCommand('mceFocus', false, $$('#edit_comment_#{@comment.id}_form textarea')[0]); tinyMCE.execCommand('mceRemoveControl', false, $$('#edit_comment_#{@comment.id}_form textarea')[0]);"  
+  page.replace "comment_#{@comment.id}", :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true} 
+end
+          
+

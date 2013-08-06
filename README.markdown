@@ -1,251 +1,177 @@
-CommunityEngine [v1.0.4.2]
+** Using Rails 2.x? You want the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
+
+CommunityEngine [![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 Requirements:
 
-	- RAILS VERSION 2.3.4 (higher versions are not yet supported)
-	- ImageMagick (>6.4) 
-	- Several gems:
-    desert 0.5.2
-	  rmagick
-	  hpricot
-	  htmlentities
-	  rake 0.8.3
-	  haml 2.0.5
-	  calendar_date_select
-	  ri_cal
-    authlogic
-    searchlogic
-	  aws-s3 (if using s3 for photos)
+	- RAILS VERSION 3.2.8
 
 Getting CommunityEngine Running
 --------------------------------
 
-SHORT VERSION: 
+1. Copy the following into your `Gemfile`:
 
-        rails your_app_name -m http://www.communityengine.org/install_template.rb
+    ```
+    gem 'community_engine'
+    ```
 
-LONG VERSION:
+2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
 
-1. From the command line
+		configatron.community_name = "Your Application Name"
+		# See CE's application_config.rb to see all the other configuration options available
 
-		$ rails site_name (create a rails app if you don't have one already)    
+3. From your app's root directory run:
 
-2. Install desert:
+		$ bundle install --binstubs
+		$ bin/rake community_engine:install:migrations
+		$ bin/rake db:migrate
 
-		$ sudo gem install desert
-	
-3. Put the community engine plugin into plugins directory (use one of the following methods):
+4. Mount CommunityEngine in your `config/routes.rb` file:
 
-	* If you're not using git, and just want to add the source files:
+		mount CommunityEngine::Engine => "/"
 
-			Download a tarball from https://github.com/bborn/communityengine/tarball/master and unpack it into /vendor/plugins/community\_engine
+5. Delete the default `views/layouts/application.html.erb` that Rails created for you. Delete `public/index.html` if you haven't already.
 
-	* Using git, make a shallow clone of the community_engine repository:
+6. Start your server!
 
-			$ git clone --depth 1 git://github.com/bborn/communityengine.git vendor/plugins/community_engine
-
-	* If you want to keep your community_engine plugin up to date using git, you'll have to add it as a submodule:
-	
-			http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules
-			Basically:
-			git submodule add git://github.com/bborn/communityengine.git vendor/plugins/community_engine
-			git submodule init
-			git submodule update
-
-	* Make sure you rename your CE directory to `community_engine` (note the underscore) if it isn't named that for some reason
-
-4. Create your database and modify your `config/database.yml` appropriately.
-
-5. Delete public/index.html (if you haven't already)
-
-6. Modify your environment.rb as indicated below:
-
-		## environment.rb should look something like this:
-		RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
-		require File.join(File.dirname(__FILE__), 'boot')
-
-        require 'desert'
-
-		Rails::Initializer.run do |config|
-		  config.plugins = [:community_engine, :white_list, :all]
-		  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
-		  config.gem 'calendar_date_select'
-		  config.gem 'icalendar'		
-		  config.gem 'authlogic'
-		  config.gem 'searchlogic'
-		  
-      config.action_controller.session = {
-        :key    => '_your_app_session',
-        :secret => 'secret'
-      }
-
-		  ... Your stuff here ...
-		end
-		# Include your application configuration below
-		require "#{RAILS_ROOT}/vendor/plugins/community_engine/config/boot.rb"
-
-7. Modify each environment file (`development.rb`, `test.rb`, and `production.rb`) as indicated below:
-
-		# development.rb, production.rb, and test.rb should include something like:
-		APP_URL = "http://localhost:3000" (or whatever your URL will be for that particular environment)
-
-8. Modify your routes.rb as indicated below:
-
-		# Add this after any of your own existing routes, but before the default rails routes: 
-		map.routes_from_plugin :community_engine
-		# Install the default routes as the lowest priority.
-		map.connect ':controller/:action/:id'
-		map.connect ':controller/:action/:id.:format'     
-
-9. Generate the community engine migrations: 
-
-		$ script/generate plugin_migration
-    
-10. From the command line:
-	
-		$ rake db:migrate
-
-11. You may need to change these lines in `application.rb` (if you're not using cookie sessions):
-
-		# See ActionController::RequestForgeryProtection for details
-		# Uncomment the :secret if you're not using the cookie session store
-		protect_from_forgery # :secret => 'your_secret_string'
-
-12. Run tests (remember, you must run `rake test` before you can run the community\_engine tests): 
-
-    $ rake test
-		$ rake community_engine:test
-
-13. Start your server and check out your site! 
-
-		$ mongrel_rails start
-		or
-		$ ./script/server
-
-
+		$ bin/rails server
 
 Optional Configuration
 ======================
 
+To override the default configuration, create an `application_config.rb` file in `Rails.root/config`
 
-To override the default configuration, create an `application.yml` file in `RAILS_ROOT/config` 
+The application configuration defined in this file overrides the one defined in the [CommunityEngine gem](https://github.com/bborn/communityengine/blob/rails3/config/application_config.rb)
 
-The application configuration defined in this file overrides the one defined in `/community_engine/config/application.yml`
+This is where you can change commonly used configuration variables, like `configatron.community_name`, etc.
 
-This is where you can change commonly used configuration variables, like `AppConfig.community_name`, etc.
 
-This YAML file will get converted into an OpenStruct, giving you things like `AppConfig.community_name`, `AppConfig.support_email`, etc.
+OmniAuth Configuration:
+=======================
+
+You can allow users to sign up and log in using their accounts from other social networks (like Facbeook, Twitter, LinkedIn, etc.). To do so, just add an initializer in your app's `config/initializers` directory called `omniauth.rb`. In it, put:
+
+	Rails.application.config.middleware.use OmniAuth::Builder do
+	  provider :twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'
+	  provider :facebook, 'APP_ID', 'APP_SECRET'
+	  provider :linked_in, 'CONSUMER_KEY', 'CONSUMER_SECRET'
+	end
+
+You must also add the corresponding provider gem, for example to use facebook login you will need to add
+
+		gem 'omniauth-facebook'
+
+to your gemfile
+
+See the [OmniAuth Github repository](https://github.com/intridea/omniauth) for more information and configuration options.
+
 
 Photo Uploading
 ---------------
 
 By default CommunityEngine uses the filesystem to store photos.
 
-To use Amazon S3 as the backend for your file uploads, you'll need the aws-s3 gem installed, and you'll need to add a file called `amazon_s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`). 
+To use Amazon S3 as the backend for your file uploads,you'll need to add a file called `s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`).
 
-You'll need to change your configuration in your `application.yml` to tell CommunityEngine to use s3 as the photo backend.
+You'll need to change your configuration in your `application_config.rb` to tell CommunityEngine to use s3 as the photo backend. For more, see the Paperclip documentation on S3 storage for uploads: https://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/storage/s3.rb
 
 Finally, you'll need an S3 account for S3 photo uploading.
 
 
-Create an s3.yml file in `RAILS_ROOT/config` 
-------------------------------------------------------
-
-CommunityEngine includes the `s3.rake` tasks for backing up your site to S3. If you plan on using these, you'll need to add a file in `RAILS_ROOT/config/s3.yml`. (Sample in `sample_files/s3.yml`)
 
 Roles
 ------
 
 CommunityEngine Users have a Role (by default, it's admin, moderator, or member)
 
-To set a user as an admin, you must manually change his `role_id` through the database.
 Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar.)
 
 Admins and moderators can edit and delete other users posts.
 
-There is a rake task to make an existing user into an admin: 
+There is a rake task to make an existing user into an admin:
 
-	rake community_engine:make_admin email=user@foo.com 
+	rake community_engine:make_admin email=user@foo.com
 
 (Pass in the e-mail of the user you'd like to make an admin)
 
-
-Themes
-------
-
-To create a theme:
-
-1. Add a 'themes' directory in `RAILS_ROOT` with the following structure:
-
-		/RAILS_ROOT
-		  /themes
-		    /your_theme_name
-		      /views
-		      /images
-		      /stylesheets
-		      /javascripts
-      
-2. Add `theme: your_theme_name` to your `application.yml` (you'll have to restart your server after doing this)
-
-3. Customize your theme. For example: you can create a `/RAILS_ROOT/theme/your_theme_name/views/shared/_scripts_and_styles.html.haml` to override the default one, and pull in your theme's styleshees.
-
-	To get at the stylesheets (or images, or javascripts) from your theme, just add /theme/ when referencing the resource, for example:
-
-		= stylesheet_link_tag 'theme/screen'  # this will reference the screen.css stylesheet within the selected theme's stylesheets directory.
-
-*Note: when running in production mode, theme assets (images, js, and stylesheets) are automatically copied to you public directory (avoiding a Rails request on each image load).*
 
 
 Localization
 ------------
 
-Localization is done via Rails native I18n API. We've added some extensions to String and Symbol to allow backwards compatibility (we used to use Globalite).
+Localization is done via Rails native I18n API. We've added some extensions to String and Symbol to let them respond to the `.l` method. That allows for a look up of the symbol (or a symbolized version of the string).
 
-Strings and Symbols respond to the `.l` method that allows for a look up of the symbol (or a symbolized version of the string) into a strings file which is stored in yaml. 
-
-For complex strings with substitutions, Symbols respond to the `.l` method with a hash passed as an argument, for example: 
+For complex strings with substitutions, Symbols respond to the `.l` method with a hash passed as an argument, for example:
 
 	:welcome.l :name => current_user.name
-  
+
 And in your language file you'd have:
 
-	welcome: "Welcome {{name}}"
+	welcome: "Welcome %{name}"
 
-To customize the language, or add a new language create a new yaml file in `RAILS_ROOT/lang/ui`.
-The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`)
-The language only file (`es.yml`) will support all locales.
+To customize the language, or add a new language create a new yaml file in `Rails.root/config/locales`. The name of the file should be `LANG-LOCALE.yml` (`e.g. en-US.yml` or `es-PR`). The language only file (`es.yml`) will support all locales.
 
-To wrap all localized strings in a `<span>` that shows their localization key, put this in your `environment.rb`:
 
-	AppConfig.show_localization_keys_for_debugging = true if RAILS_ENV.eql?('development')
-  
-Note, this will affect the look and feel of buttons. You can highlight what is localized by using the `span.localized` style (look in `screen.css`)
+Spam Control
+------------
 
-For more, see /lang/readme.txt.
+Spam sucks. Most likely, you'll need to implement some custom solution to control spam on your site, but CE offers a few tools to help with the basics.
+
+ReCaptcha: to allow non-logged-in commenting and use [ReCaptcha](http://recaptcha.net/) to ensure robots aren't submitting comments to your site, just add the following lines to your `application_config.rb`:
+
+    :allow_anonymous_commenting => true,
+    :recaptcha_pub_key => YOUR_PUBLIC_KEY,
+    :recaptcha_priv_key => YOUR_PRIVATE_KEY
+
+You can also require ReCaptcha on signup (to prevent automated signups) by adding this in your `application_config.rb` (you'll still need to add your ReCaptcha keys):
+
+    :require_captcha_on_signup => true
+
+Akismet: Unfortunately, bots aren't the only ones submitting spam; humans do it too. [Akismet](http://akismet.com/) is a great collaborative spam filter from the makers of Wordpress, and you can use it to check for spam comments by adding one line to your `application_config.rb`:
+
+    :akismet_key => YOUR_KEY
+
+
+Integrating with Your Application & Overriding CE
+-------------------------------------------------
+
+To make a controller from your application use CE's layout and inherit CE's helper methods, make it inherit from `BaseController`. For example:
+
+		class RecipesController < BaseController
+
+			before_filter :login_required
+
+			uses_tiny_mce do
+				{:only => [:show], :options => configatron.default_mce_options}
+			end
+
+		end
+
+To override or modify a controller, helper, or model from CE, you can use the `require_from_ce` helper method. For example, to override a method in CE's `User` model, create `app/models/user.rb`:
+
+		class User < ActiveRecordBase
+			require_from_ce('models/user')
+
+			#add a new association
+			has_many :recipes
+
+			#override an existing method
+			def	display_name
+				login.capitalize
+			end
+
+		end
+
+
 
 
 Other notes
 -----------
 
-Any views you create in your app directory will override those in `community_engine/app/views`. 
-For example, you could create `RAILS_ROOT/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
-
-You can also override CommunityEngine's controllers by creating identically-named controllers in your application's `app/controllers` directory.
-
-
-Gotchas
--------
-
-1. I get errors running rake! Error: (wrong number of arguments (3 for 1)
-  - make sure you have the latest version of rake
-2. When upgrading to Rails 2.3, make sure your `action_controller.session` key is called `:key`, instead of the old `:session_key`:
-
-        config.action_controller.session = {
-          :key => '_ce_session',
-          :secret      => 'secret'
-        }
+Any views you create in your app directory will override those in CommunityEngine
+For example, you could create `Rails.root/app/views/layouts/application.html.haml` and have that include your own stylesheets, etc.
 
 
 Contributors - Thanks! :)
@@ -254,7 +180,7 @@ Contributors - Thanks! :)
 - Bryan Kearney - localization
 - Alex Nesbitt - forgot password bugs
 - Alejandro Raiczyk - Spanish localization
-- [Fritz Thielemann](http://github.com/fritzek) - German localization, il8n 
+- [Fritz Thielemann](http://github.com/fritzek) - German localization, il8n
 - [Oleg Ivanov](http://github.com/morhekil) - `acts_as_taggable_on_steroids`
 - David Fugere - French localization
 - Barry Paul - routes refactoring
@@ -266,8 +192,5 @@ Contributors - Thanks! :)
 - [Stephane Decleire](http://github.com/sdecleire) i18n, fr-FR locale
 
 
-To Do
-----
-* Track down `<RangeError ... is recycled object>` warnings on tests (anyone know where that's coming from?)
 
-Bug tracking is via [Lighthouse](http://communityengine.lighthouseapp.com)
+Bug tracking is via [GitHub Issues](https://github.com/bborn/communityengine/issues)

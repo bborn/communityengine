@@ -9,3 +9,11 @@ misc:
 extra:
   id: 3
   name: Extra
+
+special_characters:
+  id: 4
+  name: Svår
+
+related_to_misc:
+  id: 5
+  name: Related

@@ -6,8 +6,8 @@
 
   - if @previous || @next
     -box :class => "alt" do 
-      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ", user_clipping_path(@user, @previous), :class => 'left' if @previous
-      = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;", user_clipping_path(@user, @next), :class => 'right' if @next
+      = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ".html_safe, user_clipping_path(@user, @previous), :class => 'left' if @previous
+      = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;".html_safe, user_clipping_path(@user, @next), :class => 'right' if @next
 
   - if @related.any?
     -box :class => "alt" do 
@@ -19,7 +19,7 @@
 #yui-main
   .yui-b
     -box :class => "hfeed" do 
-      %h3= link_to :user_clippings.l(:user =>@user.login)
+      %h3= link_to :user_clippings.l(:user =>@user.login), user_clippings_path(@user)
       .hentry.main
         - if @is_current_user
           = link_to :delete.l, user_clipping_path(@user, @clipping), :confirm => :are_you_sure.l, :method => :delete
@@ -28,7 +28,7 @@
 
         %p.centered
           %a{"href"=>"#{h @clipping.url }"}
-            %img{:src=>"#{h @clipping.image_uri}", :class=>"clipping", :alt=> "#{h @clipping.description}"}
+            %img{:src=>"#{h @clipping.image_uri(:large)}", :class=>"clipping", :alt=> "#{h @clipping.description}"}
 
         %p
           =:from.l
@@ -50,7 +50,7 @@
     -box :class => 'hfeed comments', :id => 'comments' do
       %h3=:clipping_comments.l
       %h2=:add_your_comment.l
-      %p= render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
+      = render :partial => 'comments/comment_form', :locals => {:commentable => @clipping}
       %a#newest_comment
       = render :partial => 'comments/comment', :collection => @clipping.comments
       %span#more_comments_links= more_comments_links(@clipping)

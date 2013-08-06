@@ -22,7 +22,7 @@ class RsvpsController < BaseController
   # POST /rsvps
   # POST /rsvps.xml
   def create
-    @rsvp = @event.rsvps.build(params[:rsvp])
+    @rsvp = @event.rsvps.new(params[:rsvp])
     @rsvp.user = current_user
     respond_to do |format|
       if @rsvp.save

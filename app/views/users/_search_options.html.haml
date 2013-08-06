@@ -1,15 +1,4 @@
--box :class => 'alt first_alt' do
-  = link_to( "&raquo; #{:back_to_all_users.l}", users_path) if params['login'] || params['tag_list']
-  - form_tag users_path, :method => :get , :class => 'MainForm' do
-    %label= :user_login.l+":"
-    = text_field_tag 'login', @search['login']
-    %p
-      = render :partial => 'shared/location_chooser', :locals => {:selected_country => @search['country_id'].to_i, :selected_state => @search['state_id'].to_i, :selected_metro_area => @search['metro_area_id'].to_i, :states => @states, :metro_areas => @metro_areas}
-
-    %p 
-      %input{"type"=>"submit", "value"=>:search_users.l}
-
-
+  
 -box :class => 'alt' do
   %h3= :metro_areas.l
   - city_cloud @metro_areas_for_cloud, %w(nube1 nube2 nube3 nube4 nube5) do |city, css_class|

@@ -1,0 +1,16 @@
+.yui-b.sidebar
+
+#yui-main
+  .yui-b.main_column
+    -box do
+      %h3=:forgot_your_password.l
+
+      = form_tag password_reset_path, :method => :put, :class => "MainForm" do
+        %label=:password.l
+        = password_field_tag :password
+
+        %label=:confirm_password.l
+        = password_field_tag :password_confirmation
+      
+        %p= submit_tag :reset_my_password.l
+

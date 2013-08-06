@@ -5,7 +5,7 @@
     -if activity.can_be_deleted_by?(current_user)
       =link_to_remote image_tag("icons/delete.png", :plugin => 'community_engine'), :url => activity_path(activity), :method => :delete, :html => {:class => 'right'}
   
-    =link_to activity.user.login.capitalize, user_path(activity.user.login_slug)  
+    =link_to activity.user.login.capitalize, user_path(activity.user.friendly_id)  
     - if activity.item
       - case activity.item_type
         - when 'Post'
@@ -13,7 +13,7 @@
           = link_to activity.item.title, user_post_path(activity.item.user, activity.item)
         - when 'Photo'
           =:uploaded_a_photo.l
-          = link_to image_tag(activity.item.public_filename(:thumb), :width => '50px'), user_photo_path(activity.item.user, activity.item)
+          = link_to image_tag(activity.item.photo.url(:thumb), :width => '50px'), user_photo_path(activity.item.user, activity.item)
         - when 'Album'
           =:created_an_album.l
           = link_to activity.item.title, user_album_path(activity.item.user, activity.item)
@@ -51,6 +51,6 @@
         - when 'logged_in'
           =:logged_into_the_site.l
         - when 'joined_the_site'
-          =:joined_the_site.l(:site => AppConfig.community_name)
+          =:joined_the_site.l(:site => configatron.community_name)
         - else
           = " #{activity.action.humanize.downcase }"

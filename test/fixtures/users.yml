@@ -5,14 +5,14 @@ quentin:
   description: I am friggin awesome
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 5.days.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
+  created_at: <%= 5.days.ago.iso8601 %>
+  activated_at: <%= 5.days.ago.iso8601 %>  
   activation_code: 
   state_id: 1
   metro_area_id: 1
   profile_public: true
   login_slug: quentin
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>
   activities_count: 0
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -25,13 +25,13 @@ aaron:
   description: I am happy to be here. Community rawks!
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  created_at: <%= 1.days.ago.iso8601 %>
+  activated_at: <%= 30.minutes.ago.iso8601 %>  
   activation_code: 
   sb_posts_count: 2
-  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
+  sb_last_seen_at: <%= 5.minutes.ago.iso8601 %>
   login_slug: aaron
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -43,11 +43,11 @@ kevin:
   description: I am Garnett
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 5.days.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
+  created_at: <%= 5.days.ago.iso8601 %>
+  activated_at: <%= 5.days.ago.iso8601 %>  
   activation_code: 
   login_slug: kevin
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -59,11 +59,11 @@ admin:
   description: I am all powerful
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  created_at: <%= 1.days.ago.iso8601 %>
+  activated_at: <%= 30.minutes.ago.iso8601 %>  
   activation_code: 
   login_slug: admin
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 1
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -75,12 +75,12 @@ dwr:
   description: We are the best design company in the world
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  created_at: <%= 1.days.ago.iso8601 %>
+  activated_at: <%= 30.minutes.ago.iso8601 %>  
   activation_code: 
   vendor: true
   login_slug: dwreach
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -92,12 +92,12 @@ leopoldo:
   description: I am Bruno's dad
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 5.days.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
+  created_at: <%= 5.days.ago.iso8601 %>
+  activated_at: <%= 5.days.ago.iso8601 %>  
   metro_area_id: 4
   activation_code: 
   login_slug: leopoldo
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -109,12 +109,12 @@ florian:
   description: I am Ben's friend
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 30.minutes.ago.to_s :db %>
-  activated_at: <%= 10.minutes.ago.to_s :db %>  
+  created_at: <%= 30.minutes.ago.iso8601 %>
+  activated_at: <%= 10.minutes.ago.iso8601 %>  
   metro_area_id: 5
   activation_code: 
   login_slug: florian
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -126,13 +126,13 @@ super_writer:
   description: I am Such An Awesome Writer!!
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 30.minutes.ago.to_s :db %>
-  activated_at: <%= 10.minutes.ago.to_s :db %>  
+  created_at: <%= 30.minutes.ago.iso8601 %>
+  activated_at: <%= 10.minutes.ago.iso8601 %>  
   metro_area_id: 5
   activation_code: 
   featured_writer: true
   login_slug: superwriter
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -144,12 +144,12 @@ plumberbob:
   description: I love pipe fitting, Hello! I'm one of the Community founders.  Thanks for checking out my profile.  If you have any questions or comments, don't hesitate to email me at founder at community dot com, or comment on my profile.
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  created_at: <%= 1.days.ago.iso8601 %>
+  activated_at: <%= 30.minutes.ago.iso8601 %>  
   activation_code: 
   vendor: true
   login_slug: plumberbob
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -161,13 +161,13 @@ privateuser:
   description: I am a private user, which means you can't see my profile stuff unless logged in
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  created_at: <%= 1.days.ago.iso8601 %>
+  activated_at: <%= 30.minutes.ago.iso8601 %>  
   activation_code: 
   vendor: false
   login_slug: privateuser
   profile_public: false
-  birthday: <%= 15.years.ago.to_s :db %>  
+  birthday: <%= configatron.min_age.years.ago.iso8601 %>  
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>
   single_access_token: <%= Authlogic::Random.friendly_token %>
@@ -179,10 +179,10 @@ sam:
   email: sam@email.com
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 4.days.ago.to_s :db %>
+  created_at: <%= 4.days.ago.iso8601 %>
   sb_posts_count: 2
-  sb_last_seen_at: <%= 4.minutes.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
+  sb_last_seen_at: <%= 4.minutes.ago.iso8601 %>
+  activated_at: <%= 5.days.ago.iso8601 %>  
   activation_code: 
   role_id: 3    
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -195,10 +195,10 @@ joe:
   email: joe@email.com
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 4.days.ago.to_s :db %>
+  created_at: <%= 4.days.ago.iso8601 %>
   sb_posts_count: 2
-  sb_last_seen_at: <%= 4.minutes.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
+  sb_last_seen_at: <%= 4.minutes.ago.iso8601 %>
+  activated_at: <%= 5.days.ago.iso8601 %>  
   activation_code: 
   role_id: 3    
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -211,9 +211,9 @@ kyle:
   email: kyle@email.com
   password_salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 3.days.ago.to_s :db %>
+  created_at: <%= 3.days.ago.iso8601 %>
   sb_posts_count: 0  
-  activated_at: <%= 5.days.ago.to_s :db %>  
+  activated_at: <%= 5.days.ago.iso8601 %>  
   activation_code: 
   role_id: 3  
   persistence_token: <%= Authlogic::Random.hex_token %>

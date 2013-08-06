@@ -16,7 +16,7 @@
         - for event in @events
           %tr
             %td= event.name
-            %td= event.try(:metro_area)
+            %td= event.try(:metro_area).try(:name)
             %td=h event.time_and_date
             %td
               = link_to :show.l, event_path(event)
@@ -27,8 +27,7 @@
               |
               = link_to :destroy.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete
 
-    %p
-      = link_to :new_event.l, new_event_path
+      %p= link_to :new_event.l, new_event_path
 
-    .pagination=paginating_links @events if @events.page_count > 1
+    .pagination=paginating_links @events if @events.total_count > 1
 

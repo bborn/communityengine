@@ -1,0 +1,29 @@
+= form_remote_for(:comment, @comment, :loading => "$$('#comment_#{comment.id} .errors')[0].innerHTML = '';", :before => "tinyMCE.activeEditor.save();", :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :method => :put, :html => {:id => "edit_comment_#{comment.id}_form", :class => "MainForm"}) do |f|
+  .errors
+  %label
+    %em=:comment_character_limit.l
+  = f.text_area :comment, {:size => "86x5", :class => "rich_text_editor"}  
+  
+  %label{"for"=>"comment[author_name"}
+    =:name.l
+    %em="(#{:optional.l})"
+  = f.text_field :author_name, :size => 35
+  %label{"for"=>"comment[author_email"}
+    ="#{:email.l}:"
+    %em="(#{:comment_author_email_required.l})"
+  = f.text_field :author_email, :size => 35        
+  %br
+  %label 
+    =f.check_box :notify_by_email, :style => 'width: 10px;'
+    =:notify_me_of_follow_ups_via_email.l
+    -if comment.commentable.respond_to?(:send_comment_notifications?) && !comment.commentable.send_comment_notifications?
+      %em="(#{:comment_notifications_off.l})"
+  
+  %label{"for"=>"comment[author_url"}
+    =:comment_web_site_label.l
+    %em="(#{:optional.l})"
+  = f.text_field :author_url, :size => 35
+  
+  %p
+    = submit_tag :add_comment.l
+    = link_to_remote :cancel.l, :url => {:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true}, :method => :get    
