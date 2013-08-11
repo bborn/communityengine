@@ -17,7 +17,7 @@ class Clipping < ActiveRecord::Base
   acts_as_taggable
   acts_as_activity :user
 
-  attr_accessible :url, :description, :image_url
+  attr_accessible :user, :url, :description, :image_url
     
   scope :recent, :order => 'clippings.created_at DESC'    
     
