@@ -20,9 +20,6 @@ class PageSweeper < ActionController::Caching::Sweeper
   def expire_cache_for(record)
     # Expire the home page
     expire_action(:controller => 'base', :action => 'site_index')
-
-    # Expire the footer content
-    expire_action(:controller => 'base', :action => 'footer_content')
     
     # Also expire the sitemap
     expire_action(:controller => 'sitemap', :action => 'index')

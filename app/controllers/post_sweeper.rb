@@ -5,17 +5,17 @@ class PostSweeper < ActionController::Caching::Sweeper
   def after_create(post)
     expire_cache_for(post)
   end
-  
+
   # If our sweeper detects that a Post was updated call this
   def after_update(post)
     expire_cache_for(post)
   end
-  
+
   # If our sweeper detects that a Post was deleted call this
   def after_destroy(post)
     expire_cache_for(post)
   end
-          
+
   private
   def expire_cache_for(record)
     # Expire the home page
@@ -23,12 +23,9 @@ class PostSweeper < ActionController::Caching::Sweeper
 
     # Expire the footer content
     expire_action(:controller => 'base', :action => 'footer_content')
-    
+
     # Also expire the sitemap
     expire_action(:controller => 'sitemap', :action => 'index')
-
-    # Expire the category pages
-    expire_action(:controller => 'categories', :action => 'index')
 
     # Also expire the show pages, in case we just edited a blog entry
     expire_action(:controller => 'posts', :action => 'show', :id => record.to_param, :user_id => record.user.to_param)
