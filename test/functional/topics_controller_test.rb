@@ -15,10 +15,11 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   def test_should_show_topic_as_rss
+    content_type 'application/rss+xml'
     get :show, :forum_id => forums(:rails).id, :id => topics(:pdi).id, :format => 'rss'
     assert_response :success
   end
-  
+
   def test_should_show_topic_as_xml
     content_type 'application/xml'
     get :show, :forum_id => forums(:rails).id, :id => topics(:pdi).id, :format => 'xml'
@@ -50,7 +51,7 @@ class TopicsControllerTest < ActionController::TestCase
     assert assigns(:topic).sticky?
     assert assigns(:topic).locked?
   end
-    
+
   def test_should_allow_admin_to_sticky_and_lock
     login_as :admin
     post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah2', :sticky => "1", :locked => "1", :body => 'foo' }
@@ -63,9 +64,9 @@ class TopicsControllerTest < ActionController::TestCase
   def test_should_not_create_topic_without_body
     counts = lambda { [Topic.count, SbPost.count] }
     old = counts.call
-    
+
     login_as :aaron
-    
+
     post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sb_posts_attributes => { "0" => { :body => '' } } }
     assert assigns(:topic)
     assert assigns(:post)
@@ -78,14 +79,14 @@ class TopicsControllerTest < ActionController::TestCase
   def test_should_create_topic
     counts = lambda { [Topic.count, SbPost.count, forums(:rails).topics_count, forums(:rails).sb_posts_count,  users(:aaron).sb_posts_count] }
     old = counts.call
-    
+
     login_as :aaron
     post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah', :sb_posts_attributes => { "0" => { :body => 'foo' } } }, :tag_list => 'tag1, tag2'
     assert assigns(:topic)
     assert assigns(:post)
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
     [forums(:rails), users(:aaron)].each(&:reload)
-  
+
     assert_equal old.collect { |n| n + 1}, counts.call
     assert_equal ['tag1', 'tag2'], Topic.find(assigns(:topic).id).tag_list
   end
@@ -94,7 +95,7 @@ class TopicsControllerTest < ActionController::TestCase
   def test_should_delete_topic
     counts = lambda { [SbPost.count, forums(:rails).topics_count, forums(:rails).sb_posts_count] }
     old = counts.call
-    
+
     login_as :admin
     delete :destroy, :forum_id => forums(:rails).id, :id => topics(:ponies).id
     assert_redirected_to forum_path(forums(:rails))
@@ -162,7 +163,7 @@ class TopicsControllerTest < ActionController::TestCase
     get :edit, :forum_id => 1, :id => 1
     assert_response :success
   end
-  
+
   def test_should_update_own_post
     login_as :sam
     put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { }, :tag_list => 'tagX, tagY'

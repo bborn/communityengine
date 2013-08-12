@@ -45,8 +45,8 @@ class MessagesController < BaseController
       @message.valid?
       render :action => :new and return
     else
-      @message = Message.new(params[:message])          
-      @message.recipient = User.find_by_login(params[:message][:to].strip)
+      @message = Message.new(params[:message])
+      @message.recipient= User.where('lower(login) = ?', params[:message][:to].strip.downcase).first
       @message.sender = @user
       unless @message.valid?
         render :action => :new and return        

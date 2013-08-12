@@ -18,7 +18,7 @@
         %label
           =:tags.l
           %em="(#{:optional_keywords_describing_this_clipping_separated_by_commas.l})"
-        = text_field_tag 'tag_list', @clipping.tag_list
+        = text_field_tag 'tag_list', @clipping.tag_list.to_s
 
         %p
           = submit_tag :save.l
