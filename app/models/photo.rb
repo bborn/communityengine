@@ -24,7 +24,7 @@ class Photo < ActiveRecord::Base
   #Named scopes
   scope :recent, :order => "photos.created_at DESC"
   scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ?", 7.days.ago.iso8601]
-  attr_accessible :name, :description, :photo, :photo_remote_url, :crop_x, :crop_y, :crop_w, :crop_h, :user_id
+  attr_accessible :name, :description, :photo, :photo_remote_url, :crop_x, :crop_y, :crop_w, :crop_h, :user_id, :album_id
 
   def display_name
     (self.name && self.name.length>0) ? self.name : "#{:created_at.l.downcase}: #{I18n.l(self.created_at, :format => :published_date)}"
