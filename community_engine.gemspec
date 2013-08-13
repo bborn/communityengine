@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
-  s.date = "2011-11-18"
+  s.date = "2013-08-13"
   s.email = "admin@curbly.com"
   s.extra_rdoc_files = [
     "LICENSE",
