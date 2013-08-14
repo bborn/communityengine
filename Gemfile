@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem "jquery-rails"
 gem 'omniauth-facebook'
+gem 'whitelist'
 
 group :test do
   gem 'sqlite3'

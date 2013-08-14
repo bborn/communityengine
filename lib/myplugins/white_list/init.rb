@@ -1,4 +1,4 @@
-require 'white_list_helper'
+require File.expand_path('./lib/white_list_helper', File.dirname(__FILE__))
 ActionView::Base.send :include, WhiteListHelper
 ActiveRecord::Base.send :include, WhiteListHelper
 
