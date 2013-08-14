@@ -31,7 +31,18 @@ require 'rails_autolink'
 require 'meta_search'
 require 'tinymce-rails'
 require 'sanitize'
+
+# Rails 2.3 Plugins converted to lib
+require 'activity_tracker'
+require 'acts_as_publishable'
+require 'white_list'
+require 'auto_complete'
+require 'prototype_legacy_helper'
+require 'resource_feeder'
+
+# Rails 2.3 Plugin enumeration_mixin replaced by power_enum gem
+require 'power_enum'
 require 'acts_as_list'
 
-
-include EnginesExtensions
+# This was in an config/initializer
+require 'papercliip_processors/cropper'

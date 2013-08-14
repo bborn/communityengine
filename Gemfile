@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem "jquery-rails"
 gem 'omniauth-facebook'
 gem 'whitelist'
+gem 'power_enum'
 
 group :test do
   gem 'sqlite3'
