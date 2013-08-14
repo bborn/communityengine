@@ -16,9 +16,9 @@
       %h3 
         =:new_photo.l
 
-      = error_messages_for :photo
+      = error_messages_for @photo
 
-      = form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
+      = form_for(@photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
       
         = f.file_field :photo
         

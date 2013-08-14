@@ -9,7 +9,7 @@ class TagsController < BaseController
   end  
 
   def auto_complete_for_tag_name
-    @tags = ActsAsTaggableOn::Tag.find(:all, :limit => 10, :conditions => [ 'LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%' ])
+    @tags = ActsAsTaggableOn::Tag.where('LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%').limit(10).all
     render :inline => "<%= auto_complete_result(@tags, 'name') %>"
   end
   
@@ -67,7 +67,7 @@ class TagsController < BaseController
   def show
     tag_array = ActsAsTaggableOn::TagList.from( URI::decode(params[:id]) )
     
-    @tags = ActsAsTaggableOn::Tag.find(:all, :conditions => [ 'name IN (?)', tag_array ] )
+    @tags = ActsAsTaggableOn::Tag.where('name IN (?)', tag_array).all
     if @tags.nil? || @tags.empty?
       flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_array)
       redirect_to :action => :index and return

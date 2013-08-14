@@ -1,0 +1,14 @@
+console.log("configuring " + $('edit_post'));
+$('edit_post').observe("ajax:before", function () {
+    console.log("Submitting");
+    $('editbox_spinner').show();
+    tinyMCE.triggerSave();
+    console.log( "Returning " + tinyMCE.get('edit_post_body').save());
+    console.log("saved");
+    return false;
+});
+console.log("Setting button " + $('cancelButton'));
+$('cancelButton').observe('click', function () {
+    EditForm.cancel();
+    return false;
+});

@@ -65,7 +65,7 @@ class UsersController < BaseController
 
   def show
     @friend_count               = @user.accepted_friendships.count
-    @accepted_friendships       = @user.accepted_friendships.find(:all, :limit => 5).collect{|f| f.friend }
+    @accepted_friendships       = @user.accepted_friendships.limit(5).all.collect{|f| f.friend }
     @pending_friendships_count  = @user.pending_friendships.count()
 
     @comments       = @user.comments.find(:all, :limit => 10, :order => 'created_at DESC')
@@ -73,8 +73,8 @@ class UsersController < BaseController
     @users_comments = Comment.find_comments_by_user(@user).limit(5)
 
     @recent_posts   = @user.posts.recent.find(:all, :limit => 2)
-    @clippings      = @user.clippings.find(:all, :limit => 5)
-    @photos         = @user.photos.find(:all, :limit => 5)
+    @clippings      = @user.clippings.limit(5).all
+    @photos         = @user.photos.limit(5).all
     @comment        = Comment.new(params[:comment])
 
     @my_activity = Activity.recent.by_users([@user.id]).find(:all, :limit => 10)
@@ -143,6 +143,10 @@ class UsersController < BaseController
       flash[:error] = :you_cant_delete_that_user.l
     end
     respond_to do |format|
+      format.js   {
+        render :inline => flash[:error], :status => 500 if flash[:error]
+        render :nothing => true if flash[:notice]
+      }
       format.html { redirect_to users_url }
     end
   end
@@ -355,8 +359,12 @@ class UsersController < BaseController
 
   def toggle_moderator
     @user = User.find(params[:id])
-    @user.role = @user.moderator? ? Role[:member] : Role[:moderator]
-    @user.save!
+    if not @user.admin?
+      @user.role = @user.moderator? ? Role[:member] : Role[:moderator]
+      @user.save!
+    else
+      flash[:error] = :you_cannot_make_an_administrator_a_moderator.l
+    end
     redirect_to user_path(@user)
   end
 
@@ -371,8 +379,7 @@ class UsersController < BaseController
     start_date  = @month.beginning_of_month
     end_date    = @month.end_of_month.end_of_day
 
-    @posts = @user.posts.find(:all,
-      :conditions => ['? <= published_at AND published_at <= ?', start_date, end_date])
+    @posts = @user.posts.where('? <= published_at AND published_at <= ?', start_date, end_date).all
 
     @estimated_payment = @posts.sum do |p|
       7
@@ -396,13 +403,13 @@ class UsersController < BaseController
         end
       }
     end
-    flash[:notice] = :the_user_was_deleted.l
+    flash[:notice] = :the_selected_users_were_deleted.l
     redirect_to admin_users_path
   end
 
   protected
     def setup_metro_areas_for_cloud
-      @metro_areas_for_cloud = MetroArea.find(:all, :conditions => "users_count > 0", :order => "users_count DESC", :limit => 100)
+      @metro_areas_for_cloud = MetroArea.where("users_count > 0", :order => "users_count DESC").limit(100).all
       @metro_areas_for_cloud = @metro_areas_for_cloud.sort_by{|m| m.name}
     end
 

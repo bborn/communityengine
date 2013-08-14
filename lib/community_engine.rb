@@ -31,6 +31,7 @@ require 'rails_autolink'
 require 'meta_search'
 require 'tinymce-rails'
 require 'sanitize'
+require 'acts_as_list'
 
 
 include EnginesExtensions

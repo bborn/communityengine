@@ -18,7 +18,7 @@
 
         = paginate @users
 
-      = form_tag delete_selected_users_path, :id => 'users' do
+      = form_tag delete_selected_users_path, :method => :delete, :id => 'users' do
         %table{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0", "width"=>"100%"}
           %thead
             %tr
@@ -32,10 +32,10 @@
             - @users.each do |user|
               %tr{:id => "user_#{user.id}"}
                 %td
-                  = link_to_remote(image_tag('icons/delete.png'), {:url => user_path(user), :method => :delete, :success => visual_effect(:fade, "user_#{user.id}"), :confirm => "Are you sure you want to permanently delete this user"} )                                                                          
+                  = link_to image_tag('icons/delete.png'), user_path(user), :class => "deleteButton", :method => :delete, :remote => true, :data => { :id => user.id }, :confirm => "Are you sure you want to permanently delete this user"
                 %td
                   -if !configatron.akismet_key.nil?                
-                    = link_to_remote(image_tag('icons/bad-flag.png'), {:url => user_path(user, :spam => true), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "user_#{user.id}"), :confirm => "Are you sure you want to permanently delete this user and mark it as spam!?"} )                                                
+                    = link_to image_tag('icons/bad-flag.png'), user_path(user, :spam => true), :method => :delete, :remote => true, :data => { :id => user.id }, :confirm => "Are you sure you want to permanently delete this user and mark it as spam!?"
                 %td= check_box_tag "delete[]", user.id
                 
                 %td
@@ -54,7 +54,7 @@
             %tr
               %td{ :colspan => "4" }
                 -if @users.any?
-                  %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
+                  %a{:href=>"#", :id => "toggleAllButton"} Toggle all
                   %p
                     -if !configatron.akismet_key.nil?
                       = check_box_tag :spam
@@ -67,4 +67,19 @@
 -content_for :end_javascript do
   :javascript
     var form = $('users');
-    checkboxes = form.getInputs('checkbox');        
+    checkboxes = form.getInputs('checkbox');
+    $$('.deleteButton').each(function(button) {
+      button.observe('ajax:failure', function (event) {
+        alert("Sorry, could not delete that user");
+      });
+      button.observe('ajax:success', function (event) {
+        var element = $('user_' + button.readAttribute('data-id'));
+        #{visual_effect(:fade)}
+        return true;
+      });
+    });
+    $('toggleAllButton')
+      .observe("click", function () {
+        checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) });
+        return false;
+      });

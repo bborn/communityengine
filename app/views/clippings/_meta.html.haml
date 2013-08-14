@@ -14,13 +14,23 @@
 
   - if favorite = clipping.has_been_favorited_by(current_user, request.remote_ip)
     .favorite
-      = link_to_remote image_tag('icons/heart_off.png'), :url => favorite_path('clipping', clipping.id, favorite.id), :method => :delete, :loading => "new Effect.Pulsate($$('#clipping_#{clipping.id}_meta .favorite img').first())", :title => :un_favorite_this.l if logged_in?
+      = link_to image_tag('icons/heart_off.png'), favorite_path('clipping', clipping.id, favorite.id), :method => :delete, :remote => true, :id => "delete_#{clipping.id}", :data => { :clipping => "clipping_#{clipping.id}" }, :title => :un_favorite_this.l if logged_in?
       = image_tag('icons/heart_off.png') unless logged_in?
       
       %span.small.quiet= clipping.favorited_count
+    :javascript
+      $('delete_#{clipping.id}').observe('ajax:before', function (event) {
+        var element = $$('#clipping_#{clipping.id}_meta .favorite img').first();
+        new Effect.Fade(element);
+        });
   - else
     .favorite  
-      = link_to_remote image_tag('icons/heart.png'), :url => favorites_path('clipping', clipping.id), :loading => "new Effect.Pulsate($$('#clipping_#{clipping.id}_meta .favorite img').first() )", :title => :favorite_this.l
-      %span.quiet.small= clipping.favorited_count  
+      = link_to image_tag('icons/heart.png'), favorites_path('clipping', clipping.id), :remote => true, :id => "create_#{clipping.id}", :data => { :clipping => "clipping_#{clipping.id}" }, :title => :favorite_this.l
+      %span.quiet.small= clipping.favorited_count
+    :javascript
+      $('create_#{clipping.id}').observe('ajax:before', function (event) {
+        var element = $$('#clipping_#{clipping.id}_meta .favorite img').first();
+        new Effect.Pulsate(element);
+        });
 
   .clear

@@ -122,11 +122,7 @@ class PhotosController < BaseController
           end
         }
         format.js {
-          responds_to_parent do
-            render :update do |page|
-              page << "upload_image_callback('#{@photo.photo.url()}', '#{@photo.display_name}', '#{@photo.id}');"
-            end
-          end
+          # render create.js.erb
         }
       else
         format.html {
@@ -134,11 +130,8 @@ class PhotosController < BaseController
           render :action => "new"
         }
         format.js {
-          responds_to_parent do
-            render :update do |page|
-              page.alert(:sorry_there_was_an_error_uploading_the_photo.l)
-            end
-          end
+          # render create.js.erb
+          @alert = :sorry_there_was_an_error_uploading_the_photo.l
         }
       end
     end

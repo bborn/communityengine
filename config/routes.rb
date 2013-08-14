@@ -139,9 +139,11 @@ Rails.application.routes.draw do
       end      
     end
   end
-  resources :comments
-  delete '/comments/delete_selected' => 'comments#delete_selected', :as => :delete_selected_comments
-  
+  resources :comments do
+    collection do
+      delete :delete_selected
+    end
+  end
   resources :homepage_features
   resources :metro_areas
   resources :ads

@@ -31,6 +31,7 @@ class Friendship < ActiveRecord::Base
   before_validation(:on => :create){:set_pending}
   after_save :notify_requester, :if => Proc.new{|fr| fr.accepted? && fr.initiator }
 
+  attr_accessible :frienship_status, :initiator, :user, :user_id
   attr_protected :friendship_status_id
   
   def reverse

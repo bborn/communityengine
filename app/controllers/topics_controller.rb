@@ -11,7 +11,7 @@ class TopicsController < BaseController
     respond_to do |format|
       format.html { redirect_to forum_path(params[:forum_id]) }
       format.xml do
-        @topics = @forum.topics.find(:all, :order => 'sticky desc, replied_at desc', :limit => 25)
+        @topics = @forum.topics.order('sticky desc, replied_at desc').limit(25).all
         render :xml => @topics.to_xml
       end
     end

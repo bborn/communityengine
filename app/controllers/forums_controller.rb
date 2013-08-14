@@ -7,7 +7,7 @@ class ForumsController < BaseController
   end
   
   def index
-    @forums = Forum.find(:all, :order => "position")
+    @forums = Forum.order("position").all
     respond_to do |format|
       format.html
       format.xml { render :xml => @forums }

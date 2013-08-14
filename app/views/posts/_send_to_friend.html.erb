@@ -1,12 +1,5 @@
 <div id="send_to_friend" style="display:none;">
-	<%= form_remote_tag( 
-		{ 
-		:loading => "$('send_to_friend_spinner').show();", 	
-		:url => send_to_friend_user_post_path(:user_id => params[:user_id], :id => params[:id]), 
-		:complete => "$('send_to_friend_spinner').hide();", 	
-		500 => "$$('div#send_to_friend div.errors')[0].innerHTML = request.responseText; return false;",
-		:success => "alert('"+:messages_sent.l+"'); Element.toggle('send_to_friend'); Lightbox.hideAll(); return false;"
-		} ) do -%>
+	<%= form_tag :id => "send_to_friend_form", :remote => true do -%>
 	  <div class="errors"></div>	
 	  <h3><%= :send_this_story_to_friends.l %> </h3>
 	  <p>
@@ -15,7 +8,7 @@
 	  </p>
 	  <p>
 		<%= :enter_e_mail_addresses_comma_sep.l+':' %> <br />
-    <a href="#" onclick="showPlaxoABChooser('emails', '/base/plaxo'); return false;">
+    <a href="#" id="addButton">
       <img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt=<%= :add_from_my_address_book.l %> />
     </a>
 		<br />
@@ -27,3 +20,25 @@
 	  </p>
 	<% end -%>
 </div>
+<script type="text/javascript">
+    $('addButton').observe('click', function () {
+        showPlaxoABChooser('emails', '/base/plaxo');
+        return false;
+    });
+    $('send_to_friend_form').observe('ajax:loading', function () {
+        $('send_to_frend_spinner').show();
+    });
+    $('send_to_friend_form').observe('ajax:success', function () {
+        alert('<%= :messages_sent.l %>');
+        Element.toggle('send_to_friend');
+        Lightbox.hideAll();
+        return false;
+    });
+    $('send_to_friend_form').observe('ajax:failure', function () {
+        $$('div#send_to_friend div.errors')[0].innerHTML = '<%= escape_javascript(request.responseText) %>';
+        return false;
+    });
+    $('send_to_friend_form').observe('ajax:complete', function () {
+        $('send_to_frend_spinner').hide();
+    });
+</script>

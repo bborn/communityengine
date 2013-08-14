@@ -133,7 +133,7 @@ class CommentsController < BaseController
   end
   
   def delete_selected
-    if request.post?
+    if request.delete?
       if params[:delete]
         params[:delete].each { |id|
           comment = Comment.find(id)
@@ -141,9 +141,11 @@ class CommentsController < BaseController
           comment.destroy if comment.can_be_deleted_by(current_user)
         }
       end
-      flash[:notice] = :comments_deleted.l                
-      redirect_to admin_comments_path
+      flash[:notice] = :comments_deleted.l
+    else
+      flash[:error] = :comments_not_deleted.l
     end
+    redirect_to admin_comments_path
   end  
 
   

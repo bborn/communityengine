@@ -4,3 +4,4 @@ page["edit-post-#{@post.id}_spinner"].hide
 page.delay(0.25) do
   page[:edit_post_body].focus
 end
+page << render(:partial => "edit_script", :formats => [:js])

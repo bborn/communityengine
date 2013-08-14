@@ -6,9 +6,9 @@ class FriendshipsController < BaseController
   def index
     @body_class = 'friendships-browser'
     
-    @user = (params[:id] ||params[:user_id]) ? User.find((params[:id] || params[:user_id] )): Friendship.find(:first).user
-    @friendships = Friendship.find(:all, :conditions => ['user_id = ? OR friend_id = ?', @user.id, @user.id], :limit => 40)
-    @users = User.find(:all, :conditions => ['users.id in (?)', @friendships.collect{|f| f.friend_id }])    
+    @user = (params[:id] || params[:user_id]) ? User.find((params[:id] || params[:user_id] )) : Friendship.first.user
+    @friendships = Friendship.where(:user_id => @user.id, :friend_id => @user.id).limit(40).all
+    @users = User.where(:id => @friendships.collect{|f| f.friend_id }).all
     
     respond_to do |format|
       format.html 
@@ -70,7 +70,7 @@ class FriendshipsController < BaseController
   
   def pending
     @user = User.find(params[:user_id])    
-    @friendships = @user.friendships.find(:all, :conditions => ["initiator = ? AND friendship_status_id = ?", false, FriendshipStatus[:pending].id])
+    @friendships = @user.friendships.where("initiator = ? AND friendship_status_id = ?", false, FriendshipStatus[:pending].id).all
     
     respond_to do |format|
       format.html

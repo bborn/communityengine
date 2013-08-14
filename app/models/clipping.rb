@@ -18,7 +18,8 @@ class Clipping < ActiveRecord::Base
   acts_as_activity :user
     
   scope :recent, :order => 'clippings.created_at DESC'    
-    
+
+  attr_accessible :url, :description, :image_url, :image, :user, :user_id
     
   def self.find_related_to(clipping, options = {})
     options.reverse_merge!({:limit => 8, 

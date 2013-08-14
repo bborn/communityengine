@@ -25,8 +25,9 @@ class SbPostsController < BaseController
     conditions = conditions.any? ? conditions.collect { |c| "(#{c})" }.join(' AND ') : nil
 
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
-    
-    @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
+
+    #@users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
+    @users = User.select('distinct *').where(:id => @posts.collect(&:user_id).uniq).all.index_by(&:id)
   end
 
   def search
@@ -34,7 +35,8 @@ class SbPostsController < BaseController
     
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
 
-    @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
+    #@users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
+    @users = User.select('distinct *').where(:id => @posts.collect(&:user_id).uniq).all.index_by(&:id)
     render :action => :index
   end
 

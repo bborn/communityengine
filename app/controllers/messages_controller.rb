@@ -10,7 +10,7 @@ class MessagesController < BaseController
   end
   
   def auto_complete_for_username
-    @users = User.find(:all, :conditions => [ 'LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%' ])
+    @users = User.where('LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%').all
     render :inline => "<%= auto_complete_result(@users, 'login') %>"
   end
     
@@ -62,7 +62,7 @@ class MessagesController < BaseController
     if request.post?
       if params[:delete]
         params[:delete].each { |id|
-          @message = Message.find(:first, :conditions => ["messages.id = ? AND (sender_id = ? OR recipient_id = ?)", id, @user, @user])
+          @message = Message.where("messages.id = ? AND (sender_id = ? OR recipient_id = ?)", id, @user, @user).first
           @message.mark_deleted(@user) unless @message.nil?
         }
         flash[:notice] = :messages_deleted.l

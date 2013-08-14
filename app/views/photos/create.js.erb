@@ -1,0 +1,5 @@
+<% if @alert.nil? %>
+    upload_image_callback('<%= @photo.photo.url() %>', '<%= @photo.display_name %>', '<%= @photo.id %>');
+<% else %>
+    alert('<%= escape_javascript(@alert) %>');
+<% end %>

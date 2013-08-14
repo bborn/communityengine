@@ -67,7 +67,7 @@ class AdminController < BaseController
   end  
   
   def subscribers
-    @users = User.find(:all, :conditions => ["notify_community_news = ? AND users.activated_at IS NOT NULL", (params[:unsubs] ? false : true)])    
+    @users = User.where("notify_community_news = ? AND users.activated_at IS NOT NULL", (params[:unsubs] ? false : true)).all
     
     respond_to do |format|
       format.xml {

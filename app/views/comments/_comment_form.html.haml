@@ -10,9 +10,8 @@
       }
       document.location.href = loc;
     }
-      
   .errors
-  = form_remote_for(:comment, @comment, :loading => "$$('div#comments div.errors')[0].innerHTML = ''; $('comment_spinner').show();", :before => "tinyMCE.activeEditor.save();", :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
+  = form_for(@comment || Comment.new, :remote => true, :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:id => 'new_comment_form', :class => "MainForm"}) do |f|
     %label
       %em=:comment_character_limit.l
     
@@ -42,9 +41,18 @@
 
     
     %p
-      = submit_tag :add_comment.l
+      = submit_tag :update_comment.l
       = image_tag 'spinner.gif', :plugin => "community_engine", :style => 'display:none;', :id => 'comment_spinner'
+  :javascript
+    $("new_comment_form").observe('ajax.loading', function () {
+              $('div#comments div.errors')[0].innerHTML = '';
+              $('comment_spinner').show();
+              });
+    $("new_comment_form").observe('ajax:before', function () {
+              tinyMCE.activeEditor.save();
+            });
 - else
   = link_to :log_in_to_leave_a_comment.l, new_commentable_comment_path(commentable.class, commentable.id)
   = :or.l
   = link_to :create_an_account.l, signup_path
+

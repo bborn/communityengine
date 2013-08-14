@@ -19,7 +19,7 @@ class EventsController < BaseController
     @calendar = RiCal.Calendar
     @calendar.add_x_property 'X-WR-CALNAME', configatron.community_name
     @calendar.add_x_property 'X-WR-CALDESC', "#{configatron.community_name} #{:events.l}"
-    Event.find(:all).each do |ce_event|
+    Event.all.each do |ce_event|
       rical_event = RiCal.Event do |event|
         event.dtstart = ce_event.start_time
         event.dtend = ce_event.end_time

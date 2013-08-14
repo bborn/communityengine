@@ -1,4 +1,4 @@
-= form_remote_for(:comment, @comment, :loading => "$$('#comment_#{comment.id} .errors')[0].innerHTML = '';", :before => "tinyMCE.activeEditor.save();", :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :method => :put, :html => {:id => "edit_comment_#{comment.id}_form", :class => "MainForm"}) do |f|
+= form_for(@comment, :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :method => :put, :remote => true, :html => {:id => "edit_comment_#{comment.id}_form", :class => "MainForm"}) do |f|
   .errors
   %label
     %em=:comment_character_limit.l
@@ -25,5 +25,12 @@
   = f.text_field :author_url, :size => 35
   
   %p
-    = submit_tag :add_comment.l
-    = link_to_remote :cancel.l, :url => {:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true}, :method => :get    
+    = submit_tag "Update Comment"
+    = link_to :cancel.l, url_for(:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true), :method => :get, :remote => true
+:javascript
+  $('edit_comment_#{comment.id}_form').observe('ajax:loading', function () {
+    $$('#comment_#{comment.id} .errors')[0].innerHTML = '';
+  });
+  $('edit_comment_#{comment.id}_form').observe('ajax:before', function () {
+    tinyMCE.activeEditor.save();
+  });

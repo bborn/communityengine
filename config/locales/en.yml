@@ -1395,6 +1395,8 @@ en:
   uncategorized: Uncategorized
   #en: update: Update
   update: Update
+  #en: update_comment: Update Comment
+  update_comment: Update Comment
   #en: update_rsvp: Update RSVP
   update_rsvp: Update RSVP
   #en: update_profile_and_tag_yourself: Update your profile and tag yourself
@@ -1541,6 +1543,8 @@ en:
   you_can_browse_all_content_and_users_on: You can browse all content and users on
   #en: you_cant_delete_that_user: You can't delete that user.
   you_cant_delete_that_user: You can't delete that user.
+  #en: you_cannot_make_an_administrator_a_moderator
+  you_cannot_make_an_administrator_a_moderator: You cannot make an administrator_a_moderator
   #en: you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
   you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
   #en: you_could_tag_yourself: You could tag yourself

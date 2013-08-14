@@ -39,7 +39,8 @@
           %tbody
             - @comments.each do |comment|
               %tr{:id => "comment_#{comment.id}"}
-                %td=link_to_remote(image_tag('icons/delete.png'), {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => "Are you sure you want to permanently delete this comment"} )                                                
+                %td
+                  = link_to image_tag('icons/delete.png'), commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => "deleteButton", :data => { :id => comment.id }, :remote => true, :method => :delete, :confirm => "Are you sure you want to permanently delete this comment"
                 %td= check_box_tag "delete[]", comment.id
                 %td
                   .left
@@ -61,7 +62,7 @@
             %tr
               %td{ :colspan => "4" }
                 -if @comments.any?
-                  %a{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all              
+                  %a{:href=>"#", :id => "toggleAllButton"} Toggle all
                   %p= submit_tag :delete_selected.l              
 
       = paginate @comments
@@ -70,3 +71,20 @@
   :javascript
     var form = $('comments');
     checkboxes = form.getInputs('checkbox');
+    $$('.deleteButton').each(function(button) {
+      console.log("Configuring button comment_" + button.readAttribute('data-id'));
+      button.observe('ajax:failure', function (event) {
+        alert("Sorry, could not delete that comment");
+      });
+      button.observe('ajax:success', function (event) {
+        console.log("Success " + button + " with status " + event.status);
+        var element = $('comment_' + button.readAttribute('data-id'));
+        #{visual_effect(:fade)}
+        return true;
+      });
+    });
+    $('toggleAllButton')
+      .observe("click", function () {
+        checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) });
+        return false;
+      });

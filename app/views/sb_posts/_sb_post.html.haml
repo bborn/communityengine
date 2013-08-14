@@ -24,7 +24,7 @@
       %p
         %span.edit
           = ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif"
-          = link_to_remote(:edit_post.l, {:url => edit_forum_topic_sb_post_path(@forum, @topic, post), :method => :get, :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, {:class => "utility"})
+          = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :remote => true, :id => "edit_post_link_#{post.id}", :class => "utility edit_post_link", :data => { :postid => post.id }
         - if admin? && post.user && !post.user.admin?
           %div{"class"=>"make-moderator-#{post.user_id}"}
             = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
@@ -32,3 +32,10 @@
   %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
     = link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if logged_in?
     = raw post.body
+:javascript
+    $('edit_post_link_#{post.id}').observe('ajax:before', function () {
+      var id = link.readAttribute('data-postid');
+      if (!EditForm.isEditing(#{post.id})) {
+         EditForm.init(#{post.id});
+      }
+    });

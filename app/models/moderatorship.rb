@@ -5,4 +5,6 @@ class Moderatorship < ActiveRecord::Base
 
   validates_uniqueness_of :user_id, :scope => :forum_id
 
+  attr_accessible :forum, :forum_id, :user, :user_id
+
 end

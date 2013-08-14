@@ -5,7 +5,7 @@ class CategoriesController < BaseController
   # GET /categories
   # GET /categories.xml
   def index
-    @categories = Category.find(:all)
+    @categories = Category.all
 
     respond_to do |format|
       format.html # index.rhtml
@@ -29,12 +29,7 @@ class CategoriesController < BaseController
     @rss_title = "#{configatron.community_name}: #{@category.name} "+:posts.l
     @rss_url = category_path(@category, :format => :rss)
 
-    @active_users = User.find(:all,
-      :include => :posts,
-      :limit => 5,
-      :conditions => ["posts.category_id = ? AND posts.published_at > ?", @category.id, 14.days.ago],
-      :order => "users.view_count DESC"
-      )
+    @active_users = User.where("posts.category_id = ? AND posts.published_at > ?", @category.id, 14.days.ago).includes(:posts).limit(5).order("users.view_count DESC").all
     
     respond_to do |format|
       format.html # show.rhtml

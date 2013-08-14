@@ -12,7 +12,8 @@
 
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
-      
+
+    = javascript_include_tag 'community_engine'
     = render :partial => "shared/scripts_and_styles"      
     
   %body
@@ -47,7 +48,7 @@
               %a{:href=>logout_url, :title=>:log_out_of_your.l + " #{configatron.community_name} " + :account.l}
                 =:log_out.l
 
-          - Page.find(:all).each do |page|
+          - Page.all.each do |page|
             - if (logged_in? || page.page_public)
               %li= link_to page.title, pages_path(page) 
               

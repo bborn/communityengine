@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem "jquery-rails"
 gem 'omniauth-facebook'
 
 group :test do

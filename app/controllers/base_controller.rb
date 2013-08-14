@@ -138,7 +138,7 @@ class BaseController < ApplicationController
 
       @featured_posts = Post.find_featured
     
-      @topics = Topic.find(:all, :limit => 5, :order => "replied_at DESC")
+      @topics = Topic.order("replied_at DESC").limit(5).all
 
       @popular_posts = Post.find_popular({:limit => 10})    
       @popular_polls = Poll.find_popular(:limit => 8)

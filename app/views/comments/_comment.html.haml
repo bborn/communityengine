@@ -10,9 +10,9 @@
             %abbr.published{"title"=>"#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
         -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
+          %li.delete=link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, :remote => true, :id => "delete_comment_#{comment.id}", :class => "delete_comment", :data => { :comment => "comment_#{comment.id}"}, :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l
         -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+          %li.edit=link_to :edit.l, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :remote => true,  :class => "edit_comment", :data => { :comment => "comment_#{comment.id}"}
     .entry-content= comment.comment.html_safe
 
 -else
@@ -29,12 +29,21 @@
             %abbr.published{"title"=>"#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
         -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to_remote(:delete.l, {:url => commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 500 => 'alert(\'Sorry, there was a server error\'); return false',  :success => visual_effect(:fade, "comment_#{comment.id}"), :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l} )
+          %li.delete=link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, :remote => true, :id => "delete_comment_#{comment.id}", :class => "delete_comment", :data => { :comment => "comment_#{comment.id}"}, :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l
         -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to_remote :edit.l, :url => edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :get
+          %li.edit=link_to :edit.l, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :remote => true, :data => { :comment => "comment_#{comment.id}"}, :class => "edit_comment"
 
     .entry-content= comment.comment.html_safe
 
+:javascript
+  $('delete_comment_#{comment.id}').observe('ajax:success', function () {
+    var element = $('comment_#{comment.id}');
+    new Effect.Fade(element);
+  });
+  $('delete_comment_#{comment.id}').observe('ajax:failure', function () {
+    alert('Sorry, there was a server error');
+    return false
+  });
 - highlighted ||= nil
 - if highlighted
   :javascript

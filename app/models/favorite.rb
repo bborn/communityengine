@@ -19,6 +19,7 @@ class Favorite < ActiveRecord::Base
     {:conditions => ["user_id = ?", user.id] }
   }
 
+  attr_accessible :ip_address, :favoritable, :user, :user_id
   
   def update_counter_on_favoritable
     if favoritable && favoritable.respond_to?(:favorited_count)
