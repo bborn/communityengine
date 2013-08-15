@@ -24,7 +24,7 @@ class InvitationsController < BaseController
   def create
     @user = current_user
 
-    @invitation = Invitation.new(params[:invitation])
+    @invitation = Invitation.new(invitation_params)
     @invitation.user = @user
     
     respond_to do |format|
@@ -41,6 +41,12 @@ class InvitationsController < BaseController
         format.html { render :action => "new" }
       end
     end
+  end
+
+  private
+
+  def invitation_params
+    params.require(:invitation).permit(:email_addresses)
   end
   
 end

@@ -4,6 +4,9 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../testapp/config/environment",  __FILE__)
 require "rails/test_help"
 
+require "authlogic/test_case"
+require "community_engine/authenticated_test_helper"
+
 require 'minitest/reporters'
 MiniTest::Reporters.use!
 
@@ -13,11 +16,9 @@ ActionMailer::Base.default_url_options[:host] = "test.com"
 
 Rails.backtrace_cleaner.remove_silencers!
 
-require "authlogic/test_case"
-require "community_engine/authenticated_test_helper"
 
 ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures").to_s #we want a string here, not a Pathname
-ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
+ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
 # OmniAuth.config.test_mode = true
 # OmniAuth.config.mock_auth[:default] = {
@@ -26,12 +27,22 @@ ActionController::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture
 #   'email' => 'email@example.com'
 # }
 
+ApplicationController.send(:include, ActionController::Caching)
+ApplicationController.send(:include, ActionController::Caching::Pages)
+ApplicationController.send(:include, ActionController::Caching::Actions)
+ActionController::Caching::Sweeper.send(:include, ActiveSupport::Configurable)
+ActionController::Caching::Sweeper.send(:include, ActionController::Caching)
+ActionController::Caching::Sweeper.send(:include, ActionController::Caching::Pages)
+ActionController::Caching::Sweeper.send(:include, ActionController::Caching::Actions)
 
 class ActionController::TestCase
+  include Authlogic::TestCase
+  include ActionController::Caching::Actions
   setup :activate_authlogic
 end
 
 class ActiveSupport::TestCase
+  include Authlogic::TestCase
   setup :activate_authlogic
   include AuthenticatedTestHelper
   include ActionDispatch::TestProcess

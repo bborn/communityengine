@@ -9,26 +9,26 @@ class TagsController < BaseController
   end  
 
   def auto_complete_for_tag_name
-    @tags = ActsAsTaggableOn::Tag.where('LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%').limit(10).all
+    @tags = ActsAsTaggableOn::Tag.where('LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%').limit(10)
     render :inline => "<%= auto_complete_result(@tags, 'name') %>"
   end
   
   def index  
-    @tags = popular_tags(100)
+    @tags = popular_tags(100).to_a
 
-    @user_tags = popular_tags(75, 'User')
+    @user_tags = popular_tags(75, 'User').to_a
     
-    @post_tags = popular_tags(75, 'Post')
+    @post_tags = popular_tags(75, 'Post').to_a
 
-    @photo_tags = popular_tags(75, 'Photo')
+    @photo_tags = popular_tags(75, 'Photo').to_a
 
-    @clipping_tags = popular_tags(75, 'Clipping')  
+    @clipping_tags = popular_tags(75, 'Clipping').to_a
   end
   
   def manage    
-    @search = ActsAsTaggableOn::Tag.search(params[:search])
-    @search.meta_sort ||= 'name.asc'    
-    @tags = @search.page(params[:page]).per(100)
+    @search = ActsAsTaggableOn::Tag.search(params[:q])
+    @tags = @search.result
+    @tags = @tags.order('name ASC').distinct.page(params[:page]).per(100)
   end
   
 
@@ -67,7 +67,7 @@ class TagsController < BaseController
   def show
     tag_array = ActsAsTaggableOn::TagList.from( URI::decode(params[:id]) )
     
-    @tags = ActsAsTaggableOn::Tag.where('name IN (?)', tag_array).all
+    @tags = ActsAsTaggableOn::Tag.where('name IN (?)', tag_array)
     if @tags.nil? || @tags.empty?
       flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_array)
       redirect_to :action => :index and return

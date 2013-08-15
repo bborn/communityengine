@@ -28,7 +28,7 @@ require 'omniauth'
 require 'authlogic'
 require 'prototype-rails'
 require 'rails_autolink'
-require 'meta_search'
+require 'ransack'
 require 'tinymce-rails'
 require 'sanitize'
 
@@ -46,3 +46,10 @@ require 'acts_as_list'
 
 # This was in an config/initializer
 require 'papercliip_processors/cropper'
+
+# Rails 4
+require 'actionpack/action_caching'
+require 'actionpack/page_caching'
+
+# We need this here because it will not get autoloaded.      Maybe this should go in lib?
+require File.dirname(__FILE__) + "/../app/models/acts_as_taggable_on/tag"

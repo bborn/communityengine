@@ -72,7 +72,7 @@ class TopicTest < ActiveSupport::TestCase
   end
   
   def test_doesnt_change_replied_at_on_save
-    t=Topic.find(:first)
+    t=Topic.first
     old=t.replied_at
     assert t.save
     assert_equal old, t.replied_at

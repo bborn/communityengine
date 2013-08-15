@@ -19,7 +19,7 @@ class Friendship < ActiveRecord::Base
   # named scopes
   scope :accepted, lambda {
     #hack: prevents FriendshipStatus[:accepted] from getting called before the friendship_status records are in the db (only matters in testing ENV)
-    {:conditions => ["friendship_status_id = ?", FriendshipStatus[:accepted].id]    }
+    where("friendship_status_id = ?", FriendshipStatus[:accepted].id)
   }
   
   def cannot_request_if_daily_limit_reached  
@@ -30,12 +30,9 @@ class Friendship < ActiveRecord::Base
     
   before_validation(:on => :create){:set_pending}
   after_save :notify_requester, :if => Proc.new{|fr| fr.accepted? && fr.initiator }
-
-  attr_accessible :frienship_status, :initiator, :user, :user_id
-  attr_protected :friendship_status_id
   
   def reverse
-    Friendship.find(:first, :conditions => ['user_id = ? and friend_id = ?', self.friend_id, self.user_id])
+    Friendship.where('user_id = ? and friend_id = ?', self.friend_id, self.user_id).first
   end
 
   def denied?
@@ -51,7 +48,7 @@ class Friendship < ActiveRecord::Base
   end
   
   def self.friends?(user, friend)
-    find(:first, :conditions => ["user_id = ? AND friend_id = ? AND friendship_status_id = ?", user.id, friend.id, FriendshipStatus[:accepted].id ])
+    where("user_id = ? AND friend_id = ? AND friendship_status_id = ?", user.id, friend.id, FriendshipStatus[:accepted].id).first
   end
   
   def notify_requester

@@ -1,8 +1,6 @@
 class Message < ActiveRecord::Base  
   attr_accessor :to
   attr_accessor :reply_to
-
-  attr_accessible :to, :subject, :body, :recipient, :sender, :recipient_id, :sender_id
   
   belongs_to :sender,     :class_name => 'User', :foreign_key => 'sender_id', :inverse_of => :sent_messages
   belongs_to :recipient,  :class_name => 'User', :foreign_key => 'recipient_id', :inverse_of => :received_messages
@@ -11,9 +9,10 @@ class Message < ActiveRecord::Base
   has_many :children, :class_name => "Message", :foreign_key => "parent_id", :inverse_of => :parent
   has_many :message_threads
   
-  scope :parent_messages, where("parent_id IS NULL")
-  scope :already_read, where("read_at IS NOT NULL")
-  scope :unread, where("read_at IS NULL")
+  scope :parent_messages, -> { where("parent_id IS NULL") }
+  scope :already_read, -> { where("read_at IS NOT NULL") }
+  scope :unread, -> { where("read_at IS NULL") }
+  scope :reader, lambda { |reader| where("sender_id = ? OR recipient_id = ?", reader, reader)}
   
   validates_presence_of :body, :subject, :sender
   validates_presence_of :recipient, :message => "is invalid"
@@ -26,7 +25,7 @@ class Message < ActiveRecord::Base
   # Ensures the passed user is either the sender or the recipient then returns the message.
   # If the reader is the recipient and the message has yet not been read, it marks the read_at timestamp.
   def self.read(id, reader)
-    message = find(id, :conditions => ["sender_id = ? OR recipient_id = ?", reader, reader])
+    message = self.reader(reader).find(id)
     if message.read_at.nil? && reader == message.recipient
       message.read_at = Time.now
       message.save!
@@ -57,7 +56,7 @@ class Message < ActiveRecord::Base
   end
   
   def update_message_threads
-    recipients_thread = MessageThread.find_or_create_by_recipient_id_and_parent_message_id(self.recipient_id, (self.parent_id || self.id))
+    recipients_thread = MessageThread.find_or_create_by(:recipient_id => self.recipient_id, :parent_message_id =>  (self.parent_id || self.id))
     recipients_thread.sender = sender
     recipients_thread.recipient = recipient
     recipients_thread.message = self
@@ -65,7 +64,7 @@ class Message < ActiveRecord::Base
     recipients_thread.save
   
     if parent
-      senders_thread = MessageThread.find_or_create_by_recipient_id_and_parent_message_id(self.sender_id, self.parent_id)
+      senders_thread = MessageThread.find_or_create_by(:recipient_id => self.sender_id, :parent_message_id => self.parent_id)
       senders_thread.message = self
       senders_thread.save
     end

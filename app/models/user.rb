@@ -2,15 +2,15 @@ require 'digest/sha1'
 require 'bcrypt'
 
 class User < ActiveRecord::Base
+  extend FriendlyId
   include UrlUpload
   include FacebookProfile
   include TwitterProfile
 
   include Rakismet::Model
   rakismet_attrs :author => :login, :comment_type => 'registration', :content => :description, :user_ip => :last_login_ip, :author_email => :email
-  attr_protected :admin, :featured, :role_id, :akismet_attrs
 
-  has_friendly_id :login, :use_slug => true, :cache_column => 'login_slug'
+  friendly_id :login, :use => :slugged, :slug_column => 'login_slug'
 
   MALE    = 'M'
   FEMALE  = 'F'
@@ -57,72 +57,62 @@ class User < ActiveRecord::Base
 
   #associations
     has_many :authorizations, :dependent => :destroy
-    has_many :posts, :order => "published_at desc", :dependent => :destroy
-    has_many :photos, :order => "created_at desc", :dependent => :destroy
+    has_many :posts, -> {order("published_at desc")}, :dependent => :destroy
+    has_many :photos, -> {order("created_at desc")}, :dependent => :destroy
     has_many :invitations, :dependent => :destroy
     has_many :rsvps, :dependent => :destroy
     has_many :albums, :dependent => :destroy
 
     #friendship associations
     has_many :friendships, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
-    has_many :accepted_friendships, :class_name => "Friendship", :conditions => ['friendship_status_id = ?', 2]
-    has_many :pending_friendships, :class_name => "Friendship", :conditions => ['initiator = ? AND friendship_status_id = ?', false, 1]
-    has_many :friendships_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', true], :dependent => :destroy
-    has_many :friendships_not_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', false], :dependent => :destroy
+    has_many :accepted_friendships, -> { where('friendship_status_id = ?', 2) }, :class_name => "Friendship"
+    has_many :pending_friendships, -> { where('initiator = ? AND friendship_status_id = ?', false, 1) }, :class_name => "Friendship"
+    has_many :friendships_initiated_by_me, -> { where('initiator = ?', true) }, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
+    has_many :friendships_not_initiated_by_me, -> { where('initiator = ?', false) }, :class_name => "Friendship", :foreign_key => "user_id", :dependent => :destroy
     has_many :occurances_as_friend, :class_name => "Friendship", :foreign_key => "friend_id", :dependent => :destroy
 
     #forums
     has_many :moderatorships, :dependent => :destroy
-    has_many :forums, :through => :moderatorships, :order => 'forums.name'
+    has_many :forums, -> { order("forums.name") }, :through => :moderatorships
     has_many :sb_posts, :dependent => :destroy
     has_many :topics, :dependent => :destroy
     has_many :monitorships, :dependent => :destroy
-    has_many :monitored_topics, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :order => 'topics.replied_at desc', :source => :topic
+    has_many :monitored_topics, -> { where('monitorships.active = ?', true).order('topics.replied_at desc') }, :through => :monitorships, :source => :topic
 
     belongs_to  :avatar, :class_name => "Photo", :foreign_key => "avatar_id", :inverse_of => :user_as_avatar
     belongs_to  :metro_area, :counter_cache => true
     belongs_to  :state
     belongs_to  :country
-    has_many    :comments_as_author, :class_name => "Comment", :foreign_key => "user_id", :order => "created_at desc", :dependent => :destroy
-    has_many    :comments_as_recipient, :class_name => "Comment", :foreign_key => "recipient_id", :order => "created_at desc", :dependent => :destroy
-    has_many    :clippings, :order => "created_at desc", :dependent => :destroy
-    has_many    :favorites, :order => "created_at desc", :dependent => :destroy
+    has_many    :comments_as_author, -> { order("created_at desc") }, :class_name => "Comment", :foreign_key => "user_id", :dependent => :destroy
+    has_many    :comments_as_recipient, -> { order("created_at desc") }, :class_name => "Comment", :foreign_key => "recipient_id", :dependent => :destroy
+    has_many    :clippings, -> { order("created_at desc") }, :dependent => :destroy
+    has_many    :favorites, -> { order("created_at desc") }, :dependent => :destroy
 
     #messages
     has_many :all_sent_messages, :class_name => "Message", :foreign_key => "sender_id", :dependent => :destroy
-    has_many :sent_messages,
+    has_many :sent_messages, -> { where("messages.sender_deleted = ?", false).order("messages.created_at DESC") },
              :class_name => 'Message',
-             :foreign_key => 'sender_id',
-             :order => "messages.created_at DESC",
-             :conditions => ["messages.sender_deleted = ?", false]
+             :foreign_key => 'sender_id'
 
-    has_many :received_messages,
+    has_many :received_messages, -> { where("message.recipient_deleted = ?", false).order("message.created_at DESC") },
              :class_name => 'Message',
-             :foreign_key => 'recipient_id',
-             :order => "message.created_at DESC",
-             :conditions => ["message.recipient_deleted = ?", false]
+             :foreign_key => 'recipient_id'
     has_many :message_threads_as_recipient, :class_name => "MessageThread", :foreign_key => "recipient_id"
 
   #named scopes
-  scope :recent, order('users.created_at DESC')
-  scope :featured, where(:featured_writer => true)
-  scope :active, where("users.activated_at IS NOT NULL")
-  scope :vendors, where(:vendor => true)
+  scope :recent, -> {order('users.created_at DESC')}
+  scope :featured, -> { where(:featured_writer => true) }
+  scope :active, -> {where("users.activated_at IS NOT NULL")}
+  scope :vendors, -> {where(:vendor => true)}
 
-
-  accepts_nested_attributes_for :avatar
-  attr_accessible :avatar_id, :company_name, :country_id, :description, :email,
-    :firstname, :fullname, :gender, :lastname, :login, :metro_area_id,
-    :middlename, :notify_comments, :notify_community_news,
-    :notify_friend_requests, :password, :password_confirmation,
-    :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip, :avatar_attributes, :birthday
 
   attr_accessor :authorizing_from_omniauth
+  accepts_nested_attributes_for :avatar
 
   ## Class Methods
 
   def self.find_by_login_or_email(string)
-    self.first(:conditions => ["LOWER(email) = ? OR LOWER(login) = ?", string.downcase, string.downcase])
+    self.where("LOWER(email) = ? OR LOWER(login) = ?", string.downcase, string.downcase).first
   end
 
   def self.find_country_and_state_from_search_params(search)
@@ -139,7 +129,7 @@ class User < ActiveRecord::Base
 
     states  = country ? country.states.sort_by{|s| s.name} : []
     if states.any?
-      metro_areas = state ? state.metro_areas.all(:order => "name") : []
+      metro_areas = state ? state.metro_areas.order("name") : []
     else
       metro_areas = country ? country.metro_areas : []
     end
@@ -182,14 +172,12 @@ class User < ActiveRecord::Base
   def self.find_by_activity(options = {})
     options.reverse_merge! :limit => 30, :require_avatar => true, :since => 7.days.ago
 
-    activities = Activity.since(options[:since]).find(:all,
-      :select => 'activities.user_id, count(*) as count',
-      :group => 'activities.user_id',
-      :conditions => "#{options[:require_avatar] ? ' users.avatar_id IS NOT NULL AND ' : ''} users.activated_at IS NOT NULL",
-      :order => 'count DESC',
-      :joins => "LEFT JOIN users ON users.id = activities.user_id",
-      :limit => options[:limit]
-      )
+    activities = Activity.since(options[:since]).select('activities.user_id, count(*) as count').
+      group('activities.user_id').
+      where("#{options[:require_avatar] ? ' users.avatar_id IS NOT NULL AND ' : ''} users.activated_at IS NOT NULL").
+      order('count DESC').
+      joins( "LEFT JOIN users ON users.id = activities.user_id").
+      limit(options[:limit])
     activities.map{|a| find(a.user_id) }
   end
 
@@ -213,12 +201,12 @@ class User < ActiveRecord::Base
   end
 
   def self.currently_online
-    User.find(:all, :conditions => ["sb_last_seen_at > ?", Time.now.utc-5.minutes])
+    User.where("sb_last_seen_at > ?", Time.now.utc-5.minutes)
   end
 
   def self.search(query, options = {})
     with_scope :find => { :conditions => build_search_conditions(query) } do
-      find :all, options
+      where(options)
     end
   end
 
@@ -232,7 +220,7 @@ class User < ActiveRecord::Base
   ## Instance Methods
 
   def moderator_of?(forum)
-    moderatorships.count(:all, :conditions => ['forum_id = ?', (forum.is_a?(Forum) ? forum.id : forum)]) == 1
+    moderatorships.where('forum_id = ?', (forum.is_a?(Forum) ? forum.id : forum)).count == 1
   end
 
   def monitoring_topic?(topic)
@@ -242,16 +230,16 @@ class User < ActiveRecord::Base
   def recount_metro_area_users
     return unless self.metro_area
     ma = self.metro_area
-    ma.users_count = User.count(:conditions => ["metro_area_id = ?", ma.id])
+    ma.users_count = User.where("metro_area_id = ?", ma.id).count
     ma.save
   end
 
   def this_months_posts
-    self.posts.find(:all, :conditions => ["published_at > ?", DateTime.now.to_time.at_beginning_of_month])
+    self.posts.where("published_at > ?", DateTime.now.to_time.at_beginning_of_month)
   end
 
   def last_months_posts
-    self.posts.find(:all, :conditions => ["published_at > ? and published_at < ?", DateTime.now.to_time.at_beginning_of_month.months_ago(1), DateTime.now.to_time.at_beginning_of_month])
+    self.posts.where("published_at > ? and published_at < ?", DateTime.now.to_time.at_beginning_of_month.months_ago(1), DateTime.now.to_time.at_beginning_of_month)
   end
 
   def avatar_photo_url(size = :original)
@@ -334,7 +322,7 @@ class User < ActiveRecord::Base
   end
 
   def friendship_exists_with?(friend)
-    Friendship.find(:first, :conditions => ["user_id = ? AND friend_id = ?", self.id, friend.id])
+    Friendship.where("user_id = ? AND friend_id = ?", self.id, friend.id).first
   end
 
   def deliver_signup_notification
@@ -347,7 +335,7 @@ class User < ActiveRecord::Base
   end
 
   def has_reached_daily_friend_request_limit?
-    friendships_initiated_by_me.count(:conditions => ['created_at > ?', Time.now.beginning_of_day]) >= Friendship.daily_request_limit
+    friendships_initiated_by_me.where('created_at > ?', Time.now.beginning_of_day).count >= Friendship.daily_request_limit
   end
 
   def network_activity(page = {}, since = 1.week.ago)
@@ -403,7 +391,7 @@ class User < ActiveRecord::Base
   end
 
   def update_last_seen_at
-    User.update_all ['sb_last_seen_at = ?', Time.now.utc], ['id = ?', self.id]
+    User.where('id = ?', self.id).update_all(['sb_last_seen_at = ?', Time.now.utc])
     self.sb_last_seen_at = Time.now.utc
   end
 
@@ -412,7 +400,7 @@ class User < ActiveRecord::Base
   end
 
   def unread_message_count
-    message_threads_as_recipient.count(:conditions => ["messages.recipient_id = ? AND messages.recipient_deleted = ? AND read_at IS NULL", self.id, false], :include => :message)
+    message_threads_as_recipient.includes(:message).where("messages.recipient_id = ? AND messages.recipient_deleted = ? AND read_at IS NULL", self.id, false).references(:messages).count
   end
 
   def deliver_password_reset_instructions!
@@ -426,7 +414,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_from_authorization(auth)
-    user = User.find_or_initialize_by_email(:email => auth.email)
+    user = User.where(:email => auth.email).first_or_initialize
     user.login ||= auth.nickname
 
     if user.new_record?

@@ -2,7 +2,7 @@
 
 <h4><%= link_to @user.display_name, user_path(@user) %>'<%= 's '+:monitored_topics.l %></h4>
 <ul class="flat">
-<% @user.monitored_topics.find(:all, :limit => 25).each do |topic| %>
+<% @user.monitored_topics.limit(25).each do |topic| %>
   <li><%= link_to topic.title, forum_topic_path(topic.forum_id, topic) %></li>
 <% end %>
 </ul>

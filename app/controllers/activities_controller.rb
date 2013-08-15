@@ -12,7 +12,8 @@ class ActivitiesController < BaseController
   
   def index
     @activities = User.recent_activity(:per_page => 30, :page => params[:page], :limit => 1000)
-    @popular_tags = popular_tags(30)
+    @popular_tags = popular_tags(30).to_a
+    puts "#{@popular_tags.count}"
   end
   
   def destroy

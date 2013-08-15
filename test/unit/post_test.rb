@@ -12,13 +12,13 @@ class PostTest < ActiveSupport::TestCase
     post = posts(:funny_post)
     post.save_as_draft
     assert Post.unscoped.find(post.id)
-    assert Post.unscoped.all.include?(post)
+    assert Post.unscoped.to_a.include?(post)
   end
   
   def test_default_find_should_not_find_drafts
     post = posts(:funny_post)
     post.save_as_draft
-    assert !Post.find(:all).include?(post)    
+    assert !Post.all.include?(post)
   end
   
   def test_should_find_recent

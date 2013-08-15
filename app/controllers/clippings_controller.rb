@@ -12,7 +12,7 @@ class ClippingsController < BaseController
   def site_index
     @clippings = Clipping.includes(:tags).order(params[:recent] ? "created_at DESC" : "clippings.favorited_count DESC")
     
-    @clippings = @clippings.where('tags.name = ?', params[:tag_name]) if params[:tag_name]
+    @clippings = @clippings.where('tags.name = ?', params[:tag_name]).references(:tags) if params[:tag_name]
     @clippings = @clippings.where('created_at > ?', 4.weeks.ago) unless params[:recent]
 
     @clippings = @clippings.page(params[:page])
@@ -37,7 +37,7 @@ class ClippingsController < BaseController
   # GET /clippings
   # GET /clippings.xml
   def index
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
 
     @clippings = Clipping.includes(:tags).where(:user_id => @user.id).order("clippings.created_at DESC")
 
@@ -71,7 +71,7 @@ class ClippingsController < BaseController
   # GET /clippings/1
   # GET /clippings/1.xml
   def show
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @clipping = Clipping.find(params[:id])
     @previous = @clipping.previous_clipping
     @next = @clipping.next_clipping
@@ -119,21 +119,21 @@ class ClippingsController < BaseController
 
   # GET /clippings/new
   def new
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @clipping = @user.clippings.new
   end
 
   # GET /clippings/1;edit
   def edit
     @clipping = Clipping.find(params[:id])
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
   end
 
   # POST /clippings
   # POST /clippings.xml
   def create
     @user = current_user
-    @clipping = @user.clippings.new(params[:clipping])
+    @clipping = @user.clippings.new(clipping_params)
     @clipping.user = @user
     @clipping.tag_list = params[:tag_list] || ''
 
@@ -156,11 +156,11 @@ class ClippingsController < BaseController
   # PUT /clippings/1
   # PUT /clippings/1.xml
   def update
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @clipping = Clipping.find(params[:id])
     @clipping.tag_list = params[:tag_list] || ''
 
-    if @clipping.update_attributes(params[:clipping])
+    if @clipping.update_attributes(clipping_params)
       respond_to do |format|
         format.html { redirect_to user_clipping_url(@user, @clipping) }
       end
@@ -174,7 +174,7 @@ class ClippingsController < BaseController
   # DELETE /clippings/1
   # DELETE /clippings/1.xml
   def destroy
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @clipping = Clipping.find(params[:id])
     @clipping.destroy
 
@@ -187,5 +187,11 @@ class ClippingsController < BaseController
 
   def description_for_rss(clip)
     "<a href='#{user_clipping_url(clip.user, clip)}' title='#{clip.title_for_rss}'><img src='#{clip.image_url}' alt='#{clip.description}' /></a>"
+  end
+
+  private
+
+  def clipping_params
+    params.require(:clipping).permit(:url, :description, :image_url, :image, :user, :user_id)
   end
 end

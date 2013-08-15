@@ -149,19 +149,20 @@ module BaseHelper
   end
 
   def add_friend_link(user = nil)
-		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
-    html += link_to_remote :request_friendship.l,
-				{ :update => "friend_request_#{user.id}",
-					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
-					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
-          500 => "alert('#{escape_javascript(:sorry_there_was_an_error_requesting_friendship.l)}')",
-					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
-					:method => :post 
-				}, {:class => "add_friend button"}
-		html +=	"<span style='display:none;' class='spinner'>"
-		html += image_tag('spinner.gif')
-		html += "#{:requesting_friendship.l} ...</span></span>"
-		html.html_safe
+		#html = "<span class='friend_request' id='friend_request_#{user.id}'>"
+    #html += link_to_remote :request_friendship.l,
+		#		{ :update => "friend_request_#{user.id}",
+		#			:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()",
+		#			:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
+     #     500 => "alert('#{escape_javascript(:sorry_there_was_an_error_requesting_friendship.l)}')",
+		#			:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id),
+		#			:method => :post
+		#		}, {:class => "add_friend button"}
+		#html +=	"<span style='display:none;' class='spinner'>"
+		#html += image_tag('spinner.gif')
+		#html += "#{:requesting_friendship.l} ...</span></span>"
+		#html.html_safe
+    render :partial => "shared/friend_link", :locals => { :user => user } if user
   end
 
   def topnav_tab(name, options)
@@ -210,7 +211,7 @@ module BaseHelper
 
   def search_posts_title
     (params[:q].blank? ? :recent_posts.l : :searching_for.l+" '#{h params[:q]}'").tap do |title|
-      title << " by #{h User.find(params[:user_id]).display_name}" if params[:user_id]
+      title << " by #{h User.friendly.find(params[:user_id]).display_name}" if params[:user_id]
       title << " in #{h Forum.find(params[:forum_id]).name}"       if params[:forum_id]
     end
   end

@@ -62,7 +62,10 @@ class SessionsControllerTest < ActionController::TestCase
     login_as :quentin
     assert !session.empty?
     get :destroy
-    assert session.empty?
+    # The session will not be empty because the flash message will be in it.
+    #
+    #assert session.empty?
+    assert session[:user_credentials].nil?
   end
 
 end

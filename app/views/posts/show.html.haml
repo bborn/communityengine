@@ -29,7 +29,7 @@
               =sharethis_options(@post).html_safe
             -if @is_current_user || admin? || moderator?
               %li.edit= link_to :edit.l, edit_user_post_path(@post.user, @post)
-              %li.delete= link_to :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
+              %li.delete= link_to :delete.l, user_post_path(@post.user, @post), :method => :delete, :data => {:confirm => :permanently_delete_this_post.l}
 
               
           -content_for :end_javascript do

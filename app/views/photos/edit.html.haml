@@ -8,7 +8,7 @@
     = link_to :back_to_my_photos.l, user_photos_path(@user)
 
   -box :class => 'alt' do
-    = link_to :delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_photo.l
+    = link_to :delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete, :data => {:confirm => :are_you_sure_you_want_to_delete_this_photo.l}
 
 #yui-main
   -box :class => "yui-b" do

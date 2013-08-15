@@ -16,7 +16,7 @@
     = "#{:topics.l},"
     = number_with_delimiter(SbPost.count)
     = "#{:posts.l},"
-    = number_with_delimiter(User.count(:conditions => "sb_posts_count>0"))
+    = number_with_delimiter(User.where("sb_posts_count > 0").count)
     = :voices.l
 
   %table{:border=>"0", :cellspacing=>"0", :cellpadding=>"0", :class=>"wide forums"}

@@ -65,31 +65,31 @@ class UsersController < BaseController
 
   def show
     @friend_count               = @user.accepted_friendships.count
-    @accepted_friendships       = @user.accepted_friendships.limit(5).all.collect{|f| f.friend }
+    @accepted_friendships       = @user.accepted_friendships.limit(5).to_a.collect{|f| f.friend }
     @pending_friendships_count  = @user.pending_friendships.count()
 
-    @comments       = @user.comments.find(:all, :limit => 10, :order => 'created_at DESC')
+    @comments       = @user.comments.limit(10).order('created_at DESC')
     @photo_comments = Comment.find_photo_comments_for(@user)
     @users_comments = Comment.find_comments_by_user(@user).limit(5)
 
-    @recent_posts   = @user.posts.recent.find(:all, :limit => 2)
-    @clippings      = @user.clippings.limit(5).all
-    @photos         = @user.photos.limit(5).all
-    @comment        = Comment.new(params[:comment])
+    @recent_posts   = @user.posts.recent.limit(2)
+    @clippings      = @user.clippings.limit(5)
+    @photos         = @user.photos.limit(5)
+    @comment        = Comment.new
 
-    @my_activity = Activity.recent.by_users([@user.id]).find(:all, :limit => 10)
+    @my_activity = Activity.recent.by_users([@user.id]).limit(10)
 
     update_view_count(@user) unless current_user && current_user.eql?(@user)
   end
 
   def new
-    @user         = User.new( {:birthday => Date.parse((Time.now - 25.years).to_s) }.merge(params[:user] || {}) )
+    @user         = User.new(:birthday => Date.parse((Time.now - 25.years).to_s))
     @inviter_id   = params[:id]
     @inviter_code = params[:code]
   end
 
   def create
-    @user       = User.new(params[:user])
+    @user       = User.new(user_params)
     @user.role  = Role[:member]
 
     if (!configatron.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
@@ -119,9 +119,9 @@ class UsersController < BaseController
 
     @user.tag_list = params[:tag_list] || ''
 
-    params[:user][:avatar_attributes].merge!(:user_id => @user.id) if params[:user] && params[:user][:avatar_attributes]
-
-    if @user.update_attributes(params[:user])
+    attributes = user_params.permit!
+    attributes[:avatar_attributes][:user_id] = @user.id if attributes[:avatar_attributes]
+    if @user.update_attributes(attributes)
       @user.track_activity(:updated_profile)
 
       flash[:notice] = :your_changes_were_saved.l
@@ -152,7 +152,7 @@ class UsersController < BaseController
   end
 
   def change_profile_photo
-    @user   = User.find(params[:id])
+    @user   = User.friendly.find(params[:id])
     @photo  = Photo.find(params[:photo_id])
     @user.avatar = @photo
 
@@ -177,7 +177,7 @@ class UsersController < BaseController
   end
 
   def upload_profile_photo
-    @avatar       = Photo.new(params[:avatar])
+    @avatar       = Photo.new(avatar_params)
     return unless request.put?
 
     @avatar.user  = @user
@@ -197,7 +197,7 @@ class UsersController < BaseController
   def update_account
     @user             = current_user
 
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       flash[:notice] = :your_changes_were_saved.l
       respond_to do |format|
         format.html {redirect_to user_path(@user)}
@@ -212,13 +212,13 @@ class UsersController < BaseController
   end
 
   def edit_pro_details
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def update_pro_details
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
 
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       respond_to do |format|
         format.html {
           flash[:notice] = :your_changes_were_saved.l
@@ -236,7 +236,7 @@ class UsersController < BaseController
 
   def create_friendship_with_inviter(user, options = {})
     unless options[:inviter_code].blank? or options[:inviter_id].blank?
-      friend = User.find(options[:inviter_id])
+      friend = User.friendly.find(options[:inviter_id])
 
       if friend && friend.valid_invite_code?(options[:inviter_code])
         accepted    = FriendshipStatus[:accepted]
@@ -256,26 +256,26 @@ class UsersController < BaseController
   end
 
   def signup_completed
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     redirect_to home_path and return unless @user
   end
 
   def welcome_photo
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @avatar = (@user.avatar || @user.build_avatar)
   end
 
   def welcome_about
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @metro_areas, @states = setup_locations_for(@user)
   end
 
   def welcome_invite
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def invite
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def welcome_complete
@@ -300,7 +300,7 @@ class UsersController < BaseController
     if params[:email]
       @user = User.find_by_email(params[:email])
     else
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
 
     if @user && !@user.active?
@@ -313,7 +313,7 @@ class UsersController < BaseController
   end
 
   def assume
-    user = User.find(params[:id])
+    user = User.friendly.find(params[:id])
 
     if assumed_user_session = self.assume_user(user)
       redirect_to user_path(assumed_user_session.record)
@@ -352,13 +352,13 @@ class UsersController < BaseController
   end
 
   def toggle_featured
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @user.toggle!(:featured_writer)
     redirect_to user_path(@user)
   end
 
   def toggle_moderator
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     if not @user.admin?
       @user.role = @user.moderator? ? Role[:member] : Role[:moderator]
       @user.save!
@@ -379,9 +379,9 @@ class UsersController < BaseController
     start_date  = @month.beginning_of_month
     end_date    = @month.end_of_month.end_of_day
 
-    @posts = @user.posts.where('? <= published_at AND published_at <= ?', start_date, end_date).all
+    @posts = @user.posts.where('? <= published_at AND published_at <= ?', start_date, end_date)
 
-    @estimated_payment = @posts.sum do |p|
+    @estimated_payment = @posts.to_a.sum do |p|
       7
     end
 
@@ -396,7 +396,7 @@ class UsersController < BaseController
   def delete_selected
     if params[:delete]
       params[:delete].each { |id|
-        user = User.find(id)
+        user = User.friendly.find(id)
         unless user.admin? || user.featured_writer?
           user.spam! if params[:spam] && !configatron.akismet_key.nil?
           user.destroy
@@ -409,7 +409,7 @@ class UsersController < BaseController
 
   protected
     def setup_metro_areas_for_cloud
-      @metro_areas_for_cloud = MetroArea.where("users_count > 0", :order => "users_count DESC").limit(100).all
+      @metro_areas_for_cloud = MetroArea.where("users_count > 0", :order => "users_count DESC").limit(100)
       @metro_areas_for_cloud = @metro_areas_for_cloud.sort_by{|m| m.name}
     end
 
@@ -418,7 +418,7 @@ class UsersController < BaseController
 
       states = user.country.states if user.country
 
-      metro_areas = user.state.metro_areas.all(:order => "name") if user.state
+      metro_areas = user.state.metro_areas.order("name") if user.state
 
       return metro_areas, states
     end
@@ -427,4 +427,21 @@ class UsersController < BaseController
       current_user && (current_user.admin? || @is_current_user) ? true : access_denied
     end
 
+
+  def avatar_params
+    params[:avatar].permit(:name, :description, :album_id, :photo)
+  end
+
+  def user_params
+    params[:user].permit(:avatar_id, :company_name, :country_id, :description, :email,
+                                 :firstname, :fullname, :gender, :lastname, :login, :metro_area_id,
+                                 :middlename, :notify_comments, :notify_community_news,
+                                 :notify_friend_requests, :password, :password_confirmation,
+                                 :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip,
+                                 {:avatar_attributes => [:name, :description, :album_id, :user, :user_id, :photo, :photo_remote_url]}, :birthday)
+  end
+
+  def comment_params
+    params[:comment].permit(:author_name, :author_email, :notify_by_email, :author_url, :comment)
+  end
 end

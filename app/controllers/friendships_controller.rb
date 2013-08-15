@@ -1,14 +1,14 @@
 class FriendshipsController < BaseController
-  before_filter :login_required, :except => [:accepted, :index]
-  before_filter :find_user, :only => [:accepted, :pending, :denied]
-  before_filter :require_current_user, :only => [:accept, :deny, :pending, :destroy]
+  before_action :login_required, :except => [:accepted, :index]
+  before_action :find_user, :only => [:accepted, :pending, :denied]
+  before_action :require_current_user, :only => [:accept, :deny, :pending, :destroy]
 
   def index
     @body_class = 'friendships-browser'
     
-    @user = (params[:id] || params[:user_id]) ? User.find((params[:id] || params[:user_id] )) : Friendship.first.user
-    @friendships = Friendship.where(:user_id => @user.id, :friend_id => @user.id).limit(40).all
-    @users = User.where(:id => @friendships.collect{|f| f.friend_id }).all
+    @user = (params[:id] || params[:user_id]) ? User.friendly.find((params[:id] || params[:user_id] )) : Friendship.first.user
+    @friendships = Friendship.where(:user_id => @user.id, :friend_id => @user.id).limit(40)
+    @users = User.where(:id => @friendships.collect{|f| f.friend_id })
     
     respond_to do |format|
       format.html 
@@ -17,7 +17,7 @@ class FriendshipsController < BaseController
   end
   
   def deny
-    @user = User.find(params[:user_id])    
+    @user = User.friendly.find(params[:user_id])
     @friendship = @user.friendships.find(params[:id])
  
     respond_to do |format|
@@ -31,7 +31,7 @@ class FriendshipsController < BaseController
   end
 
   def accept
-    @user = User.find(params[:user_id])    
+    @user = User.friendly.find(params[:user_id])
     @friendship = @user.friendships_not_initiated_by_me.find(params[:id])
  
     respond_to do |format|
@@ -47,7 +47,7 @@ class FriendshipsController < BaseController
   end
 
   def denied
-    @user = User.find(params[:user_id])    
+    @user = User.friendly.find(params[:user_id])
     @friendships = @user.friendships.where("friendship_status_id = ?", FriendshipStatus[:denied].id).page(params[:page])
     
     respond_to do |format|
@@ -57,7 +57,7 @@ class FriendshipsController < BaseController
 
 
   def accepted
-    @user = User.find(params[:user_id])    
+    @user = User.friendly.find(params[:user_id])
     @friend_count = @user.accepted_friendships.count
     @pending_friendships_count = @user.pending_friendships.count
           
@@ -69,8 +69,8 @@ class FriendshipsController < BaseController
   end
   
   def pending
-    @user = User.find(params[:user_id])    
-    @friendships = @user.friendships.where("initiator = ? AND friendship_status_id = ?", false, FriendshipStatus[:pending].id).all
+    @user = User.friendly.find(params[:user_id])
+    @friendships = @user.friendships.where("initiator = ? AND friendship_status_id = ?", false, FriendshipStatus[:pending].id)
     
     respond_to do |format|
       format.html
@@ -88,10 +88,10 @@ class FriendshipsController < BaseController
   
 
   def create
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @friendship = Friendship.new(:user_id => params[:user_id], :friend_id => params[:friend_id], :initiator => true )
     @friendship.friendship_status_id = FriendshipStatus[:pending].id    
-    reverse_friendship = Friendship.new(params[:friendship])
+    reverse_friendship = Friendship.new
     reverse_friendship.friendship_status_id = FriendshipStatus[:pending].id 
     reverse_friendship.user_id, reverse_friendship.friend_id = @friendship.friend_id, @friendship.user_id
     
@@ -112,7 +112,7 @@ class FriendshipsController < BaseController
   end
     
   def destroy
-    @user = User.find(params[:user_id])    
+    @user = User.friendly.find(params[:user_id])
     @friendship = Friendship.find(params[:id])
     Friendship.transaction do 
       @friendship.destroy
@@ -121,6 +121,12 @@ class FriendshipsController < BaseController
     respond_to do |format|
       format.html { redirect_to accepted_user_friendships_path(@user) }
     end
+  end
+
+  private
+
+  def friendship_params
+    params[:friendship].permit(:frienship_status, :initiator, :user, :user_id)
   end
   
 end

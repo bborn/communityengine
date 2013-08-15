@@ -7,18 +7,18 @@
       
   -box do
     %h3=:search.l
-    = form_for @search, :url => manage_user_posts_path(current_user), :html => {:class => "MainForm"} do |f|
+    = search_form_for @search, :url => manage_user_posts_path(current_user), :html => {:class => "MainForm"} do |f|
     
       %label= :title.l
-      = f.text_field :title_like
+      = f.text_field :title_matches
 
       %p
         %label= :category.l
-        = f.select :category_id_equals, Category.all.collect{|c| [c.name, c.id]}, :include_blank => true
+        = f.select :category_id_eq, Category.all.collect{|c| [c.name, c.id]}, :include_blank => true
 
       %p
         %label= :status.l
-        = f.select :published_as_equals, [['Published','live'], ['Draft','draft']], :include_blank => true
+        = f.select :published_as_eq, [['Published','live'], ['Draft','draft']], :include_blank => true
 
       %p
         %label= :show.l

@@ -17,9 +17,7 @@ class Clipping < ActiveRecord::Base
   acts_as_taggable
   acts_as_activity :user
     
-  scope :recent, :order => 'clippings.created_at DESC'    
-
-  attr_accessible :url, :description, :image_url, :image, :user, :user_id
+  scope :recent, lambda { order('clippings.created_at DESC') }
     
   def self.find_related_to(clipping, options = {})
     options.reverse_merge!({:limit => 8, 
@@ -34,7 +32,7 @@ class Clipping < ActiveRecord::Base
   end
 
   def self.find_recent(options = {:limit => 5})
-    find(:all, :conditions => "created_at > '#{7.days.ago.iso8601}'", :order => "created_at DESC", :limit => options[:limit])
+    where("created_at > '#{7.days.ago.iso8601}'").order("created_at DESC").limit(options[:limit])
   end
 
   def previous_clipping

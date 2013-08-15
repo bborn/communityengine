@@ -58,7 +58,7 @@
         %p= submit_tag :save_changes.l  
 
         %p
-          =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, :confirm => :deactivate_confirmation.l
+          =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, :data => {:confirm => :deactivate_confirmation.l}
           %br
           %label
             %em= :deactivate_tip.l            

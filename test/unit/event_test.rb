@@ -37,25 +37,25 @@ class EventTest < ActiveSupport::TestCase
   end
 
   def test_upcoming_event_scope_should_only_find_future_events
-    future_events = Event.upcoming.all
+    future_events = Event.upcoming.to_a
     assert_equal future_events.size, 3
     future_events.each {|e| assert e.end_time > Time.now}
   end
 
   def test_past_event_scope_should_only_find_old_events
-    past_events = Event.past.all
+    past_events = Event.past.to_a
     assert_equal past_events.size, 3
     past_events.each {|e| assert e.end_time <= Time.now}
   end
 
   def test_upcoming_events_shown_asc_order
-    future_events = Event.upcoming.find(:all)
+    future_events = Event.upcoming.to_a
     assert_equal future_events.first, events(:future_event)
     assert_equal future_events.second, events(:further_future_event) 
   end
 
   def test_past_events_shown_desc_order
-    future_events = Event.past.find(:all)
+    future_events = Event.past.to_a
     assert_equal future_events.first, events(:past_event)
     assert_equal future_events.second, events(:cool_event)
     assert_equal future_events.third, events(:further_past_event) 

@@ -5,7 +5,7 @@ class Topic < ActiveRecord::Base
   belongs_to :forum, :counter_cache => true
   belongs_to :user
   has_many :monitorships
-  has_many :monitors, :through => :monitorships, :conditions => ['monitorships.active = ?', true], :source => :user
+  has_many :monitors, -> { where('monitorships.active = ?', true) }, :through => :monitorships, :source => :user
 
   has_many :sb_posts, :dependent => :destroy, :inverse_of => :topic
 
@@ -17,9 +17,8 @@ class Topic < ActiveRecord::Base
   after_create  :create_monitorship_for_owner
   
   accepts_nested_attributes_for :sb_posts
-  attr_accessible :title, :sticky, :locked, :sb_posts_attributes, :forum_id
   
-  scope :recently_replied, order('replied_at DESC')
+  scope :recently_replied, -> {order('replied_at DESC')}
 
   def notify_of_new_post(post)
     monitorships.each do |m|
@@ -64,11 +63,11 @@ class Topic < ActiveRecord::Base
     end
 
     def set_post_topic_id
-      SbPost.update_all ['forum_id = ?', forum_id], ['topic_id = ?', id]
+      SbPost.where('topic_id = ?', id).update_all(['forum_id = ?', forum_id])
     end
     
     def create_monitorship_for_owner
-      monitorship = Monitorship.find_or_initialize_by_user_id_and_topic_id(user.id, self.id)
+      monitorship = Monitorship.find_or_initialize_by(:user_id => user.id, :topic_id => self.id)
       monitorship.update_attribute :active, true      
     end
 end

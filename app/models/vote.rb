@@ -9,11 +9,9 @@ class Vote < ActiveRecord::Base
   belongs_to :choice, :counter_cache => true
 
   after_save :update_poll_votes_count
-
-  attr_accessible :user, :user_id, :poll, :poll_id, :choice, :choice_id
   
   def update_poll_votes_count
-    votes_count = Choice.sum(:votes_count, :conditions => {:poll_id => self.poll_id})
+    votes_count = Choice.where(:poll_id => self.poll_id).sum(:votes_count)
     self.poll.votes_count = votes_count
     self.poll.save!
   end

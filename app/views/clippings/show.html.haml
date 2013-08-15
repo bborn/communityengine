@@ -22,7 +22,7 @@
       %h3= link_to :user_clippings.l(:user =>@user.login), user_clippings_path(@user)
       .hentry.main
         - if @is_current_user
-          = link_to :delete.l, user_clipping_path(@user, @clipping), :confirm => :are_you_sure.l, :method => :delete
+          = link_to :delete.l, user_clipping_path(@user, @clipping), :data => {:confirm => :are_you_sure.l}, :method => :delete
           |
           = link_to :edit.l, edit_user_clipping_path(@user, @clipping)
 

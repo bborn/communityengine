@@ -19,9 +19,9 @@ module Acts
           self.publish_states = args.collect{|state| state.to_s.downcase.to_sym }
           include InstanceMethods
           
-          scope :live, where(:published_as => 'live')
-          scope :draft, where(:published_as => 'draft')
-          default_scope live
+          scope :live, lambda { where(:published_as => 'live') }
+          scope :draft, lambda { where(:published_as => 'draft') }
+          default_scope -> { live }
 
           # class << self
           #   alias_method_chain :find, :published_as

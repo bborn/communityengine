@@ -4,7 +4,7 @@
       =:admin_controls.l
     = link_to(:assume_user_id.l, assume_user_path(@user), {:method => :post} )
     %br/      
-    = link_to(:delete_this_user.l, user_path(@user), {:method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l} )
+    = link_to(:delete_this_user.l, user_path(@user), :method => :delete, :data => {:confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l} )
     %br/      
     = link_to("#{:toggle.l} #{:featured_writer.l}".html_safe, toggle_featured_user_path(@user), {:method => :put} )
     %br/      

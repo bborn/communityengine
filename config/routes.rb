@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/photos/recent' => 'photos#recent', :as => :recent_photos
 
   resources :authorizations
-  match '/auth/:provider/callback' => 'authorizations#create', :as => :callback
+  get '/auth/:provider/callback' => 'authorizations#create', :as => :callback
   get '/auth/failure' => 'authorizations#failure'
   
   resources :sb_posts, :as => 'all_sb_posts' do

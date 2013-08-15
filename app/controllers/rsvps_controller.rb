@@ -22,7 +22,7 @@ class RsvpsController < BaseController
   # POST /rsvps
   # POST /rsvps.xml
   def create
-    @rsvp = @event.rsvps.new(params[:rsvp])
+    @rsvp = @event.rsvps.new(rsvp_params)
     @rsvp.user = current_user
     respond_to do |format|
       if @rsvp.save
@@ -39,7 +39,7 @@ class RsvpsController < BaseController
   # PUT /rsvps/1
   # PUT /rsvps/1.xml
   def update
-    @rsvp.attendees_count = params[:rsvp][:attendees_count]
+    @rsvp.attendees_count = rsvp_params[:attendees_count]
     respond_to do |format|
       if @rsvp.save
         flash[:notice] = :your_rsvp_was_successfully_updated.l
@@ -72,6 +72,10 @@ class RsvpsController < BaseController
     end
   rescue
     redirect_to [@event]
+  end
+
+  def rsvp_params
+    params[:rsvp].permit(:attendees_count)
   end
   
 end

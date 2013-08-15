@@ -27,4 +27,4 @@
   - if admin? and not @topic.new_record?
     %p#topic_forum_id
       %label{"for"=>"topic_forum_id"}= :forum.l
-      = form.select :forum_id, Forum.find(:all, :order => "position").map {|x| [x.name, x.id] }
+      = form.select :forum_id, Forum.order("position").map {|x| [x.name, x.id] }

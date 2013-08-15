@@ -19,7 +19,7 @@ class PhotosController < BaseController
   end
   
   def index
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
 
     @photos = Photo.where(:user_id => @user.id).includes(:tags)
     if params[:tag_name]
@@ -70,7 +70,7 @@ class PhotosController < BaseController
     update_view_count(@photo) if current_user && current_user.id != @photo.user_id
     
     @is_current_user = @user.eql?(current_user)
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new
 
     @previous = @photo.previous_photo
     @next = @photo.next_photo
@@ -83,7 +83,7 @@ class PhotosController < BaseController
 
   # GET /photos/new
   def new
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @photo = Photo.new
     if params[:inline]
       render :action => 'inline_new', :layout => false
@@ -101,7 +101,7 @@ class PhotosController < BaseController
   # POST /photos.xml
   def create
     @user = current_user
-    @photo = Photo.new(params[:photo])
+    @photo = Photo.new(photo_params)
     @photo.user = @user
     @photo.tag_list = params[:tag_list] || ''
     
@@ -144,10 +144,10 @@ class PhotosController < BaseController
     @photo = Photo.find(params[:id])
     @user = @photo.user
     @photo.tag_list = params[:tag_list] || ''
-    @photo.album_id = params[:photo][:album_id]
+    @photo.album_id = photo_params[:album_id]
 
     respond_to do |format|
-      if @photo.update_attributes(params[:photo])
+      if @photo.update_attributes(photo_params)
         format.html { redirect_to user_photo_url(@photo.user, @photo) }
       else
         format.html { render :action => "edit" }
@@ -159,7 +159,7 @@ class PhotosController < BaseController
   # DELETE /photos/1
   # DELETE /photos/1.xml
   def destroy
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @photo = Photo.find(params[:id])
     if @user.avatar.eql?(@photo)
       @user.avatar = nil
@@ -179,4 +179,13 @@ class PhotosController < BaseController
     "<a href='#{user_photo_url(photo.user, photo)}' title='#{photo.name}'><img src='#{photo.photo.url(:large)}' alt='#{photo.name}' /><br />#{photo.description}</a>"
   end
 
+  private
+
+  def photo_params
+    params[:photo].permit(:name, :description, :album_id, :photo)
+  end
+
+  def comment_params
+    params[:comment].permit(:author_name, :author_email, :notify_by_email, :author_url, :comment)
+  end
 end

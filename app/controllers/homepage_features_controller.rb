@@ -7,9 +7,9 @@ class HomepageFeaturesController < BaseController
   before_filter :admin_required
 
   def index
-    @search = HomepageFeature.search(params[:search])
-    @search.meta_sort ||= 'created_at.desc'    
-    @homepage_features = @search.page(params[:page]).per(100)
+    @search = HomepageFeature.search(params[:q])
+    @homepage_features = @search.result
+    @homepage_features = @homepage_features.order('created_at DESC').page(params[:page]).per(100)
     respond_to do |format|
       format.html
     end
@@ -32,7 +32,7 @@ class HomepageFeaturesController < BaseController
   end
 
   def create
-    @homepage_feature = HomepageFeature.new(params[:homepage_feature])
+    @homepage_feature = HomepageFeature.new(homepage_feature_params)
     
     respond_to do |format|
       if @homepage_feature.save
@@ -49,7 +49,7 @@ class HomepageFeaturesController < BaseController
     @homepage_feature = HomepageFeature.find(params[:id])
     
     respond_to do |format|
-      if @homepage_feature.update_attributes(params[:homepage_feature])
+      if @homepage_feature.update_attributes(homepage_feature_params)
         format.html { redirect_to homepage_feature_url(@homepage_feature) }
       else
         format.html { render :action => "edit" }
@@ -64,5 +64,11 @@ class HomepageFeaturesController < BaseController
     respond_to do |format|
       format.html { redirect_to homepage_features_url   }
     end
+  end
+
+  private
+
+  def homepage_feature_params
+    params[:homepage_feature].permit(:url, :title, :description, :image)
   end
 end

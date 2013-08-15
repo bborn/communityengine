@@ -11,7 +11,6 @@ class Event < ActiveRecord::Base
   has_many :rsvps, :dependent=>:destroy
   has_many :attendees, :source=>:user, :through=>:rsvps
 
-  attr_protected :user_id
   
   #Procs used to make sure time is calculated at runtime
   scope :upcoming, lambda { 

@@ -1,4 +1,4 @@
-require_dependency ActsAsTaggableOn::Engine.config.root.join('app', 'models', 'acts_as_taggable_on', 'tag.rb').to_s
+#require_dependency ActsAsTaggableOn::Engine.config.root.join('app', 'models', 'acts_as_taggable_on', 'tag.rb').to_s
 
 class ActsAsTaggableOn::Tag < ActiveRecord::Base
 
@@ -29,13 +29,12 @@ class ActsAsTaggableOn::Tag < ActiveRecord::Base
     def counts(options = {})
       options.assert_valid_keys :start_at, :end_at, :at_least, :at_most, :conditions, :limit, :order, :joins
 
-      tags = joins(:taggings)
+      tags = select("#{quoted_table_name}.id", "#{quoted_table_name}.name", "COUNT(#{quoted_table_name}.id) AS count")
+      tags = tags.joins(:taggings)
       tags = tags.having(["COUNT(#{ActsAsTaggableOn::Tagging.quoted_table_name}.id) >= ?", options[:at_least]]) if options[:at_least]
       tags = tags.having(["COUNT(#{ActsAsTaggableOn::Tagging.quoted_table_name}.id) <= ?", options[:at_most]])  if options[:at_most]
       tags = tags.where("#{ActsAsTaggableOn::Tagging.quoted_table_name}.created_at >= ?", options[:start_at]) if options[:start_at]
       tags = tags.where("#{ActsAsTaggableOn::Tagging.quoted_table_name}.created_at <= ?", options[:end_at])   if options[:end_at]
-
-      # TODO: deprecation warning
       tags = tags.where(options[:conditions]) if options[:conditions]
       tags = tags.limit(options[:limit])      if options[:limit]
       tags = tags.order(options[:order])      if options[:order]
@@ -44,7 +43,7 @@ class ActsAsTaggableOn::Tag < ActiveRecord::Base
         tags = tags.joins(joins)
       end
 
-      tags.select("#{quoted_table_name}.id, #{quoted_table_name}.name, COUNT(#{quoted_table_name}.id) AS count").group("#{quoted_table_name}.id, #{quoted_table_name}.name")
+      tags.group("#{quoted_table_name}.id, #{quoted_table_name}.name")
     end
 
 
@@ -55,18 +54,18 @@ class ActsAsTaggableOn::Tag < ActiveRecord::Base
   end
 
   def related_tags(limit = 10)
-    taggables = self.taggings.limit(10).all.collect{|t| t.taggable }.compact
+    taggables = self.taggings.limit(10).to_a.collect{|t| t.taggable }.compact
 
     tagging_ids = taggables.map{|t| t.taggings.limit(10).map(&:id) }.flatten.uniq
     return [] if tagging_ids.blank?
 
-    ActsAsTaggableOn::Tag.where("tags.id != '#{self.id}'").
-      select("tags.id, tags.name, COUNT(tags.id) as count").
-      joins(:taggings).
-      where({:taggings => {:id => tagging_ids }}).
-      group("tags.id, tags.name").
-      order("count DESC").
-      limit(limit)
+    ActsAsTaggableOn::Tag.where("tags.id != '#{self.id}'")
+      .select("tags.id, tags.name, COUNT(tags.id) as count")
+      .joins(:taggings)
+      .where({:taggings => {:id => tagging_ids }})
+      .group("tags.id, tags.name")
+      .order("count DESC")
+      .limit(limit)
   end
 
 end

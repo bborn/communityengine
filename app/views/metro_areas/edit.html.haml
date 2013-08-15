@@ -2,11 +2,11 @@
   %h3= :editing_metro_area.l
 
   = error_messages_for :metro_area
-  = form_for(:metro_area, :url => metro_area_path(@metro_area), :html => { :method => :put, :class => 'MainForm' }) do |f|
+  = form_for(@metro_area, :url => metro_area_path(@metro_area), :html => { :method => :put, :class => 'MainForm' }) do |f|
     %label= :country.l + ":"
-    = f.collection_select :country_id, Country.find(:all, :order => "name"), :id, :name
+    = f.collection_select :country_id, Country.order("name").to_a, :id, :name
     %label= :state.l + ":"
-    = f.collection_select :state_id, State.find(:all), :id, :name, :include_blank => true
+    = f.collection_select :state_id, State.all, :id, :name, :include_blank => true
     %label= :name.l + ":"
     = f.text_field :name
 

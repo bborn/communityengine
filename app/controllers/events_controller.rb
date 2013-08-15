@@ -37,7 +37,7 @@ class EventsController < BaseController
   def show
     @is_admin_user = (current_user && current_user.admin?)
     @event = Event.find(params[:id])
-    @comments = @event.comments.find(:all, :limit => 20, :order => 'created_at DESC', :include => :user)
+    @comments = @event.comments.includes(:user).order('created_at DESC').limit(20)
   end
 
   def index
@@ -52,7 +52,7 @@ class EventsController < BaseController
   end
 
   def new
-    @event = Event.new(params[:event])
+    @event = Event.new
     @metro_areas, @states = setup_metro_area_choices_for(current_user)
     @metro_area_id, @state_id, @country_id = setup_location_for(current_user)
   end
@@ -64,7 +64,7 @@ class EventsController < BaseController
   end
     
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(event_params)
     @event.user = current_user
     if params[:metro_area_id]
       @event.metro_area = MetroArea.find(params[:metro_area_id])
@@ -99,7 +99,7 @@ class EventsController < BaseController
     end
         
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(event_params)
         format.html { redirect_to event_path(@event) }
       else
         format.html { 
@@ -139,16 +139,16 @@ class EventsController < BaseController
       if object.is_a? Event
         states = object.metro_area.country.states
         if object.metro_area.state
-          metro_areas = object.metro_area.state.metro_areas.all(:order=>"name")
+          metro_areas = object.metro_area.state.metro_areas.order("name")
         else
-          metro_areas = object.metro_area.country.metro_areas.all(:order=>"name")
+          metro_areas = object.metro_area.country.metro_areas.order("name")
         end        
       elsif object.is_a? User
         states = object.country.states if object.country
         if object.state
-          metro_areas = object.state.metro_areas.all(:order => "name")
+          metro_areas = object.state.metro_areas..order("name")
         else
-          metro_areas = object.country.metro_areas.all(:order => "name")
+          metro_areas = object.country.metro_areas.order("name")
         end
       end
     end
@@ -168,6 +168,10 @@ class EventsController < BaseController
       end
     end
     return metro_area_id, state_id, country_id
+  end
+
+  def event_params
+    params[:event].permit(:name, :start_time, :end_time, :description, :metro_area, :location, :allow_rsvp)
   end
 
 end

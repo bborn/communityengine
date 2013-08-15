@@ -14,12 +14,9 @@ class Favorite < ActiveRecord::Base
   validates_uniqueness_of :ip_address, :scope => [:favoritable_type, :favoritable_id], :message => 'has already favorited this item.', :if => Proc.new{|f| f.user.nil? }
   
   #named scopes
-  scope :recent, :order => "created_at DESC"
-  scope :by_user, lambda { |user|
-    {:conditions => ["user_id = ?", user.id] }
-  }
+  scope :recent, ->  { order("created_at DESC") }
+  scope :by_user, lambda { |user| where("user_id = ?", user.id) }
 
-  attr_accessible :ip_address, :favoritable, :user, :user_id
   
   def update_counter_on_favoritable
     if favoritable && favoritable.respond_to?(:favorited_count)
@@ -28,19 +25,16 @@ class Favorite < ActiveRecord::Base
   end
   
   def self.find_favorites_by_user(user)
-    find(:all,
-      :conditions => ["user_id = ?", user.id],
-      :order => "created_at DESC"
-    )
+    where("user_id = ?", user.id).order("created_at DESC")
   end
   
   def self.find_by_user_or_ip_address(favoritable = nil, user = nil, remote_ip = nil)
     return false unless favoritable && (user || remote_ip)
     
     if user
-      favorite = self.find(:first, :conditions => ["user_id = ? AND favoritable_type = ? AND favoritable_id = ?", user.id, favoritable.class.to_s, favoritable.id])
+      favorite = self.where("user_id = ? AND favoritable_type = ? AND favoritable_id = ?", user.id, favoritable.class.to_s, favoritable.id).first
     else
-      favorite = self.find(:first, :conditions => ["ip_address = ? AND favoritable_type = ? AND favoritable_id = ?", remote_ip, favoritable.class.to_s, favoritable.id])      
+      favorite = self.where("ip_address = ? AND favoritable_type = ? AND favoritable_id = ?", remote_ip, favoritable.class.to_s, favoritable.id).first
     end
     return favorite
   end

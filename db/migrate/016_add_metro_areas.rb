@@ -276,7 +276,7 @@ class AddMetroAreas < ActiveRecord::Migration
       a = ma.split(', ')
       city_name = a[0]
       state_name = a[1]
-      state = State.find(:first, :conditions => "name = '#{state_name}'")
+      state = State.where("name = '#{state_name}'").first
 
       next if state.nil?
       

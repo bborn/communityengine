@@ -34,7 +34,7 @@ class PagesController < BaseController
   end
 
   def create
-    @page = Page.new(params[:page])
+    @page = Page.new(page_params)
     if @page.save
       flash[:notice] = :page_was_successfully_created.l
       redirect_to admin_pages_path
@@ -44,7 +44,7 @@ class PagesController < BaseController
   end
 
   def update
-    if @page.update_attributes(params[:page])
+    if @page.update_attributes(page_params)
       flash[:notice] = :page_was_successfully_updated.l
       redirect_to admin_pages_path
     else
@@ -65,6 +65,10 @@ class PagesController < BaseController
     unless admin? || moderator?
       redirect_to :controller => 'sessions', :action => 'new' and return false
     end
+  end
+
+  def page_params
+    params.require(:page).permit(:title, :body, :published_as, :page_public)
   end
 
 end

@@ -4,7 +4,7 @@ class ForumTest < ActiveSupport::TestCase
   fixtures :all
 
   def test_should_list_only_top_level_topics
-    assert_equal [topics(:sticky), topics(:il8n), topics(:ponies), topics(:pdi)], forums(:rails).topics.order('sticky DESC, created_at DESC').all
+    assert_equal [topics(:sticky), topics(:il8n), topics(:ponies), topics(:pdi)], forums(:rails).topics.order('sticky DESC, created_at DESC').to_a
   end
 
   def test_should_find_first_recent_post

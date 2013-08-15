@@ -4,9 +4,7 @@ class Album < ActiveRecord::Base
   validates_presence_of :user_id
   acts_as_activity :user
   acts_as_commentable
-  validates_presence_of :title  
-
-  attr_accessible :title, :description
+  validates_presence_of :title
 
   def owner
     self.user

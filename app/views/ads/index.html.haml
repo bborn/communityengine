@@ -3,13 +3,13 @@
   
   -box do
     %h3=:search.l
-    = form_for @search, :url => ads_path, :html => {:class => "MainForm"} do |f|
+    = search_form_for @search, :url => ads_path, :html => {:class => "MainForm"} do |f|
 
       %label= :name.l
-      = f.text_field :name_starts_with
+      = f.text_field :name_start
       
       %label= :location.l
-      = f.text_field :location_contains
+      = f.text_field :location_cont
 
       %p= f.submit :search.l
   
@@ -35,7 +35,7 @@
             %td{:colspan => 3}
               = link_to :edit.l, edit_ad_path(ad)
               |
-              = link_to :destroy.l, ad_path(ad), :confirm => :are_you_sure.l, :method => :delete
+              = link_to :destroy.l, ad_path(ad), :data => {:confirm => :are_you_sure.l}, :method => :delete
             
       .pagination=paginate @ads
       

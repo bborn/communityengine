@@ -1,8 +1,6 @@
 class Country < ActiveRecord::Base
   has_many :metro_areas
 
-  attr_accessible :name
-  
   def self.get(name)
     case name
       when :us
@@ -12,11 +10,11 @@ class Country < ActiveRecord::Base
   end
   
   def self.find_countries_with_metros
-    Country.joins(:metro_areas).where('metro_areas.id IS NOT NULL').order('countries.name ASC').all.uniq
+    Country.joins(:metro_areas).where('metro_areas.id IS NOT NULL').order('countries.name ASC').to_a.uniq
   end
   
   def states
-    State.joins(:metro_areas).where("metro_areas.id in (?)", metro_area_ids ).order('states.name ASC').all.uniq
+    State.joins(:metro_areas).where("metro_areas.id in (?)", metro_area_ids ).order('states.name ASC').to_a.uniq
   end
   
   def metro_area_ids

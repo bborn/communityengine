@@ -9,9 +9,6 @@ class Rsvp < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
 
-  attr_protected :user_id
-  attr_protected :event_id
-
 private
 
   def event_allows_rsvp

@@ -7,7 +7,7 @@
     |
     = link_to :clone.l, clone_event_path(event)
     |
-    = link_to :destroy.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete
+    = link_to :destroy.l, event_path(event), :data => {:confirm => :are_you_sure.l}, :method => :delete
 %p
   %b= :when.l+":"
   =h event.time_and_date
@@ -23,7 +23,7 @@
     = pluralize(event.attendees_count, 'person') + ' ' + attending
     - if event.end_time > Time.now
       - if rsvp = event.rsvped?(current_user)
-        = link_to :retract_rsvp.l, [event, rsvp], :confirm => :are_you_sure.l, :method=>:delete
+        = link_to :retract_rsvp.l, [event, rsvp], :data => {:confirm => :are_you_sure.l}, :method=>:delete
         = link_to :update_rsvp.l, edit_event_rsvp_url(event, rsvp)
       - else
         = link_to :rsvp.l, new_event_rsvp_url(event)

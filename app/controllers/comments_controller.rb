@@ -22,7 +22,7 @@ class CommentsController < BaseController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update_attributes(params[:comment])    
+    @comment.update_attributes(comment_params)
     respond_to do |format|
       format.js
     end    
@@ -35,7 +35,7 @@ class CommentsController < BaseController
     commentable_type_humanized = commentable_type.humanize
     commentable_type_tableized = commentable_type.tableize
     
-    if @commentable = commentable_class.find(params[:commentable_id])
+    if @commentable = commentable_class.friendly.find(params[:commentable_id])
       unless logged_in? || (@commentable.owner && @commentable.owner.profile_public?)
         flash.now[:error] = :private_user_profile_message.l
         redirect_to login_path and return
@@ -91,7 +91,7 @@ class CommentsController < BaseController
     commentable_type = get_commentable_type(params[:commentable_type])
     @commentable = commentable_type.singularize.constantize.find(params[:commentable_id])
 
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(comment_params)
 
     @comment.commentable = @commentable
     @comment.recipient = @commentable.owner
@@ -177,5 +177,9 @@ class CommentsController < BaseController
                      }
         })
     end
+
+  def comment_params
+    params.require(:comment).permit(:author_name, :author_email, :notify_by_email, :author_url, :comment)
+  end
   
 end

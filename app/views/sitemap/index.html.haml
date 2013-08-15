@@ -13,7 +13,7 @@
         %ul
           %li=link_to :home.l, '/'
           %li= link_to t('sitemaps.index.users'), users_path
-          - Page.find(:all).each do |page|
+          - Page.all.each do |page|
             - if (logged_in? || page.page_public)
               %li= link_to page.title, pages_path(page)
           %li=link_to :log_in.l, '/login'

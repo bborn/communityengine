@@ -27,7 +27,7 @@ class SbPostsController < BaseController
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
 
     #@users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
-    @users = User.select('distinct *').where(:id => @posts.collect(&:user_id).uniq).all.index_by(&:id)
+    @users = User.distinct.where(:id => @posts.collect(&:user_id).uniq).to_a.index_by(&:id)
   end
 
   def search
@@ -36,12 +36,12 @@ class SbPostsController < BaseController
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
 
     #@users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
-    @users = User.select('distinct *').where(:id => @posts.collect(&:user_id).uniq).all.index_by(&:id)
+    @users = User.distinct.where(:id => @posts.collect(&:user_id).uniq).to_a.index_by(&:id)
     render :action => :index
   end
 
   def monitored
-    @user = User.find params[:user_id]    
+    @user = User.friendly.find params[:user_id]
     @posts = SbPost.with_query_options.joins('INNER JOIN monitorships ON monitorships.topic_id = topics.id').where('monitorships.user_id = ? AND sb_posts.user_id != ?', params[:user_id], @user.id).page(params[:page])
   end
 
@@ -58,7 +58,7 @@ class SbPostsController < BaseController
   end
 
   def create
-    @topic = Topic.find_by_id_and_forum_id(params[:topic_id].to_i, params[:forum_id].to_i, :include => :forum)
+    @topic = Topic.includes(:forum).where(:id => params[:topic_id].to_i, :forum_id => params[:forum_id].to_i).first
     if @topic.locked?
       respond_to do |format|
         format.html do
@@ -70,7 +70,7 @@ class SbPostsController < BaseController
     end
 
     @forum = @topic.forum
-    @post  = @topic.sb_posts.new(params[:post])
+    @post  = @topic.sb_posts.new(sb_post_params)
 
     @post.user = current_user if current_user
     @post.author_ip = request.remote_ip #save the ip address for everyone, just because    
@@ -101,7 +101,7 @@ class SbPostsController < BaseController
   end
   
   def update
-    @post.update_attributes!(params[:post])
+    @post.update_attributes!(sb_post_params)
   rescue ActiveRecord::RecordInvalid
     flash[:bad_reply] = :an_error_occurred.l
   ensure
@@ -136,5 +136,9 @@ class SbPostsController < BaseController
     def find_post
       @post = SbPost.find_by_id_and_topic_id_and_forum_id(params[:id].to_i, params[:topic_id].to_i, params[:forum_id].to_i) || raise(ActiveRecord::RecordNotFound)
     end
-    
+
+  def sb_post_params
+    # It is "post" in the forms;
+    params[:post].permit(:body, :author_email, :author_ip, :author_name, :author_url)
+  end
 end

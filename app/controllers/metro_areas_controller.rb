@@ -3,7 +3,7 @@ class MetroAreasController < BaseController
   before_filter :admin_required
 
   def index
-    @metro_areas = MetroArea.order("countries.name, metro_areas.name DESC").includes(:country).page(params[:page])
+    @metro_areas = MetroArea.includes(:country).order("countries.name, metro_areas.name DESC").references(:countries).page(params[:page])
   end
   
   def show
@@ -24,7 +24,7 @@ class MetroAreasController < BaseController
   end
 
   def create
-    @metro_area = MetroArea.new(params[:metro_area])
+    @metro_area = MetroArea.new(metro_area_params)
     
     respond_to do |format|
       if @metro_area.save
@@ -46,7 +46,7 @@ class MetroAreasController < BaseController
     @metro_area = MetroArea.find(params[:id])
     
     respond_to do |format|
-      if @metro_area.update_attributes(params[:metro_area])
+      if @metro_area.update_attributes(metro_area_params)
         format.html { redirect_to metro_area_url(@metro_area) }
         format.xml  { render :nothing => true }
       else
@@ -64,5 +64,11 @@ class MetroAreasController < BaseController
       format.html { redirect_to metro_areas_url   }
       format.xml  { render :nothing => true }
     end
+  end
+
+  private
+
+  def metro_area_params
+    params[:metro_area].permit(:name, :state, :country_id, :state_id)
   end
 end

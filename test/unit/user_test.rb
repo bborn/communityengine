@@ -59,7 +59,7 @@ class UserTest < ActiveSupport::TestCase
   test "should_find_user_with_numerals_in_login" do
     u = create_user(:login => "2foo-and-bar")
     assert u.errors[:login].empty?
-    assert_equal u, User.find("2foo-and-bar")
+    assert_equal u, User.friendly.find("2foo-and-bar")
   end
     
   test "should_require_password" do

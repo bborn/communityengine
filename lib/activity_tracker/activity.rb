@@ -6,17 +6,17 @@ class Activity < ActiveRecord::Base
   after_save :update_counter_on_user
 
   scope :of_item_type, lambda {|type|
-    {:conditions => ["activities.item_type = ?", type]}
+    where("activities.item_type = ?", type)
   }
   scope :since, lambda { |time|
-    {:conditions => ["activities.created_at > ?", time] }
+    where("activities.created_at > ?", time)
   }
   scope :before, lambda {|time|
-    {:conditions => ["activities.created_at < ?", time] }
+    where("activities.created_at < ?", time)
   }
-  scope :recent, :order => "activities.created_at DESC"
+  scope :recent, lambda { order("activities.created_at DESC") }
   scope :by_users, lambda {|user_ids|
-    {:conditions => ['activities.user_id in (?)', user_ids]}
+    where('activities.user_id in (?)', user_ids)
   }
 
 
@@ -28,7 +28,7 @@ class Activity < ActiveRecord::Base
   end
 
   def self.by(user)
-    Activity.count(:all, :conditions => ["user_id = ?", user.id])
+    Activity.where("user_id = ?", user.id).count
   end
 
   def can_be_deleted_by?(user)

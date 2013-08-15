@@ -39,14 +39,14 @@ class MessagesController < BaseController
   def create
     messages = []
 
-    if params[:message][:to].blank?
+    if params.require(:message)[:to].blank?
       # If 'to' field is empty, call validations to catch other errors
-      @message = Message.new(params[:message])        
+      @message = Message.new(message_params)
       @message.valid?
       render :action => :new and return
     else
-      @message = Message.new(params[:message])
-      @message.recipient= User.where('lower(login) = ?', params[:message][:to].strip.downcase).first
+      @message = Message.new(message_params)
+      @message.recipient= User.where('lower(login) = ?', params.require(:message)[:to].strip.downcase).first
       @message.sender = @user
       unless @message.valid?
         render :action => :new and return        
@@ -87,7 +87,7 @@ class MessagesController < BaseController
   
   private
     def find_user
-      @user = User.find(params[:user_id])
+      @user = User.friendly.find(params[:user_id])
     end
 
     def require_ownership_or_moderator
@@ -95,5 +95,9 @@ class MessagesController < BaseController
         redirect_to :controller => 'sessions', :action => 'new' and return false
       end
       return @user
-    end    
+    end
+
+  def message_params
+    params.require(:message).permit(:to, :subject, :body, :parent_id)
+  end
 end

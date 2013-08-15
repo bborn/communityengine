@@ -23,7 +23,7 @@
               | 
               = link_to :edit.l, edit_category_path(category)
               |
-              = link_to :destroy.l, category_path(category), :confirm => :are_you_sure.l, :method => :delete
+              = link_to :destroy.l, category_path(category), :data => {:confirm => :are_you_sure.l}, :method => :delete
 
       %br
 

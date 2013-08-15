@@ -9,7 +9,8 @@ class StatisticsController < BaseController
     @yesterday_new_users = find_new_users(1.day.ago.midnight, Date.today.midnight)
     @today_new_users = find_new_users(Date.today.midnight, Date.today.tomorrow.midnight)  
 
-    @active_users_count = Activity.group("user_id").having("created_at > ?", 1.month.ago).all.count
+    # Query returns a hash of user_id to number of activities for that user.
+    @active_users_count = Activity.group("user_id").having("created_at > ?", 1.month.ago).count.keys.size
 
     @active_users = User.find_by_activity({:since => 1.month.ago})
     
@@ -21,7 +22,7 @@ class StatisticsController < BaseController
     
     @featured_writers = User.find_featured
 
-    @posts = Post.where('? <= posts.published_at AND posts.published_at <= ? AND users.featured_writer = ?', Time.now.beginning_of_month, (Time.now.end_of_month + 1.day), true).includes(:user).all
+    @posts = Post.includes(:user).where('? <= posts.published_at AND posts.published_at <= ? AND users.featured_writer = ?', Time.now.beginning_of_month, (Time.now.end_of_month + 1.day), true).includes(:users)
   end  
 
       

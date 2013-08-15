@@ -22,9 +22,8 @@ class Photo < ActiveRecord::Base
   has_one :user_as_avatar, :class_name => "User", :foreign_key => "avatar_id", :inverse_of => :avatar
 
   #Named scopes
-  scope :recent, :order => "photos.created_at DESC"
-  scope :new_this_week, :order => "photos.created_at DESC", :conditions => ["photos.created_at > ?", 7.days.ago.iso8601]
-  attr_accessible :name, :description, :photo, :photo_remote_url, :crop_x, :crop_y, :crop_w, :crop_h, :user_id
+  scope :recent, lambda { order("photos.created_at DESC") }
+  scope :new_this_week, lambda { order("photos.created_at DESC").where("photos.created_at > ?", 7.days.ago.iso8601) }
 
   def display_name
     (self.name && self.name.length>0) ? self.name : "#{:created_at.l.downcase}: #{I18n.l(self.created_at, :format => :published_date)}"
@@ -56,7 +55,7 @@ class Photo < ActiveRecord::Base
 
 
   def self.find_recent(options = {:limit => 3})
-    self.new_this_week.find(:all, :limit => options[:limit])
+    self.new_this_week.limit(options[:limit])
   end
 
   def self.find_related_to(photo, options = {})

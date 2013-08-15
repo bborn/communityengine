@@ -8,7 +8,7 @@ class ModeratorsControllerTest < ActionController::TestCase
     assert users(:sam).moderator_of?(forums(:rails))
     login_as :admin
     assert_difference Moderatorship, :count, -1 do
-      delete :destroy, :forum_id => forums(:rails).id, :id => moderatorships(:sam_rails).id
+      delete :destroy, :forum_id => forums(:rails).id, :id => moderatorships(:sam_rails).id, :format => :js
     end
     assert !users(:sam).moderator_of?(forums(:rails))
   end

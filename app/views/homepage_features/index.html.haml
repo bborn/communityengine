@@ -27,4 +27,4 @@
               %br
               = link_to :edit.l, edit_homepage_feature_path(homepage_feature)
               %br
-              = link_to :destroy.l, homepage_feature_path(homepage_feature), :confirm => :are_you_sure.l, :method => :delete
+              = link_to :destroy.l, homepage_feature_path(homepage_feature), :data => {:confirm => :are_you_sure.l}, :method => :delete

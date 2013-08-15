@@ -4,7 +4,6 @@ class Poll < ActiveRecord::Base
   validates_presence_of :post
   has_many :votes, :dependent => :destroy
   belongs_to :post
-  attr_accessible :question
       
   def voted?(user)
     !self.votes.find_by_user_id(user.id).nil?
@@ -19,22 +18,21 @@ class Poll < ActiveRecord::Base
 
   def self.find_recent(options = {})
     options.reverse_merge! :limit => 5
-    find(:all, :order => "polls.created_at desc", :limit => options[:limit], :include => [:post => :user])
+    self.includes(:post => :user).order("polls.created_at desc").limit(options[:limit])
   end
 
   def self.find_popular(options = {})
     options.reverse_merge! :limit => 5, :since => 10.days.ago
-    
-    find(:all, :order => "polls.votes_count desc", 
-      :limit => options[:limit], 
-      :include => [:post => :user],
-      :conditions => ["polls.created_at > ?", options[:since]]
-    )
+
+    self.includes(:post => :user)
+      .where("polls.created_at > ?", options[:since])
+      .order("polls.votes_count desc")
+      .limit(options[:limit])
   end
 
   def self.find_popular_in_category(category, options = {})
     options.reverse_merge! :limit => 5
-    self.includes(:post).order('polls.votes_count desc').limit(options[:limit]).where('posts.category_id = ?', category.id)
+    self.includes(:post).order('polls.votes_count desc').where('posts.category_id = ?', category.id).references(:posts).limit(options[:limit])
   end
 
 end

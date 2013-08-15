@@ -10,11 +10,13 @@ class SbPost < ActiveRecord::Base
   format_attribute :body
   before_create { |r| r.forum_id = r.topic.forum_id }
   after_create  { |r| 
-    Topic.update_all(['replied_at = ?, replied_by = ?, last_post_id = ?', r.created_at, r.user_id, r.id], ['id = ?', r.topic_id]) 
+    Topic.where('id = ?', r.topic_id)
+    .update_all(['replied_at = ?, replied_by = ?, last_post_id = ?', r.created_at, r.user_id, r.id])
+
   }
   after_destroy { |r| 
     t = Topic.find(r.topic_id)
-    Topic.update_all(['replied_at = ?, replied_by = ?, last_post_id = ?', t.sb_posts.recent.last.created_at, t.sb_posts.recent.last.user_id, t.sb_posts.recent.last.id], ['id = ?', t.id]) if t.sb_posts.recent.last 
+    Topic.where('id = ?', t.id).update_all(['replied_at = ?, replied_by = ?, last_post_id = ?', t.sb_posts.recent.last.created_at, t.sb_posts.recent.last.user_id, t.sb_posts.recent.last.id]) if t.sb_posts.recent.last
   }
 
   validates_presence_of :user_id, :unless => Proc.new{|record| configatron.allow_anonymous_forum_posting }
@@ -23,18 +25,21 @@ class SbPost < ActiveRecord::Base
   validates_presence_of :author_ip, :unless => Proc.new{|record| record.user} #log ip unless logged in
 
   validates_presence_of :body, :topic
-  
-  attr_accessible :body, :author_email, :author_ip, :author_name, :author_url
+
   after_create :monitor_topic
   after_create :notify_monitoring_users  
   
-  scope :with_query_options, :select => 'sb_posts.*, topics.title as topic_title, forums.name as forum_name', :joins => 'inner join topics on sb_posts.topic_id = topics.id inner join forums on topics.forum_id = forums.id', :order => 'sb_posts.created_at desc'
-  scope :recent, :order => 'sb_posts.created_at ASC'
+  scope :with_query_options, lambda {
+    select('sb_posts.*, topics.title as topic_title, forums.name as forum_name')
+    .joins('inner join topics on sb_posts.topic_id = topics.id inner join forums on topics.forum_id = forums.id')
+    .order('sb_posts.created_at desc')
+  }
+  scope :recent, -> { order('sb_posts.created_at ASC') }
   validate :check_spam    
     
   def monitor_topic
     return unless user    
-    monitorship = Monitorship.find_or_initialize_by_user_id_and_topic_id(self.user.id, self.topic.id)
+    monitorship = Monitorship.where(:user_id => self.user.id, :topic_id => self.topic.id).first_or_initialize
     if monitorship.new_record?
       monitorship.update_attribute :active, true
     end

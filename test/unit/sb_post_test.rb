@@ -88,7 +88,7 @@ class SbPostTest < ActiveSupport::TestCase
     topic = topics(:pdi)
     user = users(:aaron) 
     create_post topic, :body => 'foo'      
-    Monitorship.update_all ['active = ?', false], ['user_id = ? and topic_id = ?', user.id, topic.id]            
+    Monitorship.where('user_id = ? and topic_id = ?', user.id, topic.id).update_all( ['active = ?', false])
     assert !user.monitoring_topic?(topic)
     
     p = create_post topic, :body => 'bar'

@@ -1,0 +1,25 @@
+%span.friend_request{:id => "friend_request_#{user.id}"}
+  = link_to :request_friendship.l, user_friendship_path(current_user, user), :data => { :userid => user.id }, :class => "add_friend_button friendship_link", :remote => true, :method => :post
+  %span.spinner{:style => "display:none"}
+    = image_tag('spinner.gif')
+    = "#{:request_friendship.l} ..."
+-content_for :end_javascript do
+  :javascript
+    // This should be moved to someplae more generic
+    $$(".friendship_link").each(function (link) {
+      link.observe("ajax:loading", function () {
+        var id = link.readAttribute('data-userid');
+        $$('span#friend_request_' + id + ' span.spinner')[0].show();
+        $$('span#friend_request_' + id + ' a.add_friend_button')[0].hide();
+      });
+      link.observe("ajax:complete", function () {
+        var id = link.readAttribute('data-userid');
+        new Effect.Highlight(link, 1);
+      });
+      link.observe("ajax:failure", function () {
+        alert('#{escape_javascript(:sorry_there_was_an_error_requesting_friendship.l)}')
+      });
+      link.observe("ajax:success", function (data) {
+        link.innerHTML = data;
+      });
+    });

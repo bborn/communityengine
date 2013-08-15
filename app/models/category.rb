@@ -1,10 +1,9 @@
 class Category < ActiveRecord::Base
-  has_many :posts, :order => "published_at desc"
+  extend FriendlyId
+  has_many :posts, -> { order("published_at desc") }
   validates_presence_of :name
   
-  attr_accessible :name
-  
-  has_friendly_id :name, :use_slug => true
+  friendly_id :name, :use => :slugged
       
   def display_new_post_text
     new_post_text

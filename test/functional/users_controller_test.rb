@@ -397,11 +397,12 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     def test_should_increment_metro_area_count
-      initial_count = metro_areas(:detroit).users_count
+      initial_count = metro_areas(:detroit).users.count
       aaron = users(:aaron)
       aaron.metro_area = metro_areas(:detroit)
       aaron.save!
-      assert_equal metro_areas(:detroit).reload.users_count, initial_count + 1
+      n_users = metro_areas(:detroit).reload.users.count
+      assert_equal n_users, initial_count + 1
       assert_equal(metro_areas(:detroit).reload.users_count, metro_areas(:detroit).reload.users.size )
     end
 

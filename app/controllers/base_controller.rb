@@ -92,7 +92,7 @@ class BaseController < ApplicationController
     end
   
     def find_user
-      if @user = User.active.find(params[:user_id] || params[:id])
+      if @user = User.active.friendly.find(params[:user_id] || params[:id])
         @is_current_user = (@user && @user.eql?(current_user))
         unless logged_in? || @user.profile_public?
           flash[:error] = :private_user_profile_message.l
@@ -107,7 +107,7 @@ class BaseController < ApplicationController
     end
   
     def require_current_user
-      @user ||= User.find(params[:user_id] || params[:id] )
+      @user ||= User.friendly.find(params[:user_id] || params[:id] )
       unless admin? || (@user && (@user.eql?(current_user)))
         redirect_to :controller => 'sessions', :action => 'new' and return false
       end
@@ -123,7 +123,7 @@ class BaseController < ApplicationController
       @recent_clippings = Clipping.find_recent(:limit => 10)
       @recent_photos = Photo.find_recent(:limit => 10)
       @recent_comments = Comment.find_recent(:limit => 13)
-      @popular_tags = popular_tags(30)
+      @popular_tags = popular_tags(30).to_a
       @recent_activity = User.recent_activity(:size => 15, :current => 1)
     
     end
@@ -133,14 +133,14 @@ class BaseController < ApplicationController
       @homepage_features = HomepageFeature.find_features
       @homepage_features_data = @homepage_features.collect {|f| [f.id, f.image.url(:large) ]  }
     
-      @active_users = User.find_by_activity({:limit => 5, :require_avatar => false})
+      @active_users = User.find_by_activity(:limit => 5, :require_avatar => false)
       @featured_writers = User.find_featured
 
       @featured_posts = Post.find_featured
     
-      @topics = Topic.order("replied_at DESC").limit(5).all
+      @topics = Topic.order("replied_at DESC").limit(5)
 
-      @popular_posts = Post.find_popular({:limit => 10})    
+      @popular_posts = Post.find_popular(:limit => 10)
       @popular_polls = Poll.find_popular(:limit => 8)
     end
 

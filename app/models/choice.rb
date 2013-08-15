@@ -3,8 +3,6 @@ class Choice < ActiveRecord::Base
   validates_presence_of :poll
   validates_presence_of :description
   has_many :votes, :dependent => :destroy
-
-  attr_accessible :description
   
   def votes_percentage(precision = 1)
     total_votes = poll.votes.count    

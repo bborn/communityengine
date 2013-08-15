@@ -14,7 +14,7 @@
 			<%= submit_tag :save_changes.l %> <%= :or.l %>
             <%= link_to :cancel.l, "#", :id => "cancelButton" %>
 	
-	        <%= link_to(:delete_this_post.l, sb_post_path(:forum_id => @post.topic.forum, :topic_id => @post.topic, :id => @post, :page => params[:page]), :class => "utility", :method => :delete, :confirm => :are_you_sure_you_want_to_delete_this_post.l) %>  
+	        <%= link_to(:delete_this_post.l, sb_post_path(:forum_id => @post.topic.forum, :topic_id => @post.topic, :id => @post, :page => params[:page]), :class => "utility", :method => :delete, :data => {:confirm => :are_you_sure_you_want_to_delete_this_post.l}) %>
 	
 				</p>
 

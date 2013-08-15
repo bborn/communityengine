@@ -9,7 +9,7 @@
           %span.auth_providers_used
             = image_tag "auth/#{authorization.provider}_32.png"
             -if @authorizations.size > 1
-              = link_to image_tag("auth/remove.png"), authorization, :confirm => t('users.edit_account.omniauth.confirm_remove', :provider => authorization.provider.capitalize), :method => :delete, :class => "omniauth_remove", :title => t('users.edit_account.omniauth.title_remove', :provider => authorization.provider.capitalize)
+              = link_to image_tag("auth/remove.png"), authorization, :data => {:confirm => t('users.edit_account.omniauth.confirm_remove', :provider => authorization.provider.capitalize)}, :method => :delete, :class => "omniauth_remove", :title => t('users.edit_account.omniauth.title_remove', :provider => authorization.provider.capitalize)
         .clear
 
     

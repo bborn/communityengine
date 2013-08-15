@@ -1,9 +1,7 @@
 class Post < ActiveRecord::Base
   include Rakismet::Model
   rakismet_attrs :comment_type => 'post'
-  attr_protected :akismet_attrs  
-  
-  
+
   acts_as_commentable
   acts_as_taggable
   acts_as_activity :user, :if => Proc.new{|r| r.is_live?}
@@ -32,15 +30,13 @@ class Post < ActiveRecord::Base
   end
     
   attr_accessor :invalid_emails
-
-  attr_accessible :category_id, :title, :raw_post, :published_as, :send_comment_notifications
   
   # Class Methods
   class << self
     
     # Scopes    
     def by_featured_writers
-      where("users.featured_writer = ?", true).includes(:user)
+      includes(:user).where("users.featured_writer = ?", true).references(:users)
     end
     def popular
       order('posts.view_count DESC')
@@ -62,28 +58,27 @@ class Post < ActiveRecord::Base
     end
     
     def find_recent(options = {:limit => 5})
-      recent.find :all, options
+      recent.limit(options[:limit])
     end
 
     def find_popular(options = {} )
       options.reverse_merge! :limit => 5, :since => 7.days
 
-      self.popular.since(options[:since]).limit(options[:limit]).all
+      self.popular.since(options[:since]).limit(options[:limit])
     end
 
     def find_featured(options = {:limit => 10})
-      self.recent.by_featured_writers.limit(options[:limit]).all
+      self.recent.by_featured_writers.limit(options[:limit])
     end
 
     def find_most_commented(limit = 10, since = 7.days.ago)
-      Post.find(:all, 
-        :select => 'posts.*, count(*) as comments_count',
-        :joins => "LEFT JOIN comments ON comments.commentable_id = posts.id",
-        :conditions => ['comments.commentable_type = ? AND posts.published_at > ?', 'Post', since],
-        :group => self.columns.map{|column| self.table_name + "." + column.name}.join(","),
-        :order => 'comments_count DESC',
-        :limit => limit
-        )
+      Post.select('posts.*', 'count(*) as comments_count')
+      .joins("LEFT JOIN comments ON comments.commentable_id = posts.id")
+      .where('comments.commentable_type = ? AND posts.published_at > ?', 'Post', since)
+      .references('comments')
+      .group(self.columns.map{|column| self.table_name + "." + column.name}.join(","))
+      .order('comments_count DESC')
+      .limit(limit)
     end    
     
     def new_from_bookmarklet(params)

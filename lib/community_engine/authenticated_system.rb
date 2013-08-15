@@ -40,7 +40,7 @@ module AuthenticatedSystem
         return
       end
 
-      admin = User.find(session[:admin_id])
+      admin = User.friendly.find(session[:admin_id])
       if admin && admin.admin?
         session[:admin_id] = nil
         UserSession.create(admin, true)

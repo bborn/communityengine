@@ -2,7 +2,6 @@ class Comment < ActiveRecord::Base
   include ActsAsCommentable::Comment
   include Rakismet::Model
   rakismet_attrs :author => :author_name, :comment_type => 'comment', :content => :comment, :user_ip => :author_ip
-  attr_protected :akismet_attrs
 
   belongs_to :commentable, :polymorphic => true
   belongs_to :user, :inverse_of => :comments_as_author, :foreign_key => 'user_id', :class_name => "User"
@@ -23,19 +22,21 @@ class Comment < ActiveRecord::Base
   acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user
 
   def self.find_photo_comments_for(user)
-    Comment.find(:all, :conditions => ["recipient_id = ? AND commentable_type = ?", user.id, 'Photo'], :order => 'created_at DESC')
+    Comment.where("recipient_id = ? AND commentable_type = ?", user.id, 'Photo').order('created_at DESC')
   end
 
   def previous_commenters_to_notify
     # only send a notification on recent comments
     # limit the number of emails we'll send (or posting will be slooowww)
 
-    User.find(:all,
-      :conditions => ["users.id NOT IN (?) AND users.notify_comments = ?
+    User.includes(:comments_as_author)
+      .where("users.id NOT IN (?) AND users.notify_comments = ?
                       AND commentable_id = ? AND commentable_type = ?
                       AND comments.notify_by_email = ?
-                      AND comments.created_at > ?", [user_id, recipient_id.to_i], true, commentable_id, commentable_type, true, 2.weeks.ago],
-      :include => :comments_as_author, :limit => 20)
+                      AND comments.created_at > ?",
+             [user_id, recipient_id.to_i], true, commentable_id, commentable_type, true, 2.weeks.ago)
+      .references(:comments)
+      .limit(20)
   end
 
   def commentable_name
@@ -63,7 +64,7 @@ class Comment < ActiveRecord::Base
   end
 
   def self.find_recent(options = {:limit => 5})
-    find(:all, :conditions => "created_at > '#{14.days.ago.iso8601}'", :order => "created_at DESC", :limit => options[:limit])
+    where("created_at > '#{14.days.ago.iso8601}'").order("created_at DESC").limit(options[:limit])
   end
 
   def can_be_deleted_by(person)
@@ -102,7 +103,7 @@ class Comment < ActiveRecord::Base
   end
 
   def unsubscribe_notifications(email)
-    commentable.comments.find_all_by_author_email(email).each do |previous_comment|
+    commentable.comments.where(:author_email => email).each do |previous_comment|
       previous_comment.update_attribute :notify_by_email, false
     end
   end

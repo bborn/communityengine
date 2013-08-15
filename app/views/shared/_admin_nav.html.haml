@@ -16,4 +16,4 @@
         %li=link_to link[:name], link[:url]
     
     
-    %li= link_to :cache_clear_link.l, admin_clear_cache_path, :confirm => :are_you_sure.l
+    %li= link_to :cache_clear_link.l, admin_clear_cache_path, :data => {:confirm => :are_you_sure.l}

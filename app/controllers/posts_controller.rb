@@ -21,14 +21,14 @@ class PostsController < BaseController
   
   def manage
     Post.unscoped do
-      @search = Post.search(params[:search])
-      @search.meta_sort ||= 'created_at.desc'
-      @posts = @search.where(:user_id => @user.id).page(params[:page]).per(params[:size]||10)
+      @search = Post.search(params[:q])
+      @posts = @search.result
+      @posts = @posts.where(:user_id => @user.id).order('created_at DESC').page(params[:page]).per(params[:size]||10)
     end
   end
 
   def index
-    @user = User.find(params[:user_id])            
+    @user = User.friendly.find(params[:user_id])
     @category = Category.find_by_name(params[:category_name]) if params[:category_name]
 
     @posts = @user.posts.recent
@@ -37,7 +37,7 @@ class PostsController < BaseController
     
     @is_current_user = @user.eql?(current_user)
 
-    @popular_posts = @user.posts.order("view_count DESC").limit(10).all
+    @popular_posts = @user.posts.order("view_count DESC").limit(10).to_a
     
     @rss_title = "#{configatron.community_name}: #{@user.login}'s posts"
     @rss_url = user_posts_path(@user,:format => :rss)
@@ -66,13 +66,13 @@ class PostsController < BaseController
 
     @user = @post.user
     @is_current_user = @user.eql?(current_user)
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new
 
-    @comments = @post.comments.includes(:user).order('created_at DESC').limit(20)
+    @comments = @post.comments.includes(:user).order('created_at DESC').limit(20).to_a
 
     @previous = @post.previous_post
     @next = @post.next_post    
-    @popular_posts = @user.posts.except(:order).order('view_count DESC').limit(10).all
+    @popular_posts = @user.posts.except(:order).order('view_count DESC').limit(10).to_a
     @related = Post.find_related_to(@post)
     @most_commented = Post.find_most_commented    
   end
@@ -90,8 +90,8 @@ class PostsController < BaseController
   
   # GET /posts/new
   def new
-    @user = User.find(params[:user_id])    
-    @post = Post.new(params[:post])
+    @user = User.friendly.find(params[:user_id])
+    @post = Post.new
     @post.published_as = 'live'
     @categories = Category.all
   end
@@ -104,8 +104,8 @@ class PostsController < BaseController
   # POST /posts
   # POST /posts.xml
   def create    
-    @user = User.find(params[:user_id])
-    @post = Post.new(params[:post])
+    @user = User.friendly.find(params[:user_id])
+    @post = Post.new(post_params)
     @post.user = @user
     @post.tag_list = params[:tag_list] || ''
     
@@ -137,7 +137,7 @@ class PostsController < BaseController
     @post.tag_list = params[:tag_list] || ''
     
     respond_to do |format|
-      if @post.update_attributes(params[:post])
+      if @post.update_attributes(post_params)
         @post.update_poll(params[:poll], params[:choices]) if params[:poll]
         
         format.html { redirect_to user_post_path(@post.user, @post) }
@@ -150,7 +150,7 @@ class PostsController < BaseController
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @post = Post.find(params[:id])
     @post.destroy
     
@@ -232,7 +232,7 @@ class PostsController < BaseController
   
   def category_tips_update
     return unless request.xhr?
-    @category = Category.find(params[:post_category_id] )
+    @category = Category.friendly.find(params[:post_category_id] )
     render :partial => "categories/tips", :locals => {:category => @category}    
   rescue ActiveRecord::RecordNotFound
     render :partial => "categories/tips", :locals => {:category => nil}    
@@ -241,12 +241,20 @@ class PostsController < BaseController
   private
   
   def require_ownership_or_moderator
-    @user ||= User.find(params[:user_id])
+    @user ||= User.friendly.find(params[:user_id])
     @post ||= Post.unscoped.find(params[:id]) if params[:id]
     unless admin? || moderator? || (@post && (@post.user.eql?(current_user))) || (!@post && @user && @user.eql?(current_user))
       redirect_to :controller => 'sessions', :action => 'new' and return false
     end
     return @user
   end
-  
+
+
+  def post_params
+    params[:post].permit(:category_id, :title, :raw_post, :published_as, :send_comment_notifications)
+  end
+
+  def comment_params
+    params[:comment].permit(:author_name, :author_email, :notify_by_email, :author_url, :comment)
+  end
 end

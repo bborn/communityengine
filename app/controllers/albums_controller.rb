@@ -27,7 +27,7 @@ class AlbumsController < BaseController
   # GET /albums/new
   # GET /albums/new.xml
   def new
-    @album = Album.new(params[:album])
+    @album = Album.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,7 +43,7 @@ class AlbumsController < BaseController
   # POST /albums
   # POST /albums.xml
   def create
-    @album = Album.new(params[:album])
+    @album = Album.new(album_params)
     @album.user_id = current_user.id
     
     respond_to do |format|
@@ -66,7 +66,7 @@ class AlbumsController < BaseController
     @album = Album.find(params[:id])
 
     respond_to do |format|
-      if @album.update_attributes(params[:album])
+      if @album.update_attributes(album_params)
         if params[:go_to] == 'only_create'
           flash[:notice] = :album_updated.l
           format.html { redirect_to(user_album_path(current_user, @album)) }
@@ -101,6 +101,12 @@ class AlbumsController < BaseController
     @album.photo_ids = params[:album][:photos_ids].uniq
     redirect_to user_albums_path(current_user)
     flash[:notice] = :album_added_photos.l
+  end
+
+  private
+
+  def album_params
+    params[:album].permit(:title, :description)
   end
   
 end

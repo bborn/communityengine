@@ -11,14 +11,14 @@ class TopicsController < BaseController
     respond_to do |format|
       format.html { redirect_to forum_path(params[:forum_id]) }
       format.xml do
-        @topics = @forum.topics.order('sticky desc, replied_at desc').limit(25).all
+        @topics = @forum.topics.order('sticky desc, replied_at desc').limit(25)
         render :xml => @topics.to_xml
       end
     end
   end
 
   def new
-    @topic = Topic.new(params[:topic])
+    @topic = Topic.new
     @topic.sb_posts.build
   end
 
@@ -48,7 +48,7 @@ class TopicsController < BaseController
   end
 
   def create
-    @topic = @forum.topics.new(params[:topic])
+    @topic = @forum.topics.new(topic_params)
     assign_protected
 
     @post = @topic.sb_posts.first
@@ -79,7 +79,7 @@ class TopicsController < BaseController
   def update
     assign_protected
     @topic.tag_list = params[:tag_list] || ''
-    @topic.update_attributes!(params[:topic])
+    @topic.update_attributes!(topic_params)
     respond_to do |format|
       format.html { redirect_to forum_topic_path(@forum, @topic) }
       format.xml  { head 200 }
@@ -103,10 +103,10 @@ class TopicsController < BaseController
 
       # admins and moderators can sticky and lock topics
       return unless admin? or current_user.moderator_of?(@topic.forum)
-      @topic.sticky, @topic.locked = params[:topic][:sticky], params[:topic][:locked]
+      @topic.sticky, @topic.locked = topic_params[:sticky], topic_params[:locked]
       # only admins can move
       return unless admin?
-      @topic.forum_id = params[:topic][:forum_id] if params[:topic][:forum_id]
+      @topic.forum_id = topic_params[:forum_id] if topic_params[:forum_id]
     end
 
     def find_forum_and_topic
@@ -118,4 +118,8 @@ class TopicsController < BaseController
     def authorized?
       %w(new create).include?(action_name) || @topic.editable_by?(current_user)
     end
+
+  def topic_params
+    params[:topic].permit(:title, :sticky, :locked, {:sb_posts_attributes => [:body]}, :forum_id)
+  end
 end
