@@ -154,7 +154,7 @@ class PhotosControllerTest < ActionController::TestCase
   
   def test_should_update_photo
     login_as :quentin
-    put :update,
+    patch :update,
       :id => photos(:library_pic).id,
       :user_id => users(:quentin).id,
       :photo => { :name => "changed_name" },
@@ -169,7 +169,7 @@ class PhotosControllerTest < ActionController::TestCase
 
   def test_should_fail_to_update_photo
     login_as :quentin
-    put :update, :id => photos(:library_pic).id, :user_id => users(:aaron).id, :photo => { :size => nil }
+    patch :update, :id => photos(:library_pic).id, :user_id => users(:aaron).id, :photo => { :size => nil }
     assert_response :redirect
   end
 

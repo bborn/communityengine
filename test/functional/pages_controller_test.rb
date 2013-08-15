@@ -60,14 +60,14 @@ class PagesControllerTest < ActionController::TestCase
   
   def test_should_update_page
     login_as :admin
-    put :update, :id => pages(:custom_page).id, :page => { :title => "changed_name" }
+    patch :update, :id => pages(:custom_page).id, :page => { :title => "changed_name" }
     assert_redirected_to admin_pages_path
     assert_equal assigns(:page).title, "changed_name"
   end
 
   def test_should_fail_to_update_page
     login_as :admin
-    put :update, :id => pages(:custom_page).id, :page => { :title => nil }
+    patch :update, :id => pages(:custom_page).id, :page => { :title => nil }
     assert_response :success
     assert assigns(:page).errors[:title]
   end

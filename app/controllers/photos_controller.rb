@@ -138,8 +138,8 @@ class PhotosController < BaseController
   end
 
 
-  # PUT /photos/1
-  # PUT /photos/1.xml
+  # patch /photos/1
+  # patch /photos/1.xml
   def update
     @photo = Photo.find(params[:id])
     @user = @photo.user

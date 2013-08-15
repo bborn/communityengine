@@ -60,8 +60,8 @@ class AlbumsController < BaseController
     end
   end
 
-  # PUT /albums/1
-  # PUT /albums/1.xml
+  # patch /albums/1
+  # patch /albums/1.xml
   def update
     @album = Album.find(params[:id])
 

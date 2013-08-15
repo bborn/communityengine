@@ -88,4 +88,4 @@
 
 -content_for :end_javascript do
   :javascript
-    #{remote_function :url => update_views_user_post_path(@post.user, @post), :method => :put}
+    #{remote_function :url => update_views_user_post_path(@post.user, @post), :method => :patch}

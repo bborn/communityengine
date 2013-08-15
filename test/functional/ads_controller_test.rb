@@ -37,7 +37,7 @@ class AdsControllerTest < ActionController::TestCase
   end
   
   def test_should_update_ad
-    put :update, :id => 1, :ad => { }
+    patch :update, :id => 1, :ad => { }
     assert_redirected_to ad_path(assigns(:ad))
   end
   

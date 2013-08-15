@@ -6,7 +6,7 @@
     =:to_accept.l
   - elsif @friendship.pending?
     =:this_friendship_is_pending.l 
-    = link_to :click_to_accept_it.l, accept_user_friendship_path(@user, @friendship), :method => :put
+    = link_to :click_to_accept_it.l, accept_user_friendship_path(@user, @friendship), :method => :patch
 
   %br
   = link_to :back.l, accepted_user_friendships_path(@user)

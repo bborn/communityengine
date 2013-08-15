@@ -47,13 +47,13 @@ class HomepageFeaturesControllerTest < ActionController::TestCase
   
   def test_should_update_homepage_feature
     login_as :admin
-    put :update, :id => 1, :homepage_feature => {:url => 'changed_url.com' }
+    patch :update, :id => 1, :homepage_feature => {:url => 'changed_url.com' }
     assert_redirected_to homepage_feature_path(assigns(:homepage_feature))
   end
 
   def test_should_fail_to_update_homepage_feature
     login_as :admin
-    put :update, :id => 1, :homepage_feature => { :url => nil }
+    patch :update, :id => 1, :homepage_feature => { :url => nil }
     assert assigns(:homepage_feature).errors[:url]
     assert_response :success
   end

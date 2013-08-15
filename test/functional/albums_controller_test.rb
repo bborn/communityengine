@@ -42,9 +42,9 @@ class AlbumsControllerTest < ActionController::TestCase
 
   test "should update album" do
     login_as :quentin
-    put :update, :id => albums(:one).id, :album => { }, :go_to => 'only_create', :user_id => users(:quentin)
+    patch :update, :id => albums(:one).id, :album => { }, :go_to => 'only_create', :user_id => users(:quentin)
     assert_redirected_to user_album_path(users(:quentin), albums(:one))
-    put :update, :id => albums(:one).id, :album => { }, :go_to => '', :user_id => users(:quentin)
+    patch :update, :id => albums(:one).id, :album => { }, :go_to => '', :user_id => users(:quentin)
     assert_redirected_to new_user_album_photo_path(users(:quentin),albums(:one))
   end
 
@@ -96,7 +96,7 @@ class AlbumsControllerTest < ActionController::TestCase
 
   test "should not update another user's album" do
     login_as :joe
-    put :update, :user_id => users(:quentin), :id => albums(:one), :album => {:title => 'Fooo!'}
+    patch :update, :user_id => users(:quentin), :id => albums(:one), :album => {:title => 'Fooo!'}
     assert !albums(:one).reload.title.eql?('Fooo!')
     assert_response :redirect
   end  

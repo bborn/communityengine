@@ -170,7 +170,7 @@ class UsersController < BaseController
       flash[:notice] = :no_profile_photo.l
       redirect_to upload_profile_photo_user_path(@user) and return
     end
-    return unless request.put?
+    return unless request.put? || request.patch?
 
     @photo.update_attributes(:crop_x => params[:crop_x], :crop_y => params[:crop_y], :crop_w => params[:crop_w], :crop_h => params[:crop_h])
     redirect_to user_path(@user)
@@ -178,7 +178,7 @@ class UsersController < BaseController
 
   def upload_profile_photo
     @avatar       = Photo.new(avatar_params)
-    return unless request.put?
+    return unless request.put? || request.patch?
 
     @avatar.user  = @user
     if @avatar.save

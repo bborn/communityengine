@@ -23,10 +23,10 @@ class PasswordResetsControllerTest < ActionController::TestCase
     assert_response :success  
   end
 
-  test "should put to update and redirect to dashboard" do
+  test "should patch to update and redirect to dashboard" do
     @user = users(:quentin)
 
-    put :update, :id => @user.perishable_token, :user => { :password => "newpassword" }
+    patch :update, :id => @user.perishable_token, :user => { :password => "newpassword" }
 
     assert_redirected_to dashboard_user_path(@user)    
   end

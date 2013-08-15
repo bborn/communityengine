@@ -4,7 +4,7 @@
 #yui-main
   -box :class => "yui-b" do
     %h3=:editing_category.l
-    = form_for(:category, :url => category_path(@category), :html => { :method => :put, :class => "MainForm" }) do |f|
+    = form_for(:category, :url => category_path(@category), :html => { :method => :patch, :class => "MainForm" }) do |f|
 
       %label
         =:name.l

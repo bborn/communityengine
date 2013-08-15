@@ -100,7 +100,7 @@ class PostsControllerTest < ActionController::TestCase
   
   def test_should_update_post
     login_as :quentin
-    put :update, :id => posts(:funny_post).id, :user_id => users(:quentin), :post => { :title => "changed_name" }
+    patch :update, :id => posts(:funny_post).id, :user_id => users(:quentin), :post => { :title => "changed_name" }
     assert_redirected_to user_post_path(users(:quentin), assigns(:post))
     assert_equal assigns(:post).title, "changed_name"
   end
@@ -110,14 +110,14 @@ class PostsControllerTest < ActionController::TestCase
     posts(:funny_post).save_as_draft
         
     login_as :quentin
-    put :update, :id => posts(:funny_post).id, :user_id => users(:quentin), :post => { :title => "changed_name", :published_as => "live" }
+    patch :update, :id => posts(:funny_post).id, :user_id => users(:quentin), :post => { :title => "changed_name", :published_as => "live" }
     assert_redirected_to user_post_path(users(:quentin), assigns(:post))
     assert assigns(:post).is_live?
   end
 
   def test_should_fail_to_update_post
     login_as :quentin
-    put :update, :id => posts(:funny_post).id, :user_id => users(:quentin), :post => { :title => nil }
+    patch :update, :id => posts(:funny_post).id, :user_id => users(:quentin), :post => { :title => nil }
     assert_response :success
     assert assigns(:post).errors[:title]
   end
@@ -191,7 +191,7 @@ class PostsControllerTest < ActionController::TestCase
   
   def test_should_update_views
     assert_equal 1, posts(:funny_post).view_count
-    put :update_views, :user_id => posts(:funny_post).user_id, :id => posts(:funny_post)
+    patch :update_views, :user_id => posts(:funny_post).user_id, :id => posts(:funny_post)
     assert_response :success
     assert_equal 2, posts(:funny_post).reload.view_count      
   end

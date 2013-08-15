@@ -40,13 +40,13 @@ class EventsControllerTest < ActionController::TestCase
 
   def test_should_update_event
     login_as :admin
-    put :update, :id => 1, :event => {:name => 'changed name' }
+    patch :update, :id => 1, :event => {:name => 'changed name' }
     assert_redirected_to event_path(assigns(:event))
   end
 
   def test_should_fail_to_update_event
     login_as :admin
-    put :update, :id => 1, :event => { :name => nil }
+    patch :update, :id => 1, :event => { :name => nil }
     assert assigns(:event).errors[:name]
     assert_response :success
   end

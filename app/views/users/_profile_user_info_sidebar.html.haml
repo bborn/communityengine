@@ -6,9 +6,9 @@
     %br/      
     = link_to(:delete_this_user.l, user_path(@user), :method => :delete, :data => {:confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l} )
     %br/      
-    = link_to("#{:toggle.l} #{:featured_writer.l}".html_safe, toggle_featured_user_path(@user), {:method => :put} )
+    = link_to("#{:toggle.l} #{:featured_writer.l}".html_safe, toggle_featured_user_path(@user), {:method => :patch} )
     %br/      
-    = link_to("#{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}".html_safe, toggle_moderator_user_path(@user), {:method => :put} )
+    = link_to("#{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}".html_safe, toggle_moderator_user_path(@user), {:method => :patch} )
 
 -box :class => 'hentry', :id => 'profile_details' do
   %h3

@@ -20,7 +20,7 @@ class AdminControllerTest < ActionController::TestCase
     users(:quentin).update_attribute('activation_code', 'test')
     users(:quentin).update_attribute('activated_at', nil)    
         
-    put :activate_user, :id => 1
+    patch :activate_user, :id => 1
     assert !users(:quentin).active?
     assert_redirected_to login_path
   end
@@ -39,14 +39,14 @@ class AdminControllerTest < ActionController::TestCase
     users(:quentin).update_attribute('activated_at', nil)    
 
     login_as :admin
-    put :activate_user, :id => users(:quentin).id
+    patch :activate_user, :id => users(:quentin).id
     assert_response :redirect    
     assert users(:quentin).reload.active?
   end
   
   def test_should_deactivate_user
     login_as :admin
-    put :deactivate_user, :id => users(:quentin).id
+    patch :deactivate_user, :id => users(:quentin).id
     assert_response :redirect    
     assert !users(:quentin).reload.active?    
   end

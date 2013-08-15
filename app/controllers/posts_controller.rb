@@ -129,8 +129,8 @@ class PostsController < BaseController
     end
   end
   
-  # PUT /posts/1
-  # PUT /posts/1.xml
+  # patch /posts/1
+  # patch /posts/1.xml
   def update
     @post = Post.unscoped.find(params[:id])
     @user = @post.user

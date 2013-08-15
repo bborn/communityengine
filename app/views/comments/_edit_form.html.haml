@@ -1,4 +1,4 @@
-= form_for(@comment, :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :method => :put, :remote => true, :html => {:id => "edit_comment_#{comment.id}_form", :class => "MainForm"}) do |f|
+= form_for(@comment, :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :method => :patch, :remote => true, :html => {:id => "edit_comment_#{comment.id}_form", :class => "MainForm"}) do |f|
   .errors
   %label
     %em=:comment_character_limit.l

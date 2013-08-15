@@ -1,3 +1,31 @@
+
+
+=3.0.0.pre1        -- Polar Humenn   15 Aug 2013
+* Moved forms and links to unobtrusive javascript. Still using Prototype.
+* Addressed almost all 4.0/4.1 deprecation issues
+* Migrated to ActiveRecord Query syntax.
+* Replaced :method => :put with :method => :patch
+* Removed attr_accessible and attr_protected in favor of StrongParameters
+* Replaced some 2.3 style plugins with bona fide gems, removed, or moved to lib
+    activity_tracker          ---> lib
+    acts_as_list              ---> gem acts_as_list
+    acts_as_commentable       ---> gem acts_as_commentable, requires db:migrate
+    acts_as_publishable       ---> lib
+    auto_complete             ---> lib
+    bborn-acts-as-taggable-on ---> gem acts_as_taggable-on
+    enumerations_mixin        ---> gem power_num
+    prototype_legacy_helper   ---> lib  (about to be removed)
+    resource_feeder           ---> lib
+    responds_to_parent        ---> removed
+    white_list                ---> lib
+* Replaced or Upgraded gems
+    gem ransak       replaces       gem meta_search
+    gem friendly_id  upgrade requires a db:migrate and syntactical changes
+* Added gems as per directions supporting caching in Rails 4
+    gem actionpack-action_caching
+    gem actionpack-page_caching
+    gem rails-observers
+
 = TODO
 * replace old multiple uploader
 * fix photo uploading from welcome_photo page

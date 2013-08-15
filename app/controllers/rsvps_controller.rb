@@ -36,8 +36,8 @@ class RsvpsController < BaseController
     end
   end
   
-  # PUT /rsvps/1
-  # PUT /rsvps/1.xml
+  # patch /rsvps/1
+  # patch /rsvps/1.xml
   def update
     @rsvp.attendees_count = rsvp_params[:attendees_count]
     respond_to do |format|

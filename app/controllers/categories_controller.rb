@@ -74,8 +74,8 @@ class CategoriesController < BaseController
     end
   end
   
-  # PUT /categories/1
-  # PUT /categories/1.xml
+  # patch /categories/1
+  # patch /categories/1.xml
   def update
     @category = Category.friendly.find(params[:id])
     

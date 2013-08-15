@@ -62,14 +62,14 @@ class FriendshipsControllerTest < ActionController::TestCase
     
   def test_should_accept_friendship
     login_as :aaron
-    put :accept, :id => friendships(:aaron_receive_quentin_pending).id, :user_id => users(:aaron)
+    patch :accept, :id => friendships(:aaron_receive_quentin_pending).id, :user_id => users(:aaron)
     assert_redirected_to accepted_user_friendships_path(users(:aaron))
     assert_equal friendships(:aaron_receive_quentin_pending).reload.friendship_status_id, friendship_statuses(:accepted).id
   end
 
   def test_should_deny_friendship
     login_as :aaron
-    put :deny, :id => friendships(:aaron_receive_quentin_pending).id, :user_id => users(:aaron)
+    patch :deny, :id => friendships(:aaron_receive_quentin_pending).id, :user_id => users(:aaron)
     assert_redirected_to denied_user_friendships_path(users(:aaron))
     assert_equal friendships(:aaron_receive_quentin_pending).reload.friendship_status_id, friendship_statuses(:denied).id
   end

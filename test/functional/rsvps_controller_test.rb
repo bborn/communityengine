@@ -63,20 +63,20 @@ class RsvpsControllerTest < ActionController::TestCase
 
   def test_should_update_rsvp
     login_as :quentin
-    put :update, :event_id => "2", :id => 1, :rsvp => {:attendees_count => '3' }
+    patch :update, :event_id => "2", :id => 1, :rsvp => {:attendees_count => '3' }
     assert_redirected_to event_path(events(:future_event))
   end
 
   def test_should_fail_to_update_rsvp
     login_as :quentin
-    put :update, :event_id => "2", :id => 1, :rsvp => { :attendees_count => nil }
+    patch :update, :event_id => "2", :id => 1, :rsvp => { :attendees_count => nil }
     assert assigns(:rsvp).errors[:attendees_count]
     assert_response :success
   end
 
   def test_should_fail_to_update_rsvp_for_other_user
     login_as :aaron
-    put :update, :event_id => "2", :id => 1, :rsvp => { :attendees_count => '3' }
+    patch :update, :event_id => "2", :id => 1, :rsvp => { :attendees_count => '3' }
     assert_equal Rsvp.find(1).attendees_count, 2
     assert_redirected_to event_path(events(:future_event))
   end

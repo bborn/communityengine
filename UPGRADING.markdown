@@ -1,3 +1,13 @@
+Upgrading to v3.0.0
+===================
+Follow the various guides for converting to Rails 4 from Rails 3.x
+
+Run `bundle exec rake app:community_engine:install:migrations`
+Run `rake db:migrate`
+Run `rake test && take community_engine:test`
+
+Somethings may not be compatible. Some of the views and forms have changed.
+
 Upgrading to v1.2.1
 ===================
 Run `ruby script/generate plugin_migration`

@@ -153,8 +153,8 @@ class ClippingsController < BaseController
     end
   end
 
-  # PUT /clippings/1
-  # PUT /clippings/1.xml
+  # patch /clippings/1
+  # patch /clippings/1.xml
   def update
     @user = User.friendly.find(params[:user_id])
     @clipping = Clipping.find(params[:id])

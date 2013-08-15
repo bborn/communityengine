@@ -20,7 +20,7 @@
 
 #yui-main
   -box :class => "yui-b" do
-    = form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "MainForm" do
+    = form_tag user_path(:welcome => 'invite'), :method => 'patch', :multipart =>true, :class => "MainForm" do
       %h3=:about_you.l
       = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
       

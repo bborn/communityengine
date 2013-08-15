@@ -63,7 +63,7 @@ class ForumsControllerTest < ActionController::TestCase
   
   def test_should_update_forum
     login_as :admin
-    put :update, :id => 1, :forum => { }, :tag_list => 'tagX, tagY'
+    patch :update, :id => 1, :forum => { }, :tag_list => 'tagX, tagY'
     assert_redirected_to forums_path
   
     assert_equal ['tagX', 'tagY'], Forum.find(1).tag_list
@@ -72,7 +72,7 @@ class ForumsControllerTest < ActionController::TestCase
   # def test_should_update_forum_with_xml
   #   authorize_as :aaron
   #   content_type 'application/xml'
-  #   put :update, :id => 1, :forum => { }, :format => 'xml'
+  #   patch :update, :id => 1, :forum => { }, :format => 'xml'
   #   assert_response :success
   # end
   

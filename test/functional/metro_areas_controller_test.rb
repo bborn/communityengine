@@ -48,7 +48,7 @@ class MetroAreasControllerTest < ActionController::TestCase
   
   def test_should_update_metro_area
     login_as :admin
-    put :update, :id => 1, :metro_area => { }
+    patch :update, :id => 1, :metro_area => { }
     assert_redirected_to metro_area_path(assigns(:metro_area))
   end
   

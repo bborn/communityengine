@@ -27,15 +27,15 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_toggle_moderator
     login_as :admin
     assert !users(:quentin).moderator?
-    put :toggle_moderator, :id => users(:quentin)
+    patch :toggle_moderator, :id => users(:quentin)
     assert users(:quentin).reload.moderator?
-    put :toggle_moderator, :id => users(:quentin)
+    patch :toggle_moderator, :id => users(:quentin)
     assert !users(:quentin).reload.moderator?
   end
 
   def test_should_not_toggle_featured_writer_if_not_admin
     login_as :quentin
-    put :toggle_moderator, :id => users(:quentin)
+    patch :toggle_moderator, :id => users(:quentin)
     assert_redirected_to :login_url
     assert !users(:quentin).reload.moderator?
   end
@@ -44,15 +44,15 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_toggle_featured_writer
     login_as :admin
     assert !users(:quentin).featured_writer?
-    put :toggle_featured, :id => users(:quentin)
+    patch :toggle_featured, :id => users(:quentin)
     assert users(:quentin).reload.featured_writer?
-    put :toggle_featured, :id => users(:quentin)
+    patch :toggle_featured, :id => users(:quentin)
     assert !users(:quentin).reload.featured_writer?
   end
 
   def test_should_not_toggle_featured_writer_if_not_admin
     login_as :quentin
-    put :toggle_featured, :id => users(:quentin)
+    patch :toggle_featured, :id => users(:quentin)
     assert_redirected_to login_url
     assert !users(:quentin).reload.featured_writer?
   end
@@ -134,7 +134,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_deactivate_and_logout
     login_as :quentin
     assert users(:quentin).active?
-    put :deactivate, :id => users(:quentin).id
+    patch :deactivate, :id => users(:quentin).id
     assert !users(:quentin).reload.active?
     assert_redirected_to login_path
   end
@@ -209,7 +209,7 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_update_user
     login_as :quentin
-    put :update, :id => users(:quentin), :user => {:email => "changed_email@email.com"}
+    patch :update, :id => users(:quentin), :user => {:email => "changed_email@email.com"}
     assert_redirected_to user_path(users(:quentin).reload)
     assert_equal assigns(:user).email, "changed_email@email.com"
   end
@@ -218,14 +218,14 @@ class UsersControllerTest < ActionController::TestCase
     login_as :quentin
     users(:quentin).tag_list = ''
     users(:quentin).save
-    put :update, :id => users(:quentin), :tag_list => 'tag1, tag2', :user => {}
+    patch :update, :id => users(:quentin), :tag_list => 'tag1, tag2', :user => {}
     assert_redirected_to user_path(users(:quentin).reload)
     assert_equal users(:quentin).tag_list, ['tag1', 'tag2']
   end
 
   def test_should_not_update_user
     login_as :quentin
-    put :update, :id => users(:aaron), :user => {:login => "changed_login", :email => "changed_email@email.com"}
+    patch :update, :id => users(:aaron), :user => {:login => "changed_login", :email => "changed_email@email.com"}
     assert_redirected_to login_path
   end
 
@@ -255,22 +255,22 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_upload_avatar
     login_as :quentin
-    put :update, :id => users(:quentin).id, :user => {:avatar_attributes => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}}
+    patch :update, :id => users(:quentin).id, :user => {:avatar_attributes => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}}
     assert_equal users(:quentin).reload.avatar.photo_file_name, "library.jpg"
   end
 
   def test_should_upload_avatar_from_url
     login_as :quentin
-    put :update, :id => users(:quentin).id, :user => {:avatar_attributes => {:photo_remote_url => 'http://www.google.com/intl/en_ALL/images/logo.gif'}}
+    patch :update, :id => users(:quentin).id, :user => {:avatar_attributes => {:photo_remote_url => 'http://www.google.com/intl/en_ALL/images/logo.gif'}}
     assert_equal users(:quentin).reload.avatar.photo_file_name, "library.jpg" #UrlUpload is mocked in test helper
   end
 
   def test_should_not_delete_existing_avatar_if_file_field_is_blank
     login_as :quentin
-    put :update, :id => users(:quentin).id, :user => {:avatar_attributes => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}}
+    patch :update, :id => users(:quentin).id, :user => {:avatar_attributes => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}}
     assert users(:quentin).reload.avatar.photo_file_name, "library.jpg"
 
-    put :update, :id => users(:quentin).id, :user => {}
+    patch :update, :id => users(:quentin).id, :user => {}
     assert_equal users(:quentin).reload.avatar.photo_file_name, "library.jpg"
   end
 
@@ -283,14 +283,14 @@ class UsersControllerTest < ActionController::TestCase
     users(:quentin).avatar = avatar
     users(:quentin).save
 
-    put :crop_profile_photo, :id => users(:quentin).id, :x1 => 0, :y1 => 0, :width => 290, :height => 320
+    patch :crop_profile_photo, :id => users(:quentin).id, :x1 => 0, :y1 => 0, :width => 290, :height => 320
 
     assert_redirected_to user_path(users(:quentin))
   end
 
   def test_should_upload_profile_photo
     login_as :quentin
-    put :upload_profile_photo, :id => users(:quentin), :avatar => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    patch :upload_profile_photo, :id => users(:quentin), :avatar => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}
     assert_redirected_to crop_profile_photo_user_path(users(:quentin).reload)
   end
 
@@ -305,7 +305,7 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_update_account
     login_as :quentin
-    put :update_account, :user => {:login => 'changed_login'}, :id => users(:quentin)
+    patch :update_account, :user => {:login => 'changed_login'}, :id => users(:quentin)
     assert_redirected_to user_path(users(:quentin).reload)
     assert_equal assigns(:user).login, 'changed_login'
   end

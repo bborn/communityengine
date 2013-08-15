@@ -166,7 +166,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   def test_should_update_own_post
     login_as :sam
-    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { }, :tag_list => 'tagX, tagY'
+    patch :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { }, :tag_list => 'tagX, tagY'
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
     assert_equal ['tagX', 'tagY'], topics(:ponies).reload.tag_list
   end
@@ -174,27 +174,27 @@ class TopicsControllerTest < ActionController::TestCase
 
   def test_should_not_update_user_id_of_own_post
     login_as :sam
-    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { :user_id => 32 }
+    patch :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { :user_id => 32 }
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
     assert_equal users(:sam).id, sb_posts(:ponies).reload.user_id
   end
 
   def test_should_not_update_other_post
     login_as :sam
-    put :update, :forum_id => forums(:comics).id, :id => topics(:galactus).id, :topic => { }
+    patch :update, :forum_id => forums(:comics).id, :id => topics(:galactus).id, :topic => { }
     assert_redirected_to login_path
   end
 
 
   def test_should_update_other_post_as_moderator
     login_as :sam
-    put :update, :forum_id => forums(:rails).id, :id => topics(:pdi).id, :topic => { }
+    patch :update, :forum_id => forums(:rails).id, :id => topics(:pdi).id, :topic => { }
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
   end
 
   def test_should_update_other_post_as_admin
     login_as :admin
-    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies), :topic => { }
+    patch :update, :forum_id => forums(:rails).id, :id => topics(:ponies), :topic => { }
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
   end
 end

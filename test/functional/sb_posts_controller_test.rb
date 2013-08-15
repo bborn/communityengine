@@ -77,32 +77,32 @@ class SbPostsControllerTest < ActionController::TestCase
 
   def test_can_edit_own_post
     login_as :sam
-    put :update, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:silver_surfer).to_param, :post => {}
+    patch :update, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:silver_surfer).to_param, :post => {}
     assert_redirected_to forum_topic_path(:forum_id => forums(:comics).to_param, :id => topics(:galactus).to_param, :anchor => sb_posts(:silver_surfer).dom_id, :page => '1')
   end
 
   def test_can_edit_other_post_as_moderator
     login_as :sam
-    put :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param, :post => {}
+    patch :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param, :post => {}
     assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => sb_posts(:pdi_rebuttal).dom_id, :page => '1')
   end
 
   def test_cannot_edit_other_post
     login_as :sam
-    put :update, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:galactus).to_param, :post => {}
+    patch :update, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:galactus).to_param, :post => {}
     assert_redirected_to login_path
   end
 
   def test_cannot_edit_own_post_user_id
     login_as :sam
-    put :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_reply).to_param, :post => { :user_id => 32 }
+    patch :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_reply).to_param, :post => { :user_id => 32 }
     assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => sb_posts(:pdi_reply).dom_id, :page => '1')
     assert_equal users(:sam).id, sb_posts(:pdi_reply).reload.user_id
   end
 
   def test_can_edit_other_post_as_admin
     login_as :admin
-    put :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param, :post => {}
+    patch :update, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param, :post => {}
     assert_redirected_to forum_topic_path(:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => sb_posts(:pdi_rebuttal).dom_id, :page => '1')
   end
   

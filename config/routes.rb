@@ -165,12 +165,12 @@ Rails.application.routes.draw do
       get 'signup_completed'      
       get 'activate'
       
-      put 'toggle_moderator'
-      put 'toggle_featured'
+      patch 'toggle_moderator'
+      patch 'toggle_featured'
 
-      put 'change_profile_photo'
-      put 'update_account'
-      put 'deactivate'      
+      patch 'change_profile_photo'
+      patch 'update_account'
+      patch 'deactivate'
       
       get 'welcome_photo'
       get 'welcome_about'
@@ -181,9 +181,9 @@ Rails.application.routes.draw do
       
       get 'statistics'
       get 'crop_profile_photo'
-      put 'crop_profile_photo'
+      patch 'crop_profile_photo'
       get 'upload_profile_photo'
-      put 'upload_profile_photo'
+      patch 'upload_profile_photo'
     end
     
     resources :friendships do
@@ -193,8 +193,8 @@ Rails.application.routes.draw do
         get :denied
       end
       member do
-        put :accept
-        put :deny
+        patch :accept
+        patch :deny
       end
     end
 
@@ -212,7 +212,7 @@ Rails.application.routes.draw do
       
       member do
         post :send_to_friend
-        put :update_views
+        patch :update_views
         get :category_tips_update
         get :preview
       end

@@ -3,7 +3,7 @@
     %h1
       = :editing_homepage_feature.l
     = error_messages_for :homepage_feature
-    = form_for(:homepage_feature, :url => homepage_feature_path(@homepage_feature), :html => { :multipart => true, :method => :put }) do |f|
+    = form_for(:homepage_feature, :url => homepage_feature_path(@homepage_feature), :html => { :multipart => true, :method => :patch }) do |f|
       %p
         %b
           URL

@@ -6,7 +6,7 @@
       :class => "utility", :method => :delete, :data => {:confirm => :are_you_sure_you_want_to_delete_this_post.l}) %>
 
 <%= error_messages_for :topic %>
-<% form_for :post, :html => { :method => :put }, 
+<% form_for :post, :html => { :method => :patch },
      :url  => sb_post_path(:forum_id => params[:forum_id], :id => params[:topic_id], :id => @post, :page => params[:page]) do |f| -%>
 <%= f.text_area :body, :class => "rich_text_editor" %>
 <%= submit_tag :save.l %> <%= :or.l %> <%= link_to :cancel.l, forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :page => params[:page]) %>

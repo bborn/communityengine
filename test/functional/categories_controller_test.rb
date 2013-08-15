@@ -37,7 +37,7 @@ class CategoriesControllerTest < ActionController::TestCase
   
   def test_should_update_category
     login_as :admin
-    put :update, :id => 1, :category => { }
+    patch :update, :id => 1, :category => { }
     assert_redirected_to category_path(assigns(:category))
   end
   

@@ -1,5 +1,5 @@
 -box :id => "profile_details" do
-  = form_for :avatar, :url => upload_profile_photo_user_url(@user), :method => 'put', :multipart =>true, :html => {:class => 'MainForm'} do |f|
+  = form_for :avatar, :url => upload_profile_photo_user_url(@user), :method => 'patch', :multipart =>true, :html => {:class => 'MainForm'} do |f|
 
     = error_messages_for :avatar
     %h3=:profile_photo.l

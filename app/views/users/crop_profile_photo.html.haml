@@ -19,7 +19,7 @@
   
     = error_messages_for :photo
 
-    = form_for(:photo, :url => crop_profile_photo_user_path(@user), :method => :put, :html => { :class => "MainForm" }) do |f|
+    = form_for(:photo, :url => crop_profile_photo_user_path(@user), :method => :patch, :html => { :class => "MainForm" }) do |f|
       - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
         %input{ :type=>"hidden", :name=>attribute, :id=>attribute, :size=>"4"}
     
