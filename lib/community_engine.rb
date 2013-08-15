@@ -48,6 +48,7 @@ require 'acts_as_list'
 require 'papercliip_processors/cropper'
 
 # Rails 4
+require 'rails/observers/railtie'
 require 'actionpack/action_caching'
 require 'actionpack/page_caching'
 

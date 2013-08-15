@@ -15,6 +15,13 @@ module CommunityEngine
         load(initializer) unless File.exists?("#{root.to_s}/config/initializers/#{File.basename(initializer)}")
       end                
     end
+
+    initializer "#{engine_name}.rails4", :after => "active_record.observer" do
+      ActiveSupport.on_load(:action_controller) do
+        ActionController::Base.extend ActionController::Caching::Pages::ClassMethods
+        ActionController::Base.extend ActionController::Caching::Actions::ClassMethods
+      end
+    end
         
     initializer "#{engine_name}.rakismet_config", :before => "rakismet.setup" do |app|
       if !configatron.akismet_key.nil?
@@ -32,10 +39,6 @@ module CommunityEngine
         end
       end
     end
-    
-    
-
-     
   end
 end
 

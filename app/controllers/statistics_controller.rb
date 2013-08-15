@@ -10,7 +10,7 @@ class StatisticsController < BaseController
     @today_new_users = find_new_users(Date.today.midnight, Date.today.tomorrow.midnight)  
 
     # Query returns a hash of user_id to number of activities for that user.
-    @active_users_count = Activity.group("user_id").having("created_at > ?", 1.month.ago).count.keys.size
+    @active_users_count = Activity.group("user_id").having("count(created_at > ?) > 0", 1.month.ago).count.keys.size
 
     @active_users = User.find_by_activity({:since => 1.month.ago})
     

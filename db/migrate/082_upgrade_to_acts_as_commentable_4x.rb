@@ -4,7 +4,6 @@ class UpgradeToActsAsCommentable4x < ActiveRecord::Migration
       t.string :new_title, :limit => 50, :default => ""
       t.text :new_comment
       t.string :role, :default => "comments"
-      t.remove :recipient
     end
 
     Comment.all.map do |comment|
@@ -25,7 +24,6 @@ class UpgradeToActsAsCommentable4x < ActiveRecord::Migration
   def self.down
     change_table :columns do |t|
       t.remove :role
-      t.references :recipient
     end
   end
 end

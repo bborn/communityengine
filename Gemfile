@@ -28,7 +28,7 @@ gem 'ransack'
 gem 'acts-as-taggable-on', "~> 2.4.1"
 gem 'sanitize'
 gem 'acts_as_commentable'
-gem 'authlogic', github: "binarylogic/authlogic" # Rails 4 compat
+gem 'authlogic' #, github: "binarylogic/authlogic" # Rails 4 compat
 gem 'recaptcha'
 gem 'tinymce-rails'
 
