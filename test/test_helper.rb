@@ -16,7 +16,6 @@ ActionMailer::Base.default_url_options[:host] = "test.com"
 
 Rails.backtrace_cleaner.remove_silencers!
 
-
 ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures").to_s #we want a string here, not a Pathname
 ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
@@ -27,17 +26,8 @@ ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_p
 #   'email' => 'email@example.com'
 # }
 
-ApplicationController.send(:include, ActionController::Caching)
-ApplicationController.send(:include, ActionController::Caching::Pages)
-ApplicationController.send(:include, ActionController::Caching::Actions)
-ActionController::Caching::Sweeper.send(:include, ActiveSupport::Configurable)
-ActionController::Caching::Sweeper.send(:include, ActionController::Caching)
-ActionController::Caching::Sweeper.send(:include, ActionController::Caching::Pages)
-ActionController::Caching::Sweeper.send(:include, ActionController::Caching::Actions)
-
 class ActionController::TestCase
   include Authlogic::TestCase
-  include ActionController::Caching::Actions
   setup :activate_authlogic
 end
 
