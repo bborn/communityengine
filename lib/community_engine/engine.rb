@@ -18,8 +18,8 @@ module CommunityEngine
 
     initializer "#{engine_name}.rails4", :after => "active_record.observer" do
       ActiveSupport.on_load(:action_controller) do
-        ActionController::Base.extend ActionController::Caching::Pages::ClassMethods
-        ActionController::Base.extend ActionController::Caching::Actions::ClassMethods
+        ActionController::Base.send :include, ActionController::Caching::Pages
+        ActionController::Base.send :include, ActionController::Caching::Actions
       end
     end
 
