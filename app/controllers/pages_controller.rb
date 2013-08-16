@@ -8,7 +8,7 @@ class PagesController < BaseController
 
   def cache_action?
     !logged_in? && controller_name.eql?('pages')
-  end 
+  end
 
   before_filter :login_required, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
   before_filter :require_moderator, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
@@ -26,7 +26,7 @@ class PagesController < BaseController
     @page = Page.live.find(params[:id])
     unless logged_in? || @page.page_public
       flash[:error] = :page_not_public_warning.l
-      redirect_to :controller => 'sessions', :action => 'new'      
+      redirect_to :controller => 'sessions', :action => 'new'
     end
   rescue
     flash[:error] = :page_not_found.l
@@ -59,7 +59,7 @@ class PagesController < BaseController
   end
 
   private
-  
+
   def require_moderator
     @page ||= Page.find(params[:id]) if params[:id]
     unless admin? || moderator?
