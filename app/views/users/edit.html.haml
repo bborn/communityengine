@@ -52,7 +52,7 @@
       -box do 
         %h3= :tags.l
         #user_tags
-          = text_field_tag 'tag_list', @user.tag_list.join(", "), {:autocomplete => "off"}
+          = text_field_tag 'tag_list', @user.tag_list.join.to_s, {:autocomplete => "off"}
           #tag_list_auto_complete.auto_complete
           -content_for :end_javascript do
             = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
