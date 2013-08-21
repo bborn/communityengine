@@ -192,6 +192,6 @@ class ClippingsController < BaseController
   private
 
   def clipping_params
-    params.require(:clipping).permit(:url, :description, :image_url, :image, :user, :user_id)
+    params.require(:clipping).permit(:url, :description, :image_url, :image)
   end
 end

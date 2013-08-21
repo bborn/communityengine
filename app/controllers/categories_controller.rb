@@ -58,7 +58,7 @@ class CategoriesController < BaseController
   # POST /categories
   # POST /categories.xml
   def create
-    @category = Category.new(params.require(:category).permit(:name))
+    @category = Category.new(category_params)
     
     respond_to do |format|
       if @category.save
@@ -82,7 +82,7 @@ class CategoriesController < BaseController
     @category = Category.friendly.find(params[:id])
     
     respond_to do |format|
-      if @category.update_attributes(params[:category].permit(:name))
+      if @category.update_attributes(category_params)
         format.html { redirect_to category_url(@category) }
         format.xml  { render :nothing => true }
       else
@@ -110,6 +110,12 @@ class CategoriesController < BaseController
   rescue ActiveRecord::RecordNotFound
     render :partial => "/categories/tips", :locals => {:category => nil}
   end
-  
+
+
+  private
+
+  def category_params
+    params[:category].permit(:name, :tips, :new_post_text, :nav_text)
+  end
   
 end
