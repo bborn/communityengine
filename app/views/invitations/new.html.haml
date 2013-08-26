@@ -16,7 +16,7 @@
   .yui-b
     -box do 
       %h3=:invite_your_friends_to_join.l
-      = form_for(:invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "MainForm"} ) do |f|
+      = form_for(:invitation, :url => user_invitations_path(@user), :html => {:class => "MainForm"} ) do |f|
         .right
           %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
             %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/

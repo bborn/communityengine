@@ -54,7 +54,7 @@
               %strong= :by.l :login => forum.sb_posts.last.user.display_name
             %span
               (
-              = link_to :view.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
+              = link_to :view.l, forum_topic_path(forum, forum.sb_posts.last.topic, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id)
               )
 
   %p= link_to :recent_posts.l, recent_forum_posts_path

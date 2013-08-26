@@ -12,13 +12,11 @@
         =@post.category ? (:new_post_for_category.l :category => @post.category.name) : :new_post.l
 
       = error_messages_for :post
-      = form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|			
-        - unless @post.category || @categories.blank?        
+      = form_for(:post, :url => user_posts_path, :html => {:class => "MainForm", :id => 'post_form'}) do |f|
+        - unless @post.category || @categories.blank?
           %label
             =:category.l
-          %select{:id=>"post_category_id", :name=>"post[category_id]"}
-            -for category in @categories
-              %option{:value=>"#{category.id}"}= h(category.name)
+          =f.collection_select(:category_id, @categories, :id, :name, :include_blank => true)
         -else
           = f.hidden_field :category_id
 

@@ -4,7 +4,7 @@
     - if logged_in?
       %h3= :get_popular.l
       %ul.list.checks
-        %li=link_to :write_a_blog_post.l, new_user_post_path({:user_id => current_user})
+        %li=link_to :write_a_blog_post.l, new_user_post_path(current_user)
     - else
       %h3= :want_to_be_popular.l
       %ul.list.checks

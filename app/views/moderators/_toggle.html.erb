@@ -1,5 +1,5 @@
 <% if !user.moderator_of?(forum)  %>
-  <%= link_to :make_moderator.l, forum_moderators_path(:forum_id => forum.id, :user_id => user.id),
+  <%= link_to :make_moderator.l, forum_moderators_path(forum, :user_id => user.id),
        :method => :post, :remote => true, :class => "utility" %>
 <% else %>
   <% moderatorship = Moderatorship.find_by_user_id_and_forum_id(user.id, forum.id) %>

@@ -1,6 +1,6 @@
 <div id="edit" class="editbox">
 <div class="container">
-  <%= form_for @post, :as => "post", :url => sb_post_path(:forum_id => @post.forum_id, :topic_id => @post.topic_id, :id => @post), :remote => true, :html => { :method => :patch, :class => "MainForm" } do |f| -%>
+  <%= form_for @post, :as => "post", :url => sb_post_path(@post, :forum_id => @post.forum_id, :topic_id => @post.topic_id), :remote => true, :html => { :method => :patch, :class => "MainForm" } do |f| -%>
 
   <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
@@ -14,7 +14,7 @@
 			<%= submit_tag :save_changes.l %> <%= :or.l %>
             <%= link_to :cancel.l, "#", :id => "cancelButton" %>
 	
-	        <%= link_to(:delete_this_post.l, sb_post_path(:forum_id => @post.topic.forum, :topic_id => @post.topic, :id => @post, :page => params[:page]), :class => "utility", :method => :delete, :data => {:confirm => :are_you_sure_you_want_to_delete_this_post.l}) %>
+	        <%= link_to(:delete_this_post.l, sb_post_path(@post, :forum_id => @post.topic.forum, :topic_id => @post.topic, :page => params[:page]), :class => "utility", :method => :delete, :data => {:confirm => :are_you_sure_you_want_to_delete_this_post.l}) %>
 	
 				</p>
 

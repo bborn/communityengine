@@ -32,4 +32,4 @@
       %h3=:tags.l
       - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
         - css_class = css_class + (name.eql?(params[:tag_name]) ? " selected": "")
-        = link_to name, user_clippings_path(:user_id => @user, :tag_name => name), :class => css_class
+        = link_to name, user_clippings_path(@user, :tag_name => name), :class => css_class

@@ -54,7 +54,7 @@
             = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
             = "</strong>".html_safe if topic.sticky?
             - if topic.paged? 
-              %small= link_to :last.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page)
+              %small= link_to :last.l, forum_topic_path( @forum, topic, :page => topic.last_page)
           %td.ca.inv.stat= topic.sb_posts_count
           %td.ca.inv.stat= number_with_delimiter(topic.views)
           %td.lp
@@ -62,7 +62,7 @@
             %span.author
               %strong.fn
                 =:by.l :login => topic.replied_by_user.display_name
-            %span= link_to :view.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
+            %span= link_to :view.l, forum_topic_path(@forum, topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
   
   - if @topics.total_count > 1
     = paginate @topics

@@ -9,7 +9,7 @@
           - if (tag.name.eql?(params[:tag_name]) )
             = link_to tag.name, user_photos_path(@user), :class => "selected"
           - else
-            = link_to tag.name, user_photos_path(:user_id => @user, :tag_name => tag.name)    
+            = link_to tag.name, user_photos_path(@user, :tag_name => tag.name)
   
 
 #yui-main
