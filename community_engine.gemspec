@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split("\n") rescue ''
   s.test_files  = `git ls-files -- {test}/*`.split("\n")
 
-  s.add_dependency(%q<rails>, ["~> 3.2.0"])
+  s.add_dependency(%q<rails>, [">= 3.2.0"])
   s.add_dependency(%q<rack>, [">= 1.4.1"])
   s.add_dependency(%q<authlogic>, [">= 0"])
   s.add_dependency(%q<bcrypt-ruby>, [">= 0"])
