@@ -25,7 +25,9 @@ class Invitation < ActiveRecord::Base
       record.email_addresses = (emails - invalid_emails).join(', ')
     end
   end
-  
+
+  attr_accessible :email_addresses, :message
+
   def send_invite
     emails = self.email_addresses.split(",").collect{|email| email.strip }.uniq 
     emails.each{|email|
