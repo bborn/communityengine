@@ -14,6 +14,7 @@ module ActiveRecord
           valid_keys = [:conditions, :order, :on_lookup_failure]
           options.assert_valid_keys(*valid_keys)
           valid_keys.each do |key|   
+          class_attribute :acts_enumerated_on_lookup_failure
             class_attribute "acts_enumerated_#{key.to_s}"
             if options.has_key?( key )
               self.send "acts_enumerated_#{key.to_s}=", options[key]
@@ -55,7 +56,7 @@ module ActiveRecord
           else
             raise TypeError, "#{self.name}[]: argument should be a String, Symbol or Fixnum but got a: #{arg.class.name}"            
           end
-          self.send((read_inheritable_attribute(:acts_enumerated_on_lookup_failure) || :enforce_strict_literals), arg)
+          self.send(:acts_enumerated_on_lookup_failure) || self.send(:enforce_strict_literals, arg)
         end
 
         def lookup_id(arg)
