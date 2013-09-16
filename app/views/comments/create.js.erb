@@ -1,6 +1,6 @@
 <% if @comment.new_record? %>
   comment = $('#comment');
-  comment.prepend("<%= (render 'shared/messages').gsub('"', '\\"').gsub("\n", '').html_safe %>");
+  comment.prepend("<%= escape_javascript(render 'shared/messages') %>");
   comment.scrollTo();
 <% else %>
   <% if @comment.user && @comment.user.facebook? %>

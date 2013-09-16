@@ -1,13 +1,13 @@
 <% if @comment.nil? %>
   comment = $('#comment-<%= params[:id].to_s %>');
-  comment.prepend("<%= (render 'shared/messages').gsub('"', '\\"').gsub("\n", '').html_safe %>");
+  comment.prepend("<%= escape_javascript(render 'shared/messages').gsub('"', '\\"') %>");
   comment.scrollTo();
 <% elsif @comment.errors.any? %>
   comment = $('#comment-<%= @comment.id.to_s %>');
-  comment.prepend("<%= (render 'shared/messages').gsub('"', '\\"').gsub("\n", '').html_safe %>");
+  comment.prepend("<%= escape_javascript(render 'shared/messages').gsub('"', '\\"') %>");
   comment.scrollTo();
 <% else %>
-  $('#comment-<%= @comment.id %>').html("<%= (render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}).gsub('"', '\\\"').gsub("\n", "").html_safe %>")
+  $('#comment-<%= @comment.id %>').html("<%= escape_javascript(render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}) %>")
 <% end %>
-          
+
 

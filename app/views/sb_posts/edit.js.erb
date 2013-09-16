@@ -1,6 +1,6 @@
 post = $('#post-body-<%= @post.id %>');
-editor = post.children('.editor');
-editable = post.children('.editable');
+editor = post.find('.editor');
+editable = post.find('.editable');
 
 editable.addClass('hide');
 editor.html("<%= (render :partial => 'sb_posts/edit', :locals => {:post => @post}).gsub('"', "'").gsub("\n", '').html_safe %>");
@@ -11,6 +11,4 @@ post.scrollTo();
 
 $('#edit-post-<%= @post.id %>_spinner').addClass('hide');
 
-editor.switchClass('hide','alert alert-info', 500,'easeOutCubic',function(){
-	editor.switchClass('alert alert-info','normal', 3000,'easeInCubic');
-});
+editor.toggleClass('hide');
