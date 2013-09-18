@@ -479,6 +479,10 @@ class User < ActiveRecord::Base
       !omniauthed?
     end
 
+    def requires_unique_login?
+      true
+    end
+
     def omniauthed?
       authorizing_from_omniauth || authorizations.any?
     end
