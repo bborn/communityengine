@@ -8,8 +8,7 @@
   comment.scrollTo();
 <% else %>
   $('#comment-<%= @comment.id %>').html("<%= escape_javascript(render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}) %>")
+  if (typeof($.CE.commentUpdatedCallback) != 'undefined'){
+    $.CE.commentUpdatedCallback('<%= @comment.id %>')
+  }
 <% end %>
-
-if (typeof($.CE.commentUpdatedCallback) != 'undefined'){
-  $.CE.commentUpdatedCallback('<%= @comment.id %>')
-}
