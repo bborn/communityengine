@@ -10,4 +10,6 @@
   $('#comment-<%= @comment.id %>').html("<%= escape_javascript(render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}) %>")
 <% end %>
 
-
+if (typeof($.CE.commentUpdatedCallback) != 'undefined'){
+  $.CE.commentUpdatedCallback('<%= @comment.id %>')
+}
