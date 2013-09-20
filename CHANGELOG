@@ -1,4 +1,7 @@
-
+=3.0.0.pre2       -- Polar Humenn   20 Sep 2013
+* Upgraded to tinyMCE 4.0.2 ; made fix to mce_options to make it work.
+* Removed curblyadvimage from tinymce plugins (not working)
+* Made fix for Users params when nothing is modified.
 
 =3.0.0.pre1        -- Polar Humenn   15 Aug 2013
 * Moved forms and links to unobtrusive javascript. Still using Prototype.
