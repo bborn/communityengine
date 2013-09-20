@@ -19,19 +19,19 @@ class SbPostsController < BaseController
 
   def index
     conditions = []
-    [:user_id, :forum_id].each { |attr| 
-      conditions << SbPost.send(:sanitize_sql, ["sb_posts.#{attr} = ?", params[attr].to_i]) if params[attr] 
+    [:user_id, :forum_id].each { |attr|
+      conditions << SbPost.send(:sanitize_sql, ["sb_posts.#{attr} = ?", params[attr].to_i]) if params[attr]
     }
     conditions = conditions.any? ? conditions.collect { |c| "(#{c})" }.join(' AND ') : nil
 
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
-    
+
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
   end
 
   def search
     conditions = params[:q].blank? ? nil : SbPost.send(:sanitize_sql, ['LOWER(sb_posts.body) LIKE ?', "%#{params[:q]}%"])
-    
+
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
 
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
@@ -39,7 +39,7 @@ class SbPostsController < BaseController
   end
 
   def monitored
-    @user = User.find params[:user_id]    
+    @user = User.find params[:user_id]
     @posts = SbPost.with_query_options.joins('INNER JOIN monitorships ON monitorships.topic_id = topics.id').where('monitorships.user_id = ? AND sb_posts.user_id != ?', params[:user_id], @user.id).page(params[:page])
   end
 
@@ -71,7 +71,7 @@ class SbPostsController < BaseController
     @post  = @topic.sb_posts.new(params[:sb_post])
 
     @post.user = current_user if current_user
-    @post.author_ip = request.remote_ip #save the ip address for everyone, just because    
+    @post.author_ip = request.remote_ip #save the ip address for everyone, just because
 
     if (logged_in? || verify_recaptcha(@post)) && @post.save
       respond_to do |format|
@@ -90,14 +90,14 @@ class SbPostsController < BaseController
       end
     end
   end
-  
+
   def edit
-    respond_to do |format| 
-      format.html 
+    respond_to do |format|
+      format.html
       format.js
     end
   end
-  
+
   def update
     @post.update_attributes!(params[:sb_post])
   rescue ActiveRecord::RecordInvalid
@@ -115,12 +115,15 @@ class SbPostsController < BaseController
   def destroy
     @post.destroy
     flash[:notice] = :sb_post_was_deleted.l_with_args(:title => CGI::escapeHTML(@post.topic.title))
-    # check for posts_count == 1 because its cached and counting the currently deleted post
-    @post.topic.destroy and redirect_to forum_path(params[:forum_id]) if @post.topic.sb_posts_count == 1
     respond_to do |format|
       format.html do
-        redirect_to forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :page => params[:page]) unless performed?
+        if @post.topic.sb_posts_count == 1
+          redirect_to forum_path(params[:forum_id])
+        else
+          redirect_to forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :page => params[:page]) unless performed?
+        end
       end
+      format.js
       format.xml { head 200 }
     end
   end
@@ -130,9 +133,9 @@ class SbPostsController < BaseController
     def authorized?
       %w(create new).include?(action_name) || @post.editable_by?(current_user)
     end
-    
+
     def find_post
       @post = SbPost.find_by_id_and_topic_id_and_forum_id(params[:id].to_i, params[:topic_id].to_i, params[:forum_id].to_i) || raise(ActiveRecord::RecordNotFound)
     end
-    
+
 end

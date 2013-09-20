@@ -3,7 +3,7 @@ editor = post.find('.editor');
 editable = post.find('.editable');
 
 editable.addClass('hide');
-editor.html("<%= (render :partial => 'sb_posts/edit', :locals => {:post => @post}).gsub('"', "'").gsub("\n", '').html_safe %>");
+editor.html("<%= escape_javascript(render :partial => 'sb_posts/edit', :locals => {:post => @post}) %>");
 
 <%= render 'shared/load_tinymce' %>
 

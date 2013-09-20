@@ -1,13 +1,13 @@
 <% if @comment.nil? %>
   comment = $('#comment-<%= params[:id].to_s %>');
-  comment.prepend("<%= escape_javascript(render 'shared/messages').gsub('"', '\\"') %>");
+  comment.prepend("<%= escape_javascript(render 'shared/messages') %>");
   comment.scrollTo();
 <% elsif @comment.errors.any? %>
   comment = $('#comment-<%= @comment.id.to_s %>');
-  comment.prepend("<%= escape_javascript(render 'shared/messages').gsub('"', '\\"') %>");
+  comment.prepend("<%= escape_javascript(render 'shared/messages') %>");
   comment.scrollTo();
 <% else %>
-  $('#comment-<%= @comment.id %>').html("<%= escape_javascript(render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}) %>")
+  $('#comment-<%= @comment.id %>').replaceWith("<%= escape_javascript(render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}) %>")
   if (typeof($.CE.commentUpdatedCallback) != 'undefined'){
     $.CE.commentUpdatedCallback('<%= @comment.id %>')
   }

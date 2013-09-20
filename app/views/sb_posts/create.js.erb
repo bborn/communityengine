@@ -1,18 +1,18 @@
 <% if @post.new_record? %>
   reply = $('.reply');
-  reply.prepend("<%= (render 'shared/messages').gsub('"', "'").gsub("\n", '').html_safe %>");
-  message = reply.children('.alert')
+  reply.prepend(escape_javascript("<%=raw escape_javascript(render 'shared/messages') %>");
+  message = reply.find('.alert')
   message.scrollTo();
 <% else %>
   reply = $('.reply');
   posts_table = $('#posts');
-  posts_table.append("<%= (render :partial => 'sb_posts/sb_post', :locals => {:post => @post}).gsub('"', "'").gsub("\n", '').html_safe %>")
+  posts_table.append("<%= escape_javascript(render :partial => 'sb_posts/sb_post', :locals => {:post => @post}) %>")
 
   my_post = $('#post-body-<%= @post.id %>')
   my_post.scrollTo();
 
   $('#reply_spinner').addClass('hide');
-  editable = my_post.children('.editable');
+  editable = my_post.find('.editable');
 
   editable.switchClass('','alert alert-info', 500,'easeOutCubic',function(){
 	 editable.switchClass('alert alert-info','normal', 3000,'easeInCubic');
