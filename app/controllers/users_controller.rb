@@ -119,16 +119,20 @@ class UsersController < BaseController
 
     @user.tag_list = params[:tag_list] || ''
 
-    attributes = user_params.permit!
-    attributes[:avatar_attributes][:user_id] = @user.id if attributes[:avatar_attributes]
-    if @user.update_attributes(attributes)
-      @user.track_activity(:updated_profile)
+    if user_params
+      attributes = user_params.permit!
+      attributes[:avatar_attributes][:user_id] = @user.id if attributes[:avatar_attributes]
+      if @user.update_attributes(attributes)
+        @user.track_activity(:updated_profile)
 
-      flash[:notice] = :your_changes_were_saved.l
-      unless params[:welcome]
-        redirect_to user_path(@user)
+        flash[:notice] = :your_changes_were_saved.l
+        unless params[:welcome]
+          redirect_to user_path(@user)
+        else
+          redirect_to :action => "welcome_#{params[:welcome]}", :id => @user
+        end
       else
-        redirect_to :action => "welcome_#{params[:welcome]}", :id => @user
+        render :action => 'edit'
       end
     else
       render :action => 'edit'
@@ -438,7 +442,7 @@ class UsersController < BaseController
                                  :middlename, :notify_comments, :notify_community_news,
                                  :notify_friend_requests, :password, :password_confirmation,
                                  :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip,
-                                 {:avatar_attributes => [:name, :description, :album_id, :user, :user_id, :photo, :photo_remote_url]}, :birthday)
+                                 {:avatar_attributes => [:name, :description, :album_id, :user, :user_id, :photo, :photo_remote_url]}, :birthday) if params[:user]
   end
 
   def comment_params
