@@ -1,6 +1,6 @@
 .yui-b.sidebar
   .yui-u
-    -box :class => "alt first_alt" do 
+    -box :class => "alt first_alt" do
       %h3
         - if params[:type]
           = (params[:type].downcase.pluralize + '_tagged').l
@@ -8,22 +8,22 @@
           = :items_tagged.l
         - @tags.each do |tag|
           = link_to h(tag.name), tag_path(tag)
-       
+
     -if @related_tags.to_a.size > 0
-      -box do 
+      -box do
         %h3.tags=:related_tags.l
         -tag_cloud @related_tags, %w(css1 css2 css3 css4) do |tag, css_class|
           =link_to h(tag.name), tag_path(tag), :class => css_class
-      
+
         %h6.all= link_to :all_tags.l, tags_path
-      
-    = Ad.display(:new_sidebar_3, logged_in?) #REDESIGN-FIX      
+
+    = Ad.display(:new_sidebar_3, logged_in?) #REDESIGN-FIX
 
 #yui-main
   .yui-b
     - if @posts.any?
       -unless params[:type]
-        #posts        
+        #posts
           %h3=:posts.l
           %ul.list.page
             - @posts.each do |post|
@@ -31,12 +31,17 @@
                 = link_to( truncate(post.display_title, :length => 75), user_post_path(post.user, post), :title => :by.l(:login => post.user.login) )
                 %p.post_excerpt= truncate_words(post.post, 35, '...' )
           %h6.all= link_to :all_posts_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Post') unless params[:type]
-      -else 
+      -else
         -box :class => 'first_alt hfeed' do
-          = render :partial => 'posts/post', :collection => @posts      
+          = render :partial => 'posts/post', :collection => @posts
           - if @pages
             = paginate @pages
-          
+
+    - if @topics.any?
+      %br.clear
+      %h3=:topics.l(:count => @topics.size)
+      - @topics.each do |topic|
+        =link_to topic.title, forum_topic_path(topic.forum_id, topic)
 
     - if @photos.any?
       %br.clear
@@ -44,14 +49,13 @@
       - @photos.each do |photo|
         = link_to image_tag(photo.photo.url(:thumb), :title => "#{photo.description} ("+:uploaded_by.l+" #{photo.user.login})", :class => "polaroid"), user_photo_path(photo.user, photo)
       %h6.all= link_to :all_photos_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Photo') unless params[:type]
-      
+
     - if @users.any?
       .user
         %h3= t('tags.show.users')
         - @users.each do |user|
           = link_to image_tag(user.avatar_photo_url(:thumb), :class => "polaroid"), user_path(user), :title => user.login
         %h6.all= link_to :all_users_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'User') unless params[:type]
-
 
     - unless @clippings.empty?
       .blog
