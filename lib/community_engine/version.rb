@@ -3,7 +3,7 @@ module CommunityEngine
      MAJOR = 2
      MINOR = 1
      PATCH = 1
-     BUILD = nil
+     BUILD = "epublishing"
 
      STRING = [MAJOR, MINOR, PATCH, BUILD].compact.join('.')
    end
