@@ -1,4 +1,6 @@
 %div{:id => "comment-#{comment.id}"}
+  -if comment.pending?
+    %em This comment is awaiting approval
   -if comment.user
     .clearfix
       .span2.pull-right

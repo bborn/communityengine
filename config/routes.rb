@@ -133,6 +133,7 @@ Rails.application.routes.draw do
     resources :comments, :as => :commentable_comments do
       member do
         get :unsubscribe
+        put :approve
       end
     end
   end

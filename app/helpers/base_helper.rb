@@ -5,10 +5,14 @@ module BaseHelper
   include ActsAsTaggableOn::TagsHelper
 
   def commentable_url(comment)
-    if comment.commentable_type != "User"
-      polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
-    else
-      user_url(comment.recipient)+"#comment_#{comment.id}"
+    if comment.recipient && comment.commentable
+      if comment.commentable_type != "User"
+        polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
+      elsif comment
+        user_url(comment.recipient)+"#comment_#{comment.id}"
+      end
+    elsif comment.commentable
+      polymorphic_url(comment.commentable)+"#comment_#{comment.id}"
     end
   end
 

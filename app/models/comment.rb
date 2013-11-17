@@ -12,6 +12,7 @@ class Comment < ActiveRecord::Base
   validates_length_of :comment, :maximum => 2000
 
   before_save :whitelist_attributes
+  after_save :send_notifications
 
   validates_presence_of :user, :unless => Proc.new{|record| configatron.allow_anonymous_commenting }
   validates_presence_of :author_email, :unless => Proc.new{|record| record.user }  #require email unless logged in
@@ -28,15 +29,14 @@ class Comment < ActiveRecord::Base
   def previous_commenters_to_notify
     # only send a notification on recent comments
     # limit the number of emails we'll send (or posting will be slooowww)
-
-    User.includes(:comments_as_author)
-      .where("users.id NOT IN (?) AND users.notify_comments = ?
-                      AND commentable_id = ? AND commentable_type = ?
-                      AND comments.notify_by_email = ?
-                      AND comments.created_at > ?",
-             [user_id, recipient_id.to_i], true, commentable_id, commentable_type, true, 2.weeks.ago)
-      .references(:comments)
-      .limit(20)
+    users = User.includes(:comments_as_author).limit(20)
+    users = users.where(:notify_comments => true).where('users.id NOT IN (?)', [user_id, recipient_id.to_i])
+    users = users.where(:comments => {
+        :commentable_id => commentable_id,
+        :commentable_type =>  commentable_type,
+        :notify_by_email => true
+        })
+    users = users.where('comments.created_at > ?', 2.weeks.ago)
   end
 
   def commentable_name
@@ -72,7 +72,7 @@ class Comment < ActiveRecord::Base
   end
 
   def should_notify_recipient?
-    return unless recipient && recipient.email
+    return false unless recipient && recipient.email
     return false if recipient.eql?(user)
     return false unless recipient.notify_comments?
     true
@@ -93,6 +93,7 @@ class Comment < ActiveRecord::Base
 
   def send_notifications
     return if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
+    return unless self.role_changed? && !self.role.eql?('pending')
     UserNotifier.comment_notice(self).deliver if should_notify_recipient?
     self.notify_previous_commenters
     self.notify_previous_anonymous_commenters if configatron.allow_anonymous_commenting
@@ -110,8 +111,12 @@ class Comment < ActiveRecord::Base
 
   def check_spam
     if !configatron.akismet_key.nil? && self.spam?
-      self.errors.add(:base, :comment_spam_error.l)
+      self.role = 'pending'
     end
+  end
+
+  def pending?
+    role.eql?('pending')
   end
 
 

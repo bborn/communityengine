@@ -6,9 +6,10 @@ class BaseController < ApplicationController
 
   include AuthenticatedSystem
   include LocalizedApplication
+  include BaseHelper
+
   around_filter :set_locale
   skip_before_filter :verify_authenticity_token, :only => :footer_content
-  helper_method :commentable_url
   before_filter :initialize_header_tabs
   before_filter :initialize_admin_tabs
   before_filter :store_location, :except => :footer_content
@@ -143,19 +144,6 @@ class BaseController < ApplicationController
 
       @popular_posts = Post.find_popular(:limit => 10)
       @popular_polls = Poll.find_popular(:limit => 8)
-    end
-
-
-    def commentable_url(comment)
-      if comment.recipient && comment.commentable
-        if comment.commentable_type != "User"
-          polymorphic_url([comment.recipient, comment.commentable])+"#comment-#{comment.id}"
-        elsif comment
-          user_url(comment.recipient)+"#comment-#{comment.id}"
-        end
-      elsif comment.commentable
-        polymorphic_url(comment.commentable)+"#comment-#{comment.id}"
-      end
     end
 
     def initialize_header_tabs

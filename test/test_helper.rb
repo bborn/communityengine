@@ -4,17 +4,15 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../testapp/config/environment",  __FILE__)
 require "rails/test_help"
 
-require "authlogic/test_case"
-require "community_engine/authenticated_test_helper"
-
-# require 'minitest/reporters'
-# MiniTest::Reporters.use!
-
 ActionMailer::Base.delivery_method = :test
 ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.default_url_options[:host] = "test.com"
 
 Rails.backtrace_cleaner.remove_silencers!
+
+require "authlogic/test_case"
+require "community_engine/authenticated_test_helper"
+require "mocha/setup"
 
 ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures").to_s #we want a string here, not a Pathname
 ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path

@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   acts_as_taggable
-  acts_as_commentable
+  acts_as_moderated_commentable
   has_enumerated :role
   tracks_unlinked_activities [:logged_in, :invited_friends, :updated_profile, :joined_the_site]
 
