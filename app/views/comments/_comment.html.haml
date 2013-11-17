@@ -1,3 +1,6 @@
+-if comment.pending?
+  %em This comment is awaiting approval
+
 -if comment.user
   .hentry{:id => "comment_#{comment.id}"}
     .vcard.author

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 80) do
+ActiveRecord::Schema.define(:version => 90) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",    :limit => 10
@@ -107,14 +107,15 @@ ActiveRecord::Schema.define(:version => 80) do
     t.string   "commentable_type"
     t.integer  "user_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.text     "comment"
     t.string   "author_name"
     t.string   "author_email"
     t.string   "author_url"
     t.string   "author_ip"
     t.boolean  "notify_by_email",  :default => true
+    t.string   "role",             :default => "comments"
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"

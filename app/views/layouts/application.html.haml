@@ -12,27 +12,27 @@
 
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
-      
-    = render :partial => "shared/scripts_and_styles"      
-    
+
+    = render :partial => "shared/scripts_and_styles"
+
   %body
-    -unless configatron.auth_providers.facebook.key.blank?    
-      =render :partial => 'facebook/fb_require'    
-      
+    -unless configatron.auth_providers.facebook.key.blank?
+      =render :partial => 'facebook/fb_require'
+
     #doc2{:class => "yui-t#{@sidebar_left ? 3 : 6}"}
       = render :partial => "shared/header"
-            
+
       #bd
         = render :partial => "shared/messages"
-                  
+
         = yield
-        
-                            
+
+
       #ft
-        -if show_footer_content?    
+        -if show_footer_content?
           .yui-gc#footer_content
             = image_tag 'spinner.gif', :plugin => 'community_engine'
-            =:loading_recent_content.l       
+            =:loading_recent_content.l
 
 
       #CommunityFooter
@@ -41,7 +41,7 @@
             %a{:href=>home_url, :title=>"#{configatron.community_name} " + :home.l}= :home.l
           - if !logged_in?
             %li
-              = link_to :log_in.l , login_path 
+              = link_to :log_in.l , login_path
           - else
             %li
               %a{:href=>logout_url, :title=>:log_out_of_your.l + " #{configatron.community_name} " + :account.l}
@@ -49,8 +49,8 @@
 
           - Page.find(:all).each do |page|
             - if (logged_in? || page.page_public)
-              %li= link_to page.title, pages_path(page) 
-              
+              %li= link_to page.title, pages_path(page)
+
           - if @rss_title && @rss_url
             %li#rss= link_to :rss.l, @rss_url, {:title => @rss_title}
 

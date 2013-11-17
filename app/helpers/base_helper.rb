@@ -3,19 +3,23 @@ require 'digest/md5'
 # Methods added to this helper will be available to all templates in the application.
 module BaseHelper
   include ActsAsTaggableOn::TagsHelper
-  
+
   def commentable_url(comment)
-    if comment.commentable_type != "User"
-      polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
-    else
-      user_url(comment.recipient)+"#comment_#{comment.id}"
+    if comment.recipient && comment.commentable
+      if comment.commentable_type != "User"
+        polymorphic_url([comment.recipient, comment.commentable])+"#comment_#{comment.id}"
+      elsif comment
+        user_url(comment.recipient)+"#comment_#{comment.id}"
+      end
+    elsif comment.commentable
+      polymorphic_url(comment.commentable)+"#comment_#{comment.id}"
     end
   end
-  
+
   def forum_page?
     %w(forums topics sb_posts).include?(controller.controller_name)
   end
-  
+
   def is_current_user_and_featured?(u)
     u && u.eql?(current_user) && u.featured_writer?
   end
@@ -28,20 +32,20 @@ module BaseHelper
     options.collect {|key,val| str << " #{key}=\"#{val}\"" }
     str << '><div class="box_top"></div>'
     str << "\n"
-    
+
     concat(str.html_safe)
     yield(content)
     concat('<br class="clear" /><div class="box_bottom"></div></div>'.html_safe)
   end
-  
+
   def block_to_partial(partial_name, html_options = {}, &block)
     concat(render(:partial => partial_name, :locals => {:body => capture(&block), :html_options => html_options}))
   end
 
   def box(html_options = {}, &block)
     block_to_partial('shared/box', html_options, &block)
-  end  
-    
+  end
+
   def city_cloud(cities, classes)
     max, min = 0, 0
     cities.each { |c|
@@ -62,7 +66,7 @@ module BaseHelper
     string = words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
     string.html_safe
   end
-  
+
   def truncate_words_with_highlight(text, phrase)
     t = excerpt(text, phrase)
     highlight truncate_words(t, 18), phrase
@@ -75,13 +79,13 @@ module BaseHelper
     if paragraph
       paragraph.to_html + end_string
     else
-      truncate_words(text, 150, end_string) 
+      truncate_words(text, 150, end_string)
     end
   end
 
   def page_title
-    divider = " | ".html_safe    
-    
+    divider = " | ".html_safe
+
     app_base = configatron.community_name
     tagline = " #{divider} #{configatron.community_tagline}"
 		title = app_base
@@ -100,10 +104,10 @@ module BaseHelper
           @canonical_url = user_post_url(@post.user, @post)
         end
       when 'users'
-        if @user && !@user.new_record? && @user.login 
+        if @user && !@user.new_record? && @user.login
           title = @user.login
           title += divider + app_base + tagline
-          @canonical_url = user_url(@user)          
+          @canonical_url = user_url(@user)
         else
           title = :showing_users.l+divider + app_base + tagline
         end
@@ -124,7 +128,7 @@ module BaseHelper
               title = :posts_photos_and_bookmarks.l(:name => @tags.map(&:name).join(', '))
             end
             title += " (#{:related_tags.l}: #{@related_tags.join(', ')})" if @related_tags
-            title += divider + app_base    
+            title += divider + app_base
             @canonical_url = tag_url(URI.escape(URI.escape(@tags_raw), /[\/.?#]/)) if @tags_raw
           else
             title = "Showing tags #{divider} #{app_base} #{tagline}"
@@ -133,15 +137,15 @@ module BaseHelper
         if @category and @category.name
           title = :posts_photos_and_bookmarks.l(:name => @category.name) + divider + app_base + tagline
         else
-          title = :showing_categories.l + divider + app_base + tagline            
+          title = :showing_categories.l + divider + app_base + tagline
         end
       when 'sessions'
-        title = :login.l + divider + app_base + tagline            
+        title = :login.l + divider + app_base + tagline
     end
 
     if @page_title
       title = @page_title + divider + app_base + tagline
-    elsif title == app_base          
+    elsif title == app_base
 		  title = :showing.l + ' ' + controller.controller_name + divider + app_base + tagline
     end
 
@@ -152,11 +156,11 @@ module BaseHelper
 		html = "<span class='friend_request' id='friend_request_#{user.id}'>"
     html += link_to_remote :request_friendship.l,
 				{ :update => "friend_request_#{user.id}",
-					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()", 
+					:loading => "$$('span#friend_request_#{user.id} span.spinner')[0].show(); $$('span#friend_request_#{user.id} a.add_friend_btn')[0].hide()",
 					:complete => visual_effect(:highlight, "friend_request_#{user.id}", :duration => 1),
           500 => "alert('#{escape_javascript(:sorry_there_was_an_error_requesting_friendship.l)}')",
-					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id), 
-					:method => :post 
+					:url => hash_for_user_friendships_url(:user_id => current_user.id, :friend_id => user.id),
+					:method => :post
 				}, {:class => "add_friend button"}
 		html +=	"<span style='display:none;' class='spinner'>"
 		html += image_tag('spinner.gif')
@@ -167,34 +171,34 @@ module BaseHelper
   def topnav_tab(name, options)
     classes = [options.delete(:class)]
     classes << 'current' if options[:section] && (options.delete(:section).to_a.include?(@section))
-    
+
     string = "<li class='#{classes.join(' ')}'>" + link_to( content_tag(:span, name), options.delete(:url), options) + "</li>"
     string.html_safe
   end
-  
+
   def more_comments_links(commentable)
     html = link_to "&raquo; ".html_safe + :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
     html += "<br />".html_safe
 		html += link_to "&raquo; ".html_safe + :comments_rss.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
 		html.html_safe
   end
-    
+
   def show_footer_content?
     return true #you can override this in your app
   end
-  
+
   def clippings_link
-    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{home_url}new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"    
+    "javascript:(function() {d=document, w=window, e=w.getSelection, k=d.getSelection, x=d.selection, s=(e?e():(k)?k():(x?x.createRange().text:0)), e=encodeURIComponent, document.location='#{home_url}new_clipping?uri='+e(document.location)+'&title='+e(document.title)+'&selection='+e(s);} )();"
   end
-  
+
   def paginating_links(paginator, options = {}, html_options = {})
     paginate paginator
-  end  
-  
+  end
+
   def last_active
     session[:last_active] ||= Time.now.utc
   end
-    
+
   def ajax_spinner_for(id, spinner="spinner.gif")
     "<img src='/assets/#{spinner}' style='display:none; vertical-align:middle;' id='#{id.to_s}_spinner'> ".html_safe
   end
@@ -228,7 +232,7 @@ module BaseHelper
     from_time = from_time.to_time if from_time.respond_to?(:to_time)
     to_time = to_time.to_time if to_time.respond_to?(:to_time)
     distance_in_minutes = (((to_time - from_time).abs)/60).round
-      
+
     case distance_in_minutes
       when 0              then :a_few_seconds_ago.l
       when 1..59          then :minutes_ago.l(:count => distance_in_minutes)
@@ -247,33 +251,33 @@ module BaseHelper
       display = I18n.l(date.to_date, :format => :date_ago)
     end
   end
-  
+
   def profile_completeness(user)
     segments = [
       {:val => 2, :action => link_to(:upload_a_profile_photo.l, edit_user_path(user, :anchor => 'profile_details')), :test => !user.avatar.nil? },
-      {:val => 1, :action => link_to(:tell_us_about_yourself.l, edit_user_path(user, :anchor => 'user_description')), :test => !user.description.blank?},      
-      {:val => 2, :action => link_to(:select_your_city.l, edit_user_path(user, :anchor => 'location_chooser')), :test => !user.metro_area.nil? },            
-      {:val => 1, :action => link_to(:tag_yourself.l, edit_user_path(user, :anchor => "user_tags")), :test => user.tags.any?},                  
+      {:val => 1, :action => link_to(:tell_us_about_yourself.l, edit_user_path(user, :anchor => 'user_description')), :test => !user.description.blank?},
+      {:val => 2, :action => link_to(:select_your_city.l, edit_user_path(user, :anchor => 'location_chooser')), :test => !user.metro_area.nil? },
+      {:val => 1, :action => link_to(:tag_yourself.l, edit_user_path(user, :anchor => "user_tags")), :test => user.tags.any?},
       {:val => 1, :action => link_to(:invite_some_friends.l, new_invitation_path), :test => user.invitations.any?}
     ]
-    
+
     completed_score = segments.select{|s| s[:test].eql?(true)}.sum{|s| s[:val]}
     incomplete = segments.select{|s| !s[:test] }
-    
+
     total = segments.sum{|s| s[:val] }
     score = (completed_score.to_f/total.to_f)*100
 
     {:score => score, :incomplete => incomplete, :total => total}
   end
-  
+
 
   def possesive(user)
-    user.gender ? (user.male? ? :his.l : :her.l)  : :their.l    
+    user.gender ? (user.male? ? :his.l : :her.l)  : :their.l
   end
 
   def tiny_mce_init_if_needed
     if !@uses_tiny_mce.blank?
-      tinymce_js = tinymce_javascript(@tiny_mce_configuration)      
+      tinymce_js = tinymce_javascript(@tiny_mce_configuration)
       javascript_tag(tinymce_js)
     end
   end

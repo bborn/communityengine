@@ -1,6 +1,6 @@
 class CommentsController < BaseController
   before_filter :login_required, :except => [:index, :unsubscribe]
-  before_filter :admin_or_moderator_required, :only => [:delete_selected, :edit, :update]
+  before_filter :admin_or_moderator_required, :only => [:delete_selected, :edit, :update, :approve, :disapprove]
 
   if configatron.allow_anonymous_commenting
     skip_before_filter :verify_authenticity_token, :only => [:create]   #because the auth token might be cached anyway
@@ -28,6 +28,15 @@ class CommentsController < BaseController
     end
   end
 
+  def approve
+    @comment = Comment.find(params[:id])
+    @comment.ham! if !configatron.akismet_key.nil?
+    @comment.role = 'published'
+    @comment.save!
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def index
     commentable_type = get_commentable_type(params[:commentable_type])
@@ -100,8 +109,6 @@ class CommentsController < BaseController
 
     respond_to do |format|
       if (logged_in? || verify_recaptcha(@comment)) && @comment.save
-        @comment.send_notifications
-
         flash.now[:notice] = :comment_was_successfully_created.l
         format.html { redirect_to commentable_url(@comment) }
         format.js
