@@ -7,6 +7,7 @@
 
 =2.3.1
 * Remove automatic loading of omniauth middleware, in favor of letting users load it themselves as specified in the README (this was causing bugs with duplicate inits of omniauth-facebook middleware)
+* Add spam comment moderation (comments identified as spam as held in 'pending status')
 
 =2.3.0
 * Upgrade omniauth to 1.1
