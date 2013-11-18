@@ -20,7 +20,7 @@ class Comment < ActiveRecord::Base
   validates_format_of :author_url, :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :unless => Proc.new{|record| record.user }
   validate :check_spam
 
-  acts_as_activity :user, :if => Proc.new{|record| record.user } #don't record an activity if there's no user
+  acts_as_activity :user, :if => Proc.new{|record| record.user && !record.pending? } #don't record an activity if there's no user
 
   def self.find_photo_comments_for(user)
     Comment.where("recipient_id = ? AND commentable_type = ?", user.id, 'Photo').order('created_at DESC')
