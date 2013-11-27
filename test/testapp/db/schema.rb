@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 82) do
+ActiveRecord::Schema.define(version: 90) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id",    limit: 10
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 82) do
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "view_count"
   end
 
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 82) do
     t.string   "picture_url"
     t.string   "access_token"
     t.string   "access_token_secret"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "categories", force: true do |t|
@@ -109,16 +109,16 @@ ActiveRecord::Schema.define(version: 82) do
     t.string   "commentable_type"
     t.integer  "user_id"
     t.integer  "recipient_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "author_name"
     t.string   "author_email"
     t.string   "author_url"
     t.string   "author_ip"
     t.boolean  "notify_by_email",             default: true
+    t.string   "role",                        default: "comments"
     t.string   "title",            limit: 50, default: ""
     t.text     "comment"
-    t.string   "role",                        default: "comments"
   end
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"
@@ -209,8 +209,8 @@ ActiveRecord::Schema.define(version: 82) do
     t.integer  "recipient_id"
     t.integer  "message_id"
     t.integer  "parent_message_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "messages", force: true do |t|
@@ -221,8 +221,8 @@ ActiveRecord::Schema.define(version: 82) do
     t.string   "subject"
     t.text     "body"
     t.datetime "read_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "parent_id"
   end
 
@@ -251,8 +251,8 @@ ActiveRecord::Schema.define(version: 82) do
     t.text     "body"
     t.string   "published_as", limit: 16, default: "draft"
     t.boolean  "page_public",             default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   create_table "photos", force: true do |t|
@@ -316,8 +316,8 @@ ActiveRecord::Schema.define(version: 82) do
     t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "attendees_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "sb_posts", force: true do |t|
