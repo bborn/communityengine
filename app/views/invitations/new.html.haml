@@ -1,33 +1,24 @@
-%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/util.js"}
-%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}
-%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
+-@page_title=:invite_your_friends_to_join.l
 
-.yui-b
-  -box :class => "alt first_alt" do 
-    %h3=:spread_the_word.l
-    %p
+-widget do 
+  %ul.nav.nav-list
+    %li.nav-header=:spread_the_word.l
+    %li
       =:invite_message.l(:site => configatron.community_name)
-    %p
+    %li
       =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on.l
       = configatron.community_name
       \.
 
-#yui-main
-  .yui-b
-    -box do 
-      %h3=:invite_your_friends_to_join.l
-      = form_for(:invitation, :url => user_invitations_path(@user), :html => {:class => "MainForm"} ) do |f|
-        .right
-          %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
-            %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/
-        %label{"for"=>"email_addresses"} 
-          =:enter_e_mail_addresses.l 
-          %em= :comma_separated.l
-        = f.text_area :email_addresses , :rows => "5"
-        %label{"for"=>"message"}= :write_a_message.l
-        = f.text_area :message, :rows => "5"
-
-        %p
-          = submit_tag :send_invitations.l
-          = :or.l
-          = link_to :cancel.l, user_path(@user)
+= bootstrap_form_for [@user, @invitation], :html => {:class => "form form-horizontal"} do |f|
+  .pull-right
+    %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
+      %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/
+  = f.text_area :email_addresses , :rows => "5", :label => :enter_e_mail_addresses.l, :help_inline => :comma_separated.l
+  = f.text_area :message, :rows => "5", :label => :write_a_message.l
+  .controls
+    = f.submit :send_invitations.l
+      
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/util.js"}
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}
+%script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}

@@ -1,0 +1,30 @@
+<% if @post.new_record? %>
+  reply = $('.reply');
+  reply.prepend(escape_javascript("<%=raw escape_javascript(render 'shared/messages') %>");
+  message = reply.find('.alert')
+  message.scrollTo();
+<% else %>
+  reply = $('.reply');
+  posts_table = $('#posts');
+  posts_table.append("<%= escape_javascript(render :partial => 'sb_posts/sb_post', :locals => {:post => @post}) %>")
+
+  my_post = $('#post-body-<%= @post.id %>')
+  my_post.scrollTo();
+
+  $('#reply_spinner').addClass('hide');
+  editable = my_post.find('.editable');
+
+  editable.switchClass('','alert alert-info', 500,'easeOutCubic',function(){
+	 editable.switchClass('alert alert-info','normal', 3000,'easeInCubic');
+  });
+
+  tinyMCE.activeEditor.setContent('')
+
+  reply.addClass('hide');
+<% end %>
+
+<% unless configatron.recaptcha_pub_key.nil? %>
+	if($('dynamic_recaptcha')){
+		Recaptcha.create('#{configatron.recaptcha_pub_key}', $('dynamic_recaptcha') )
+	}
+<% end %>

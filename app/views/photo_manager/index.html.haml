@@ -1,49 +1,51 @@
-.yui-b.sidebar
-  -box do 
-    %h3=:links.l
-    %ul.checks
-      %li=link_to :view_all_my_photos.l, user_photos_path(current_user)
-      %li=link_to :new_photo.l, new_user_photo_path(current_user)
-      %li=link_to :new_album.l, new_user_album_path(current_user)
+-@page_title = :photo_manager.l
+-widget do 
+  %ul.nav.nav-list
+    %li.nav-header=:links.l
+    %li=link_to :view_all_my_photos.l, user_photos_path(current_user)
+    %li=link_to :new_photo.l, new_user_photo_path(current_user)
+    %li=link_to :new_album.l, new_user_album_path(current_user)
 
-#yui-main
-  .yui-b
-    -box do 
-      %h3= :albums.l
-      %table{:border => 0, :width => '100%'}
-        %thead
-          %tr
-            %th=:title.l
-            %th=:preview.l
-            %th=:created_at.l
-            %th=:actions.l
-        %tbody
-          - @albums.each do |album|
-            %tr            
-              %td= link_to album.title, user_album_path(current_user,album)
-              %td
-                - if album.photos[0] 
-                  =link_to image_tag( album.photos[0].photo.url(:thumb), :size => "50x50"), user_photo_path(current_user, album.photos[0])
-                - if album.photos[1] 
-                  =link_to image_tag( album.photos[1].photo.url(:thumb), :size => "50x50"), user_photo_path(current_user, album.photos[1])
-                - if album.photos[2] 
-                  =link_to image_tag( album.photos[2].photo.url(:thumb), :size => "50x50"), user_photo_path(current_user, album.photos[2])
-              %td
-                %abbr{:title=>"#{album.created_at}"}= album.created_at.strftime("%Y/%m/%d")
-              %td
-                = link_to :edit.l, edit_user_album_path(current_user,album) 
-                = " | "
-                = link_to :add_photos.l, new_user_album_photo_path(current_user,album)
-                = " | "
-                = link_to :destroy.l, user_album_path(current_user,album), :data => {:confirm => :delete_album_and_photos.l}, :method => :delete
-      .pagination= paginating_links(@albums,{:name => "page_albums"}) if @albums.total_count > 1
+%h2= :albums.l
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th=:title.l
+      %th=:preview.l
+      %th=:created_at.l
+      %th=:actions.l
+  %tbody
+    - @albums.each do |album|
+      %tr            
+        %td= link_to album.title, user_album_path(current_user,album)
+        %td
+          - if album.photos[0] 
+            =link_to image_tag( album.photos[0].photo.url(:thumb), :size => "50x50"), user_photo_path(current_user, album.photos[0])
+          - if album.photos[1] 
+            =link_to image_tag( album.photos[1].photo.url(:thumb), :size => "50x50"), user_photo_path(current_user, album.photos[1])
+          - if album.photos[2] 
+            =link_to image_tag( album.photos[2].photo.url(:thumb), :size => "50x50"), user_photo_path(current_user, album.photos[2])
+        %td
+          %abbr{:title=>"#{album.created_at}"}= album.created_at.strftime("%Y/%m/%d")
+        %td
+          = link_to :show.l, user_album_path(current_user,album), :class => 'btn'
+          = link_to :edit.l, edit_user_album_path(current_user,album), :class => 'btn btn-warning'
+          = link_to :add_photos.l, new_user_album_photo_path(current_user,album), :class => 'btn btn-primary'
+          = link_to :delete.l, user_album_path(current_user,album), :confirm => :delete_album_and_photos.l, :method => :delete, :class => 'btn btn-danger'
+=paginate @albums, :theme => 'bootstrap'
+=link_to :new_album.l, new_user_album_path(current_user), :class => 'btn btn-success'
 
+%h2= :not_assigned_photos.l
+%ul.thumbnails
+  - @photos_no_albums.each do |photo|
+    %li.span2
+      = link_to image_tag( photo.photo.url(:thumb)), user_photo_path(current_user, photo), :class => 'thumbnail'
+      = link_to :show.l, user_photo_path(current_user, photo), :class => 'btn btn-mini'
+      = link_to :edit.l, edit_user_photo_path(current_user, photo), :class => 'btn btn-warning btn-mini'
+      = link_to :delete.l, edit_user_photo_path(current_user, photo), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger btn-mini'
 
-      %h3= :not_assigned_photos.l
-      #photos.yui-u.box
-        - @photos_no_albums.each do |photo|
-          = link_to image_tag( photo.photo.url(:thumb), :class => "polaroid"), user_photo_path(current_user, photo)
-        .pagination= paginating_links @photos_no_albums if @photos_no_albums.total_count > 1
+  =paginate @photos_no_albums, :theme => 'bootstrap'
+=link_to :new_photo.l, new_user_photo_path(current_user), :class => 'btn btn-success'
 
 
 

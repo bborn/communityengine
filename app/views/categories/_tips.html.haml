@@ -1,4 +1,4 @@
-- if category 
+- if !category.nil? && !category.tips.blank?
   %h3= category.name
   %p= category.tips
 - else 

@@ -83,7 +83,8 @@ class Photo < ActiveRecord::Base
   private
 
   def reprocess_photo
-    photo.reprocess!
+    photo.assign(photo)
+    photo.save
   end
 
 end

@@ -94,7 +94,6 @@ You'll need to change your configuration in your `application_config.rb` to tell
 Finally, you'll need an S3 account for S3 photo uploading.
 
 
-
 Roles
 ------
 

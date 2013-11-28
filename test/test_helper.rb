@@ -7,8 +7,8 @@ require "rails/test_help"
 require "authlogic/test_case"
 require "community_engine/authenticated_test_helper"
 
-require 'minitest/reporters'
-MiniTest::Reporters.use!
+# require 'minitest/reporters'
+# MiniTest::Reporters.use!
 
 ActionMailer::Base.delivery_method = :test
 ActionMailer::Base.perform_deliveries = true

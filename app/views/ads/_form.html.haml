@@ -1,0 +1,24 @@
+= bootstrap_form_for(@ad, :html => { :class => "form form-horizontal" }) do |f|
+  = f.text_field :name
+  = f.text_area :html, :class => "rich_text_editor"
+  = f.select :frequency, Ad.frequencies_for_select
+  = f.select :audience, Ad.audiences_for_select
+
+  %fieldset{"for"=>"ad_published"}
+    = f.check_box :published, :label => :published.l + '?'
+
+  %fieldset{"for"=>"ad_time_constrained"}
+    = f.check_box :time_constrained, :label => :time_constrained.l + '?'
+
+  #time_constraints{"style"=>"display:#{ @ad.time_constrained? ? 'block' : 'none'}"}
+    = f.datetime_select :start_date
+    = f.datetime_select :end_date
+
+  -content_for :end_javascript do
+    :javascript
+      Event.observe("ad_time_constrained", "click", function(){$('time_constraints').toggle()})
+
+  = f.text_field :location
+
+  .controls
+    = f.submit :save.l

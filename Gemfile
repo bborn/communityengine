@@ -8,10 +8,7 @@ gem 'uglifier',    ">= 1.3.0"
 gem 'sprockets'
 
 group :test do
-  gem "omniauth-facebook"
   gem 'sqlite3'
-  gem "minitest"
-  gem "minitest-reporters"
 end
 
 gemspec

@@ -1,0 +1,11 @@
+<% if params[:cancel] %>
+  $('#comment-<%= @comment.id %>').replaceWith("<%= escape_javascript(render :partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment, :highlighted => true}) %>")
+<% else %>
+  $('#comment-<%= @comment.id %>').html("<%= escape_javascript(render :partial => 'comments/edit_form', :locals => {:comment => @comment}) %>");
+  $('#comment-<%= @comment.id %>').scrollTo();
+  <%= tiny_mce_js.html_safe %>
+<% end %>
+
+if (typeof($.CE.commentUpdatedCallback) != 'undefined'){
+  $.CE.commentUpdatedCallback('<%= @comment.id %>')
+}

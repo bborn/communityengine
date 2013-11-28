@@ -4,7 +4,7 @@ class TagsControllerTest < ActionController::TestCase
   fixtures :all
 
   def test_should_autocomplete_tags
-    get :auto_complete_for_tag_name, :id => 'mis', :format => 'js'
+    get :auto_complete_for_tag_name, :format => 'json'
     assert_response :success
   end
 

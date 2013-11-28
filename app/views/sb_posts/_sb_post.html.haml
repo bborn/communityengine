@@ -1,41 +1,32 @@
-- unless post.eql?(@posts.to_a.first)
-  %tr.spacer
-    %td{"colspan"=>"2"}
-      %a{"name"=>"#{post.dom_id}", "id"=>"#{post.dom_id}"} &nbsp;
+%tr
+  
+  %td{:id=>"post-body-#{post.id}"}
+    .editable
+      - if logged_in?
+        = link_to '<i class="icon-comment"></i>'.html_safe, new_forum_topic_sb_post_path(post.topic.forum, post.topic), :class => 'reply-toggle'
+      = post.body.html_safe
+    .editor.hide
     
-%tr.post{"id"=>"posts-#{post.dom_id}-row"}
-  %td.author.vcard{:width => "15%"}
-    .date
-      %a{"href"=>"##{post.dom_id}", "rel"=>"bookmark"}
-        %abbr.updated{"title"=>"#{post.created_at.xmlschema}"}= time_ago_in_words(post.created_at)
-
-    -if post.user
-      = avatar_for post.user    
-      %span.fn
-        = link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)
-      %span.posts= pluralize post.user.sb_posts_count, :post.l
-    -else
-      = image_tag(configatron.photo.missing_thumb, :height => '32', :width => '32', :class => 'photo')        
-      %span.fn
-        =truncate(h(post.username), :length => 15)
-
-
-    - if logged_in? && post.editable_by?(current_user)
-      %p
-        %span.edit
-          = ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif"
-          = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :remote => true, :id => "edit_post_link_#{post.id}", :class => "utility edit_post_link", :data => { :postid => post.id }
-        - if admin? && post.user && !post.user.admin?
-          %div{"class"=>"make-moderator-#{post.user_id}"}
-            = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}
-
-  %td.body.entry-content{"id"=>"post-body-#{post.id}", :width => '85%'}
-    = link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if logged_in?
-    = raw post.body
-:javascript
-    $('edit_post_link_#{post.id}').observe('ajax:before', function () {
-      var id = link.readAttribute('data-postid');
-      if (!EditForm.isEditing(#{post.id})) {
-         EditForm.init(#{post.id});
-      }
-    });
+  %td.span3{:style => 'border-left:0'}
+    %ul.nav.nav-list
+      -if post.user
+        %li= link_to avatar_for(post.user), post.user    
+        %li= link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)
+        %li
+          = :post.l.pluralize
+          %span.badge.badge-info
+            =post.user.sb_posts_count
+      -else
+        %li= image_tag(configatron.photo.missing_thumb, :class => 'thumbnail')        
+        %li= truncate(h(post.username), :length => 15)
+      %li
+        %a{"href"=>"##{post.dom_id}", "rel"=>"bookmark"}
+          %abbr.updated{"title"=>"#{post.created_at.xmlschema}"}= time_ago_in_words(post.created_at)
+  
+      - if logged_in? && post.editable_by?(current_user)
+        %li
+          = ajax_spinner_for "edit-post-#{post.id}"   
+          = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :class => 'edit-via-ajax', :id => "edit-post-#{post.id}"
+      - if admin? && post.user && !post.user.admin?
+        %li{"class"=>"make-moderator-#{post.user_id}"}
+          = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}

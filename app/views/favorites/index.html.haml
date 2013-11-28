@@ -1,10 +1,8 @@
--box :class => 'favorites' do
-  %h3= link_to "#{@user.login}'s "+:favorites.l, user_favorites_path(@user)        
+-@page_title = "#{@user.login}'s "+:favorites.l
 
-  - @favorites.to_a.in_groups_of(2) do |group|
-    .row  
-      - group.compact.each do |f|
-        =render :partial => "favorite", :locals => {:favorite => f}
+%ul.thumbnails
+  - @favorites.each do |f|
+    %li.span4
+      =render :partial => "favorite", :locals => {:favorite => f}
 
-        
-.pagination=paginating_links @favorites if @favorites.total_count > 1      
+=paginate @favorites, :theme => 'bootstrap'     

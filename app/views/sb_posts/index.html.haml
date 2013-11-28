@@ -1,12 +1,6 @@
 -@section = 'forums'
 - @page_title = search_posts_title
 
--box :class => "alt first_alt" do 
-  = link_to :forums.l, forum_home_path
-  %span.arrow
-    &rarr;
-  = h @page_title
-
 -box do 
 
   .right=link_to :forums.l, forums_path
@@ -19,9 +13,6 @@
   %p.subtitle
     = feed_icon_tag @page_title, all_sb_posts_path(:format => 'rss')
     = :post_found.l(:count => @posts.size)
-
-  - if @posts.total_count > 1
-    .pagination= paginating_links @posts
         
   %table.posts.wide{ :cellspacing => "0", :border => "0", :cellpadding => "0", :width => '100%'}
     - for post in @posts do
@@ -52,9 +43,5 @@
             = link_to h(post.topic_title), forum_topic_path(post.forum, post.topic)
           =raw post.body
         
-  - if @posts.total_count > 1
-    .pagination
-      = :pages.l
-      %strong
-        = paginating_links @posts
+  =paginate @posts, :theme => 'bootstrap'
 

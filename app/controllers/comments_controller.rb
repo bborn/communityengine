@@ -12,7 +12,7 @@ class CommentsController < BaseController
   end
 
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
-  
+
   def edit
     @comment = Comment.find(params[:id])
     respond_to do |format|
@@ -22,10 +22,13 @@ class CommentsController < BaseController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update_attributes(comment_params)
+    @comment.update_attributes!(comment_params)
+  rescue ActiveRecord::RecordInvalid
+    flash[:error] = :an_error_occurred.l
+  ensure
     respond_to do |format|
       format.js
-    end    
+    end
   end
 
 
@@ -34,15 +37,15 @@ class CommentsController < BaseController
     commentable_class = commentable_type.singularize.constantize
     commentable_type_humanized = commentable_type.humanize
     commentable_type_tableized = commentable_type.tableize
-    
-    if @commentable = commentable_class.friendly.find(params[:commentable_id])
+
+    if @commentable = commentable_class.find(params[:commentable_id])
       unless logged_in? || (@commentable.owner && @commentable.owner.profile_public?)
         flash.now[:error] = :private_user_profile_message.l
         redirect_to login_path and return
       end
-      
+
       @comments = @commentable.comments.recent.page(params[:page])
-      @title = commentable_type_humanized            
+      @title = commentable_type_humanized
       @rss_url = commentable_comments_url(commentable_type_tableized, @commentable, :format => :rss)
 
       if @comments.any?
@@ -51,12 +54,12 @@ class CommentsController < BaseController
         @title = first_comment.commentable_name
         @back_url = commentable_url(first_comment)
         respond_to do |format|
-          @rss_title = "#{configatron.community_name}: #{commentable_type_humanized} Comments - #{@title}"                
+          @rss_title = "#{configatron.community_name}: #{commentable_type_humanized} Comments - #{@title}"
           format.html
           format.rss {
             render_comments_rss_feed_for(@comments, @commentable, @rss_title) and return
           }
-        end              
+        end
       else
         if @commentable.is_a?(User)
           @user = @commentable
@@ -66,19 +69,19 @@ class CommentsController < BaseController
           @title = @commentable.respond_to?(:title) ? @commentable.title : @title
           @back_url = url_for([@user, @commentable])
         end
-        
+
         respond_to do |format|
           format.html
           format.rss {
-            @rss_title = "#{configatron.community_name}: #{commentable_type_humanized} Comments - #{@title}"                            
+            @rss_title = "#{configatron.community_name}: #{commentable_type_humanized} Comments - #{@title}"
             render_comments_rss_feed_for([], @commentable, @rss_title) and return
           }
-        end        
-      end   
+        end
+      end
     else
       flash[:notice] = :no_comments_found.l_with_args(:type => commentable_type_humanized)
       redirect_to home_path
-    end          
+    end
   end
 
   def new
@@ -131,7 +134,7 @@ class CommentsController < BaseController
       }
     end
   end
-  
+
   def delete_selected
     if request.delete?
       if params[:delete]
@@ -146,9 +149,9 @@ class CommentsController < BaseController
       flash[:error] = :comments_not_deleted.l
     end
     redirect_to admin_comments_path
-  end  
+  end
 
-  
+
   def unsubscribe
     @comment = Comment.find(params[:id])
     if @comment.token_for(params[:email]).eql?(params[:token])
@@ -160,11 +163,11 @@ class CommentsController < BaseController
 
 
   private
-    
+
     def get_commentable_type(string)
       string.camelize
     end
-        
+
     def render_comments_rss_feed_for(comments, commentable, title)
       render_rss_feed_for(comments,
         { :class => commentable.class,
@@ -181,5 +184,5 @@ class CommentsController < BaseController
   def comment_params
     params.require(:comment).permit(:author_name, :author_email, :notify_by_email, :author_url, :comment)
   end
-  
+
 end

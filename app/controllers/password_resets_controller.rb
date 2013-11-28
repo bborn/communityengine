@@ -1,5 +1,4 @@
 class PasswordResetsController < BaseController
-
   before_filter :require_no_user
   before_filter :load_user_using_perishable_token, :only => [ :edit, :update ]
 
@@ -11,7 +10,7 @@ class PasswordResetsController < BaseController
     if @user
       @user.deliver_password_reset_instructions!
 
-      flash[:info] = :your_password_reset_instructions_have_been_emailed_to_you.l      
+      flash[:notice] = :your_password_reset_instructions_have_been_emailed_to_you.l      
 
       redirect_to login_path
     else

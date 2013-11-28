@@ -1,28 +1,21 @@
-.yui-b
-  = render :partial => 'shared/admin_nav'
+-@page_title = :metro_areas.l
+= render :partial => 'shared/admin_nav'
 
-#yui-main
-  .yui-b
-    -box do 
-      %h3= :metro_areas.l
+%table.table.table-bordered.table-striped
+  %tr
+    %th= :name.l
+    %th= :state.l
+    %th= :country.l
+    %th= :actions.l
 
-      = paginate @metro_areas
-
-      %table{:width=>"100%"}
-        %tr
-          %th= :name.l
-          %th= :state.l
-          %th= :country.l
-          %th= :actions.l
-
-        - for metro_area in @metro_areas
-          %tr
-            %td= metro_area.name 
-            %td= metro_area.state.name if metro_area.state 
-            %td= metro_area.country.name 
-            %td
-              = link_to :edit.l, edit_metro_area_path(metro_area) 
-              |
-              = link_to :destroy.l, metro_area_path(metro_area), :data => {:confirm => :are_you_sure.l}, :method => :delete
-      
-      = link_to :new_metro_area.l, new_metro_area_path
+  - for metro_area in @metro_areas
+    %tr
+      %td= link_to metro_area.name, metro_area
+      %td= metro_area.state.name if metro_area.state 
+      %td= metro_area.country.name 
+      %td
+        = link_to :show.l, metro_area_path(metro_area), :class => 'btn' 
+        = link_to :edit.l, edit_metro_area_path(metro_area), :class => 'btn btn-warning'
+        = link_to :delete.l, metro_area_path(metro_area), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+= paginate @metro_areas, :theme => 'bootstrap'
+= link_to :new_metro_area.l, new_metro_area_path, :class => 'btn btn-success'

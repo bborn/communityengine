@@ -1,0 +1,8 @@
+-@page_title = :listing_invitations.l
+
+%ul
+  -for invitation in @invitations
+    %li
+      = invitation.email_addresses
+
+= icon_link_to 'icon-plus-sign', :new_invitation.l, new_user_invitation_path

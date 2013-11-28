@@ -1,0 +1,28 @@
+-if logged_in?
+  - if !current_page?(users_path) && (params[:controller] == 'users' && !@user.nil? && @user == current_user)
+    - css_class = 'active'
+  - else 
+    - css_class = 'inactive'
+  %li{:class => 'dropdown ' + css_class}
+    %a.dropdown-toggle{:href=>dashboard_user_path(current_user), 'data-target'=> '#', 'data-toggle' => 'dropdown'}
+      =:logged_in.l + ' ' + current_user.login
+      %b.caret
+    %ul.dropdown-menu
+      -if current_user.admin?
+        %li= link_to :admin_dashboard.l, admin_dashboard_path
+        %li.divider
+      %li= link_to :edit_profile.l, edit_user_path(current_user)
+      %li= link_to :edit_account.l, edit_account_user_path(current_user)
+      %li= link_to :manage_posts.l, manage_user_posts_path(current_user)
+      %li= link_to :inbox.l, user_messages_path(current_user)
+      %li.divider
+      %li= link_to :my_profile.l, user_path(current_user)
+      %li= link_to :my_blog.l, user_posts_path(current_user)
+      %li= link_to :photo_manager.l, user_photo_manager_index_path(current_user)
+      %li= link_to :my_clippings.l, user_clippings_path(current_user)
+      %li= link_to :my_friends.l, accepted_user_friendships_path(current_user)
+      %li.divider
+      %li= link_to :log_out.l, logout_path
+-else
+  %li= link_to(:log_in.l, login_path)
+  %li= link_to(:sign_up.l, signup_path)

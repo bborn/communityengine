@@ -2,84 +2,77 @@
 - @section = 'forums'
 - @page_title = @forum.name
 
--box :class => "alt first_alt" do 
-  = link_to :forums.l, forum_home_path
-  %span.arrow
-    &rarr;
-  = h @forum.name   
+-if admin?
+  %p
+    = link_to :back.l, forums_path, :class => 'btn'
+    = link_to :edit.l, edit_forum_path(@forum), :class => 'btn btn-warning'
+    = link_to :delete.l, forum_path(@forum), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
 
--box do 
-  %p.subtitle
-    = feed_icon_tag @forum.name, forum_sb_posts_path(@forum, :format => :rss)
-    = pluralize @forum.topics_count, :topic.l 
-    , 
-    = pluralize @forum.sb_posts_count, :post.l
+- unless @forum.description.blank?
+  =@forum.description_html.html_safe
+%p
+  %a{:href => forum_sb_posts_path(@forum, :format => :rss)}
+    %i.icon-rss
+  = pluralize @forum.topics_count, :topic.l 
+  , 
+  = pluralize @forum.sb_posts_count, :post.l
 
-  - unless @forum.description.blank?
-    =raw @forum.description_html
-  
-  - if @forum.moderators.any?
-    = "#{:moderators.l}:"
-    %ul.flat
-      - @forum.moderators.each do |user|
-        %li= link_to user.display_name, user_path(user)
-    
-  %br.clear
 
-  - if @topics.total_count > 1
-    - if logged_in?
-      %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
-  
-    .pagination= paginating_links @topics
+- if @forum.moderators.any?
+  %h2= :moderators.l
+  %ul.unstyled
+    - @forum.moderators.each do |user|
+      %li= link_to user.display_name, user_path(user)
 
-  - unless @topics.empty?
+- unless @topics.empty?
+  %table.table.table-bordered.table-striped
+    %tr
+      %th
+      %th= :topics.l
+      %th= :posts.l
+      %th= :view_count.l 
+      %th= :last_post.l
+      
+    - for topic in @topics
+      %tr
+        %td
+          - icon, color, post = icon_and_color_and_post_for topic
+
+          - if recent_topic_activity(topic)
+            %span.badge.badge-warning
+              %i.icon-fire.icon-white
+        %td
+          -if topic.sticky?
+            =:sticky.l
+            %strong
+              = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
+          -else 
+            = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
+          - if topic.paged? 
+            %small= link_to :last.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page)
+        %td= topic.sb_posts_count
+        %td= number_with_delimiter(topic.views)
+        %td
+          %abbr{:title=>"#{topic.replied_at.xmlschema}"}= time_ago_in_words(topic.replied_at)
+          %strong
+            =:by.l :login => topic.replied_by_user.display_name
+          %span= link_to :view.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
+
+= paginate @topics, :theme => 'bootstrap'
+
+- if logged_in?
+  = icon_link_to 'icon-plus', :post_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
+- else
+  = icon_link_to 'icon-plus', :log_in_to_create_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
+
+- if @topics.size < 10
+  - @related = Post.limit(10).tagged_with(@forum.tag_list, :any => true)
+  - unless @related.empty?
     %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
       %tr
-        %th.la{:colspan=>"2"}= :topics.l
-        %th{:width=>"1%"}= :posts.l
-        %th{:width=>"1%"}= :view_count.l 
-        %th.la= :last_post.l
-        
-      - for topic in @topics
-        %tr
-          %td.c1{:style=>"padding:5px; width:16px;"}
-            - icon, color, post = icon_and_color_and_post_for topic
-
-            - if recent_topic_activity(topic)
-              = image_tag "clearbits/#{icon}.gif", :class => "icon green", :title => :recent_activity.l+" #{post}", :plugin => "community_engine"
-            - else
-              = image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => :no_recent_activity.l+" #{post}", :plugin => "community_engine"
-          %td.c2
-            = :sticky.l+": <strong>".html_safe if topic.sticky?
-            = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
-            = "</strong>".html_safe if topic.sticky?
-            - if topic.paged? 
-              %small= link_to :last.l, forum_topic_path( @forum, topic, :page => topic.last_page)
-          %td.ca.inv.stat= topic.sb_posts_count
-          %td.ca.inv.stat= number_with_delimiter(topic.views)
-          %td.lp
-            %abbr.updated{:title=>"#{topic.replied_at.xmlschema}"}= time_ago_in_words(topic.replied_at)
-            %span.author
-              %strong.fn
-                =:by.l :login => topic.replied_by_user.display_name
-            %span= link_to :view.l, forum_topic_path(@forum, topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}")
-  
-  - if @topics.total_count > 1
-    = paginate @topics
-
-  - if logged_in?
-    %h6.all.right= link_to :post_a_new_topic.l, new_forum_topic_path(@forum)
-  - else
-    %h6.all.right= link_to :log_in_to_create_a_new_topic.l, new_forum_topic_path(@forum)
-
-  - if @topics.size < 10
-    - @related = Post.limit(10).tagged_with(@forum.tag_list, :any => true)
-    - unless @related.empty?
-      %table.wide.topics{:border=>"0", :cellspacing=>"0", :cellpadding=>"0"}
-        %tr
-          %th.la{:colspan=>"2"}= :this_forum_is_still_getting_started.l
-          %th{:width=>"1%"}= :comments.l
-          %th{:width=>"1%"}= :view_count.l
-          %th.la= :author.l
-          -@related.each do |post|
-            = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}
+        %th.la{:colspan=>"2"}= :this_forum_is_still_getting_started.l
+        %th{:width=>"1%"}= :comments.l
+        %th{:width=>"1%"}= :view_count.l
+        %th.la= :author.l
+        -@related.each do |post|
+          = render :partial => 'sb_posts/dummy_forum_post', :locals => {:post => post}

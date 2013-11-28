@@ -60,7 +60,10 @@ configuration = {
           :geometry => "100x100#",
           :processors => [:cropper]
         },
-        :medium => "290x320#",
+        :medium => {
+          :geometry => "290x320#",
+          :processors => [:cropper]
+        },
         :large => "465>"
       }
     },
@@ -72,11 +75,7 @@ configuration = {
 
   :feature => {
     :use_thumbs => true,
-    :dimensions => [150, 635],
     :paperclip_options => {
-      :default_url => "",
-      :path => "#{Rails.root}/public/system/:attachment/:id/:style/:filename",
-      :url => "/system/:attachment/:id/:style/:filename",
       :styles => {
         :original => '465>',
         :thumb => "45x45#",
@@ -91,9 +90,6 @@ configuration = {
 
   :clipping => {
     :paperclip_options => {
-      :default_url => "",
-      :path => "#{Rails.root}/public/system/:attachment/:id/:style/:filename",
-      :url => "/system/:attachment/:id/:style/:filename",
       :styles => {
         :thumb => "100x100#",
         :medium => "290x320#",

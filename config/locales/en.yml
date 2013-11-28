@@ -478,9 +478,9 @@ en:
   #en: enter_a_message: Enter a message
   enter_a_message: Enter a message
   #en: enter_e_mail_addresses: Enter e-mail addresses
-  enter_e_mail_addresses: Enter e-mail addresses
+  enter_e_mail_addresses: Enter email addresses
   #en: enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
-  enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
+  enter_e_mail_addresses_comma_sep: Enter email addresses (comma-separated)
   #en: enter_your_email_address: "Enter your email address"
   enter_your_email_address: "Enter your email address"
   #en: error: Error!
@@ -841,6 +841,8 @@ en:
   need_some_help_contact_our: Need some help?  Check out our
   #en: need_to_contact_us: Need to contact us?
   need_to_contact_us: Need to contact us?
+  #en: new: New1
+  new: New!
   #en: new_ad: New Ad
   new_ad: New Ad
   #en: new_category: New category
@@ -861,8 +863,8 @@ en:
   new_metro_area: New Metro Area
   #en: new_page: New Page
   new_page: New Page
-  #en: new_photo: New photo.
-  new_photo: New photo.
+  #en: new_photo: New photo
+  new_photo: New photo
   #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   #en: new_post: New post
@@ -977,8 +979,8 @@ en:
   plural_photos:
     one: 1 Photo
     other: "%{count} Photos"
-  #en: photos_should_be_x_pixels: Photos should be 300x300 pixels.
-  photos_should_be_x_pixels: Photos should be 300x300 pixels.
+  #en: photos_should_be_x_pixels: Photos should be 300x200 pixels.
+  photos_should_be_x_pixels: Photos should be 300x200 pixels.
   #en: photos_tagged: Photos tagged
   photos_tagged: "Photos tagged"
   #en: photo_tip_1: Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.

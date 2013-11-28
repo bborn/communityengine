@@ -156,7 +156,7 @@ class UsersController < BaseController
   end
 
   def change_profile_photo
-    @user   = User.friendly.find(params[:id])
+    @user   = User.find(params[:id])
     @photo  = Photo.find(params[:photo_id])
     @user.avatar = @photo
 
@@ -216,11 +216,11 @@ class UsersController < BaseController
   end
 
   def edit_pro_details
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update_pro_details
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
 
     if @user.update_attributes(user_params)
       respond_to do |format|
@@ -240,7 +240,7 @@ class UsersController < BaseController
 
   def create_friendship_with_inviter(user, options = {})
     unless options[:inviter_code].blank? or options[:inviter_id].blank?
-      friend = User.friendly.find(options[:inviter_id])
+      friend = User.find(options[:inviter_id])
 
       if friend && friend.valid_invite_code?(options[:inviter_code])
         accepted    = FriendshipStatus[:accepted]
@@ -260,26 +260,26 @@ class UsersController < BaseController
   end
 
   def signup_completed
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
     redirect_to home_path and return unless @user
   end
 
   def welcome_photo
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
     @avatar = (@user.avatar || @user.build_avatar)
   end
 
   def welcome_about
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
     @metro_areas, @states = setup_locations_for(@user)
   end
 
   def welcome_invite
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def invite
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def welcome_complete
@@ -304,7 +304,7 @@ class UsersController < BaseController
     if params[:email]
       @user = User.find_by_email(params[:email])
     else
-      @user = User.friendly.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     if @user && !@user.active?
@@ -317,7 +317,7 @@ class UsersController < BaseController
   end
 
   def assume
-    user = User.friendly.find(params[:id])
+    user = User.find(params[:id])
 
     if assumed_user_session = self.assume_user(user)
       redirect_to user_path(assumed_user_session.record)
@@ -356,13 +356,13 @@ class UsersController < BaseController
   end
 
   def toggle_featured
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
     @user.toggle!(:featured_writer)
     redirect_to user_path(@user)
   end
 
   def toggle_moderator
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
     if not @user.admin?
       @user.role = @user.moderator? ? Role[:member] : Role[:moderator]
       @user.save!
@@ -400,7 +400,7 @@ class UsersController < BaseController
   def delete_selected
     if params[:delete]
       params[:delete].each { |id|
-        user = User.friendly.find(id)
+        user = User.find(id)
         unless user.admin? || user.featured_writer?
           user.spam! if params[:spam] && !configatron.akismet_key.nil?
           user.destroy
@@ -433,7 +433,7 @@ class UsersController < BaseController
 
 
   def avatar_params
-    params[:avatar].permit(:name, :description, :album_id, :photo)
+    params[:avatar] && params[:avatar].permit(:name, :description, :album_id, :photo)
   end
 
   def user_params

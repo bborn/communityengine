@@ -19,8 +19,8 @@ class SbPostsController < BaseController
 
   def index
     conditions = []
-    [:user_id, :forum_id].each { |attr| 
-      conditions << SbPost.send(:sanitize_sql, ["sb_posts.#{attr} = ?", params[attr].to_i]) if params[attr] 
+    [:user_id, :forum_id].each { |attr|
+      conditions << SbPost.send(:sanitize_sql, ["sb_posts.#{attr} = ?", params[attr].to_i]) if params[attr]
     }
     conditions = conditions.any? ? conditions.collect { |c| "(#{c})" }.join(' AND ') : nil
 
@@ -32,7 +32,7 @@ class SbPostsController < BaseController
 
   def search
     conditions = params[:q].blank? ? nil : SbPost.send(:sanitize_sql, ['LOWER(sb_posts.body) LIKE ?', "%#{params[:q]}%"])
-    
+
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
 
     #@users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
@@ -41,7 +41,7 @@ class SbPostsController < BaseController
   end
 
   def monitored
-    @user = User.friendly.find params[:user_id]
+    @user = User.find params[:user_id]
     @posts = SbPost.with_query_options.joins('INNER JOIN monitorships ON monitorships.topic_id = topics.id').where('monitorships.user_id = ? AND sb_posts.user_id != ?', params[:user_id], @user.id).page(params[:page])
   end
 
@@ -73,7 +73,7 @@ class SbPostsController < BaseController
     @post  = @topic.sb_posts.new(sb_post_params)
 
     @post.user = current_user if current_user
-    @post.author_ip = request.remote_ip #save the ip address for everyone, just because    
+    @post.author_ip = request.remote_ip #save the ip address for everyone, just because
 
     if (logged_in? || verify_recaptcha(@post)) && @post.save
       respond_to do |format|
@@ -86,20 +86,20 @@ class SbPostsController < BaseController
       flash.now[:notice] = @post.errors.full_messages.to_sentence
       respond_to do |format|
         format.html do
-          redirect_to forum_topic_path({:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => 'reply-form', :page => (params[:page] || '1')}.merge({:post => params[:post]}))
+          redirect_to forum_topic_path({:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => 'reply-form', :page => (params[:page] || '1')}.merge({:sb_post => params[:sb_post]}))
         end
         format.js
       end
     end
   end
-  
+
   def edit
-    respond_to do |format| 
-      format.html 
+    respond_to do |format|
+      format.html
       format.js
     end
   end
-  
+
   def update
     @post.update_attributes!(sb_post_params)
   rescue ActiveRecord::RecordInvalid
@@ -123,6 +123,7 @@ class SbPostsController < BaseController
       format.html do
         redirect_to forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :page => params[:page]) unless performed?
       end
+      format.js
       format.xml { head 200 }
     end
   end
@@ -132,13 +133,12 @@ class SbPostsController < BaseController
     def authorized?
       %w(create new).include?(action_name) || @post.editable_by?(current_user)
     end
-    
+
     def find_post
       @post = SbPost.find_by_id_and_topic_id_and_forum_id(params[:id].to_i, params[:topic_id].to_i, params[:forum_id].to_i) || raise(ActiveRecord::RecordNotFound)
     end
 
   def sb_post_params
-    # It is "post" in the forms;
-    params[:post].permit(:body, :author_email, :author_ip, :author_name, :author_url)
+    params[:sb_post].permit(:body, :author_email, :author_ip, :author_name, :author_url)
   end
 end

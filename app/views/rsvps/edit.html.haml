@@ -1,9 +1,3 @@
--box do
-  %h3= :edit_rsvp_for.l + ' ' + @event.name
-  = error_messages_for :rsvp
-  = form_for(:rsvp, :url => [@event, @rsvp], :html => {:method => :patch, :class => "MainForm"} ) do |f|
-    %label=:number_of_attendees.l
-    = f.text_field :attendees_count
-    %p
-      = submit_tag :update.l
-  = link_to :back.l, [@event]
+-@page_title= :edit_rsvp_for.l + ' ' + @event.name
+
+= render 'form'

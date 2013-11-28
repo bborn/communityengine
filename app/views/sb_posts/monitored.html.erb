@@ -13,10 +13,6 @@
   <%= :post_found.l(:count => @posts.size) %>
 </p>
 
-<% if @posts.total_count > 1 -%>
-<div class="pagination"><%= "#{:pages.l}:" %> <strong><%= paginating_links @posts %></strong></div>
-<% end -%>
-
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
 <% for post in @posts do %>
 <% unless post == @posts.to_a.first %>
@@ -50,6 +46,4 @@
 <% end %>
 </table>
 
-<% if @posts.total_count > 1 -%>
-<div class="pagination"><%= :pages.l %> <strong><%= paginating_links @posts %></strong></div>
-<% end -%>
+<%= paginate @posts, :theme => 'bootstrap' %>

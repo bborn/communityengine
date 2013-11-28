@@ -1,14 +1,21 @@
-%label 
-  =:title.l + ":"
-= f.text_field :title, :size => 35
+-if @album.new_record?
+  - url = user_albums_path(@user)
+  - object = @album
+  - button1 = :create_and_add_photos.l
+  - button2 = :create_album.l
+-else
+  - url = user_album_path(@user, @album)
+  - object = [@user, @album]
+  - button1 = :edit_and_add_photos.l
+  - button2 = :edit_album.l
+  
+=bootstrap_form_for object, :url => url, :html => {:class => 'form form-horizontal'} do |f|
+  = f.text_field :title
+  = f.text_area :description
+  = hidden_field_tag :go_to
 
-%label
-  =:description.l + ":"
-= f.text_area :description, :size => "58x5"
-
-= hidden_field_tag :go_to
-
-%p
-  = f.submit button1
-  = :or.l
-  =  f.submit button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'"
+  .controls
+    .btn-group
+      = f.submit button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'", :class => 'btn btn-primary'
+      = f.submit button1, :class => 'btn btn-primary'
+    

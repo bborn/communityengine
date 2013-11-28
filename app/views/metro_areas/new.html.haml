@@ -1,16 +1,6 @@
--box do
-  %h3= :new_metro_area.l
+-@page_title= :new_metro_area.l
 
-  = error_messages_for :metro_area
-  = form_for(:metro_area, :url => metro_areas_path, :html => {:class => "MainForm"}) do |f|
-    %label= :country.l + ":"
-    = f.collection_select :country_id, Country.order("name").to_a, :id, :name
-    %label= :state.l + ":"
-    = f.collection_select :state_id, State.all, :id, :name, :include_blank => true
-    %label= :name.l + ":"
-    = f.text_field :name
-
-    %p
-      = submit_tag :create.l
-
-    = link_to :back.l, metro_areas_path
+%p
+  = link_to :back.l, metro_areas_path, :class => 'btn' 
+  
+= render 'form'

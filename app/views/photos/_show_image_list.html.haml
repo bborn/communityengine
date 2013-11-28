@@ -12,12 +12,12 @@
           %a{:href=>p.photo.url(:large), :alt => p.display_name}
             = :large.l
           %br
-          %a{:href=>'#', :onclick=>"$(this).up('li').removeClassName('selected');return false;", :style => 'float:right; font-size: 10px;'}
+          %a{:href=>'#', :onclick=>"$(this).parents('li').removeClass('selected');return false;", :style => 'float:right; font-size: 10px;'}
             = :cancel.l
         %a{:href=>'#', :onclick=>"select_image(this);return false;"}
           = image_tag( p.photo.url(:thumb), :alt => p.display_name )
           
   :javascript
-    $$('.thumbs a').invoke("observe", 'click', select_thumb)
+    $('.thumbs a').click(select_thumb)
 - else
   = :no_images_uploaded_yet.l

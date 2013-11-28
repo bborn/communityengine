@@ -1,39 +1,30 @@
-.yui-b.sidebar
-  = render :partial => 'shared/admin_nav'
-  
-  -box do
-    %h3=:search.l
-    = search_form_for @search, :url => tags_path, :html => {:class => "MainForm"} do |f|
+-@page_title=:tags.l
+= render :partial => 'shared/admin_nav'
 
-      %label= :name.l
-      = f.text_field :name_start
+-box do
+  %h3=:search.l
+  = bootstrap_form_for @search, :url => admin_tags_path, :html => {:class => "form form-horizontal"} do |f|
+    = f.text_field :name_start, :label => :name.l
 
-      %p= f.submit :search.l
-  
-#yui-main
-  .yui-b
-    -box do 
-      %h3=:tags.l
+    .controls
+      = f.submit :search.l
 
-      %table{:width=>"100%"}
-        %tr 
-          %th
-            =sort_link @search, :name, :name.l            
-          %th 
-            =sort_link @search, :taggings_count, :taggings.l
-          %th=:actions.l
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      =sort_link @search, :name, :name.l
+    %th
+      =sort_link @search, :taggings_count, :taggings.l
+    %th=:actions.l
 
-        - for tag in @tags
-          %tr
-            %td= tag.name
-            %td= tag.taggings.size	
-            %td
-              = link_to :show.l, tag_path(tag)
-              | 
-              = link_to :edit.l, edit_tag_path(tag)
-              |
-              = link_to :destroy.l, tag_path(tag), :data => {:confirm => :are_you_sure.l}, :method => :delete
-              
+  - for tag in @tags
+    %tr
+      %td= tag.name
+      %td= tag.taggings.count
+      %td
+        = link_to :show.l, tag_path(tag), :class => 'btn'
+        = link_to :edit.l, edit_tag_path(tag), :class => 'btn btn-warning'
+        = link_to :destroy.l, tag_path(tag), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
 
-    .pagination=paginate @tags if @tags.total_count > 1
+=paginate @tags, :theme => 'bootstrap'
 

@@ -1,34 +1,21 @@
 -@section = 'clippings'
-
-#yui-main
-  .yui-b    
-    -box do 
-      %h3
-        = params[:recent] ? :recent.l : :popular.l
-        Clippings
-
-      .clippings_grid
-
-        - @clippings.to_a.in_groups_of(2) do |group|
-          .row  
-            - group.compact.each do |clipping|
-              =render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
-            .clear
-      
-      -if @clippings.total_count > 1      
-        .pagination=paginating_links @clippings
-      .clear
-      %br
+   
+-box do 
+  %h3
+    = params[:recent] ? :recent.l : :popular.l
+    Clippings
+  %ul.thumbnails
+    - @clippings.each do |clipping|
+      %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+  -if @clippings.total_count > 1      
+    =paginate @clippings, :theme => 'bootstrap'
           
-.yui-b  
-  -box do 
-    %h3 &nbsp;
-    
-    =:clippings_let_you_to_save_cool_images_from_around_the_web.l
-    -if logged_in?
-      =link_to :go_to_your_clippings_page_to_get_started.l, user_clippings_path(current_user)
-    -else
-      =:to_get_started_with_clippings_first.l+" " 
-      =link_to :create_an_account.l, signup_path
-  -box :class => "alt" do 
-    =link_to "#{:view.l} #{params[:recent] ? :popular.l : :recent.l} #{:clippings.l}", site_clippings_path(:recent => params[:recent] ? nil : 'true')
+-widget do 
+  =:clippings_let_you_to_save_cool_images_from_around_the_web.l
+  -if logged_in?
+    =link_to :go_to_your_clippings_page_to_get_started.l, user_clippings_path(current_user)
+  -else
+    =:to_get_started_with_clippings_first.l+" " 
+    =link_to :create_an_account.l, signup_path
+-widget do 
+  =link_to "#{:view.l} #{params[:recent] ? :popular.l : :recent.l} #{:clippings.l}", site_clippings_path(:recent => params[:recent] ? nil : 'true')

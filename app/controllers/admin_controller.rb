@@ -1,6 +1,6 @@
 class AdminController < BaseController
   before_filter :admin_required
-  
+
   def clear_cache
     case Rails.cache
       when ActiveSupport::Cache::FileStore
@@ -11,33 +11,33 @@ class AdminController < BaseController
         end
         flash[:notice] = :cache_cleared.l
       else
-        Rails.logger.warn("Cache not swept: you must override AdminController#clear_cache to support #{Rails.cache}") 
+        Rails.logger.warn("Cache not swept: you must override AdminController#clear_cache to support #{Rails.cache}")
     end
-    redirect_to admin_dashboard_path and return    
+    redirect_to admin_dashboard_path and return
   end
-  
+
   def events
     @events = Event.order('start_time DESC').page(params[:page])
   end
-  
+
   def messages
     @user = current_user
     @messages = Message.order('created_at DESC').page(params[:page]).per(50)
   end
-  
+
   def users
     @users = User.recent
     user = User.arel_table
 
-    if params['login']    
+    if params['login']
       @users = @users.where('`users`.login LIKE ?', "%#{params['login']}%")
     end
     if params['email']
       @users = @users.where('`users`.email LIKE ?', "%#{params['email']}%")
-    end        
+    end
 
     @users = @users.page(params[:page]).per(100)
-    
+
     respond_to do |format|
       format.html
       format.xml {
@@ -45,35 +45,36 @@ class AdminController < BaseController
       }
     end
   end
-  
+
   def comments
-    @search = Comment.search(params[:q]).order("created_at DESC").distinct
-    @comments = @search.page(params[:page]).per(100)
+    @search = Comment.search(params[:q])
+    @comments = @search.result.distinct
+    @comments = @comments.order("created_at DESC").page(params[:page]).per(100)
   end
-  
+
   def activate_user
-    user = User.friendly.find(params[:id])
+    user = User.find(params[:id])
     user.activate
     flash[:notice] = :the_user_was_activated.l
     redirect_to :action => :users
   end
-  
+
   def deactivate_user
-    user = User.friendly.find(params[:id])
+    user = User.find(params[:id])
     user.deactivate
     flash[:notice] = :the_user_was_deactivated.l
     redirect_to :action => :users
-  end  
-  
+  end
+
   def subscribers
     @users = User.where("notify_community_news = ? AND users.activated_at IS NOT NULL", (params[:unsubs] ? false : true))
-    
+
     respond_to do |format|
       format.xml {
         render :xml => @users.to_xml(:only => [:login, :email])
       }
     end
-    
+
   end
-  
+
 end

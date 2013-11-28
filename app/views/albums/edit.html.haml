@@ -1,16 +1,14 @@
-.yui-b
-  -box do 
-    %h3 Tips
-    %p 
-      =:album_tip.l :community_name => configatron.community_name
+-@page_title = :edit_album.l
 
-  -box :class => 'alt' do
-    = link_to :back_to_photo_manager.l, user_photo_manager_index_path(current_user)
+-widget do 
+  %h3 Tips
+  %p=:album_tip.l :community_name => configatron.community_name
 
-#yui-main
-  .yui-b
-    -box :id => "single_upload", :class => ".yui-b" do
-      %h3= :new_album.l
-      = form_for(@album, :url => user_album_path(current_user, @album),:html => {:class => "MainForm"}) do |f|  
-        = render :partial => 'form', :locals => {:f => f, :button1 => :edit_and_add_photos.l, :button2 => :edit_album.l }
-    
+= link_to :back.l, user_photo_manager_index_path(current_user), :class => 'btn'
+= link_to :show.l, user_album_path(current_user, @album), :class => 'btn'
+= link_to :add_photos.l, new_user_album_photo_path(@album.user,@album), :class => 'btn btn-primary'
+= link_to :delete.l, user_album_path(current_user, @album), :method => 'delete', 'confirm' =>  :are_you_sure.l, :class => 'btn btn-danger'
+
+%h3= "Album Details"
+= render 'form'
+  

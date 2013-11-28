@@ -1,15 +1,11 @@
--box :id => "profile_details" do
-  = form_for :avatar, :url => upload_profile_photo_user_url(@user), :method => 'patch', :multipart =>true, :html => {:class => 'MainForm'} do |f|
+-@page_title=:profile_photo.l
 
-    = error_messages_for :avatar
-    %h3=:profile_photo.l
-      
-    = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
-    = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
-
-    %label
-      =:choose_a_photo_for_your_profile.l
-    = f.file_field :photo, :size => "20"
+= bootstrap_form_for :avatar, :url => upload_profile_photo_user_url(@user), :method => 'put', :multipart =>true, :html => {:class => 'form form-horizontal'} do |f|
+    
+  = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
+  = image_tag( @user.avatar_photo_url(:medium), :class => "thumbnail" )
   
-    %p
-      = submit_tag :save_changes.l
+  = f.file_field :photo, :label => :choose_a_photo_for_your_profile.l
+
+  .controls
+    = f.submit :save_changes.l

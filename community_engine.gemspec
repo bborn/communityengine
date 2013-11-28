@@ -3,7 +3,6 @@ lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 require 'community_engine/version'
 
-
 Gem::Specification.new do |s|
   s.name        = "community_engine"
   s.version     = CommunityEngine::Version::STRING
@@ -31,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_list",              ">= 0.3.0"
   s.add_dependency "acts-as-taggable-on",       '~> 2.4.1'
   s.add_dependency "authlogic",                 ">= 3.3.0"
-  s.add_dependency "aws-s3",                    ">= 0"
+  s.add_dependency "aws-sdk",                   ">= 0"
   s.add_dependency "bcrypt-ruby",               ">= 0"
   s.add_dependency "cocaine",                   "~> 0.5.1"
   s.add_dependency "configatron",               ">= 0"
@@ -43,20 +42,27 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari",                  ">= 0"
   s.add_dependency "koala",                     "~> 1.6.0"
   s.add_dependency "omniauth",                  "~> 1.1.4"
+  s.add_dependency "rails_autolink",            ">= 0"
   s.add_dependency "paperclip",                 "~> 3.5.1"
   s.add_dependency "power_enum",                "~> 2.0.1"
   s.add_dependency "prototype-rails",           ">= 3.2.0"
   s.add_dependency "rack",                      ">= 1.5.2"
   s.add_dependency "rails",                     "~> 4.0.0"
-  s.add_dependency "rails_autolink",            ">= 0"
   s.add_dependency "rails-observers",           ">= 0"
   s.add_dependency "rakismet",                  ">= 0"
   s.add_dependency "ransack",                   "~> 1.0.0"
   s.add_dependency "recaptcha",                 ">= 0"
   s.add_dependency "ri_cal",                    ">= 0"
   s.add_dependency "sanitize",                  ">= 2.0.6"
+  s.add_dependency "bootstrap-sass",            '~> 2.1.1.0'
+  s.add_dependency "bootstrap_forms",           ">= 0"
+  s.add_dependency "font-awesome-sass-rails",   ">= 0"
+  s.add_dependency "jquery-rails",              ">= 0"
+  s.add_dependency "jquery-ui-rails",           ">= 0"
+  s.add_dependency "jquery-ui-themes",          ">= 0"
   s.add_dependency "sass-rails",                "~> 4.0.0"
   s.add_dependency "sprockets",                 "~> 2.10.0"
   s.add_dependency "tinymce-rails",             "~> 4.0.2"
+
 end
 

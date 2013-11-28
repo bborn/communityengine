@@ -1,0 +1,6 @@
+- if current_page?(popular_path)
+  - css_class = 'active'
+- else
+  - css_class = 'inactive'
+  
+%li{:class => css_class}= link_to :popular.l, popular_path

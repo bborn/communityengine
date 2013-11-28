@@ -1,5 +1,0 @@
-if logged_in?
-  page.replace_html :dynamic_images_list, :partial => 'manage_photos', :locals => { :photos => @photos }
-else
-  page << "mcTabs.displayTab('general_tab','general_panel'); $('dynamic_select_tab').hide(); $('image_upload_form').up('fieldset').hide();"
-end

@@ -283,7 +283,8 @@ class UsersControllerTest < ActionController::TestCase
     users(:quentin).avatar = avatar
     users(:quentin).save
 
-    patch :crop_profile_photo, :id => users(:quentin).id, :x1 => 0, :y1 => 0, :width => 290, :height => 320
+    # patch :crop_profile_photo, :id => users(:quentin).id, :x1 => 0, :y1 => 0, :width => 290, :height => 320
+    patch :crop_profile_photo, :id => users(:quentin).id, :crop_x => 0, :crop_y => 0, :crop_w => 290, :crop_h => 320
 
     assert_redirected_to user_path(users(:quentin))
   end

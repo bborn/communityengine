@@ -1,14 +1,11 @@
-.yui-b
-  =render :partial => 'users/dashboard_nav'
+=render :partial => 'users/dashboard_nav'
   
-#yui-main
-  -box :class => 'yui-b fresh' do
-    -unless @activities.empty?
-      %h3=:activity_from_your_network.l
-      %table{:width => "100%"}
-        =render :partial => "activities/activity", :collection => @activities
-      -if @activities.total_count > 1
-        = paginate @activities
-    -else
-      =:you_have_no_network_activity_yet.l 
-      = link_to :add_some_friends_to_get_started.l, users_path
+-unless @activities.empty?
+  %h3=:activity_from_your_network.l
+  %table{:width => '100%'}
+    =render :partial => "activities/activity", :collection => @activities
+  -if @activities.total_count > 1
+    = paginate @activities, :theme => 'bootstrap'
+-else
+  =:you_have_no_network_activity_yet.l 
+  = link_to :add_some_friends_to_get_started.l, users_path

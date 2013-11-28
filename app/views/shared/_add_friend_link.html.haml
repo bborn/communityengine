@@ -1,0 +1,2 @@
+= button_to :request_friendship.l, user_friendships_url(:user_id => current_user.id, :friend_id => user.id), :class => "btn btn-primary btn-mini act-via-ajax", :id => "friend_request_#{user.id}"
+= ajax_spinner_for "friend_request_#{user.id}"

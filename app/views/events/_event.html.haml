@@ -1,32 +1,34 @@
-%h3
+%h2
   = event.name
-  = "(#{event.metro_area.to_s})" unless event.metro_area.blank?
+  = !event.metro_area.nil? ? " (#{event.metro_area.to_s})" : ''
+  
 - if (logged_in? && (event.user.eql?(current_user) || admin?))
-  .event-edit-link
-    = link_to :edit.l, edit_event_path(event)
-    |
-    = link_to :clone.l, clone_event_path(event)
-    |
-    = link_to :destroy.l, event_path(event), :data => {:confirm => :are_you_sure.l}, :method => :delete
-%p
-  %b= :when.l+":"
-  =h event.time_and_date
+  %p
+    = link_to :show.l, event_path(event), :class => 'btn'
+    = link_to :clone.l, clone_event_path(event), :class => 'btn btn-success'
+    = link_to :edit.l, edit_event_path(event), :class => 'btn btn-warning'
+    = link_to :delete.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+
+%dl.dl-horizontal
+  %dt=:when.l
+  %dd=event.time_and_date
   - unless event.location.blank?
-    %br
-    %b= :where.l+":"
-    =h event.location
-    = link_to :map_it.l, "http://www.google.com/maps?q=#{URI::encode(event.location)}", :title=>:map_it.l, :target=>'_blank'
+    %dt= :where.l+":"
+    %dd
+      = event.location
+      = link_to :map_it.l, "http://www.google.com/maps?q=#{URI::encode(event.location)}", :title=>:map_it.l, :target=>'_blank'
   - if event.allow_rsvp?
-    %br
-    %b=:rsvps.l+':'
+    %dt=:rsvps.l
     - attending = event.attendees_count == 1 ? :is_attending_this_event.l : :are_attending_this_event.l
-    = pluralize(event.attendees_count, 'person') + ' ' + attending
-    - if event.end_time > Time.now
-      - if rsvp = event.rsvped?(current_user)
-        = link_to :retract_rsvp.l, [event, rsvp], :data => {:confirm => :are_you_sure.l}, :method=>:delete
-        = link_to :update_rsvp.l, edit_event_rsvp_url(event, rsvp)
-      - else
-        = link_to :rsvp.l, new_event_rsvp_url(event)
+    %dd
+      = pluralize(event.attendees_count, 'person') + ' ' + attending
+      .btn-group
+        - if event.end_time > Time.now
+          - if rsvp = event.rsvped?(current_user)
+            = link_to :retract_rsvp.l, [event, rsvp], :confirm => :are_you_sure.l, :method=>:delete, :class => 'btn btn-primary btn-mini'
+            = link_to :update_rsvp.l, edit_event_rsvp_url(event, rsvp), :class => 'btn btn-primary btn-mini'
+          - else
+            = link_to :rsvp.l, new_event_rsvp_url(event), :class => 'btn btn-primary btn-mini'
 - if show_details_link
   %p= link_to :event_details.l, event_url(event)
 

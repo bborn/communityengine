@@ -1,6 +1,0 @@
-= render :partial => 'shared/admin_nav'
-#yui-main
-  .yui-b
-    -box do 
-      %h3= @page.title
-      = @page.body

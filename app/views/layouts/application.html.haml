@@ -13,50 +13,40 @@
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
 
-    = javascript_include_tag 'community_engine'
-    = render :partial => "shared/scripts_and_styles"      
-    
+    = render :partial => "shared/scripts_and_styles"
+
   %body
-    -unless configatron.auth_providers.facebook.key.blank?    
-      =render :partial => 'facebook/fb_require'    
-      
-    #doc2{:class => "yui-t#{@sidebar_left ? 3 : 6}"}
-      = render :partial => "shared/header"
-            
-      #bd
-        = render :partial => "shared/messages"
-                  
-        = yield
-        
-                            
-      #ft
-        -if show_footer_content?    
-          .yui-gc#footer_content
-            = image_tag 'spinner.gif', :plugin => 'community_engine'
-            =:loading_recent_content.l       
+    -unless configatron.auth_providers.facebook.key.blank?
+      =render :partial => 'facebook/fb_require'
+
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container.clearfix
+          .row
+            = render :partial => "shared/header"
+
+    .container
+      .row
+        = render_hero_unit
+      .row
+        .span9
+          %h1=container_title
+          = render :partial => "shared/messages"
+          = yield
+        .span3.pull-right
+          = render :partial => "shared/sidebar"
 
 
-      #CommunityFooter
-        %ul
-          %li
-            %a{:href=>home_url, :title=>"#{configatron.community_name} " + :home.l}= :home.l
-          - if !logged_in?
-            %li
-              = link_to :log_in.l , login_path 
-          - else
-            %li
-              %a{:href=>logout_url, :title=>:log_out_of_your.l + " #{configatron.community_name} " + :account.l}
-                =:log_out.l
+      -if show_footer_content?
+        .row#footer-content
+          = image_tag 'spinner.gif', :plugin => 'community_engine'
+          =:loading_recent_content.l
 
-          - Page.all.each do |page|
-            - if (logged_in? || page.page_public)
-              %li= link_to page.title, pages_path(page) 
-              
-          - if @rss_title && @rss_url
-            %li#rss= link_to :rss.l, @rss_url, {:title => @rss_title}
+      .row
+        .span12
+          = render :partial => 'shared/footer_links'
 
-        %p
-          = :community_tagline.l
+          %p= :community_tagline.l
 
     = render :partial => "shared/end_javascript"
     = yield :end_javascript

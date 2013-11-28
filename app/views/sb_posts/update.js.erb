@@ -1,0 +1,11 @@
+post = $('#post-body-<%= @post.id %>');
+editor = post.find('.editor');
+editable = post.find('.editable');
+
+editor.addClass('hide');
+editable.html("<%=raw escape_javascript(@post.body) %>");
+post.scrollTo();
+
+editable.switchClass('hide','alert alert-info', 500,'easeOutCubic',function(){
+	editable.switchClass('alert alert-info','normal', 3000,'easeInCubic');
+});

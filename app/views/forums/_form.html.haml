@@ -1,23 +1,11 @@
+= bootstrap_form_for @forum, :html => {:class => "form form-horizontal"} do |f|
+  = f.text_field :name
+  = f.number_field :position
 
-#forum_name
-  %table.noborder.nopad.wide{"cellspacing"=>"0","border"=>"0", "cellpadding"=>"0"}
-    %td
-      %label= :title.l
-      = form.text_field :name, :class => "primary"
+  = f.text_field :tag_list, :autocomplete => "off", :help_inline => :optional_keywords_describing_this_forum_separated_by_commas.l
+  #tag_list_auto_complete.auto_complete
+  -content_for :end_javascript do
+    = tag_auto_complete_field 'forum_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
-    %td
-      %label= :position.l
-      = form.text_field :position, :size => 5
-
-      %label
-        =:tags.l
-        %em="(#{:optional_keywords_describing_this_forum_separated_by_commas.l})"
-      = text_field_tag 'tag_list', @forum.tag_list.to_s, {:autocomplete => "off", :size => 35}
-      #tag_list_auto_complete.auto_complete
-      
-      -content_for :end_javascript do
-        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-
-#forum_descripion
-  %label= :description.l
-  = form.text_area :description, :rows => 7, :class => "rich_text_editor"
+  = f.text_area :description, :rows => 7, :class => "rich_text_editor"
+  .controls= f.submit :save.l

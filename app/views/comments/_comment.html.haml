@@ -1,52 +1,49 @@
--if comment.user
-  .hentry{:id => "comment_#{comment.id}"}
-    .vcard.author
-      %h5= link_to image_tag(comment.user.avatar_photo_url(:thumb), :height => '50', :width => '50', :alt => "#{comment.user.login}"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login)
-      %ul
-        %li.fn
-          = link_to comment.user.login, user_path(comment.user), :class => 'url'
-        %li.update
-          %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
-            %abbr.published{"title"=>"#{comment.created_at}"}
-              = I18n.l(comment.created_at, :format => :short_literal_date)
-        -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, :remote => true, :id => "delete_comment_#{comment.id}", :class => "delete_comment", :data => { :comment => "comment_#{comment.id}", :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l}
-        -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to :edit.l, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :remote => true,  :class => "edit_comment", :data => { :comment => "comment_#{comment.id}"}
-    .entry-content= comment.comment.html_safe
+%div{:id => "comment-#{comment.id}"}
+  -if comment.user
+    .clearfix
+      .span2.pull-right
+        %ul.nav.nav-list
+          %li= link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'thumbnail'
+          %li
+            = icon_link_to 'icon-hand-right', comment.user.login, user_path(comment.user)
+          %li
+            %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
+              %i.icon-calendar.pull-left
+              %abbr.published{"title"=>"#{comment.created_at}"}
+                = I18n.l(comment.created_at, :format => :short_literal_date)
+          -if logged_in? && (current_user.admin? || current_user.moderator?)
+            %li
+              =link_to "<i class='icon-edit'></i>#{:edit.l}".html_safe, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax'
+          -if ( comment.can_be_deleted_by(current_user) )
+            %li.delete
+              =link_to "<i class='icon-trash'></i>#{:delete.l}".html_safe, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true
+      = comment.comment.html_safe
 
--else
-  .hentry{:id => "comment_#{comment.id}"}
-    .vcard.author
-      %h5
-        %a{:href => '#', :rel => 'bookmark', :class => 'photo', :onclick => 'return false;'}
-          = image_tag(configatron.photo.missing_thumb, :height => '50', :width => '50')
-      %ul
-        %li.fn
-          =link_to_unless(comment.author_url.blank?, h(comment.username), h(comment.author_url)){ h(comment.username) }
-        %li.update
-          %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
-            %abbr.published{"title"=>"#{comment.created_at}"}
-              = I18n.l(comment.created_at, :format => :short_literal_date)
-        -if ( comment.can_be_deleted_by(current_user) )
-          %li.delete=link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, :remote => true, :id => "delete_comment_#{comment.id}", :class => "delete_comment", :data => { :comment => "comment_#{comment.id}", :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l}
-        -if logged_in? && (current_user.admin? || current_user.moderator?)
-          %li.edit=link_to :edit.l, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :remote => true, :data => { :comment => "comment_#{comment.id}"}, :class => "edit_comment"
+  -else
+    .clearfix
+      .span3.pull-right
+        %ul.nav.nav-list
+          %li
+            %a{:href => '#', :rel => 'bookmark', :class => 'photo', :onclick => 'return false;'}
+              = image_tag(configatron.photo.missing_thumb, :height => '50', :width => '50')
+          %li
+            -if comment.author_url.blank?
+              = h comment.username
+            -else
+              =icon_link_to 'icon-hand-right', h(comment.username), h(comment.author_url)
+          %li
+            %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
+              %i.icon-calendar.pull-left
+              %abbr.published{"title"=>"#{comment.created_at}"}
+                = I18n.l(comment.created_at, :format => :short_literal_date)
+          -if logged_in? && (current_user.admin? || current_user.moderator?)
+            %li
+              =link_to '<i class="icon-edit"></i>#{:edit.l}'.html_safe, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax'
+          -if ( comment.can_be_deleted_by(current_user) )
+            %li
+              =link_to "<i class='icon-trash'></i>#{:delete.l}".html_safe, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true
+              =link_to "<i class='icon-trash'></i>#{:delete.l}".html_safe, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true
 
-    .entry-content= comment.comment.html_safe
+      = comment.comment.html_safe
 
-:javascript
-  $('delete_comment_#{comment.id}').observe('ajax:success', function () {
-    var element = $('comment_#{comment.id}');
-    new Effect.Fade(element);
-  });
-  $('delete_comment_#{comment.id}').observe('ajax:failure', function () {
-    alert('Sorry, there was a server error');
-    return false
-  });
-- highlighted ||= nil
-- if highlighted
-  :javascript
-    var element = $('comment_#{comment.id}');
-    new Effect.Highlight(element, 1);
-
+  %hr

@@ -84,14 +84,14 @@ class EventsControllerTest < ActionController::TestCase
     login_as :admin
     get :show, :id=>2
     assert_tag :tag=>'a', :content=>:rsvp.l
-    assert_tag :tag=>'b', :content=>"#{:rsvps.l}:"
+    assert_tag :tag=>'dt', :content=>"#{:rsvps.l}"
   end
 
   def test_should_not_show_rsvp
     login_as :admin
     get :show, :id=>6
     assert_no_tag :tag=>'a', :content=>:rsvp.l
-    assert_no_tag :tag=>'b', :content=>"#{:rsvps.l}:"
+    assert_no_tag :tag=>'dt', :content=>"#{:rsvps.l}"
   end
   
   def test_should_clone_event

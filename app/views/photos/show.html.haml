@@ -1,53 +1,50 @@
-.profile
-  .yui-b
-    = render :partial => 'posts/author_profile', :locals => {:user => @user}
+-@page_title = @photo.display_name
 
-    - if @photo.album
-      -box :class => "photo_nav alt" do
-        %h3= "#{:album.l}: #{link_to @photo.album.title, user_album_path(@user, @photo.album)}".html_safe
-        
-        = link_to "<img src='#{@photo.previous_in_album.photo.url(:thumb)}' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @photo.previous_in_album), :class => 'left' if @photo.previous_in_album
-        
-        = link_to "<img src='#{@photo.next_in_album.photo.url(:thumb)}' /><br />".html_safe + :next.l + "&raquo;".html_safe, user_photo_path(@user, @photo.next_in_album), :class => 'right' if @photo.next_in_album    
-        
-    - elsif @previous || @next
-      -box :class => "photo_nav alt" do
-        = link_to "<img src='#{@previous.photo.url(:thumb)}' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @previous), :class => 'left' if @previous
-        
-        = link_to "<img src='#{@next.photo.url(:thumb)}' /><br />".html_safe + :next.l + "&raquo;".html_safe, user_photo_path(@user, @next), :class => 'right' if @next
+- if @related.any?
+  -widget do
+    %h3=:related_photos_all_members.l
+    - @related.each do |photo|
+      = link_to image_tag( photo.photo.url(:thumb), :class => "thumbnail"), user_photo_path(photo.user, photo), {:title => :photo_from_user.l_with_args(:photo_description => h(photo.description), :user => photo.user.login)}
 
-    - if @related.any?
-      -box :class => "alt" do 
-        %h3=:related_photos_all_members.l
-        .centered
-          - @related.each do |photo|
-            = link_to image_tag( photo.photo.url(:thumb), :class => "polaroid"), user_photo_path(photo.user, photo), {:title => :photo_from_user.l_with_args(:photo_description => h(photo.description), :user => photo.user.login)}
+- if @is_current_user
+  -widget do
+    = link_to :make_this_my_profile_photo.l, change_profile_photo_user_path(@user, :photo_id => @photo), :method => :patch
 
-  #yui-main
-    .yui-b
-      -box :class => "hfeed" do 
-        %h3
-          = link_to :users_photos.l_with_args(:user => @user.login), user_photos_path(@user)
-          \:
-          = link_to h(@photo.display_name), user_photo_path(@user, @photo)
+  %p
+    = link_to :back.l, user_photos_path(@user), :class => 'btn'
+    = link_to :edit.l, edit_user_photo_path(@user, @photo), :class => 'btn btn-warning'
+    = link_to :delete.l, user_photo_path(@user, @photo), :method => :delete, :confirm => :are_you_sure.l, :class => 'btn btn-danger'
 
-        - if @is_current_user
-          -box :class => "alt" do 
-            = link_to :make_this_my_profile_photo.l, change_profile_photo_user_path(@user, :photo_id => @photo), :method => :patch
-            |
-            = link_to :edit_this_photo_details.l, edit_user_photo_path(@user, @photo) if @is_current_user
-            |
-            = link_to(:delete_this_photo.l, user_photo_path(@user, @photo), :method => :delete) + "<br class='clear' />".html_safe
+= render :partial => 'posts/author_profile', :locals => {:user => @user}
 
-        %p.centered= tag(:img, :src => @photo.photo(:large), :class => "polaroid" )
-        %p= h @photo.description
-        %p= @photo.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag') }.join(" ").html_safe
+.clearfix
+  - if @photo.album
+    %h3= "#{:album.l}: #{link_to @photo.album.title, user_album_path(@user, @photo.album)}".html_safe
+    .pull-left.span2
+      = link_to "<img src='#{@photo.previous_in_album.photo.url(:thumb)}' class='thumbnail' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @photo.previous_in_album) if @photo.previous_in_album
+    .pull-right.span2
+      = link_to "<img src='#{@photo.next_in_album.photo.url(:thumb)}' class='thumbnail' /><br />".html_safe + :next.l + "&raquo;".html_safe, user_photo_path(@user, @photo.next_in_album) if @photo.next_in_album
 
-      -box :class => "hfeed comments", :id => 'comments' do
-        %h3=:photo_comments.l
-        %h2=:add_your_comment.l
-        %p= render :partial => 'comments/comment_form', :locals => {:commentable => @photo}
-        %a#newest_comment
-        = render :partial => 'comments/comment', :collection => @photo.comments
-        %span#more_comments_links= more_comments_links(@photo)
+  - elsif @previous || @next
+    .pull-left.span2
+      = link_to "<img src='#{@previous.photo.url(:thumb)}' class='thumbnail' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @previous) if @previous
+    .pull-right.span2
+      = link_to "<img src='#{@next.photo.url(:thumb)}' class='thumbnail' /><br />".html_safe + :next.l + "&raquo;".html_safe, user_photo_path(@user, @next) if @next
+
+  .span8
+    = image_tag @photo.photo(:large), :class => "thumbnail"
+%p= h @photo.description
+%p
+  - for tag in @photo.tags
+    %a.label.label-info{:href => user_photos_path(@photo.user, :tag_name => tag.name)}
+      %i.icon-white.icon-tag
+      =tag.name
+
+-box :id => 'comments' do
+  %h2=:photo_comments.l
+  %h3=:add_your_comment.l
+  %p= render :partial => 'comments/comment_form', :locals => {:commentable => @photo}
+  %a#newest_comment
+  = render :partial => 'comments/comment', :collection => @photo.comments
+  %span#more_comments_links= more_comments_links(@photo)
 

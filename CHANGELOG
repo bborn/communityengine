@@ -1,3 +1,11 @@
+= TODO
+* datepicker for events
+
+=3.0.0.pre3       -- BB  Nov 2013
+* Merged in the jquery-bootstrap branch
+* Removed old prototype.js code
+
+
 =3.0.0.pre2       -- Polar Humenn   20 Sep 2013
 * Upgraded to tinyMCE 4.0.2 ; made fix to mce_options to make it work.
 * Removed curblyadvimage from tinymce plugins (not working)
@@ -28,14 +36,6 @@
     gem actionpack-action_caching
     gem actionpack-page_caching
     gem rails-observers
-
-= TODO
-* replace old multiple uploader
-* fix photo uploading from welcome_photo page
-* add back searching to users index
-* swap jquery for prototype
-* Upgrade to bcrybt crypto method
-
 
 =2.3.0
 * Upgrade omniauth to 1.1

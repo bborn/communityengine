@@ -1,0 +1,10 @@
+<% if @favorite.new_record? %>
+  <%= @favorite.errors.full_messages.join(', ').html_safe %>
+<% else %>
+  <% case @favorite.favoritable.class.to_s.tableize %>
+    <% when 'clippings' %>
+      <%= render :partial => 'clippings/favorite', :locals => {:clipping => @favorite.favoritable} %>
+    <% when 'posts' %>
+      <%= render :partial => 'posts/meta', :locals => {:post => @favorite.favoritable} %>
+  <% end %>
+<% end %>

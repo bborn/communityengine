@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   resources :authorizations
   get '/auth/:provider/callback' => 'authorizations#create', :as => :callback
   get '/auth/failure' => 'authorizations#failure'
-  
+
   resources :sb_posts, :as => 'all_sb_posts' do
     collection do
       get :search
       get :monitored
     end
   end
-    
+
   resources :monitorship
   resources :sb_posts do
     collection do
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :forums do
     resources :sb_posts
-    
+
     resources :moderators
     resources :topics do
       resources :sb_posts
@@ -37,47 +37,48 @@ Rails.application.routes.draw do
 
   get 'sitemap.xml' => 'sitemap#index', :format => 'xml'
   get 'sitemap' => 'sitemap#index'
-  
+
   get '/' => 'base#site_index', :as => :home
-  
+
   scope "/admin" do
     get 'dashboard' => 'homepage_features#index', :as => :admin_dashboard
-    get 'users' => 'admin#users', :as => :admin_users
+    match 'users' => 'admin#users', :as => :admin_users, :via => [:post, :get]
     get 'messages' => 'admin#messages', :as => :admin_messages
-    get 'comments' => 'admin#comments', :as => :admin_comments
-    get 'tags' => 'tags#manage', :as => :admin_tags
+    match 'comments' => 'admin#comments', :as => :admin_comments, :via => [:post, :get]
+    match 'tags' => 'tags#manage', :as => :admin_tags, :via => [:post, :get]
     get 'events' => 'admin#events', :as => :admin_events
     get 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
     get 'subscribers(.:format)' => "admin#subscribers", :as => :admin_subscribers
     get 'activate_user' => "admin#activate_user", :as => :admin_activate_user
     get 'deactivate_user' => 'admin#deactivate_user', :as => :admin_deactivate_user
-    
+
     resources :pages, :as => :admin_pages do
       member do
         get :preview
       end
     end
   end
-  
+
   get 'pages/:id' => 'pages#show', :as => :pages
-  
-  
+
+
   get '/login' => 'sessions#new', :as => :login
   get '/signup' => 'users#new', :as => :signup
   get '/logout' => 'sessions#destroy', :as => :logout
-  
+
   get '/signup/:inviter_id/:inviter_code' => 'users#new', :as => :signup_by_id
   get '/forgot_password' => 'password_resets#new', :as => :forgot_password
   resources :password_resets
-  get '/forgot_username' => 'users#forgot_username', :as => :forgot_username
-  post '/forgot_username' => 'users#forgot_username'
+
+  match '/forgot_username' => 'users#forgot_username', :as => :forgot_username, :via => [:get, :post]
+
   post '/resend_activation' => 'users#resend_activation', :as => :resend_activation
-  
+
   get '/new_clipping' => 'clippings#new_clipping'
-  post '/load_images_from_uri' => 'clippings#load_images_from_uri', :format => 'js'  
+  post '/load_images_from_uri' => 'clippings#load_images_from_uri', :format => 'js'
   get '/clippings(/page/:page)' => 'clippings#site_index', :as => :site_clippings
   get '/clippings.rss' => 'clippings#site_index', :as => :rss_site_clippings, :format => 'rss'
-  
+
   get '/featured(/page/:page)' => 'posts#featured', :as => :featured
   get '/featured.rss' => 'posts#featured', :as => :featured_rss, :format => 'rss'
   get '/popular(/page/:page)' => 'posts#popular', :as => :popular
@@ -113,7 +114,7 @@ Rails.application.routes.draw do
   end
   get '/tags/:id/:type' => 'tags#show', :as => :show_tag_type
   get '/search/tags' => 'tags#show', :as => :search_tags
-  
+
   resources :categories
   post '/categories/show_tips' => 'categories#show_tips', :as => :categories_show_tips
 
@@ -128,15 +129,11 @@ Rails.application.routes.draw do
     end
     resources :rsvps
   end
-
-  scope '/:favoritable_type/:favoritable_id' do
-    resources :favorites
-  end
   scope "/:commentable_type/:commentable_id" do
-    resources :comments, :as => :commentable_comments do 
+    resources :comments, :as => :commentable_comments do
       member do
         get :unsubscribe
-      end      
+      end
     end
   end
   resources :comments do
@@ -144,16 +141,18 @@ Rails.application.routes.draw do
       delete :delete_selected
     end
   end
+  resources :comments
+
   resources :homepage_features
   resources :metro_areas
   resources :ads
 
   resources :activities
-  
+
   resources :users do
-    
+
     get 'page/:page', :action => :index, :on => :collection
-    
+
     collection do
       post 'return_admin'
       delete 'delete_selected'
@@ -162,30 +161,29 @@ Rails.application.routes.draw do
       get 'dashboard'
       get 'edit_account'
       get 'invite'
-      get 'signup_completed'      
+      get 'signup_completed'
       get 'activate'
-      
+
       patch 'toggle_moderator'
       patch 'toggle_featured'
 
       patch 'change_profile_photo'
       patch 'update_account'
       patch 'deactivate'
-      
+
       get 'welcome_photo'
       get 'welcome_about'
       get 'welcome_invite'
       get 'welcome_complete'
-      
-      post 'assume'               
-      
+
+      post 'assume'
+
       get 'statistics'
-      get 'crop_profile_photo'
-      patch 'crop_profile_photo'
-      get 'upload_profile_photo'
+      match 'crop_profile_photo', :via => [:get, :put, :patch]
+      match 'upload_profile_photo', :via => [:get, :put, :patch]
       patch 'upload_profile_photo'
     end
-    
+
     resources :friendships do
       collection do
         get :accepted
@@ -203,13 +201,13 @@ Rails.application.routes.draw do
     end
 
     resources :posts do
-      get 'page/:page', :action => :index, :on => :collection            
-      
-      collection do 
+      get 'page/:page', :action => :index, :on => :collection
+
+      collection do
         # get 'manage(/page/:page)', :action => :manage
         get :manage
       end
-      
+
       member do
         post :send_to_friend
         patch :update_views
@@ -221,7 +219,7 @@ Rails.application.routes.draw do
     resources :clippings
 
     resources :activities do
-      get 'page/:page', :action => :index, :on => :collection  
+      get 'page/:page', :action => :index, :on => :collection
       collection do
         get :network
       end
@@ -251,6 +249,10 @@ Rails.application.routes.draw do
       end
     end
 
+  end
+
+  scope '/:favoritable_type/:favoritable_id' do
+    resources :favorites
   end
 
   resources :votes

@@ -1,0 +1,5 @@
+<%- if logged_in? %>
+  $("#dynamic_images_list").html("<%= escape_javascript(render(:partial => 'manage_photos', :locals => { :photos => @photos })) %>");
+<%- else %>
+  mcTabs.displayTab('general_tab','general_panel'); $('dynamic_select_tab').hide(); $('image_upload_form').up('fieldset').hide(); 
+<%- end -%>

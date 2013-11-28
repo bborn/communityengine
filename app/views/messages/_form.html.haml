@@ -1,25 +1,21 @@
-= form_for message, :url => user_messages_path(user), :html => {:class => "MainForm"} do |f|
+= bootstrap_form_for [user, message], :html => {:class => "form form-horizontal"} do |f|
 
   -if message.reply_to
     =f.hidden_field :to
     =f.hidden_field :parent_id
   -else
-    %label{:for => 'message_to'} 
-      =:to.l
-      %em= "(" + :type_a_username.l + ")"
-    = text_field_tag 'message[to]', @message.to, {:autocomplete => "off", :size => 35, :id => "message_to"}
+    = f.text_field :to, :required => true, :autocomplete => "off", :id => "message_to", :label => :to.l, :placeholder => :type_a_username.l
     .auto_complete#message_to_auto_complete
+    
     -content_for :end_javascript do
-      = auto_complete_field 'message_to', {:url => auto_complete_for_username_user_messages_path(@user), :tokens=>','}
+      = auto_complete_field 'message_to', {:url => {:controller => 'messages', :action => 'auto_complete_for_username', :user => user}, :method=>'post'}
 
   -if @reply  
     = f.hidden_field :subject  
   -else
-    %label{:for => 'message_subject'}= :subject.l + ":"
     = f.text_field :subject
 
-  %label{:for => "message_body"}= :message.l + ":"
-  = f.text_area :body
+  = f.text_area :body, :label => :message.l, :rows => 10, :class => "span6"
 
-  %p
-    = submit_tag :send.l
+  .controls
+    = f.submit :send.l

@@ -1,64 +1,42 @@
-= form_tag update_account_user_url(@user), :method => 'patch', :class => "MainForm", :multipart => true do
-  -box :class => "alt first_alt" do 
-    %h3=:you_are_editing_your_account.l
-    = link_to :edit_your_user_profile.l, edit_user_path(@user)
+-widget do
+  %ul.nav.nav-list
+    %li.nav-header=:you_are_editing_your_account.l
+    %li= link_to :edit_your_user_profile.l, edit_user_path(@user)
 
-  = error_messages_for :user
+-widget do
+  = render :partial => "omniauth_connect"
 
-  -box :class => "yui-b" do
 
-    %h3=:username.l
-    = text_field :user, :login, :size => "28"
+= bootstrap_form_for @user, :method => 'put', :html => {:class => "form form-horizontal", :multipart => true} do |f|
 
-    %h3=:e_mail_address.l
-    = text_field :user, :email, :size => "28"
+  = f.text_field  :login, :label => :username.l
 
-    %h3=:password.l
-    = password_field :user, :password, :size => "28"
+  = f.text_field  :email, :label => :e_mail_address.l
 
-    %label=:confirm_password.l
-    = password_field :user, :password_confirmation, :size => "28"
+  = f.password_field :password
 
-  #yui-main
-    .yui-b
-    
-      -box :class => 'alt first_alt' do
-        = render :partial => "omniauth_connect"
-    
-      -box do
-        %h3=:e_mail_notification.l
+  = f.password_field :password_confirmation, :label => :confirm_password.l
 
-        %fieldset
-          %label 
-            = check_box :user, :notify_friend_requests        
-            =:notify_of_friend_requests.l :site => configatron.community_name
-          
-          %label
-            = check_box :user, :notify_comments         
-            = :notify_of_comments.l :site => configatron.community_name
-          
-          %label
-            = check_box :user, :notify_community_news
-            =:notify_email_updates.l :site => configatron.community_name
-          
+  %h2=:e_mail_notification.l
 
-        %h3=:profile_privacy.l
+  %fieldset.control-group
+    =f.check_box :notify_friend_requests, :label => :notify_of_friend_requests.l(:site => configatron.community_name)
 
-        %fieldset
-          %label
-            = check_box :user, :profile_public
-            =:make_my_profile_public.l
-            %br
-            %em
-              =:when_checked_your_profile_will_be_visible_to_anyone.l
-            %br
-            %em
-              =:when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to.l
-              = "#{configatron.community_name}."
-        %p= submit_tag :save_changes.l  
+    =f.check_box :notify_comments, :label => :notify_of_comments.l(:site => configatron.community_name)
 
-        %p
-          =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :patch, :data => {:confirm => :deactivate_confirmation.l}
-          %br
-          %label
-            %em= :deactivate_tip.l            
+    =f.check_box :notify_community_news, :label => :notify_email_updates.l(:site => configatron.community_name)
+
+  %h2=:profile_privacy.l
+
+  %fieldset.control-group
+
+    =f.check_box :profile_public, :label => :make_my_profile_public.l, :help_block => "#{:when_checked_your_profile_will_be_visible_to_anyone.l}<br />#{:when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to.l} #{configatron.community_name}.".html_safe
+
+    = f.actions do
+      =f.submit :value => :save_changes.l
+
+    .well
+      =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, :confirm => :deactivate_confirmation.l, :class => 'btn btn-danger'
+      %br
+      %label
+        %em= :deactivate_tip.l

@@ -1,10 +1,7 @@
-%dl{:class => (activity.item_type && activity.item_type.humanize.downcase), :id => dom_id(activity) }
-  %dt
-    =time_ago_in_words_or_date(activity.created_at)
-  %dd
-    -if activity.can_be_deleted_by?(current_user)
-      =link_to image_tag("icons/delete.png", :plugin => 'community_engine'), :url => activity_path(activity), :remote => true, :method => :delete, :html => {:class => 'right'}
-  
+%tr{:id => 'activity-' + activity.id.to_s }
+  %td
+    =time_ago_in_words(activity.created_at)
+  %td 
     =link_to activity.user.login.capitalize, user_path(activity.user.friendly_id)  
     - if activity.item
       - case activity.item_type
@@ -13,7 +10,7 @@
           = link_to activity.item.title, user_post_path(activity.item.user, activity.item)
         - when 'Photo'
           =:uploaded_a_photo.l
-          = link_to image_tag(activity.item.photo.url(:thumb), :width => '50px'), user_photo_path(activity.item.user, activity.item)
+          = link_to image_tag(activity.item.photo.url(:thumb), :class => 'thumbnail span1 pull-right'), user_photo_path(activity.item.user, activity.item)
         - when 'Album'
           =:created_an_album.l
           = link_to activity.item.title, user_album_path(activity.item.user, activity.item)
@@ -33,7 +30,7 @@
           = link_to " a #{activity.item.favoritable.class.to_s.humanize.downcase}", user_favorite_path(activity.item.user, activity.item)
         - when 'Clipping'
           =:added_a_clipping.l
-          = link_to image_tag( activity.item.image_uri(:thumb), :width => '50px'), user_clipping_path(activity.item.user, activity.item)        
+          = link_to image_tag( activity.item.image_uri(:thumb), :class => 'thumbnail span1 pull-right'), user_clipping_path(activity.item.user, activity.item)        
         - when 'Invitation'
           =:invited_friends.l
         - when 'Event'
@@ -54,3 +51,7 @@
           =:joined_the_site.l(:site => configatron.community_name)
         - else
           = " #{activity.action.humanize.downcase }"
+  %td
+    -if activity.can_be_deleted_by?(current_user)
+      =link_to '<i class="icon-remove"></i>'.html_safe, activity, :remote => true, :method => 'delete', 'data-manual-confirm' => :are_you_sure.l, :class => 'clear-right pull-right btn btn-danger btn-mini delete-via-ajax'
+     

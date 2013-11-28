@@ -1,32 +1,25 @@
-.profile
-  .yui-b
-    = render :partial => 'posts/author_profile', :locals => {:user => @album.user}
-    = link_to :back_to_photo_manager.l, user_photo_manager_index_path(@album.user) 
+-@page_title = @album.title
+= render :partial => 'posts/author_profile', :locals => {:user => @album.user}
 
-  #yui-main
-    .yui-b
-      -box :class => "hfeed" do 
-        %h3= h @album.title
-        %p= h @album.description
+-if @album.user == current_user
+  %p
+    = link_to :back.l, user_photo_manager_index_path(@album.user), :class => 'btn'
+    = link_to :edit.l, edit_user_album_path(@album.user,@album), :class => 'btn btn-warning'
+    = link_to :add_photos.l, new_user_album_photo_path(@album.user,@album), :class => 'btn btn-primary'
+    = link_to :delete.l, user_album_path(@album.user,@album), :confirm => :delete_album_and_photos.l, :method => :delete, :class => 'btn btn-danger'
 
+%p= h @album.description
+%h2= :photos_of_this_album.l
+%ul.thumbnails
+  - @album_photos.each do |photo|
+    %li.span2
+      = link_to image_tag(photo.photo.url(:thumb)), user_photo_path(photo.user, photo), :class => 'thumbnail'
+= paginate @album_photos, :theme => 'bootstrap'
 
-        %h3= :photos_of_this_album.l
-        #photos.yui-u.box
-          - @album_photos.each do |photo|
-            = link_to image_tag( photo.photo.url(:thumb), :class => "polaroid"), | 
-              user_photo_path(photo.user, photo) |
-          = paginate @album_photos
-
-
-      -box :class => "hfeed comments", :id => 'comments' do
-        %h3=:album_comments.l
-        %h2=:add_your_comment.l
-        %p= render :partial => 'comments/comment_form', :locals => {:commentable => @album}
-        %a#newest_comment
-        = render :partial => 'comments/comment', :collection => @album.comments
-        %span#more_comments_links= more_comments_links(@album)
-
-
-
-
-
+-box :id => 'comments' do
+  %h2=:album_comments.l
+  %h3=:add_your_comment.l
+  %p= render :partial => 'comments/comment_form', :locals => {:commentable => @album}
+  %a#newest_comment
+  = render :partial => 'comments/comment', :collection => @album.comments
+  %span#more_comments_links= more_comments_links(@album)

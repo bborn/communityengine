@@ -1,34 +1,9 @@
+-@page_title = :edit_event.l
 
--box do
-  %h3= :edit_event.l
-  = error_messages_for :event
-  = form_for(:event, :url => event_path(@event), :html => {:method => :patch, :class => "MainForm"} ) do |f|
-    %label= :name.l
-    = f.text_field :name
-    
-    %label= :description.l
-    = f.text_area :description, :size => "69x10", :class => "rich_text_editor"
-    
-    %label= :start_time.l
-    = f.datetime_select :start_time
-    
-    %label= :end_time.l
-    = f.datetime_select :end_time
+%p
+  = link_to :back.l, events_path, :class => 'btn'
+  = link_to :show.l, event_path(@event), :class => 'btn'
+  = link_to :clone.l, clone_event_path(@event), :class => 'btn btn-success'
+  = link_to :delete.l, event_path(@event), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
 
-    %label
-      = f.check_box :allow_rsvp
-      =:allow_rsvp.l
-      %br
-      %em
-        =:when_checked_users_will_be_able_to_rsvp_for_this_event.l
-    
-    %label= :location.l
-    = f.text_field :location
-
-    %h3= :metro_area.l
-    = render :partial => 'shared/location_chooser', :locals => {:selected_country => @country_id, :selected_state => @state_id, :selected_metro_area => @metro_area_id, :states => @states, :metro_areas => @metro_areas}
-
-    %p
-      = submit_tag :save.l
-
-  = link_to :back.l, :back
+=render 'form'

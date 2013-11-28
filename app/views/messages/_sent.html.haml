@@ -1,34 +1,23 @@
-#yui-main
-  .yui-b
-    -box do 
+-@page_title = :sent_messages.l
 
-      %h3= :sent_messages.l
-      %table.messages{:border => 0, :width => '100%'}
-        %tbody
-          - if @messages.empty?
-            %tr
-              %td{ :colspan => "4" }
-                = :no_messages.l
-          - else
-            - @messages.each do |message|
-              %tr
-                %td{:width => '10px'}
-                  %fieldset.inline= check_box_tag "delete[]", message.id
-                %td{:width => '60px'}
-                  .photo= link_to image_tag( message.recipient.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.recipient.login}", "width"=>"50px" ), user_path(message.recipient), :title => :users_profile.l(:user => message.recipient.login)
-
-                %td
-                  = link_to h(message.subject), user_message_path(@user, message)                  
-                  %br
-                  = :to.l 
-                  \:
-                  = link_to h(message.recipient.login), user_path(@user)                  
-                %td.meta{:width => '150px'}
-                  = time_ago_in_words_or_date(message.created_at)                                  
-            
-            
-          %tfoot
-            %tr
-              %td{ :colspan => "4" }
-                -if @messages.any?
-                  %p= submit_tag :delete.l
+- if @messages.empty?
+  = :no_messages.l
+- else
+  %table.table.table-bordered
+    - @messages.each do |message|
+      %tr
+        %td.span1
+          %fieldset.inline= check_box_tag "delete[]", message.id
+        %td.span2
+          = :to.l 
+          \:
+          = link_to h(message.recipient.login), user_path(@user)                  
+          %br        
+          = link_to image_tag( message.recipient.avatar_photo_url(:thumb), :alt => message.recipient.login , :class => 'thumbnail'), user_path(message.recipient), :title => :users_profile.l(:user => message.recipient.login)
+        %td
+          = link_to h(message.subject), user_message_path(@user, message)                  
+          %br
+        %td.span2
+          = time_ago_in_words_or_date(message.created_at)                                  
+  = submit_tag :delete_selected.l, :class => 'btn btn-danger'  
+  =paginate @messages, :theme => 'bootstrap'

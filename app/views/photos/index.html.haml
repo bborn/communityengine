@@ -1,28 +1,30 @@
-.yui-b
-  = render :partial => 'posts/author_profile', :locals => {:user => @user}
+-@page_title=:users_photos.l(:user=>@user.login)
+= render :partial => 'posts/author_profile', :locals => {:user => @user}
 
-  -box :class => 'yui-u first' do
+-if @tags.any?
+  -widget do
     %h3=:tags.l
-    %ul.tags        
+    %ul.unstyled      
       - @tags.each do |tag|
         %li
           - if (tag.name.eql?(params[:tag_name]) )
-            = link_to tag.name, user_photos_path(@user), :class => "selected"
+            %a.active.label.label-info{:href => user_photos_path(@user)}
+              %i.icon-tag.icon-white
+              =tag.name
           - else
-            = link_to tag.name, user_photos_path(@user, :tag_name => tag.name)
+            %a.label.label-info{:href => user_photos_path(:user_id => @user, :tag_name => tag.name)}
+              %i.icon-tag.icon-white
+              =tag.name
+
+%ul.thumbnails
+  - @photos.each do |photo|
+    %li.span3
+      = link_to image_tag(photo.photo.url(:medium)), user_photo_path(@user, photo), :class => 'thumbnail'
+      -if @is_current_user
+        =link_to :show.l, user_photo_path(@user, photo), :class => 'btn btn-mini'
+        =link_to :edit.l, edit_user_photo_path(@user, photo), :class => 'btn btn-mini btn-warning'
+        =link_to :delete.l, user_photo_path(@user, photo), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-mini btn-danger'    
   
-
-#yui-main
-  .yui-b
-  
-    -box :id => "photos" do
-      %h3= link_to :users_photos.l(:user=>@user.login), user_photos_path(@user)
-      = link_to( :new_photo.l, new_user_photo_path(@user), {:class => 'right'})  if @is_current_user
-
-      .clear
-      - @photos.each do |photo|
-        = link_to tag('img', :src => photo.photo.url(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
-        
-      .pagination=paginating_links @photos if @photos.total_count > 1
-
-      
+=paginate @photos, :theme => 'bootstrap'
+-if @is_current_user
+  = link_to :new_photo.l, new_user_photo_path(@user), :class => 'btn btn-success'  

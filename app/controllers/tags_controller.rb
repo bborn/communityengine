@@ -6,31 +6,37 @@ class TagsController < BaseController
   caches_action :show, :cache_path => Proc.new { |controller| controller.send(:tag_url, controller.params[:id]) }, :if => Proc.new{|c| c.cache_action? }
   def cache_action?
     !logged_in? && params[:type].blank?
-  end  
+  end
 
   def auto_complete_for_tag_name
-    @tags = ActsAsTaggableOn::Tag.where('LOWER(name) LIKE ?', '%' + (params[:id] || params[:tag_list]) + '%').limit(10)
-    render :inline => "<%= auto_complete_result(@tags, 'name') %>"
+    @tags = ActsAsTaggableOn::Tag.find(:all)
+    @tag_names = []
+    for tag in @tags
+      @tag_names << tag.name
+    end
+    respond_to do |format|
+      format.json {render :inline => @tag_names.to_json}
+    end
   end
-  
-  def index  
+
+  def index
     @tags = popular_tags(100).to_a
 
     @user_tags = popular_tags(75, 'User').to_a
-    
+
     @post_tags = popular_tags(75, 'Post').to_a
 
     @photo_tags = popular_tags(75, 'Photo').to_a
 
     @clipping_tags = popular_tags(75, 'Clipping').to_a
   end
-  
-  def manage    
+
+  def manage
     @search = ActsAsTaggableOn::Tag.search(params[:q])
     @tags = @search.result
     @tags = @tags.order('name ASC').distinct.page(params[:page]).per(100)
   end
-  
+
 
   def edit
     @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
@@ -38,7 +44,7 @@ class TagsController < BaseController
 
   def update
     @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
-    
+
     respond_to do |format|
       if @tag.update_attributes(params[:tag])
         flash[:notice] = :tag_was_successfully_updated.l
@@ -46,7 +52,7 @@ class TagsController < BaseController
         format.xml  { render :nothing => true }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @tag.errors.to_xml }        
+        format.xml  { render :xml => @tag.errors.to_xml }
       end
     end
   end
@@ -54,9 +60,9 @@ class TagsController < BaseController
   def destroy
     @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
     @tag.destroy
-    
+
     respond_to do |format|
-      format.html { 
+      format.html {
         flash[:notice] = :tag_was_successfully_deleted.l
         redirect_to admin_tags_url
       }
@@ -66,7 +72,7 @@ class TagsController < BaseController
 
   def show
     tag_array = ActsAsTaggableOn::TagList.from( URI::decode(params[:id]) )
-    
+
     @tags = ActsAsTaggableOn::Tag.where('name IN (?)', tag_array)
     if @tags.nil? || @tags.empty?
       flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_array)

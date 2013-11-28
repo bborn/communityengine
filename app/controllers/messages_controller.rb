@@ -8,12 +8,12 @@ class MessagesController < BaseController
   uses_tiny_mce do
     {:options => configatron.default_mce_options}
   end
-  
+
   def auto_complete_for_username
     @users = User.where('LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%').all
     render :inline => "<%= auto_complete_result(@users, 'login') %>"
   end
-    
+
   def index
     if params[:mailbox] == "sent"
       @messages = @user.sent_messages.page(params[:page]).per(20)
@@ -21,21 +21,21 @@ class MessagesController < BaseController
       @messages = @user.message_threads_as_recipient.order('updated_at DESC').page(params[:page]).per(20)
     end
   end
-  
+
   def show
     @message = Message.read(params[:id], current_user)
     @message_thread = MessageThread.for(@message, (admin? ? @message.recipient : current_user ))
-    @reply = Message.new_reply(@user, @message_thread, params)    
+    @reply = Message.new_reply(@user, @message_thread, params)
   end
-  
+
   def new
     if params[:reply_to]
       in_reply_to = Message.find_by_id(params[:reply_to])
       message_thread = MessageThread.for(in_reply_to, current_user)
     end
-    @message = Message.new_reply(@user, message_thread, params)    
+    @message = Message.new_reply(@user, message_thread, params)
   end
-  
+
   def create
     messages = []
 
@@ -49,7 +49,7 @@ class MessagesController < BaseController
       @message.recipient= User.where('lower(login) = ?', params.require(:message)[:to].strip.downcase).first
       @message.sender = @user
       unless @message.valid?
-        render :action => :new and return        
+        render :action => :new and return
       else
         @message.save!
       end
@@ -70,7 +70,7 @@ class MessagesController < BaseController
       redirect_to user_messages_path(@user)
     end
   end
-  
+
   def delete_message_threads
     if request.post?
       if params[:delete]
@@ -84,10 +84,10 @@ class MessagesController < BaseController
     end
 
   end
-  
+
   private
     def find_user
-      @user = User.friendly.find(params[:user_id])
+      @user = User.find(params[:user_id])
     end
 
     def require_ownership_or_moderator

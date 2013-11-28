@@ -1,38 +1,33 @@
-.yui-b.sidebar= render :partial => 'shared/admin_nav'
-
-#yui-main
-  -box :class => "yui-b main_column" do
-    %h3= :statistics.l
-
-    %h3
-      = :total_users.l+":"
-      = @total_users
-
-    %h3
-      = :unactivated_users.l+":"
-      = @unactivated_users
-    %h3
-      = :new_today.l+":"
-      = @today_new_users.size
+= render :partial => 'shared/admin_nav'
+-@page_title = :statistics.l
+%dl.dl-horizontal
+  %dt= :total_users.l
+  %dd= @total_users
+  %dt= :unactivated_users.l
+  %dd= @unactivated_users
+  %dt= :new_today.l
+  %dd
+    = @today_new_users.size
     %ul
       - @today_new_users.each do |user|
         %li= link_to user.login, user_path(user)
 
-    %h3
-      = :new_yesterday.l+":"
-      = @yesterday_new_users.size
+  %dt= :new_yesterday.l
+  %dd
+    = @yesterday_new_users.size
     %ul
-      - @yesterday_new_users.each do |user|
-        %li= link_to user.login, user_path(user)
+    - @yesterday_new_users.each do |user|
+      %li= link_to user.login, user_path(user)
 
-    %h3
-      = :active.l+":"
-      = pluralize @active_users_count, :user.l
-      (
-      = number_to_percentage((@active_users_count/@total_users.to_f)*100, :precision => 1)
-      =", 1 "+:month.l+")"
-    %h3
-      = :most_active_1_month.l
+  %dt= :active.l
+  %dd
+    = pluralize @active_users_count, :user.l
+    (
+    = number_to_percentage((@active_users_count/@total_users.to_f)*100, :precision => 1)
+    =", 1 "+:month.l+")"
+  %dt= :most_active_1_month.l
+  %dd
+    ='Users'
     %ul
       - @active_users.each do |user|
         %li
@@ -40,17 +35,14 @@
           \(
           = user.activities_count
           \)
-
-    %h3
-      \% Reporting ZIP:
-      = number_to_percentage @percent_reporting_zip, :precision => 1
-    %h3
-      =:male.l+":"
-      = number_to_percentage @percent_male
-      =", "+:female.l+":"
-      = number_to_percentage @percent_female
-    %h3
-      = :featured_writer.l
+  %dt='Reporting ZIP'
+  %dd= number_to_percentage @percent_reporting_zip, :precision => 1
+  %dt=:male.l
+  %dd= number_to_percentage @percent_male
+  %dt=:female.l
+  %dd= number_to_percentage @percent_female
+  %dt= :featured_writer.l
+  %dd
     %ul
       - @featured_writers.each do |w|
         %li= link_to w.login, statistics_user_path(w)

@@ -1,12 +1,11 @@
--box do
-  %h3=:friendship_request_detail.l
-  - if @friendship.initiator? && @friendship.pending?
-    =:waiting_for.l 
-    = @friendship.friend.login
-    =:to_accept.l
-  - elsif @friendship.pending?
-    =:this_friendship_is_pending.l 
-    = link_to :click_to_accept_it.l, accept_user_friendship_path(@user, @friendship), :method => :patch
+-@page_title = :friendship_request_detail.l
 
-  %br
-  = link_to :back.l, accepted_user_friendships_path(@user)
+- if @friendship.initiator? && @friendship.pending?
+  =:waiting_for.l 
+  = @friendship.friend.login
+  =:to_accept.l
+- elsif @friendship.pending?
+  =:this_friendship_is_pending.l 
+  = link_to :click_to_accept_it.l, accept_user_friendship_path(@user, @friendship), :method => :put
+
+= link_to :back.l, accepted_user_friendships_path(@user)

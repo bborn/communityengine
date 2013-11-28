@@ -1,7 +1,7 @@
 require 'pp'
 
 class PhotosController < BaseController
-  include Viewable  
+  include Viewable
   before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :swfupload]
   before_filter :find_user, :only => [:new, :edit, :index, :show]
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
@@ -12,29 +12,29 @@ class PhotosController < BaseController
     {:only => [:show], :options => configatron.simple_mce_options}
   end
 
-  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
+  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
 
   def recent
     @photos = Photo.recent.page(params[:page])
   end
-  
+
   def index
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
 
     @photos = Photo.where(:user_id => @user.id).includes(:tags)
     if params[:tag_name]
       @photos = @photos.where('tags.name = ?', params[:tag_name])
     end
-    
+
     @photos = @photos.recent.page(params[:page]).per(20)
-  
+
     @tags = Photo.includes(:taggings).where(:user_id => @user.id).tag_counts(:limit => 20)
-  
+
     @rss_title = "#{configatron.community_name}: #{@user.login}'s photos"
     @rss_url = user_photos_path(@user,:format => :rss)
 
     respond_to do |format|
-      format.html 
+      format.html
       format.rss {
         render_rss_feed_for(@photos,
            { :feed => {:title => @rss_title, :link => url_for(:controller => 'photos', :action => 'index', :user_id => @user) },
@@ -50,8 +50,8 @@ class PhotosController < BaseController
 
   def manage_photos
     if logged_in?
-      @user = current_user      
-      @photos = current_user.photos.recent.includes(:tags)      
+      @user = current_user
+      @photos = current_user.photos.recent.includes(:tags)
       if params[:tag_name]
         @photos = @photos.where('tags.name = ?', params[:tag_name])
       end
@@ -68,7 +68,7 @@ class PhotosController < BaseController
   def show
     @photo = @user.photos.find(params[:id])
     update_view_count(@photo) if current_user && current_user.id != @photo.user_id
-    
+
     @is_current_user = @user.eql?(current_user)
     @comment = Comment.new
 
@@ -83,7 +83,7 @@ class PhotosController < BaseController
 
   # GET /photos/new
   def new
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @photo = Photo.new
     if params[:inline]
       render :action => 'inline_new', :layout => false
@@ -104,8 +104,8 @@ class PhotosController < BaseController
     @photo = Photo.new(photo_params)
     @photo.user = @user
     @photo.tag_list = params[:tag_list] || ''
-    
-    @photo.album_id = params[:album_id] || ''    
+
+    @photo.album_id = params[:album_id] || ''
     @photo.album_id = params[:album_selected] unless params[:album_selected].blank?
 
 
@@ -113,11 +113,11 @@ class PhotosController < BaseController
       if @photo.save
         flash[:notice] = :photo_was_successfully_created.l
 
-        format.html {      
+        format.html {
           render :action => 'inline_new', :layout => false and return if params[:inline]
           if params[:album_id]
             redirect_to user_album_path(current_user,params[:album_id])
-          else  
+          else
             redirect_to user_photo_url(:id => @photo, :user_id => @photo.user)
           end
         }
@@ -159,7 +159,7 @@ class PhotosController < BaseController
   # DELETE /photos/1
   # DELETE /photos/1.xml
   def destroy
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @photo = Photo.find(params[:id])
     if @user.avatar.eql?(@photo)
       @user.avatar = nil

@@ -4,14 +4,14 @@ class ClippingsController < BaseController
   before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
 
   uses_tiny_mce do
-    {:only => [:show,:new_clipping], :options => configatron.default_mce_options}    
+    {:only => [:show,:new_clipping], :options => configatron.default_mce_options}
   end
 
-  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]    
+  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
 
   def site_index
     @clippings = Clipping.includes(:tags).order(params[:recent] ? "created_at DESC" : "clippings.favorited_count DESC")
-    
+
     @clippings = @clippings.where('tags.name = ?', params[:tag_name]).references(:tags) if params[:tag_name]
     @clippings = @clippings.where('created_at > ?', 4.weeks.ago) unless params[:recent]
 
@@ -37,16 +37,16 @@ class ClippingsController < BaseController
   # GET /clippings
   # GET /clippings.xml
   def index
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
 
     @clippings = Clipping.includes(:tags).where(:user_id => @user.id).order("clippings.created_at DESC")
 
     @clippings = @clippings.where('tags.name = ?', params[:tag_name]) if params[:tag_name]
 
     @clippings = @clippings.page(params[:page])
-    
-    @tags = Clipping.includes(:taggings).where(:user_id => @user.id).tag_counts(:limit => 20)    
-    
+
+    @tags = Clipping.includes(:taggings).where(:user_id => @user.id).tag_counts(:limit => 20)
+
     @clippings_data = @clippings.collect {|c| [c.id, c.image_url, c.description, c.url ]  }
 
     @rss_title = "#{configatron.community_name}: #{@user.login}'s clippings"
@@ -71,7 +71,7 @@ class ClippingsController < BaseController
   # GET /clippings/1
   # GET /clippings/1.xml
   def show
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @clipping = Clipping.find(params[:id])
     @previous = @clipping.previous_clipping
     @next = @clipping.next_clipping
@@ -119,14 +119,14 @@ class ClippingsController < BaseController
 
   # GET /clippings/new
   def new
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @clipping = @user.clippings.new
   end
 
   # GET /clippings/1;edit
   def edit
     @clipping = Clipping.find(params[:id])
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
   end
 
   # POST /clippings
@@ -156,7 +156,7 @@ class ClippingsController < BaseController
   # patch /clippings/1
   # patch /clippings/1.xml
   def update
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @clipping = Clipping.find(params[:id])
     @clipping.tag_list = params[:tag_list] || ''
 
@@ -165,7 +165,7 @@ class ClippingsController < BaseController
         format.html { redirect_to user_clipping_url(@user, @clipping) }
       end
     else
-      respond_to do |format|      
+      respond_to do |format|
         format.html { render :action => "edit" }
       end
     end
@@ -174,7 +174,7 @@ class ClippingsController < BaseController
   # DELETE /clippings/1
   # DELETE /clippings/1.xml
   def destroy
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @clipping = Clipping.find(params[:id])
     @clipping.destroy
 

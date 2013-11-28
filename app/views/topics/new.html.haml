@@ -1,22 +1,7 @@
--box :class => 'alt first_alt' do
-  = link_to :forums.l, forum_home_path
-  %span.arrow &rarr;
-  = link_to h(@forum.name), forum_path(@forum)
-  %span.arrow &rarr;
-  = :new_topic.l
-
--box do 
-  %h3#new_topic= :new_topic.l
-  %p.subtitle
-    = :by.l :login => current_user.display_name
-    
-  = error_messages_for :topic
-  = form_for @topic, :url  => forum_topics_path(@forum), :html => {:class => "MainForm"} do |f|
-    = render :partial => "form", :object => f
-    %p
-      = submit_tag :post_topic.l
-      = :or.l
-      = link_to(:cancel.l, forum_path(@forum))
-
-  -content_for :end_javascript do
-    = javascript_tag "$('topic_title').focus();"
+-@page_title= :new_topic.l
+%h2
+  = :by.l :login => current_user.display_name
+%p
+  =link_to :back.l, @forum, :class => 'btn'
+  
+= render 'form'

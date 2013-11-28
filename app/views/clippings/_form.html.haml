@@ -1,0 +1,14 @@
+-if @clipping.new_record?
+  -url = user_clippings_path(@user)
+  -object =  @clipping
+-else
+  -url = user_clipping_path(@user, @clipping)
+  -object = [@user, @clipping]
+
+= bootstrap_form_for(object, :url => url, :html => {:class => "form form-horizontal" }) do |f|
+  = f.text_field :url
+  -if @clipping.new_record?
+    = f.text_field :image_url
+  = f.text_field :description
+  = f.text_field :tag_list, :help_inline => :optional_keywords_describing_this_clipping_separated_by_commas.l
+  .controls= f.submit :save.l

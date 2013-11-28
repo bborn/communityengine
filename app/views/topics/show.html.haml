@@ -4,115 +4,57 @@
 - @monitoring = logged_in? && current_user.monitoring_topic?(@topic)
 
 -content_for :end_javascript do
-  :javascript
-    function monitor_click(checkbox){
-      if (checkbox.checked) {
-        #{remote_function :url => forum_topic_monitorship_path(@forum, @topic)}
-      } else {
-        #{remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete}
-      }}
+  =javascript_include_tag 'forum'
 
-
--box :class => "alt first_alt" do 
+-widget do
   - if logged_in?
-    = form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do
-      #monitor_topic
-        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring, :onclick=>"monitor_click(this);"}
+    = form_tag forum_topic_monitorship_path(@forum, @topic) do
+      #monitor_topic.form.form-horizontal
+        %input#monitor_checkbox{:type=>"checkbox", :checked=> @monitoring}
         %label#monitor_label{"for"=>"monitor_checkbox"}
           = @monitoring ? :watching_topic.l : :watch_topic.l
-        = hidden_field_tag '_method', 'delete' if @monitoring
-        = submit_tag :Set, :id => 'monitor_submit', :style => "display:none"
-        
-  = link_to :forums.l, forum_home_path
-  %span.arrow &rarr;
-  = link_to h(@topic.forum.name), forum_path(@topic.forum)
-  %span.arrow &rarr;
-  = h @topic.title
-  
-    
-    
--box :class => "forum" do 
-  %h3#topic-title
-    = h @topic.title
-    - if @topic.locked?
-      %span= :locked2.l
-    - if logged_in?
-      %span#topic_mod{"style"=>"display:none;"}
-        - if @topic.editable_by?(current_user)
-          = link_to(:edit.l, edit_forum_topic_path(@forum, @topic), :class => "utility")
-          |
-          = link_to(:delete.l, forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :data => {:confirm => :delete_this_topic_forever.l})
+        = submit_tag :save.l, :id => 'monitor_submit', :style => "display:none"
 
+- if @topic.locked?
+  %h2= :locked2.l
 
-      -content_for :end_javascript do
-        :javascript
-          $('topic-title').observe('mouseover', function(){ $('topic_mod').show()});
-          $('topic-title').observe('mouseout', function(){ $('topic_mod').hide()});        
+- if logged_in? && @topic.editable_by?(current_user)
+  %p
+    = link_to :back.l, @forum, :class => 'btn'
+    = link_to :edit.l, edit_forum_topic_path(@forum, @topic), :class => "btn btn-warning"
+    = link_to :delete.l, forum_topic_path(@forum, @topic), :class => "btn btn-danger", :method => :delete, :confirm => :delete_this_topic_forever.l
 
-  %p.subtitle
-    = feed_icon_tag @topic.title, forum_topic_path(@forum, @topic, :format => :rss)
-    = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
-    -if @topic.tags.any?
-      =:tags.l
-      \:
-      =raw @topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag').html_safe }.join(" ")
+%p
+  %a{:href => forum_topic_path(@forum, @topic, :format => :rss)}
+    %i.icon-rss
+  = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
+  -if @topic.tags.any?
+    %h2=:tags.l
+    %p=raw @topic.tags.collect{|t| link_to( h(t.name), tag_url(t), :class => 'tag').html_safe }.join(" ")
 
+%h2= :voices.l
+%ul.flat.talking
+  - @voices.each do |user|
+    %li= link_to h(user.display_name), user_path(user)
 
-  
-  %ul.flat.talking
-    %li.label= :voices.l + ":"
-    - @voices.each do |user|
-      %li= link_to h(user.display_name), user_path(user)
+%a{"name"=>"#{@posts.to_a.first.dom_id}"}
+%table.table.table-bordered.table-striped#posts
+  - for post in @posts do
+    =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
 
-  - if logged_in? || configatron.allow_anonymous_forum_posting
-    %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
-  -else
-    %h6.all.right= link_to :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"  
-  
-  
-  - if @posts.total_count > 1
-    .pagination.clear= paginating_links @posts
+=paginate @posts, :theme => 'bootstrap'
 
-  %a{"name"=>"#{@posts.to_a.first.dom_id}", "id"=>"#{@posts.to_a.first.dom_id}"} &nbsp;
-  %br.clear
-  %br
-  %table#posts.wide{"cellspacing"=>"0", "border"=>"0", "cellpadding"=>"0"}
-    - for post in @posts do
-      =render :partial => 'sb_posts/sb_post', :locals => {:post => post}
-
-
-  - if @posts.total_count > 1
-    .pagination= paginating_links @posts
-
-  - if logged_in? || configatron.allow_anonymous_forum_posting  
-    #edit
-    - if @topic.locked?
-      %p
-        = image_tag "clearbits/lock.gif", :class => "icon grey", :title => :topic_locked.l
-        %label= :this_topic_is_locked.l
-    - else
-      %h6.all.right= link_to_function :reply_to_topic.l, "ReplyForm.init()", :class => "utility"
-      #reply.editbox
-        .container
-          =render :partial => 'sb_posts/reply_form'
-          
-    -content_for :end_javascript do      
-      = javascript_tag "$('reply').hide();"
-      
+- if logged_in? || configatron.allow_anonymous_forum_posting
+  #edit
+  - if @topic.locked?
+    %p
+      %i.icon-lock
+      %label= :this_topic_is_locked.l
   - else
-    %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => "utility"
+    = link_to '<i class="icon-plus"></i> '.html_safe + :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => 'reply-toggle'
+    .reply
+      =render :partial => 'sb_posts/reply_form'
 
--box :class => "alt" do 
-  = link_to :forums.l, forum_home_path
-  %span.arrow &rarr;
-  = link_to h(@topic.forum.name), forum_path(@topic.forum)
-  %span.arrow &rarr;
-  = h @topic.title
-  
--content_for :end_javascript do
-  :javascript
-    Event.observe(window, 'load', function(){
-      if(document.location.href.include('#reply-form')){
-      ReplyForm.init();
-      }
-    })
+- else
+  %p= link_to :log_in_to_reply_to_this_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic)
+
