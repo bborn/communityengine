@@ -1,7 +1,7 @@
 bundler_args: --binstubs
 
 rvm:
-  - 2.0.0-p353
+  - 2.0.0
 env: "RAILS_ENV='test' "
 
 script: "bundle exec rake db:drop db:create db:migrate test"
