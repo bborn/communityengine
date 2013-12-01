@@ -235,7 +235,7 @@ class UserTest < ActiveSupport::TestCase
     scope = User.build_conditions_for_search(params)
 
     #This sucks; I want to make sure that the correct scopes are set up on the relation, but I don't know a better way.
-    assert_equal("SELECT \"users\".* FROM \"users\"  WHERE \"users\".\"metro_area_id\" = 1 AND (users.activated_at IS NOT NULL) AND (`users`.login LIKE '%foo%') AND (`users`.description LIKE '%baz%')", scope.to_sql)
+    assert_equal("SELECT \"users\".* FROM \"users\"  WHERE (users.activated_at IS NOT NULL) AND \"users\".\"metro_area_id\" = 1 AND (`users`.login LIKE '%foo%') AND (`users`.description LIKE '%baz%')", scope.to_sql)
   end
 
   test "should create user from authorization" do
