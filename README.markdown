@@ -2,20 +2,15 @@
 
 CommunityEngine [![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
 
-** Using Rails 3.x? You want the [rails2.x branch](https://github.com/bborn/communityengine/tree/master.x)
+** Using Rails 3.x? You want the [master branch](https://github.com/bborn/communityengine/tree/master)
 
 CommunityEngine [![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
-** Using Rails 4.x? You are here.  Current Version 3.0.0.pre1  15 Aug, 2013
+** Using Rails 4.x? You are here.  Current Version 3.0.2.pre3
 
-This repository/branch is a thorough port of CommunityEngine to Rails 4, along with a few bug and aesthetic fixes. I
-did a fair bit of work getting rid of most of the Rails 4.1 deprecation messages, except those that came from other
-modules. Most of the gems have been locked at higher numbers. Authlogic is working,
-but people say its tenuous as of this writing.
-
-   gem  "https://github.com/polar/communityengine.git", :branch => "rails4", :tag => "3_0_0_pre1"
+   gem  "https://github.com/bborn/communityengine.git", :branch => "rails4"
 
 Requirements:
 
