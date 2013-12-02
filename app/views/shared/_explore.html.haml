@@ -1,7 +1,7 @@
 -widget do
   %ul.nav.nav-list
     %li.nav-header Explore
-    - Category.find(:all).each do |c|
+    - Category.all.each do |c|
       %li= link_to c.name, category_path(c)
     %li= link_to :whats_popular.l, popular_url, {:class => 'popular'}
     - Page.all.each do |page|

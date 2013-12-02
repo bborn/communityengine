@@ -26,7 +26,6 @@ class SbPostsController < BaseController
 
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
 
-    #@users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
     @users = User.distinct.where(:id => @posts.collect(&:user_id).uniq).to_a.index_by(&:id)
   end
 
@@ -35,7 +34,6 @@ class SbPostsController < BaseController
 
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
 
-    #@users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
     @users = User.distinct.where(:id => @posts.collect(&:user_id).uniq).to_a.index_by(&:id)
     render :action => :index
   end

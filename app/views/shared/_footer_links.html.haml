@@ -3,16 +3,16 @@
     %a{:href=>home_url, :title=>"#{configatron.community_name} " + :home.l}= :home.l
   - if !logged_in?
     %li{:class => current_page?(login_path) ? 'active' : 'inactive'}
-      = link_to :log_in.l, login_path 
+      = link_to :log_in.l, login_path
   - else
     %li{:class => current_page?(logout_path) ? 'active' : 'inactive'}
       %a{:href=>logout_path, :title=>:log_out_of_your.l + " #{configatron.community_name} " + :account.l}
         =:log_out.l
 
-  - Page.find(:all).each do |page|
+  - Page.all.each do |page|
     - if (logged_in? || page.page_public)
       %li{:class => current_page?(pages_path(page)) ? 'active' : 'inactive'}
         = link_to page.title, pages_path(page)
-      
+
   - if @rss_title && @rss_url
     %li#rss= link_to :rss.l, @rss_url, {:title => @rss_title}

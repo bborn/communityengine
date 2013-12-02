@@ -9,7 +9,7 @@ class TagsController < BaseController
   end
 
   def auto_complete_for_tag_name
-    @tags = ActsAsTaggableOn::Tag.find(:all)
+    @tags = ActsAsTaggableOn::Tag.all
     @tag_names = []
     for tag in @tags
       @tag_names << tag.name
