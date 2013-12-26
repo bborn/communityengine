@@ -244,7 +244,7 @@ class User < ActiveRecord::Base
 
   def avatar_photo_url(size = :original)
     if avatar_id
-      avatar.photo.url(size)
+      avatar.ainaain.url(size)
     elsif facebook?
       facebook_authorization.picture_url
     elsif twitter?
