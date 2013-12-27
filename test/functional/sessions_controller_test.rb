@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SessionsControllerTest < ActionController::TestCase  
+class SessionsControllerTest < ActionController::TestCase
   fixtures :all
 
   def test_should_login_and_redirect
@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_nil UserSession.find
     assert_response :redirect
   end
-  
+
   def test_should_delete_token_on_logout
     login_as :quentin
     get :destroy
@@ -42,7 +42,7 @@ class SessionsControllerTest < ActionController::TestCase
     @request.cookies["user_credentials"] = {:value => {:value => 'invalid_token'}, :expires => nil}
     assert !@controller.send(:logged_in?)
   end
-  
+
   def test_should_login_with_reset_password
     quentin = users(:quentin)
     quentin.reset_password
