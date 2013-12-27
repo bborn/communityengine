@@ -17,13 +17,6 @@ require "mocha/setup"
 ActiveSupport::TestCase.fixture_path = (Rails.root + "../fixtures").to_s #we want a string here, not a Pathname
 ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
 
-# OmniAuth.config.test_mode = true
-# OmniAuth.config.mock_auth[:default] = {
-#   'uid' => '123545'
-#   'nickname' => 'Omniauth-user'
-#   'email' => 'email@example.com'
-# }
-
 class ActionController::TestCase
   include Authlogic::TestCase
   setup :activate_authlogic

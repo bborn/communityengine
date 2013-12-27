@@ -11,7 +11,8 @@ class AuthorizationsController < BaseController
       flash[:notice] = t('authorizations.create.success_existing_user', :provider => provider_name)
     elsif @auth.valid?
       flash[:notice] = t('authorizations.create.success_message', :provider => provider_name)
-      UserSession.create(@auth.user, true)
+      user_session = UserSession.create(@auth.user, true)
+      self.current_user = user_session.user
     end
 
     if logged_in?

@@ -23,7 +23,7 @@ module AuthenticatedSystem
     # Create a user session without credentials.
     def current_user=(user)
       return if current_user # Use act_as_user= to switch to another user account
-      @current_user_session = UserSession.create(user, true)
+      @current_user_session = UserSession.create(user)
       @current_user = @current_user_session.record
     end
 
@@ -111,7 +111,7 @@ module AuthenticatedSystem
     # Inclusion hook to make #current_user and #logged_in?
     # available as ActionView helper methods.
     def self.included(base)
-      base.send :helper_method, :current_user, :current_user_session, :logged_in?, :admin?, :moderator?
+      base.send :helper_method, :current_user=, :current_user, :current_user_session, :logged_in?, :admin?, :moderator?
     end
 
     private
