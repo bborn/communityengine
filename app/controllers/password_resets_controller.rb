@@ -6,15 +6,15 @@ class PasswordResetsController < BaseController
   end
 
   def create
-    @user = User.find_by_email(params[:email])
+    @user = User.where("lower(email) = ?", params[:email].downcase).first
     if @user
       @user.deliver_password_reset_instructions!
 
-      flash[:notice] = :your_password_reset_instructions_have_been_emailed_to_you.l      
+      flash[:notice] = :your_password_reset_instructions_have_been_emailed_to_you.l
 
       redirect_to login_path
     else
-      flash[:error] = :sorry_we_dont_recognize_that_email_address.l      
+      flash[:error] = :sorry_we_dont_recognize_that_email_address.l
 
       render :action => :new
     end
