@@ -14,36 +14,36 @@ class Authorization < ActiveRecord::Base
       create_from_hash(hash, existing_user)
     end
   end
-  
+
   def self.create_from_hash(hash, existing_user = nil)
     create do |authorization|
       authorization.assign_account_info(hash)
       authorization.find_or_create_or_associate_user(existing_user)
-    end    
+    end
   end
-  
-  def self.find_from_hash(hash)    
+
+  def self.find_from_hash(hash)
     find_by_provider_and_uid(hash['provider'], hash['uid'])
   end
 
   def find_or_create_or_associate_user(existing_user = nil)
     if existing_user
       self.user = existing_user
-    elsif self.user 
+    elsif self.user
       self.user
     else
-      self.user = User.find_or_create_from_authorization(self)      
+      self.user = User.find_or_create_from_authorization(self)
     end
   end
-  
-  
+
+
   def allow_destroy?
-    if user.authorizations.count.eql?(1)    
-      errors.add(:base, "You must have at least one authorization provider.") 
-      raise ActiveRecord::Rollback    
+    if user.authorizations.count.eql?(1)
+      errors.add(:base, "You must have at least one authorization provider.")
+      raise ActiveRecord::Rollback
     end
   end
-  
+
   def assign_account_info(auth_hash)
     self.uid                 = auth_hash['uid']
     self.provider            = auth_hash['provider']
@@ -55,6 +55,6 @@ class Authorization < ActiveRecord::Base
       self.access_token        = auth_hash['credentials']['token']
       self.access_token_secret = auth_hash['credentials']['secret']
     end
-  end  
+  end
 
 end

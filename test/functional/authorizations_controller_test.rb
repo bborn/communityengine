@@ -41,12 +41,12 @@ class AuthorizationsControllerTest < ActionController::TestCase
   end
 
 
-  def set_ommniauth(email=nil)
+  def set_ommniauth(email='email@example.com')
     OmniAuth.config.mock_auth[:facebook] = auth_hash(email)
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
   end
 
-  def auth_hash(email='email@example.com')
+  def auth_hash(email)
     {
       'provider' => 'facebook',
       "info" => {
