@@ -1,5 +1,5 @@
-  
--box :class => 'alt' do
+
+-box :class => 'alt first_alt' do
   %h3= :metro_areas.l
   - city_cloud @metro_areas_for_cloud, %w(nube1 nube2 nube3 nube4 nube5) do |city, css_class|
     = link_to city.name, users_path(:metro_area_id => city.id), :class => css_class
