@@ -41,14 +41,16 @@
                 %td
                   -if user.avatar
                     = image_tag user.avatar.photo.url(:thumb), :width => 25, :height => 25
-                  = link_to h(user.login), user_path(user)
+                  = link_to_if user.active?, h(user.login), user_path(user)
                 %td
                   = h user.email
                 %td
                   = user.active? ? :active.l : :inactive.l
                 %td
-                  = link_to( :assume_id.l , assume_user_path(user), :method => :post )
-                  = " | #{link_to(:activate.l, :controller => "/admin", :action => "activate_user", :id => user.id)}".html_safe unless user.active?
+                  -if user.active?
+                    = link_to(:assume_id.l , assume_user_path(user), :method => :post)
+                  -else
+                    = link_to(:activate.l, :controller => "/admin", :action => "activate_user", :id => user.id)
 
           %tfoot
             %tr
