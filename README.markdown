@@ -43,7 +43,7 @@ Optional Configuration
 
 To override the default configuration, create an `application_config.rb` file in `Rails.root/config`
 
-The application configuration defined in this file overrides the one defined in the [CommunityEngine gem](https://github.com/bborn/communityengine/blob/rails3/config/application_config.rb)
+The application configuration defined in this file overrides the one defined in the [CommunityEngine gem](https://github.com/bborn/communityengine/blob/master/config/application_config.rb)
 
 This is where you can change commonly used configuration variables, like `configatron.community_name`, etc.
 
