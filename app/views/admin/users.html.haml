@@ -41,7 +41,7 @@
                 %td
                   -if user.avatar
                     = image_tag user.avatar.photo.url(:thumb), :width => 25, :height => 25
-                  = link_to_if user.active? h(user.login), user_path(user)
+                  = link_to_if user.active?, h(user.login), user_path(user)
                 %td
                   = h user.email
                 %td
