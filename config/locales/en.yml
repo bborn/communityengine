@@ -1117,8 +1117,8 @@ en:
   required: required
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
-  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least %{min_age} years old to sign up.)"
-  required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least %{min_age} years old to sign up.)"
+  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: You must be at least %{min_age} years old to sign up.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Required: You must be at least %{min_age} years old to sign up.)"
   #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain spaces or special characters.)"
   required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain spaces or special characters.)"
   #en: resend_my_activation_e_mail: Resend my activation e-mail
