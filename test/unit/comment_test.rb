@@ -127,6 +127,7 @@ class CommentTest < ActiveSupport::TestCase
     configatron.stubs(:akismet_key).returns('1234')
 
     comment = post.comments.new(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
+
     #no notifications for pending comments
     assert_no_difference ActionMailer::Base.deliveries, :length do
       comment.save!
@@ -137,11 +138,10 @@ class CommentTest < ActiveSupport::TestCase
     assert_difference ActionMailer::Base.deliveries, :length, 1 do
       comment.save!
     end
-
-
   end
 
   def test_should_create_user_comment_with_notification
+    Comment.any_instance.stubs(:spam?).returns(false)
     user = users(:aaron)
     assert_difference ActionMailer::Base.deliveries, :length, 2 do
       user.comments.create!(:comment => 'foo', :user => users(:dwr), :recipient => users(:aaron))

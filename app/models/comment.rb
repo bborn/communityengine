@@ -13,7 +13,8 @@ class Comment < ActiveRecord::Base
   validates_length_of :comment, :maximum => 2000
 
   before_save :whitelist_attributes
-  after_save :send_notifications
+  after_create :send_notifications
+  after_save :send_notifications, :if => Proc.new{|record| record.role_change.eql?(['pending', 'published']) }
 
   validates_presence_of :user, :unless => Proc.new{|record| configatron.allow_anonymous_commenting }
   validates_presence_of :author_email, :unless => Proc.new{|record| record.user }  #require email unless logged in
@@ -94,7 +95,7 @@ class Comment < ActiveRecord::Base
 
   def send_notifications
     return if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
-    return unless self.role_changed? && !self.role.eql?('pending')
+    return if pending?
     UserNotifier.comment_notice(self).deliver if should_notify_recipient?
     self.notify_previous_commenters
     self.notify_previous_anonymous_commenters if configatron.allow_anonymous_commenting
