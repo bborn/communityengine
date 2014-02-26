@@ -103,9 +103,8 @@ class CommentsController < BaseController
     commentable_type = get_commentable_type(params[:commentable_type])
     @commentable = commentable_type.singularize.constantize.find(params[:commentable_id])
 
-    @comment = Comment.new(comment_params)
+    @comment = @commentable.comments.new(params[:comment])
 
-    @comment.commentable = @commentable
     @comment.recipient = @commentable.owner
     @comment.user_id = current_user.id if current_user
     @comment.author_ip = request.remote_ip #save the ip address for everyone, just because
