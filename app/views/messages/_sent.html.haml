@@ -18,11 +18,11 @@
                   .photo= link_to image_tag( message.recipient.avatar_photo_url(:thumb), "height"=>"50px", "alt"=>"#{message.recipient.login}", "width"=>"50px" ), user_path(message.recipient), :title => :users_profile.l(:user => message.recipient.login)
 
                 %td
-                  = link_to h(message.subject), user_message_path(@user, message)                  
+                  = link_to h(message.subject), user_message_path(message.sender, message)
                   %br
                   = :to.l 
                   \:
-                  = link_to h(message.recipient.login), user_path(@user)                  
+                  = link_to h(message.recipient.login), user_path(message.recipient)
                 %td.meta{:width => '150px'}
                   = time_ago_in_words_or_date(message.created_at)                                  
             
