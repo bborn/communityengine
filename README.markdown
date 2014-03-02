@@ -150,7 +150,7 @@ To make a controller from your application use CE's layout and inherit CE's help
 
 To override or modify a controller, helper, or model from CE, you can use the `require_from_ce` helper method. For example, to override a method in CE's `User` model, create `app/models/user.rb`:
 
-		class User < ActiveRecordBase
+		class User < ActiveRecord::Base
 			require_from_ce('models/user')
 
 			#add a new association
