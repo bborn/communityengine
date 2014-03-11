@@ -24,7 +24,7 @@ class SbPost < ActiveRecord::Base
 
   validates_presence_of :body, :topic
   
-  attr_accessible :body, :author_email, :author_ip, :author_name, :author_url
+  attr_accessible :body, :author_email, :author_ip, :author_name, :author_url, :topic, :body, :user_id
   after_create :monitor_topic
   after_create :notify_monitoring_users  
   
