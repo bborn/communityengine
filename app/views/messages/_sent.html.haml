@@ -9,15 +9,15 @@
         %td.span1
           %fieldset.inline= check_box_tag "delete[]", message.id
         %td.span2
-          = :to.l 
+          = :to.l
           \:
-          = link_to h(message.recipient.login), user_path(@user)                  
-          %br        
+          = link_to h(message.recipient.login), user_path(message.recipient)
+          %br
           = link_to image_tag( message.recipient.avatar_photo_url(:thumb), :alt => message.recipient.login , :class => 'thumbnail'), user_path(message.recipient), :title => :users_profile.l(:user => message.recipient.login)
         %td
-          = link_to h(message.subject), user_message_path(@user, message)                  
+          = link_to h(message.subject), user_message_path(message.sender, message)
           %br
         %td.span2
-          = time_ago_in_words_or_date(message.created_at)                                  
-  = submit_tag :delete_selected.l, :class => 'btn btn-danger'  
+          = time_ago_in_words_or_date(message.created_at)
+  = submit_tag :delete_selected.l, :class => 'btn btn-danger'
   =paginate @messages, :theme => 'bootstrap'
