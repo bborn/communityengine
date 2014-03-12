@@ -13,21 +13,21 @@ class Event < ActiveRecord::Base
 
   
   #Procs used to make sure time is calculated at runtime
-  scope :upcoming, lambda { 
+  scope :upcoming, lambda {
     where('end_time > ?' , Time.now).order('start_time ASC')
   }
-  scope :past, lambda { 
+  scope :past, lambda {
     where('end_time <= ?' , Time.now).order('start_time DESC')
-  }  
-  
-  
-  acts_as_commentable
+  }
+
+
+  acts_as_moderated_commentable
 
   # Used by acts_as_commentable
   def owner
     self.user
-  end    
-  
+  end
+
   def rsvped?(user)
     self.rsvps.find_by_user_id(user)
   end
@@ -51,10 +51,10 @@ class Event < ActiveRecord::Base
   def spans_days?
     (end_time - start_time) >= 86400
   end
-  
+
   protected
     def start_time_cannot_be_before_end_time
       errors.add("start_time", " must be before end time") unless start_time && end_time && (start_time < end_time)
-    end  
-  
+    end
+
 end

@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   include UrlUpload
 
-  acts_as_commentable
+  acts_as_moderated_commentable
   belongs_to :album
 
   has_attached_file :photo, configatron.photo.paperclip_options.to_hash
