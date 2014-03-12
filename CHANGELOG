@@ -5,7 +5,6 @@
 * Merged in the jquery-bootstrap branch
 * Removed old prototype.js code
 
-
 =3.0.0.pre2       -- Polar Humenn   20 Sep 2013
 * Upgraded to tinyMCE 4.0.2 ; made fix to mce_options to make it work.
 * Removed curblyadvimage from tinymce plugins (not working)
@@ -36,6 +35,10 @@
     gem actionpack-action_caching
     gem actionpack-page_caching
     gem rails-observers
+
+=2.3.1
+* Remove automatic loading of omniauth middleware, in favor of letting users load it themselves as specified in the README (this was causing bugs with duplicate inits of omniauth-facebook middleware)
+
 
 =2.3.0
 * Upgrade omniauth to 1.1
