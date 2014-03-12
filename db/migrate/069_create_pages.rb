@@ -4,7 +4,7 @@ end
 
 
 class CreatePages < ActiveRecord::Migration
-  def self.up    
+  def self.up
     create_table :pages do |t|
       t.string :title
       t.text :body
@@ -12,14 +12,14 @@ class CreatePages < ActiveRecord::Migration
       t.boolean :page_public, :default => true
       t.timestamps
     end
-    
+
     #remove static pages table id needed and migrate StaticPages to Pages
     if ActiveRecord::Base.connection.tables.include?('static_pages')
       StaticPage.all.each do |page|
         Page.create(:title => page.title, :body => page.content, :published_as=>"live", :page_public => true)
       end
 
-      drop_table :static_pages          
+      drop_table :static_pages
     end
   end
 

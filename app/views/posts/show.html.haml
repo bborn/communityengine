@@ -12,14 +12,14 @@
     %ul.nav.nav-list
       %li.nav-header=:related_posts.l
       - @related.each do |post|
-        %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)      
+        %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)
 
 - unless @popular_posts.empty?
   -widget do
     %ul.nav.nav-list
       %li.nav-header=:popular_posts.l
       - @popular_posts.each do |post|
-        %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post) 
+        %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)
 
 %h2=:users_blog.l :user=>  @user.login
 .clearfix
@@ -37,7 +37,7 @@
         %a{:href=>user_post_path(@user, @post),:name=>'comments'}
           %i.icon-comment
           = :comments.l
-          %span.badge.badge-info=@post.comments.count             
+          %span.badge.badge-info=@post.comments.count
       - if current_user and current_user.can_request_friendship_with(@post.user)
         %li
           = add_friend_link(@post.user)
@@ -57,7 +57,7 @@
         %li
           = icon_link_to 'icon-edit', :edit.l, edit_user_post_path(@post.user, @post)
         %li
-          = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
+          = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }}
   = @post.post.html_safe
 / clearfix
 
@@ -71,7 +71,7 @@
             %i.icon-tag.icon-white
             =t.name
 
-%h2= :post_comments.l 
+%h2= :post_comments.l
 %h3= :add_your_comment.l
 = render :partial => 'comments/comment_form', :locals => {:commentable => @post}
 %a#newest_comment
@@ -79,7 +79,7 @@
 %span#more_comments_links= more_comments_links(@post)
 
 -content_for :end_javascript do
-  :javascript   
+  :javascript
     $('.email').live('click', function(e){
       e.preventDefault();
       $.post("#{send_to_friend_user_post_path(:user_id => @user.id, :id => @post.id)}", function(response){

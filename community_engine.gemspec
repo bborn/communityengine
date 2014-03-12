@@ -63,6 +63,5 @@ Gem::Specification.new do |s|
   s.add_dependency "sass-rails",                "~> 4.0.0"
   s.add_dependency "sprockets",                 "~> 2.10.0"
   s.add_dependency "tinymce-rails",             "~> 4.0.2"
-
 end
 

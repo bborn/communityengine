@@ -2,19 +2,19 @@
 = render :partial => 'shared/admin_nav'
 
 %table.table.table-bordered.table-striped
-  %tr 
+  %tr
     %th=:name.l
-    %th 
-      \# 
+    %th
+      \#
       =:posts.l
     %th=:actions.l
 
   - for category in @categories
     %tr
       %td= category.name
-      %td= category.posts.size	
+      %td= category.posts.size
       %td
         = link_to :show.l, category_path(category), :class => 'btn'
         = link_to :edit.l, edit_category_path(category), :class => 'btn btn-warning'
-        = link_to :delete.l, category_path(category), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+        = link_to :delete.l, category_path(category), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 = link_to :new_category.l, new_category_path, :class => 'btn btn-success'

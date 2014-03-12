@@ -1,8 +1,8 @@
 - @page_title = @post.title
 
 =render :partial => 'author_profile', :locals => {:user => @user}
-      
-      
+
+
 %h2= :users_blog.l :user=>  @user.login
 .clearfix
   .span3.pull-right
@@ -15,8 +15,8 @@
         %li
           = icon_link_to 'icon-edit', :edit.l, edit_user_post_path(@post.user, @post)
         %li
-          = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, :confirm => :permanently_delete_this_post.l}
-        
+          = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }}
+
   = @post.post
 = render :partial => 'polls/poll_ui', :locals => {:poll => @post.polls.first} unless @post.polls.empty?
 - unless @post.tags.empty?

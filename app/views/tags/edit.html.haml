@@ -4,7 +4,7 @@
 %p
   =link_to :back.l, admin_tags_path, :class => 'btn'
   =link_to :show.l, tag_path(@tag), :class => 'btn'
-  =link_to :delete.l, tag_path(@tag), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
+  =link_to :delete.l, tag_path(@tag), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 
 = bootstrap_form_for :tag, :url => tag_path(@tag), :html => {:method => 'put', :class => "form form-horizontal"} do |f|
   = f.text_field :name

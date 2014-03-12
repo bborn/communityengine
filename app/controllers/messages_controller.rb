@@ -10,7 +10,7 @@ class MessagesController < BaseController
   end
 
   def auto_complete_for_username
-    @users = User.where('LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%').all
+    @users = User.where('LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%')
     render :inline => "<%= auto_complete_result(@users, 'login') %>"
   end
 
@@ -98,6 +98,6 @@ class MessagesController < BaseController
     end
 
   def message_params
-    params.require(:message).permit(:to, :subject, :body, :parent_id)
+    params.require(:message).permit(:to, :subject, :body,  :recipient_id, :sender_id, :parent_id)
   end
 end

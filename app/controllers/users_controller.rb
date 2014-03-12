@@ -337,9 +337,9 @@ class UsersController < BaseController
     states  = country ? country.states : []
 
     if states.any?
-      metro_areas = state ? state.metro_areas.order("name ASC").all : []
+      metro_areas = state ? state.metro_areas.order("name ASC") : []
     else
-      metro_areas = country ? country.metro_areas.order("name ASC").all : []
+      metro_areas = country ? country.metro_areas.order("name ASC") : []
     end
 
     respond_to do |format|

@@ -4,13 +4,13 @@
 =render :partial => 'posts/author_profile', :locals => {:user => @user}
 
 - if @previous || @next
-  -widget do 
+  -widget do
     .clearfix
       = link_to "<img src='#{@previous.image_uri(:thumb)}' /><br />&laquo; #{:previous.l} ".html_safe, user_clipping_path(@user, @previous), :class => 'pull-left' if @previous
       = link_to "<img src='#{@next.image_uri(:thumb)}' /><br />#{:next.l} &raquo;".html_safe, user_clipping_path(@user, @next), :class => 'pull-right' if @next
 
 - if @related.any?
-  -widget do 
+  -widget do
     %h3=:related_clippings_all_members.l
     - @related.each do |clipping|
       = link_to image_tag(clipping.image_uri(:thumb), :class => "related_clipping polaroid", :alt => clipping.description), user_clipping_url(clipping.user, clipping)
@@ -19,7 +19,7 @@
   - if @is_current_user
     = link_to :back.l, user_clippings_path(@user), :class => 'btn'
     = link_to :edit.l, edit_user_clipping_path(@user, @clipping), :class => 'btn btn-warning'
-    = link_to :delete.l, user_clipping_path(@user, @clipping), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+    = link_to :delete.l, user_clipping_path(@user, @clipping), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 
 = link_to image_tag(@clipping.image_uri(:large), :alt=> @clipping.description, :class => 'thumbnail'), @clipping.url
 
@@ -29,12 +29,12 @@
     %dd
       %a{"href"=>"#{h @clipping.url }", "title"=>"#{h @clipping.description }"}
         = h truncate(@clipping.url, :length => 95)
-        
+
   -unless @clipping.description.blank?
     %dt=:description.l
     %dd=h @clipping.description
-  
-  -if @clipping.tags.any?  
+
+  -if @clipping.tags.any?
     %dt=:tags.l
     %dd
       %ul.unstyled

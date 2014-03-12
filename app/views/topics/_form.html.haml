@@ -23,7 +23,7 @@
       = x.text_area :body, :rows => 12, :class => 'rich_text_editor', :label => :body_text.l, :required => false
 
   - if admin? and not @topic.new_record?
-    = f.select :forum_id, Forum.order("position ASC").all.map {|x| [x.name, x.id] }, :label => :forum.l
+    = f.select :forum_id, Forum.order("position ASC").map {|x| [x.name, x.id] }, :label => :forum.l
 
   .controls
     = f.submit :save.l, :class => 'btn btn-primary'

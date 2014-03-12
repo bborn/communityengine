@@ -18,17 +18,17 @@
       %td
         = link_to page.title, edit_admin_page_path(page)
       %td
-        -if page.is_public? 
+        -if page.is_public?
           = t(:yes)
         -else
           = t(:no)
       %td= page.is_live? ? link_to(:published.l, pages_path(page)) : :draft.l
       %td
         =link_to :show.l, pages_path(page), :class => 'btn'
-        - unless page.is_live?   
+        - unless page.is_live?
           = link_to :preview.l, preview_admin_page_path(page), :class => 'btn'
         =link_to :edit.l, edit_admin_page_path(page), :class => 'btn btn-warning'
-        =link_to :delete.l, pages_path(page), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
-        
+        =link_to :delete.l, pages_path(page), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
+
 =paginate @pages, :theme => 'bootstrap'
 =link_to :new_page.l, new_admin_page_path, :class => 'btn btn-success'

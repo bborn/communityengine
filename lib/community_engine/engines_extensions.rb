@@ -6,10 +6,9 @@ module EnginesExtensions
 
   def acts_as_moderated_commentable
     acts_as_commentable :published, :pending
-    has_many :comments, {
+    has_many :comments, -> { where "role != 'pending'"}, {
       :as => :commentable,
       :dependent => :destroy,
-      :conditions => "role != 'pending'",
       :before_add => Proc.new { |x, c| c.role = 'published' }
     }
   end

@@ -4,7 +4,7 @@
 -if @tags.any?
   -widget do
     %h3=:tags.l
-    %ul.unstyled      
+    %ul.unstyled
       - @tags.each do |tag|
         %li
           - if (tag.name.eql?(params[:tag_name]) )
@@ -23,8 +23,8 @@
       -if @is_current_user
         =link_to :show.l, user_photo_path(@user, photo), :class => 'btn btn-mini'
         =link_to :edit.l, edit_user_photo_path(@user, photo), :class => 'btn btn-mini btn-warning'
-        =link_to :delete.l, user_photo_path(@user, photo), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-mini btn-danger'    
-  
+        =link_to :delete.l, user_photo_path(@user, photo), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-mini btn-danger'
+
 =paginate @photos, :theme => 'bootstrap'
 -if @is_current_user
-  = link_to :new_photo.l, new_user_photo_path(@user), :class => 'btn btn-success'  
+  = link_to :new_photo.l, new_user_photo_path(@user), :class => 'btn btn-success'

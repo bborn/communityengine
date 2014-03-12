@@ -1,8 +1,8 @@
 -@page_title=:showing_metro_area_details.l
 %p
-  = link_to :back.l, metro_areas_path, :class => 'btn' 
-  = link_to :edit.l, edit_metro_area_path(@metro_area), :class => 'btn btn-warning' 
-  = link_to :delete.l, metro_area_path(@metro_area), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+  = link_to :back.l, metro_areas_path, :class => 'btn'
+  = link_to :edit.l, edit_metro_area_path(@metro_area), :class => 'btn btn-warning'
+  = link_to :delete.l, metro_area_path(@metro_area), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 
 %dl.dl-horizontal
   %dt=:country.l

@@ -3,7 +3,7 @@
 <h2><%= link_to h(@post.topic.title), forum_topic_path(@post.forum_id, @post.topic) %></h2>
 
 <%= link_to(:delete_this_post.l, sb_post_path(@post, :forum_id => @post.forum_id, :topic_id => @post.topic, :page => params[:page]),
-      :class => "utility", :method => :delete, :data => {:confirm => :are_you_sure_you_want_to_delete_this_post.l}) %>
+      :class => "utility", :method => :delete, data: { confirm: :are_you_sure_you_want_to_delete_this_post.l } ) %>
 
 <%= error_messages_for :topic %>
 <% form_for :post, :html => { :method => :patch },

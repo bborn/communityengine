@@ -22,7 +22,7 @@
   %p
     = link_to :back.l, @forum, :class => 'btn'
     = link_to :edit.l, edit_forum_topic_path(@forum, @topic), :class => "btn btn-warning"
-    = link_to :delete.l, forum_topic_path(@forum, @topic), :class => "btn btn-danger", :method => :delete, :confirm => :delete_this_topic_forever.l
+    = link_to :delete.l, forum_topic_path(@forum, @topic), :class => "btn btn-danger", :method => :delete, data: { confirm: :delete_this_topic_forever.l }
 
 %p
   %a{:href => forum_topic_path(@forum, @topic, :format => :rss)}

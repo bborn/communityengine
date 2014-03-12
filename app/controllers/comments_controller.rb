@@ -103,7 +103,7 @@ class CommentsController < BaseController
     commentable_type = get_commentable_type(params[:commentable_type])
     @commentable = commentable_type.singularize.constantize.find(params[:commentable_id])
 
-    @comment = @commentable.comments.new(params[:comment])
+    @comment = @commentable.comments.new(comment_params)
 
     @comment.recipient = @commentable.owner
     @comment.user_id = current_user.id if current_user

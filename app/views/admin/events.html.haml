@@ -3,7 +3,7 @@
 -@page_title = :events.l
 
 %table.table.table-bordered.table-striped
-  %tr 
+  %tr
     %th=:name.l
     %th=:metro_area.l
     %th=:when.l
@@ -18,7 +18,7 @@
         = link_to :show.l, event_path(event), :class => 'btn'
         = link_to :clone.l, clone_event_path(event), :class => 'btn btn-success'
         = link_to :edit.l, edit_event_path(event), :class => 'btn btn-warning'
-        = link_to :delete.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+        = link_to :delete.l, event_path(event), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 
 =paginate @events, :theme => 'bootstrap'
 

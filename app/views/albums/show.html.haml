@@ -6,7 +6,7 @@
     = link_to :back.l, user_photo_manager_index_path(@album.user), :class => 'btn'
     = link_to :edit.l, edit_user_album_path(@album.user,@album), :class => 'btn btn-warning'
     = link_to :add_photos.l, new_user_album_photo_path(@album.user,@album), :class => 'btn btn-primary'
-    = link_to :delete.l, user_album_path(@album.user,@album), :confirm => :delete_album_and_photos.l, :method => :delete, :class => 'btn btn-danger'
+    = link_to :delete.l, user_album_path(@album.user,@album), data: { confirm: :delete_album_and_photos.l }, :method => :delete, :class => 'btn btn-danger'
 
 %p= h @album.description
 %h2= :photos_of_this_album.l

@@ -5,11 +5,13 @@ class CreateRoles < ActiveRecord::Migration
     end
 
     Role.enumeration_model_updates_permitted = true
-    Role.create(:name => 'admin')    
-    Role.create(:name => 'moderator')
-    Role.create(:name => 'member')            
+    ['admin', 'moderator', 'member'].each do | role_name |
+      r = Role.new
+      r.name = role_name
+      r.save!
+    end
     Role.enumeration_model_updates_permitted = false
-    
+
     add_column :users, :role_id, :integer
 
     #set all existing users to 'member'

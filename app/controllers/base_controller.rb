@@ -131,7 +131,6 @@ class BaseController < ApplicationController
     end
 
     def get_additional_homepage_data
-      @sidebar_right = true
       @homepage_features = HomepageFeature.find_features
       @homepage_features_data = @homepage_features.collect {|f| [f.id, f.image.url(:large) ]  }
 

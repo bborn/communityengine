@@ -1,6 +1,6 @@
 - @section = 'events'
 - @page_title = @event.name
--widget do 
+-widget do
   %ul.nav.nav-list
     %li
       - if @is_admin_user
@@ -14,7 +14,7 @@
     = link_to :back.l, events_path, :class => 'btn'
     = link_to :clone.l, clone_event_path(@event), :class => 'btn btn-success'
     = link_to :edit.l, edit_event_path(@event), :class => 'btn btn-warning'
-    = link_to :delete.l, event_path(@event), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+    = link_to :delete.l, event_path(@event), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 
 
 %dl.dl-horizontal
@@ -33,11 +33,11 @@
       .btn-group
         - if @event.end_time > Time.now
           - if rsvp = @event.rsvped?(current_user)
-            = link_to :retract_rsvp.l, [@event, rsvp], :confirm => :are_you_sure.l, :method=>:delete, :class => 'btn btn-primary btn-mini'
+            = link_to :retract_rsvp.l, [@event, rsvp], data: { confirm: :are_you_sure.l }, :method=>:delete, :class => 'btn btn-primary btn-mini'
             = link_to :update_rsvp.l, edit_event_rsvp_url(@event, rsvp), :class => 'btn btn-primary btn-mini'
           - else
             = link_to :rsvp.l, new_event_rsvp_url(@event), :class => 'btn btn-primary btn-mini'
-            
+
 = @event.description.html_safe unless @event.description.blank?
 - unless @event.attendees.blank?
   %dl.dl-horizontal
@@ -49,9 +49,9 @@
             = link_to h(user.display_name), user_path(user)
             - if (count = @event.attendees_for_user(user)) > 1
               %span.badge.badge-info= "+#{count-1}"
-                
-    
-%h2= :event_comments.l 
+
+
+%h2= :event_comments.l
 %h3= :add_your_comment.l
 = render :partial => 'comments/comment_form', :locals => {:commentable => @event}
 %a#newest_comment

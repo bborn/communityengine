@@ -19,7 +19,6 @@ class CategoriesController < BaseController
   # GET /categories/1.xml
   def show
     @category = Category.find(params[:id])
-    @sidebar_right = true
 
     order = (params[:popular] ? "view_count #{params[:popular].eql?('DESC') ? 'DESC' : 'ASC'}": "published_at DESC")
 

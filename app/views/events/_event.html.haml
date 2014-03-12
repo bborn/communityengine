@@ -1,13 +1,13 @@
 %h2
   = event.name
   = !event.metro_area.nil? ? " (#{event.metro_area.to_s})" : ''
-  
+
 - if (logged_in? && (event.user.eql?(current_user) || admin?))
   %p
     = link_to :show.l, event_path(event), :class => 'btn'
     = link_to :clone.l, clone_event_path(event), :class => 'btn btn-success'
     = link_to :edit.l, edit_event_path(event), :class => 'btn btn-warning'
-    = link_to :delete.l, event_path(event), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+    = link_to :delete.l, event_path(event), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 
 %dl.dl-horizontal
   %dt=:when.l
@@ -25,7 +25,7 @@
       .btn-group
         - if event.end_time > Time.now
           - if rsvp = event.rsvped?(current_user)
-            = link_to :retract_rsvp.l, [event, rsvp], :confirm => :are_you_sure.l, :method=>:delete, :class => 'btn btn-primary btn-mini'
+            = link_to :retract_rsvp.l, [event, rsvp], data: { confirm: :are_you_sure.l }, :method=>:delete, :class => 'btn btn-primary btn-mini'
             = link_to :update_rsvp.l, edit_event_rsvp_url(event, rsvp), :class => 'btn btn-primary btn-mini'
           - else
             = link_to :rsvp.l, new_event_rsvp_url(event), :class => 'btn btn-primary btn-mini'

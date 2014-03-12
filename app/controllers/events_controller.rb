@@ -3,12 +3,12 @@ class EventsController < BaseController
   require 'htmlentities'
   caches_page :ical
   cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
- 
+
 
   uses_tiny_mce do
     {:only => [:new, :edit, :create, :update, :clone ], :options => configatron.default_mce_options}
   end
-  
+
   uses_tiny_mce do
     {:only => [:show], :options => configatron.simple_mce_options}
   end
@@ -56,13 +56,13 @@ class EventsController < BaseController
     @metro_areas, @states = setup_metro_area_choices_for(current_user)
     @metro_area_id, @state_id, @country_id = setup_location_for(current_user)
   end
-  
+
   def edit
     @event = Event.find(params[:id])
     @metro_areas, @states = setup_metro_area_choices_for(@event)
     @metro_area_id, @state_id, @country_id = setup_location_for(@event)
   end
-    
+
   def create
     @event = Event.new(event_params)
     @event.user = current_user
@@ -74,10 +74,10 @@ class EventsController < BaseController
     respond_to do |format|
       if @event.save
         flash[:notice] = :event_was_successfully_created.l
-        
+
         format.html { redirect_to event_path(@event) }
       else
-        format.html { 
+        format.html {
           @metro_areas, @states = setup_metro_area_choices_for(@event)
           if params[:metro_area_id]
             @metro_area_id = params[:metro_area_id].to_i
@@ -87,7 +87,7 @@ class EventsController < BaseController
           render :action => "new"
         }
       end
-    end    
+    end
   end
 
   def update
@@ -97,12 +97,12 @@ class EventsController < BaseController
     else
       @event.metro_area = nil
     end
-        
+
     respond_to do |format|
       if @event.update_attributes(event_params)
         format.html { redirect_to event_path(@event) }
       else
-        format.html { 
+        format.html {
           @metro_areas, @states = setup_metro_area_choices_for(@event)
           if params[:metro_area_id]
             @metro_area_id = params[:metro_area_id].to_i
@@ -114,11 +114,11 @@ class EventsController < BaseController
       end
     end
   end
-  
+
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    
+
     respond_to do |format|
       format.html { redirect_to :back }
     end
@@ -142,7 +142,7 @@ class EventsController < BaseController
           metro_areas = object.metro_area.state.metro_areas.order("name")
         else
           metro_areas = object.metro_area.country.metro_areas.order("name")
-        end        
+        end
       elsif object.is_a? User
         states = object.country.states if object.country
         if object.state

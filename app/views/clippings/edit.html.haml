@@ -1,14 +1,14 @@
 -@page_title = :editing_clipping.l
 
--widget do 
+-widget do
   %h3= :help.l
   %p= :tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas.l
 
 %p
   =link_to :back.l, user_clippings_path(@user), :class => 'btn'
   =link_to :show.l, user_clipping_path(@user, @clipping), :class => 'btn'
-  =link_to :delete.l, user_clipping_path(@user, @clipping), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
-  
+  =link_to :delete.l, user_clipping_path(@user, @clipping), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
+
 
 =image_tag @clipping.image_uri(:large), :class => 'thumbnail'
 

@@ -24,7 +24,7 @@
       %td
         = link_to :show.l, tag_path(tag), :class => 'btn'
         = link_to :edit.l, edit_tag_path(tag), :class => 'btn btn-warning'
-        = link_to :destroy.l, tag_path(tag), :confirm => :are_you_sure.l, :method => :delete, :class => 'btn btn-danger'
+        = link_to :destroy.l, tag_path(tag), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 
 =paginate @tags, :theme => 'bootstrap'
 

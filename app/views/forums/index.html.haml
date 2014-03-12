@@ -6,11 +6,11 @@
 %p.subtitle
   %a{:href => recent_forum_posts_path(:format => 'rss')}
     %i.icon-rss
-  = number_with_delimiter(Topic.count) 
+  = number_with_delimiter(Topic.count)
   = "#{:topics.l},"
   = number_with_delimiter(SbPost.count)
   = "#{:posts.l},"
-  = number_with_delimiter(User.count(:conditions => "sb_posts_count>0"))
+  = number_with_delimiter(User.where("sb_posts_count>0").count)
   = :voices.l
 
 %table.table.table-bordered
@@ -42,21 +42,21 @@
             %strong= :by.l :login => forum.sb_posts.last.user.display_name
           %span
             (
-            = link_to :view.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id) 
+            = link_to :view.l, forum_topic_path(:forum_id => forum, :id => forum.sb_posts.last.topic_id, :page => forum.sb_posts.last.topic.last_page, :anchor => forum.sb_posts.last.dom_id)
             )
       -if admin?
         %td
           = link_to :show.l, forum_path(forum), :class => 'btn'
           = link_to :edit.l, edit_forum_path(forum), :class => 'btn btn-warning'
-          = link_to :delete.l, forum_path(forum), :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-danger'
+          = link_to :delete.l, forum_path(forum), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 
 -if admin?
   = link_to :new_forum.l, new_forum_path, :class => 'btn btn-success'
 
 
-- online_users = User.currently_online 
-- unless online_users.empty? 
-  - unless online_users.empty? 
+- online_users = User.currently_online
+- unless online_users.empty?
+  - unless online_users.empty?
     %dl.dl-horizontal
       %dt= :users_online.l
       %dd= online_users.map{ |u| link_to u.login, user_path(u) }.join(", ").html_safe

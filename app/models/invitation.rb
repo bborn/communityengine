@@ -1,8 +1,8 @@
 class Invitation < ActiveRecord::Base
   acts_as_activity :user
-  
+
   belongs_to :user
-  
+
   after_save :send_invite
 
   validates_presence_of :user
@@ -14,11 +14,11 @@ class Invitation < ActiveRecord::Base
     invalid_emails = []
     email_addresses = email_addresses || ''
     emails = email_addresses.split(",").collect{|email| email.strip }.uniq
-    
+
     emails.each{ |email|
       unless email =~ /[\w._%-]+@[\w.-]+.[a-zA-Z]{2,4}/
         invalid_emails << email
-      end        
+      end
     }
     unless invalid_emails.empty?
       record.errors.add(:email_addresses, " included invalid addresses: <ul>"+invalid_emails.collect{|email| '<li>'+email+'</li>' }.join+"</ul>")
@@ -26,13 +26,11 @@ class Invitation < ActiveRecord::Base
     end
   end
 
-  attr_accessible :email_addresses, :message
-
   def send_invite
-    emails = self.email_addresses.split(",").collect{|email| email.strip }.uniq 
+    emails = self.email_addresses.split(",").collect{|email| email.strip }.uniq
     emails.each{|email|
       UserNotifier.signup_invitation(email, self.user, self.message).deliver
     }
   end
-  
+
 end

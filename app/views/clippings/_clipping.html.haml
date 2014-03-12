@@ -1,6 +1,6 @@
 %div{ :id => "clipping_#{clipping.id}"}
   =render :partial => 'clippings/favorite', :locals => {:clipping => clipping}
-  %a{:href=>"#{user_clipping_url(clipping.user, clipping)}", :title => h(truncate_words(clipping.description)) }     
+  %a{:href=>"#{user_clipping_url(clipping.user, clipping)}", :title => h(truncate_words(clipping.description)) }
     = h(truncate_words(clipping.description))
     %br
     = link_to image_tag( clipping.image_uri(:medium)), user_clipping_url(clipping.user, clipping), :class => 'thumbnail'
@@ -8,4 +8,4 @@
   -if clipping.user = current_user
     =link_to :show.l, [current_user, clipping], :class => 'btn btn-mini'
     =link_to :edit.l, edit_user_clipping_path(current_user, clipping), :class => 'btn btn-mini btn-warning'
-    =link_to :delete.l, [current_user, clipping], :method => 'delete', :confirm => :are_you_sure.l, :class => 'btn btn-mini btn-danger'
+    =link_to :delete.l, [current_user, clipping], :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-mini btn-danger'

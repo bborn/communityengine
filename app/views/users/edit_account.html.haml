@@ -36,7 +36,7 @@
       =f.submit :value => :save_changes.l
 
     .well
-      =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, :confirm => :deactivate_confirmation.l, :class => 'btn btn-danger'
+      =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, data: { confirm: :deactivate_confirmation.l }, :class => 'btn btn-danger'
       %br
       %label
         %em= :deactivate_tip.l
