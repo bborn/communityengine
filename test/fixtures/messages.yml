@@ -7,7 +7,7 @@ message_from_kevin_to_aaron:
   recipient_deleted: false
   subject: Test message
   body: Test body
-  read_at: <%= 1.days.ago.iso8601 %>
+  read_at:
   created_at: <%= 2.days.ago.iso8601 %>
   updated_at: <%= 2.days.ago.iso8601 %>
 message_from_aaron_to_leopoldo:
@@ -18,7 +18,7 @@ message_from_aaron_to_leopoldo:
   recipient_deleted: true
   subject: Test message
   body: Test body
-  read_at: <%= 1.days.ago.iso8601 %>
+  read_at:
   created_at: <%= 2.days.ago.iso8601 %>
   updated_at: <%= 2.days.ago.iso8601 %>
 
