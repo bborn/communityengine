@@ -206,7 +206,7 @@ Rails.application.routes.draw do
 
       collection do
         # get 'manage(/page/:page)', :action => :manage
-        get :manage
+        match :manage, :via => [:get, :post]
       end
 
       member do
