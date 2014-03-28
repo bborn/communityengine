@@ -5,9 +5,9 @@ class Photo < ActiveRecord::Base
   belongs_to :album
 
   has_attached_file :photo, configatron.photo.paperclip_options.to_hash
-  validates_attachment_presence :photo, :unless => Proc.new{|record| record.photo_remote_url }
-  validates_attachment_content_type :photo, :content_type => configatron.photo.validation_options.content_type
-  validates_attachment_size :photo, :less_than => configatron.photo.validation_options.max_size.to_i.megabytes
+  validates_attachment_presence :photo, :unless => Proc.new{|record| record.photo_remote_url }, :message => :photo_presence_error.l
+  validates_attachment_content_type :photo, :content_type => configatron.photo.validation_options.content_type, :message => :photo_content_type_error.l
+  validates_attachment_size :photo, :less_than => configatron.photo.validation_options.max_size.to_i.megabytes, :message => :photo_size_limit_error.l(:count => configatron.photo.validation_options.max_size)
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :photo_remote_url
   after_update :reprocess_photo, :if => :cropping?
