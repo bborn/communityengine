@@ -54,7 +54,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   def test_should_allow_admin_to_sticky_and_lock
     login_as :admin
-    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah2', :sticky => "1", :locked => "1", :body => 'foo' }
+    post :create, :forum_id => forums(:rails).id, :topic => { :title => 'blah2', :sticky => "1", :locked => "1", :sb_posts_attributes => { "0" => { :body => 'foo' } } }
     assert assigns(:topic).sticky?
     assert assigns(:topic).locked?
   end
@@ -174,7 +174,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   def test_should_not_update_user_id_of_own_post
     login_as :sam
-    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { :user_id => 32 }
+    put :update, :forum_id => forums(:rails).id, :id => topics(:ponies).id, :topic => { :user_id => users(:aaron).id }
     assert_redirected_to forum_topic_path(forums(:rails), assigns(:topic))
     assert_equal users(:sam).id, sb_posts(:ponies).reload.user_id
   end
