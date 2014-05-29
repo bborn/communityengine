@@ -19,7 +19,7 @@
       =:loading_images.l
       %script{"type"=>"text/javascript"}
         ="$('#clipping_image_list').html($.post('#{load_images_from_uri_path(:uri => params[:uri]).html_safe}'));"
-    =link_to :cancel_and_go_back_to.l + ' ' + @clipping.url, params[:uri], :class => 'btn btn-mini btn-primary'
+    =link_to :cancel_and_go_back_to.l + ' ' + @clipping.url, params[:uri], :class => 'btn btn-xs btn-primary'
     #lightbox.modal.hide.fade{:style => 'padding-top: 60px;'}
       = bootstrap_form_for(:clipping, :url => user_clippings_path(@user), :html => {:class => "form form-horizontal"} ) do |f|
         = f.text_field :url

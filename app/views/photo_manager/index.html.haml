@@ -40,9 +40,9 @@
   - @photos_no_albums.each do |photo|
     %li.span2
       = link_to image_tag( photo.photo.url(:thumb)), user_photo_path(current_user, photo), :class => 'thumbnail'
-      = link_to :show.l, user_photo_path(current_user, photo), :class => 'btn btn-mini'
-      = link_to :edit.l, edit_user_photo_path(current_user, photo), :class => 'btn btn-warning btn-mini'
-      = link_to :delete.l, edit_user_photo_path(current_user, photo), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger btn-mini'
+      = link_to :show.l, user_photo_path(current_user, photo), :class => 'btn btn-xs'
+      = link_to :edit.l, edit_user_photo_path(current_user, photo), :class => 'btn btn-warning btn-xs'
+      = link_to :delete.l, edit_user_photo_path(current_user, photo), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger btn-xs'
 
   =paginate @photos_no_albums, :theme => 'bootstrap'
 =link_to :new_photo.l, new_user_photo_path(current_user), :class => 'btn btn-success'

@@ -33,10 +33,10 @@
       .btn-group
         - if @event.end_time > Time.now
           - if rsvp = @event.rsvped?(current_user)
-            = link_to :retract_rsvp.l, [@event, rsvp], data: { confirm: :are_you_sure.l }, :method=>:delete, :class => 'btn btn-primary btn-mini'
-            = link_to :update_rsvp.l, edit_event_rsvp_url(@event, rsvp), :class => 'btn btn-primary btn-mini'
+            = link_to :retract_rsvp.l, [@event, rsvp], data: { confirm: :are_you_sure.l }, :method=>:delete, :class => 'btn btn-primary btn-xs'
+            = link_to :update_rsvp.l, edit_event_rsvp_url(@event, rsvp), :class => 'btn btn-primary btn-xs'
           - else
-            = link_to :rsvp.l, new_event_rsvp_url(@event), :class => 'btn btn-primary btn-mini'
+            = link_to :rsvp.l, new_event_rsvp_url(@event), :class => 'btn btn-primary btn-xs'
 
 = @event.description.html_safe unless @event.description.blank?
 - unless @event.attendees.blank?
