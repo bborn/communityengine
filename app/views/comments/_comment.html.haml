@@ -3,7 +3,7 @@
     %em This comment is awaiting approval
   -if comment.user
     .clearfix
-      .span2.pull-right
+      .col-sm-2.pull-right
         %ul.nav.nav-list
           %li= link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'thumbnail'
           %li
@@ -23,7 +23,7 @@
 
   -else
     .clearfix
-      .span3.pull-right
+      .col-sm-3.pull-right
         %ul.nav.nav-list
           %li
             %a{:href => '#', :rel => 'bookmark', :class => 'photo', :onclick => 'return false;'}

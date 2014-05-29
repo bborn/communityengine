@@ -2,7 +2,7 @@
 
 %ul.thumbnails
   - @favorites.each do |f|
-    %li.span4
+    %li.col-sm-4
       =render :partial => "favorite", :locals => {:favorite => f}
 
 =paginate @favorites, :theme => 'bootstrap'     

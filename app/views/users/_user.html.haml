@@ -1,7 +1,7 @@
 .row.well
-  .span2= link_to image_tag( user.avatar_photo_url(:medium) ), user_path(user)
-  
-  .span6
+  .col-sm-2= link_to image_tag( user.avatar_photo_url(:medium) ), user_path(user)
+
+  .col-sm-6
     %h4= link_to user.login, user_path(user)
 
     %p

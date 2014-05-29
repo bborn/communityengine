@@ -27,11 +27,11 @@
       .row
         = render_hero_unit
       .row
-        .span9
+        .col-sm-9
           %h1=container_title
           = render :partial => "shared/messages"
           = yield
-        .span3.pull-right
+        .col-sm-3.pull-right
           = render :partial => "shared/sidebar"
 
 
@@ -41,7 +41,7 @@
           =:loading_recent_content.l
 
       .row
-        .span12
+        .col-sm-12
           = render :partial => 'shared/footer_links'
 
           %p= :community_tagline.l

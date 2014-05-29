@@ -6,8 +6,8 @@
     Clippings
   %ul.thumbnails
     - @clippings.each do |clipping|
-      %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
-  -if @clippings.total_count > 1      
+      %li.col-sm-3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+  -if @clippings.total_count > 1
     =paginate @clippings, :theme => 'bootstrap'
           
 -widget do 

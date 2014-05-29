@@ -72,7 +72,7 @@
     %h2=:my_photos.l
     %ul.thumbnails
       - @photos.each do |photo|
-        %li.span3
+        %li.col-lg-3
           = link_to image_tag( photo.photo.url(:medium)), user_photo_path(@user, photo), :class => "thumbnail"
     %p
       = icon_link_to 'icon-plus-sign', :view_all_my_photos.l, user_photos_path(@user)
@@ -89,7 +89,7 @@
     %h2=:my_clippings.l
     %ul.thumbnails
       - @clippings.each do |clipping|
-        %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+        %li.col-sm-3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
     = icon_link_to 'icon-plus-sign', :view_all_my_clippings.l, user_clippings_path(@user)
 
 .clearfix

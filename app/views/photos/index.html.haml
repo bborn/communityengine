@@ -18,7 +18,7 @@
 
 %ul.thumbnails
   - @photos.each do |photo|
-    %li.span3
+    %li.col-sm-3
       = link_to image_tag(photo.photo.url(:medium)), user_photo_path(@user, photo), :class => 'thumbnail'
       -if @is_current_user
         =link_to :show.l, user_photo_path(@user, photo), :class => 'btn btn-xs'
