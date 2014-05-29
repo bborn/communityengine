@@ -17,8 +17,8 @@ class Topic < ActiveRecord::Base
   after_create  :create_monitorship_for_owner
   
   accepts_nested_attributes_for :sb_posts
-  attr_accessible :title, :sticky, :locked, :sb_posts_attributes, :forum_id
-  
+  attr_accessible :title, :sticky, :locked, :sb_posts_attributes, :forum_id, :user_id
+
   scope :recently_replied, order('replied_at DESC')
 
   def notify_of_new_post(post)
