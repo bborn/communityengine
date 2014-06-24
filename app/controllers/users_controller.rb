@@ -442,7 +442,8 @@ class UsersController < BaseController
                                  :middlename, :notify_comments, :notify_community_news,
                                  :notify_friend_requests, :password, :password_confirmation,
                                  :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip,
-                                 {:avatar_attributes => [:name, :description, :album_id, :user, :user_id, :photo, :photo_remote_url]}, :birthday) if params[:user]
+                                 :tag_list,
+                                 {:avatar_attributes => [:id, :name, :description, :album_id, :user, :user_id, :photo, :photo_remote_url]}, :birthday) if params[:user]
   end
 
   def comment_params
