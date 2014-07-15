@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<rails>, [">= 3.2.0"])
   s.add_dependency(%q<rack>, [">= 1.4.1"])
   s.add_dependency(%q<authlogic>, [">= 0"])
-  s.add_dependency(%q<bcrypt-ruby>, [">= 0"])
+  s.add_dependency(%q<bcrypt>, [">= 0"])
   s.add_dependency(%q<configatron>, ["~> 2.0"])
   s.add_dependency(%q<hpricot>, [">= 0"])
   s.add_dependency(%q<htmlentities>, [">= 0"])
