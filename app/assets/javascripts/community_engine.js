@@ -4,7 +4,7 @@
 //= require jquery
 //= require jquery.migrate
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery-ui
 //= require bootstrap
 //= require bootstrap-dropdown
 //= require bootstrap-modal

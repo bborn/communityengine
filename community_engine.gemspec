@@ -58,7 +58,7 @@ Gem::Specification.new do |s|
   s.add_dependency "bootstrap_forms",           ">= 0"
   s.add_dependency "font-awesome-sass-rails",   ">= 0"
   s.add_dependency "jquery-rails",              ">= 0"
-  s.add_dependency "jquery-ui-rails",           ">= 0"
+  s.add_dependency "jquery-ui-rails",           "~> 5.0.0"
   s.add_dependency "jquery-ui-themes",          ">= 0"
   s.add_dependency "sass-rails",                "~> 4.0.0"
   s.add_dependency "sprockets",                 "~> 2.10.0"
