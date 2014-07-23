@@ -60,14 +60,14 @@ module BaseHelper
     end
   end
 
-  def hero_unit(html_options = {}, &block)
-    @hero_unit = render(:partial => 'shared/hero_unit', :locals => {:body => capture(&block), :html_options => html_options})
+  def jumbotron(html_options = {}, &block)
+    @jumbotron = render(:partial => 'shared/jumbotron', :locals => {:body => capture(&block), :html_options => html_options})
     return ''
   end
 
-  def render_hero_unit
-    if @hero_unit
-      @hero_unit.html_safe
+  def render_jumbotron
+    if @jumbotron
+      @jumbotron.html_safe
     end
   end
 
