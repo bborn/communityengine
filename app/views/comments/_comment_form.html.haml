@@ -1,14 +1,14 @@
 - if logged_in? || configatron.allow_anonymous_commenting
       
   = bootstrap_form_for(:comment, :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :html => {:class => "form form-horizontal submit-via-ajax", :id => 'comment'}) do |f|
-    = f.text_area :comment, :rows => 5, :style => 'width: 99%', :class => "rich_text_editor", :help_inline => :comment_character_limit.l
-    
-    - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key 
+    = f.text_area :comment, :rows => 5, :style => 'width: 99%', :class => "rich_text_editor", :help_block => :comment_character_limit.l
+
+    - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key
       .pull-right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
       = f.text_field :author_name
       = f.text_field :author_email, :required => true     
       -if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
-        =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l, :help_inline => :comment_notifications_off.l
+        =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l, :help_block => :comment_notifications_off.l
       -else
         =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l
      

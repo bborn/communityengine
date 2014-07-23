@@ -14,8 +14,8 @@
   .pull-right
     %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
       %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}
-      
-  = f.text_area :email_addresses, :rows => 5, :label => :enter_e_mail_addresses.l, :help_inline => :comma_separated.l
+
+  = f.text_area :email_addresses, :rows => 5, :label => :enter_e_mail_addresses.l, :help_block => :comma_separated.l
   = f.text_area :message, :rows => 5, :label => :write_a_message.l, :value => "#{configatron.community_name} "+:is_great_check_it_out_youll_love_it.l+" #{}"
 
   .controls.btn-group
