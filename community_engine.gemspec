@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   ]
   s.require_paths    = ["lib"]
   s.rubygems_version = "1.8.11"
+  s.licenses = ["MIT", "see each plugin"]
 
   s.files = `git ls-files`.split("\n") rescue ''
   s.test_files = `git ls-files -- {test}/*`.split("\n")
