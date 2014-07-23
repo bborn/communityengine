@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.summary = "CommunityEngine for Rails 3"
   s.description = "CommunityEngine is a free, open-source social network platform for Ruby on Rails applications. Drop it into your new or existing application, and you’ll instantly have all the features of a basic community site."
   s.homepage = "http://www.communityengine.org"
+  s.licenses = ["MIT", "see each plugin"]
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bruno Bornsztein"]
