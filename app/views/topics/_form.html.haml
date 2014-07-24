@@ -12,7 +12,8 @@
     %fieldset
       = f.check_box :sticky
       = f.check_box :locked
-  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l, :help_block => :optional_keywords_describing_this_topic_separated_by_commas.l
+  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l
+  %p.help-block=:optional_keywords_describing_this_topic_separated_by_commas.l
   #tag_list_auto_complete.auto_complete
 
   -content_for :end_javascript do

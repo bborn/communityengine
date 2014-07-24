@@ -6,7 +6,8 @@
   = f.datetime_select :start_time
   = f.datetime_select :end_time
 
-  = f.check_box :allow_rsvp, :help_block => :when_checked_users_will_be_able_to_rsvp_for_this_event.l
+  = f.check_box :allow_rsvp
+  %p.help-block= :when_checked_users_will_be_able_to_rsvp_for_this_event.l
 
   = f.text_field :location
 

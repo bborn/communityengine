@@ -25,7 +25,8 @@
   = f.text_field :title, :class => 'col-sm-6'
   = f.collection_select(:category_id, Category.all, :id, :name, {}, {})
   = f.text_area :raw_post, :rows => 15, :class => "rich_text_editor", :required => false
-  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l, :help_block => :optional_keywords_describing_this_post_separated_by_commas.l
+  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l
+  %p.help-block= :optional_keywords_describing_this_post_separated_by_commas.l
   #tag_list_auto_complete.auto_complete
   -content_for :end_javascript do
     = tag_auto_complete_field 'post_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
