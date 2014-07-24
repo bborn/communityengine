@@ -3,10 +3,10 @@
 = form_tag password_reset_path, :method => :put, :class => "form form-horizontal" do
   .form-group
     %label.control-label=:password.l
-    .controls= password_field_tag :password, '', :class => 'required'
+    = password_field_tag :password, '', :class => 'required'
 
   .form-group
     %label.control-label=:confirm_password.l
-    .controls= password_field_tag :password_confirmation, '', :class => 'required'
-  .controls= submit_tag :reset_my_password.l, :class => 'btn btn-primary'
+    = password_field_tag :password_confirmation, '', :class => 'required'
+  = submit_tag :reset_my_password.l, :class => 'btn btn-primary'
 

@@ -1,7 +1,6 @@
 = bootstrap_form_for post, :url => sb_post_path(:forum_id => post.forum_id, :topic_id => post.topic_id, :id => post), :layout => :horizontal, :html => {:class => "submit-via-ajax", :id => "edit-form-"+post.id.to_s} do |f|
   = f.text_area :body, :rows => 10, :id => "edit_post_body_" + post.id.to_s, :class => "rich_text_editor"
-  .controls
-    = ajax_spinner_for "edit-form-" + post.id.to_s
-    = submit_tag :save_changes.l, :class => 'btn btn-primary'
-    or
-    = link_to :cancel.l, '#', :class => 'editor-cancel', 'data-target' => "post-body-#{post.id}"
+  = ajax_spinner_for "edit-form-" + post.id.to_s
+  = submit_tag :save_changes.l, :class => 'btn btn-primary'
+  or
+  = link_to :cancel.l, '#', :class => 'btn btn-default editor-cancel', 'data-target' => "post-body-#{post.id}"

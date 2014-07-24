@@ -25,5 +25,4 @@
   - if admin? and not @topic.new_record?
     = f.select :forum_id, Forum.order("position ASC").map {|x| [x.name, x.id] }, :label => :forum.l
 
-  .controls
-    = f.submit :save.l, :class => 'btn btn-primary'
+  = f.submit :save.l, :class => 'btn btn-primary'

@@ -20,7 +20,7 @@
   %h2= :location.l
   .form-group
     %label.control-label= :location.l
-    .controls= render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
+    = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
 
   = f.text_field :zip, :label => :zippostal_code.l
 
@@ -28,13 +28,12 @@
   %fieldset.form-group
     %legend.control-label
       =:gender.l
-    .controls
-      %label
-        = radio_button :user, :gender, User::MALE
-        =:male.l
-      %label
-        = radio_button :user, :gender, User::FEMALE
-        =:female.l
+    %label
+      = radio_button :user, :gender, User::MALE
+      =:male.l
+    %label
+      = radio_button :user, :gender, User::FEMALE
+      =:female.l
 
   = f.date_select :birthday, {:start_year => 1926, :end_year => Time.now.year - 1}
 
@@ -48,7 +47,7 @@
     -content_for :end_javascript do
       = tag_auto_complete_field 'user_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
-    %label.controls
+    %label
       %em
         =:you_could_tag_yourself.l
         - if @user.vendor?
@@ -63,5 +62,4 @@
         =:by_looking_at_the.l
         = link_to :tags_page.l, tags_path
 
-  .controls
-    = f.submit :save_changes.l
+  = f.submit :save_changes.l, :class => "btn btn-primary"

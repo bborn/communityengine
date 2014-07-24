@@ -22,10 +22,9 @@
 
   -if configatron.require_captcha_on_signup
     .pull-right= recaptcha_tags
-    
+
   = f.password_field :password
   = f.password_field :password_confirmation, :help_block => :re_type_your_password_to_confirm.l
   = hidden_field_tag :inviter_id, params[:inviter_id]
   = hidden_field_tag :inviter_code, params[:inviter_code]
-  .controls
-    = f.submit :sign_up.l
+  = f.submit :sign_up.l

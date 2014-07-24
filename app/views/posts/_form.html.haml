@@ -33,6 +33,5 @@
   = f.select :published_as, [[:published.l, 'live'], [:draft.l, 'draft']], :label => :save_post_as.l
   = f.check_box :send_comment_notifications
 
-  .controls
-    = f.submit :save.l
+  = f.submit :save.l
 

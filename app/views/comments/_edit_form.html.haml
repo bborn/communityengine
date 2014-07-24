@@ -8,6 +8,5 @@
     -else
       =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l
     = f.text_field :author_url
-  .controls
-    = f.submit :save.l
-    = link_to :cancel.l, {:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true}, :class => 'edit-via-ajax'
+  = f.submit :save.l
+  = link_to :cancel.l, {:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true}, :class => 'btn btn-default edit-via-ajax'

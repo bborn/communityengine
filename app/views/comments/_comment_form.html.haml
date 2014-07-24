@@ -14,9 +14,8 @@
      
       = f.text_field :author_url, :label => :comment_web_site_label.l
 
-    .controls
-      = f.submit :add_comment.l
-      = ajax_spinner_for 'comment'
+    = f.submit :add_comment.l
+    = ajax_spinner_for 'comment'
 - else
   .btn-group
     = link_to :log_in_to_leave_a_comment.l, new_commentable_comment_path(commentable.class, commentable.id), :class => 'btn btn-primary'

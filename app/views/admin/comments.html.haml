@@ -5,7 +5,7 @@
   %h2=:search.l
   = f.text_field :author_email_or_user_email_cont, :label => :email.l
 
-  .controls= f.submit :search.l
+  = f.submit :search.l
 
 = form_tag delete_selected_comments_path, :method => :delete, :id => 'comments' do
   %table.table.table-bordered.table-striped

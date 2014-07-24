@@ -10,9 +10,9 @@
 
     .form-group
       %label.control-label= :show.l
-      .controls= select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
+      = select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
 
-    .controls= f.submit :search.l
+    = f.submit :search.l
 
 %p=:posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them.l
 

@@ -14,8 +14,6 @@
   = f.text_area :description
   = hidden_field_tag :go_to
 
-  .controls
-    .btn-group
-      = f.submit button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'", :class => 'btn btn-primary'
-      = f.submit button1, :class => 'btn btn-primary'
-    
+  .btn-group
+    = f.submit button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'", :class => 'btn btn-primary'
+    = f.submit button1, :class => 'btn btn-primary'

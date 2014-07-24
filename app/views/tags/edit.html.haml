@@ -8,5 +8,4 @@
 
 = bootstrap_form_for :tag, :url => tag_path(@tag), :layout => :horizontal, :html => {:method => 'put'} do |f|
   = f.text_field :name
-  .controls
-    = f.submit :update.l
+  = f.submit :update.l

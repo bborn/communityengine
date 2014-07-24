@@ -8,17 +8,17 @@
           .form-group
             %label.control-label{"for"=>"comment[author_name]"}
               =:name.l
-            .controls= f.text_field :author_name
+            = f.text_field :author_name
 
           .form-group
             %label.required.control-label{"for"=>"comment[author_email]"}
               =:email.l
-            .controls= f.text_field :author_email
+            = f.text_field :author_email
 
           .form-group
             %label.control-label{"for"=>"comment[author_url]"}
               =:comment_web_site_label.l
-            .controls= f.text_field :author_url, :size => 35
+            = f.text_field :author_url, :size => 35
         %td
           = recaptcha_tags :ajax => true
           %p

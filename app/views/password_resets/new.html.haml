@@ -4,6 +4,5 @@
 = form_tag password_resets_path, :class => 'form form-horizontal' do
   .form-group
     %label.control-label{"for"=>"email"}=:enter_your_email_address.l
-    .controls= text_field_tag 'email', nil, :class => 'required'
-  .controls
-    = submit_tag :reset_my_password.l, :class => 'btn btn-primary'
+    = text_field_tag 'email', nil, :class => 'required'
+  = submit_tag :reset_my_password.l, :class => 'btn btn-primary'

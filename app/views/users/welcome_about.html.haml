@@ -33,35 +33,32 @@
     %label.radio-inline
       = radio_button :user, :gender, User::FEMALE
       =:female.l
-         
-  %fieldset   
+
+  %fieldset
     %legend=:choose_your_location.l
     .form-group
       %label.control-label=:postal_code.l
-      .controls= text_field :user, :zip, :size => 10
-    .controls
-      = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
-    
+      = text_field :user, :zip, :size => 10
+    = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
+
   %fieldset
     %legend= :tag_yourself.l
     .form-group
       %label.control-label= :tags.l
-      .controls
-        = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
-        .help-block
-          =:comma_separated_keywords_that_describe_you.l
-          %br
-          =:you_could_tag_yourself.l
-          - if @user.vendor?
-            =:custom_friendly_local.l
-          - else
-            = configatron.meta_keywords.split(",")[0..3].join(', ')
-        
+      = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
+      .help-block
+        =:comma_separated_keywords_that_describe_you.l
+        %br
+        =:you_could_tag_yourself.l
+        - if @user.vendor?
+          =:custom_friendly_local.l
+        - else
+          = configatron.meta_keywords.split(",")[0..3].join(', ')
+
     #tag_list_auto_complete.auto_complete
-  
+
     -content_for :end_javascript do
       = tag_auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
 
-  .controls
-    = submit_tag :save_and_continue_to_step_three.l, :class => 'btn btn-primary'
+  = submit_tag :save_and_continue_to_step_three.l, :class => 'btn btn-primary'
