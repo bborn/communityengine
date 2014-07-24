@@ -1,10 +1,10 @@
 -@page_title = :photo_manager.l
 -widget do
-  %ul.nav.nav-list
-    %li.nav-header=:links.l
-    %li=link_to :view_all_my_photos.l, user_photos_path(current_user)
-    %li=link_to :new_photo.l, new_user_photo_path(current_user)
-    %li=link_to :new_album.l, new_user_album_path(current_user)
+  %h4
+    .small=:links.l
+  %p=link_to :view_all_my_photos.l, user_photos_path(current_user)
+  %p=link_to :new_photo.l, new_user_photo_path(current_user)
+  %p=link_to :new_album.l, new_user_album_path(current_user)
 
 %h2= :albums.l
 %table.table.table-bordered.table-striped

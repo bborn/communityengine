@@ -1,9 +1,10 @@
 -@page_title=:profile_photo.l
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:get_started.l + ' ' + :upload_a_profile_photo.l
-    %li
-      =:photo_message.l :site => configatron.community_name
+-widget do
+  %h4
+    .small=:get_started.l + ' ' + :upload_a_profile_photo.l
+  %p
+    =:photo_message.l :site => configatron.community_name
+  %ul.list-unstyled
     %li= link_to :skip_this_step.l, welcome_about_user_path(@user)
     %li= link_to :go_to_your_profile.l, user_path(@user)
 

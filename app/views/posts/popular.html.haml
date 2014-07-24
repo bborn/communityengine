@@ -1,27 +1,27 @@
 - @meta = { :description => :popular_posts_on.l+" #{configatron.community_name}",:keywords => "#{configatron.meta_keywords}", :robots => configatron.robots_meta_list_content}
 - @section = 'popular'
 - @page_title = :what_is_popular.l
-        
--widget do 
-  - if logged_in?
-    %ul.nav.nav-list
-      %li.nav-header= :get_popular.l
-      %li=link_to :write_a_blog_post.l, new_user_post_path({:user_id => current_user})
-  - else
-    %ul.nav-nav-list
-      %li.nav-header= :want_to_be_popular.l 
-      %li
-        %a{:href=>signup_url, :title=>:sign_up_for_a_.l+" #{configatron.community_name} "+:account.l}=:sign_up_for_an_account.l
-        %br
-          %small
-            =:have_an_account.l
-            %a{:href=>login_url, :title=>:log_in_to_your.l+" #{configatron.community_name} "+:account.l}
-              &raquo;
-              =:log_in.l
 
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:this_month_best.l
+-widget do
+  - if logged_in?
+    %h4
+      .small= :get_popular.l
+    =link_to :write_a_blog_post.l, new_user_post_path({:user_id => current_user})
+  - else
+    %h4
+      .small= :want_to_be_popular.l
+    %a{:href=>signup_url, :title=>:sign_up_for_a_.l+" #{configatron.community_name} "+:account.l, :class => "list-group-item"}=:sign_up_for_an_account.l
+    %br
+      %small
+        =:have_an_account.l
+        %a{:href=>login_url, :title=>:log_in_to_your.l+" #{configatron.community_name} "+:account.l}
+          &raquo;
+          =:log_in.l
+
+-widget do
+  %h4
+    .small=:this_month_best.l
+  %ul.list-unstyled
     - @monthly_popular_posts.each do |post|
       =render :partial => 'posts/sidebar_post', :locals => {:post => post}
 

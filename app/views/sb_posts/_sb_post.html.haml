@@ -8,7 +8,7 @@
     .editor.hide
 
   %td.col-sm-3{:style => 'border-left:0'}
-    %ul.nav.nav-list
+    %ul.list-unstyled
       -if post.user
         %li= link_to avatar_for(post.user), post.user    
         %li= link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)

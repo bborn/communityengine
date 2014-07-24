@@ -2,21 +2,18 @@
 - @page_title = :recent_posts.l
 - if logged_in?
   -widget do
-    %ul.nav.nav-list
-      %li.nav-header= :get_popular.l
-      %li=link_to :write_a_blog_post.l, new_user_post_path({:user_id => current_user})
+    %p= :get_popular.l
+    %p=link_to :write_a_blog_post.l, new_user_post_path({:user_id => current_user})
 - else
   -widget do
-    %ul.nav.nav-list
-      %li.nav-header= :want_to_be_popular.l
-      %li
-        =link_to :sign_up_for_an_account.l, signup_url
-      %li
-        =:have_an_account.l
-        %a{:href=>login_url, :title=>:log_in_to_your.l+" #{configatron.community_name} "+:account.l}
-          &raquo;
-          =:log_in.l
-        
+    %p= :want_to_be_popular.l
+    %p=link_to :sign_up_for_an_account.l, signup_url
+    %p=:have_an_account.l
+    %p
+      %a{:href=>login_url, :title=>:log_in_to_your.l+" #{configatron.community_name} "+:account.l}
+        &raquo;
+        =:log_in.l
+
 %ul.subnav
   %li= :looking_for_most_x.l :link => link_to("#{:most_popular.l}?", popular_path)
 

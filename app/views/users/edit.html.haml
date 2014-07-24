@@ -1,10 +1,10 @@
 -widget do
-  %ul.nav.nav-list
-    %li.nav-header=:you_are_editing_your_profile.l
-    %li= link_to :edit_your_account_settings_instead.l, edit_account_user_path(@user)
+  %p=:you_are_editing_your_profile.l
+  %p= link_to :edit_your_account_settings_instead.l, edit_account_user_path(@user)
 
 -widget do
-  =:tips.l
+  %h4
+    .small=:tips.l
   = render :partial => 'shared/bio_help'
   =:feel_free_to_embed_images_or_videos.l
 

@@ -3,8 +3,9 @@
 
 - unless @popular_posts.empty?
   -widget :id => "posts" do
-    %ul.nav.nav-list
-      %li.nav-header=:popular_posts.l
+    %h4
+      .small=:popular_posts.l
+    %ul.list-unstyled
       - @popular_posts.each do |post|
         %li= link_to truncate(post.title, :length => 75), user_post_path(@user, post)
 

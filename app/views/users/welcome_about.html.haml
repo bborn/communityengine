@@ -1,8 +1,9 @@
 -@page_title=:about_you.l
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:get_started.l + ' ' + :tell_us_about_yourself.l
-    = render :partial => 'shared/bio_help'
+-widget do
+  %h4
+    .small=:get_started.l + ' ' + :tell_us_about_yourself.l
+  = render :partial => 'shared/bio_help'
+  %ul.list-unstyled
     %li
       =:remember_you_can_always_change_this_later.l
     %li
@@ -14,8 +15,8 @@
   -widget do 
     %h3=:your_profile_photo.l
     = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
-    = image_tag @user.avatar_photo_url(:medium), :class => "thumbnail"
-    = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)        
+    = image_tag @user.avatar_photo_url(:medium), :class => "img-responsive"
+    = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)
 
 = form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "form form-horizontal" do
   

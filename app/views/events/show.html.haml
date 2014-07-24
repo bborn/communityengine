@@ -1,9 +1,9 @@
 - @section = 'events'
 - @page_title = @event.name
 -widget do
-  %ul.nav.nav-list
-    %li
-      - if @is_admin_user
+  %ul.list-unstyled
+    - if @is_admin_user
+      %li
         = link_to :administer_events.l, admin_events_path
     %li
       = icon_link_to 'icon-plus-sign', :see_all_events.l, events_path

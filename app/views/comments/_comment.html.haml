@@ -4,47 +4,41 @@
   -if comment.user
     .clearfix
       .col-sm-2.pull-right
-        %ul.nav.nav-list
-          %li= link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'thumbnail'
-          %li
-            = icon_link_to 'icon-hand-right', comment.user.login, user_path(comment.user)
-          %li
-            %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
-              %i.icon-calendar.pull-left
-              %abbr.published{"title"=>"#{comment.created_at}"}
-                = I18n.l(comment.created_at, :format => :short_literal_date)
+        .list-group
+          = link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login, :class => "img-responsive"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'list-group-item'
+          %a{:href => user_path(comment.user), :class => "list-group-item"}
+            %i.icon-hand-right
+            =comment.user.login
+          %a{:href => commentable_url(comment), :rel => "bookmark", :class => "list-group-item"}
+            %i.icon-calendar.pull-left
+            %abbr.published{:title => "#{comment.created_at}"}
+              = I18n.l(comment.created_at, :format => :short_literal_date)
           -if logged_in? && (current_user.admin? || current_user.moderator?)
-            %li
-              =link_to "<i class='icon-edit'></i>#{:edit.l}".html_safe, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax'
+            =link_to "<i class='icon-edit'></i>#{:edit.l}".html_safe, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax list-group-item'
           -if ( comment.can_be_deleted_by(current_user) )
-            %li.delete
-              =link_to "<i class='icon-trash'></i>#{:delete.l}".html_safe, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true
+            .delete
+              =link_to "<i class='icon-trash'></i>#{:delete.l}".html_safe, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true, :class => "list-group-item"
       = comment.comment.html_safe
 
   -else
     .clearfix
       .col-sm-3.pull-right
-        %ul.nav.nav-list
-          %li
-            %a{:href => '#', :rel => 'bookmark', :class => 'photo', :onclick => 'return false;'}
-              = image_tag(configatron.photo.missing_thumb, :height => '50', :width => '50')
-          %li
+        .list-group
+          %a{:href => '#', :rel => 'bookmark', :class => 'photo list-group-item', :onclick => 'return false;'}
+            = image_tag(configatron.photo.missing_thumb, :height => '50', :width => '50', :class => "img-responsive")
+          .list-group-item
             -if comment.author_url.blank?
               = h comment.username
             -else
               =icon_link_to 'icon-hand-right', h(comment.username), h(comment.author_url)
-          %li
-            %a{"href"=> commentable_url(comment), "rel"=>"bookmark"}
-              %i.icon-calendar.pull-left
-              %abbr.published{"title"=>"#{comment.created_at}"}
-                = I18n.l(comment.created_at, :format => :short_literal_date)
+          %a{:href=> commentable_url(comment), :rel => "bookmark", :class => "list-group-item"}
+            %i.icon-calendar.pull-left
+            %abbr.published{:title => "#{comment.created_at}"}
+              = I18n.l(comment.created_at, :format => :short_literal_date)
           -if logged_in? && (current_user.admin? || current_user.moderator?)
-            %li
-              =link_to '<i class="icon-edit"></i>#{:edit.l}'.html_safe, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax'
+            =link_to '<i class="icon-edit"></i>#{:edit.l}'.html_safe, edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax list-group-item'
           -if ( comment.can_be_deleted_by(current_user) )
-            %li
-              =link_to "<i class='icon-trash'></i>#{:delete.l}".html_safe, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true
-              =link_to "<i class='icon-trash'></i>#{:delete.l}".html_safe, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true
+            =link_to "<i class='icon-trash'></i>#{:delete.l}".html_safe, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true, :class => "list-group-item"
 
       = comment.comment.html_safe
 

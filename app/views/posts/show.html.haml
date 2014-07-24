@@ -9,55 +9,53 @@
 
 - unless @related.empty?
   -widget do
-    %ul.nav.nav-list
-      %li.nav-header=:related_posts.l
+    %h4
+      .small=:related_posts.l
+    %ul.list-unstyled
       - @related.each do |post|
         %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)
 
 - unless @popular_posts.empty?
   -widget do
-    %ul.nav.nav-list
-      %li.nav-header=:popular_posts.l
+    %h4
+      .small=:popular_posts.l
+    %ul.list-unstyled
       - @popular_posts.each do |post|
         %li=link_to truncate(post.title, :length => 75), user_post_path(post.user, post)
 
 %h2=:users_blog.l :user=>  @user.login
 .clearfix
   .pull-right.col-sm-3
-    %ul.nav.nav-list
-      %li
-        %a{"href"=>"#{user_post_path(@user, @post)}", "rel"=>"bookmark"}
-          %i.icon-calendar.pull-left
-          %abbr.published{"title"=>"#{@post.published_at}"}= @post.published_at_display(:literal_date)
-      %li
+    .list-group
+      %a.list-group-item{:href => "#{user_post_path(@user, @post)}", :rel => "bookmark"}
+        %i.icon-calendar.pull-left
+        %abbr.published{:title => "#{@post.published_at}"}= @post.published_at_display(:literal_date)
+      %li.list-group-item
         %i.icon-eye-open
         = :view_count.l
         %span.badge= @post.view_count
-      %li
-        %a{:href=>user_post_path(@user, @post),:name=>'comments'}
-          %i.icon-comment
-          = :comments.l
-          %span.badge.badge-info=@post.comments.count
+      %a.list-group-item{:href => "#{user_post_path(@user, @post)}", :name => 'comments'}
+        %i.icon-comment
+        = :comments.l
+        %span.badge.badge-info=@post.comments.count
       - if current_user and current_user.can_request_friendship_with(@post.user)
-        %li
+        %li.list-group-item
           = add_friend_link(@post.user)
-      %li
-        %a{"href"=>"#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}
-          %i.icon-print
-          = :print.l
-      %li
-        %a.email{:href=>"#", :title=>:email_this_story_to_friends.l}
-          %i.icon-envelope
-          = :email_to_friends.l
+      %a.list-group-item{:href => "#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}
+        %i.icon-print
+        = :print.l
+      %a.email.list-group-item{:href => "#", :title => :email_this_story_to_friends.l}
+        %i.icon-envelope
+        = :email_to_friends.l
         #send_to_friend.modal.hide.fade{:style => 'padding-top: 60px;'}
-      %li
+      %li.list-group-item
         %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;button=false"}
         =sharethis_options(@post)
       -if @is_current_user || admin? || moderator?
-        %li
-          = icon_link_to 'icon-edit', :edit.l, edit_user_post_path(@post.user, @post)
-        %li
-          = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }}
+        %a.list-group-item{:href => "#{edit_user_post_path(@post.user, @post)}"}
+          %i.icon-edit
+          = :edit.l
+        = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
   = @post.post.html_safe
 / clearfix
 

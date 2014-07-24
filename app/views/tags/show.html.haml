@@ -1,10 +1,11 @@
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header
+-widget do
+  %h4
+    .small
       - if params[:type]
         = (params[:type].downcase.pluralize + '_tagged').l
       - else
         = :items_tagged.l
+  %ul.list-unstyled
     - @tags.each do |tag|
       %li= link_to h(tag.name), tag_path(tag)
        

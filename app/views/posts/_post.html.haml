@@ -3,32 +3,30 @@
     = link_to post.title, user_post_path(post.user, post), :rel => 'bookmark'
 
   .col-sm-3.pull-right.col-sm-offset-9
-    %ul.nav.nav-list
-      %li
-        %a{:href=>"#{user_post_path(post.user, post)}", :class=>"photo", :rel=>"bookmark"}
-          =image_tag (post.first_image_in_body || post.user.avatar_photo_url(:medium)), :class => 'thumbnail'
-      %li
-        =icon_link_to 'icon-hand-right', post.user.login, user_path(post.user)
-      %li
-        %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark"}
-          %i.icon-calendar
-          %abbr.published{:title=>"#{post.published_at}"}= post.published_at_display(:short_literal_date)
-      %li
+    .list-group
+      %a{:href => "#{user_post_path(post.user, post)}", :class => "photo list-group-item", :rel => "bookmark"}
+        =image_tag (post.first_image_in_body || post.user.avatar_photo_url(:medium)), :class => 'img-responsive'
+      %a{:href => "#{user_path(post.user)}", :class => "list-group-item"}
+        %i.icon-hand-right
+        =post.user.login
+      %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark", :class => "list-group-item"}
+        %i.icon-calendar
+        %abbr.published{:title=>"#{post.published_at}"}= post.published_at_display(:short_literal_date)
+      %li.list-group-item
         %i.icon-eye-open
         = :view_count.l
         %span.badge=post.view_count
-      %li
-        %a{:href => user_post_path(post.user, post)+'#comments'} 
-          %i.icon-comment
-          =:comments.l
-          %span.badge.badge-info=post.comments.count
+      %a{:href => user_post_path(post.user, post)+'#comments', :class => "list-group-item"}
+        %i.icon-comment
+        =:comments.l
+        %span.badge.badge-info=post.comments.count
       - if current_user and current_user.can_request_friendship_with(post.user)
-        %li
+        .list-group-item
           = add_friend_link(post.user)
-  
+
   = truncate_words(post.post, 75, '...' ).html_safe
 %p
   = render :partial => 'polls/excerpt', :locals => {:poll => post.poll} if post.poll
 %p
   = link_to :read_more.l, user_post_path(post.user, post), :rel=> 'bookmark'
-  
+

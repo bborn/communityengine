@@ -15,7 +15,7 @@
       =:no_profile_photo.l
       = link_to :click_here_to_upload_one.l, edit_user_path(@user)
     %br
-  = image_tag( @user.avatar_photo_url(:medium))
+  = image_tag( @user.avatar_photo_url(:medium), :class => "img-responsive")
 
   - if current_user and current_user.can_request_friendship_with(@user)
     %p= add_friend_link(@user)
@@ -37,8 +37,9 @@
 
 - if current_user && current_user.admin?
   -widget do
-    %ul.nav.nav-list
-      %li.nav-header=:admin_controls.l
+    %h4
+      .small=:admin_controls.l
+    %ul.list-unstyled
       %li= link_to(:assume_user_id.l, assume_user_path(@user), {:method => :post} )
       %li= link_to(:delete_this_user.l, user_path(@user), {:method => :delete, data: { confirm: :are_you_sure_you_want_to_permanently_delete_this_user.l }} )
       %li= link_to("#{:toggle.l} #{:featured_writer.l}".html_safe, toggle_featured_user_path(@user), {:method => :put} )

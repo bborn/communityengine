@@ -1,8 +1,9 @@
 -widget do
-  %ul.nav.nav-list
-    %li.nav-header=:author.l
+  %h4
+    .small=:author.l
+  %ul.list-unstyled
     %li
-      = link_to tag(:img, :src => user.avatar_photo_url(:medium), "alt"=>"#{user.login}"), user_path(user), :title => "#{user.login}'s"+ :profile.l
+      = link_to tag(:img, :src => user.avatar_photo_url(:medium), "alt"=>"#{user.login}", :class => "img-responsive"), user_path(user), :title => "#{user.login}'s"+ :profile.l
     %li
       = link_to user.login, user_path(user), :class => 'url'
       -if user.featured_writer?      

@@ -1,14 +1,13 @@
 -@page_title=:invite_your_friends_to_join.l
 
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:spread_the_word.l
-    %li
-      =:invite_message.l(:site => configatron.community_name)
-    %li
-      =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on.l
-      = configatron.community_name
-      \.
+-widget do
+  %h4
+    .small=:spread_the_word.l
+  %p=:invite_message.l(:site => configatron.community_name)
+  %p
+    =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on.l
+    = configatron.community_name
+    \.
 
 = bootstrap_form_for [@user, @invitation], :html => {:class => "form form-horizontal"} do |f|
   .pull-right

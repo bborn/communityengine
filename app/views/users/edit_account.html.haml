@@ -1,7 +1,6 @@
 -widget do
-  %ul.nav.nav-list
-    %li.nav-header=:you_are_editing_your_account.l
-    %li= link_to :edit_your_user_profile.l, edit_user_path(@user)
+  %p=:you_are_editing_your_account.l
+  %p= link_to :edit_your_user_profile.l, edit_user_path(@user)
 
 -widget do
   = render :partial => "omniauth_connect"

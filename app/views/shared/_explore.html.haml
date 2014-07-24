@@ -1,6 +1,7 @@
 -widget do
-  %ul.nav.nav-list
-    %li.nav-header Explore
+  %h4
+    .small Explore
+  %ul.list-unstyled
     - Category.all.each do |c|
       %li= link_to c.name, category_path(c)
     %li= link_to :whats_popular.l, popular_url, {:class => 'popular'}

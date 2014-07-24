@@ -1,6 +1,6 @@
 -widget do
-  %ul.nav.nav-list
-    %li.nav-header=:admin.l
+  %h3=:admin.l
+  %ul.list-unstyled
     %li= link_to_unless_current :features.l, homepage_features_path
     %li= link_to_unless_current :categories.l, categories_path
     %li= link_to_unless_current :metro_areas.l, metro_areas_path

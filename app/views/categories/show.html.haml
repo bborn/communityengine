@@ -2,16 +2,18 @@
 - @section = @category.name
 
 -unless @active_users.empty?
-  -widget do 
-    %ul.nav.nav-list
-      %li.nav-header=:top_writers.l
+  -widget do
+    %h4
+      .small=:top_writers.l
+    %ul.list-unstyled
       - @active_users.each do |user|
         = render :partial => "users/sidebar_user", :locals => {:user => user} 
 
 -unless @popular_posts.empty?
-  -widget do 
-    %ul.nav.nav-list
-      %li.nav-header=:popular_category.l(:name => @category.name) 
+  -widget do
+    %h4
+      .small=:popular_category.l(:name => @category.name)
+    %ul.list-unstyled
       - @popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
 
