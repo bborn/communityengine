@@ -4,7 +4,7 @@
   %h3
     = params[:recent] ? :recent.l : :popular.l
     Clippings
-  %ul.thumbnails
+  %ul.list-unstyled.thumbnails
     - @clippings.each do |clipping|
       %li.col-sm-3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
   -if @clippings.total_count > 1

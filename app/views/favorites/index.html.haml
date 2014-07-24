@@ -1,6 +1,6 @@
 -@page_title = "#{@user.login}'s "+:favorites.l
 
-%ul.thumbnails
+%ul.list-unstyled.thumbnails
   - @favorites.each do |f|
     %li.col-sm-4
       =render :partial => "favorite", :locals => {:favorite => f}

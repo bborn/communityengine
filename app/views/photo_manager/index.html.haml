@@ -36,7 +36,7 @@
 =link_to :new_album.l, new_user_album_path(current_user), :class => 'btn btn-success'
 
 %h2= :not_assigned_photos.l
-%ul.thumbnails
+%ul.list-inline.thumbnails
   - @photos_no_albums.each do |photo|
     %li.col-sm-2
       = link_to image_tag( photo.photo.url(:thumb)), user_photo_path(current_user, photo), :class => 'thumbnail'

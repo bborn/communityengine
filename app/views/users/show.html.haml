@@ -70,7 +70,7 @@
 - unless @photos.empty?
   .clearfix
     %h2=:my_photos.l
-    %ul.thumbnails
+    %ul.list-unstyled.thumbnails
       - @photos.each do |photo|
         %li.col-lg-3
           = link_to image_tag( photo.photo.url(:medium)), user_photo_path(@user, photo), :class => "thumbnail"
@@ -87,7 +87,7 @@
 - unless @clippings.empty?
   .clearfix
     %h2=:my_clippings.l
-    %ul.thumbnails
+    %ul.list-unstyled.thumbnails
       - @clippings.each do |clipping|
         %li.col-sm-3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
     = icon_link_to 'icon-plus-sign', :view_all_my_clippings.l, user_clippings_path(@user)

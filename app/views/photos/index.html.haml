@@ -16,7 +16,7 @@
               %i.icon-tag.icon-white
               =tag.name
 
-%ul.thumbnails
+%ul.list-unstyled.thumbnails
   - @photos.each do |photo|
     %li.col-sm-3
       = link_to image_tag(photo.photo.url(:medium)), user_photo_path(@user, photo), :class => 'thumbnail'

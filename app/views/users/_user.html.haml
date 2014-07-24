@@ -11,8 +11,8 @@
         = truncate_words user.description, 18, '...'
 
 
-    %ul
-      - if user.metro_area        
+    %ul.list-unstyled
+      - if user.metro_area
         %li.geo
           = :from2.l
           =user.location

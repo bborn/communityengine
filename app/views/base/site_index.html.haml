@@ -15,8 +15,9 @@
 -widget do
   %h4
     .small= :whats_hot.l
-  -@popular_posts.each do |post|
-    =render :partial => 'posts/sidebar_post', :locals => {:post => post}
+  %ul.list-unstyled
+    -@popular_posts.each do |post|
+      =render :partial => 'posts/sidebar_post', :locals => {:post => post}
   =icon_link_to 'icon-plus-sign', :see_all.l, popular_url
 
 -widget do
