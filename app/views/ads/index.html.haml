@@ -2,7 +2,7 @@
 = render :partial => 'shared/admin_nav'
 
 %h2=:search.l
-= bootstrap_form_for @search, :url => ads_path, :html => {:class => "form form-horizontal"} do |f|
+= bootstrap_form_for @search, :url => ads_path, :layout => :horizontal do |f|
   = f.text_field :name_start, :label => :name.l
   = f.text_field :location_cont, :label => :location.l
   .controls

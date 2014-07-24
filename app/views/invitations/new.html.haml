@@ -9,7 +9,7 @@
     = configatron.community_name
     \.
 
-= bootstrap_form_for [@user, @invitation], :html => {:class => "form form-horizontal"} do |f|
+= bootstrap_form_for [@user, @invitation], :layout => :horizontal do |f|
   .pull-right
     %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
       %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}/

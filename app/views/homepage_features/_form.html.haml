@@ -1,4 +1,4 @@
-= bootstrap_form_for(@homepage_feature, :html => {:multipart =>true, :class => 'form form-horizontal'} ) do |f|
+= bootstrap_form_for(@homepage_feature, :html => {:multipart => true}, :layout => :horizontal) do |f|
   = f.text_field :url
   = f.text_field :title
   = f.text_area :description, :rows => 10, :class => "rich_text_editor"

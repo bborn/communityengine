@@ -5,7 +5,7 @@
   -url = forum_topic_path(@forum, @topic)
   -object = [@forum, @topic]
 
-= bootstrap_form_for object, :url => url, :html => {:class => "form form-horizontal" } do |f|
+= bootstrap_form_for object, :url => url, :layout => :horizontal do |f|
   = f.text_field :title
 
   - if admin? or current_user.moderator_of?(@topic.forum)

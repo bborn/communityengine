@@ -1,4 +1,4 @@
-= bootstrap_form_for [user, message], :html => {:class => "form form-horizontal"} do |f|
+= bootstrap_form_for [user, message], :layout => :horizontal do |f|
 
   -if message.reply_to
     =f.hidden_field :to

@@ -8,7 +8,7 @@
     %li= link_to :skip_this_step.l, welcome_about_user_path(@user)
     %li= link_to :go_to_your_profile.l, user_path(@user)
 
-= bootstrap_form_for @user, :url => user_path(:welcome => 'about'), :method => :put, :multipart => true, :html => {:class => "form form-horizontal"} do |f|      
+= bootstrap_form_for @user, :url => user_path(:welcome => 'about'), :method => :put, :multipart => true, :layout => :horizontal do |f|
   -if @user.avatar_photo_url
     = image_tag @user.avatar_photo_url(:medium), :class => "pull-right"
       

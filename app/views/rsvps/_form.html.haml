@@ -1,4 +1,4 @@
-= bootstrap_form_for([@event, @rsvp], :html => {:class => "form form-horizontal"} ) do |f|
+= bootstrap_form_for([@event, @rsvp], :layout => :horizontal) do |f|
   = f.text_field :attendees_count, :label => :number_of_attendees.l
   .controls
     = f.submit :update.l

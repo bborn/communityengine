@@ -6,7 +6,7 @@
   = render :partial => "omniauth_connect"
 
 
-= bootstrap_form_for @user, :method => 'put', :html => {:class => "form form-horizontal", :multipart => true} do |f|
+= bootstrap_form_for @user, :method => 'put', :layout => :horizontal, :label_col => "col-sm-2", :control_col => "col-sm-4", :html => {:multipart => true} do |f|
 
   = f.text_field  :login, :label => :username.l
 

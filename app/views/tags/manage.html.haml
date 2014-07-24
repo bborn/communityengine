@@ -3,7 +3,7 @@
 
 -box do
   %h3=:search.l
-  = bootstrap_form_for @search, :url => admin_tags_path, :html => {:class => "form form-horizontal"} do |f|
+  = bootstrap_form_for @search, :url => admin_tags_path, :layout => :horizontal do |f|
     = f.text_field :name_start, :label => :name.l
 
     .controls

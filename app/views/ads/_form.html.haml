@@ -1,4 +1,4 @@
-= bootstrap_form_for(@ad, :html => { :class => "form form-horizontal" }) do |f|
+= bootstrap_form_for(@ad, :layout => :horizontal) do |f|
   = f.text_field :name
   = f.text_area :html, :class => "rich_text_editor"
   = f.select :frequency, Ad.frequencies_for_select

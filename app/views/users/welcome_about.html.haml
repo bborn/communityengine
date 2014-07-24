@@ -18,12 +18,12 @@
     = image_tag @user.avatar_photo_url(:medium), :class => "img-responsive"
     = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)
 
-= form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "form form-horizontal" do
-  
+= form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart => true, :layout => :horizontal do
+
   %fieldset
     %legend= :description.l
     = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
-  
+
 
   %fieldset
     %legend=:gender.l

@@ -1,7 +1,7 @@
 -@page_title = 'Comments'
 = render :partial => 'shared/admin_nav'
 
-= bootstrap_form_for @search, :url => admin_comments_path, :html => {:class => "form form-horizontal"} do |f|
+= bootstrap_form_for @search, :url => admin_comments_path, :layout => :horizontal do |f|
   %h2=:search.l
   = f.text_field :author_email_or_user_email_cont, :label => :email.l
 

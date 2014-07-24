@@ -1,4 +1,4 @@
-= bootstrap_form_for @comment, :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :html => {:id => "edit_comment_#{comment.id}_form", :class => "form form-horizontal submit-via-ajax"} do |f|
+= bootstrap_form_for @comment, :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :html => {:id => "edit_comment_#{comment.id}_form", :layout => :horizontal, :class => "submit-via-ajax"} do |f|
   = f.text_area :comment, :rows => 5, :style => 'width: 99%;', :class => "rich_text_editor", :help_block => :comment_character_limit.l, :id => "comment_#{comment.id}_comment", :required => false
   -if !logged_in? && configatron.allow_anonymous_commenting
     = f.text_field :author_name

@@ -8,7 +8,7 @@
   = render :partial => 'shared/bio_help'
   =:feel_free_to_embed_images_or_videos.l
 
-= bootstrap_form_for @user, :html => {:class => 'form form-horizontal', :multipart =>true} do |f|
+= bootstrap_form_for @user, :layout => :horizontal, :label_col => "col-sm-2", :control_col => "col-sm-10", :html => {:multipart =>true} do |f|
 
   %h2=:profile_photo.l
   = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''

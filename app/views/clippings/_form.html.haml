@@ -5,7 +5,7 @@
   -url = user_clipping_path(@user, @clipping)
   -object = [@user, @clipping]
 
-= bootstrap_form_for(object, :url => url, :html => {:class => "form form-horizontal" }) do |f|
+= bootstrap_form_for(object, :url => url, :layout => :horizontal) do |f|
   = f.text_field :url
   -if @clipping.new_record?
     = f.text_field :image_url

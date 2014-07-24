@@ -1,4 +1,4 @@
-= bootstrap_form_for @metro_area, :html => {:class => 'form form-horizontal' } do |f|
+= bootstrap_form_for @metro_area, :layout => :horizontal do |f|
   = f.collection_select :country_id, Country.order('name ASC'), :id, :name
   = f.collection_select :state_id, State.all, :id, :name, :include_blank => true
   = f.text_field :name

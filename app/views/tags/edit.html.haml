@@ -6,7 +6,7 @@
   =link_to :show.l, tag_path(@tag), :class => 'btn btn-primary'
   =link_to :delete.l, tag_path(@tag), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 
-= bootstrap_form_for :tag, :url => tag_path(@tag), :html => {:method => 'put', :class => "form form-horizontal"} do |f|
+= bootstrap_form_for :tag, :url => tag_path(@tag), :layout => :horizontal, :html => {:method => 'put'} do |f|
   = f.text_field :name
   .controls
     = f.submit :update.l

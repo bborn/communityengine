@@ -21,11 +21,11 @@
         ="$('#clipping_image_list').html($.post('#{load_images_from_uri_path(:uri => params[:uri]).html_safe}'));"
     =link_to :cancel_and_go_back_to.l + ' ' + @clipping.url, params[:uri], :class => 'btn btn-xs btn-primary'
     #lightbox.modal.hide.fade{:style => 'padding-top: 60px;'}
-      = bootstrap_form_for(:clipping, :url => user_clippings_path(@user), :html => {:class => "form form-horizontal"} ) do |f|
+      = bootstrap_form_for(:clipping, :url => user_clippings_path(@user), :layout => :horizontal) do |f|
         = f.text_field :url
 
         %img#clipping_preview{"src"=>nil, "width"=>"100px", "style"=>"float:right"}
-        
+
         = f.text_field :image_url
 
         = f.text_field :tag_list, {:help_block => :optional_keywords_describing_this_clipping_separated_by_commas.l, :autocomplete => "off",:id => 'clipping_tag_list'}

@@ -5,7 +5,7 @@
   -object = [@user, @photo]
   -url = user_photo_path(@user, @photo)
 
-= bootstrap_form_for object, :url => url, :html => {:class => "form form-horizontal"}  do |f|
+= bootstrap_form_for object, :url => url, :layout => :horizontal  do |f|
   -if @photo.photo_file_name.blank?
     = f.file_field :photo, :help_block => :megabyte_upload_limit.l(:count => configatron.photo.validation_options.max_size)
   -else
