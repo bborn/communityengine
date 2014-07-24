@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts-as-taggable-on",       '~> 2.4.1'
   s.add_dependency "authlogic",                 ">= 3.3.0"
   s.add_dependency "aws-sdk",                   ">= 0"
-  s.add_dependency "bcrypt-ruby",               ">= 0"
+  s.add_dependency "bcrypt",                    ">= 0"
   s.add_dependency "cocaine",                   "~> 0.5.1"
   s.add_dependency "configatron",               "~> 2.0"
   s.add_dependency "dynamic_form",              ">= 0"
