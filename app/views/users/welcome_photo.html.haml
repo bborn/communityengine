@@ -18,4 +18,4 @@
     = avatar_form.file_field :photo, :label => :choose_a_photo_to_upload.l
     %p.help-block=:photos_should_be_x_pixels.l
 
-  = f.submit :upload_and_continue_to_step_two.l, :class => "btn btn-primary"
+  = f.primary :upload_and_continue_to_step_two.l

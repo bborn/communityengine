@@ -15,5 +15,5 @@
   = hidden_field_tag :go_to
 
   .btn-group
-    = f.submit button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'", :class => 'btn btn-primary'
-    = f.submit button1, :class => 'btn btn-primary'
+    = f.primary button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'"
+    = f.primary button1

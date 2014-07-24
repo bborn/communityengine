@@ -21,4 +21,4 @@
   - unless params[:album_id] || current_user.albums.empty?
     = f.select(:album_id, current_user.albums.collect {|album| [album.title, album.id ] }, { :include_blank => true })
 
-  = f.submit :save.l, :class => "btn btn-primary"
+  = f.primary :save.l

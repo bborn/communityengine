@@ -9,4 +9,4 @@
     = tag_auto_complete_field 'forum_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
   = f.text_area :description, :rows => 7, :class => "rich_text_editor"
-  = f.submit :save.l, :class => "btn btn-primary"
+  = f.primary :save.l

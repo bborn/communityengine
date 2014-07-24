@@ -12,7 +12,7 @@
       %label.control-label= :show.l
       = select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
 
-    = f.submit :search.l
+    = f.primary :search.l
 
 %p=:posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them.l
 

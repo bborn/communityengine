@@ -6,7 +6,7 @@
   = bootstrap_form_for @search, :url => admin_tags_path, :layout => :horizontal do |f|
     = f.text_field :name_start, :label => :name.l
 
-    = f.submit :search.l
+    = f.primary :search.l
 
 %table.table.table-bordered.table-striped
   %tr

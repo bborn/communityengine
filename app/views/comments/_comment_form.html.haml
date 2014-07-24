@@ -16,7 +16,7 @@
 
       = f.text_field :author_url, :label => :comment_web_site_label.l
 
-    = f.submit :add_comment.l
+    = f.primary :add_comment.l
     = ajax_spinner_for 'comment'
 - else
   .btn-group

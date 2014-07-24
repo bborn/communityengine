@@ -16,7 +16,7 @@
   = f.text_area :email_addresses , :rows => "5", :label => :enter_e_mail_addresses.l
   %p.help-block= :comma_separated.l
   = f.text_area :message, :rows => "5", :label => :write_a_message.l
-  = f.submit :send_invitations.l
+  = f.primary :send_invitations.l
 
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/util.js"}
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}

@@ -36,8 +36,7 @@
       =:when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to.l
       =configatron.community_name
 
-    = f.actions do
-      =f.submit :value => :save_changes.l
+    =f.primary :save_changes.l
 
     .well
       =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, data: { confirm: :deactivate_confirmation.l }, :class => 'btn btn-danger'

@@ -5,7 +5,7 @@
 = bootstrap_form_for @search, :url => ads_path, :layout => :horizontal do |f|
   = f.text_field :name_start, :label => :name.l
   = f.text_field :location_cont, :label => :location.l
-  = f.submit :search.l
+  = f.primary :search.l
 
 %table.table.table-bordered.table-striped
   %tr

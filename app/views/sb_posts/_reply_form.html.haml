@@ -23,14 +23,14 @@
           = recaptcha_tags :ajax => true
           %p
             = ajax_spinner_for "reply"
-            = f.submit :save_reply.l
+            = f.primary :save_reply.l
             = :or.l
             = link_to_function :cancel.l, :class => 'reply-toggle'
       -else
         %td
           %p
             = ajax_spinner_for "reply"
-            = f.submit :save_reply.l
+            = f.primary :save_reply.l
             = :or.l
-            = link_to :cancel.l, '#', :class => 'reply-toggle'
+            = link_to :cancel.l, '#', :class => 'reply-toggle btn btn-default'
 
