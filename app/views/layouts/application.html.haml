@@ -19,11 +19,9 @@
     -unless configatron.auth_providers.facebook.key.blank?
       =render :partial => 'facebook/fb_require'
 
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container.clearfix
-          .row
-            = render :partial => "shared/header"
+    .navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+      .container-fluid
+        = render :partial => "shared/header"
 
     .container
       .row

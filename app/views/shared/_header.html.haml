@@ -1,11 +1,13 @@
--# .btn-navbar is used as the toggle for when the responsive design gets narrow and the navbar goes away
-%a.btn.btn-navbar{'data-target'=>".nav-collapse", 'data-toggle'=>"collapse"}
-  .icon-bar
-  .icon-bar
-  .icon-bar
-= link_to configatron.community_name, home_path, :class => 'brand'
-.nav-collapse
-  %ul.nav
+-# .navbar-toggle is used as the toggle for when the responsive design gets narrow and the navbar goes away
+.navbar-header
+  %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+    %span.sr-only Toggle navigation
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
+  = link_to configatron.community_name, home_path, :class => 'navbar-brand'
+.navbar-collapse.collapse
+  %ul.nav.navbar-nav
     = render 'categories/menu_item'
     = render 'clippings/menu_item'
     = render 'events/menu_item'
@@ -15,6 +17,6 @@
     - if @header_tabs.any?
       - for tab in @header_tabs
         %li= link_to tab.name, tab.url
-  %ul.nav.pull-right
+  %ul.nav.navbar-nav.pull-right
     = render 'messages/menu_item'
     = render 'sessions/menu_item'
