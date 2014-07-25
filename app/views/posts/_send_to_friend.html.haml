@@ -4,11 +4,11 @@
     &times;
   %h3= :send_this_story_to_friends.l
 .modal-body
-  .control-group
+  .form-group
     %label.control-label= :enter_a_message.l
     .controls
       = text_area_tag :message, :this_story_is_awesome.l
-  .control-group
+  .form-group
     %label.control-label=:enter_e_mail_addresses_comma_sep.l
     .pull-right
       %a{:href => '#', :onclick => "showPlaxoABChooser('emails', '/base/plaxo'); return false;"}

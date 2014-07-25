@@ -1,11 +1,11 @@
 -@page_title=:forgot_your_password.l
 
 = form_tag password_reset_path, :method => :put, :class => "form form-horizontal" do
-  .control-group
+  .form-group
     %label.control-label=:password.l
     .controls= password_field_tag :password, '', :class => 'required'
 
-  .control-group
+  .form-group
     %label.control-label=:confirm_password.l
     .controls= password_field_tag :password_confirmation, '', :class => 'required'
   .controls= submit_tag :reset_my_password.l, :class => 'btn btn-primary'

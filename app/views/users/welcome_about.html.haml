@@ -35,7 +35,7 @@
          
   %fieldset   
     %legend=:choose_your_location.l
-    .control-group
+    .form-group
       %label.control-label=:postal_code.l
       .controls= text_field :user, :zip, :size => 10
     .controls
@@ -43,7 +43,7 @@
     
   %fieldset
     %legend= :tag_yourself.l
-    .control-group
+    .form-group
       %label.control-label= :tags.l
       .controls
         = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}

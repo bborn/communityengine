@@ -5,17 +5,17 @@
         = f.text_area :body, :rows => 10, :style => "width: 99%;", :class => "rich_text_editor", :required => false
       - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key
         %td
-          .control-group
+          .form-group
             %label.control-label{"for"=>"comment[author_name]"}
               =:name.l
             .controls= f.text_field :author_name
 
-          .control-group
+          .form-group
             %label.required.control-label{"for"=>"comment[author_email]"}
               =:email.l
             .controls= f.text_field :author_email
 
-          .control-group
+          .form-group
             %label.control-label{"for"=>"comment[author_url]"}
               =:comment_web_site_label.l
             .controls= f.text_field :author_url, :size => 35

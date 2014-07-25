@@ -18,14 +18,14 @@
     = avatar_form.file_field :photo, :size => '15'
 
   %h2= :location.l
-  .control-group
+  .form-group
     %label.control-label= :location.l
     .controls= render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
 
   = f.text_field :zip, :label => :zippostal_code.l
 
   %h2=:birthday_gender.l
-  %fieldset.control-group
+  %fieldset.form-group
     %legend.control-label
       =:gender.l
     .controls

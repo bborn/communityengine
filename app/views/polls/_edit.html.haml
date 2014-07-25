@@ -1,9 +1,9 @@
-.control-group
-  %label.control-label{:for => 'poll_question'} 
+.form-group
+  %label.control-label{:for => 'poll_question'}
     =:question.l
   .controls=text_field_tag 'poll[question]', poll.question, :class => 'text'
 
-.control-group
+.form-group
   %label.control-label
     =:choices.l
   .controls

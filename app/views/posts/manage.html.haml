@@ -8,7 +8,7 @@
     = f.select :category_id_eq, Category.all.collect{|c| [c.name, c.id]}, :include_blank => true, :label => :category.l
     = f.select :published_as_eq, [['Published','live'], ['Draft','draft']], :include_blank => true, :label => :status.l
 
-    .control-group
+    .form-group
       %label.control-label= :show.l
       .controls= select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
 

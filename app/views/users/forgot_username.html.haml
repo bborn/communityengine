@@ -2,7 +2,7 @@
 =render :partial => 'shared/login_sidebar'
 
 = form_tag forgot_username_path, :class => 'form form-horizontal' do
-  .control-group
+  .form-group
     %label.control-label{"for"=>"email"}=:enter_your_email_address.l+":"
     .controls= text_field_tag 'email', nil
   .controls
