@@ -37,7 +37,7 @@
   -if @clipping.tags.any?
     %dt=:tags.l
     %dd
-      %ul.unstyled
+      %ul.list-unstyled
         - @clipping.tags.each do |t|
           %li
             %a.label.label-info{:href => tag_url(t), :rel => 'tag'}

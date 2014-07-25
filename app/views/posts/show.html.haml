@@ -64,7 +64,7 @@
 = render :partial => 'polls/poll_ui', :locals => {:poll => @post.polls.first} unless @post.polls.empty?
 - unless @post.tags.empty?
   .clearfix
-    %ul.unstyled
+    %ul.list-unstyled
       - @post.tags.each do |t|
         %li
           %a.label.label-info{:href => tag_url(t), :rel => 'tag'}

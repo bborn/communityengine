@@ -4,7 +4,7 @@
 -if @tags.any?
   -widget do
     %h3=:tags.l
-    %ul.unstyled
+    %ul.list-unstyled
       - @tags.each do |tag|
         %li
           - if (tag.name.eql?(params[:tag_name]) )

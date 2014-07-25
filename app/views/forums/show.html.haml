@@ -20,7 +20,7 @@
 
 - if @forum.moderators.any?
   %h2= :moderators.l
-  %ul.unstyled
+  %ul.list-unstyled
     - @forum.moderators.each do |user|
       %li= link_to user.display_name, user_path(user)
 
