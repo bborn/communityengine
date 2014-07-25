@@ -7,7 +7,7 @@
     
 -widget do 
   %h3= :search.l
-  =form_tag search_tags_path, :method => 'get', :class => 'form' do
+  =bootstrap_form_tag :url => search_tags_path, :method => 'get', :class => 'form' do
     .form-group
       = text_field_tag 'id', params[:id], :autocomplete => "off", :placeholder => 'search tags'
     #id_auto_complete.auto_complete

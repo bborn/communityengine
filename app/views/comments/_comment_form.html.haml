@@ -1,23 +1,22 @@
 - if logged_in? || configatron.allow_anonymous_commenting
 
   = bootstrap_form_for(:comment, :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :layout => :horizontal, :html => {:class => "submit-via-ajax", :id => 'comment'}) do |f|
-    = f.text_area :comment, :rows => 5, :style => 'width: 99%', :class => "rich_text_editor"
-    %p.help-block= :comment_character_limit.l
+    = f.text_area :comment, :rows => 5, :style => 'width: 99%', :class => "rich_text_editor", :help => :comment_character_limit.l
 
     - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key
       .pull-right{:style => 'margin-top:2em;'}= recaptcha_tags :ajax => true
       = f.text_field :author_name
       = f.text_field :author_email, :required => true
       -if commentable.respond_to?(:send_comment_notifications?) && !commentable.send_comment_notifications?
-        =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l
-        %p.help-block= :comment_notifications_off.l
+        =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l, :help => :comment_notifications_off.l
       -else
         =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l
 
       = f.text_field :author_url, :label => :comment_web_site_label.l
 
-    = f.primary :add_comment.l
-    = ajax_spinner_for 'comment'
+    = f.form_group :submit_group do
+      = f.primary :add_comment.l
+      = ajax_spinner_for 'comment'
 - else
   .btn-group
     = link_to :log_in_to_leave_a_comment.l, new_commentable_comment_path(commentable.class, commentable.id), :class => 'btn btn-primary'

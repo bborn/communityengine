@@ -15,7 +15,6 @@
   = f.fields_for :avatar, @avatar do |avatar_form|
     - if @user.vendor?
       =:vendor_avatar_hint.l
-    = avatar_form.file_field :photo, :label => :choose_a_photo_to_upload.l
-    %p.help-block=:photos_should_be_x_pixels.l
+    = avatar_form.file_field :photo, :label => :choose_a_photo_to_upload.l, :help => :photos_should_be_x_pixels.l
 
   = f.primary :upload_and_continue_to_step_two.l

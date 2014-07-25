@@ -10,15 +10,13 @@
         %li= link_to(image_tag("auth/#{provider.to_s}_64.png", :alt => alt), "/auth/#{provider.to_s}", :title => alt)
 
 %h3
-= form_tag sessions_path, :class => 'form form-horizontal' do
-  .form-group
-    %label.control-label{"for"=>"email"}=:email.l
-    = text_field_tag 'email', nil
-  .form-group
-    %label.control-label{"for"=>"password"}=:password.l
-    =password_field_tag 'password', nil
-  %fieldset
-    %label{"for"=>"remember_me"}
-      = check_box_tag 'remember_me'
+= bootstrap_form_tag :url => sessions_path, :layout => :horizontal do |f|
+  = f.email_field :email
+  = f.password_field :password
+
+  = f.form_group :remember_group do
+    = f.check_box :check_box do
       =:remember_me.l
-  = submit_tag :log_in.l, :class => 'btn btn-primary'
+
+  =f.form_group :submit_group do
+    = f.primary :log_in.l

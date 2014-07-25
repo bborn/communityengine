@@ -8,9 +8,9 @@
 
 = bootstrap_form_for @user, :method => 'put', :layout => :horizontal, :label_col => "col-sm-2", :control_col => "col-sm-4", :html => {:multipart => true} do |f|
 
-  = f.text_field  :login, :label => :username.l
+  = f.text_field :login, :label => :username.l
 
-  = f.text_field  :email, :label => :e_mail_address.l
+  = f.text_field :email, :label => :e_mail_address.l
 
   = f.password_field :password
 
@@ -18,7 +18,7 @@
 
   %h2=:e_mail_notification.l
 
-  %fieldset.form-group
+  = f.form_group :notifications_group do
     =f.check_box :notify_friend_requests, :label => :notify_of_friend_requests.l(:site => configatron.community_name)
 
     =f.check_box :notify_comments, :label => :notify_of_comments.l(:site => configatron.community_name)
@@ -27,19 +27,18 @@
 
   %h2=:profile_privacy.l
 
-  %fieldset.form-group
-
+  = f.form_group :location do
     =f.check_box :profile_public, :label => :make_my_profile_public.l
-    %p.help-block
-      = :when_checked_your_profile_will_be_visible_to_anyone.l
-      %br
-      =:when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to.l
-      =configatron.community_name
+    .help-block
+      %p=:when_checked_your_profile_will_be_visible_to_anyone.l
+      %p=:when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to.l(configatron.community_name)
 
+
+  .well
     =f.primary :save_changes.l
 
-    .well
-      =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, data: { confirm: :deactivate_confirmation.l }, :class => 'btn btn-danger'
-      %br
-      %label
-        %em= :deactivate_tip.l
+  .well
+    =link_to :deactivate_link.l, deactivate_user_path(@user), :method => :put, data: { confirm: :deactivate_confirmation.l }, :class => 'btn btn-danger'
+    %br
+    %label
+      %em= :deactivate_tip.l

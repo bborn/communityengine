@@ -9,11 +9,10 @@
   = f.text_field :title
 
   - if admin? or current_user.moderator_of?(@topic.forum)
-    %fieldset
+    = f.form_group :options_group do
       = f.check_box :sticky
       = f.check_box :locked
-  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l
-  %p.help-block=:optional_keywords_describing_this_topic_separated_by_commas.l
+  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l, :help => :optional_keywords_describing_this_topic_separated_by_commas.l
   #tag_list_auto_complete.auto_complete
 
   -content_for :end_javascript do
@@ -26,4 +25,5 @@
   - if admin? and not @topic.new_record?
     = f.select :forum_id, Forum.order("position ASC").map {|x| [x.name, x.id] }, :label => :forum.l
 
-  = f.primary :save.l
+  = f.form_group :submit_group do
+    = f.primary :save.l

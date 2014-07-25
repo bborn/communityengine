@@ -12,13 +12,13 @@
       = link_to :go_to_your_profile.l, user_path(@user)
 
 - if @user.avatar_photo_url
-  -widget do 
+  -widget do
     %h3=:your_profile_photo.l
     = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
     = image_tag @user.avatar_photo_url(:medium), :class => "img-responsive"
     = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)
 
-= form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart => true, :layout => :horizontal do
+= bootstrap_form_tag :url => user_path(:welcome => 'invite'), :method => 'put', :multipart => true do
 
   %fieldset
     %legend= :description.l
@@ -38,7 +38,7 @@
     %legend=:choose_your_location.l
     .form-group
       %label.control-label=:postal_code.l
-      = text_field :user, :zip, :size => 10
+      = text_field :user, :zip, :size => 10, :class => "form-control"
     = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
 
   %fieldset

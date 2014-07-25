@@ -4,10 +4,8 @@
   = f.select :frequency, Ad.frequencies_for_select
   = f.select :audience, Ad.audiences_for_select
 
-  %fieldset{"for"=>"ad_published"}
+  = f.form_group :ad_time_constrained do
     = f.check_box :published, :label => :published.l + '?'
-
-  %fieldset{"for"=>"ad_time_constrained"}
     = f.check_box :time_constrained, :label => :time_constrained.l + '?'
 
   #time_constraints{"style"=>"display:#{ @ad.time_constrained? ? 'block' : 'none'}"}

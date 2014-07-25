@@ -28,8 +28,7 @@
 
         = f.text_field :image_url
 
-        = f.text_field :tag_list, {:autocomplete => "off",:id => 'clipping_tag_list'}
-        %p.help-block=:optional_keywords_describing_this_clipping_separated_by_commas.l
+        = f.text_field :tag_list, {:autocomplete => "off",:id => 'clipping_tag_list'}, :help => :optional_keywords_describing_this_clipping_separated_by_commas.l
 
         #clipping_tag_list_auto_complete.auto_complete
         = tag_auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :update => 'clipping_tag_list_auto_complete' }

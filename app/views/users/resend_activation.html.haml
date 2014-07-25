@@ -1,7 +1,7 @@
 -@page_title=:resend_your_activation_e_mail.l
 =render :partial => 'shared/login_sidebar'
 
-= form_tag resend_activation_url, :class => 'form form-horizontal' do
+= bootstrap_form_tag :url => resend_activation_url, :layout => :horizontal do
   .form-group
     %label.control-label{"for"=>"email"}=:enter_your_email_address.l
     = text_field_tag 'email', nil

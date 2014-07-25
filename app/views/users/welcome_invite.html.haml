@@ -15,10 +15,10 @@
     %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
       %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}
 
-  = f.text_area :email_addresses, :rows => 5, :label => :enter_e_mail_addresses.l
-  %p.help-block=:comma_separated.l
+  = f.text_area :email_addresses, :rows => 5, :label => :enter_e_mail_addresses.l, :help => :comma_separated.l
   = f.text_area :message, :rows => 5, :label => :write_a_message.l, :value => "#{configatron.community_name} "+:is_great_check_it_out_youll_love_it.l+" #{}"
 
-  .btn-group
-    = submit_tag :send_invitations.l, :class => 'btn btn-primary'
-    = link_to :skip_this_and_go_to_your_profile.l, user_path(@user), :class => 'btn btn-primary'
+  = f.form_group :submit_buttons_group do
+    .btn-group
+      = submit_tag :send_invitations.l, :class => 'btn btn-primary'
+      = link_to :skip_this_and_go_to_your_profile.l, user_path(@user), :class => 'btn btn-primary'

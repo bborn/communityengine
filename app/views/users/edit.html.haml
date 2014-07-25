@@ -8,7 +8,7 @@
   = render :partial => 'shared/bio_help'
   =:feel_free_to_embed_images_or_videos.l
 
-= bootstrap_form_for @user, :layout => :horizontal, :label_col => "col-sm-2", :control_col => "col-sm-10", :html => {:multipart =>true} do |f|
+= bootstrap_form_for @user, :layout => :horizontal, :html => {:multipart =>true} do |f|
 
   %h2=:profile_photo.l
   = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
@@ -18,22 +18,16 @@
     = avatar_form.file_field :photo, :size => '15'
 
   %h2= :location.l
-  .form-group
-    %label.control-label= :location.l
+  = f.form_group :location, label: { :text => :location.l } do
     = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
 
-  = f.text_field :zip, :label => :zippostal_code.l
+  %label= :zippostal_code.l
+  = f.text_field :zip, :hide_label => true
 
   %h2=:birthday_gender.l
-  %fieldset.form-group
-    %legend.control-label
-      =:gender.l
-    %label
-      = radio_button :user, :gender, User::MALE
-      =:male.l
-    %label
-      = radio_button :user, :gender, User::FEMALE
-      =:female.l
+  = f.form_group :birthday_gender, label: { :text => :gender.l } do
+    = f.radio_button :gender, User::MALE, :label => :male.l, :inline => true
+    = f.radio_button :gender, User::FEMALE, :label => :female.l, :inline => true
 
   = f.date_select :birthday, {:start_year => 1926, :end_year => Time.now.year - 1}
 
@@ -43,12 +37,8 @@
   %h2= :tags.l
   #user_tags
     = f.text_field :tag_list, {:autocomplete => "off"}
-    #tag_list_auto_complete.auto_complete
-    -content_for :end_javascript do
-      = tag_auto_complete_field 'user_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
-
-    %label
-      %em
+    = f.form_group :tag_list_group do
+      .help-block
         =:you_could_tag_yourself.l
         - if @user.vendor?
           =:custom_friendly_local.l
@@ -61,5 +51,9 @@
         = configatron.community_name
         =:by_looking_at_the.l
         = link_to :tags_page.l, tags_path
+    #tag_list_auto_complete.auto_complete
+    -content_for :end_javascript do
+      = tag_auto_complete_field 'user_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
-  = f.primary :save_changes.l
+  = f.form_group :save_group do
+    = f.primary :save_changes.l
