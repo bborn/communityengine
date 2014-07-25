@@ -5,6 +5,8 @@
 - @section = (@post.category && @post.category.name)
 - @meta = { :title => "#{@post.title}", :description => "#{truncate_words(@post.post, 75, '...' )}", :keywords => "#{@post.tags.join(", ") unless @post.tags.nil?}", :robots => configatron.robots_meta_show_content }
 
+#send_to_friend.modal.fade{:role => 'dialog', "aria-hidden" => "true", :"aria-labelledby" => "send_to_friend_label", :tabindex => "-1", :style => 'padding-top: 60px;'}
+
 =render :partial => 'author_profile', :locals => {:user => @user}
 
 - unless @related.empty?
@@ -47,7 +49,6 @@
       %a.email.list-group-item{:href => "#", :title => :email_this_story_to_friends.l}
         %i.icon-envelope
         = :email_to_friends.l
-        #send_to_friend.modal.hide.fade{:style => 'padding-top: 60px;'}
       %li.list-group-item
         %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;button=false"}
         =sharethis_options(@post)
@@ -78,7 +79,7 @@
 
 -content_for :end_javascript do
   :javascript
-    $('.email').live('click', function(e){
+    $('.email').on('click', function(e){
       e.preventDefault();
       $.post("#{send_to_friend_user_post_path(:user_id => @user.id, :id => @post.id)}", function(response){
         $('#send_to_friend').html(response);
