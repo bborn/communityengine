@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
   s.add_dependency "recaptcha",                 ">= 0"
   s.add_dependency "ri_cal",                    ">= 0"
   s.add_dependency "sanitize",                  ">= 2.0.6"
-  s.add_dependency "bootstrap-sass",            '~> 2.1.1.0'
+  s.add_dependency "bootstrap-sass",            '~> 3.2.0'
   s.add_dependency "bootstrap_forms",           ">= 0"
   s.add_dependency "font-awesome-sass-rails",   ">= 0"
   s.add_dependency "jquery-rails",              ">= 0"

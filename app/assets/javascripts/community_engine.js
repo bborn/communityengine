@@ -6,8 +6,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
-//= require bootstrap-dropdown
-//= require bootstrap-modal
 //
 ///////////////////////////////////////////
 // UTILITIES                             //
