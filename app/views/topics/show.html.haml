@@ -20,7 +20,7 @@
 
 - if logged_in? && @topic.editable_by?(current_user)
   %p
-    = link_to :back.l, @forum, :class => 'btn'
+    = link_to :back.l, @forum, :class => 'btn btn-default'
     = link_to :edit.l, edit_forum_topic_path(@forum, @topic), :class => "btn btn-warning"
     = link_to :delete.l, forum_topic_path(@forum, @topic), :class => "btn btn-danger", :method => :delete, data: { confirm: :delete_this_topic_forever.l }
 

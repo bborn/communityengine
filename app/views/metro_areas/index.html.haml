@@ -14,7 +14,7 @@
       %td= metro_area.state.name if metro_area.state
       %td= metro_area.country.name
       %td
-        = link_to :show.l, metro_area_path(metro_area), :class => 'btn'
+        = link_to :show.l, metro_area_path(metro_area), :class => 'btn btn-default'
         = link_to :edit.l, edit_metro_area_path(metro_area), :class => 'btn btn-warning'
         = link_to :delete.l, metro_area_path(metro_area), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 = paginate @metro_areas, :theme => 'bootstrap'

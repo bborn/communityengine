@@ -22,7 +22,7 @@
       %td= tag.name
       %td= tag.taggings.count
       %td
-        = link_to :show.l, tag_path(tag), :class => 'btn'
+        = link_to :show.l, tag_path(tag), :class => 'btn btn-default'
         = link_to :edit.l, edit_tag_path(tag), :class => 'btn btn-warning'
         = link_to :destroy.l, tag_path(tag), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 

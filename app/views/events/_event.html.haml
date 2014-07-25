@@ -4,7 +4,7 @@
 
 - if (logged_in? && (event.user.eql?(current_user) || admin?))
   %p
-    = link_to :show.l, event_path(event), :class => 'btn'
+    = link_to :show.l, event_path(event), :class => 'btn btn-default'
     = link_to :clone.l, clone_event_path(event), :class => 'btn btn-success'
     = link_to :edit.l, edit_event_path(event), :class => 'btn btn-warning'
     = link_to :delete.l, event_path(event), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'

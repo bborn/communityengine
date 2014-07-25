@@ -7,7 +7,7 @@
     %label= :user_e_mail.l
     = text_field_tag 'email', params['email']
     %p
-      %input{:type=>"submit", :value=> :search_users.l, :class => 'btn' }
+      %input{:type=>"submit", :value=> :search_users.l, :class => 'btn btn-primary' }
 
     = paginate @users, :theme => 'bootstrap'
 
@@ -42,7 +42,7 @@
           %td
             = user.active? ? :active.l : :inactive.l
           %td
-            = link_to :assume_id.l , assume_user_path(user), :method => 'post', :class => 'btn'
+            = link_to :assume_id.l , assume_user_path(user), :method => 'post', :class => 'btn btn-default'
             -unless user.active?
               = link_to :activate.l, admin_activate_user_path(user), :class => 'btn btn-success'
 
@@ -51,7 +51,7 @@
         = check_box_tag :spam
         =:delete_selected_mark_as_spam.l
         %br
-      %a.btn.check-all{:href=>"#"} Toggle all     
+      %a.btn.btn-default.check-all{:href=>"#"} Toggle all
       = submit_tag :delete_selected.l, :class => 'btn btn-danger'
 
     = paginate @users, :theme => 'bootstrap'

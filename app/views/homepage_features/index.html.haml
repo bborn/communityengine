@@ -17,7 +17,7 @@
       %td=h truncate(homepage_feature.description, :length => 250).html_safe
       %td= image_tag homepage_feature.image.url(:thumb)
       %td
-        = link_to :show.l, homepage_feature_path(homepage_feature), :class => 'btn'
+        = link_to :show.l, homepage_feature_path(homepage_feature), :class => 'btn btn-default'
         = link_to :edit.l, edit_homepage_feature_path(homepage_feature), :class => 'btn btn-warning'
         = link_to :delete.l, homepage_feature_path(homepage_feature), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 

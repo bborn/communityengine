@@ -4,7 +4,7 @@
 
 -if admin?
   %p
-    = link_to :back.l, forums_path, :class => 'btn'
+    = link_to :back.l, forums_path, :class => 'btn btn-default'
     = link_to :edit.l, edit_forum_path(@forum), :class => 'btn btn-warning'
     = link_to :delete.l, forum_path(@forum), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 

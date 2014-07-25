@@ -41,7 +41,7 @@
       %td= post.comments.count
       %td= post.is_live? ? link_to(:published.l, user_post_path(post.user, post)) : :draft.l
       %td
-        =link_to :show.l, user_post_path(post.user, post), :class => 'btn'
+        =link_to :show.l, user_post_path(post.user, post), :class => 'btn btn-default'
         =link_to :edit.l, edit_user_post_path(post.user, post), :class => 'btn btn-warning'
         =link_to :delete.l, user_post_path(post.user, post), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 

@@ -21,7 +21,7 @@
       %td= h ad.published?
       %td= h ad.location
       %td
-        = link_to :show.l, ad_path(ad), :class => 'btn'
+        = link_to :show.l, ad_path(ad), :class => 'btn btn-default'
         = link_to :edit.l, edit_ad_path(ad), :class => 'btn btn-warning'
         = link_to :delete.l, ad_path(ad), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 

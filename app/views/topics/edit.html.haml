@@ -1,8 +1,8 @@
 -@page_title= :edit_topic.l
 
 %p
-  =link_to :back.l, @forum, :class => 'btn'
-  =link_to :show.l, [@forum, @topic], :class => 'btn'
+  =link_to :back.l, @forum, :class => 'btn btn-default'
+  =link_to :show.l, [@forum, @topic], :class => 'btn btn-primary'
   =link_to :delete.l, [@forum, @topic], :class => 'btn', :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 
 =render 'form'

@@ -17,7 +17,7 @@
 
 %p
   - if @is_current_user
-    = link_to :back.l, user_clippings_path(@user), :class => 'btn'
+    = link_to :back.l, user_clippings_path(@user), :class => 'btn btn-default'
     = link_to :edit.l, edit_user_clipping_path(@user, @clipping), :class => 'btn btn-warning'
     = link_to :delete.l, user_clipping_path(@user, @clipping), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 
