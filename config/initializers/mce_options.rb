@@ -16,7 +16,7 @@ configatron.default_mce_options = {
   :theme_modern_buttons1 => %w{bold italic underline separator justifyleft justifycenter justifyright indent outdent separator bullist numlist separator link unlink image media separator undo redo code},
   :theme_modern_buttons2 => [],
   :theme_modern_buttons3 => [],
-  :plugins => %w{media image preview autosave emoticons paste autoresize},
+  :plugins => %w{media link image preview autosave emoticons paste autoresize},
   :editor_deselector => "mceNoEditor",
   :extended_valid_elements => "img[class|src|flashvars|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|obj|param|embed|scale|wmode|salign|style],embed[src|quality|scale|salign|wmode|bgcolor|width|height|name|align|type|pluginspage|flashvars],object[align<bottom?left?middle?right?top|archive|border|class|classid|codebase|codetype|data|declare|dir<ltr?rtl|height|hspace|id|lang|name|style|tabindex|title|type|usemap|vspace|width]",
   :media_strict => false
@@ -36,5 +36,5 @@ configatron.simple_mce_options = {
   :theme_modern_buttons1 => %w{bold italic underline separator bullist numlist separator link unlink image},
   :theme_modern_buttons2 => [],
   :theme_modern_buttons3 => [],
-  :plugins => %w{autosave emoticons },
+  :plugins => %w{autosave link image emoticons },
   }
