@@ -1,7 +1,7 @@
 -@page_title = @homepage_feature.title
 
 %p
-  = link_to :back.l, homepage_features_path, :class => 'btn'
+  = link_to :back.l, homepage_features_path, :class => 'btn btn-default'
   = link_to :edit.l, edit_homepage_feature_path(@homepage_feature), :class => 'btn btn-warning'
   = link_to :delete.l, homepage_feature_path(@homepage_feature), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 

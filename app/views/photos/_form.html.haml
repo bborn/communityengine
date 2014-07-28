@@ -5,13 +5,14 @@
   -object = [@user, @photo]
   -url = user_photo_path(@user, @photo)
 
-= bootstrap_form_for object, :url => url, :html => {:class => "form form-horizontal"}  do |f|
+= bootstrap_form_for object, :url => url, :layout => :horizontal  do |f|
   -if @photo.photo_file_name.blank?
-    = f.file_field :photo, :help_inline => :megabyte_upload_limit.l(:count => configatron.photo.validation_options.max_size)
+    = f.file_field :photo
+    %p.help-block=:megabyte_upload_limit.l(:count => configatron.photo.validation_options.max_size)
   -else
     = image_tag( @photo.photo.url(:large), :id => 'photo', :class => 'thumbnail' )
-  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l, :help_inline => :optional_keywords_describing_this_photo_separated_by_commas.l
-  #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"} 
+  = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l, :help => :optional_keywords_describing_this_photo_separated_by_commas.l
+  #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"}
   -content_for :end_javascript do
     = tag_auto_complete_field 'photo_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
   = f.text_field :name
@@ -19,6 +20,5 @@
   - unless params[:album_id] || current_user.albums.empty?
     = f.select(:album_id, current_user.albums.collect {|album| [album.title, album.id ] }, { :include_blank => true })
 
-  .controls
-    = f.submit :save.l
-    
+  = f.form_group :submit_group do
+    = f.primary :save.l

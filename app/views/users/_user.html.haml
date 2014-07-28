@@ -1,7 +1,7 @@
 .row.well
-  .span2= link_to image_tag( user.avatar_photo_url(:medium) ), user_path(user)
-  
-  .span6
+  .col-sm-4= link_to image_tag( user.avatar_photo_url(:medium), :class => "img-responsive" ), user_path(user)
+
+  .col-sm-6
     %h4= link_to user.login, user_path(user)
 
     %p
@@ -11,8 +11,8 @@
         = truncate_words user.description, 18, '...'
 
 
-    %ul
-      - if user.metro_area        
+    %ul.list-unstyled
+      - if user.metro_area
         %li.geo
           = :from2.l
           =user.location

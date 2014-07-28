@@ -24,9 +24,9 @@
           = t(:no)
       %td= page.is_live? ? link_to(:published.l, pages_path(page)) : :draft.l
       %td
-        =link_to :show.l, pages_path(page), :class => 'btn'
+        =link_to :show.l, pages_path(page), :class => 'btn btn-primary'
         - unless page.is_live?
-          = link_to :preview.l, preview_admin_page_path(page), :class => 'btn'
+          = link_to :preview.l, preview_admin_page_path(page), :class => 'btn btn-default'
         =link_to :edit.l, edit_admin_page_path(page), :class => 'btn btn-warning'
         =link_to :delete.l, pages_path(page), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 

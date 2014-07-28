@@ -2,32 +2,32 @@
 
 - if @is_current_user
   -widget :id => 'clipping_tools' do
-    %ul.nav.nav-list
-      %li.nav-header=:bookmarklet.l
-      %li=:drag_this_to_your_bookmarks_toolbar.l
-      %li= link_to "Clip it!", clippings_link, :class => 'btn btn-primary', :title=>"#{configatron.community_name} "+:scrapbook.l
+    %h4
+      .small=:bookmarklet.l
+    %p=:drag_this_to_your_bookmarks_toolbar.l
+    = link_to "Clip it!", clippings_link, :class => 'btn btn-primary', :title=>"#{configatron.community_name} "+:scrapbook.l
 
   -widget do
-    %ul.nav.nav-list
-      %li.nav-header=:help.l
-      %li=:clippings_let_you_to_save_cool_images_from_around_the_web.l
-      %li=:drag_the_bookmarklet.l :site => 'Clip'
-      %li=:when_you_see_an_image_you_like_on_the_web.l :site => configatron.community_name
+    %h4
+      .small=:help.l
+    %p=:clippings_let_you_to_save_cool_images_from_around_the_web.l
+    %p=:drag_the_bookmarklet.l :site => 'Clip'
+    %p=:when_you_see_an_image_you_like_on_the_web.l :site => configatron.community_name
 
 =render :partial => 'posts/author_profile', :locals => {:user => @user}
-      
+
 -widget :id => 'tag_list' do
-  %ul.nav.nav-list
-    %li.nav-header=:tags.l
+  %h4
+    .small=:tags.l
   - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class|
     - css_class = css_class + (name.eql?(params[:tag_name]) ? " selected": "")
     = link_to name, user_clippings_path(:user_id => @user, :tag_name => name), :class => css_class
-    
+
 
 - if @clippings.any?
-  %ul.thumbnails
+  %ul.list-unstyled.thumbnails
   - @clippings.each do |clipping|
-    %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+    %li.col-sm-3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
   =paginate @clippings, :theme => 'bootstrap'
 - else
   %p= @is_current_user ? :you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some.l : :no_clippings_yet.l

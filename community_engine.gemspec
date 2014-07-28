@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts-as-taggable-on",       '~> 2.4.1'
   s.add_dependency "authlogic",                 ">= 3.3.0"
   s.add_dependency "aws-sdk",                   ">= 0"
-  s.add_dependency "bcrypt-ruby",               ">= 0"
+  s.add_dependency "bcrypt",                    ">= 0"
   s.add_dependency "cocaine",                   "~> 0.5.1"
   s.add_dependency "configatron",               "~> 2.0"
   s.add_dependency "dynamic_form",              ">= 0"
@@ -55,8 +55,8 @@ Gem::Specification.new do |s|
   s.add_dependency "recaptcha",                 ">= 0"
   s.add_dependency "ri_cal",                    ">= 0"
   s.add_dependency "sanitize",                  ">= 2.0.6"
-  s.add_dependency "bootstrap-sass",            '~> 2.1.1.0'
-  s.add_dependency "bootstrap_forms",           ">= 0"
+  s.add_dependency "bootstrap-sass",            '~> 3.2.0'
+  s.add_dependency "bootstrap_form",            ">= 0"
   s.add_dependency "font-awesome-sass-rails",   ">= 0"
   s.add_dependency "jquery-rails",              ">= 0"
   s.add_dependency "jquery-ui-rails",           "~> 5.0.0"

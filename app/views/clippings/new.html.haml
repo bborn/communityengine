@@ -4,7 +4,7 @@
   %p= :clippings_are_a_way_to_save_images_you_like_from_around_the_web.l
 
 %p
-  =link_to :back.l, user_clippings_path(@user), :class => 'btn'
+  =link_to :back.l, user_clippings_path(@user), :class => 'btn btn-default'
 
 -if @clipping.image_uri
   =image_tag @clipping.image_uri(:large), :class => 'thumbnail'

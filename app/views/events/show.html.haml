@@ -1,9 +1,9 @@
 - @section = 'events'
 - @page_title = @event.name
 -widget do
-  %ul.nav.nav-list
-    %li
-      - if @is_admin_user
+  %ul.list-unstyled
+    - if @is_admin_user
+      %li
         = link_to :administer_events.l, admin_events_path
     %li
       = icon_link_to 'icon-plus-sign', :see_all_events.l, events_path
@@ -11,7 +11,7 @@
 
 - if (logged_in? && (@event.user.eql?(current_user) || admin?))
   %p
-    = link_to :back.l, events_path, :class => 'btn'
+    = link_to :back.l, events_path, :class => 'btn btn-default'
     = link_to :clone.l, clone_event_path(@event), :class => 'btn btn-success'
     = link_to :edit.l, edit_event_path(@event), :class => 'btn btn-warning'
     = link_to :delete.l, event_path(@event), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
@@ -33,10 +33,10 @@
       .btn-group
         - if @event.end_time > Time.now
           - if rsvp = @event.rsvped?(current_user)
-            = link_to :retract_rsvp.l, [@event, rsvp], data: { confirm: :are_you_sure.l }, :method=>:delete, :class => 'btn btn-primary btn-mini'
-            = link_to :update_rsvp.l, edit_event_rsvp_url(@event, rsvp), :class => 'btn btn-primary btn-mini'
+            = link_to :retract_rsvp.l, [@event, rsvp], data: { confirm: :are_you_sure.l }, :method=>:delete, :class => 'btn btn-primary btn-xs'
+            = link_to :update_rsvp.l, edit_event_rsvp_url(@event, rsvp), :class => 'btn btn-primary btn-xs'
           - else
-            = link_to :rsvp.l, new_event_rsvp_url(@event), :class => 'btn btn-primary btn-mini'
+            = link_to :rsvp.l, new_event_rsvp_url(@event), :class => 'btn btn-primary btn-xs'
 
 = @event.description.html_safe unless @event.description.blank?
 - unless @event.attendees.blank?

@@ -4,7 +4,7 @@
 -if @tags.any?
   -widget do
     %h3=:tags.l
-    %ul.unstyled
+    %ul.list-unstyled
       - @tags.each do |tag|
         %li
           - if (tag.name.eql?(params[:tag_name]) )
@@ -16,14 +16,14 @@
               %i.icon-tag.icon-white
               =tag.name
 
-%ul.thumbnails
+%ul.list-unstyled.thumbnails
   - @photos.each do |photo|
-    %li.span3
+    %li.col-sm-3
       = link_to image_tag(photo.photo.url(:medium)), user_photo_path(@user, photo), :class => 'thumbnail'
       -if @is_current_user
-        =link_to :show.l, user_photo_path(@user, photo), :class => 'btn btn-mini'
-        =link_to :edit.l, edit_user_photo_path(@user, photo), :class => 'btn btn-mini btn-warning'
-        =link_to :delete.l, user_photo_path(@user, photo), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-mini btn-danger'
+        =link_to :show.l, user_photo_path(@user, photo), :class => 'btn btn-xs btn-default'
+        =link_to :edit.l, edit_user_photo_path(@user, photo), :class => 'btn btn-xs btn-warning'
+        =link_to :delete.l, user_photo_path(@user, photo), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-xs btn-danger'
 
 =paginate @photos, :theme => 'bootstrap'
 -if @is_current_user

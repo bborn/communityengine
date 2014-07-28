@@ -1,9 +1,9 @@
 -@page_title=:forgot_your_password.l
 =render :partial => 'shared/login_sidebar'
 
-= form_tag password_resets_path, :class => 'form form-horizontal' do
-  .control-group
-    %label.control-label{"for"=>"email"}=:enter_your_email_address.l
-    .controls= text_field_tag 'email', nil, :class => 'required'
-  .controls
-    = submit_tag :reset_my_password.l, :class => 'btn btn-primary'
+= bootstrap_form_tag :url => password_resets_path, :layout => :horizontal do |f|
+
+  = f.email_field :email, :label => :enter_your_email_address.l
+
+  = f.form_group :submit_group do
+    = f.primary :reset_my_password.l

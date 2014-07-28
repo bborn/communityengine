@@ -2,24 +2,21 @@
 =render :partial => 'shared/login_sidebar'
 -if configatron.auth_providers.to_hash.keys.any?      
   -widget do
-    %ul.nav.nav-list
-      %li.nav-header= t 'sessions.new.omniauth.header'
+    %ul.list-unstyled
+      %h4
+        .small= t 'sessions.new.omniauth.header'
       -configatron.auth_providers.to_hash.keys.each do |provider|
         -alt = t('sessions.new.omniauth.button_alt', :provider => provider)
         %li= link_to(image_tag("auth/#{provider.to_s}_64.png", :alt => alt), "/auth/#{provider.to_s}", :title => alt)
 
 %h3
-= form_tag sessions_path, :class => 'form form-horizontal' do
-  .control-group
-    %label.control-label{"for"=>"email"}=:email.l
-    .controls= text_field_tag 'email', nil
-  .control-group
-    %label.control-label{"for"=>"password"}=:password.l
-    .controls=password_field_tag 'password', nil
-  %fieldset
-    %label.controls{"for"=>"remember_me"}
-      = check_box_tag 'remember_me'
+= bootstrap_form_tag :url => sessions_path, :layout => :horizontal do |f|
+  = f.email_field :email
+  = f.password_field :password
+
+  = f.form_group :remember_group do
+    = f.check_box :check_box do
       =:remember_me.l
-  .controls
-    = submit_tag :log_in.l, :class => 'btn btn-primary'
-        
+
+  =f.form_group :submit_group do
+    = f.primary :log_in.l

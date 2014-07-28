@@ -3,16 +3,16 @@
 
 -if @album.user == current_user
   %p
-    = link_to :back.l, user_photo_manager_index_path(@album.user), :class => 'btn'
+    = link_to :back.l, user_photo_manager_index_path(@album.user), :class => 'btn btn-default'
     = link_to :edit.l, edit_user_album_path(@album.user,@album), :class => 'btn btn-warning'
     = link_to :add_photos.l, new_user_album_photo_path(@album.user,@album), :class => 'btn btn-primary'
     = link_to :delete.l, user_album_path(@album.user,@album), data: { confirm: :delete_album_and_photos.l }, :method => :delete, :class => 'btn btn-danger'
 
 %p= h @album.description
 %h2= :photos_of_this_album.l
-%ul.thumbnails
+%ul.list-unstyled.thumbnails
   - @album_photos.each do |photo|
-    %li.span2
+    %li.col-sm-2
       = link_to image_tag(photo.photo.url(:thumb)), user_photo_path(photo.user, photo), :class => 'thumbnail'
 = paginate @album_photos, :theme => 'bootstrap'
 

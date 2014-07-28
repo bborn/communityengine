@@ -19,21 +19,19 @@
     -unless configatron.auth_providers.facebook.key.blank?
       =render :partial => 'facebook/fb_require'
 
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container.clearfix
-          .row
-            = render :partial => "shared/header"
+    .navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+      .container-fluid
+        = render :partial => "shared/header"
 
     .container
       .row
-        = render_hero_unit
+        = render_jumbotron
       .row
-        .span9
+        .col-sm-9
           %h1=container_title
           = render :partial => "shared/messages"
           = yield
-        .span3.pull-right
+        .col-sm-3.pull-right
           = render :partial => "shared/sidebar"
 
 
@@ -43,7 +41,7 @@
           =:loading_recent_content.l
 
       .row
-        .span12
+        .col-sm-12
           = render :partial => 'shared/footer_links'
 
           %p= :community_tagline.l

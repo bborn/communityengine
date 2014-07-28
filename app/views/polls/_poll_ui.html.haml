@@ -15,7 +15,7 @@
         -if @is_current_user || has_voted
           %td
             .progress
-              .bar.bar-success{:style => "width:#{choice.votes_percentage}%"}
+              .progress-bar.progress-bar-success{:style => "width:#{choice.votes_percentage}%"}
                 =choice.votes_percentage
                 \%
         -else

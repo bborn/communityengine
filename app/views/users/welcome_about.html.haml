@@ -1,8 +1,9 @@
 -@page_title=:about_you.l
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:get_started.l + ' ' + :tell_us_about_yourself.l
-    = render :partial => 'shared/bio_help'
+-widget do
+  %h4
+    .small=:get_started.l + ' ' + :tell_us_about_yourself.l
+  = render :partial => 'shared/bio_help'
+  %ul.list-unstyled
     %li
       =:remember_you_can_always_change_this_later.l
     %li
@@ -11,56 +12,53 @@
       = link_to :go_to_your_profile.l, user_path(@user)
 
 - if @user.avatar_photo_url
-  -widget do 
+  -widget do
     %h3=:your_profile_photo.l
     = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
-    = image_tag @user.avatar_photo_url(:medium), :class => "thumbnail"
-    = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)        
+    = image_tag @user.avatar_photo_url(:medium), :class => "img-responsive"
+    = link_to :profile_photo_crop.l, crop_profile_photo_user_path(@user)
 
-= form_tag user_path(:welcome => 'invite'), :method => 'put', :multipart =>true, :class => "form form-horizontal" do
-  
+= bootstrap_form_tag :url => user_path(:welcome => 'invite'), :method => 'put', :multipart => true do
+
   %fieldset
     %legend= :description.l
     = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
-  
+
 
   %fieldset
     %legend=:gender.l
-    %label.radio.inline
+    %label.radio-inline
       = radio_button :user, :gender, User::MALE
       =:male.l
-    %label.radio.inline
+    %label.radio-inline
       = radio_button :user, :gender, User::FEMALE
       =:female.l
-         
-  %fieldset   
+
+  %fieldset
     %legend=:choose_your_location.l
-    .control-group
+    .form-group
       %label.control-label=:postal_code.l
-      .controls= text_field :user, :zip, :size => 10
-    .controls
-      = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
-    
+      = text_field :user, :zip, :size => 10, :class => "form-control"
+    = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
+
   %fieldset
     %legend= :tag_yourself.l
-    .control-group
+    .form-group
       %label.control-label= :tags.l
-      .controls
-        = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
-        .help-block
-          =:comma_separated_keywords_that_describe_you.l
-          %br
-          =:you_could_tag_yourself.l
-          - if @user.vendor?
-            =:custom_friendly_local.l
-          - else
-            = configatron.meta_keywords.split(",")[0..3].join(', ')
-        
+      = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
+      .help-block
+        =:comma_separated_keywords_that_describe_you.l
+        %br
+        =:you_could_tag_yourself.l
+        - if @user.vendor?
+          =:custom_friendly_local.l
+        - else
+          = configatron.meta_keywords.split(",")[0..3].join(', ')
+
     #tag_list_auto_complete.auto_complete
-  
+
     -content_for :end_javascript do
       = tag_auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
 
-  .controls
-    = submit_tag :save_and_continue_to_step_three.l, :class => 'btn btn-primary'
+  = submit_tag :save_and_continue_to_step_three.l, :class => 'btn btn-primary'

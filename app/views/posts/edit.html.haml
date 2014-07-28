@@ -7,8 +7,8 @@
     = render :partial => "categories/tips", :locals => {:category => nil}
 
 %p
-  =link_to :back.l, manage_user_posts_path(@post.user), :class => 'btn'
-  =link_to :show.l, user_post_path(@post.user, @post), :class => 'btn'
+  =link_to :back.l, manage_user_posts_path(@post.user), :class => 'btn btn-default'
+  =link_to :show.l, user_post_path(@post.user, @post), :class => 'btn btn-primary'
   =link_to :delete.l, user_post_path(@post.user, @post), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 
 = render 'form'

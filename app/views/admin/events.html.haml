@@ -15,7 +15,7 @@
       %td= event.try(:metro_area).try(:name)
       %td=h event.time_and_date
       %td
-        = link_to :show.l, event_path(event), :class => 'btn'
+        = link_to :show.l, event_path(event), :class => 'btn btn-default'
         = link_to :clone.l, clone_event_path(event), :class => 'btn btn-success'
         = link_to :edit.l, edit_event_path(event), :class => 'btn btn-warning'
         = link_to :delete.l, event_path(event), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'

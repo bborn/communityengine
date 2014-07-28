@@ -6,9 +6,9 @@
   %table.table.table-bordered
     - @messages.each do |message|
       %tr
-        %td.span1
+        %td.col-sm-1
           %fieldset.inline= check_box_tag "delete[]", message.id
-        %td.span2
+        %td.col-sm-2
           = :to.l
           \:
           = link_to h(message.recipient.login), user_path(message.recipient)
@@ -17,7 +17,7 @@
         %td
           = link_to h(message.subject), user_message_path(message.sender, message)
           %br
-        %td.span2
+        %td.col-sm-2
           = time_ago_in_words_or_date(message.created_at)
   = submit_tag :delete_selected.l, :class => 'btn btn-danger'
   =paginate @messages, :theme => 'bootstrap'

@@ -9,8 +9,8 @@
     = stylesheet_link_tag 'application'
     = stylesheet_link_tag 'layout'
   %body
-    .hero-unit
-      %h1 
+    .jumbotron
+      %h1
         =:create_a_clipping.l
       %p
         =:click_on_an_image_below_to_clip_it.l
@@ -19,26 +19,26 @@
       =:loading_images.l
       %script{"type"=>"text/javascript"}
         ="$('#clipping_image_list').html($.post('#{load_images_from_uri_path(:uri => params[:uri]).html_safe}'));"
-    =link_to :cancel_and_go_back_to.l + ' ' + @clipping.url, params[:uri], :class => 'btn btn-mini btn-primary'
-    #lightbox.modal.hide.fade{:style => 'padding-top: 60px;'}
-      = bootstrap_form_for(:clipping, :url => user_clippings_path(@user), :html => {:class => "form form-horizontal"} ) do |f|
+    =link_to :cancel_and_go_back_to.l + ' ' + @clipping.url, params[:uri], :class => 'btn btn-xs btn-primary'
+    #lightbox.modal.fade{:role => 'dialog', "aria-hidden" => "true", :"aria-labelledby" => "send_to_friend_label", :tabindex => "-1", :style => 'padding-top: 60px;'}
+      = bootstrap_form_for(:clipping, :url => user_clippings_path(@user), :layout => :horizontal) do |f|
         = f.text_field :url
 
         %img#clipping_preview{"src"=>nil, "width"=>"100px", "style"=>"float:right"}
-        
+
         = f.text_field :image_url
 
-        = f.text_field :tag_list, {:help_inline => :optional_keywords_describing_this_clipping_separated_by_commas.l, :autocomplete => "off",:id => 'clipping_tag_list'}
+        = f.text_field :tag_list, {:help => :optional_keywords_describing_this_clipping_separated_by_commas.l, :autocomplete => "off",:id => 'clipping_tag_list'}
 
         #clipping_tag_list_auto_complete.auto_complete
         = tag_auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :update => 'clipping_tag_list_auto_complete' }
 
         = f.text_field :description
 
-        .controls= f.submit :create.l
+        = f.primary :create.l
 
   :javascript
-    $("#clipping_image_list img").live('click', function(){
+    $("#clipping_image_list img").on('click', function(){
       $('#clipping_image_url').val($(this).attr('src'));
       $('#clipping_preview').attr('src', $(this).attr('src'));
       $('#lightbox').modal();

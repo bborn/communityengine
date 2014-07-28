@@ -1,13 +1,14 @@
-= bootstrap_form_for @comment, :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :html => {:id => "edit_comment_#{comment.id}_form", :class => "form form-horizontal submit-via-ajax"} do |f|
-  = f.text_area :comment, :rows => 5, :style => 'width: 99%;', :class => "rich_text_editor", :help_inline => :comment_character_limit.l, :id => "comment_#{comment.id}_comment", :required => false
+= bootstrap_form_for @comment, :url => {:controller => 'comments', :action => 'update', :id => comment.id}, :html => {:id => "edit_comment_#{comment.id}_form", :layout => :horizontal, :class => "submit-via-ajax"} do |f|
+  = f.text_area :comment, :rows => 5, :style => 'width: 99%;', :class => "rich_text_editor", :id => "comment_#{comment.id}_comment", :required => false
+  %p.help-block= :comment_character_limit.l
   -if !logged_in? && configatron.allow_anonymous_commenting
     = f.text_field :author_name
     = f.text_field :author_email
     -if comment.commentable.respond_to?(:send_comment_notifications?) && !comment.commentable.send_comment_notifications?
-      =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l, :help_inline => :comment_notifications_off.l
+      =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l
+      %p.help-block=:comment_notifications_off.l
     -else
       =f.check_box :notify_by_email, :label => :notify_me_of_follow_ups_via_email.l
     = f.text_field :author_url
-  .controls
-    = f.submit :save.l
-    = link_to :cancel.l, {:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true}, :class => 'edit-via-ajax'
+  = f.primary :save.l
+  = link_to :cancel.l, {:controller => 'comments', :action => 'edit', :id => comment.id, :cancel => true}, :class => 'btn btn-default edit-via-ajax'

@@ -3,11 +3,11 @@
 
 -box do
   %h3=:search.l
-  = bootstrap_form_for @search, :url => admin_tags_path, :html => {:class => "form form-horizontal"} do |f|
+  = bootstrap_form_for @search, :url => admin_tags_path, :layout => :horizontal do |f|
     = f.text_field :name_start, :label => :name.l
 
-    .controls
-      = f.submit :search.l
+    = f.form_group :submit_group do
+      = f.primary :search.l
 
 %table.table.table-bordered.table-striped
   %tr
@@ -22,7 +22,7 @@
       %td= tag.name
       %td= tag.taggings.count
       %td
-        = link_to :show.l, tag_path(tag), :class => 'btn'
+        = link_to :show.l, tag_path(tag), :class => 'btn btn-default'
         = link_to :edit.l, edit_tag_path(tag), :class => 'btn btn-warning'
         = link_to :destroy.l, tag_path(tag), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 

@@ -1,13 +1,14 @@
 -@page_title = 'Comments'
 = render :partial => 'shared/admin_nav'
 
-= bootstrap_form_for @search, :url => admin_comments_path, :html => {:class => "form form-horizontal"} do |f|
+= bootstrap_form_for @search, :url => admin_comments_path, :layout => :horizontal do |f|
   %h2=:search.l
   = f.text_field :author_email_or_user_email_cont, :label => :email.l
 
-  .controls= f.submit :search.l
+  = f.form_group :submit_group  do
+    = f.primary :search.l
 
-= form_tag delete_selected_comments_path, :method => :delete, :id => 'comments' do
+= bootstrap_form_tag :url => delete_selected_comments_path, :method => :delete, :id => 'comments' do
   %table.table.table-bordered.table-striped
     %tr
       %th=:delete.l
@@ -41,7 +42,7 @@
           =link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => "Are you sure you want to permanently delete this comment", :class => 'btn btn-danger delete-via-ajax', 'data-target' => "comment_#{comment.id}"
   -if @comments.any?
     %p
-      %a.btn{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all
+      %a.btn.btn-default{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all
       = submit_tag :delete_selected.l, :class => 'btn btn-danger'
 
 = paginate @comments, :theme => 'bootstrap'

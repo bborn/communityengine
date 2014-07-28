@@ -1,17 +1,17 @@
 
--widget do 
+-widget do
   %h3=:dashboard.l
-  %ul.nav.nav-list
-    %li.nav-header
+  %ul.list-unstyled
+    %p
       %i.icon-check.pull-left
       =:view.l
-    %li=link_to :my_profile.l, user_path(@user)  
+    %li=link_to :my_profile.l, user_path(@user)
     %li=link_to :my_blog.l, user_posts_path(@user)
     %li=link_to :photo_manager.l, user_photo_manager_index_path(@user)
     %li=link_to :my_clippings.l, user_clippings_path(@user)
     %li=link_to :my_friends.l, accepted_user_friendships_path(@user)
     %li=link_to :inbox.l, user_messages_path(@user)
-    %li.nav-header
+    %p
       %i.icon-wrench.pull-left
       =:manage.l
     %li=link_to :my_profile.l, edit_user_path(@user)
@@ -19,9 +19,10 @@
     %li=link_to :my_blog_posts.l, manage_user_posts_path(@user)
     -if current_user.admin?
       %li=link_to :admin_dashboard.l, admin_dashboard_path
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:stats.l
+-widget do
+  %h4
+    .small=:stats.l
+  %ul.list-unstyled
     - if @user.last_login_at
       %li=:you_last_logged_in_on.l+" #{I18n.l(@user.last_login_at, :format => :published_date)}"
     %li=:member_since.l+" #{I18n.l(@user.created_at, :format => :published_date)}"

@@ -11,7 +11,7 @@
     = link_to :make_this_my_profile_photo.l, change_profile_photo_user_path(@user, :photo_id => @photo), :method => :patch
 
   %p
-    = link_to :back.l, user_photos_path(@user), :class => 'btn'
+    = link_to :back.l, user_photos_path(@user), :class => 'btn btn-default'
     = link_to :edit.l, edit_user_photo_path(@user, @photo), :class => 'btn btn-warning'
     = link_to :delete.l, user_photo_path(@user, @photo), :method => :delete, data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 
@@ -20,18 +20,18 @@
 .clearfix
   - if @photo.album
     %h3= "#{:album.l}: #{link_to @photo.album.title, user_album_path(@user, @photo.album)}".html_safe
-    .pull-left.span2
+    .pull-left.col-sm-2
       = link_to "<img src='#{@photo.previous_in_album.photo.url(:thumb)}' class='thumbnail' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @photo.previous_in_album) if @photo.previous_in_album
-    .pull-right.span2
+    .pull-right.col-sm-2
       = link_to "<img src='#{@photo.next_in_album.photo.url(:thumb)}' class='thumbnail' /><br />".html_safe + :next.l + "&raquo;".html_safe, user_photo_path(@user, @photo.next_in_album) if @photo.next_in_album
 
   - elsif @previous || @next
-    .pull-left.span2
+    .pull-left.col-sm-2
       = link_to "<img src='#{@previous.photo.url(:thumb)}' class='thumbnail' /><br />&laquo; ".html_safe + :previous.l, user_photo_path(@user, @previous) if @previous
-    .pull-right.span2
+    .pull-right.col-sm-2
       = link_to "<img src='#{@next.photo.url(:thumb)}' class='thumbnail' /><br />".html_safe + :next.l + "&raquo;".html_safe, user_photo_path(@user, @next) if @next
 
-  .span8
+  .col-sm-8
     = image_tag @photo.photo(:large), :class => "thumbnail"
 %p= h @photo.description
 %p

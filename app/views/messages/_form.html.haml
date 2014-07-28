@@ -1,4 +1,4 @@
-= bootstrap_form_for [user, message], :html => {:class => "form form-horizontal"} do |f|
+= bootstrap_form_for [user, message], :layout => :horizontal do |f|
 
   -if message.reply_to
     =f.hidden_field :to
@@ -6,7 +6,7 @@
   -else
     = f.text_field :to, :required => true, :autocomplete => "off", :id => "message_to", :label => :to.l, :placeholder => :type_a_username.l
     .auto_complete#message_to_auto_complete
-    
+
     -content_for :end_javascript do
       = auto_complete_field 'message_to', {:url => {:controller => 'messages', :action => 'auto_complete_for_username', :user => user}, :method=>'post'}
 
@@ -15,7 +15,6 @@
   -else
     = f.text_field :subject
 
-  = f.text_area :body, :label => :message.l, :rows => 10, :class => "span6"
+  = f.text_area :body, :label => :message.l, :rows => 10, :class => "col-sm-6"
 
-  .controls
-    = f.submit :send.l
+  = f.primary :send.l

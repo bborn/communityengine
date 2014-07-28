@@ -2,11 +2,11 @@
 = render :partial => 'shared/admin_nav'
 
 %h2=:search.l
-= bootstrap_form_for @search, :url => ads_path, :html => {:class => "form form-horizontal"} do |f|
+= bootstrap_form_for @search, :url => ads_path, :layout => :horizontal do |f|
   = f.text_field :name_start, :label => :name.l
   = f.text_field :location_cont, :label => :location.l
-  .controls
-    = f.submit :search.l
+  = f.form_group :submit_group do
+    = f.primary :search.l
 
 %table.table.table-bordered.table-striped
   %tr
@@ -21,7 +21,7 @@
       %td= h ad.published?
       %td= h ad.location
       %td
-        = link_to :show.l, ad_path(ad), :class => 'btn'
+        = link_to :show.l, ad_path(ad), :class => 'btn btn-default'
         = link_to :edit.l, edit_ad_path(ad), :class => 'btn btn-warning'
         = link_to :delete.l, ad_path(ad), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 

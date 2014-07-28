@@ -4,20 +4,17 @@
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/basic.js"}
 %script{"type"=>"text/javascript", "src"=>"http://www.plaxo.com/css/m/js/abc_launcher.js"}
 
--widget do 
-  %ul.nav.nav-list
-    %li.nav-header=:spread_the_word.l
-    %li
-      =:invite_message.l(:site => configatron.community_name)
-    %li
-      =:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends.l
+-widget do
+  %h4
+    .small=:spread_the_word.l
+  %p=:invite_message.l(:site => configatron.community_name)
+  %p=:people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends.l
 
-= bootstrap_form_for :invitation, :url => user_invitations_path(:user_id => @user.id ), :html => {:class => "form form-horizontal"} do |f|
+= bootstrap_form_for :invitation, :url => user_invitations_path(:user_id => @user.id ), :layout => :horizontal do |f|
   .pull-right
     %a{"href"=>"#", "onclick"=>"showPlaxoABChooser('invitation_email_addresses', '/base/plaxo'); return false;"}
       %img{"src"=>"http://www.plaxo.com/images/abc/buttons/add_button.gif", "alt"=>:add_from_my_address_book.l}
   = f.text_area :email_addresses , :rows => "5", :label => :enter_e_mail_addresses.l 
   = f.text_area :message, :rows => "5", :label => :write_a_message.l
 
-  .controls
-    = f.submit :send_invitations.l
+  = f.primary :send_invitations.l

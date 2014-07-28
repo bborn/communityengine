@@ -3,8 +3,9 @@
 - @sidebar_left = true
 
 -widget :id => 'friends' do
-  %ul.nav.nav-list
-    %li.nav-header=:my_friends.l
+  %h4
+    .small=:my_friends.l
+  %ul.list-unstyled
     %li= link_to "(#{@friend_count})", accepted_user_friendships_path(@user) if @friend_count > 5
     %li= link_to "#{:invite_a_friend.l :site => configatron.community_name}", invite_user_path(@user) if @is_current_user
     %li= link_to "#{:view_all_my_friend_requests.l} (#{@pending_friendships_count})", pending_user_friendships_path(@user) if @is_current_user
@@ -15,9 +16,8 @@
         =icon_link_to 'icon-plus-sign', :see_all.l, accepted_user_friendships_path(@user)
    
 - if @photos.empty? and @recent_posts.empty?
-  -widget do 
-    %ul.nav.nav-list
-      %li.nav-header= :small_profile.l :user => @user.login
+  -widget do
+    %h4= :small_profile.l :user => @user.login
 
 - if @is_current_user and @user.vendor? and @user.description.nil?
   .alert.alert-info
@@ -70,9 +70,9 @@
 - unless @photos.empty?
   .clearfix
     %h2=:my_photos.l
-    %ul.thumbnails
+    %ul.list-unstyled.thumbnails
       - @photos.each do |photo|
-        %li.span3
+        %li.col-lg-3
           = link_to image_tag( photo.photo.url(:medium)), user_photo_path(@user, photo), :class => "thumbnail"
     %p
       = icon_link_to 'icon-plus-sign', :view_all_my_photos.l, user_photos_path(@user)
@@ -87,9 +87,9 @@
 - unless @clippings.empty?
   .clearfix
     %h2=:my_clippings.l
-    %ul.thumbnails
+    %ul.list-unstyled.thumbnails
       - @clippings.each do |clipping|
-        %li.span3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
+        %li.col-sm-3=render :partial => 'clippings/clipping', :locals => {:clipping => clipping}
     = icon_link_to 'icon-plus-sign', :view_all_my_clippings.l, user_clippings_path(@user)
 
 .clearfix

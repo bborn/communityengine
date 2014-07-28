@@ -2,26 +2,28 @@
 - @section = @category.name
 
 -unless @active_users.empty?
-  -widget do 
-    %ul.nav.nav-list
-      %li.nav-header=:top_writers.l
+  -widget do
+    %h4
+      .small=:top_writers.l
+    %ul.list-unstyled
       - @active_users.each do |user|
         = render :partial => "users/sidebar_user", :locals => {:user => user} 
 
 -unless @popular_posts.empty?
-  -widget do 
-    %ul.nav.nav-list
-      %li.nav-header=:popular_category.l(:name => @category.name) 
+  -widget do
+    %h4
+      .small=:popular_category.l(:name => @category.name)
+    %ul.list-unstyled
       - @popular_posts.each do |post|
         =render :partial => 'posts/sidebar_post', :locals => {:post => post}
 
 - if logged_in?
   %h2.signup=:have_something_to_contribute.l
-  %ul.unstyled
+  %ul.list-unstyled
     %li=icon_link_to 'icon-check', @category.display_new_post_text() || :write_new_post.l(:category=>@category.name), new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
 - else
   %h2.signup= @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)
-  %ul.unstyled
+  %ul.list-unstyled
     %li
       =icon_link_to 'icon-check', :sign_up_for_an_account.l, signup_url
     %li

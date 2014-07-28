@@ -8,14 +8,12 @@
   - object = [@user, @album]
   - button1 = :edit_and_add_photos.l
   - button2 = :edit_album.l
-  
-=bootstrap_form_for object, :url => url, :html => {:class => 'form form-horizontal'} do |f|
+
+=bootstrap_form_for object, :url => url, :layout => :horizontal do |f|
   = f.text_field :title
   = f.text_area :description
   = hidden_field_tag :go_to
 
-  .controls
-    .btn-group
-      = f.submit button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'", :class => 'btn btn-primary'
-      = f.submit button1, :class => 'btn btn-primary'
-    
+  .btn-group
+    = f.primary button2, :onclick => "Form.getInputs(this.form, null, 'go_to')[0].value = 'only_create'"
+    = f.primary button1

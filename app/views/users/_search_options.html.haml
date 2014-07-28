@@ -6,7 +6,7 @@
       = link_to city.name, users_path(:metro_area_id => city.id), :class => css_class
 
 - if current_user
-  -widget do 
-    %ul.nav.nav-list
-      %li.nav-header= :share_the_love.l
-      %li= link_to :invite_your_friends_to_join.l, invite_user_path(current_user)
+  -widget do
+    %h4
+      .small= :share_the_love.l
+    %p= link_to :invite_your_friends_to_join.l, invite_user_path(current_user)

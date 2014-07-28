@@ -9,12 +9,12 @@
     
 = image_tag @photo.photo.url(:original), :id => 'croppable'
 
-= form_for :photo, :url => crop_profile_photo_user_path(@user), :method => :put, :html => { :class => "form form-horizontal" } do |f|
+= bootstrap_form_for :photo, :url => crop_profile_photo_user_path(@user), :method => :put, :layout => :horizontal do |f|
   - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
     %input{ :type=>"hidden", :name=>attribute, :id=>attribute, :value => ''}
 
-  %p
-    = submit_tag :update.l, :class => 'btn btn-primary'
+  %br
+  = f.primary :update.l
 
 -content_for :end_javascript do
   = stylesheet_link_tag 'cropper'

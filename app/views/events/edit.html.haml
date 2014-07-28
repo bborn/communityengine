@@ -1,8 +1,8 @@
 -@page_title = :edit_event.l
 
 %p
-  = link_to :back.l, events_path, :class => 'btn'
-  = link_to :show.l, event_path(@event), :class => 'btn'
+  = link_to :back.l, events_path, :class => 'btn btn-default'
+  = link_to :show.l, event_path(@event), :class => 'btn btn-primary'
   = link_to :clone.l, clone_event_path(@event), :class => 'btn btn-success'
   = link_to :delete.l, event_path(@event), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
 

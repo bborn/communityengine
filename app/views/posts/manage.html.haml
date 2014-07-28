@@ -8,11 +8,11 @@
     = f.select :category_id_eq, Category.all.collect{|c| [c.name, c.id]}, :include_blank => true, :label => :category.l
     = f.select :published_as_eq, [['Published','live'], ['Draft','draft']], :include_blank => true, :label => :status.l
 
-    .control-group
+    .form-group
       %label.control-label= :show.l
-      .controls= select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
+      = select_tag :size, options_for_select([['10',10], ['20',20], ['100',100]], params[:size].to_i )
 
-    .controls= f.submit :search.l
+    = f.primary :search.l
 
 %p=:posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them.l
 
@@ -41,7 +41,7 @@
       %td= post.comments.count
       %td= post.is_live? ? link_to(:published.l, user_post_path(post.user, post)) : :draft.l
       %td
-        =link_to :show.l, user_post_path(post.user, post), :class => 'btn'
+        =link_to :show.l, user_post_path(post.user, post), :class => 'btn btn-default'
         =link_to :edit.l, edit_user_post_path(post.user, post), :class => 'btn btn-warning'
         =link_to :delete.l, user_post_path(post.user, post), :method => 'delete', data: { confirm: :are_you_sure.l }, :class => 'btn btn-danger'
 

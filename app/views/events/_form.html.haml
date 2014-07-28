@@ -1,4 +1,4 @@
-= bootstrap_form_for(@event, :html => {:class => "form form-horizontal"} ) do |f|
+= bootstrap_form_for(@event, :layout => :horizontal) do |f|
   = f.text_field :name
 
   = f.text_area :description, :rows => 10, :class => "rich_text_editor"
@@ -6,14 +6,13 @@
   = f.datetime_select :start_time
   = f.datetime_select :end_time
 
-  = f.check_box :allow_rsvp, :help_inline => :when_checked_users_will_be_able_to_rsvp_for_this_event.l
+  = f.form_group :rsvp, :help => :when_checked_users_will_be_able_to_rsvp_for_this_event.l do
+    = f.check_box :allow_rsvp
 
   = f.text_field :location
 
-  .control-group
-    %label.control-label= :metro_area.l
-    .controls
-      = render :partial => 'shared/location_chooser', :locals => {:selected_country => @country_id, :selected_state => @state_id, :selected_metro_area => @metro_area_id, :states => @states, :metro_areas => @metro_areas}
+  = f.form_group :location_group, :label => {:text => :metro_area.l} do
+    = render :partial => 'shared/location_chooser', :locals => {:selected_country => @country_id, :selected_state => @state_id, :selected_metro_area => @metro_area_id, :states => @states, :metro_areas => @metro_areas}
 
-  .controls
-    = f.submit :save.l
+  = f.form_group :submit_group do
+    = f.primary :save.l

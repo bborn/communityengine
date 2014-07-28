@@ -1,9 +1,7 @@
 -@page_title=:forgot_your_username.l
 =render :partial => 'shared/login_sidebar'
 
-= form_tag forgot_username_path, :class => 'form form-horizontal' do
-  .control-group
-    %label.control-label{"for"=>"email"}=:enter_your_email_address.l+":"
-    .controls= text_field_tag 'email', nil
-  .controls
-    = submit_tag :send_me_my_username.l, :class => 'btn btn-primary'
+= bootstrap_form_tag :url => forgot_username_path, :layout => :horizontal do |f|
+  = f.email_field :email, :label => :enter_your_email_address.l
+  = f.form_group :submit_group do
+    = f.primary :send_me_my_username.l
