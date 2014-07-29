@@ -5,7 +5,7 @@
 //= require jquery.migrate
 //= require jquery_ujs
 //= require jquery-ui
-//= require bootstrap
+//= require bootstrap-sprockets
 //
 ///////////////////////////////////////////
 // UTILITIES                             //
