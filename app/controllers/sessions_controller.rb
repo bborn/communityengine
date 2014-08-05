@@ -27,6 +27,7 @@ class SessionsController < BaseController
   end
 
   def destroy
+    redirect_to new_session_path and return if current_user_session.nil?
     current_user_session.destroy
     reset_session
     flash[:notice] = :youve_been_logged_out_hope_you_come_back_soon.l
