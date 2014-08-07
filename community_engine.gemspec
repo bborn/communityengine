@@ -57,7 +57,7 @@ Gem::Specification.new do |s|
   s.add_dependency "sanitize",                  ">= 2.0.6"
   s.add_dependency "bootstrap-sass",            '~> 3.2.0'
   s.add_dependency "bootstrap_form",            ">= 0"
-  s.add_dependency "font-awesome-sass-rails",   ">= 0"
+  s.add_dependency "font-awesome-rails",        ">= 0"
   s.add_dependency "jquery-rails",              ">= 0"
   s.add_dependency "jquery-ui-rails",           "~> 5.0.0"
   s.add_dependency "jquery-ui-themes",          ">= 0"
