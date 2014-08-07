@@ -37,7 +37,7 @@
           - if @pages
             = paginate @pages
 
-    - if @topics.any?
+    - if @topics && @topics.any?
       %br.clear
       %h3=:topics.l(:count => @topics.size)
       - @topics.each do |topic|
@@ -62,7 +62,7 @@
         %h3= :clippings.l
         - @clippings.each do |clipping|
           %a{"href"=>"#{h user_clipping_url(clipping.user, clipping) }"}
-            %img.polaroid.clipping{"src"=>"#{h clipping.image_uri}", "style"=>"width:108px"}
+            %img.polaroid.clipping{"src"=>"#{h clipping.image_uri(:thumb)}", "style"=>"width:108px"}
         %h6.all= link_to :all_clippings_tagged.l(:tag_name => @tags_raw), show_tag_type_path(:id => @tags_raw, :type => 'Clipping') unless params[:type]
 
     - if @pages && !params[:type].eql?('Post')
