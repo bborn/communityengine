@@ -33,7 +33,7 @@
         %i.icon-calendar.pull-left
         %abbr.published{:title => "#{@post.published_at}"}= @post.published_at_display(:literal_date)
       %li.list-group-item
-        %i.icon-eye-open
+        %i.icon-eye
         = :view_count.l
         %span.badge= @post.view_count
       %a.list-group-item{:href => "#{user_post_path(@user, @post)}", :name => 'comments'}
@@ -54,9 +54,9 @@
         =sharethis_options(@post)
       -if @is_current_user || admin? || moderator?
         %a.list-group-item{:href => "#{edit_user_post_path(@post.user, @post)}"}
-          %i.icon-edit
+          %i.icon-pencil-square-o
           = :edit.l
-        = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
+        = link_to '<i class="icon-trash-o"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
   = @post.post.html_safe
 / clearfix
 
@@ -67,7 +67,7 @@
       - @post.tags.each do |t|
         %li
           %a.label.label-info{:href => tag_url(t), :rel => 'tag'}
-            %i.icon-tag.icon-white
+            %i.icon-tag.icon-inverse
             =t.name
 
 %h2= :post_comments.l

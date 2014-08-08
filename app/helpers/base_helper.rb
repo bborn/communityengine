@@ -253,7 +253,7 @@ module BaseHelper
   end
 
   def more_comments_links(commentable)
-    html = icon_link_to 'icon-plus-sign', :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
+    html = icon_link_to 'icon-plus-circle', :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
     html += "<br />".html_safe
     html += icon_link_to 'icon-rss', :comments_rss.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
     html.html_safe

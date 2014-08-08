@@ -7,13 +7,13 @@
       %a{:href => "#{user_post_path(post.user, post)}", :class => "photo list-group-item", :rel => "bookmark"}
         =image_tag (post.first_image_in_body || post.user.avatar_photo_url(:medium)), :class => 'img-responsive'
       %a{:href => "#{user_path(post.user)}", :class => "list-group-item"}
-        %i.icon-hand-right
+        %i.icon-hand-o-right
         =post.user.login
       %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark", :class => "list-group-item"}
         %i.icon-calendar
         %abbr.published{:title=>"#{post.published_at}"}= post.published_at_display(:short_literal_date)
       %li.list-group-item
-        %i.icon-eye-open
+        %i.icon-eye
         = :view_count.l
         %span.badge=post.view_count
       %a{:href => user_post_path(post.user, post)+'#comments', :class => "list-group-item"}

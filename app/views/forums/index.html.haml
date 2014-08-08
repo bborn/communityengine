@@ -34,7 +34,7 @@
       %td
         - if recent_forum_activity(forum)
           %span.badge.badge-warning
-            %i.icon-fire.icon-white
+            %i.icon-fire.icon-inverse
         - if forum.sb_posts.last
           = time_ago_in_words(forum.sb_posts.last.created_at)
           %br
