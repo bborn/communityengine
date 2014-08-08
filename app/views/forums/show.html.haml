@@ -61,9 +61,9 @@
 = paginate @topics, :theme => 'bootstrap'
 
 - if logged_in?
-  = icon_link_to 'icon-plus', :post_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
+  = icon_link_to 'plus', :post_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
 - else
-  = icon_link_to 'icon-plus', :log_in_to_create_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
+  = icon_link_to 'plus', :log_in_to_create_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
 
 - if @topics.size < 10
   - @related = Post.limit(10).tagged_with(@forum.tag_list, :any => true)

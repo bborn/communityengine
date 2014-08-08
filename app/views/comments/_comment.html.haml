@@ -30,7 +30,7 @@
             -if comment.author_url.blank?
               = h comment.username
             -else
-              =icon_link_to 'icon-hand-o-right', h(comment.username), h(comment.author_url)
+              =icon_link_to 'hand-o-right', h(comment.username), h(comment.author_url)
           %a{:href=> commentable_url(comment), :rel => "bookmark", :class => "list-group-item"}
             =fa_icon "calendar"
             %abbr.published{:title => "#{comment.created_at}"}
