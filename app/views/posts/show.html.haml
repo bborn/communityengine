@@ -33,30 +33,25 @@
         =fa_icon "calendar"
         %abbr.published{:title => "#{@post.published_at}"}= @post.published_at_display(:literal_date)
       %li.list-group-item
-        =fa_icon "eye"
-        = :view_count.l
+        =fa_icon "eye", :text => :view_count.l
         %span.badge= @post.view_count
       %a.list-group-item{:href => "#{user_post_path(@user, @post)}", :name => 'comments'}
-        =fa_icon "comment"
-        = :comments.l
+        =fa_icon "comment", :text => :comments.l
         %span.badge.badge-info=@post.comments.count
       - if current_user and current_user.can_request_friendship_with(@post.user)
         %li.list-group-item
           = add_friend_link(@post.user)
       %a.list-group-item{:href => "#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}
-        =fa_icon "print"
-        = :print.l
+        =fa_icon "print", :text => :print.l
       %a.email.list-group-item{:href => "#", :title => :email_this_story_to_friends.l}
-        =fa_icon "envelope"
-        = :email_to_friends.l
+        =fa_icon "envelope", :text => :email_to_friends.l
       %li.list-group-item
         %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;button=false"}
         =sharethis_options(@post)
       -if @is_current_user || admin? || moderator?
         %a.list-group-item{:href => "#{edit_user_post_path(@post.user, @post)}"}
-          =fa_icon "pencil-square-o"
-          = :edit.l
-        = link_to '<i class="icon-trash-o"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
+          =fa_icon "pencil-square-o", :text => :edit.l
+        = link_to fa_icon("trash-o", :text => :delete.l), user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
   = @post.post.html_safe
 / clearfix
 
@@ -67,8 +62,7 @@
       - @post.tags.each do |t|
         %li
           %a.label.label-info{:href => tag_url(t), :rel => 'tag'}
-            =fa_icon "tag inverse"
-            =t.name
+            =fa_icon "tag inverse", :text => t.name
 
 %h2= :post_comments.l
 %h3= :add_your_comment.l

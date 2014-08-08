@@ -51,7 +51,7 @@
       =fa_icon "lock"
       %label= :this_topic_is_locked.l
   - else
-    = link_to '<i class="icon-plus"></i> '.html_safe + :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => 'reply-toggle'
+    = link_to fa_icon("plus", :text => :reply_to_topic.l), new_forum_topic_sb_post_path(@topic.forum, @topic), :class => 'reply-toggle'
     .reply
       =render :partial => 'sb_posts/reply_form'
 

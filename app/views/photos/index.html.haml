@@ -9,12 +9,10 @@
         %li
           - if (tag.name.eql?(params[:tag_name]) )
             %a.active.label.label-info{:href => user_photos_path(@user)}
-              =fa_icon "tag inverse"
-              =tag.name
+              =fa_icon "tag inverse", :text => tag.name
           - else
             %a.label.label-info{:href => user_photos_path(:user_id => @user, :tag_name => tag.name)}
-              =fa_icon "tag inverse"
-              =tag.name
+              =fa_icon "tag inverse", :text => tag.name
 
 %ul.list-unstyled.thumbnails
   - @photos.each do |photo|

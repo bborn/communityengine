@@ -3,7 +3,7 @@
   %td{:id=>"post-body-#{post.id}"}
     .editable
       - if logged_in?
-        = link_to '<i class="icon-comment"></i>'.html_safe, new_forum_topic_sb_post_path(post.topic.forum, post.topic), :class => 'reply-toggle'
+        = link_to fa_icon("comment"), new_forum_topic_sb_post_path(post.topic.forum, post.topic), :class => 'reply-toggle'
       = post.body.html_safe
     .editor.hide
 
