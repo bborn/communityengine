@@ -7,16 +7,16 @@
         .list-group
           = link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login, :class => "img-responsive"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'list-group-item'
           %a{:href => user_path(comment.user), :class => "list-group-item"}
-            =fa_icon "hand-o-right", :text => comment.user.login
+            =fa_icon "hand-o-right fw", :text => comment.user.login
           %a{:href => commentable_url(comment), :rel => "bookmark", :class => "list-group-item"}
             =fa_icon "calendar"
             %abbr.published{:title => "#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
           -if logged_in? && (current_user.admin? || current_user.moderator?)
-            =link_to fa_icon("pencil-square-o", :text => :edit.l), edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax list-group-item'
+            =link_to fa_icon("pencil-square-o fw", :text => :edit.l), edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax list-group-item'
           -if ( comment.can_be_deleted_by(current_user) )
             .delete
-              =link_to fa_icon("trash-o", :text => :delete.l), commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true, :class => "list-group-item"
+              =link_to fa_icon("trash-o fw", :text => :delete.l), commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true, :class => "list-group-item"
 
       = comment.comment.html_safe
 
@@ -32,13 +32,13 @@
             -else
               =icon_link_to 'hand-o-right', h(comment.username), h(comment.author_url)
           %a{:href=> commentable_url(comment), :rel => "bookmark", :class => "list-group-item"}
-            =fa_icon "calendar"
+            =fa_icon "calendar fw"
             %abbr.published{:title => "#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
           -if logged_in? && (current_user.admin? || current_user.moderator?)
-            =link_to fa_icon("pencil-square-o", :text => :edit.l), edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax list-group-item'
+            =link_to fa_icon("pencil-square-o fw", :text => :edit.l), edit_commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :class => 'edit-via-ajax list-group-item'
           -if ( comment.can_be_deleted_by(current_user) )
-            =link_to fa_icon("trash-o", :text => :delete.l), commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true, :class => "list-group-item"
+            =link_to fa_icon("trash-o fw", :text => :delete.l), commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_comment.l, :remote => true, :class => "list-group-item"
 
       = comment.comment.html_safe
 
