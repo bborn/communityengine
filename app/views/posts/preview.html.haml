@@ -8,11 +8,11 @@
   .col-sm-3.pull-right
     .list-group
       %a{:href => "#{user_post_path(@user, @post)}", :rel => "bookmark", :class => "list-group-item"}
-        %i.icon-calendar.pull-left
+        =fa_icon "calendar"
         %abbr.published{:title => "#{@post.published_at}"}= @post.published_at_display(:literal_date)
       -if @is_current_user || admin? || moderator?
         %a{:href => "#{edit_user_post_path(@post.user, @post)}", :class => "list-group-item"}
-          %i.icon-pencil-square-o
+          =fa_icon "pencil-square-o"
           =:edit.l
         = link_to '<i class="icon-trash-o"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
 
@@ -24,7 +24,7 @@
       - @post.tags.each do |t|
         %li
           %a.label.label-info{:href => tag_url(t), :rel => 'tag'}
-            %i.icon-tag.icon-inverse
+            =fa_icon "tag inverse"
             =t.name
 
 

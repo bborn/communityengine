@@ -7,17 +7,17 @@
       %a{:href => "#{user_post_path(post.user, post)}", :class => "photo list-group-item", :rel => "bookmark"}
         =image_tag (post.first_image_in_body || post.user.avatar_photo_url(:medium)), :class => 'img-responsive'
       %a{:href => "#{user_path(post.user)}", :class => "list-group-item"}
-        %i.icon-hand-o-right
+        =fa_icon "hand-o-right"
         =post.user.login
       %a{:href=>"#{user_post_path(post.user, post)}", :rel=>"bookmark", :class => "list-group-item"}
-        %i.icon-calendar
+        =fa_icon "calendar"
         %abbr.published{:title=>"#{post.published_at}"}= post.published_at_display(:short_literal_date)
       %li.list-group-item
-        %i.icon-eye
+        =fa_icon "eye"
         = :view_count.l
         %span.badge=post.view_count
       %a{:href => user_post_path(post.user, post)+'#comments', :class => "list-group-item"}
-        %i.icon-comment
+        =fa_icon "comment"
         =:comments.l
         %span.badge.badge-info=post.comments.count
       - if current_user and current_user.can_request_friendship_with(post.user)

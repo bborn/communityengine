@@ -12,7 +12,7 @@
   =@forum.description_html.html_safe
 %p
   %a{:href => forum_sb_posts_path(@forum, :format => :rss)}
-    %i.icon-rss
+    =fa_icon "rss"
   = pluralize @forum.topics_count, :topic.l
   ,
   = pluralize @forum.sb_posts_count, :post.l
@@ -40,7 +40,7 @@
 
           - if recent_topic_activity(topic)
             %span.badge.badge-warning
-              %i.icon-fire.icon-inverse
+              =fa_icon "fire inverse"
         %td
           -if topic.sticky?
             =:sticky.l

@@ -37,7 +37,7 @@
 %p
   - for tag in @photo.tags
     %a.label.label-info{:href => user_photos_path(@photo.user, :tag_name => tag.name)}
-      %i.icon-inverse.icon-tag
+      =fa_icon "tag inverse"
       =tag.name
 
 -box :id => 'comments' do

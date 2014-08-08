@@ -7,10 +7,10 @@
         .list-group
           = link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login, :class => "img-responsive"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'list-group-item'
           %a{:href => user_path(comment.user), :class => "list-group-item"}
-            %i.icon-hand-o-right
+            =fa_icon "hand-o-right"
             =comment.user.login
           %a{:href => commentable_url(comment), :rel => "bookmark", :class => "list-group-item"}
-            %i.icon-calendar.pull-left
+            =fa_icon "calendar"
             %abbr.published{:title => "#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
           -if logged_in? && (current_user.admin? || current_user.moderator?)
@@ -32,7 +32,7 @@
             -else
               =icon_link_to 'icon-hand-o-right', h(comment.username), h(comment.author_url)
           %a{:href=> commentable_url(comment), :rel => "bookmark", :class => "list-group-item"}
-            %i.icon-calendar.pull-left
+            =fa_icon "calendar"
             %abbr.published{:title => "#{comment.created_at}"}
               = I18n.l(comment.created_at, :format => :short_literal_date)
           -if logged_in? && (current_user.admin? || current_user.moderator?)

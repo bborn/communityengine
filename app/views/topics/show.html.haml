@@ -26,7 +26,7 @@
 
 %p
   %a{:href => forum_topic_path(@forum, @topic, :format => :rss)}
-    %i.icon-rss
+    =fa_icon "rss"
   = "#{pluralize @topic.sb_posts.count, :post.l}, #{pluralize @topic.voices, :voice.l}"
   -if @topic.tags.any?
     %h2=:tags.l
@@ -48,7 +48,7 @@
   #edit
   - if @topic.locked?
     %p
-      %i.icon-lock
+      =fa_icon "lock"
       %label= :this_topic_is_locked.l
   - else
     = link_to '<i class="icon-plus"></i> '.html_safe + :reply_to_topic.l, new_forum_topic_sb_post_path(@topic.forum, @topic), :class => 'reply-toggle'
