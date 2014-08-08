@@ -4,7 +4,7 @@
   %table{:width => '100%'}
     - @recent_activity.each do |activity|
       =render :partial => "activities/activity", :locals => {:activity => activity }
-  =icon_link_to 'plus-circle', :see_all_activity.l, activities_path
+  =link_to fa_icon('plus-circle', :text => :see_all_activity.l), activities_path
 
 .col-sm-3
   %hr
@@ -12,4 +12,4 @@
   - tag_cloud @popular_tags, %w(css1 css2 css3 css4 css5) do |tag, css_class|
     = link_to tag.name, tag_path(tag.to_param), :class => css_class
   %p
-    =icon_link_to 'plus-circle', :all_tags.l, tags_path
+    =link_to fa_icon('plus-circle', :text => :all_tags.l), tags_path

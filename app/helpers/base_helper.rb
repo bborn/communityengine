@@ -253,9 +253,9 @@ module BaseHelper
   end
 
   def more_comments_links(commentable)
-    html = icon_link_to 'plus-circle', :all_comments.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
+    html = link_to fa_icon('plus-circle', :text => :all_comments.l), commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param)
     html += "<br />".html_safe
-    html += icon_link_to 'rss', :comments_rss.l, commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
+    html += link_to fa_icon('rss', :text => :comments_rss.l), commentable_comments_url(commentable.class.to_s.tableize, commentable.to_param, :format => :rss)
     html.html_safe
   end
 
@@ -368,10 +368,6 @@ module BaseHelper
       when :error then "alert-danger"
       when :alert then "alert-warning"
     end
-  end
-
-  def icon_link_to(icon_class, content, href)
-    link_to fa_icon(icon_class, :text => content), href
   end
 
   def tag_auto_complete_field(id, options = {})

@@ -19,4 +19,4 @@
       - else
         = link_to :plural_posts.l(:count => user.posts.count), user_posts_path(user)
     %li
-      =icon_link_to 'rss', :rss_feed.l, user_posts_path(user, :format => :rss)
+      =link_to fa_icon('rss', :text => :rss_feed.l), user_posts_path(user, :format => :rss)
