@@ -6,7 +6,7 @@
       %li
         = link_to :administer_events.l, admin_events_path
     %li
-      = icon_link_to 'icon-plus-sign', :see_all_events.l, events_path
+      = link_to fa_icon('plus-circle', :text => :see_all_events.l), events_path
 =render :partial=>'subscribe'
 
 - if (logged_in? && (@event.user.eql?(current_user) || admin?))

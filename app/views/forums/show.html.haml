@@ -12,7 +12,7 @@
   =@forum.description_html.html_safe
 %p
   %a{:href => forum_sb_posts_path(@forum, :format => :rss)}
-    %i.icon-rss
+    =fa_icon "rss"
   = pluralize @forum.topics_count, :topic.l
   ,
   = pluralize @forum.sb_posts_count, :post.l
@@ -40,7 +40,7 @@
 
           - if recent_topic_activity(topic)
             %span.badge.badge-warning
-              %i.icon-fire.icon-white
+              =fa_icon "fire inverse"
         %td
           -if topic.sticky?
             =:sticky.l
@@ -61,9 +61,9 @@
 = paginate @topics, :theme => 'bootstrap'
 
 - if logged_in?
-  = icon_link_to 'icon-plus', :post_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
+  = link_to fa_icon('plus', :text => :post_a_new_topic.l.downcase.capitalize), new_forum_topic_path(@forum)
 - else
-  = icon_link_to 'icon-plus', :log_in_to_create_a_new_topic.l.downcase.capitalize, new_forum_topic_path(@forum)
+  = link_to fa_icon('plus', :text => :log_in_to_create_a_new_topic.l.downcase.capitalize), new_forum_topic_path(@forum)
 
 - if @topics.size < 10
   - @related = Post.limit(10).tagged_with(@forum.tag_list, :any => true)

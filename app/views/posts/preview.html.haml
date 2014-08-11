@@ -8,13 +8,12 @@
   .col-sm-3.pull-right
     .list-group
       %a{:href => "#{user_post_path(@user, @post)}", :rel => "bookmark", :class => "list-group-item"}
-        %i.icon-calendar.pull-left
+        =fa_icon "calendar fw"
         %abbr.published{:title => "#{@post.published_at}"}= @post.published_at_display(:literal_date)
       -if @is_current_user || admin? || moderator?
         %a{:href => "#{edit_user_post_path(@post.user, @post)}", :class => "list-group-item"}
-          %i.icon-edit
-          =:edit.l
-        = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
+          =fa_icon "pencil-square-o fw", :text => :edit.l
+        = link_to fa_icon("trash-o fw", :text => :delete.l), user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
 
   = @post.post
 = render :partial => 'polls/poll_ui', :locals => {:poll => @post.polls.first} unless @post.polls.empty?
@@ -24,7 +23,6 @@
       - @post.tags.each do |t|
         %li
           %a.label.label-info{:href => tag_url(t), :rel => 'tag'}
-            %i.icon-tag.icon-white
-            =t.name
+            =fa_icon "tag inverse", :text => t.name
 
 

@@ -20,16 +20,16 @@
 - if logged_in?
   %h2.signup=:have_something_to_contribute.l
   %ul.list-unstyled
-    %li=icon_link_to 'icon-check', @category.display_new_post_text() || :write_new_post.l(:category=>@category.name), new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
+    %li=link_to fa_icon('check', :text => @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)), new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
 - else
   %h2.signup= @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)
   %ul.list-unstyled
     %li
-      =icon_link_to 'icon-check', :sign_up_for_an_account.l, signup_url
+      =link_to fa_icon('check', :text => :sign_up_for_an_account.l), signup_url
     %li
       %small
         =:have_an_account.l
-        =icon_link_to 'icon-arrow-right', :login.l, login_url
+        =link_to fa_icon('arrow-right', :text => :login.l), login_url
 
 %h2      
   =:show_category.l :category => @category.name

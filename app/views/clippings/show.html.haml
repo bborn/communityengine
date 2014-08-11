@@ -41,8 +41,7 @@
         - @clipping.tags.each do |t|
           %li
             %a.label.label-info{:href => tag_url(t), :rel => 'tag'}
-              %i.icon-tag.icon-white
-              =t.name
+              =fa_icon "tag inverse", :text => t.name
 
 %h2=:clipping_comments.l
 %h3=:add_your_comment.l

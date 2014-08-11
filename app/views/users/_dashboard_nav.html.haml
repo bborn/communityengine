@@ -3,8 +3,7 @@
   %h3=:dashboard.l
   %ul.list-unstyled
     %p
-      %i.icon-check.pull-left
-      =:view.l
+      =fa_icon "check", :text => :view.l
     %li=link_to :my_profile.l, user_path(@user)
     %li=link_to :my_blog.l, user_posts_path(@user)
     %li=link_to :photo_manager.l, user_photo_manager_index_path(@user)
@@ -12,8 +11,7 @@
     %li=link_to :my_friends.l, accepted_user_friendships_path(@user)
     %li=link_to :inbox.l, user_messages_path(@user)
     %p
-      %i.icon-wrench.pull-left
-      =:manage.l
+      =fa_icon "wrench", :text => :manage.l
     %li=link_to :my_profile.l, edit_user_path(@user)
     %li=link_to :my_account.l, edit_account_user_path(@user)
     %li=link_to :my_blog_posts.l, manage_user_posts_path(@user)

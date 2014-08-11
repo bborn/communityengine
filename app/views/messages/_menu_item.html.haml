@@ -8,4 +8,4 @@
       %a{:href => user_messages_path(current_user)}
         %span.badge.badge-success
           =current_user.unread_message_count
-          %i.icon-white.icon-envelope
+          =fa_icon "envelope inverse"

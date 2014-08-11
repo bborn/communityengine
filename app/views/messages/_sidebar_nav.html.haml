@@ -7,6 +7,6 @@
       - if @user.unread_messages?
         %span.badge.badge-success
           = "#{@user.unread_message_count}"
-          %i.icon-envelope.icon-white
+          =fa_icon "envelope inverse"
   %p.sent= link_to :sent_messages.l, user_messages_path(@user, :mailbox => :sent)
   %p.compose= link_to :compose.l, new_user_message_path(@user)

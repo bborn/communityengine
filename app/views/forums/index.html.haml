@@ -5,7 +5,7 @@
 .pull-right=link_to :recent_posts.l, recent_forum_posts_path
 %p.subtitle
   %a{:href => recent_forum_posts_path(:format => 'rss')}
-    %i.icon-rss
+    =fa_icon "rss"
   = number_with_delimiter(Topic.count)
   = "#{:topics.l},"
   = number_with_delimiter(SbPost.count)
@@ -34,7 +34,7 @@
       %td
         - if recent_forum_activity(forum)
           %span.badge.badge-warning
-            %i.icon-fire.icon-white
+            =fa_icon "fire inverse"
         - if forum.sb_posts.last
           = time_ago_in_words(forum.sb_posts.last.created_at)
           %br

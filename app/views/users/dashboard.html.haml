@@ -7,7 +7,7 @@
 
 -if @user.pending_friendships.any?
   %p
-    =icon_link_to 'icon-user', :you_have_pending_friendship_requests.l, pending_user_friendships_path(@user)
+    =link_to fa_icon('user', :text => :you_have_pending_friendship_requests.l), pending_user_friendships_path(@user)
 
 
 -if @network_activity.empty? && @recommended_posts.empty?
@@ -28,7 +28,7 @@
   %h2=:activity_from_your_network.l
   -box :class => "fresh" do
     =render :partial => "activities/activity", :collection => @network_activity
-    = icon_link_to 'icon-plus-sign', :see_all_activity.l, network_user_activities_path(current_user)
+    =link_to fa_icon('plus-circle', :text => :see_all_activity.l), network_user_activities_path(current_user)
 
 -unless @recommended_posts.empty?
   %h2=:recommended_posts.l

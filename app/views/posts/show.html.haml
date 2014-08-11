@@ -30,33 +30,28 @@
   .pull-right.col-sm-3
     .list-group
       %a.list-group-item{:href => "#{user_post_path(@user, @post)}", :rel => "bookmark"}
-        %i.icon-calendar.pull-left
+        =fa_icon "calendar fw"
         %abbr.published{:title => "#{@post.published_at}"}= @post.published_at_display(:literal_date)
       %li.list-group-item
-        %i.icon-eye-open
-        = :view_count.l
+        =fa_icon "eye fw", :text => :view_count.l
         %span.badge= @post.view_count
       %a.list-group-item{:href => "#{user_post_path(@user, @post)}", :name => 'comments'}
-        %i.icon-comment
-        = :comments.l
+        =fa_icon "comment fw", :text => :comments.l
         %span.badge.badge-info=@post.comments.count
       - if current_user and current_user.can_request_friendship_with(@post.user)
         %li.list-group-item
           = add_friend_link(@post.user)
       %a.list-group-item{:href => "#", :onclick=>"window.print(); return false;", :title=>:print_this_story.l}
-        %i.icon-print
-        = :print.l
+        =fa_icon "print fw", :text => :print.l
       %a.email.list-group-item{:href => "#", :title => :email_this_story_to_friends.l}
-        %i.icon-envelope
-        = :email_to_friends.l
+        =fa_icon "envelope fw", :text => :email_to_friends.l
       %li.list-group-item
         %script{:type=>"text/javascript", :src=>"http://w.sharethis.com/widget/?tabs=web&amp;charset=utf-8&amp;style=default&amp;publisher=4488bdef-d776-4c80-93e1-ac1fb8359971&amp;linkfg=%23131358&amp;button=false"}
         =sharethis_options(@post)
       -if @is_current_user || admin? || moderator?
         %a.list-group-item{:href => "#{edit_user_post_path(@post.user, @post)}"}
-          %i.icon-edit
-          = :edit.l
-        = link_to '<i class="icon-trash"></i>'.html_safe + :delete.l, user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
+          =fa_icon "pencil-square-o fw", :text => :edit.l
+        = link_to fa_icon("trash-o fw", :text => :delete.l), user_post_path(@post.user, @post), {:method => :delete, data: { confirm: :permanently_delete_this_post.l }, :class => "list-group-item"}
   = @post.post.html_safe
 / clearfix
 
@@ -67,8 +62,7 @@
       - @post.tags.each do |t|
         %li
           %a.label.label-info{:href => tag_url(t), :rel => 'tag'}
-            %i.icon-tag.icon-white
-            =t.name
+            =fa_icon "tag inverse", :text => t.name
 
 %h2= :post_comments.l
 %h3= :add_your_comment.l

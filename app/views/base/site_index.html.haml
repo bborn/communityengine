@@ -8,7 +8,7 @@
   %h2
     =:recent_posts.l
   = render :partial => 'posts/post', :collection => @posts
-  =icon_link_to 'icon-plus-sign', :see_all_recent_posts.l, recent_path
+  =link_to fa_icon('plus-circle', :text => :see_all_recent_posts.l), recent_path
 
 =render :partial => 'shared/explore'
 
@@ -18,7 +18,7 @@
   %ul.list-unstyled
     -@popular_posts.each do |post|
       =render :partial => 'posts/sidebar_post', :locals => {:post => post}
-  =icon_link_to 'icon-plus-sign', :see_all.l, popular_url
+  =link_to fa_icon('plus-circle', :text => :see_all.l), popular_url
 
 -widget do
   %h4
