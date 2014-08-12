@@ -1,7 +1,6 @@
 = stylesheet_link_tag 'community_engine'
 
 - if forum_page?
-  = stylesheet_link_tag 'forum'
   - unless @feed_icons.blank?
     - @feed_icons.each do |feed|
       = auto_discovery_link_tag :rss, feed[:url], :title => "Subscribe to '#{feed[:title]}'"
