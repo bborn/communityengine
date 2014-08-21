@@ -113,7 +113,7 @@
     submitViaAjax($(this));
   });
 
-  $('.submit-via-ajax').bind('form-pre-serialize', function(e) {
+  $('.submit-via-ajax').on('form-pre-serialize', function(e) {
     tinyMCE.triggerSave();
   });
 
