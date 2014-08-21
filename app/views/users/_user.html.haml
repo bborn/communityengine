@@ -20,8 +20,7 @@
         %abbr.published{:title=>"#{user.created_at}"}
           =:joined.l + " #{time_ago_in_words_or_date user.created_at}"
       - if current_user and current_user.can_request_friendship_with(user)
-        %li.addfriend= add_friend_link(user)
-    
+        %li{:class=>"addfriend_#{user.id}"}= add_friend_link(user)
 
     -unless user.tags.empty?
       %p=raw user.tags[0...6].compact.collect{|t| link_to( t.name, tag_url(t), :class => "tag") }.join(" ")

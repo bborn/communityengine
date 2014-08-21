@@ -276,7 +276,7 @@ module BaseHelper
   end
 
   def ajax_spinner_for(id, spinner="spinner.gif")
-    "<img src='/assets/#{spinner}' class='hide' id='#{id.to_s}_spinner'> ".html_safe
+    image_tag spinner, class: 'hide', id: "#{id.to_s}_spinner"
   end
 
   def avatar_for(user, size=32)
