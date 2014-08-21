@@ -16,8 +16,10 @@
   %br
   = f.primary :update.l
 
--content_for :end_javascript do
+-content_for :head_css do
   = stylesheet_link_tag 'cropper'
+
+-content_for :end_javascript do
   = javascript_include_tag "cropper"
   :javascript
     jQuery(function($) {
