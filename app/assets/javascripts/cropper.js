@@ -1,5 +1,5 @@
 // the following required file can be found at vendor/assets/javascripts/jcrop/jquery.Jcrop.min.js
-//= require jcrop/jquery.Jcrop.min
+//= require jcrop/jquery.Jcrop
 
 function cropInit() {
   croppable_name = '#' + croppable_id;	
