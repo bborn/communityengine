@@ -21,29 +21,20 @@
       $('#location_chooser').html(html);
       $('#location_chooser img').addClass('hide');
     }
-    $('#country_id').live('change', function(){
+    $(document).on('change', '#country_id', function(){
       $('#location_chooser img').removeClass('hide');
       $.post('#{users_metro_area_update_path}?country_id=' + $('#country_id').val(), {}, refreshLocationChooser);
     });
-    $('#state_id').live('change', function(){
+    $(document).on('change', '#state_id', function(){
       $('#location_chooser img').removeClass('hide');
       $.post('#{users_metro_area_update_path}?country_id=' + $('#country_id').val() + '&state_id=' + $('#state_id').val(), {}, refreshLocationChooser);
     });
-    / observe_field("state_id", {:url => {:controller => 'users', :action => 'metro_area_update'}, :with => "'state_id=' + $('state_id').value + '&country_id=' + $('country_id').value", :loading => "$$('div#location_chooser img')[0].show();", 500 => "alert('"+:sorry_there_was_an_error.l+"'); return false", :update => "location_chooser"})
-    / observe_field("country_id", {:url => {:controller => 'users', :action => 'metro_area_update'}, :with => "country_id", :loading => "$$('div#location_chooser img')[0].show();", 500 => "alert('"+:sorry_there_was_an_error.l+"'); return false", :update => "location_chooser"})
 - else
   -content_for :end_javascript do
     :javascript
-      $('#country_id').live('change', function(){
+      $(document).on('change', '#country_id', function(){
         updateElementFromPost($('#location_chooser'), '#{users_metro_area_update_path}?country_id=' + $('#country_id').val());
       });
-      $('#state_id').live('change', function(){
+      $(document).on('change', '#state_id', function(){
         updateElementFromPost($('#location_chooser'), '#{users_metro_area_update_path}?country_id=' + $('#country_id').val() + '&state_id=' + $('#state_id').val());
       });
-    / observe_field("state_id", {:url => {:controller => 'users', :action => 'metro_area_update'}, :with => "'state_id=' + $('state_id').value + '&country_id=' + $('country_id').value", :loading => "$$('div#location_chooser img')[0].show();", 500 => "alert('"+:sorry_there_was_an_error.l+"'); return false", :update => "location_chooser"})
-    / observe_field("country_id", {:url => {:controller => 'users', :action => 'metro_area_update'}, :with => "country_id", :loading => "$$('div#location_chooser img')[0].show();", 500 => "alert('"+:sorry_there_was_an_error.l+"'); return false", :update => "location_chooser"})
-
-
-
-
-

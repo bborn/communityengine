@@ -1,4 +1,4 @@
-$('.editor-cancel').live('click', function () {
+$(document).on('click', '.editor-cancel', function () {
   event.preventDefault();
   post_body_name = '#' + $(this).attr('data-target');
   $(post_body_name).find('.editable').removeClass('hide');
@@ -17,7 +17,7 @@ $('.reply-toggle').click(function () {
   }
 });
 
-$('#monitor_checkbox').live('change', function(){
+$(document).on('click', '#monitor_checkbox', function () {
   form = $(this).closest('form');
   if ($(this).is(':checked')) {
     form.attr('method', 'post');
