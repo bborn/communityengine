@@ -138,6 +138,19 @@ Akismet: Unfortunately, bots aren't the only ones submitting spam; humans do it 
     :akismet_key => YOUR_KEY
 
 
+Ads
+------------
+
+Ads are snippets of HTML that will be inserted into your templates. You have to declare where they show up in your view. For example, if you wanted a sidebar ad slot, add ```Ad.display()``` in your application template (or wherever your sidebar is):
+
+    #sidebar
+      %h1 This is the sidebar
+
+      =Ad.display(:sidebar, logged_in?)
+
+Then on the admin dashboard, create an ad and use "sidebar" as the location to target it to the :sidebar slot. You can create multiple ads for the same slot and they'll rotate according to their weight.
+
+
 Integrating with Your Application & Overriding CE
 -------------------------------------------------
 
