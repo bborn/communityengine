@@ -9,9 +9,9 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 	- RAILS VERSION 3.2.8
 
-** Using Rails 2.x? You want the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
+For Rails 2.x use the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
 
-** Using Rails 4.x? You want the [rails4 branch](https://github.com/bborn/communityengine/tree/rails4)
+For Rails 4.x use the [rails4 branch](https://github.com/bborn/communityengine/tree/rails4)
 
 Getting CommunityEngine Running
 --------------------------------
@@ -64,7 +64,7 @@ This is where you can change commonly used configuration variables, like `config
 OmniAuth Configuration
 ----------------------
 
-You can allow users to sign up and log in using their accounts from other social networks (like Facbeook, Twitter, LinkedIn, etc.). To do so, just add an initializer in your app's `config/initializers` directory called `omniauth.rb`. In it, put:
+You can allow users to sign up and log in using their accounts from other social networks (like Facbeook, Twitter, LinkedIn, etc.). To do so, just add an initializer in your app's `config/initializers` directory called `omniauth.rb` and add the following lines:
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -73,13 +73,11 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
-You must also add the corresponding provider gem, for example to use facebook login you will need to add
+You must also add the corresponding provider gem, for example to use facebook login you will need to add the following to your gemfile:
 
 ```ruby
 gem 'omniauth-facebook'
 ```
-
-to your gemfile
 
 See the [OmniAuth Github repository](https://github.com/intridea/omniauth) for more information and configuration options.
 
