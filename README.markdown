@@ -1,5 +1,7 @@
 ** Using Rails 2.x? You want the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
 
+** Using Rails 4.x? You want the [rails4 branch](https://github.com/bborn/communityengine/tree/rails4)
+
 CommunityEngine [![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
