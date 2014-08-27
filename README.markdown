@@ -1,7 +1,9 @@
 CommunityEngine
 ===============
 
-[![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
+[![Build Status](https://travis-ci.org/bborn/communityengine.svg?branch=rails4)](https://travis-ci.org/bborn/communityengine)
+Version 3.0.2 pre3
+
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
