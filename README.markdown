@@ -1,21 +1,19 @@
-** Using Rails 2.x? You want the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
+CommunityEngine
+===============
 
-CommunityEngine [![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
-
-** Using Rails 3.x? You want the [master branch](https://github.com/bborn/communityengine/tree/master)
-
-CommunityEngine [![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
+[![Build Status](https://secure.travis-ci.org/bborn/communityengine.png)](http://travis-ci.org/bborn/communityengine)
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
-** Using Rails 4.x? You are here.  Current Version 3.0.2.pre3
-
-   gem  "https://github.com/bborn/communityengine.git", :branch => "rails4"
-
-Requirements:
+**Requirements:**
 
 	- RAILS VERSION 4.0.0
 	- RUBY  2.0.0
+
+Using Rails 2.x? You want the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
+
+Using Rails 3.x? You want the [master branch](https://github.com/bborn/communityengine/tree/master)
+
 
 Getting CommunityEngine Running
 --------------------------------
@@ -23,7 +21,7 @@ Getting CommunityEngine Running
 1. Copy the following into your `Gemfile`:
 
     ```
-    gem 'community_engine'
+    gem  "https://github.com/bborn/communityengine.git", :branch => "rails4"
     ```
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
@@ -48,7 +46,7 @@ Getting CommunityEngine Running
 		$ bin/rails server
 
 Optional Configuration
-======================
+----------------------
 
 To override the default configuration, create an `application_config.rb` file in `Rails.root/config`
 
@@ -57,8 +55,8 @@ The application configuration defined in this file overrides the one defined in 
 This is where you can change commonly used configuration variables, like `configatron.community_name`, etc.
 
 
-OmniAuth Configuration:
-=======================
+OmniAuth Configuration
+----------------------
 
 You can allow users to sign up and log in using their accounts from other social networks (like Facbeook, Twitter, LinkedIn, etc.). To do so, just add an initializer in your app's `config/initializers` directory called `omniauth.rb`. In it, put:
 
@@ -174,7 +172,7 @@ To override or modify a controller, helper, or model from CE, you can use the `r
 
 
 
-Other notes
+Other Notes
 -----------
 
 Any views you create in your app directory will override those in CommunityEngine
@@ -197,7 +195,7 @@ Contributors - Thanks! :)
 - [Juan de Frías](http://github.com/juafrlo) static pages, photo albums, message_controller tests
 - [Joel Nimety](http://github.com/jnimety) authlogic authentication
 - [Stephane Decleire](http://github.com/sdecleire) i18n, fr-FR locale
-- [Polar Humenn] (http://github.com/polar) Rails 4 port, and other slight improvements
+- [Polar Humenn](http://github.com/polar) Rails 4 port, and other slight improvements
 
 
 
