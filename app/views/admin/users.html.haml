@@ -44,7 +44,7 @@
             -if user.active?
               = link_to :assume_id.l , assume_user_path(user), :method => 'post', :class => 'btn btn-default'
             -else
-              = link_to :activate.l, admin_activate_user_path(user), :class => 'btn btn-success'
+              = link_to :activate.l, admin_activate_user_path(:id => user), :class => 'btn btn-success'
 
     -if @users.any?         
       -if !configatron.akismet_key.nil?
