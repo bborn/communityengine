@@ -10,6 +10,7 @@
     %li= link_to_unless_current :comments.l, admin_comments_path
     %li= link_to_unless_current :tags.l, admin_tags_path
     %li= link_to_unless_current :admin_pages.l, admin_pages_path
+    %li= link_to_unless_current :users.l, admin_users_path
     - if @admin_nav_links.any?
       - @admin_nav_links.each do |link|
         %li=link_to link[:name], link[:url]
