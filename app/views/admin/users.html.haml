@@ -35,14 +35,15 @@
             -if user.avatar
               = image_tag user.avatar.photo.url(:thumb), :width => 25
           %td
-            = link_to h(user.login), user_path(user)
+            = link_to_if user.active?, user.login, user_path(user)
           %td
             = h user.email
           %td
             = user.active? ? :active.l : :inactive.l
           %td
-            = link_to :assume_id.l , assume_user_path(user), :method => 'post', :class => 'btn btn-default'
-            -unless user.active?
+            -if user.active?
+              = link_to :assume_id.l , assume_user_path(user), :method => 'post', :class => 'btn btn-default'
+            -else
               = link_to :activate.l, admin_activate_user_path(user), :class => 'btn btn-success'
 
     -if @users.any?         
