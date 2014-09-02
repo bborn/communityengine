@@ -163,6 +163,8 @@ en:
   are_you_sure_you_want_to_permanently_delete_this_comment: "Are you sure you want to permanently delete this comment?"
   #en: are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
   are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
+  #en: are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam: Are you sure you want to permanently delete this user and mark it as spam!?
+  are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam: Are you sure you want to permanently delete this user and mark it as spam!?
   #en: assume_id: Assume ID
   assume_id: Assume ID
   #en: assume_user_id: "Assume this user's ID"

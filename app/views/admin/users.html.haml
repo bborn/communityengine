@@ -25,10 +25,10 @@
       - @users.each do |user|
         %tr{:id => "user_#{user.id}"}
           %td
-            = link_to fa_icon("trash-o"), user_path(user), :method => :delete, 'data-manual-confirm' => "Are you sure you want to permanently delete this user", :class => 'delete-via-ajax'
+            = link_to fa_icon("trash-o"), user_path(user), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_user.l, :class => 'delete-via-ajax'
           -if !configatron.akismet_key.nil?
             %td
-              = link_to fa_icon("ban"), user_path(user, :spam => true), :method => :delete, :confirm => "Are you sure you want to permanently delete this user and mark it as spam!?", :class => 'delete-via-ajax'
+              = link_to fa_icon("ban"), user_path(user, :spam => true), :method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam.l, :class => 'delete-via-ajax'
           %td= check_box_tag "delete[]", user.id
 
           %td
