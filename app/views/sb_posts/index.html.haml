@@ -11,9 +11,9 @@
       ="#{:searching_for.l} '#{h params[:q]}'"
 
   %p.subtitle
-    = feed_icon_tag @page_title, all_sb_posts_path(:format => 'rss')
-    = :post_found.l(:count => @posts.size)
-        
+    =link_to fa_icon("rss"), all_sb_posts_path(:format => 'rss')
+    =:post_found.l(:count => @posts.size)
+
   %table.posts.wide{ :cellspacing => "0", :border => "0", :cellpadding => "0", :width => '100%'}
     - for post in @posts do
       - unless post == @posts.to_a.first
