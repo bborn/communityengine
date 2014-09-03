@@ -1,6 +1,6 @@
 %tr
   %td
-    = image_tag "clearbits/comment.gif", :class => "icon grey", :title => :no_recent_activity.l+" #{post}", :plugin => "community_engine"
+    =fa_icon "comment"
   %td
     = link_to h(post.title), user_post_path(post.user, post), :class => "entry-title", :rel => "bookmark", :target => '_blank'
   %td
