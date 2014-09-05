@@ -85,15 +85,17 @@ class FriendshipsController < BaseController
     respond_to do |format|
       if @friendship.save && reverse_friendship.save
         UserNotifier.friendship_request(@friendship).deliver if @friendship.friend.notify_friend_requests?
+        @text = "#{:requested_friendship_with.l} #{@friendship.friend.login}."
         format.html {
           flash[:notice] = :friendship_requested.l_with_args(:friend => @friendship.friend.login)
           redirect_to accepted_user_friendships_path(@user)
         }
-        format.js { render( :js => "$('.addfriend_#{@friendship.friend_id}').html('#{:requested_friendship_with.l} #{@friendship.friend.login}.')" ) }
+        format.js
       else
         flash.now[:error] = :friendship_could_not_be_created.l
+        @text = "#{:friendship_request_failed.l}."
         format.html { redirect_to user_friendships_path(@user) }
-        format.js { render( :js => "$('.addfriend_#{@friendship.friend_id}').html('Friendship request failed.')" ) }
+        format.js
       end
     end
   end
