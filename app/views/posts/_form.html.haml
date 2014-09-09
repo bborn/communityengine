@@ -3,7 +3,7 @@
   -url = user_posts_path(@user)
   -content_for :end_javascript do
     :javascript
-      $("#post_category_id").live('change', function(e){
+      $(document).on('change', "#post_category_id", function(e){
         $.post("#{categories_show_tips_path}?id="+$(this).val(), function(response) {
           $("#category_tips").html(response);
           $("#category_tips").effect('highlight', 500);
@@ -14,7 +14,7 @@
   -url = user_post_path(@user, @post)
   -content_for :end_javascript do
     :javascript
-      $("#post_category_id").live('change', function(e){
+      $(document).on('change', "#post_category_id", function(e){
         $.get("#{category_tips_update_user_post_path(@user, @post)}?post_category_id="+$(this).val(), function(response) {
           $("#category_tips").html(response);
           $("#category_tips").effect('highlight', 500);

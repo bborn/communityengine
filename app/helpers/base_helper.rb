@@ -276,16 +276,11 @@ module BaseHelper
   end
 
   def ajax_spinner_for(id, spinner="spinner.gif")
-    "<img src='/assets/#{spinner}' class='hide' id='#{id.to_s}_spinner'> ".html_safe
+    image_tag spinner, :class => 'hide', :id => id + '_spinner'
   end
 
   def avatar_for(user, size=32)
     image_tag user.avatar_photo_url(:thumb), :class => 'thumbnail'
-  end
-
-  def feed_icon_tag(title, url)
-    (@feed_icons ||= []) << { :url => url, :title => title }
-    link_to image_tag('feed.png', :size => '14x14', :alt => :subscribe_to.l+" #{title}", :plugin => 'community_engine'), url
   end
 
   def search_posts_title
@@ -314,7 +309,7 @@ module BaseHelper
       when 1..59          then :minutes_ago.l(:count => distance_in_minutes)
       when 60..1440       then :hours_ago.l(:count => (distance_in_minutes.to_f / 60.0).round)
       when 1440..2880     then :days_ago.l(:count => (distance_in_minutes.to_f / 1440.0).round) # 1.5 days to 2 days
-      else I18n.l(from_time, :format => :time_ago)
+      else I18n.l(from_time, :format => :short)
     end
   end
 
@@ -324,7 +319,7 @@ module BaseHelper
     elsif date.to_date.eql?(Time.now.to_date - 1)
       display = :yesterday.l
     else
-      display = I18n.l(date.to_date, :format => :date_ago)
+      display = I18n.l(date.to_date, :format => :short)
     end
   end
 

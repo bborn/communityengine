@@ -51,39 +51,6 @@
     });
   }
 
-  function updateElementFromPost(element, url_to_load) {
-    $('#'+element.attr('id')+'_spinner').removeClass('hide');
-    $.ajax({
-      type: 'POST',
-      url: url_to_load,
-      dataType: 'html',
-      success: function(data) {
-      element.html(data);
-        $('#'+element.attr('id')+'_spinner').addClass('hide');
-    },
-      error: logError
-    });
-  }
-
-  function submitViaAjax(form) {
-    $('#'+ form.attr('id') + '_spinner').removeClass('hide');
-    console.log('Attempting to save via AJAX...');
-    $.ajax({
-      type: form.attr('method'),
-      url: form.attr('action').replace('?', '.js?'),
-      data: form.serialize(),
-      dataType: 'script',
-      success: function(response) {
-        if(response) {
-          console.log('Return script received.');
-        } else {
-          console.log('Failed to receive return script.');
-        }
-      },
-      error: logError
-    });
-  }
-
   $(document).on('click', '.delete-via-ajax', function(event){
     event.preventDefault();
     if(confirm($(this).attr('data-manual-confirm'))) {
@@ -113,7 +80,7 @@
     submitViaAjax($(this));
   });
 
-  $('.submit-via-ajax').bind('form-pre-serialize', function(e) {
+  $('.submit-via-ajax').on('form-pre-serialize', function(e) {
     tinyMCE.triggerSave();
   });
 
@@ -168,12 +135,6 @@
     });
   });
 
-  function logError(jqXHR, textStatus, errorThrown) {
-    console.log(jqXHR);
-    console.log(textStatus);
-    console.log(errorThrown);
-  }
-
   $(document).on('click', '.check-all', function(e){
     e.preventDefault();
     first_val = $(this).closest('form').find(':checkbox').attr('checked');
@@ -188,5 +149,41 @@
 })(jQuery);
 
 
+function updateElementFromPost(element, url_to_load) {
+  $('#'+element.attr('id')+'_spinner').removeClass('hide');
+  $.ajax({
+    type: 'POST',
+    url: url_to_load,
+    dataType: 'html',
+    success: function(data) {
+    element.html(data);
+      $('#'+element.attr('id')+'_spinner').addClass('hide');
+  },
+    error: logError
+  });
+}
 
+function submitViaAjax(form) {
+  $('#'+ form.attr('id') + '_spinner').removeClass('hide');
+  console.log('Attempting to save via AJAX...');
+  $.ajax({
+    type: form.attr('method'),
+    url: form.attr('action').replace('?', '.js?'),
+    data: form.serialize(),
+    dataType: 'script',
+    success: function(response) {
+      if(response) {
+        console.log('Return script received.');
+      } else {
+        console.log('Failed to receive return script.');
+      }
+    },
+    error: logError
+  });
+}
 
+function logError(jqXHR, textStatus, errorThrown) {
+  console.log(jqXHR);
+  console.log(textStatus);
+  console.log(errorThrown);
+}

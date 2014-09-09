@@ -25,25 +25,26 @@
       - @users.each do |user|
         %tr{:id => "user_#{user.id}"}
           %td
-            = link_to fa_icon("trash-o"), user_path(user), :method => :delete, 'data-manual-confirm' => "Are you sure you want to permanently delete this user", :class => 'delete-via-ajax'
+            = link_to fa_icon("trash-o"), user_path(user), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_user.l, :class => 'delete-via-ajax'
           -if !configatron.akismet_key.nil?
             %td
-              = link_to fa_icon("ban"), user_path(user, :spam => true), :method => :delete, :confirm => "Are you sure you want to permanently delete this user and mark it as spam!?", :class => 'delete-via-ajax'
+              = link_to fa_icon("ban"), user_path(user, :spam => true), :method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam.l, :class => 'delete-via-ajax'
           %td= check_box_tag "delete[]", user.id
 
           %td
             -if user.avatar
               = image_tag user.avatar.photo.url(:thumb), :width => 25
           %td
-            = link_to h(user.login), user_path(user)
+            = link_to_if user.active?, user.login, user_path(user)
           %td
             = h user.email
           %td
             = user.active? ? :active.l : :inactive.l
           %td
-            = link_to :assume_id.l , assume_user_path(user), :method => 'post', :class => 'btn btn-default'
-            -unless user.active?
-              = link_to :activate.l, admin_activate_user_path(user), :class => 'btn btn-success'
+            -if user.active?
+              = link_to :assume_id.l , assume_user_path(user), :method => 'post', :class => 'btn btn-default'
+            -else
+              = link_to :activate.l, admin_activate_user_path(:id => user), :class => 'btn btn-success'
 
     -if @users.any?         
       -if !configatron.akismet_key.nil?
