@@ -1,6 +1,6 @@
 - if logged_in? || configatron.allow_anonymous_commenting
 
-  = bootstrap_form_for(:comment, :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :layout => :horizontal, :html => {:class => "submit-via-ajax", :id => 'comment'}) do |f|
+  = bootstrap_form_for(:comment, :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :remote => true, :layout => :horizontal, :html => {:id => 'comment'}) do |f|
     = f.text_area :comment, :rows => 5, :style => 'width: 99%', :class => "rich_text_editor", :help => :comment_character_limit.l
 
     - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key
@@ -18,9 +18,16 @@
         = recaptcha_tags :ajax => true
 
     = f.form_group :submit_group do
-      = f.primary :add_comment.l
+      = f.primary :add_comment.l, id: 'add_comment'
       = ajax_spinner_for 'comment'
 - else
   .btn-group
     = link_to :log_in_to_leave_a_comment.l, new_commentable_comment_path(commentable.class, commentable.id), :class => 'btn btn-primary'
     = link_to :create_an_account.l, signup_path, :class => 'btn btn-primary'
+
+= content_for :end_javascript do
+  :javascript
+    jQuery('#add_comment').on('click', function() {
+      $(this).hide();
+      $('#comment_spinner').removeClass('hide').show();
+    });
