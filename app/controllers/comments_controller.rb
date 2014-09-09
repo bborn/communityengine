@@ -136,7 +136,7 @@ class CommentsController < BaseController
       format.html { redirect_to users_url }
       format.js   {
         render :inline => flash[:error], :status => 500 if flash[:error]
-        render :nothing => true if flash[:notice]
+        render if flash[:notice]
       }
     end
   end

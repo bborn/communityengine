@@ -1,6 +1,6 @@
 - if logged_in? || configatron.allow_anonymous_commenting
 
-  = bootstrap_form_for(:comment, :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :layout => :horizontal, :html => {:class => "submit-via-ajax", :id => 'comment'}) do |f|
+  = bootstrap_form_for(:comment, :url => commentable_comments_path(commentable.class.to_s.tableize, commentable), :remote => true, :layout => :horizontal, :html => {:id => 'comment'}) do |f|
     = f.text_area :comment, :rows => 5, :style => 'width: 99%', :class => "rich_text_editor", :help => :comment_character_limit.l
 
     - if !logged_in? && configatron.recaptcha_pub_key && configatron.recaptcha_priv_key
