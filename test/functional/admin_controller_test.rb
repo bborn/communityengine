@@ -29,7 +29,7 @@ class AdminControllerTest < ActionController::TestCase
     users(:quentin).update_attribute('activation_code', 'test')
     users(:quentin).update_attribute('activated_at', nil)
 
-    get :activate_user, :id => users(:quentin).id, :format => 'js'
+    xhr :get, :activate_user, :id => users(:quentin).id, :format => :js
     assert !users(:quentin).active?
   end
   

@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
   s.add_dependency "koala",                     "~> 1.6.0"
   s.add_dependency "omniauth",                  "~> 1.1.4"
   s.add_dependency "rails_autolink",            ">= 0"
-  s.add_dependency "paperclip",                 "~> 3.5.1"
+  s.add_dependency "paperclip",                 "~> 4.2.0"
   s.add_dependency "power_enum",                "~> 2.7"
   s.add_dependency "rack",                      ">= 1.5.2"
   s.add_dependency "rails",                     "~> 4.1.0"
