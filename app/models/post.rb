@@ -32,6 +32,8 @@ class Post < ActiveRecord::Base
 
   attr_accessor :invalid_emails
 
+  default_scope -> {includes(:user).where('users.activated_at IS NOT NULL')}
+
   # Class Methods
   class << self
 
