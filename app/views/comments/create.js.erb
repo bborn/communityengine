@@ -12,8 +12,6 @@
   $('#comment-<%= @comment.id.to_s %>').scrollTo();
 <% end %>
 
-$('#comment_spinner').addClass('hide');
-
 <% unless configatron.recaptcha_pub_key.blank? %>
   $('#dynamic_recaptcha').each(function(){
     Recaptcha.create('<%= configatron.recaptcha_pub_key %>', this )
