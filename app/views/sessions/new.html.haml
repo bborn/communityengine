@@ -11,7 +11,7 @@
 
 %h3
 = bootstrap_form_tag :url => sessions_path, :layout => :horizontal do |f|
-  = f.email_field :email
+  = f.email_field :email, value: params[:email]
   = f.password_field :password
 
   = f.form_group :remember_group do
