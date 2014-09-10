@@ -20,7 +20,7 @@
 - if logged_in?
   %h2.signup=:have_something_to_contribute.l
   %ul.list-unstyled
-    %li=link_to fa_icon('check', :text => @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)), new_user_post_path({:user_id => current_user, 'post[category_id]' => @category.id})
+    %li=link_to fa_icon('check', :text => @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)), new_user_post_path({:user_id => current_user, :category_id => @category.id})
 - else
   %h2.signup= @category.display_new_post_text() || :write_new_post.l(:category=>@category.name)
   %ul.list-unstyled

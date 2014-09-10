@@ -91,6 +91,7 @@ class PostsController < BaseController
   def new
     @user = User.find(params[:user_id])
     @post = Post.new
+    @post.category = Category.find(params[:category_id]) if params[:category_id]
     @post.published_as = 'live'
     @categories = Category.all
   end
