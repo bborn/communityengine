@@ -18,16 +18,9 @@
         = recaptcha_tags :ajax => true
 
     = f.form_group :submit_group do
-      = f.primary :add_comment.l, id: 'add_comment'
-      = ajax_spinner_for 'comment'
+      = f.primary :add_comment.l, data: { disable_with: "Please wait..." }
+
 - else
   .btn-group
     = link_to :log_in_to_leave_a_comment.l, new_commentable_comment_path(commentable.class, commentable.id), :class => 'btn btn-primary'
     = link_to :create_an_account.l, signup_path, :class => 'btn btn-primary'
-
-= content_for :end_javascript do
-  :javascript
-    jQuery('#add_comment').on('click', function() {
-      $(this).hide();
-      $('#comment_spinner').removeClass('hide').show();
-    });
