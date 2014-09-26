@@ -295,6 +295,17 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to crop_profile_photo_user_path(users(:quentin).reload)
   end
 
+  def test_should_change_profile_photo
+    login_as :quentin
+    users(:quentin).avatar = photos(:library_pic)
+    users(:quentin).save!
+
+    patch :change_profile_photo, :id => users(:quentin).id, :photo_id => photos(:another_pic).id
+    assert users(:quentin).reload.avatar.photo_file_name, photos(:another_pic).photo_file_name
+
+    assert_redirected_to user_photo_path(users(:quentin), photos(:another_pic))
+  end
+
   def test_create_friendship_with_invited_user
     assert_difference User, :count do
       assert_difference Friendship, :count, 2 do
