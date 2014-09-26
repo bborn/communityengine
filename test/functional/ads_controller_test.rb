@@ -19,33 +19,33 @@ class AdsControllerTest < ActionController::TestCase
   end
   
   def test_should_create_ad
-    old_count = Ad.count
-    post :create, :ad => { :html => 'Our company is great!', :frequency => 1, :audience => 'all'}
-    assert_equal old_count+1, Ad.count
-    
+    assert_difference Ad, :count do
+      post :create, :ad => { :html => 'Our company is great!', :frequency => 1, :audience => 'all'}
+    end
+
     assert_redirected_to ad_path(assigns(:ad))
   end
 
   def test_should_show_ad
-    get :show, :id => 1
+    get :show, :id => ads(:hgtv).id
     assert_response :success
   end
 
   def test_should_get_edit
-    get :edit, :id => 1
+    get :edit, :id => ads(:hgtv).id
     assert_response :success
   end
   
   def test_should_update_ad
-    patch :update, :id => 1, :ad => { }
+    patch :update, :id => ads(:hgtv).id, :ad => { }
     assert_redirected_to ad_path(assigns(:ad))
   end
   
   def test_should_destroy_ad
-    old_count = Ad.count
-    delete :destroy, :id => 1
-    assert_equal old_count-1, Ad.count
-    
+    assert_difference Ad, :count, -1 do
+      delete :destroy, :id => ads(:hgtv).id
+    end
+
     assert_redirected_to ads_path
   end
 end

@@ -10,7 +10,7 @@ class PhotosControllerTest < ActionController::TestCase
         :photo => { :photo => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
         :tag_list => 'tag1, tag2',
-        :album_id => '1'
+        :album_id => albums(:one).id
       photo = Photo.find(assigns(:photo).id)
       assert_equal users(:quentin), photo.user
       assert_equal ['tag1', 'tag2'], photo.tag_list.sort
@@ -25,33 +25,34 @@ class PhotosControllerTest < ActionController::TestCase
         :photo => { :photo => fixture_file_upload('/files/library.jpg', 'image/jpg') },
         :user_id => users(:quentin).id,
         :tag_list => 'tag1, tag2',
-        :album_id => '1'
+        :album_id => albums(:one).id
     end
   end
   
   def test_should_update
     login_as :quentin 
     assert_no_difference Photo ,:count do
-      post :update, :id => 1, :user_id => users(:quentin).id, :photo => {:name => 'Another name', :album_id => 2}
+      post :update, :id => photos(:library_pic).id, :user_id => users(:quentin).id, :photo => {:name => 'Another name', :album_id => albums(:two).id}
     end
-    assert_equal photos(:library_pic).name, 'Another name'
-    assert_equal photos(:library_pic).album_id, 2    
+    photo = photos(:library_pic).reload
+    assert_equal photo.name, 'Another name'
+    assert_equal photo.album_id, albums(:two).id
   end
   
   def owner_should_not_update_view_counter
-    login_as :quentin 
-    get :show, :id => 1
+    login_as :quentin
+    get :show, :id => photos(:library_pic).id
     assert_equal assigns(:photo).reload.view_count, 0
   end
   
   def other_user_should_update_view_counter
-    login_as :quentin 
-    get :show, :id => 2
+    login_as :quentin
+    get :show, :id => photos(:another_pic).id
     assert_equal assigns(:photo).reload.view_count, 1
   end
   
   def no_logged_should_not_update_view_counter
-    get :show, :id => 1
+    get :show, :id => photos(:library_pic).id
     assert_equal assigns(:photo).reload.view_count, 0
   end
   
@@ -177,7 +178,7 @@ class PhotosControllerTest < ActionController::TestCase
   def test_should_destroy_photo
     login_as :quentin
     assert_difference Photo, :count, -1 do
-      delete :destroy, :id => photos(:library_pic), :user_id => users(:quentin).id
+      delete :destroy, :id => photos(:library_pic).id, :user_id => users(:quentin).id
     end
     assert_redirected_to user_photos_path(:user_id => users(:quentin) )
   end
@@ -185,7 +186,7 @@ class PhotosControllerTest < ActionController::TestCase
   def test_should_not_destroy_photo
     login_as :quentin
     assert_difference Photo, :count, 0 do
-      delete :destroy, :id => photos(:library_pic), :user_id => users(:aaron).id
+      delete :destroy, :id => photos(:library_pic).id, :user_id => users(:aaron).id
     end
     assert_redirected_to login_path
   end
@@ -195,7 +196,7 @@ class PhotosControllerTest < ActionController::TestCase
     users(:quentin).avatar = photos(:library_pic)
     users(:quentin).save!
     assert_difference Photo, :count, -1 do
-      delete :destroy, :id => 1, :user_id => users(:quentin).id
+      delete :destroy, :id => photos(:library_pic).id, :user_id => users(:quentin).id
     end
     assert users(:quentin).reload.avatar.nil?
   end

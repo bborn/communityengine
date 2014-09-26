@@ -36,28 +36,28 @@ class MetroAreasControllerTest < ActionController::TestCase
 
   def test_should_show_metro_area
     login_as :admin
-    get :show, :id => 1
+    get :show, :id => metro_areas(:twincities).id
     assert_response :success
   end
 
   def test_should_get_edit
     login_as :admin
-    get :edit, :id => 1
+    get :edit, :id => metro_areas(:twincities).id
     assert_response :success
   end
   
   def test_should_update_metro_area
     login_as :admin
-    patch :update, :id => 1, :metro_area => { }
+    patch :update, :id => metro_areas(:twincities).id, :metro_area => { }
     assert_redirected_to metro_area_path(assigns(:metro_area))
   end
   
   def test_should_destroy_metro_area
     login_as :admin
-    old_count = MetroArea.count
-    delete :destroy, :id => 1
-    assert_equal old_count-1, MetroArea.count
-    
+    assert_difference MetroArea, :count, -1 do
+      delete :destroy, :id => metro_areas(:twincities).id
+    end
+
     assert_redirected_to metro_areas_path
   end
 end

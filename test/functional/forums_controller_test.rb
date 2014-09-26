@@ -41,7 +41,7 @@ class ForumsControllerTest < ActionController::TestCase
   end
   
   def test_should_show_forum
-    get :show, :id => 1
+    get :show, :id => forums(:rails).id
     assert_response :success
     assert assigns(:topics)
     # sticky should be first
@@ -50,20 +50,20 @@ class ForumsControllerTest < ActionController::TestCase
   
   def test_should_show_forum_with_xml
     content_type 'application/xml'
-    get :show, :id => 1, :format => 'xml'
+    get :show, :id => forums(:rails).id, :format => 'xml'
     assert_response :success
     assert_select 'forum'
   end
   
   def test_should_get_edit
     login_as :admin
-    get :edit, :id => 1
+    get :edit, :id => forums(:rails).id
     assert_response :success
   end
   
   def test_should_update_forum
     login_as :admin
-    patch :update, :id => 1, :forum => { }, :tag_list => 'tagX, tagY'
+    patch :update, :id => forums(:rails).id, :forum => { }, :tag_list => 'tagX, tagY'
     assert_redirected_to forums_path
   
     assert_equal ['tagX', 'tagY'], Forum.find(1).tag_list
@@ -72,14 +72,14 @@ class ForumsControllerTest < ActionController::TestCase
   # def test_should_update_forum_with_xml
   #   authorize_as :aaron
   #   content_type 'application/xml'
-  #   patch :update, :id => 1, :forum => { }, :format => 'xml'
+  #   patch :update, :id => forums(:rails).id, :forum => { }, :format => 'xml'
   #   assert_response :success
   # end
   
   def test_should_destroy_forum
     login_as :admin
     assert_difference Forum, :count, -1 do
-      delete :destroy, :id => 1
+      delete :destroy, :id => forums(:rails).id
     end
     
     assert_redirected_to forums_path
@@ -88,8 +88,8 @@ class ForumsControllerTest < ActionController::TestCase
   def test_should_destroy_forum_with_xml
     authorize_as :admin
     assert_difference Forum, :count, -1 do
-      delete :destroy, :id => 1, :format => 'xml'
-      assert_response :success      
+      delete :destroy, :id => forums(:rails).id, :format => 'xml'
+      assert_response :success
     end
   end
   

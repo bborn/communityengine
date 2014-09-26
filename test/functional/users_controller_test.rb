@@ -291,7 +291,7 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_upload_profile_photo
     login_as :quentin
-    patch :upload_profile_photo, :id => users(:quentin), :avatar => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    patch :upload_profile_photo, :id => users(:quentin).id, :avatar => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}
     assert_redirected_to crop_profile_photo_user_path(users(:quentin).reload)
   end
 
