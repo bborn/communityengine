@@ -30,10 +30,10 @@ class AdminController < BaseController
     user = User.arel_table
 
     if params['login']
-      @users = @users.where('`users`.login LIKE ?', "%#{params['login']}%")
+      @users = @users.where(user[:login].matches("%#{params['login']}%"))
     end
     if params['email']
-      @users = @users.where('`users`.email LIKE ?', "%#{params['email']}%")
+      @users = @users.where(user[:email].matches("%#{params['email']}%"))
     end
 
     @users = @users.page(params[:page]).per(100)
