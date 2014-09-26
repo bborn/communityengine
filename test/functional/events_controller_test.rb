@@ -34,19 +34,19 @@ class EventsControllerTest < ActionController::TestCase
 
   def test_should_get_edit
     login_as :admin
-    get :edit, :id => 1
+    get :edit, :id => events(:cool_event).id
     assert_response :success
   end
 
   def test_should_update_event
     login_as :admin
-    put :update, :id => 1, :event => {:name => 'changed name' }
+    put :update, :id => events(:cool_event).id, :event => {:name => 'changed name' }
     assert_redirected_to event_path(assigns(:event))
   end
 
   def test_should_fail_to_update_event
     login_as :admin
-    put :update, :id => 1, :event => { :name => nil }
+    put :update, :id => events(:cool_event).id, :event => { :name => nil }
     assert assigns(:event).errors[:name]
     assert_response :success
   end
@@ -55,7 +55,7 @@ class EventsControllerTest < ActionController::TestCase
     @request.env["HTTP_REFERER"] = 'http://test.host/admin/events'
     login_as :admin
     assert_difference Event, :count, -1 do
-      delete :destroy, :id => 1
+      delete :destroy, :id => events(:cool_event).id
     end
     assert_redirected_to admin_events_path
   end

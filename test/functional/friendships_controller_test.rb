@@ -77,7 +77,7 @@ class FriendshipsControllerTest < ActionController::TestCase
   def test_should_destroy_friendship
     login_as :quentin
     assert_difference Friendship, :count, -2 do
-      delete :destroy, :id => 1, :user_id => users(:quentin).id
+      delete :destroy, :id => friendships(:quentin_init_aaron_pending).id, :user_id => users(:quentin).id
       assert_redirected_to accepted_user_friendships_path(:user_id => users(:quentin))
     end
   end

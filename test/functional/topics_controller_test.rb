@@ -4,13 +4,13 @@ class TopicsControllerTest < ActionController::TestCase
   all_fixtures
 
   def test_should_get_index
-    get :index, :forum_id => 1
+    get :index, :forum_id => forums(:rails).id
     assert_redirected_to forum_path(1)
   end
 
   def test_should_get_index_as_xml
     content_type 'application/xml'
-    get :index, :forum_id => 1, :format => 'xml'
+    get :index, :forum_id => forums(:rails).id, :format => 'xml'
     assert_response :success
   end
 
@@ -28,7 +28,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   def test_should_get_new
     login_as :aaron
-    get :new, :forum_id => 1
+    get :new, :forum_id => forums(:rails).id
     assert_response :success
   end
 
@@ -160,7 +160,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   def test_should_get_edit
     login_as :admin
-    get :edit, :forum_id => 1, :id => 1
+    get :edit, :forum_id => forums(:rails).id, :id => topics(:ponies).id
     assert_response :success
   end
 

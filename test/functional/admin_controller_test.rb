@@ -16,20 +16,20 @@ class AdminControllerTest < ActionController::TestCase
   end
   
   def test_should_not_activate_user
-    login_as :quentin
     users(:quentin).update_attribute('activation_code', 'test')
-    users(:quentin).update_attribute('activated_at', nil)    
-        
-    put :activate_user, :id => 1
+    users(:quentin).update_attribute('activated_at', nil)
+
+    login_as :quentin
+    put :activate_user, :id => users(:quentin).id
     assert !users(:quentin).active?
     assert_redirected_to login_path
   end
   
   def test_should_not_activate_user_js
     users(:quentin).update_attribute('activation_code', 'test')
-    users(:quentin).update_attribute('activated_at', nil)    
-    
-    get :activate_user, :id => 1, :format => 'js'
+    users(:quentin).update_attribute('activated_at', nil)
+
+    get :activate_user, :id => users(:quentin).id, :format => 'js'
     assert !users(:quentin).active?
   end
   
