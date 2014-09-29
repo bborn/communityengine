@@ -1,2 +1,9 @@
-= button_to :request_friendship.l, user_friendships_url(:user_id => current_user.id, :friend_id => user.id), :class => "btn btn-primary btn-xs act-via-ajax", :id => "friend_request_#{user.id}"
+= button_to :request_friendship.l, user_friendships_url(:user_id => current_user.id, :friend_id => user.id), :class => "btn btn-primary btn-xs", :id => "friend_request_#{user.id}", :remote => true
 = ajax_spinner_for "friend_request_#{user.id}"
+
+- content_for :end_javascript do
+  :javascript
+    $("#friend_request_#{user.id}").on('click', function() {
+      $('#'+ $(this).attr('id') + '_spinner').removeClass('hide');
+      $(this).attr("value", "Sending request ...");
+    });

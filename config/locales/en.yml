@@ -1117,6 +1117,8 @@ en:
   requested_friendship_with: Requested friendship with
   #en: requesting_friendship: Requesting friendship
   requesting_friendship: Requesting friendship
+  #en: friendship_request_failed
+  friendship_request_failed: Friendship request failed
   #en: required: required
   required: required
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
