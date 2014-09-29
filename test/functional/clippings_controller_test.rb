@@ -95,19 +95,19 @@ class ClippingsControllerTest < ActionController::TestCase
 
   def test_should_show_clipping
     login_as :quentin
-    get :show, :id => 1, :user_id => users(:quentin)
+    get :show, :id => clippings(:google).id, :user_id => users(:quentin)
     assert_response :success
   end
 
   def test_should_get_edit
     login_as :quentin
-    get :edit, :id => 1, :user_id => users(:quentin)
+    get :edit, :id => clippings(:google).id, :user_id => users(:quentin)
     assert_response :success
   end
   
   def test_should_update_clipping
     login_as :quentin
-    put :update, :id => 1,
+    put :update, :id => clippings(:google).id,
       :clipping => {:url => 'changed url'},
       :user_id => users(:quentin),
       :tag_list => 'tagX, tagY'
@@ -120,7 +120,7 @@ class ClippingsControllerTest < ActionController::TestCase
   def test_should_destroy_clipping
     login_as :quentin
     assert_difference Clipping, :count, -1 do
-      delete :destroy, :id => 1, :user_id => users(:quentin)
+      delete :destroy, :id => clippings(:google).id, :user_id => users(:quentin)
       assert_redirected_to user_clippings_path(users(:quentin))
     end
     

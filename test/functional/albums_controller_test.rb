@@ -78,7 +78,7 @@ class AlbumsControllerTest < ActionController::TestCase
   
   # Public access
   test "should show album and not update counter" do
-    get :show, :id => 1, :user_id => users(:quentin)
+    get :show, :id => albums(:one).id, :user_id => users(:quentin)
     assert_response :success
     assert assigns(:album)
     assert_equal assigns(:album_photos).size, 1  
