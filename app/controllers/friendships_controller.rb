@@ -89,11 +89,11 @@ class FriendshipsController < BaseController
           flash[:notice] = :friendship_requested.l_with_args(:friend => @friendship.friend.login)
           redirect_to accepted_user_friendships_path(@user)
         }
-        format.js { render( :inline => :requested_friendship_with.l+" #{@friendship.friend.login}." ) }
+        format.js {@text = "#{:requested_friendship_with.l} #{@friendship.friend.login}."}
       else
         flash.now[:error] = :friendship_could_not_be_created.l
         format.html { redirect_to user_friendships_path(@user) }
-        format.js { render( :inline => "Friendship request failed." ) }
+        format.js {@text = "#{:friendship_request_failed.l}."}
       end
     end
   end
