@@ -99,8 +99,8 @@ class User < ActiveRecord::Base
     has_many :received_messages,
              :class_name => 'Message',
              :foreign_key => 'recipient_id',
-             :order => "message.created_at DESC",
-             :conditions => ["message.recipient_deleted = ?", false]
+             :order => "messages.created_at DESC",
+             :conditions => ["messages.recipient_deleted = ?", false]
     has_many :message_threads_as_recipient, :class_name => "MessageThread", :foreign_key => "recipient_id"
 
   #named scopes
