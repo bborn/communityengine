@@ -291,8 +291,19 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_upload_profile_photo
     login_as :quentin
-    patch :upload_profile_photo, :id => users(:quentin), :avatar => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    patch :upload_profile_photo, :id => users(:quentin).id, :avatar => {:photo => fixture_file_upload('/files/library.jpg', 'image/jpg')}
     assert_redirected_to crop_profile_photo_user_path(users(:quentin).reload)
+  end
+
+  def test_should_change_profile_photo
+    login_as :quentin
+    users(:quentin).avatar = photos(:library_pic)
+    users(:quentin).save!
+
+    patch :change_profile_photo, :id => users(:quentin).id, :photo_id => photos(:another_pic).id
+    assert users(:quentin).reload.avatar.photo_file_name, photos(:another_pic).photo_file_name
+
+    assert_redirected_to user_photo_path(users(:quentin), photos(:another_pic))
   end
 
   def test_create_friendship_with_invited_user

@@ -50,33 +50,33 @@ class RsvpsControllerTest < ActionController::TestCase
   def test_should_fail_to_create_rsvp_for_event_that_does_not_allow_rsvps
     login_as :quentin
     assert_no_difference Rsvp, :count do
-      post :create, :event_id => "6", :rsvp => {:attendees_count=>1} 
+      post :create, :event_id => "6", :rsvp => {:attendees_count=>1}
     end
     assert_response :success
   end
 
   def test_should_get_edit
     login_as :quentin
-    get :edit, :event_id => "2", :id => 1
+    get :edit, :event_id => "2", :id => rsvps(:quentin_rsvp_for_future_event).id
     assert_response :success
   end
 
   def test_should_update_rsvp
     login_as :quentin
-    patch :update, :event_id => "2", :id => 1, :rsvp => {:attendees_count => '3' }
+    patch :update, :event_id => "2", :id => rsvps(:quentin_rsvp_for_future_event).id, :rsvp => {:attendees_count => '3' }
     assert_redirected_to event_path(events(:future_event))
   end
 
   def test_should_fail_to_update_rsvp
     login_as :quentin
-    patch :update, :event_id => "2", :id => 1, :rsvp => { :attendees_count => nil }
+    patch :update, :event_id => "2", :id => rsvps(:quentin_rsvp_for_future_event).id, :rsvp => { :attendees_count => nil }
     assert assigns(:rsvp).errors[:attendees_count]
     assert_response :success
   end
 
   def test_should_fail_to_update_rsvp_for_other_user
     login_as :aaron
-    patch :update, :event_id => "2", :id => 1, :rsvp => { :attendees_count => '3' }
+    patch :update, :event_id => "2", :id => rsvps(:quentin_rsvp_for_future_event).id, :rsvp => { :attendees_count => '3' }
     assert_equal Rsvp.find(1).attendees_count, 2
     assert_redirected_to event_path(events(:future_event))
   end
@@ -84,7 +84,7 @@ class RsvpsControllerTest < ActionController::TestCase
   def test_should_destroy_rsvp
     login_as :quentin
     assert_difference Rsvp, :count, -1 do
-      delete :destroy, :event_id => "2", :id => 1
+      delete :destroy, :event_id => "2", :id => rsvps(:quentin_rsvp_for_future_event).id
     end
     assert_redirected_to event_path(events(:future_event))
   end
