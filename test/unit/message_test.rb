@@ -14,8 +14,9 @@ class MessageTest < ActiveSupport::TestCase
   end
   
   test "should be received" do
-    message = Message.create!(:sender => users(:quentin), :recipient => users(:aaron), :body => 'hey aaron', :subject => 'Hello friend!')
-    assert users(:aaron).received_messages.count > 0
+    assert_difference users(:aaron).received_messages, :count, 1 do
+      Message.create!(:sender => users(:quentin), :recipient => users(:aaron), :body => 'hey aaron', :subject => 'Hello friend!')
+    end
   end
   
   def test_should_be_invalid_without_subject
