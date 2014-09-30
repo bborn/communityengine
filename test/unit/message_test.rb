@@ -12,7 +12,13 @@ class MessageTest < ActiveSupport::TestCase
       message = Message.create!(:sender => users(:quentin), :recipient => users(:aaron), :body => 'hey aaron', :subject => 'Hello friend!')
     end
   end
-  
+
+  def test_should_be_received
+    assert_difference users(:aaron).received_messages, :count, 1 do
+      Message.create!(:sender => users(:quentin), :recipient => users(:aaron), :body => 'hey aaron', :subject => 'Hello friend!')
+    end
+  end
+
   def test_should_be_invalid_without_subject
     m = Message.new(:subject => nil)
     assert !m.valid?
