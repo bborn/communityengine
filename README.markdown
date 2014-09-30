@@ -2,6 +2,7 @@ CommunityEngine
 ===============
 
 [![Build Status](https://travis-ci.org/bborn/communityengine.svg?branch=master)](https://travis-ci.org/bborn/communityengine)
+[![Dependency Status](https://gemnasium.com/bborn/communityengine.svg)](https://gemnasium.com/bborn/communityengine)
 [![Gem Version](https://badge.fury.io/rb/community_engine.svg)](https://badge.fury.io/rb/community_engine)
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
