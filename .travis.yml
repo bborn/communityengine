@@ -10,6 +10,10 @@ env:
   - RAILS_ENV='test' DB=mysql
   - RAILS_ENV='test' DB=postgresql
 
+before_install:
+  - gem install mysql2
+  - gem install pg
+
 script: "bundle exec rake db:drop db:create db:migrate test"
 
 before_script:
