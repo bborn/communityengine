@@ -1,8 +1,17 @@
+language: ruby
+
 bundler_args: --binstubs
 
 rvm:
   - 2.0.0
-env: "RAILS_ENV='test' RAILS_VERSION=4.0.0"
-env: "RAILS_ENV='test' RAILS_VERSION=4.0.8"
+
+env:
+  - RAILS_ENV='test' DB=sqlite3
+  - RAILS_ENV='test' DB=mysql
+  - RAILS_ENV='test' DB=postgresql
 
 script: "bundle exec rake db:drop db:create db:migrate test"
+
+before_script:
+  - mysql -e "create database IF NOT EXISTS ce_test;" -uroot
+  - psql -c 'create database ce_test' -U postgres
