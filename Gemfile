@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-ruby "2.0.0"
 
 gem 'omniauth-facebook'
 gem 'acts_as_commentable', :git => 'https://github.com/jackdempsey/acts_as_commentable'
