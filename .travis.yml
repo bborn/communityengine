@@ -3,6 +3,7 @@ bundler_args: --binstubs
 rvm:
   - 1.9.3
   - 2.0.0
+  - 2.1.1
 env:
   - "RAILS_ENV='test' RAILS_VERSION=3.2.0"
   - "RAILS_ENV='test' RAILS_VERSION=3.2.19"
