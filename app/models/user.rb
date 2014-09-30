@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
              :class_name => 'Message',
              :foreign_key => 'sender_id'
 
-    has_many :received_messages, -> { where("message.recipient_deleted = ?", false).order("message.created_at DESC") },
+    has_many :received_messages, -> { where("messages.recipient_deleted = ?", false).order("messages.created_at DESC") },
              :class_name => 'Message',
              :foreign_key => 'recipient_id'
     has_many :message_threads_as_recipient, :class_name => "MessageThread", :foreign_key => "recipient_id"
