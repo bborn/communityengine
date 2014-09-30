@@ -344,8 +344,6 @@ es-AR:
   looking_for_most_x: Buscando lo mas %{link}?
   #en: male: Male
   male: Hombre
-  #en: manage_my: "Manage my:"
-  manage_my: "Gestionar mi:"
   #en: manage_posts: Manage Posts
   manage_posts: Administrar posts
   #en: members: Members
