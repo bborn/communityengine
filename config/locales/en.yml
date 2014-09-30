@@ -747,8 +747,8 @@ en:
   make_this_my_profile_photo: Make this my profile photo
   #en: male: Male
   male: Male
-  #en: manage: "Manage:"
-  manage: "Manage:"
+  #en: manage: "Manage"
+  manage: "Manage"
   #en: manage_my: "Manage my:"
   manage_my: "Manage my:"
   #en: manage_pages: Manage Pages
@@ -861,8 +861,8 @@ en:
   new_metro_area: New Metro Area
   #en: new_page: New Page
   new_page: New Page
-  #en: new_photo: New photo.
-  new_photo: New photo.
+  #en: new_photo: New photo
+  new_photo: New photo
   #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   #en: new_post: New post
@@ -1415,8 +1415,8 @@ en:
   uploaded_by: uploaded by
   #en: url: Url
   url: Url
-  #en: user_e_mail: "User e-mail:"
-  user_e_mail: "User e-mail:"
+  #en: user_e_mail: "User e-mail"
+  user_e_mail: "User e-mail"
   #en: username: Username
   username: Username
   #en: user: User
