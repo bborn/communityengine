@@ -96,14 +96,15 @@ class SbPostTest < ActiveSupport::TestCase
   end
   
   test "should not monitor for anonymous posts" do
-    configatron.allow_anonymous_forum_posting = true
-    
-    assert_difference Monitorship, :count, 0 do
-      topic = topics(:pdi)
-      topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")      
+    configatron.temp do
+      configatron.allow_anonymous_forum_posting = true
+
+      assert_difference Monitorship, :count, 0 do
+        topic = topics(:pdi)
+        topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
+      end
+
     end
-    
-    configatron.allow_anonymous_forum_posting = false    
   end
     
   def test_should_be_deleted_when_user_destroyed
@@ -114,21 +115,24 @@ class SbPostTest < ActiveSupport::TestCase
   end
 
   test "should not allow anonymous posting" do
-    configatron.allow_anonymous_forum_posting = false    
-    topic = topics(:pdi)      
-    post = topic.sb_posts.create(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
-    assert !post.valid?
-    assert post.errors[:user_id]
+    configatron.temp do
+      configatron.allow_anonymous_forum_posting = false
+      topic = topics(:pdi)
+      post = topic.sb_posts.create(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
+      assert !post.valid?
+      assert post.errors[:user_id]
+    end
   end
   
   test "should allow anonymous posting if configatron specifies it's ok" do
-    configatron.allow_anonymous_forum_posting = true
-    
-    topic = topics(:pdi)
-      
-    assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
-    
-    configatron.allow_anonymous_forum_posting = false    
+    configatron.temp do
+      configatron.allow_anonymous_forum_posting = true
+
+      topic = topics(:pdi)
+
+      assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
+
+    end
   end
   
   test "should tranform body before saving" do

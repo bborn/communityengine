@@ -120,21 +120,25 @@ class CommentsControllerTest < ActionController::TestCase
   end
 
   def test_should_unsubscribe_with_token
-    configatron.allow_anonymous_commenting = true
-    comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
-    configatron.allow_anonymous_commenting = false
+    configatron.temp do
+      configatron.allow_anonymous_commenting = true
+      comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
+      configatron.allow_anonymous_commenting = false
 
-    get :unsubscribe, :commentable_type => comment.commentable_type, :commentable_id => comment.commentable_id, :id => comment.id, :token => comment.token_for('bar@foo.com'), :email => 'bar@foo.com'
-    assert comment.reload.notify_by_email.eql?(false)
+      get :unsubscribe, :commentable_type => comment.commentable_type, :commentable_id => comment.commentable_id, :id => comment.id, :token => comment.token_for('bar@foo.com'), :email => 'bar@foo.com'
+      assert comment.reload.notify_by_email.eql?(false)
+    end
   end
 
   def test_should_not_unsubscribe_with_bad_token
-    configatron.allow_anonymous_commenting = true
-    comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
-    configatron.allow_anonymous_commenting = false
+    configatron.temp do
+      configatron.allow_anonymous_commenting = true
+      comment = Comment.create!(:comment => 'foo', :author_email => 'bar@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :commentable => users(:quentin), :notify_by_email => true)
+      configatron.allow_anonymous_commenting = false
 
-    get :unsubscribe, :commentable_type => 'User', :commentable_id => users(:quentin).to_param, :id => comment.id, :token => 'badtokengoeshere'
-    assert comment.reload.notify_by_email.eql?(true)
+      get :unsubscribe, :commentable_type => 'User', :commentable_id => users(:quentin).to_param, :id => comment.id, :token => 'badtokengoeshere'
+      assert comment.reload.notify_by_email.eql?(true)
+    end
   end
 
   def test_should_get_edit_js_as_admin
