@@ -16,54 +16,58 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   def test_should_be_created_anonymously
-    configatron.allow_anonymous_commenting = true
-    assert_difference Comment, :count, 1 do
-      comment = users(:quentin).comments.create!(
-        :comment => 'foo',
-        :author_email => 'bar@foo.com',
-        :author_ip => '123.123.123',
-        :recipient => users(:quentin)
-      )
+    configatron.temp do
+      configatron.allow_anonymous_commenting = true
+      assert_difference Comment, :count, 1 do
+        comment = users(:quentin).comments.create!(
+          :comment => 'foo',
+          :author_email => 'bar@foo.com',
+          :author_ip => '123.123.123',
+          :recipient => users(:quentin)
+        )
+      end
     end
-    configatron.allow_anonymous_commenting = false
   end
 
   def test_should_notify_previous_anonymous_commenter
-    configatron.allow_anonymous_commenting = true
-    users(:quentin).comments.create!(:comment => 'foo', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
-    users(:quentin).comments.create!(:comment => 'bar', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
+    configatron.temp do
+      configatron.allow_anonymous_commenting = true
+      users(:quentin).comments.create!(:comment => 'foo', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
+      users(:quentin).comments.create!(:comment => 'bar', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
 
-    comment = users(:quentin).comments.create!(:comment => 'bar', :author_email => 'alicia@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
+      comment = users(:quentin).comments.create!(:comment => 'bar', :author_email => 'alicia@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
 
-    assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      comment.notify_previous_anonymous_commenters
+      assert_difference ActionMailer::Base.deliveries, :length, 1 do
+        comment.notify_previous_anonymous_commenters
+      end
     end
-    configatron.allow_anonymous_commenting = false
   end
 
   def test_should_not_notify_previous_anonymous_commenter_if_self
-    configatron.allow_anonymous_commenting = true
-    users(:quentin).comments.create!(:comment => 'foo', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
-    users(:quentin).comments.create!(:comment => 'bar', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
+    configatron.temp do
+      configatron.allow_anonymous_commenting = true
+      users(:quentin).comments.create!(:comment => 'foo', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
+      users(:quentin).comments.create!(:comment => 'bar', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
 
-    comment = users(:quentin).comments.create!(:comment => 'bar', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
+      comment = users(:quentin).comments.create!(:comment => 'bar', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
 
-    assert_difference ActionMailer::Base.deliveries, :length, 0 do
-      comment.notify_previous_anonymous_commenters
+      assert_difference ActionMailer::Base.deliveries, :length, 0 do
+        comment.notify_previous_anonymous_commenters
+      end
     end
-    configatron.allow_anonymous_commenting = nil
   end
 
   def test_should_not_notify_previous_anonymous_commenter_if_notify_by_email_is_false
-    configatron.allow_anonymous_commenting = true
-    users(:quentin).comments.create!(:comment => 'foo', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :notify_by_email => false)
+    configatron.temp do
+      configatron.allow_anonymous_commenting = true
+      users(:quentin).comments.create!(:comment => 'foo', :author_email => 'bruno@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :notify_by_email => false)
 
-    comment = users(:quentin).comments.create!(:comment => 'bar', :author_email => 'alicia@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
+      comment = users(:quentin).comments.create!(:comment => 'bar', :author_email => 'alicia@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin))
 
-    assert_difference ActionMailer::Base.deliveries, :length, 0 do
-      comment.notify_previous_anonymous_commenters
+      assert_difference ActionMailer::Base.deliveries, :length, 0 do
+        comment.notify_previous_anonymous_commenters
+      end
     end
-    configatron.allow_anonymous_commenting = false
   end
 
   def test_should_not_be_created_anonymously
@@ -79,16 +83,19 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   def test_should_unsubscribe_notifications
-    configatron.allow_anonymous_commenting = true
-    first_comment = users(:quentin).comments.create!(:comment => 'foo', :author_email => 'alicia@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :notify_by_email => true)
-    comment = users(:quentin).comments.create!(:comment => 'bar', :author_email => 'alicia@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :notify_by_email => true)
-    assert_equal first_comment.notify_by_email, true
-    assert_equal comment.notify_by_email, true
-    configatron.allow_anonymous_commenting = false
+    configatron.temp do
+      configatron.allow_anonymous_commenting = true
+      first_comment = users(:quentin).comments.create!(:comment => 'foo', :author_email => 'alicia@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :notify_by_email => true)
+      comment = users(:quentin).comments.create!(:comment => 'bar', :author_email => 'alicia@foo.com', :author_ip => '123.123.123', :recipient => users(:quentin), :notify_by_email => true)
+      assert_equal first_comment.notify_by_email, true
+      assert_equal comment.notify_by_email, true
 
-    comment.unsubscribe_notifications('alicia@foo.com')
-    assert comment.reload.notify_by_email.eql?(false)
-    assert first_comment.reload.notify_by_email.eql?(false)
+      configatron.allow_anonymous_commenting = false
+
+      comment.unsubscribe_notifications('alicia@foo.com')
+      assert comment.reload.notify_by_email.eql?(false)
+      assert first_comment.reload.notify_by_email.eql?(false)
+    end
   end
 
   def test_should_not_notify_of_comments_on_post_with_send_notifications_off
@@ -113,30 +120,34 @@ class CommentTest < ActiveSupport::TestCase
     post = posts(:funny_post)
 
     Comment.any_instance.stubs(:spam?).returns(true)
-    configatron.stubs(:akismet_key).returns('1234')
 
-    comment = post.comments.create!(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
-
-    assert_equal 'pending', comment.role
+    configatron.temp do
+      configatron.akismet_key = '1234'
+      comment = post.comments.create!(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
+      assert_equal 'pending', comment.role
+    end
   end
 
   def test_spam_comment_notification_handling
     post = posts(:funny_post)
 
     Comment.any_instance.stubs(:spam?).returns(true)
-    configatron.stubs(:akismet_key).returns('1234')
 
-    comment = post.comments.new(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
+    configatron.temp do
+      configatron.akismet_key = '1234'
+      comment = post.comments.new(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
 
-    #no notifications for pending comments
-    assert_no_difference ActionMailer::Base.deliveries, :length do
-      comment.save!
-    end
+      #no notifications for pending comments
+      assert_no_difference ActionMailer::Base.deliveries, :length do
+        comment.save!
+      end
 
-    Comment.any_instance.stubs(:spam?).returns(false)
-    comment.role = 'published'
-    assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      comment.save!
+      Comment.any_instance.stubs(:spam?).returns(false)
+
+      comment.role = 'published'
+      assert_difference ActionMailer::Base.deliveries, :length, 1 do
+        comment.save!
+      end
     end
   end
 

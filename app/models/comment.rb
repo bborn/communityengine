@@ -111,7 +111,7 @@ class Comment < ActiveRecord::Base
   end
 
   def check_spam
-    if !configatron.akismet_key.nil? && self.spam?
+    if configatron.has_key?(:akismet_key) && self.spam?
       self.role = 'pending'
     end
   end

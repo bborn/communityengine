@@ -86,11 +86,12 @@ class TopicTest < ActiveSupport::TestCase
   end
 
   test "should notify for new anonymous post" do
-    configatron.allow_anonymous_forum_posting = true
-    assert_difference ActionMailer::Base.deliveries, :length, 2 do
-      post = topics(:pdi).sb_posts.create!(:body => "Anonymous post", :author_email => 'foo@bar.com', :author_ip => '1.2.3.4')
-    end    
-    configatron.allow_anonymous_forum_posting = false
+    configatron.temp do
+      configatron.allow_anonymous_forum_posting = true
+      assert_difference ActionMailer::Base.deliveries, :length, 2 do
+        post = topics(:pdi).sb_posts.create!(:body => "Anonymous post", :author_email => 'foo@bar.com', :author_ip => '1.2.3.4')
+      end
+    end
   end
   
   def test_topic_creator_should_monitor_automatically

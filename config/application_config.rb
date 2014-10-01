@@ -1,4 +1,4 @@
-configuration = {
+configatron.configure_from_hash(
 
   :app_host => "example.com", #override this in your application.yml
 
@@ -166,7 +166,4 @@ configuration = {
     'users',
     'votes'
   ]
-
-}
-
-configatron.configure_from_hash(configuration)
+)

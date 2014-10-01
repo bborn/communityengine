@@ -153,35 +153,38 @@ class SbPostsControllerTest < ActionController::TestCase
 
 
   test "should create anonymous reply" do
-    configatron.allow_anonymous_forum_posting = true
-    assert_difference SbPost, :count, 1 do
-      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :sb_post => { :body => 'blah', :author_email => 'foo@bar.com' }
-      assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1'
+    configatron.temp do
+      configatron.allow_anonymous_forum_posting = true
+      assert_difference SbPost, :count, 1 do
+        post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :sb_post => { :body => 'blah', :author_email => 'foo@bar.com' }
+        assert_redirected_to :controller => "topics", :action => "show", :forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => assigns(:post).dom_id, :page => '1'
+      end
     end
-    configatron.allow_anonymous_forum_posting = false
   end
 
   test "should fail creating an anonymous reply" do
-    configatron.allow_anonymous_forum_posting = true
-    assert_difference SbPost, :count, 0 do
-      post_params = { :body => 'blah', :author_email => 'foo' }
-      post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :sb_post => post_params
-      assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge({:sb_post => post_params}))
+    configatron.temp do
+      configatron.allow_anonymous_forum_posting = true
+      assert_difference SbPost, :count, 0 do
+        post_params = { :body => 'blah', :author_email => 'foo' }
+        post :create, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :sb_post => post_params
+        assert_redirected_to forum_topic_path({:forum_id => forums(:rails).to_param, :id => topics(:pdi).to_param, :anchor => 'reply-form', :page => '1'}.merge({:sb_post => post_params}))
+      end
     end
-    configatron.allow_anonymous_forum_posting = false
   end
 
   test "should show recent with anonymous posts" do
-    configatron.allow_anonymous_forum_posting = true
+    configatron.temp do
+      configatron.allow_anonymous_forum_posting = true
 
-    topic = topics(:pdi)
+      topic = topics(:pdi)
 
-    assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
+      assert topic.sb_posts.create!(:topic => topic, :body => "Ok!", :author_email => 'anon@example.com', :author_ip => "1.2.3.4")
 
-    get :index
-    assert_response :success
+      get :index
+      assert_response :success
 
-    configatron.allow_anonymous_forum_posting = false
+    end
   end
 
 

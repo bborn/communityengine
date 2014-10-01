@@ -13,7 +13,7 @@
     %table.table.table-bordered.table-striped
       %tr
         %th
-        -if !configatron.akismet_key.nil?
+        -if configatron.has_key?(:akismet_key)
           %th
         %th
         %th
@@ -26,7 +26,7 @@
         %tr{:id => "user_#{user.id}"}
           %td
             = link_to fa_icon("trash-o"), user_path(user), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_user.l, :class => 'delete-via-ajax'
-          -if !configatron.akismet_key.nil?
+          -if configatron.has_key?(:akismet_key)
             %td
               = link_to fa_icon("ban"), user_path(user, :spam => true), :method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam.l, :class => 'delete-via-ajax'
           %td= check_box_tag "delete[]", user.id
@@ -46,8 +46,8 @@
             -else
               = link_to :activate.l, admin_activate_user_path(:id => user), :class => 'btn btn-success'
 
-    -if @users.any?         
-      -if !configatron.akismet_key.nil?
+    -if @users.any?
+      -if configatron.has_key?(:akismet_key)
         = check_box_tag :spam
         =:delete_selected_mark_as_spam.l
         %br
