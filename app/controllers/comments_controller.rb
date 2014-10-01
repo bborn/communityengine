@@ -33,7 +33,7 @@ class CommentsController < BaseController
 
   def approve
     @comment = Comment.find(params[:id])
-    @comment.ham! if !configatron.akismet_key.nil?
+    @comment.ham! if configatron.has_key?(:akismet_key)
     @comment.role = 'published'
     @comment.save!
     respond_to do |format|
@@ -125,7 +125,7 @@ class CommentsController < BaseController
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.can_be_deleted_by(current_user) && @comment.destroy
-      if params[:spam] && !configatron.akismet_key.nil?
+      if params[:spam] && configatron.has_key?(:akismet_key)
         @comment.spam!
       end
       flash.now[:notice] = :the_comment_was_deleted.l
@@ -146,7 +146,7 @@ class CommentsController < BaseController
       if params[:delete]
         params[:delete].each { |id|
           comment = Comment.find(id)
-          comment.spam! if params[:spam] && !configatron.akismet_key.nil?
+          comment.spam! if params[:spam] && configatron.has_key?(:akismet_key)
           comment.destroy if comment.can_be_deleted_by(current_user)
         }
       end

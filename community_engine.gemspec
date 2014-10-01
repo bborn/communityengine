@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency "aws-sdk",                   ">= 0"
   s.add_dependency "bcrypt",                    ">= 0"
   s.add_dependency "cocaine",                   "~> 0.5.1"
-  s.add_dependency "configatron",               "~> 2.0"
+  s.add_dependency "configatron",               "~> 4.2.0"
   s.add_dependency "dynamic_form",              ">= 0"
   s.add_dependency "friendly_id",               "~> 5.0.0.beta1"
   s.add_dependency "haml",                      ">= 0"

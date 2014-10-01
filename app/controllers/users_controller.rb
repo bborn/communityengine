@@ -402,7 +402,7 @@ class UsersController < BaseController
       params[:delete].each { |id|
         user = User.find(id)
         unless user.admin? || user.featured_writer?
-          user.spam! if params[:spam] && !configatron.akismet_key.nil?
+          user.spam! if params[:spam] && configatron.has_key?(:akismet_key)
           user.destroy
         end
       }

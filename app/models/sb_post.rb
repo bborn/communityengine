@@ -58,8 +58,8 @@ class SbPost < ActiveRecord::Base
   end
   
   def check_spam
-    if !configatron.akismet_key.nil? && self.spam?
-      self.errors.add(:base, :comment_spam_error.l) 
+    if configatron.has_key?(:akismet_key) && self.spam?
+      self.errors.add(:base, :comment_spam_error.l)
     end
   end  
   

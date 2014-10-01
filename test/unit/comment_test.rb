@@ -113,30 +113,34 @@ class CommentTest < ActiveSupport::TestCase
     post = posts(:funny_post)
 
     Comment.any_instance.stubs(:spam?).returns(true)
-    configatron.stubs(:akismet_key).returns('1234')
 
-    comment = post.comments.create!(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
-
-    assert_equal 'pending', comment.role
+    configatron.temp do
+      configatron.akismet_key = '1234'
+      comment = post.comments.create!(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
+      assert_equal 'pending', comment.role
+    end
   end
 
   def test_spam_comment_notification_handling
     post = posts(:funny_post)
 
     Comment.any_instance.stubs(:spam?).returns(true)
-    configatron.stubs(:akismet_key).returns('1234')
 
-    comment = post.comments.new(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
+    configatron.temp do
+      configatron.akismet_key = '1234'
+      comment = post.comments.new(:comment => 'foo', :user => users(:aaron), :recipient => users(:quentin))
 
-    #no notifications for pending comments
-    assert_no_difference ActionMailer::Base.deliveries, :length do
-      comment.save!
-    end
+      #no notifications for pending comments
+      assert_no_difference ActionMailer::Base.deliveries, :length do
+        comment.save!
+      end
 
-    Comment.any_instance.stubs(:spam?).returns(false)
-    comment.role = 'published'
-    assert_difference ActionMailer::Base.deliveries, :length, 1 do
-      comment.save!
+      Comment.any_instance.stubs(:spam?).returns(false)
+
+      comment.role = 'published'
+      assert_difference ActionMailer::Base.deliveries, :length, 1 do
+        comment.save!
+      end
     end
   end
 

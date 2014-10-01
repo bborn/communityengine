@@ -31,9 +31,9 @@ module CommunityEngine
         ActionController::Caching::Sweeper.send(:include, ActionController::Caching::Actions)
       end
     end
-        
+
     initializer "#{engine_name}.rakismet_config", :before => "rakismet.setup" do |app|
-      if !configatron.akismet_key.nil?
+      if configatron.has_key?(:akismet_key)
         app.config.rakismet.key  = configatron.akismet_key
         app.config.rakismet.url  = configatron.app_host
       end
