@@ -84,7 +84,7 @@
     tinyMCE.triggerSave();
   });
 
-  $(document).on('click', '.edit-via-ajax', function(){
+  $(document).on('click', '.edit-via-ajax', function(event){
     event.preventDefault();
     console.log('Attempting to retrieve edit form via AJAX...');
     $('#'+ $(this).attr('id') + '_spinner').removeClass('hide');
