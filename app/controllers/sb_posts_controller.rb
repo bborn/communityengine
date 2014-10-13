@@ -27,6 +27,25 @@ class SbPostsController < BaseController
     @posts = SbPost.with_query_options.where(conditions).page(params[:page])
     
     @users = User.find(:all, :select => 'distinct *', :conditions => ['id in (?)', @posts.collect(&:user_id).uniq]).index_by(&:id)
+    @rss_title = "#{configatron.community_name}: Recent Posts"
+    respond_to do |format|
+      format.html
+      format.rss do
+        render_rss_feed_for(@posts,
+                            {
+                                :feed => {:title => @rss_title, :link => url_for(:controller => 'sb_posts', :action => 'index') },
+                                :item => {
+                                    :title => Proc.new do |post|
+                                      posted = (post.user_id == post.topic.user_id) ? "posted" : "replied"
+                                      "#{post.forum_name}/#{post.topic_title}, #{posted} by #{post.username} on #{post.created_at.strftime("%m/%d/%Y")}"
+                                    end,
+                                    :link => Proc.new {|post| forum_topic_url(post.forum, post.topic)},
+                                    :body => :body_html,
+                                    :pub_date => :created_at
+                                }
+                            })
+      end
+    end
   end
 
   def search
