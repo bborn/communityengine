@@ -182,7 +182,6 @@ Rails.application.routes.draw do
       get 'statistics'
       match 'crop_profile_photo', :via => [:get, :put, :patch]
       match 'upload_profile_photo', :via => [:get, :put, :patch]
-      patch 'upload_profile_photo'
     end
 
     resources :friendships do
