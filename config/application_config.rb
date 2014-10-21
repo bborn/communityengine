@@ -43,6 +43,13 @@ configatron.configure_from_hash(
   :min_age => 16,
   :max_age => 90,
 
+  :authlogic => {
+    :password_length => 6..20,
+    :login_length => 5..100,
+    :email_length => 3..100,
+    :email_case_sensitive => true
+  },
+
   :regexes => {
     :login => /\A[\sA-Za-z0-9_-]+\z/,
     :email => /\A([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})\z/

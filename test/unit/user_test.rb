@@ -10,6 +10,29 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "should prevent short login" do
+    assert_no_difference User, :count do
+      user = create_user(:login => 'quen')
+      assert !user.valid?
+      assert user.errors[:login]
+    end
+  end
+
+  test "should prevent short password" do
+    assert_no_difference User, :count do
+      user = create_user(:password => 'pas')
+      assert !user.valid?
+      assert user.errors[:password]
+    end
+  end
+
+  test "should prevent short email" do
+    assert_no_difference User, :count do
+      user = create_user(:email => 'a@')
+      assert !user.valid?
+      assert user.errors[:email]
+    end
+  end
 
   test "should prevent malicious chars inserted in email via newlines" do
     user = User.new(:email => "valid@email.com%0A<script>alert('hello')</script>")
