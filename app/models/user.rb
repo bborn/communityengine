@@ -20,15 +20,15 @@ class User < ActiveRecord::Base
       c.transition_from_crypto_providers = CommunityEngineSha1CryptoMethod
       c.crypto_provider = Authlogic::CryptoProviders::BCrypt
 
-      c.validates_length_of_password_field_options = { :within => 6..20, :if => :password_required? }
-      c.validates_length_of_password_confirmation_field_options = { :within => 6..20, :if => :password_required? }
+      c.validates_length_of_password_field_options = { :within => configatron.authlogic.password_length, :if => :password_required? }
+      c.validates_length_of_password_confirmation_field_options = { :within => configatron.authlogic.password_length, :if => :password_required? }
 
-      c.validates_length_of_login_field_options = { :minimum => 5, :unless => :omniauthed? }
+      c.validates_length_of_login_field_options = { :within => configatron.authlogic.login_length, :unless => :omniauthed? }
       c.validates_format_of_login_field_options = { :with => configatron.regexes.login, :unless => :omniauthed? }
 
-      c.validates_length_of_email_field_options = { :within => 3..100, :if => :email_required? }
+      c.validates_length_of_email_field_options = { :within => configatron.authlogic.email_length, :if => :email_required? }
       c.validates_format_of_email_field_options = { :with => configatron.regexes.email, :if => :email_required? }
-      c.validates_uniqueness_of_email_field_options :case_sensitive => false
+      c.validates_uniqueness_of_email_field_options :case_sensitive => configatron.authlogic.email_case_sensitive
     end
   rescue StandardError
     puts 'Failed to initialize AuthLogic'
