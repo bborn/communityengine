@@ -60,9 +60,9 @@ class AdminControllerTest < ActionController::TestCase
   
   test "should search users" do
     login_as :admin
-    get :users, :login => 'admin'
+    get :users, :login => 'uenti'
     assert_response :success
-    assert !assigns(:users).empty?
+    assert_equal assigns(:users).first, users(:quentin)
   end
   
   test "should clear cache" do

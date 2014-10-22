@@ -158,13 +158,13 @@ class User < ActiveRecord::Base
       users = users.where(user[:metro_area_id].eq(search['metro_area_id']))
     end
     if search['login']
-      users = users.where('`users`.login LIKE ?', "%#{search['login']}%")
+      users = users.where(user[:login].matches("%#{search['login']}%"))
     end
     if search['vendor']
       users = users.where(user[:vendor].eq(true))
     end
     if search['description']
-      users = users.where('`users`.description LIKE ?', "%#{search['description']}%")
+      users = users.where(user[:description].matches("%#{search['description']}%"))
     end
     users
   end
