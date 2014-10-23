@@ -22,38 +22,38 @@ Getting CommunityEngine Running
 
 1. Copy the following into your `Gemfile`:
 
-```ruby
-gem 'community_engine', git: 'https://github.com/bborn/communityengine.git', branch: 'rails4'
-```
+  ```ruby
+  gem 'community_engine', git: 'https://github.com/bborn/communityengine.git', branch: 'rails4'
+  ```
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
 
-```ruby
-configatron.community_name = "Your Application Name"
-# See CE's application_config.rb to see all the other configuration options available
-```
+  ```ruby
+  configatron.community_name = "Your Application Name"
+  # See CE's application_config.rb to see all the other configuration options available
+  ```
 
 3. From your app's root directory run:
 
-```
-$ bundle install --binstubs
-$ bin/rake community_engine:install:migrations
-$ bin/rake db:migrate
-```
+  ```
+  $ bundle install --binstubs
+  $ bin/rake community_engine:install:migrations
+  $ bin/rake db:migrate
+  ```
 
 4. Mount CommunityEngine in your `config/routes.rb` file:
 
-```ruby
-mount CommunityEngine::Engine => "/"
-```
+  ```ruby
+  mount CommunityEngine::Engine => "/"
+  ```
 
 5. Delete the default `views/layouts/application.html.erb` that Rails created for you. Delete `public/index.html` if you haven't already.
 
 6. Start your server!
 
-```
-$ bin/rails server
-```
+  ```
+  $ bin/rails server
+  ```
 
 Optional Configuration
 ----------------------
