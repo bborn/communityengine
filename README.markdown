@@ -23,7 +23,7 @@ Getting CommunityEngine Running
 1. Copy the following into your `Gemfile`:
 
 ```ruby
-gem  "https://github.com/bborn/communityengine.git", :branch => "rails4"
+gem 'community_engine', git: 'https://github.com/bborn/communityengine.git', branch: 'rails4'
 ```
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
