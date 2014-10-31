@@ -756,10 +756,10 @@ ru-RU:
   make_this_my_profile_photo: Сделать его моим профильным фото
   #en: male: Male
   male: мужской
-  #en: manage: "Manage:"
-  manage: "Управлять:"
   #en: manage_my: "Manage my:"
   manage_my: "Управлять моим:"
+  #en: manage: "Manage"
+  manage: "Управлять"
   #en: manage_pages: Manage Pages
   manage_pages: Управлять страницами
   #en: manage_posts: Manage Posts
@@ -877,7 +877,7 @@ ru-RU:
   new_metro_area: Новая область
   #en: new_page: New Page
   new_page: Новая страница
-  #en: new_photo: New photo.
+  #en: new_photo: New photo
   new_photo: Новое фото
   #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   new_photos_multiple_uploader: "Новые фотографии &raquo; Множественная загрузка"
@@ -1441,8 +1441,8 @@ ru-RU:
   uploaded_by: загружено 
   #en: url: Url
   url: Url
-  #en: user_e_mail: "User e-mail:"
-  user_e_mail: "e-mail пользователя:"
+  #en: user_e_mail: "User e-mail"
+  user_e_mail: "e-mail пользователя"
   #en: username: Username
   username: Имя пользователя
   #en: user: User

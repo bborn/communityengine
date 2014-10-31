@@ -374,7 +374,7 @@ es-AR:
   new_ad: Nuevo aviso
   #en: new_category: New category
   new_category: "Nueva categor\xC3\xADa"
-  #en: new_photo: New photo.
+  #en: new_photo: New photo
   new_photo: Nueva foto
   #en: new_post: New post
   new_post: Nuevo post
@@ -629,7 +629,7 @@ es-AR:
   uploaded_a_photo: "public\xC3\xB3 una foto"
   #en: user_clippings: 
   user_clippings: Recortes de %{user}
-  #en: user_e_mail: "User e-mail:"
+  #en: user_e_mail: "User e-mail"
   user_e_mail: "E-mail del usuario:"
   #en: user_login: "User login:"
   user_login: "Nombre de usuario:"

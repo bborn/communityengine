@@ -719,8 +719,8 @@ sv:
   new_invitation_from: Ny inbjudan från
   #en: new_metro_area: New Metro Area
   new_metro_area: Nytt storstadsområde
-  #en: new_photo: New photo.
-  new_photo: Ny bild.
+  #en: new_photo: New photo
+  new_photo: Ny bild
   #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   new_photos_multiple_uploader: "Nya bilder &raquo; multiuppladdare"
   #en: new_post: New post
@@ -1189,8 +1189,8 @@ sv:
   uploaded_by: uppladdad av
   #en: url: Url
   url: Webbadress
-  #en: user_e_mail: "User e-mail:"
-  user_e_mail: "Mejladress:"
+  #en: user_e_mail: "User e-mail"
+  user_e_mail: "Mejladress"
   #en: username: Username
   username: Användarnamn
   #en: user: User
@@ -1410,7 +1410,7 @@ sv:
   most_recent: "senaste"
   most_popular: "mest populära"
   make_page_public: "Gör den här sidan publik"
-  manage: "Hantera:"
+  manage: "Hantera"
   manage_pages: "Hantera sidor"
   map_it: "Lägg in det på kartan!"
   read: "läst"
