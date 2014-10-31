@@ -516,8 +516,6 @@ de-DE:
   get_started_upload_a_profile_photo: "Fang an: lade ein Profilfoto hoch"
   #en: go: Go
   go: Gehe
-  #en: go2: Go
-  go2: Los
   #en: go_check_your_e_mail: Go check your e-mail!
   go_check_your_e_mail: "Prüfe deine E-Mail!"
   #en: go_to_the_forums: go to the forums
@@ -646,8 +644,6 @@ de-DE:
   make_this_my_profile_photo: Als Profilfoto übernehmen
   #en: male: Male
   male: "Männlich"
-  #en: manage_my: "Manage my:"
-  manage_my: Verwalte
   #en: manage_posts: Manage Posts
   manage_posts: "Einträge verwalten"
   #en: medium: Medium
@@ -730,7 +726,7 @@ de-DE:
   new_invitation_from: Neue Einladung von
   #en: new_metro_area: New Metro Area
   new_metro_area: Neue Metro Area
-  #en: new_photo: New photo.
+  #en: new_photo: New photo
   new_photo: Neues Foto
   #en: new_photos_&raquo;_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   new_photos_raquo_multiple_uploader: "Neue Fotos &raquo; Multiple Uploader"
@@ -1203,8 +1199,8 @@ de-DE:
   url: Url
   #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
   user_bio_help: "<p>Über Mich ist das Erste was die Leute sehen, wenn Sie dein Profile besuchen. Einige Ideen:<ul><li> Describe your sense of style</li><li> Erkläre was du am Leben liebst.</li><li> Was hast du als letztes für einen Freund gekauft?</li></ul></p>"
-  #en: user_e_mail: "User e-mail:"
-  user_e_mail: "Benutzer-E-Mail:"
+  #en: user_e_mail: "User e-mail"
+  user_e_mail: "Benutzer-E-Mail"
   #en: username: Username
   username: Benutzername
   #en: user: User

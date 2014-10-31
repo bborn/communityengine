@@ -73,7 +73,6 @@ es-MX:
   logged_in: "Ingresado:"
   cancel_and_go_back_to_my_photos: cancelar y regresar a mis fotos
   voices: Voces
-  manage_my: "Administrar mi:"
   location: Unicación
   metro_areas: Ciudades
   photo_tip_1: Las fotos muestran al mundo tu creatividad. Escoge las mejores, y dales buenos títulos y descripciones.
@@ -339,7 +338,7 @@ es-MX:
   editing_category: "Editando categoría"
   ads: Anuncio
   you_have_uploaded: Has subido
-  user_e_mail: "E-mail del usuario:"
+  user_e_mail: "E-mail del usuario"
   rss: RSS
   requested_friendship_with: Se pidió la amistad de
   an_error_occurred: "Ocurrió un error"
@@ -407,7 +406,7 @@ es-MX:
   back: Regresar
   just_uploading_one_photo: ¿Subiendo solo una foto?
   clippings_are_a_way_to_save_images_you_like_from_around_the_web: Los recortes son una forma de guardar imagenes que te gusten de la Web
-  new_photo: Nueva foto.
+  new_photo: Nueva foto
   by: por
   last: último
   zippostal_code: "Código Postal:"
@@ -448,7 +447,6 @@ es-MX:
   update: Actualizar
   type_your_password: "Escribe tu contraseña:"
   sign_up: ¡Registrate!
-  go2: Ir
   new_clipping: Nuevo recorte
   messages_sent: ¡Mensajes enviados!
   voice: voz

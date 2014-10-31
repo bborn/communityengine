@@ -15,10 +15,10 @@
   -if @reply  
     = f.hidden_field :subject  
   -else
-    %label{:for => 'message_subject'}= :subject.l + ":"
+    %label{:for => 'message_subject'}= :subject.l
     = f.text_field :subject
 
-  %label{:for => "message_body"}= :message.l + ":"
+  %label{:for => "message_body"}= :message.l
   = f.text_area :body
 
   %p
