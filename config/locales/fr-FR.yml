@@ -516,8 +516,6 @@ fr:
   upload_a_profile_photo: "Ajoutez une photo à votre profil"
   #en: go: Go
   go: Continuer
-  #en: go2: Go
-  go2: Continuer
   #en: go_check_your_e_mail: Go check your e-mail!
   go_check_your_e_mail: Allez vérifier vos mails !
   #en: go_to_the_forums: go to the forums
@@ -662,8 +660,8 @@ fr:
   make_this_my_profile_photo: Faire de cette photo ma photo de profil
   #en: male: Male
   male: Homme
-#  #en: manage: "Manage:"
-  manage: "Gérer :"
+#  #en: manage: "Manage"
+  manage: "Gérer"
   #en: manage_pages: Manage Pages
   manage_pages: Gérer les Pages
   #en: manage_posts: Manage Posts
@@ -770,7 +768,7 @@ fr:
   new_invitation_from: Nouvelle invitation de 
 #  #en: new_metro_area: New Metro Area
   new_metro_area: Nouvelle zone de métro
-  #en: new_photo: New photo.
+  #en: new_photo: New photo
   new_photo: Ajouter une photo
   #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
   new_photos_multiple_uploader: "Ajout de nouvelles photos &raquo; Téléchargement multiple"
@@ -1284,8 +1282,6 @@ fr:
   uploaded_by: téléchargé par
   #en: url: Url
   url: URL
-  #en: user_e_mail: "User e-mail:"
-  user_e_mail: "Email du membre :"
   #en: username: Username
   username: Pseudo
   #en: user: User
