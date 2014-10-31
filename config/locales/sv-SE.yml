@@ -1185,8 +1185,6 @@ sv:
   uploaded_by: uppladdad av
   #en: url: Url
   url: Webbadress
-  #en: user_e_mail: "User e-mail"
-  user_e_mail: "Mejladress"
   #en: username: Username
   username: Användarnamn
   #en: user: User

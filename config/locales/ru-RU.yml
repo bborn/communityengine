@@ -1437,8 +1437,6 @@ ru-RU:
   uploaded_by: загружено 
   #en: url: Url
   url: Url
-  #en: user_e_mail: "User e-mail"
-  user_e_mail: "e-mail пользователя"
   #en: username: Username
   username: Имя пользователя
   #en: user: User

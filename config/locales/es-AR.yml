@@ -628,8 +628,6 @@ es-AR:
   #en: user_clippings: 
   user_clippings: Recortes de %{user}
   #en: user_e_mail: "User e-mail"
-  user_e_mail: "E-mail del usuario:"
-  #en: user_login: "User login:"
   user_login: "Nombre de usuario:"
   #en: username: Username
   username: Nombre de usuario
