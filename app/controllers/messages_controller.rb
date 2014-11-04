@@ -1,5 +1,5 @@
 class MessagesController < BaseController
-  before_filter :find_user, :except => [:auto_complete_for_username]
+  before_filter :find_user
   before_filter :login_required
   before_filter :require_ownership_or_moderator, :except => [:auto_complete_for_username]
 
@@ -10,8 +10,10 @@ class MessagesController < BaseController
   end
 
   def auto_complete_for_username
-    @users = User.where('LOWER(login) LIKE ?', '%' + (params[:message][:to]) + '%')
-    render :inline => "<%= auto_complete_result(@users, 'login') %>"
+    @usernames = User.active.where.not(login: @user.login).pluck(:login)
+    respond_to do |format|
+      format.json {render :inline => @usernames.to_json}
+    end
   end
 
   def index

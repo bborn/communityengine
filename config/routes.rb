@@ -229,11 +229,10 @@ Rails.application.routes.draw do
 
     resources :favorites
     resources :messages do
-      post :auto_complete_for_username, :on => :collection
+      get :auto_complete_for_username, :on => :collection
       collection do
         post :delete_message_threads
         post :delete_selected
-
       end
     end
 
