@@ -36,7 +36,6 @@ require 'bootstrap_form'
 require 'font-awesome-rails'
 require 'jquery-rails'
 require 'jquery-ui-rails'
-require 'jquery-ui-themes'
 
 # Rails 2.3 Plugins converted to lib
 require 'activity_tracker'
