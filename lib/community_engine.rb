@@ -42,7 +42,6 @@ require 'jquery-ui-themes'
 require 'activity_tracker'
 require 'acts_as_publishable'
 require 'white_list'
-require 'auto_complete'
 require 'resource_feeder'
 
 # Rails 2.3 Plugin enumeration_mixin replaced by power_enum gem
