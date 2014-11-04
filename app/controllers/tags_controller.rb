@@ -1,7 +1,7 @@
 class TagsController < BaseController
   before_filter :login_required, :only => [:manage, :edit, :update, :destroy]
   before_filter :admin_required, :only => [:manage, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, :only => 'auto_complete_for_tag_name'
+  skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_tag_name]
 
   caches_action :show, :cache_path => Proc.new { |controller| controller.send(:tag_url, controller.params[:id]) }, :if => Proc.new{|c| c.cache_action? }
   def cache_action?
@@ -9,11 +9,7 @@ class TagsController < BaseController
   end
 
   def auto_complete_for_tag_name
-    @tags = ActsAsTaggableOn::Tag.all
-    @tag_names = []
-    for tag in @tags
-      @tag_names << tag.name
-    end
+    @tag_names = ActsAsTaggableOn::Tag.pluck(:name)
     respond_to do |format|
       format.json {render :inline => @tag_names.to_json}
     end
