@@ -7,7 +7,7 @@
     = f.text_field :to, :required => true, :autocomplete => "off", :id => "message_to", :label => :to.l, :placeholder => :type_a_username.l
 
     -content_for :end_javascript do
-      = tag_auto_complete_field 'message_to', {:url => { :controller => "messages", :action => 'auto_complete_for_username'}, :tokens => [','] }
+      = tag_auto_complete_field 'message_to', {:url => { :controller => "messages", :action => 'auto_complete_for_username'}, :tokens => [','], :tagLimit => 1 }
 
   -if @reply  
     = f.hidden_field :subject  
