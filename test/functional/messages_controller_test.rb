@@ -58,8 +58,12 @@ class MessagesControllerTest < ActionController::TestCase
     end
     assert_redirected_to  user_messages_path(users(:leopoldo))
   end
-  
-  
+
+  def test_should_autocomplete_username
+    get :auto_complete_for_username, :user_id => users(:leopoldo).id, :format => 'json'
+    assert_response :success
+  end
+
   def test_should_not_create_same_user_message
     assert_no_difference Message, :count do    
       post :create, :message => {:to => users(:leopoldo).login, :body => 'Some content',
