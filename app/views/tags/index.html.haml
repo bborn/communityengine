@@ -10,7 +10,6 @@
   =bootstrap_form_tag :url => search_tags_path, :method => 'get', :class => 'form' do
     .form-group
       = text_field_tag 'id', params[:id], :autocomplete => "off", :placeholder => 'search tags'
-    #id_auto_complete.auto_complete
     -content_for :end_javascript do
       = tag_auto_complete_field 'id', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
     = submit_tag :go.l, :class => 'btn btn-primary'

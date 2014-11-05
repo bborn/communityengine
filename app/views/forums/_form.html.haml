@@ -3,7 +3,7 @@
   = f.number_field :position
 
   = f.text_field :tag_list, :autocomplete => "off", :help => :optional_keywords_describing_this_forum_separated_by_commas.l
-  #tag_list_auto_complete.auto_complete
+  
   -content_for :end_javascript do
     = tag_auto_complete_field 'forum_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 

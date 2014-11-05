@@ -12,7 +12,7 @@
   -else
     = image_tag( @photo.photo.url(:large), :id => 'photo', :class => 'thumbnail' )
   = f.text_field :tag_list, :autocomplete => "off", :label => :tags.l, :help => :optional_keywords_describing_this_photo_separated_by_commas.l
-  #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"}
+
   -content_for :end_javascript do
     = tag_auto_complete_field 'photo_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
   = f.text_field :name

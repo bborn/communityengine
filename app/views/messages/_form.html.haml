@@ -5,10 +5,9 @@
     =f.hidden_field :parent_id
   -else
     = f.text_field :to, :required => true, :autocomplete => "off", :id => "message_to", :label => :to.l, :placeholder => :type_a_username.l
-    .auto_complete#message_to_auto_complete
 
     -content_for :end_javascript do
-      = auto_complete_field 'message_to', {:url => {:controller => 'messages', :action => 'auto_complete_for_username', :user => user}, :method=>'post'}
+      = tag_auto_complete_field 'message_to', {:url => { :controller => "messages", :action => 'auto_complete_for_username'}, :tokens => [','], :tagLimit => 1 }
 
   -if @reply  
     = f.hidden_field :subject  

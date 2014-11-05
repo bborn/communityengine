@@ -4,16 +4,15 @@
 -content_for :end_javascript do
   =javascript_include_tag 'tag-it/tag-it'
   :javascript
-    var tags;
     $.ajax({
       type: '#{options[:method] || 'get'}',
       url: '#{url_for options[:url]}',
       success: function(data){
-        values = data;
         $('##{id}').tagit({
-          availableTags: values,
-          allowSpaces: true
+          availableTags: data,
+          allowSpaces: true,
+          tagLimit: '#{options[:tagLimit]}',
+          stopWritingOnTagLimit: true
         });
       }
     });
-    

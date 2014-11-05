@@ -55,8 +55,6 @@
         - else
           = configatron.meta_keywords.split(",")[0..3].join(', ')
 
-    #tag_list_auto_complete.auto_complete
-
     -content_for :end_javascript do
       = tag_auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 

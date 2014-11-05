@@ -51,7 +51,6 @@
         = configatron.community_name
         =:by_looking_at_the.l
         = link_to :tags_page.l, tags_path
-    #tag_list_auto_complete.auto_complete
     -content_for :end_javascript do
       = tag_auto_complete_field 'user_tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
 
