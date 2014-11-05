@@ -11,7 +11,8 @@
         $('##{id}').tagit({
           availableTags: data,
           allowSpaces: true,
-          tagLimit: '#{options[:tagLimit]}'
+          tagLimit: '#{options[:tagLimit]}',
+          stopWritingOnTagLimit: true
         });
       }
     });
