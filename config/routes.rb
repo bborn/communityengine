@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
+
   get '/base/:action' => 'base'
 
   get '/forums/recent' => 'sb_posts#index', :as => :recent_forum_posts
@@ -118,8 +122,7 @@ Rails.application.routes.draw do
   resources :categories
   post '/categories/show_tips' => 'categories#show_tips', :as => :categories_show_tips
 
-  resources :events do
-    get 'page/:page', :action => :index, :on => :collection
+  resources :events, :concerns => :paginatable do
     collection do
       get :past
       get :ical
@@ -150,9 +153,7 @@ Rails.application.routes.draw do
 
   resources :activities
 
-  resources :users do
-
-    get 'page/:page', :action => :index, :on => :collection
+  resources :users, :concerns => :paginatable do
 
     collection do
       post 'return_admin'
@@ -196,13 +197,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :photos do
-      get 'page/:page', :action => :index, :on => :collection
-    end
+    resources :photos, :concerns => :paginatable
 
-    resources :posts do
-      get 'page/:page', :action => :index, :on => :collection
-
+    resources :posts, :concerns => :paginatable do
       collection do
         # get 'manage(/page/:page)', :action => :manage
         match :manage, :via => [:get, :post]
@@ -218,8 +215,7 @@ Rails.application.routes.draw do
 
     resources :clippings
 
-    resources :activities do
-      get 'page/:page', :action => :index, :on => :collection
+    resources :activities, :concerns => :paginatable do
       collection do
         get :network
       end
