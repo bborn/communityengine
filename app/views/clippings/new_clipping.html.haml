@@ -71,7 +71,7 @@
               = text_field_tag 'tag_list', @clipping.tag_list, {:autocomplete => "off",:id => 'clipping_tag_list'}
 
               #clipping_tag_list_auto_complete.auto_complete
-              = auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :update => 'clipping_tag_list_auto_complete' }
+              = auto_complete_field 'clipping_tag_list', {:url => {:controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :method => :get, :update => 'clipping_tag_list_auto_complete' }
 
               %label=:description.l
               = f.text_field :description
