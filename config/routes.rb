@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   concern :paginatable do
-    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+    get '(page/:page)', :action => :index, :on => :collection
   end
 
   get '/base/:action' => 'base'
