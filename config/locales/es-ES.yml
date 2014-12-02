@@ -24,8 +24,6 @@ es-ES:
     attributes:
       photo:
         created_at: "creado: "
-  #en: about: About
-  about: "Qui\xC3\xA9nes somos"
   #en: about_me: About Me
   about_me: "Acerca de M\xC3\xAD"
   #en: about_you: About You

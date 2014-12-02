@@ -26,8 +26,6 @@ es-AR:
     attributes:
       photo:
         created_at: "creado: "
-  #en: about: About
-  about: Acerca
   #en: about_me: About Me
   about_me: "Acerca de m\xC3\xAD"
   #en: about_you: About You
