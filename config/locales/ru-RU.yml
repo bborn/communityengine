@@ -512,10 +512,6 @@ ru-RU:
   explore_site: Исследование %{site}
   #en: failed: failed
   failed: не удалось
-  #en: faq: FAQ
-  faq: FAQ
-  #en: faq_section: FAQ section
-  faq_section: секция FAQ
   #en: favorited: favorited
   favorited: избранное
   #en: favorites: Favorites
@@ -1617,8 +1613,6 @@ ru-RU:
   your_about_text_goes_here: Место для вашего текста
   #en: your_account_has_been_activated: Your %{site} account has been activated!
   your_account_has_been_activated: "Ваша %{site} учетная запись была активирована!"
-  #en: your_faq_text_goes_here: Your FAQ text goes here.
-  your_faq_text_goes_here: Текст для вашего FAQ.
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Ваши изменения были сохранены.
   #en:   your_password_reset_instructions_have_been_emailed_to_you: Instructions to reset your password have been emailed to you.

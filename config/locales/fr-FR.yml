@@ -432,10 +432,6 @@ fr:
   explore_site: "Parcourir %{site}"
 #  #en: failed: failed
   failed: a échoué
-  #en: faq: FAQ
-  faq: FAQ
-  #en: faq_section: FAQ section
-  faq_section: Rubrique FAQ
   #en: favorites: Favorites
   favorites: Favoris
   #en: favorite_this: Favorite this
