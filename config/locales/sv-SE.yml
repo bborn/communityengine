@@ -49,8 +49,6 @@ sv:
   about: Om
   #en: about_me: About Me
   about_me: Om mig
-  #en: about_site: About %{site}
-  about_site: "Om %{site}"
   #en: about_you: About You
   about_you: Om dig
   #en: accept: Accept

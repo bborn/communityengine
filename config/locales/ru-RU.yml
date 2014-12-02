@@ -56,8 +56,6 @@ ru-RU:
   about: О
   #en: about_me: About Me
   about_me: Обо мне
-  #en: about_site: About %{site}
-  about_site: "О %{site}"
   #en: about_you: About You
   about_you: О тебе
   #en: admin_pages: Pages

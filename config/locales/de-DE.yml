@@ -58,8 +58,6 @@ de-DE:
   about: "\xC3\x9Cber uns"
   #en: about_me: About Me
   about_me: "\xC3\x9Cber mich"
-  #en: about_site: About %{site}
-  about_site: "\xC3\x9Cber uns %{site}"
   #en: about_you: About You
   about_you: "\xC3\x9Cber dich"
   #en: accept: Accept

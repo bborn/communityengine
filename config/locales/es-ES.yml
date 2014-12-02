@@ -28,8 +28,6 @@ es-ES:
   about: "Qui\xC3\xA9nes somos"
   #en: about_me: About Me
   about_me: "Acerca de M\xC3\xAD"
-  #en: about_site: About %{site}
-  about_site: Acerca de %{site}
   #en: about_you: About You
   about_you: "Acerca de T\xC3\xAD"
   #en: accepted_friendships: Accepted Friendships
