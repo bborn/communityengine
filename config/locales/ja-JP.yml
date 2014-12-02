@@ -23,8 +23,6 @@ ja:
   about: About
   #en: about_me: About Me
   about_me: 自己紹介
-  #en: about_site: About %{site}
-  about_site: "%{site}について"
   #en: about_you: About You
   about_you: About You
   #en: accept: Accept

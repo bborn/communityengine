@@ -55,8 +55,6 @@ en:
   about: About
   #en: about_me: About Me
   about_me: About Me
-  #en: about_site: About %{site}
-  about_site: "About %{site}"
   #en: about_you: About You
   about_you: About You
   #en: admin_pages: Pages

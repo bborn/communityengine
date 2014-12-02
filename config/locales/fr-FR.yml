@@ -35,8 +35,6 @@ fr:
   about: "A propos"
   #en: about_me: About Me
   about_me: "Qui suis je ?"
-  #en: about_site: About %{site}
-  about_site: "A propos de %{site}"
   #en: about_you: About You
   about_you: "Qui suis je ?"
   #en: accept: Accept
