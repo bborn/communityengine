@@ -15,8 +15,6 @@ sr-CP:
       photo:
         created_at: "created at: "
 
-  #en: about: About
-  about: "\xC3\x9Cber"
   #en: about_me: About Me
   about_me: "\xC3\x9Cber mich"
   #en: about_you: About You
