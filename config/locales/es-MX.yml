@@ -94,7 +94,6 @@ es-MX:
   estimated_total_for_this_month: Total estimado para este mes
   cancel: cancelar
   account_activation_error: "Activación de cuenta falló. Tal vez ya está activa. Intenta conectarte o manda un correo electrónico a %{email} para obtener ayuda."
-  more_about_you: Más sobre tí
   email_addresses: Direcciones de Correo Electrónico
   blog_posts: "Publicaciones de la blog"
   admin: Administrador
