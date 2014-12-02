@@ -1,8 +1,5 @@
-= render :partial => 'about_nav'
-
-#yui-main
-  .yui-b
-    -box do 
-      %h3
-        =:advertise_on.l
-        =" #{configatron.community_name}"
+-@page_title = :advertise_on.l + " #{configatron.community_name}"
+%p
+  Contact us at
+  =mail_to "#{configatron.support_email}"
+  to discuss advertising. We'd love to hear from you!
