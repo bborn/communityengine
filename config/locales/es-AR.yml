@@ -240,8 +240,6 @@ es-AR:
   events: Eventos
   #en: explore_site: Explore %{site}
   explore_site: Explorar %{site}
-  #en: faq: FAQ
-  faq: FAQ
   #en: favorited: favorited
   favorited: marcado como favorito
   #en: featured_writer: Featured Writer

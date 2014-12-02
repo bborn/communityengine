@@ -280,8 +280,6 @@ es-ES:
   events: "Eventos"
   #en: explore_site: Explore %{site}
   explore_site: "Explora %{site}"
-  #en: faq: FAQ
-  faq: "Preguntas m\xC3\xA1s frecuentes"
   #en: favorited: favorited
   favorited: 'favorito'
   #en: featured_posts: Featured Posts

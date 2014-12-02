@@ -429,10 +429,6 @@ sv:
   explore_site: "Utforska %{site}"
   #en: failed: failed
   failed: misslyckades
-  #en: faq: FAQ
-  faq: FAQ
-  #en: faq_section: FAQ section
-  faq_section: FAQ-avdelning
   #en: favorites: Favorites
   favorites: Favoriter
   #en: favorite_this: Favorite this
@@ -1493,7 +1489,6 @@ sv:
     one: "Du har skrivit 1 inlägg."
     other: "Du har skrivit %{count} inlägg."
   your_account_has_been_activated: "Ditt %{site}-konto har aktiverats!"
-  your_faq_text_goes_here: "Din FAQ text sätter du här."
   your_rsvp_has_been_retracted: "Ditt svar har tagits tillbaka."
   your_rsvp_was_successfully_created: "Ditt svar har lagrats."
   your_rsvp_was_successfully_updated: "Ditt svar har uppdaterats."
