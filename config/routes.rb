@@ -92,9 +92,6 @@ Rails.application.routes.draw do
   get '/rss' => 'base#rss_site_index', :as => :rss_redirect
   get '/site_index.rss' => 'base#site_index', :as => :rss, :format => 'rss'
   get '/advertise' => 'base#advertise', :as => :advertise
-  get '/css_help' => 'base#css_help', :as => :css_help
-  get '/about' => 'base#about', :as => :about
-  get '/faq' => 'base#faq', :as => :faq
   get '/footer_content' => 'base#footer_content', :as => :footer_content
 
   get '/account/edit' => 'users#edit_account', :as => :edit_account_from_email

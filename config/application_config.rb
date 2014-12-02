@@ -110,7 +110,6 @@ configatron.configure_from_hash(
   },
 
   :reserved_logins => [
-    'about',
     'account',
     'activities',
     'admin',
@@ -126,10 +125,8 @@ configatron.configure_from_hash(
     'clipping_images',
     'comments',
     'countries',
-    'css_help',
     'events',
     'favorites',
-    'faq',
     'featured',
     'forums',
     'friendships',
