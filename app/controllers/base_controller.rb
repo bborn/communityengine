@@ -60,9 +60,6 @@ class BaseController < ApplicationController
   def advertise
   end
 
-  def css_help
-  end
-
   protected
   def self.uses_tiny_mce(options = {}, &block)
     if block_given?
