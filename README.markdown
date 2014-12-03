@@ -2,7 +2,7 @@ CommunityEngine
 ===============
 
 [![Build Status](https://travis-ci.org/bborn/communityengine.svg?branch=master)](https://travis-ci.org/bborn/communityengine)
-Version 3.0.2 pre3
+[![Gem Version](https://badge.fury.io/rb/community_engine.svg)](https://badge.fury.io/rb/community_engine)
 
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
@@ -23,7 +23,7 @@ Getting CommunityEngine Running
 1. Copy the following into your `Gemfile`:
 
   ```ruby
-  gem 'community_engine', git: 'https://github.com/bborn/communityengine.git'
+  gem 'community_engine', '~> 3.0.0'
   ```
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):

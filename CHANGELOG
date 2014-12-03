@@ -1,6 +1,12 @@
 = TODO
 * datepicker for events
 
+=3.0.0            -- Trevor Bullock  02 Dec 2014
+* Upgraded to Bootstrap 3
+* Upgraded to Font Awesome 4
+* Upgraded to Configatron 4
+* Various bug fixes
+
 =3.0.0.pre3       -- BB  Nov 2013
 * Merged in the jquery-bootstrap branch
 * Removed old prototype.js code
