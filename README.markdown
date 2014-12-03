@@ -1,7 +1,7 @@
 CommunityEngine
 ===============
 
-[![Build Status](https://travis-ci.org/bborn/communityengine.svg?branch=rails4)](https://travis-ci.org/bborn/communityengine)
+[![Build Status](https://travis-ci.org/bborn/communityengine.svg?branch=master)](https://travis-ci.org/bborn/communityengine)
 Version 3.0.2 pre3
 
 
@@ -14,7 +14,7 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 For Rails 2.x use the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
 
-For Rails 3.x use the [master branch](https://github.com/bborn/communityengine/tree/master)
+For Rails 3.x use the [rails3.x branch](https://github.com/bborn/communityengine/tree/rails3.x)
 
 
 Getting CommunityEngine Running
@@ -23,7 +23,7 @@ Getting CommunityEngine Running
 1. Copy the following into your `Gemfile`:
 
   ```ruby
-  gem 'community_engine', git: 'https://github.com/bborn/communityengine.git', branch: 'rails4'
+  gem 'community_engine', git: 'https://github.com/bborn/communityengine.git'
   ```
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
