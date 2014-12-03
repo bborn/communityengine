@@ -67,14 +67,14 @@ class TagsController < BaseController
   end
 
   def show
-    tag_array = ActsAsTaggableOn::TagList.from( URI::decode(params[:id]) )
+    tag_array = ActsAsTaggableOn::DefaultParser.new( URI::decode(params[:id]) )
 
     @tags = ActsAsTaggableOn::Tag.where('name IN (?)', tag_array)
     if @tags.nil? || @tags.empty?
       flash[:notice] = :tag_does_not_exists.l_with_args(:tag => tag_array)
       redirect_to :action => :index and return
     end
-    @related_tags = @tags.first.related_tags
+    @related_tags = @tags.first.find_related
     @tags_raw = @tags.collect { |t| t.name } .join(',')
 
     if params[:type]

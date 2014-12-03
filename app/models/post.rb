@@ -51,7 +51,7 @@ class Post < ActiveRecord::Base
 
     def find_related_to(post, options = {})
       options.reverse_merge!({:limit => 8,
-          :order => 'published_at DESC',
+          :order => 'posts.published_at DESC',
           :conditions => [ 'posts.id != ? AND published_as = ?', post.id, 'live' ]
       })
 
