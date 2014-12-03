@@ -1,9 +1,8 @@
 CommunityEngine
 ===============
 
-[![Build Status](https://travis-ci.org/bborn/communityengine.svg?branch=master)](https://travis-ci.org/bborn/communityengine)
-[![Dependency Status](https://gemnasium.com/bborn/communityengine.svg)](https://gemnasium.com/bborn/communityengine)
-[![Gem Version](https://badge.fury.io/rb/community_engine.svg)](https://badge.fury.io/rb/community_engine)
+[![Build Status](https://travis-ci.org/bborn/communityengine.svg?branch=rails3.x)](https://travis-ci.org/bborn/communityengine)
+Version 2.3.2
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
@@ -13,7 +12,7 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 For Rails 2.x use the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
 
-For Rails 4.x use the [rails4 branch](https://github.com/bborn/communityengine/tree/rails4)
+For Rails 4.x use the [master branch](https://github.com/bborn/communityengine)
 
 Getting CommunityEngine Running
 --------------------------------
@@ -21,7 +20,7 @@ Getting CommunityEngine Running
 1. Copy the following into your `Gemfile`:
 
   ```ruby
-  gem 'community_engine'
+  gem 'community_engine', git: 'https://github.com/bborn/communityengine.git', branch: 'rails3.x'
   ```
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
@@ -58,7 +57,7 @@ Optional Configuration
 
 To override the default configuration, create an `application_config.rb` file in `Rails.root/config`.
 
-The application configuration defined in this file overrides the one defined in the [CommunityEngine gem](https://github.com/bborn/communityengine/blob/master/config/application_config.rb).
+The application configuration defined in this file overrides the one defined in the [CommunityEngine gem](https://github.com/bborn/communityengine/blob/rails3.x/config/application_config.rb).
 
 This is where you can change commonly used configuration variables, like `configatron.community_name`, etc.
 
