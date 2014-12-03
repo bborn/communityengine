@@ -11,8 +11,8 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 **Requirements:**
 
-	- RAILS VERSION 4.0.0
-	- RUBY  2.0.0
+	- RAILS VERSION 4.0.x
+	- RUBY  2.0.x
 
 For Rails 2.x use the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
 
@@ -93,7 +93,7 @@ Photo Uploading
 
 By default CommunityEngine uses the filesystem to store photos.
 
-To use Amazon S3 as the backend for your file uploads,you'll need to add a file called `s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`).
+To use Amazon S3 as the backend for your file uploads, you'll need to add a file called `s3.yml` to the application's root config directory (examples are in `/community_engine/sample_files`).
 
 You'll need to change your configuration in your `application_config.rb` to tell CommunityEngine to use s3 as the photo backend. For more, see the Paperclip documentation on S3 storage for uploads: https://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/storage/s3.rb.
 
@@ -105,7 +105,7 @@ Roles
 
 CommunityEngine Users have a Role (by default, it's admin, moderator, or member).
 
-Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar.)
+Once logged in as an admin, you'll be able to toggle other users between moderator and member (just go to their profile page and look on the sidebar).
 
 Admins and moderators can edit and delete other users posts.
 
