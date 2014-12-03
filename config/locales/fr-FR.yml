@@ -31,12 +31,8 @@ fr:
 
   #en: a_few_seconds_ago: a few seconds ago
   a_few_seconds_ago: il y a quelques secondes
-  #en: about: About
-  about: "A propos"
   #en: about_me: About Me
   about_me: "Qui suis je ?"
-  #en: about_site: About %{site}
-  about_site: "A propos de %{site}"
   #en: about_you: About You
   about_you: "Qui suis je ?"
   #en: accept: Accept
@@ -432,10 +428,6 @@ fr:
   explore_site: "Parcourir %{site}"
 #  #en: failed: failed
   failed: a échoué
-  #en: faq: FAQ
-  faq: FAQ
-  #en: faq_section: FAQ section
-  faq_section: Rubrique FAQ
   #en: favorites: Favorites
   favorites: Favoris
   #en: favorite_this: Favorite this
@@ -718,8 +710,6 @@ fr:
   month: Mois
   #en: more: More
   more: Plus
-  #en: more_about_you: More about you
-  more_about_you: Mais encore ...
   #en: most_active_1_month: Most active (1 month)
   most_active_1_month: Le plus actif (depuis 1 mois)
   #en: my_account: My Account

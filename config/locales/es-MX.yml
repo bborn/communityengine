@@ -94,7 +94,6 @@ es-MX:
   estimated_total_for_this_month: Total estimado para este mes
   cancel: cancelar
   account_activation_error: "Activación de cuenta falló. Tal vez ya está activa. Intenta conectarte o manda un correo electrónico a %{email} para obtener ayuda."
-  more_about_you: Más sobre tí
   email_addresses: Direcciones de Correo Electrónico
   blog_posts: "Publicaciones de la blog"
   admin: Administrador
@@ -392,7 +391,6 @@ es-MX:
   homepage_banner_msg: CommunityEngine es la mejor forma de is de cero a 100 en un momento
   get_help_from_someone_who_knows: Obtén ayuda de alguien que sabe
   tags: Etiquetas
-  about_site: Acerca de %{site}
   one_minute_ago: hace un minuto
   request_friendship: Solicitar amistad
   remove_this_friend: Eliminar este amigo
@@ -464,7 +462,6 @@ es-MX:
   create_an_account: Crear una cuenta
   days_ago: dias atras
   notify_email_updates: Email de Noticias de la Comunidad
-  faq_section: Seccion de Preguntas Frecuentes
   last_post: Última publicación
   you_must_vote_to_see_the_results: Debe votar para ver los resultados.
   more: Más
@@ -522,7 +519,6 @@ es-MX:
   sign_up_for_an_account: Registrarse.
   required: requerido
   postal_code: "Código postal:"
-  faq: "Preguntas más frecuentes"
   most_active_1_month: Más Activo (1 month)
   clippings: Recortes
   featured_posts: Publicaciones Destacadas
@@ -623,7 +619,6 @@ es-MX:
   logins: Nombres de Usuario
   one_day_ago: hace un día
   megabyte_upload_limit: límite de megabytes para subir
-  about: "Quiénes somos"
   scrapbook: Bloc de notas
   make_moderator: Hacer moderador
   admin_controls: Administración

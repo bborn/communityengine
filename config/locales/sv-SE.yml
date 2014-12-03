@@ -45,12 +45,8 @@ sv:
         created_at: "skapades: "
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago: några sekunder sedan
-  #en: about: About
-  about: Om
   #en: about_me: About Me
   about_me: Om mig
-  #en: about_site: About %{site}
-  about_site: "Om %{site}"
   #en: about_you: About You
   about_you: Om dig
   #en: accept: Accept
@@ -429,10 +425,6 @@ sv:
   explore_site: "Utforska %{site}"
   #en: failed: failed
   failed: misslyckades
-  #en: faq: FAQ
-  faq: FAQ
-  #en: faq_section: FAQ section
-  faq_section: FAQ-avdelning
   #en: favorites: Favorites
   favorites: Favoriter
   #en: favorite_this: Favorite this
@@ -675,8 +667,6 @@ sv:
   month: Månad
   #en: more: More
   more: Mer
-  #en: more_about_you: More about you
-  more_about_you: Mer om dig
   #en: most_active_1_month: Most active (1 month)
   most_active_1_month: Mest aktiv (1 månad)
   #en: my_details: My Details
@@ -1493,7 +1483,6 @@ sv:
     one: "Du har skrivit 1 inlägg."
     other: "Du har skrivit %{count} inlägg."
   your_account_has_been_activated: "Ditt %{site}-konto har aktiverats!"
-  your_faq_text_goes_here: "Din FAQ text sätter du här."
   your_rsvp_has_been_retracted: "Ditt svar har tagits tillbaka."
   your_rsvp_was_successfully_created: "Ditt svar har lagrats."
   your_rsvp_was_successfully_updated: "Ditt svar har uppdaterats."

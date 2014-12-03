@@ -24,12 +24,8 @@ es-ES:
     attributes:
       photo:
         created_at: "creado: "
-  #en: about: About
-  about: "Qui\xC3\xA9nes somos"
   #en: about_me: About Me
   about_me: "Acerca de M\xC3\xAD"
-  #en: about_site: About %{site}
-  about_site: Acerca de %{site}
   #en: about_you: About You
   about_you: "Acerca de T\xC3\xAD"
   #en: accepted_friendships: Accepted Friendships
@@ -280,8 +276,6 @@ es-ES:
   events: "Eventos"
   #en: explore_site: Explore %{site}
   explore_site: "Explora %{site}"
-  #en: faq: FAQ
-  faq: "Preguntas m\xC3\xA1s frecuentes"
   #en: favorited: favorited
   favorited: 'favorito'
   #en: featured_posts: Featured Posts

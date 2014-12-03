@@ -51,12 +51,8 @@ en:
 
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  a few seconds ago
-  #en: about: About
-  about: About
   #en: about_me: About Me
   about_me: About Me
-  #en: about_site: About %{site}
-  about_site: "About %{site}"
   #en: about_you: About You
   about_you: About You
   #en: admin_pages: Pages
@@ -509,10 +505,6 @@ en:
   explore_site: "Explore %{site}"
   #en: failed: failed
   failed: failed
-  #en: faq: FAQ
-  faq: FAQ
-  #en: faq_section: FAQ section
-  faq_section: FAQ section
   #en: favorited: favorited
   favorited: favorited
   #en: favorites: Favorites
@@ -807,8 +799,6 @@ en:
   month: Month
   #en: more: More
   more: More
-  #en: more_about_you: More about you
-  more_about_you: More about you
   #en: most_active_1_month: Most active (1 month)
   most_active_1_month: Most active (1 month)
   #en: my_account: My Account
@@ -1591,8 +1581,6 @@ en:
   your_about_text_goes_here: Your About Text Goes Here
   #en: your_account_has_been_activated: Your %{site} account has been activated!
   your_account_has_been_activated: "Your %{site} account has been activated!"
-  #en: your_faq_text_goes_here: Your FAQ text goes here.
-  your_faq_text_goes_here: Your FAQ text goes here.
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Your changes were saved.
   #en:   your_password_reset_instructions_have_been_emailed_to_you: Instructions to reset your password have been emailed to you.

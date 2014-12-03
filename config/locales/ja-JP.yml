@@ -19,12 +19,8 @@ ja:
         created_at: "created at: "
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  数秒前
-  #en: about: About
-  about: About
   #en: about_me: About Me
   about_me: 自己紹介
-  #en: about_site: About %{site}
-  about_site: "%{site}について"
   #en: about_you: About You
   about_you: About You
   #en: accept: Accept
@@ -405,10 +401,6 @@ ja:
   explore_site: "Explore %{site}"
   #en: failed: failed
   failed: failed
-  #en: faq: FAQ
-  faq: よくある質問
-  #en: faq_section: FAQ section
-  faq_section: FAQ section
   #en: favorites: Favorites
   favorites: Favorites
   #en: favorite_this: Favorite this
@@ -649,8 +641,6 @@ ja:
   month: 月
   #en: more: More
   more: More
-  #en: more_about_you: More about you
-  more_about_you: More about you
   #en: most_active_1_month: Most active (1 month)
   most_active_1_month: Most active (1 month)
   #en: my_details: My Details

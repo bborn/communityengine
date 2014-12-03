@@ -15,12 +15,8 @@ sr-CP:
       photo:
         created_at: "created at: "
 
-  #en: about: About
-  about: "\xC3\x9Cber"
   #en: about_me: About Me
   about_me: "\xC3\x9Cber mich"
-  #en: about_site: About %{site}
-  about_site: "\xC3\x9Cber %{site}"
   #en: about_you: About You
   about_you: "\xC3\x9Cber Dich"
   #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.

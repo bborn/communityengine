@@ -52,12 +52,8 @@ ru-RU:
 
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  несколько секунд назад
-  #en: about: About
-  about: О
   #en: about_me: About Me
   about_me: Обо мне
-  #en: about_site: About %{site}
-  about_site: "О %{site}"
   #en: about_you: About You
   about_you: О тебе
   #en: admin_pages: Pages
@@ -512,10 +508,6 @@ ru-RU:
   explore_site: Исследование %{site}
   #en: failed: failed
   failed: не удалось
-  #en: faq: FAQ
-  faq: FAQ
-  #en: faq_section: FAQ section
-  faq_section: секция FAQ
   #en: favorited: favorited
   favorited: избранное
   #en: favorites: Favorites
@@ -821,8 +813,6 @@ ru-RU:
   month: Месяц
   #en: more: More
   more: Еще
-  #en: more_about_you: More about you
-  more_about_you: Еще о вас
   #en: most_active_1_month: Most active (1 month)
   most_active_1_month: Наиболее активный (1 месяц)
   #en: my_account: My Account
@@ -1617,8 +1607,6 @@ ru-RU:
   your_about_text_goes_here: Место для вашего текста
   #en: your_account_has_been_activated: Your %{site} account has been activated!
   your_account_has_been_activated: "Ваша %{site} учетная запись была активирована!"
-  #en: your_faq_text_goes_here: Your FAQ text goes here.
-  your_faq_text_goes_here: Текст для вашего FAQ.
   #en: your_changes_were_saved: Your changes were saved.
   your_changes_were_saved: Ваши изменения были сохранены.
   #en:   your_password_reset_instructions_have_been_emailed_to_you: Instructions to reset your password have been emailed to you.
