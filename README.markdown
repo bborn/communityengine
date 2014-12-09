@@ -4,7 +4,7 @@ NOTE: THIS BRANCH IS NO LONGER MAINTAINED
 ---
 
 For Rails 3.x use the [rails3.x branch](https://github.com/bborn/communityengine/tree/rails3.x).
-For Rails 3.x use the [master branch](https://github.com/bborn/communityengine/tree/master).
+For Rails 4.x use the [master branch](https://github.com/bborn/communityengine/tree/master).
 
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
