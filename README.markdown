@@ -1,6 +1,9 @@
 CommunityEngine [v1.2.1]
 
-** Looking for the Rails 3.X version (CE 2.0.0)? You want the [master branch](https://github.com/bborn/communityengine/tree/master).
+** NOTE: THIS BRANCH IS NO LONGER MAINTAINED **
+
+** Looking for the Rails 3.X version? You want the [rails3.x branch](https://github.com/bborn/communityengine/tree/rails3.x).
+** Looking for the Rails 4.X version? You want the [master branch](https://github.com/bborn/communityengine/tree/master).
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
