@@ -38,18 +38,22 @@
         %td
           - icon, color, post = icon_and_color_and_post_for topic
 
-          - if recent_topic_activity(topic)
-            %span.badge.badge-warning
+          -if recent_topic_activity(topic)
+            %span.badge
               =fa_icon "fire inverse"
         %td
           -if topic.sticky?
-            =:sticky.l
             %strong
               = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
+            .pull-right
+              =fa_icon "thumb-tack fw"
           -else
             = link_to h(topic.title), forum_topic_path(@forum, topic), :class => "entry-title", :rel => "bookmark"
-          - if topic.paged?
+          -if topic.paged?
             %small= link_to :last.l, forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page)
+          -if topic.locked?
+            .pull-right
+              =fa_icon "lock fw"
         %td= topic.sb_posts_count
         %td= number_with_delimiter(topic.views)
         %td
