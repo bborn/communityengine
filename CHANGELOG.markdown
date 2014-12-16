@@ -1,9 +1,5 @@
 # Changelog
 
-### TODO
-
-* datepicker for events
-
 ## 3.0.0
 
 * Upgraded to Bootstrap 3
