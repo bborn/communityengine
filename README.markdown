@@ -200,18 +200,18 @@ end
 To override or modify a controller, helper, or model from CE, you can use the `require_from_ce` helper method. For example, to override a method in CE's `User` model, create `app/models/user.rb`:
 
 ```ruby
-	class User < ActiveRecord::Base
-		require_from_ce('models/user')
+class User < ActiveRecord::Base
+	require_from_ce('models/user')
 
-		#add a new association
-		has_many :recipes
+	#add a new association
+	has_many :recipes
 
-		#override an existing method
-		def	display_name
-			login.capitalize
-		end
-
+	#override an existing method
+	def	display_name
+		login.capitalize
 	end
+
+end
 ```
 
 
