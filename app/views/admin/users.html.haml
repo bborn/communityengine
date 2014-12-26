@@ -23,12 +23,12 @@
         %th=:actions.l
 
       - @users.each do |user|
-        %tr{:id => "user_#{user.id}"}
+        %tr{:id => "user-#{user.id}"}
           %td
-            = link_to fa_icon("trash-o"), user_path(user), :method => :delete, 'data-manual-confirm' => :are_you_sure_you_want_to_permanently_delete_this_user.l, :class => 'delete-via-ajax'
+            = link_to fa_icon("trash-o"), user_path(user), :method => :delete, :remote => true, :data => { :confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l }
           -if configatron.has_key?(:akismet_key)
             %td
-              = link_to fa_icon("ban"), user_path(user, :spam => true), :method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam.l, :class => 'delete-via-ajax'
+              = link_to fa_icon("ban"), user_path(user, :spam => true), :method => :delete, :remote => true, data: { confirm: :are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam.l }
           %td= check_box_tag "delete[]", user.id
 
           %td

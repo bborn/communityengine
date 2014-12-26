@@ -15,7 +15,7 @@ class UsersController < BaseController
                                           :welcome_invite, :return_admin, :assume, :featured,
                                           :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard, :deactivate,
                                           :crop_profile_photo, :upload_profile_photo]
-  before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :destroy, :statistics, :deactivate,
+  before_filter :find_user, :only => [:edit, :edit_pro_details, :show, :update, :statistics, :deactivate,
                                       :crop_profile_photo, :upload_profile_photo ]
   before_filter :require_current_user, :only => [:edit, :update, :update_account,
                                                 :edit_pro_details, :update_pro_details,
@@ -140,18 +140,20 @@ class UsersController < BaseController
   end
 
   def destroy
+    @user = User.find(params[:id])
     unless @user.admin? || @user.featured_writer?
+      @user.spam! if params[:spam] && configatron.has_key?(:akismet_key)
       @user.destroy
       flash[:notice] = :the_user_was_deleted.l
     else
       flash[:error] = :you_cant_delete_that_user.l
     end
     respond_to do |format|
+      format.html { redirect_to users_url }
       format.js   {
         render :inline => flash[:error], :status => 500 if flash[:error]
-        render :nothing => true if flash[:notice]
+        render if flash[:notice]
       }
-      format.html { redirect_to users_url }
     end
   end
 
