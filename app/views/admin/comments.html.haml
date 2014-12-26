@@ -39,7 +39,7 @@
           -else
             =link_to comment.commentable_name, commentable_url(comment)
         %td
-          =link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => "Are you sure you want to permanently delete this comment", :class => 'btn btn-danger delete-via-ajax', 'data-target' => "comment_#{comment.id}"
+          =link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, :remote => true, :data => { :confirm => :are_you_sure_you_want_to_permanently_delete_this_comment.l }, :class => 'btn btn-danger'
   -if @comments.any?
     %p
       %a.btn.btn-default.check-all{:href=>"#"} Toggle all
