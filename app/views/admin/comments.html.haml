@@ -42,12 +42,7 @@
           =link_to :delete.l, commentable_comment_path(comment.commentable_type, comment.commentable_id, comment), :method => :delete, 'data-manual-confirm' => "Are you sure you want to permanently delete this comment", :class => 'btn btn-danger delete-via-ajax', 'data-target' => "comment_#{comment.id}"
   -if @comments.any?
     %p
-      %a.btn.btn-default{:href=>"#", :onclick=>"checkboxes.each(function(e){ e.checked = (e.checked == 0 ? 1 : 0) }); return false;"} Toggle all
+      %a.btn.btn-default.check-all{:href=>"#"} Toggle all
       = submit_tag :delete_selected.l, :class => 'btn btn-danger'
 
 = paginate @comments, :theme => 'bootstrap'
-
--content_for :end_javascript do
-  :javascript
-    var form = $('comments');
-    checkboxes = form.getInputs('checkbox');
