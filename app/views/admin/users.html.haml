@@ -9,7 +9,7 @@
     = paginate @users, :theme => 'bootstrap'
 
   %br
-  = bootstrap_form_tag :url => delete_selected_users_path, :id => 'users' do
+  = bootstrap_form_tag :url => delete_selected_users_path, :method => :delete, :id => 'users' do
     %table.table.table-bordered.table-striped
       %tr
         %th

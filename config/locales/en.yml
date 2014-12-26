@@ -1305,6 +1305,8 @@ en:
   the_friendship_was_denied: The friendship was denied.
   #en: the_more_people_you_invite_the_better: The more people you invite, the better
   the_more_people_you_invite_the_better: "The more people you invite, the better"
+  #en: the_selected_users_were_deleted: The selected users were deleted.
+  the_selected_users_were_deleted: The selected users were deleted.
   #en: the_service_was_deleted: The service was deleted.
   the_service_was_deleted: The service was deleted.
   #en: the_slideshow_is_disabled: The slideshow is disabled.
