@@ -14,7 +14,9 @@
 
   -content_for :end_javascript do
     :javascript
-      Event.observe("ad_time_constrained", "click", function(){$('time_constraints').toggle()})
+      $('#ad_time_constrained').click(function() {
+        $('#time_constraints').toggle();
+      });
 
   = f.text_field :location
 
