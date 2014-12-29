@@ -146,7 +146,7 @@ class EventsController < BaseController
       elsif object.is_a? User
         states = object.country.states if object.country
         if object.state
-          metro_areas = object.state.metro_areas..order("name")
+          metro_areas = object.state.metro_areas.order("name")
         else
           metro_areas = object.country.metro_areas.order("name")
         end
