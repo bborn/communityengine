@@ -10,7 +10,7 @@
     = text_field_tag 'message[to]', @message.to, {:autocomplete => "off", :size => 35, :id => "message_to"}
     .auto_complete#message_to_auto_complete
     -content_for :end_javascript do
-      = auto_complete_field 'message_to', {:url => auto_complete_for_username_user_messages_path(@user), :tokens=>','}
+      = auto_complete_field 'message_to', {:url => auto_complete_for_username_user_messages_path(@user), :tokens=>',', :method => :get}
 
   -if @reply  
     = f.hidden_field :subject  
