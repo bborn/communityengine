@@ -16,7 +16,7 @@
       #tag_list_auto_complete.auto_complete
       
       -content_for :end_javascript do
-        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :method => :get }
 
 #forum_descripion
   %label= :description.l

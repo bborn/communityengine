@@ -25,7 +25,7 @@
       = text_field_tag 'tag_list', @photo.tag_list.to_s, {:autocomplete => "off", :size => 35}
       #tag_list_auto_complete.auto_complete{"class"=>"auto_complete"} 
       -content_for :end_javascript do
-        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','] }
+        = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [','], :method => :get }
 
       %label= :title.l + ":"
       = f.text_field :name, :size => 35
