@@ -25,7 +25,7 @@ class EventsController < BaseController
         event.dtend = ce_event.end_time
         event.summary = ce_event.name + (ce_event.metro_area.blank? ? '' : " (#{ce_event.metro_area})")
         coder = HTMLEntities.new
-        event.description = (ce_event.description.blank? ? '' : coder.decode(help.strip_tags(ce_event.description).to_s) + "\n\n") + event_url(ce_event)
+        event.description = (ce_event.description.blank? ? '' : coder.decode(view_context.strip_tags(ce_event.description).to_s) + "\n\n") + event_url(ce_event)
         event.location = ce_event.location unless ce_event.location.blank?
       end
       @calendar.add_subcomponent rical_event
