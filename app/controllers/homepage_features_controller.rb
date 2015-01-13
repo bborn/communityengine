@@ -3,8 +3,8 @@ class HomepageFeaturesController < BaseController
     {:only => [:new, :edit, :create, :update ], :options => configatron.default_mce_options}
   end
 
-  before_filter :login_required
-  before_filter :admin_required
+  before_action :login_required
+  before_action :admin_required
 
   def index
     @search = HomepageFeature.search(params[:q])

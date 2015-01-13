@@ -1,7 +1,7 @@
 class ClippingsController < BaseController
-  before_filter :login_required, :only => [:new, :edit, :update, :create, :destroy, :new_clipping]
-  before_filter :find_user, :only => [:new, :edit, :index, :show]
-  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
+  before_action :login_required, :only => [:new, :edit, :update, :create, :destroy, :new_clipping]
+  before_action :find_user, :only => [:new, :edit, :index, :show]
+  before_action :require_current_user, :only => [:new, :edit, :update, :destroy]
 
   uses_tiny_mce do
     {:only => [:show,:new_clipping], :options => configatron.default_mce_options}

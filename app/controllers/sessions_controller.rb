@@ -1,7 +1,7 @@
 # This controller handles the login/logout function of the site.
 class SessionsController < BaseController
 
-  skip_before_filter :store_location, :only => [:new, :create]
+  skip_before_action :store_location, :only => [:new, :create]
 
   def index
     redirect_to :action => "new"

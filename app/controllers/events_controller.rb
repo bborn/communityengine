@@ -13,7 +13,7 @@ class EventsController < BaseController
     {:only => [:show], :options => configatron.simple_mce_options}
   end
 
-  before_filter :admin_required, :except => [:index, :show, :ical]
+  before_action :admin_required, :except => [:index, :show, :ical]
 
   def ical
     @calendar = RiCal.Calendar

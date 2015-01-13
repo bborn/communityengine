@@ -1,6 +1,6 @@
 class StatisticsController < BaseController
-  before_filter :login_required
-  before_filter :admin_required
+  before_action :login_required
+  before_action :admin_required
 
   def index
     @total_users = User.where('activated_at IS NOT NULL').count

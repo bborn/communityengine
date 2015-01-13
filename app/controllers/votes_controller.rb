@@ -1,6 +1,6 @@
 class VotesController < BaseController
-  before_filter :find_choice, :only => [:create]
-  before_filter :login_required
+  before_action :find_choice, :only => [:create]
+  before_action :login_required
   
   def new
     @post = Post.find(params[:post_id])

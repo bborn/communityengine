@@ -13,11 +13,11 @@ class PostsController < BaseController
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
   caches_action :show, :if => Proc.new{|c| !logged_in? }
 
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]
-  before_filter :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage, :preview]
-  before_filter :require_ownership_or_moderator, :only => [:edit, :update, :destroy, :create, :manage, :new]
+  before_action :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]
+  before_action :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage, :preview]
+  before_action :require_ownership_or_moderator, :only => [:edit, :update, :destroy, :create, :manage, :new]
 
-  skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages
+  skip_before_action :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages
 
   def manage
     Post.unscoped do

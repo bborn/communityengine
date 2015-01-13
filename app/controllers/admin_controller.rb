@@ -1,5 +1,5 @@
 class AdminController < BaseController
-  before_filter :admin_required
+  before_action :admin_required
 
   def clear_cache
     case Rails.cache

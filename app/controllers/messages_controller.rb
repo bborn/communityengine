@@ -1,9 +1,9 @@
 class MessagesController < BaseController
-  before_filter :find_user
-  before_filter :login_required
-  before_filter :require_ownership_or_moderator, :except => [:auto_complete_for_username]
+  before_action :find_user
+  before_action :login_required
+  before_action :require_ownership_or_moderator, :except => [:auto_complete_for_username]
 
-  skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_username]
+  skip_before_action :verify_authenticity_token, :only => [:auto_complete_for_username]
 
   uses_tiny_mce do
     {:options => configatron.default_mce_options}

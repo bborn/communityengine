@@ -1,8 +1,8 @@
 class AlbumsController < BaseController
   include Viewable
-  before_filter :login_required, :except => [:show]
-  before_filter :find_user, :only => [:new, :edit, :index]
-  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy, :create]
+  before_action :login_required, :except => [:show]
+  before_action :find_user, :only => [:new, :edit, :index]
+  before_action :require_current_user, :only => [:new, :edit, :update, :destroy, :create]
 
   uses_tiny_mce do
     {:only => [:show], :options => configatron.simple_mce_options}

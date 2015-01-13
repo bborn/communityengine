@@ -1,7 +1,7 @@
 class AdsController < BaseController
   
-  before_filter :login_required
-  before_filter :admin_required  
+  before_action :login_required
+  before_action :admin_required  
   
   uses_tiny_mce do
     {:only => [:new, :edit, :create, :update], :options => configatron.default_mce_options}

@@ -1,5 +1,5 @@
 class ModeratorsController < BaseController
-  before_filter :admin_required
+  before_action :admin_required
 
   def create
     @forum = Forum.find(params[:forum_id])
