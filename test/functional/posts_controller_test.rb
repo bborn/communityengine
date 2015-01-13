@@ -67,9 +67,28 @@ class PostsControllerTest < ActionController::TestCase
     get :edit, :id => posts(:funny_post).id, :user_id => users(:quentin)
     assert_response :success
   end
-
   
-  test "shouldn't show draft to logged out or non owner/admin/moderator" do
+  test "should not show draft post to logged out or non owner/admin/moderator on show action" do
+    posts(:funny_post).save_as_draft
+    
+    login_as :joe
+    get :show, :id => posts(:funny_post).id, :user_id => users(:quentin)
+    assert_response :redirect
+  end
+  
+  test "should show draft to owner/admin/moderator on show action" do
+    posts(:funny_post).save_as_draft
+    
+    login_as :admin
+    get :show, :id => posts(:funny_post).id, :user_id => users(:quentin)
+    assert_response :success
+    
+    login_as :quentin
+    get :show, :id => posts(:funny_post).id, :user_id => users(:quentin)
+    assert_response :success
+  end
+
+  test "shouldn't show draft to logged out or non owner/admin/moderator on preview action" do
     posts(:funny_post).save_as_draft
     get :preview, :id => posts(:funny_post).id, :user_id => users(:quentin)
     assert_response :redirect

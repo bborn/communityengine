@@ -59,3 +59,13 @@ no_rsvp_event:
   metro_area_id: 1
   allow_rsvp: false
 
+event_with_description:
+  id: 7
+  name: An event with description
+  description: <p>I am an event with a very nice description</p>
+  created_at: <%= 5.days.ago.iso8601 %>
+  updated_at: <%= 5.days.ago.iso8601 %>  
+  start_time: <%= 13.days.from_now.iso8601 %>
+  end_time:   <%= (13.days.from_now + 1.hour).iso8601 %>  
+  user_id: 4
+  metro_area_id: 1
