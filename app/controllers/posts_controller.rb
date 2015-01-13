@@ -58,10 +58,11 @@ class PostsController < BaseController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    @post = Post.unscoped.find(params[:id])
+    redirect_to user_posts_path(@user), :alert => :post_not_published_yet.l and return false unless @post.is_live? || @post.user.eql?(current_user) || admin? || moderator?
+
     @rss_title = "#{configatron.community_name}: #{@user.login}'s posts"
     @rss_url = user_posts_path(@user,:format => :rss)
-
-    @post = Post.unscoped.find(params[:id])
 
     @user = @post.user
     @is_current_user = @user.eql?(current_user)
