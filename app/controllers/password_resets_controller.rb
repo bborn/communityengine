@@ -1,6 +1,6 @@
 class PasswordResetsController < BaseController
-  before_filter :require_no_user
-  before_filter :load_user_using_perishable_token, :only => [ :edit, :update ]
+  before_action :require_no_user
+  before_action :load_user_using_perishable_token, :only => [ :edit, :update ]
 
   def new
   end

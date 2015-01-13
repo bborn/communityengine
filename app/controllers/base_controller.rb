@@ -8,7 +8,7 @@ class BaseController < ApplicationController
   include LocalizedApplication
   include BaseHelper
 
-  around_filter :set_locale
+  around_action :set_locale
   skip_before_action :verify_authenticity_token, :only => :footer_content
   before_action :initialize_header_tabs
   before_action :initialize_admin_tabs
@@ -77,7 +77,7 @@ class BaseController < ApplicationController
       c.instance_variable_set(:@uses_tiny_mce, true)
     end
 
-    before_filter p, options
+    before_action p, options
   end
 
 
