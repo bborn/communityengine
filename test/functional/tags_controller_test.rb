@@ -66,12 +66,12 @@ class TagsControllerTest < ActionController::TestCase
   end
   
   def test_should_update_tag
-    posts(:apt_post).tag_list = "#{tags(:general).name},#{tags(:extra).name}"
+    posts(:apt_post).tag_list = "hansel"
     posts(:apt_post).save
     
     login_as :admin
-    patch :update, :id => posts(:apt_post).tags.first.name, :tag => {:name => 'changed name' }
-    assert_equal assigns(:tag).name, "changed name"
+    patch :update, :id => "hansel", :tag => {:name => 'gretel' }
+    assert_equal assigns(:tag).name, "gretel"
     assert_redirected_to admin_tags_path
   end
 end
