@@ -1,13 +1,13 @@
 class SbPostsController < BaseController
-  before_filter :find_post,      :except => [:index, :monitored, :search, :new, :create]
-  before_filter :login_required, :except => [:index, :search, :show, :monitored, :create]
+  before_action :find_post,      :except => [:index, :monitored, :search, :new, :create]
+  before_action :login_required, :except => [:index, :search, :show, :monitored, :create]
 
-  before_filter :only => [:create] do |controller|
+  before_action :only => [:create] do |controller|
     login_required unless configatron.allow_anonymous_forum_posting
   end
 
-  skip_before_filter :verify_authenticity_token, :only => [:create] #remove for the create action
-  before_filter do |controller|
+  skip_before_action :verify_authenticity_token, :only => [:create] #remove for the create action
+  before_action do |controller|
     #add it back unless anonymous posting is allowed
     verify_authenticity_token if controller.action_name.eql?('create') && !configatron.allow_anonymous_forum_posting
   end

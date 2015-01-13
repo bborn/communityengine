@@ -447,7 +447,7 @@ class User < ActiveRecord::Base
       self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
     end
 
-    # before filters
+    # before actions
     def whitelist_attributes
       self.login = self.login.strip
       self.description = white_list(self.description )

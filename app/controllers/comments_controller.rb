@@ -1,10 +1,10 @@
 class CommentsController < BaseController
-  before_filter :login_required, :except => [:index, :unsubscribe]
-  before_filter :admin_or_moderator_required, :only => [:delete_selected, :edit, :update, :approve, :disapprove]
+  before_action :login_required, :except => [:index, :unsubscribe]
+  before_action :admin_or_moderator_required, :only => [:delete_selected, :edit, :update, :approve, :disapprove]
 
   if configatron.allow_anonymous_commenting
-    skip_before_filter :verify_authenticity_token, :only => [:create]   #because the auth token might be cached anyway
-    skip_before_filter :login_required, :only => [:create]
+    skip_before_action :verify_authenticity_token, :only => [:create]   #because the auth token might be cached anyway
+    skip_before_action :login_required, :only => [:create]
   end
 
   uses_tiny_mce do

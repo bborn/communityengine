@@ -13,11 +13,11 @@ class PostsController < BaseController
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
   caches_action :show, :if => Proc.new{|c| !logged_in? }
 
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]
-  before_filter :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage, :preview]
-  before_filter :require_ownership_or_moderator, :only => [:edit, :update, :destroy, :create, :manage, :new]
+  before_action :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]
+  before_action :find_user, :only => [:new, :edit, :index, :show, :update_views, :manage, :preview]
+  before_action :require_ownership_or_moderator, :only => [:edit, :update, :destroy, :create, :manage, :new]
 
-  skip_before_filter :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages
+  skip_before_action :verify_authenticity_token, :only => [:update_views, :send_to_friend] #called from ajax on cached pages
 
   def manage
     Post.unscoped do
@@ -58,10 +58,11 @@ class PostsController < BaseController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    @post = Post.unscoped.find(params[:id])
+    redirect_to user_posts_path(@user), :alert => :post_not_published_yet.l and return false unless @post.is_live? || @post.user.eql?(current_user) || admin? || moderator?
+
     @rss_title = "#{configatron.community_name}: #{@user.login}'s posts"
     @rss_url = user_posts_path(@user,:format => :rss)
-
-    @post = Post.unscoped.find(params[:id])
 
     @user = @post.user
     @is_current_user = @user.eql?(current_user)

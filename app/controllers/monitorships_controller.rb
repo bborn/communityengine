@@ -1,5 +1,5 @@
 class MonitorshipsController < BaseController
-  before_filter :login_required
+  before_action :login_required
 
   def create
     @monitorship = Monitorship.find_or_initialize_by(:user_id => current_user.id, :topic_id => params[:topic_id])

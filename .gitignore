@@ -8,6 +8,7 @@ doc
 .DS_Store
 *~
 .rvmrc
+.ruby-version
 test/testapp/public/system/
 coverage
 bin/

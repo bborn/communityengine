@@ -1,6 +1,6 @@
 class MetroAreasController < BaseController
-  before_filter :login_required
-  before_filter :admin_required
+  before_action :login_required
+  before_action :admin_required
 
   def index
     @metro_areas = MetroArea.includes(:country).order("countries.name, metro_areas.name DESC").references(:countries).page(params[:page])

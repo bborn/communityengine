@@ -853,6 +853,7 @@ de-DE:
   posts_photos_and_bookmarks: "%{name} Beiträge, Fotos und Bookmarks"
   #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: Posts saved with 'draft' status won't appear in your blog until you publish them.
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Einträge, die als Entwurf gespeichert wurden, erscheinen erst in deinem Blog, wenn du sie veröffentlichst."
+  post_not_published_yet: "Dieser Eintrag wurde noch nicht veröffentlicht."
   #en: preview: Preview
   preview: Vorschau
   #en: previewing_your_post: Previewing your post

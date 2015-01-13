@@ -2,11 +2,11 @@ require 'pp'
 
 class PhotosController < BaseController
   include Viewable
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create, :swfupload]
-  before_filter :find_user, :only => [:new, :edit, :index, :show]
-  before_filter :require_current_user, :only => [:new, :edit, :update, :destroy]
+  before_action :login_required, :only => [:new, :edit, :update, :destroy, :create, :swfupload]
+  before_action :find_user, :only => [:new, :edit, :index, :show]
+  before_action :require_current_user, :only => [:new, :edit, :update, :destroy]
 
-  skip_before_filter :verify_authenticity_token, :only => [:create] #because the TinyMCE image uploader can't provide the auth token
+  skip_before_action :verify_authenticity_token, :only => [:create] #because the TinyMCE image uploader can't provide the auth token
 
   uses_tiny_mce do
     {:only => [:show], :options => configatron.simple_mce_options}

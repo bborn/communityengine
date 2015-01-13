@@ -8,11 +8,11 @@ class BaseController < ApplicationController
   include LocalizedApplication
   include BaseHelper
 
-  around_filter :set_locale
-  skip_before_filter :verify_authenticity_token, :only => :footer_content
-  before_filter :initialize_header_tabs
-  before_filter :initialize_admin_tabs
-  before_filter :store_location, :except => :footer_content
+  around_action :set_locale
+  skip_before_action :verify_authenticity_token, :only => :footer_content
+  before_action :initialize_header_tabs
+  before_action :initialize_admin_tabs
+  before_action :store_location, :except => :footer_content
 
   caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
 
@@ -77,7 +77,7 @@ class BaseController < ApplicationController
       c.instance_variable_set(:@uses_tiny_mce, true)
     end
 
-    before_filter p, options
+    before_action p, options
   end
 
 

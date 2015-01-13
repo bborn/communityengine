@@ -10,8 +10,8 @@ class PagesController < BaseController
     !logged_in? && controller_name.eql?('pages')
   end
 
-  before_filter :login_required, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
-  before_filter :require_moderator, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
+  before_action :login_required, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
+  before_action :require_moderator, :only => [:index, :new, :edit, :update, :destroy, :create, :preview]
 
   def index
     @pages = Page.unscoped.order('created_at DESC').page(params[:page])

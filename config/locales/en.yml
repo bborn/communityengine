@@ -1023,6 +1023,7 @@ en:
   posts_photos_and_bookmarks: "%{name} posts, photos and bookmarks"
   #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
   posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
+  post_not_published_yet: "This post is not published yet."
   #en: posts_tagged: Posts tagged
   posts_tagged: "Posts tagged"
   #en: pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.

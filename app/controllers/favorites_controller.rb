@@ -1,6 +1,6 @@
 class FavoritesController < BaseController
-  before_filter :login_required, :only => [:destroy]
-  before_filter :find_user, :only => [:show, :index]
+  before_action :login_required, :only => [:destroy]
+  before_action :find_user, :only => [:show, :index]
 
   cache_sweeper :favorite_sweeper, :only => [:create, :destroy]
 

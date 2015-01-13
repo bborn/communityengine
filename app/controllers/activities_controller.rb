@@ -1,9 +1,9 @@
 class ActivitiesController < BaseController
-  before_filter :login_required,  :except => :index
-  before_filter :find_user,       :only => :network
+  before_action :login_required,  :except => :index
+  before_action :find_user,       :only => :network
 
-  before_filter :require_current_user,            :except => [:index, :destroy]
-  before_filter :require_ownership_or_moderator,  :only   => :destroy
+  before_action :require_current_user,            :except => [:index, :destroy]
+  before_action :require_ownership_or_moderator,  :only   => :destroy
 
 
   def network

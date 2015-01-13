@@ -1,8 +1,8 @@
 class RsvpsController < BaseController
 
-  before_filter :login_required, :only => [:new, :edit, :update, :destroy, :create]
-  before_filter :find_event
-  before_filter :require_ownership_or_moderator, :only => [:edit, :update, :destroy]
+  before_action :login_required, :only => [:new, :edit, :update, :destroy, :create]
+  before_action :find_event
+  before_action :require_ownership_or_moderator, :only => [:edit, :update, :destroy]
 
   def find_event
     @event = Event.find(params[:event_id])
