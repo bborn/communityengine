@@ -40,9 +40,9 @@ class TagsController < BaseController
 
   def update
     @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
-
+    
     respond_to do |format|
-      if @tag.update_attributes(params[:tag])
+      if @tag.update_attributes(params[:tag].permit(:name))
         flash[:notice] = :tag_was_successfully_updated.l
         format.html { redirect_to admin_tags_url }
         format.xml  { render :nothing => true }

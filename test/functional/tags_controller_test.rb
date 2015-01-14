@@ -8,7 +8,6 @@ class TagsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
   def test_should_show_tag
    get :show, :id => tags(:general).name
    assert_response :success
@@ -30,7 +29,6 @@ class TagsControllerTest < ActionController::TestCase
      assert_response :success
    end
   end
-  
 
   def test_should_fail_to_show_tag
    get :show, :id => 'tag_that_does_not_exist'
@@ -41,7 +39,6 @@ class TagsControllerTest < ActionController::TestCase
    get :index
    assert_response :success
   end
-  
   
   test "should get manage as admin" do
     login_as :admin
@@ -55,8 +52,6 @@ class TagsControllerTest < ActionController::TestCase
     assert_response :redirect
   end  
 
-  
-  
   def test_should_show_matching_items_for_multiple_tags
     posts(:apt_post).tag_list = "#{tags(:general).name},#{tags(:extra).name}"
     posts(:apt_post).save
@@ -68,5 +63,15 @@ class TagsControllerTest < ActionController::TestCase
     assert_equal 2, assigns(:posts).size
     assert assigns(:posts).include?(posts(:apt_post))
     assert assigns(:posts).include?(posts(:apt2_post))
+  end
+  
+  def test_should_update_tag
+    posts(:apt_post).tag_list = "hansel"
+    posts(:apt_post).save
+    
+    login_as :admin
+    patch :update, :id => "hansel", :tag => {:name => 'gretel' }
+    assert_equal assigns(:tag).name, "gretel"
+    assert_redirected_to admin_tags_path
   end
 end

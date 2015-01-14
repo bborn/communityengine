@@ -42,6 +42,6 @@
     %ul.list-unstyled
       %li= link_to(:assume_user_id.l, assume_user_path(@user), {:method => :post} )
       %li= link_to(:delete_this_user.l, user_path(@user), {:method => :delete, data: { confirm: :are_you_sure_you_want_to_permanently_delete_this_user.l }} )
-      %li= link_to("#{:toggle.l} #{:featured_writer.l}".html_safe, toggle_featured_user_path(@user), {:method => :put} )
-      %li= link_to("#{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}".html_safe, toggle_moderator_user_path(@user), {:method => :put} )
+      %li= link_to("#{:toggle.l} #{:featured_writer.l}".html_safe, toggle_featured_user_path(@user), {:method => :patch} )
+      %li= link_to("#{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}".html_safe, toggle_moderator_user_path(@user), {:method => :patch} )
 
