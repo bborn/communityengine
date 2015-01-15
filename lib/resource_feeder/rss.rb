@@ -1,3 +1,5 @@
+require "builder"
+
 module ResourceFeeder
   module Rss
     extend self

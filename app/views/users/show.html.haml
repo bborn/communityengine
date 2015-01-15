@@ -65,7 +65,7 @@
         %dd
           = truncate_words(comment.comment, 10).html_safe
           %br
-          = link_to "&raquo; ".html_safe + :view_comment.l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
+          = link_to "&raquo; ".html_safe + :view_comment.l, user_photo_path(@user, comment.commentable) + "#comment-#{comment.id}"
 
 - unless @photos.empty?
   .clearfix

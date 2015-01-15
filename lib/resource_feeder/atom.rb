@@ -1,3 +1,5 @@
+require "builder"
+
 module ResourceFeeder
   module Atom
     extend self
