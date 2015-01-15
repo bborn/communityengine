@@ -85,6 +85,13 @@ class CommentsControllerTest < ActionController::TestCase
     assert_response :success
     assert !assigns(:comments).empty?
   end
+  
+  def test_should_show_comments_index_rss_on_user_profile
+    login_as :quentin
+    get :index, :commentable_type => 'users', :commentable_id => users(:aaron).login, :format => 'rss'
+    assert_response :success
+    assert !assigns(:comments).empty?
+  end
 
   def test_should_show_empty_comments_index
     login_as :aaron
