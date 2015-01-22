@@ -13,5 +13,7 @@ test/testapp/public/system/
 coverage
 bin/
 
+.idea/
+
 pkg
 *.gem
