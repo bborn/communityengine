@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     get '(page/:page)', :action => :index, :on => :collection
   end
 
+
+
+
+
   get '/base/:action' => 'base'
 
   get '/forums/recent' => 'sb_posts#index', :as => :recent_forum_posts
@@ -76,7 +80,7 @@ Rails.application.routes.draw do
 
   match '/forgot_username' => 'users#forgot_username', :as => :forgot_username, :via => [:get, :post]
 
-  post '/resend_activation' => 'users#resend_activation', :as => :resend_activation
+  post '/resend_activation/:id' => 'users#resend_activation', :as => :resend_activation
 
   get '/new_clipping' => 'clippings#new_clipping'
   post '/load_images_from_uri' => 'clippings#load_images_from_uri', :format => 'js'

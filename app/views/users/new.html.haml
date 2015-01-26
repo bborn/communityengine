@@ -12,7 +12,7 @@
     =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
   %p
     =:click_the_activation_link_in_the_e_mail_to_log_in.l
-  %p= link_to :already_have_an_account.l, "/login"
+  %p= link_to :already_have_an_account.l,  login_path
 
 
 = bootstrap_form_for @user, :layout => :horizontal do |f|
