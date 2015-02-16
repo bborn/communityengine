@@ -1,0 +1,15 @@
+
+#fileupload.gal-holder
+  .gal-item
+    .fileupload-button.gal-upload-holder
+      = link_to I18n.t(:upload, :scope => [:ckeditor, :buttons]), 'javascript:void(0)', :class => "add"
+  .fileupload-list
+    = render :partial => 'ckeditor/shared/asset', :collection => @pictures
+
+  #pagination{style: 'clear:both;'}
+    = paginate @pictures
+
+:javascript
+  #{Ckeditor::Utils.js_fileuploader('image')}
+
+

@@ -69,7 +69,7 @@ module AuthenticatedSystem
     #  def authorize?
     #    current_user.login != "bob"
     #  end
-    def authorized?
+    def authorized?(action = nil , subject = nil)
       true
     end
     def admin?

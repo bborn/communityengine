@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.1.0
+
+* Swapped TinyMCE for CKEditor
+
+  *bborn*
+
+* Start implementing a decent admin backend using ActiveAdmin
+
+  *bborn*
+
 ## 3.0.0
 
 * Upgraded to Bootstrap 3

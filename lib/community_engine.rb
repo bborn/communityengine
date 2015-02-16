@@ -1,4 +1,5 @@
 require 'acts-as-taggable-on'
+require 'ckeditor' #has to come first so we can override stuff in CE
 
 require 'community_engine/engine'
 
@@ -15,7 +16,7 @@ require 'hpricot'
 require 'htmlentities'
 require 'haml'
 require 'sass-rails'
-require 'aws/s3'
+require 'aws-sdk'
 require 'ri_cal'
 require 'rakismet'
 require 'kaminari'
@@ -29,13 +30,15 @@ require 'omniauth'
 require 'authlogic'
 require 'rails_autolink'
 require 'ransack'
-require 'tinymce-rails'
 require 'sanitize'
 require 'bootstrap-sass'
 require 'bootstrap_form'
 require 'font-awesome-rails'
 require 'jquery-rails'
 require 'jquery-ui-rails'
+require 'jquery-turbolinks'
+require 'turbolinks'
+require 'active_admin'
 
 # Rails 2.3 Plugins converted to lib
 require 'activity_tracker'

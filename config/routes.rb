@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
+
   concern :paginatable do
     get '(page/:page)', :action => :index, :on => :collection
   end
-
-
-
-
 
   get '/base/:action' => 'base'
 
@@ -48,24 +46,28 @@ Rails.application.routes.draw do
 
   get '/' => 'base#site_index', :as => :home
 
-  scope "/admin" do
-    get 'dashboard' => 'homepage_features#index', :as => :admin_dashboard
-    match 'users' => 'admin#users', :as => :admin_users, :via => [:post, :get]
-    get 'messages' => 'admin#messages', :as => :admin_messages
-    match 'comments' => 'admin#comments', :as => :admin_comments, :via => [:post, :get]
-    match 'tags' => 'tags#manage', :as => :admin_tags, :via => [:post, :get]
-    get 'events' => 'admin#events', :as => :admin_events
-    get 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
-    get 'subscribers(.:format)' => "admin#subscribers", :as => :admin_subscribers
-    get 'activate_user' => "admin#activate_user", :as => :admin_activate_user
-    get 'deactivate_user' => 'admin#deactivate_user', :as => :admin_deactivate_user
+  root to: "base#site_index"
 
-    resources :pages, :as => :admin_pages do
-      member do
-        get :preview
-      end
-    end
-  end
+
+
+  # scope "/admin" do
+  #   get 'dashboard' => 'homepage_features#index', :as => :admin_dashboard
+  #   match 'users' => 'admin#users', :as => :admin_users, :via => [:post, :get]
+  #   get 'messages' => 'admin#messages', :as => :admin_messages
+  #   match 'comments' => 'admin#comments', :as => :admin_comments, :via => [:post, :get]
+  #   match 'tags' => 'tags#manage', :as => :admin_tags, :via => [:post, :get]
+  #   get 'events' => 'admin#events', :as => :admin_events
+  #   get 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
+  #   get 'subscribers(.:format)' => "admin#subscribers", :as => :admin_subscribers
+  #   get 'activate_user' => "admin#activate_user", :as => :admin_activate_user
+  #   get 'deactivate_user' => 'admin#deactivate_user', :as => :admin_deactivate_user
+
+  #   resources :pages, :as => :admin_pages do
+  #     member do
+  #       get :preview
+  #     end
+  #   end
+  # end
 
   get 'pages/:id' => 'pages#show', :as => :pages
 
@@ -104,6 +106,8 @@ Rails.application.routes.draw do
   get '/friendships' => 'friendships#index', :as => :friendships
 
   get 'manage_photos' => 'photos#manage_photos', :as => :manage_photos
+  post 'manage_photos' => 'photos#create_photos', :as => :create_photos
+
   post 'create_photo.js' => 'photos#create', :as => :create_photo, :format => 'js'
 
   resources :sessions
@@ -255,5 +259,6 @@ Rails.application.routes.draw do
   resources :invitations
   get '/users/:user_id/posts/category/:category_name' => 'posts#index', :as => :users_posts_in_category
   post '/users/metro_area_update' => 'users#metro_area_update', :as => :users_metro_area_update
+
 
 end

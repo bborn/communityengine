@@ -6,11 +6,7 @@ class PhotosController < BaseController
   before_action :find_user, :only => [:new, :edit, :index, :show]
   before_action :require_current_user, :only => [:new, :edit, :update, :destroy]
 
-  skip_before_action :verify_authenticity_token, :only => [:create] #because the TinyMCE image uploader can't provide the auth token
-
-  uses_tiny_mce do
-    {:only => [:show], :options => configatron.simple_mce_options}
-  end
+  skip_before_action :verify_authenticity_token, :only => [:create]
 
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
 
@@ -51,16 +47,49 @@ class PhotosController < BaseController
   def manage_photos
     if logged_in?
       @user = current_user
-      @photos = current_user.photos.recent.includes(:tags)
-      if params[:tag_name]
-        @photos = @photos.where('tags.name = ?', params[:tag_name])
-      end
-      @selected = params[:photo_id]
-      @photos = @photos.page(params[:page]).per(10)
+      @pictures = current_user.photos.recent.includes(:tags).page(params[:page]).per(2)
     end
     respond_to do |format|
+      format.html {
+        render :template => 'ckeditor/pictures/index', :layout => 'ckeditor/application'
+      }
       format.js
     end
+  end
+
+  def create_photos
+    @photo = current_user.photos.new
+    file = params[:qqfile] ||params[:upload]
+    @photo.photo = Ckeditor::Http.normalize_param(file, request)
+    callback = ckeditor_before_create_asset(@photo)
+
+    if callback && @photo.save
+      hash = {
+        :id => @photo.id,
+        :type => 'ckeditor::picture',
+        :url_content => @photo.photo.url,
+        :url_thumb => @photo.photo.url(:thumb),
+        :filename => @photo.photo_file_name,
+        :format_created_at => @photo.created_at,
+        :size => @photo.photo_file_size
+      }
+
+      body = params[:CKEditor].blank? ? hash.to_json : %Q"<script type='text/javascript'>
+      window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{config.relative_url_root}#{Ckeditor::Utils.escape_single_quotes(@photo.photo.url)}');
+    </script>"
+
+      render :text => body
+
+    else
+      if params[:CKEditor].blank?
+        render :nothing => true, :format => :json
+      else
+        render :text => %Q"<script type='text/javascript'>
+            window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, null, '#{Ckeditor::Utils.escape_single_quotes(@photo.errors.full_messages.first)}');
+          </script>"
+      end
+    end
+
   end
 
   # GET /photos/1

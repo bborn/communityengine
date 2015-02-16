@@ -5,9 +5,14 @@ module CommunityEngine
   class Engine < Rails::Engine
     engine_name "community_engine"
 
+    config.railties_order = [ CommunityEngine::Engine, :main_app, :all]
+
+
     initializer engine_name do |app|
       require root.join('config','application_config.rb')
       require app.root.join('config','application_config.rb')
+
+      ActiveAdmin.application.load_paths += Dir[File.dirname(__FILE__) + '/admin']
     end
 
     initializer "#{engine_name}.initializers", :before => :load_config_initializers do

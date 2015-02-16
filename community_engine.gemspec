@@ -24,13 +24,14 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n") rescue ''
   s.test_files = `git ls-files -- {test}/*`.split("\n")
 
+  s.add_dependency "activeadmin"
   s.add_dependency "actionpack-action_caching", ">= 0"
   s.add_dependency "actionpack-page_caching",   ">= 0"
   s.add_dependency "acts_as_commentable",       "~> 4.0.2"
   s.add_dependency "acts_as_list",              ">= 0.3.0"
   s.add_dependency "acts-as-taggable-on",       '~> 2.4.1'
   s.add_dependency "authlogic",                 ">= 3.3.0"
-  s.add_dependency "aws-sdk",                   ">= 0"
+  s.add_dependency "aws-sdk",                   "< 2.0"
   s.add_dependency "bcrypt",                    ">= 0"
   s.add_dependency "cocaine",                   "~> 0.5.1"
   s.add_dependency "configatron",               "~> 4.2.0"
@@ -43,10 +44,10 @@ Gem::Specification.new do |s|
   s.add_dependency "koala",                     "~> 1.6.0"
   s.add_dependency "omniauth",                  "~> 1.1.4"
   s.add_dependency "rails_autolink",            ">= 0"
-  s.add_dependency "paperclip",                 "~> 3.5.1"
+  s.add_dependency "paperclip",                 "~> 4.2.1"
   s.add_dependency "power_enum",                "~> 2.0.1"
   s.add_dependency "rack",                      ">= 1.5.2"
-  s.add_dependency "rails",                     "~> 4.0.0"
+  s.add_dependency "rails",                     "~> 4.0.4"
   s.add_dependency "rails-observers",           ">= 0"
   s.add_dependency "rakismet",                  ">= 0"
   s.add_dependency "ransack",                   "~> 1.5.0"
@@ -58,8 +59,10 @@ Gem::Specification.new do |s|
   s.add_dependency "font-awesome-rails",        ">= 0"
   s.add_dependency "jquery-rails",              ">= 0"
   s.add_dependency "jquery-ui-rails",           "~> 5.0.0"
+  s.add_dependency "jquery-turbolinks"
+  s.add_dependency "turbolinks"
   s.add_dependency "sass-rails",                "~> 4.0.0"
   s.add_dependency "sprockets",                 "~> 2.10.0"
-  s.add_dependency "tinymce-rails",             "~> 4.0.2"
+  s.add_dependency "ckeditor",                  "~> 4.1.1"
 end
 

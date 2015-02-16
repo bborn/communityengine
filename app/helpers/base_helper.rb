@@ -3,6 +3,7 @@ require 'digest/md5'
 # Methods added to this helper will be available to all templates in the application.
 module BaseHelper
   include ActsAsTaggableOn::TagsHelper
+  include Ckeditor::ApplicationHelper
 
   def commentable_url(comment)
     if comment.recipient && comment.commentable
@@ -354,7 +355,7 @@ module BaseHelper
 
   def tiny_mce_js
     selector = @tiny_mce_configuration['selector']
-    "jQuery(function(){jQuery('#{selector}').RichTextEditor(#{@tiny_mce_configuration.to_json})});".html_safe
+    "jQuery(function(){$('#{selector}').RichTextEditor(#{@tiny_mce_configuration.to_json})});".html_safe
   end
 
   def flash_class(level)

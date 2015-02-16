@@ -1,14 +1,6 @@
 class PostsController < BaseController
   include Viewable
 
-  uses_tiny_mce do
-    {:only => [:new, :edit, :update, :create ], :options => configatron.default_mce_options}
-  end
-
-  uses_tiny_mce do
-    {:only => [:show], :options => configatron.simple_mce_options}
-  end
-
   cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]
   cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
   caches_action :show, :if => Proc.new{|c| !logged_in? }

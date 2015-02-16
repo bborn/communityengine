@@ -1,0 +1,9 @@
+= content_tag(:div, id: dom_id(asset), class: "gal-item", data: {url: image_path(asset.photo.url)} ) do
+  .fileupload-file.gal-inner-holder
+    .img
+      = image_tag(asset.photo.url(:thumb), :title => asset.photo_file_name, :id => "photo-#{asset.id}")
+    .img-data
+      .img-name= asset.photo_file_name
+      .time-size
+        .time= asset.created_at
+        .fileupload-size.size= number_to_human_size(asset.photo_file_size) if asset.photo_file_size

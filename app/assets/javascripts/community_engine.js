@@ -6,11 +6,17 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap-sprockets
+//= require jquery.turbolinks
+//= require turbolinks
 //
 ///////////////////////////////////////////
 // UTILITIES                             //
 ///////////////////////////////////////////
-//= require tinymce-jquery
+//= require ckeditor/init
+//= require ckeditor/rte.posts
+
+
+Turbolinks.enableProgressBar();
 
 (function($){
 

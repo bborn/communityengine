@@ -60,27 +60,6 @@ class BaseController < ApplicationController
   def advertise
   end
 
-  protected
-  def self.uses_tiny_mce(options = {}, &block)
-    if block_given?
-      options = block.call
-    end
-
-    new_configuration = TinyMCE::Rails.configuration.merge(options.delete(:options)).options
-    new_configuration.stringify_keys!
-
-    # Set instance vars in the current class
-    p = Proc.new do |c|
-      configuration = c.instance_variable_get(:@tiny_mce_configuration) || {}
-
-      c.instance_variable_set(:@tiny_mce_configuration, configuration.merge(new_configuration))
-      c.instance_variable_set(:@uses_tiny_mce, true)
-    end
-
-    before_action p, options
-  end
-
-
   private
     def admin_required
       current_user && current_user.admin? ? true : access_denied
