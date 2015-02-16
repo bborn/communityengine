@@ -1,11 +1,7 @@
 class AdsController < BaseController
-  
+
   before_action :login_required
-  before_action :admin_required  
-  
-  uses_tiny_mce do
-    {:only => [:new, :edit, :create, :update], :options => configatron.default_mce_options}
-  end
+  before_action :admin_required
 
   # GET /ads
   # GET /ads.xml
@@ -26,7 +22,7 @@ class AdsController < BaseController
     @ad = Ad.find(params[:id])
 
     respond_to do |format|
-      format.html 
+      format.html
     end
   end
 

@@ -1,10 +1,6 @@
 class ForumsController < BaseController
   before_action :admin_required, :except => [:index, :show]
 
-  uses_tiny_mce do    
-    {:options => configatron.default_mce_options}
-  end
-  
   def index
     @forums = Forum.order("position")
     respond_to do |format|
@@ -22,7 +18,7 @@ class ForumsController < BaseController
 
         @topics = @forum.topics.includes(:replied_by_user).order('sticky DESC, replied_at DESC').page(params[:page]).per(20)
       end
-      
+
       format.xml do
         render :xml => @forum
       end
@@ -32,7 +28,7 @@ class ForumsController < BaseController
   def new
     @forum = Forum.new
   end
-  
+
   def create
     @forum = Forum.new(forum_params)
     @forum.tag_list = params[:tag_list] || ''
@@ -56,7 +52,7 @@ class ForumsController < BaseController
       format.xml  { head 200 }
     end
   end
-  
+
   def destroy
     @forum = Forum.find(params[:id])
     @forum.destroy
@@ -65,11 +61,11 @@ class ForumsController < BaseController
       format.xml  { head 200 }
     end
   end
-  
+
   private
 
   def forum_params
     params[:forum].permit(:name, :position, :description)
   end
-    
+
 end

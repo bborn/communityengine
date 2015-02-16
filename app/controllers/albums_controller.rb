@@ -4,24 +4,19 @@ class AlbumsController < BaseController
   before_action :find_user, :only => [:new, :edit, :index]
   before_action :require_current_user, :only => [:new, :edit, :update, :destroy, :create]
 
-  uses_tiny_mce do
-    {:only => [:show], :options => configatron.simple_mce_options}
-  end
-
-
   # GET /albums/1
   # GET /albums/1.xml
   def show
     @album = Album.find(params[:id])
     update_view_count(@album) if current_user && current_user.id != @album.user_id
     @album_photos = @album.photos.page(params[:page]).per(10)
-   
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @album }
     end
   end
-  
+
 
 
   # GET /albums/new
@@ -45,18 +40,18 @@ class AlbumsController < BaseController
   def create
     @album = Album.new(album_params)
     @album.user_id = current_user.id
-    
+
     respond_to do |format|
       if @album.save
         if params[:go_to] == 'only_create'
-          flash[:notice] = :album_was_successfully_created.l 
-          format.html { redirect_to(user_photo_manager_index_path(current_user)) }       
+          flash[:notice] = :album_was_successfully_created.l
+          format.html { redirect_to(user_photo_manager_index_path(current_user)) }
         else
           format.html { redirect_to(new_user_album_photo_path(current_user, @album)) }
         end
       else
         format.html { render :action => 'new' }
-      end 
+      end
     end
   end
 
@@ -82,7 +77,7 @@ class AlbumsController < BaseController
 
   # DELETE /albums/1
   # DELETE /albums/1.xml
-  def destroy  
+  def destroy
     @album = Album.find(params[:id])
     @album.destroy
 
@@ -91,11 +86,11 @@ class AlbumsController < BaseController
       format.xml  { head :ok }
     end
   end
-  
+
   def add_photos
     @album = Album.find(params[:id])
   end
-  
+
   def photos_added
     @album = Album.find(params[:id])
     @album.photo_ids = params[:album][:photos_ids].uniq
@@ -108,5 +103,5 @@ class AlbumsController < BaseController
   def album_params
     params[:album].permit(:title, :description)
   end
-  
+
 end

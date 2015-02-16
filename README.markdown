@@ -190,10 +190,6 @@ class RecipesController < BaseController
 
 	before_action :login_required
 
-	uses_tiny_mce do
-		{:only => [:show], :options => configatron.default_mce_options}
-	end
-
 end
 ```
 

@@ -2,10 +2,6 @@ class TopicsController < BaseController
   before_action :find_forum_and_topic, :except => :index
   before_action :login_required, :except => [:index, :show]
 
-  uses_tiny_mce do
-    {:only => [:show, :new, :create, :update], :options => configatron.default_mce_options}
-  end
-
   def index
     @forum = Forum.find(params[:forum_id])
     respond_to do |format|

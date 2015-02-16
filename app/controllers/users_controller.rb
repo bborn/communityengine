@@ -2,14 +2,6 @@ class UsersController < BaseController
   include Viewable
   cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]
 
-  uses_tiny_mce do
-    {:only => [:new, :create, :update, :edit, :welcome_about], :options => configatron.default_mce_options}
-  end
-
-  uses_tiny_mce do
-    {:only => [:show], :options => configatron.simple_mce_options}
-  end
-
   before_action :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about,
                                           :welcome_invite, :return_admin, :assume, :featured,
                                           :toggle_featured, :edit_pro_details, :update_pro_details, :dashboard, :deactivate,

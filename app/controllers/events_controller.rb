@@ -4,15 +4,6 @@ class EventsController < BaseController
   caches_page :ical
   cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
 
-
-  uses_tiny_mce do
-    {:only => [:new, :edit, :create, :update, :clone ], :options => configatron.default_mce_options}
-  end
-
-  uses_tiny_mce do
-    {:only => [:show], :options => configatron.simple_mce_options}
-  end
-
   before_action :admin_required, :except => [:index, :show, :ical]
 
   def ical

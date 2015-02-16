@@ -347,17 +347,6 @@ module BaseHelper
     user.gender ? (user.male? ? :his.l : :her.l)  : :their.l
   end
 
-  def tiny_mce_init_if_needed
-    if !@uses_tiny_mce.blank?
-      javascript_tag(tiny_mce_js)
-    end
-  end
-
-  def tiny_mce_js
-    selector = @tiny_mce_configuration['selector']
-    "jQuery(function(){$('#{selector}').RichTextEditor(#{@tiny_mce_configuration.to_json})});".html_safe
-  end
-
   def flash_class(level)
     case level
       when :notice then "alert-info"

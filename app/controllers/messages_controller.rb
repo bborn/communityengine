@@ -5,10 +5,6 @@ class MessagesController < BaseController
 
   skip_before_action :verify_authenticity_token, :only => [:auto_complete_for_username]
 
-  uses_tiny_mce do
-    {:options => configatron.default_mce_options}
-  end
-
   def auto_complete_for_username
     @usernames = User.active.where.not(login: @user.login).pluck(:login)
     respond_to do |format|

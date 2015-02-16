@@ -1,7 +1,4 @@
 class PagesController < BaseController
-  uses_tiny_mce do
-    {:only => [:new, :edit, :update, :create ], :options => configatron.default_mce_options}
-  end
 
   cache_sweeper :page_sweeper, :only => [:create, :update, :destroy]
   caches_action :show, :if => Proc.new{|c| c.cache_action? }
@@ -32,11 +29,11 @@ class PagesController < BaseController
     flash[:error] = :page_not_found.l
     redirect_to home_path
   end
-  
+
   def new
     @page = Page.new
-  end 
-  
+  end
+
   def edit
     @page = Page.unscoped.find(params[:id])
   end
