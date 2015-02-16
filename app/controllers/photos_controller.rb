@@ -47,7 +47,7 @@ class PhotosController < BaseController
   def manage_photos
     if logged_in?
       @user = current_user
-      @pictures = current_user.photos.recent.includes(:tags).page(params[:page]).per(2)
+      @pictures = current_user.photos.recent.includes(:tags).page(params[:page]).per(10)
     end
     respond_to do |format|
       format.html {

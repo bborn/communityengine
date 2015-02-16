@@ -52,21 +52,7 @@ Rails.application.routes.draw do
 
   # scope "/admin" do
   #   get 'dashboard' => 'homepage_features#index', :as => :admin_dashboard
-  #   match 'users' => 'admin#users', :as => :admin_users, :via => [:post, :get]
-  #   get 'messages' => 'admin#messages', :as => :admin_messages
-  #   match 'comments' => 'admin#comments', :as => :admin_comments, :via => [:post, :get]
-  #   match 'tags' => 'tags#manage', :as => :admin_tags, :via => [:post, :get]
-  #   get 'events' => 'admin#events', :as => :admin_events
   #   get 'clear_cache' => 'admin#clear_cache', :as => :admin_clear_cache
-  #   get 'subscribers(.:format)' => "admin#subscribers", :as => :admin_subscribers
-  #   get 'activate_user' => "admin#activate_user", :as => :admin_activate_user
-  #   get 'deactivate_user' => 'admin#deactivate_user', :as => :admin_deactivate_user
-
-  #   resources :pages, :as => :admin_pages do
-  #     member do
-  #       get :preview
-  #     end
-  #   end
   # end
 
   get 'pages/:id' => 'pages#show', :as => :pages

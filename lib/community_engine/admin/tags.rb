@@ -1,3 +1,11 @@
 ActiveAdmin.register ActsAsTaggableOn::Tag, as: "Tag" do
-  # everything happens here :D
+  permit_params :name
+
+  controller do
+    def find_resource
+      ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
+    end
+  end
+
+
 end

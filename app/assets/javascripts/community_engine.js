@@ -13,7 +13,7 @@
 // UTILITIES                             //
 ///////////////////////////////////////////
 //= require ckeditor/init
-//= require ckeditor/rte.posts
+//= require_directory ./ckeditor/rte
 
 
 Turbolinks.enableProgressBar();
