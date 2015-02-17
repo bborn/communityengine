@@ -18,13 +18,13 @@ class TagsControllerTest < ActionController::TestCase
     get :show, :id => tags(:special_characters).name
     assert_response :success
   end
-  
+
   def test_should_show_tag_with_type
    %w(posts users clippings photos).each do |type|
      item = type.classify.constantize.first
      item.tag_list = "general"
      item.save!
-     
+
      get :show, :id => tags(:general).name, :type => 'type'
      assert_response :success
    end
@@ -39,18 +39,8 @@ class TagsControllerTest < ActionController::TestCase
    get :index
    assert_response :success
   end
-  
-  test "should get manage as admin" do
-    login_as :admin
-    get :manage
-    assert_response :success
-  end  
 
-  test "should not get manage as user" do
-    login_as :quentin
-    get :manage
-    assert_response :redirect
-  end  
+
 
   def test_should_show_matching_items_for_multiple_tags
     posts(:apt_post).tag_list = "#{tags(:general).name},#{tags(:extra).name}"
@@ -64,14 +54,6 @@ class TagsControllerTest < ActionController::TestCase
     assert assigns(:posts).include?(posts(:apt_post))
     assert assigns(:posts).include?(posts(:apt2_post))
   end
-  
-  def test_should_update_tag
-    posts(:apt_post).tag_list = "hansel"
-    posts(:apt_post).save
-    
-    login_as :admin
-    patch :update, :id => "hansel", :tag => {:name => 'gretel' }
-    assert_equal assigns(:tag).name, "gretel"
-    assert_redirected_to admin_tags_path
-  end
+
+
 end

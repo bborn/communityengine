@@ -1,19 +1,6 @@
 class CategoriesController < BaseController
   before_action :login_required, :except => [:show, :most_viewed, :rss]
-  before_action :admin_required, :only => [:new, :edit, :update, :create, :destroy, :index]
 
-  cache_sweeper :category_sweeper, :only => [:create, :update, :destroy]
-
-  # GET /categories
-  # GET /categories.xml
-  def index
-    @categories = Category.all
-
-    respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @categories.to_xml }
-    end
-  end
 
   # GET /categories/1
   # GET /categories/1.xml
@@ -44,64 +31,6 @@ class CategoriesController < BaseController
     end
   end
 
-  # GET /categories/new
-  def new
-    @category = Category.new
-  end
-
-  # GET /categories/1;edit
-  def edit
-    @category = Category.find(params[:id])
-  end
-
-  # POST /categories
-  # POST /categories.xml
-  def create
-    @category = Category.new(category_params)
-
-    respond_to do |format|
-      if @category.save
-        flash[:notice] = :category_was_successfully_created.l
-
-        format.html { redirect_to category_url(@category) }
-        format.xml do
-          headers["Location"] = category_url(@category)
-          render :nothing => true, :status => "201 Created"
-        end
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @category.errors.to_xml }
-      end
-    end
-  end
-
-  # patch /categories/1
-  # patch /categories/1.xml
-  def update
-    @category = Category.find(params[:id])
-
-    respond_to do |format|
-      if @category.update_attributes(category_params)
-        format.html { redirect_to category_url(@category) }
-        format.xml  { render :nothing => true }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @category.errors.to_xml }
-      end
-    end
-  end
-
-  # DELETE /categories/1
-  # DELETE /categories/1.xml
-  def destroy
-    @category = Category.find(params[:id])
-    @category.destroy
-
-    respond_to do |format|
-      format.html { redirect_to categories_url   }
-      format.xml  { render :nothing => true }
-    end
-  end
 
   def show_tips
     @category = Category.find(params[:id] )
@@ -110,11 +39,5 @@ class CategoriesController < BaseController
     render :partial => "/categories/tips", :locals => {:category => nil}
   end
 
-
-  private
-
-  def category_params
-    params[:category].permit(:name, :tips, :new_post_text, :nav_text)
-  end
 
 end

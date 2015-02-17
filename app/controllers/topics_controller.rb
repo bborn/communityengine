@@ -116,6 +116,6 @@ class TopicsController < BaseController
     end
 
   def topic_params
-    params[:topic].permit(:title, :sticky, :locked, {:sb_posts_attributes => [:body]}, :forum_id)
+    params[:topic].permit(:tag_list, :title, :sticky, :locked, {:sb_posts_attributes => [:body]}, :forum_id)
   end
 end

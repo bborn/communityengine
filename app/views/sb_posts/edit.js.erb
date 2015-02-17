@@ -5,7 +5,8 @@ editable = post.find('.editable');
 editable.addClass('hide');
 editor.html("<%= escape_javascript(render :partial => 'sb_posts/edit', :locals => {:post => @post}) %>");
 
-<%= render 'shared/load_tinymce' %>
+$.remove_rte()
+$.rte_posts();
 
 post.scrollTo();
 

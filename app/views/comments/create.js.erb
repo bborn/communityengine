@@ -8,7 +8,7 @@
   <% end %>
 
   $('#newest_comment').after("<%= escape_javascript(render(:partial => 'comments/comment', :formats => [:html], :locals => {:comment => @comment})) %>");
-  tinyMCE.activeEditor.setContent('');
+  CKEDITOR.instances.comment_comment.setData('')
   $('#comment-<%= @comment.id.to_s %>').scrollTo();
 <% end %>
 

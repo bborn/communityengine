@@ -1,6 +1,6 @@
 <% if @post.new_record? %>
   reply = $('.reply');
-  reply.prepend(escape_javascript("<%=raw escape_javascript(render 'shared/messages') %>");
+  reply.prepend("<%=raw escape_javascript(render 'shared/messages') %>");
   message = reply.find('.alert')
   message.scrollTo();
 <% else %>
@@ -18,13 +18,13 @@
 	 editable.switchClass('alert alert-info','normal', 3000,'easeInCubic');
   });
 
-  tinyMCE.activeEditor.setContent('')
+  CKEDITOR.instances.sb_post_body.setData('')
 
   reply.addClass('hide');
 <% end %>
 
-<% if configatron.has_key?(:recaptcha_pub_key) %>
+<% if !logged_in? && configatron.has_key?(:recaptcha_pub_key) %>
 	if($('dynamic_recaptcha')){
-		Recaptcha.create('#{configatron.recaptcha_pub_key}', $('dynamic_recaptcha') )
+		Recaptcha.create('<%= configatron.recaptcha_pub_key %>', $('dynamic_recaptcha') )
 	}
 <% end %>

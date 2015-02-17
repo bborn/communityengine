@@ -1,8 +1,0 @@
-= bootstrap_form_for(@category, :layout => :horizontal) do |f|
-  = f.text_field :name
-  = f.text_area :tips, :rows => 3, :help => 'Encourages people to add to this category'
-  = f.text_field :new_post_text, :help => 'Text For New Post Link'
-  = f.text_field :nav_text, :help => 'Text for Nav Link'
-
-  = f.form_group :submit_group do
-    = f.primary :save.l

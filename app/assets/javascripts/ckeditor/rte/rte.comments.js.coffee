@@ -1,10 +1,7 @@
 $.rte_comments = ->
-  CKEDITOR.replaceAll (textarea, config) ->
-    config.customConfig = window['CKEDITOR_BASEPATH'] + '/configs/comments.js'
-    if $(textarea).hasClass("rich_text_editor")  and $(textarea).attr("id") is "comment_comment"
-      true
-    else
-      false
+  $('.rich_text_editor[name*=comment]').each ->
+    CKEDITOR.replace this,
+      customConfig : window['CKEDITOR_BASEPATH'] + '/configs/comments.js'
 
 
 $(document).ready ->

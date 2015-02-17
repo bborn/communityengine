@@ -1,7 +1,0 @@
--@page_title = :editing_ad.l
-%p
-  = link_to :back.l, ads_path, :class => 'btn btn-default'
-  = link_to :show.l, ad_path(@ad), :class => 'btn btn-primary'
-  = link_to :destroy.l, ad_path(@ad), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
-
-= render 'form'

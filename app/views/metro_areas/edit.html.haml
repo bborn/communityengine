@@ -1,8 +1,0 @@
--@page_title= :editing_metro_area.l
-
-%p
-  = link_to :back.l, metro_areas_path, :class => 'btn btn-default'
-  = link_to :show.l, metro_area_path(@metro_area), :class => 'btn btn-primary'
-  = link_to :delete.l, metro_area_path(@metro_area), data: { confirm: :are_you_sure.l }, :method => :delete, :class => 'btn btn-danger'
-
-= render 'form'

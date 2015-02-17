@@ -7,6 +7,8 @@ group :test do
   gem 'mocha', :require => false
 end
 
+gem "spring", group: :development
+
 gem 'activeadmin', github: 'activeadmin' #just until they release 1.0 to RubyGems
 
 gemspec

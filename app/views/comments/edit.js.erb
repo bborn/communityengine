@@ -3,7 +3,8 @@
 <% else %>
   $('#comment-<%= @comment.id %>').html("<%= escape_javascript(render :partial => 'comments/edit_form', :locals => {:comment => @comment}) %>");
   $('#comment-<%= @comment.id %>').scrollTo();
-  <%= tiny_mce_js.html_safe %>
+  $.remove_rte()
+  $.rte_comments()
 <% end %>
 
 if (typeof($.CE.commentUpdatedCallback) != 'undefined'){

@@ -137,22 +137,6 @@ class CommentsController < BaseController
     end
   end
 
-  def delete_selected
-    if request.delete?
-      if params[:delete]
-        params[:delete].each { |id|
-          comment = Comment.find(id)
-          comment.spam! if params[:spam] && configatron.has_key?(:akismet_key)
-          comment.destroy if comment.can_be_deleted_by(current_user)
-        }
-      end
-      flash[:notice] = :comments_deleted.l
-    else
-      flash[:error] = :comments_not_deleted.l
-    end
-    redirect_to admin_comments_path
-  end
-
 
   def unsubscribe
     @comment = Comment.find(params[:id])

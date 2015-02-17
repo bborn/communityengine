@@ -1,6 +1,4 @@
 class TagsController < BaseController
-  before_action :login_required, :only => [:manage, :edit, :update, :destroy]
-  before_action :admin_required, :only => [:manage, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, :only => [:auto_complete_for_tag_name]
 
   caches_action :show, :cache_path => Proc.new { |controller| controller.send(:tag_url, controller.params[:id]) }, :if => Proc.new{|c| c.cache_action? }
@@ -27,44 +25,6 @@ class TagsController < BaseController
     @clipping_tags = popular_tags(75, 'Clipping').to_a
   end
 
-  def manage
-    @search = ActsAsTaggableOn::Tag.search(params[:q])
-    @tags = @search.result
-    @tags = @tags.order('name ASC').distinct.page(params[:page]).per(100)
-  end
-
-
-  def edit
-    @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
-  end
-
-  def update
-    @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
-    
-    respond_to do |format|
-      if @tag.update_attributes(params[:tag].permit(:name))
-        flash[:notice] = :tag_was_successfully_updated.l
-        format.html { redirect_to admin_tags_url }
-        format.xml  { render :nothing => true }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @tag.errors.to_xml }
-      end
-    end
-  end
-
-  def destroy
-    @tag = ActsAsTaggableOn::Tag.find_by_name(URI::decode(params[:id]))
-    @tag.destroy
-
-    respond_to do |format|
-      format.html {
-        flash[:notice] = :tag_was_successfully_deleted.l
-        redirect_to admin_tags_url
-      }
-      format.xml  { render :nothing => true }
-    end
-  end
 
   def show
     tag_array = ActsAsTaggableOn::TagList.from( URI::decode(params[:id]) )
