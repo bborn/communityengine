@@ -1,5 +1,5 @@
 %tr
-  
+
   %td{:id=>"post-body-#{post.id}"}
     .editable
       - if logged_in?
@@ -10,23 +10,24 @@
   %td.col-sm-3{:style => 'border-left:0'}
     %ul.list-unstyled
       -if post.user
-        %li= link_to avatar_for(post.user), post.user    
+        %li= link_to avatar_for(post.user), post.user
         %li= link_to truncate(h(post.username), :length => 15), user_path(post.user), :class => (post.topic.editable_by?(post.user) ? "admin" : nil)
         %li
           = :post.l.pluralize
           %span.badge.badge-info
             =post.user.sb_posts_count
       -else
-        %li= image_tag(configatron.photo.missing_thumb, :class => 'thumbnail')        
+        %li= image_tag(configatron.photo.missing_thumb, :class => 'thumbnail')
         %li= truncate(h(post.username), :length => 15)
       %li
         %a{"href"=>"##{post.dom_id}", "rel"=>"bookmark"}
           %abbr.updated{"title"=>"#{post.created_at.xmlschema}"}= time_ago_in_words(post.created_at)
-  
-      - if logged_in? && post.editable_by?(current_user)
+
+      - if policy(post).update?
         %li
-          = ajax_spinner_for "edit-post-#{post.id}"   
+          = ajax_spinner_for "edit-post-#{post.id}"
           = link_to :edit_post.l, edit_forum_topic_sb_post_path(@forum, @topic, post), :class => 'edit-via-ajax', :id => "edit-post-#{post.id}"
+
       - if admin? && post.user && !post.user.admin?
         %li{"class"=>"make-moderator-#{post.user_id}"}
           = render :partial => '/moderators/toggle', :locals => {:user => post.user, :forum => @forum}

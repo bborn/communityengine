@@ -1,6 +1,8 @@
 class TopicsController < BaseController
   before_action :find_forum_and_topic, :except => :index
   before_action :login_required, :except => [:index, :show]
+  after_action  :verify_authorized, :except => [:index, :show]
+
 
   def index
     @forum = Forum.find(params[:forum_id])
@@ -16,6 +18,7 @@ class TopicsController < BaseController
   def new
     @topic = Topic.new
     @topic.sb_posts.build
+    authorize @topic
   end
 
   def show
@@ -45,6 +48,8 @@ class TopicsController < BaseController
 
   def create
     @topic = @forum.topics.new(topic_params)
+    authorize @topic
+
     assign_protected
 
     @post = @topic.sb_posts.first
@@ -72,8 +77,14 @@ class TopicsController < BaseController
     end
   end
 
+  def edit
+    authorize @topic
+  end
+
   def update
     assign_protected
+
+    authorize @topic
     @topic.tag_list = params[:tag_list] || ''
     @topic.update_attributes!(topic_params)
     respond_to do |format|
@@ -83,6 +94,8 @@ class TopicsController < BaseController
   end
 
   def destroy
+    authorize @topic
+
     @topic.destroy
     flash[:notice] = :topic_deleted.l_with_args(:topic => CGI::escapeHTML(@topic.title))
     respond_to do |format|
@@ -110,10 +123,6 @@ class TopicsController < BaseController
       @topic = @forum.topics.find(params[:id]) if params[:id]
     end
 
-    #overide in your app
-    def authorized?
-      %w(new create).include?(action_name) || @topic.editable_by?(current_user)
-    end
 
   def topic_params
     params[:topic].permit(:tag_list, :title, :sticky, :locked, {:sb_posts_attributes => [:body]}, :forum_id)

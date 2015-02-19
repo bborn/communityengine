@@ -18,7 +18,7 @@
 - if @topic.locked?
   %h2= :locked2.l
 
-- if logged_in? && @topic.editable_by?(current_user)
+- if policy(@topic).update?
   %p
     = link_to :back.l, @forum, :class => 'btn btn-default'
     = link_to :edit.l, edit_forum_topic_path(@forum, @topic), :class => "btn btn-warning"

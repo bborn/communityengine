@@ -3,8 +3,8 @@ require 'open-uri'
 require 'pp'
 
 class BaseController < ApplicationController
-
   include AuthenticatedSystem
+  include Pundit
   include LocalizedApplication
   include BaseHelper
 

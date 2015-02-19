@@ -1,5 +1,9 @@
 ActiveAdmin.register ActsAsTaggableOn::Tag, as: "Tag" do
+  menu :parent => "Taxonomy", :priority => 2
   permit_params :name
+
+  filter :name
+
 
   controller do
     def find_resource
@@ -8,4 +12,10 @@ ActiveAdmin.register ActsAsTaggableOn::Tag, as: "Tag" do
   end
 
 
+  index do
+    column :id
+    column :name
+    column :taggings_count
+    column :featured
+  end
 end

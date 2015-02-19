@@ -57,21 +57,6 @@ module AuthenticatedSystem
       @current_user_session = UserSession.find
     end
 
-    # Check if the user is authorized.
-    #
-    # Override this method in your controllers if you want to restrict access
-    # to only a few actions or if you want to check if the user
-    # has the correct rights.
-    #
-    # Example:
-    #
-    #  # only allow nonbobs
-    #  def authorize?
-    #    current_user.login != "bob"
-    #  end
-    def authorized?(action = nil , subject = nil)
-      true
-    end
     def admin?
      logged_in? && current_user.admin?
     end
@@ -87,7 +72,7 @@ module AuthenticatedSystem
     # behavior in case the user is not authorized
     # to access the requested action.  For example, a popup window might
     # simply close itself.
-    def access_denied
+    def access_denied(exception=nil)
       respond_to do |accepts|
         accepts.html do
           store_location
@@ -131,7 +116,7 @@ module AuthenticatedSystem
     #   skip_before_action :login_required
     #
     def login_required
-      logged_in? && authorized? ? true : access_denied
+      logged_in? ? true : access_denied
     end
 
     def require_user

@@ -124,16 +124,11 @@ class SbPostsController < BaseController
   end
 
   protected
-    #overide in your app
-    def authorized?
-      %w(create new).include?(action_name) || @post.editable_by?(current_user)
-    end
-
     def find_post
       @post = SbPost.find_by_id_and_topic_id_and_forum_id(params[:id].to_i, params[:topic_id].to_i, params[:forum_id].to_i) || raise(ActiveRecord::RecordNotFound)
     end
 
-  def sb_post_params
-    params[:sb_post].permit(:body, :author_email, :author_ip, :author_name, :author_url)
-  end
+    def sb_post_params
+      params[:sb_post].permit(:body, :author_email, :author_ip, :author_name, :author_url)
+    end
 end

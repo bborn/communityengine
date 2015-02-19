@@ -39,6 +39,7 @@ require 'jquery-ui-rails'
 require 'jquery-turbolinks'
 require 'turbolinks'
 require 'active_admin'
+require 'pundit'
 
 # Rails 2.3 Plugins converted to lib
 require 'activity_tracker'

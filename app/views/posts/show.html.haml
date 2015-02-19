@@ -73,6 +73,10 @@
 
 -content_for :end_javascript do
   :javascript
+    $.ajax({
+      type: "PUT",
+      url: "#{update_views_user_post_path(@post.user, @post)}",
+    });
     $('.email').on('click', function(e){
       e.preventDefault();
       $.post("#{send_to_friend_user_post_path(:user_id => @user.id, :id => @post.id)}", function(response){
