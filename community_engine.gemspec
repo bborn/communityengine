@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_list",              ">= 0.3.0"
   s.add_dependency "acts-as-taggable-on",       '~> 3.0.0'
   s.add_dependency "authlogic",                 ">= 3.3.0"
-  s.add_dependency "aws-sdk",                   ">= 0"
+  s.add_dependency "aws-sdk",                   "< 2.0"
   s.add_dependency "bcrypt",                    ">= 0"
   s.add_dependency "cocaine",                   "~> 0.5.1"
   s.add_dependency "configatron",               "~> 4.2.0"
@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails",                     "~> 4.1.0"
   s.add_dependency "rails-observers",           ">= 0"
   s.add_dependency "rakismet",                  ">= 0"
-  s.add_dependency "ransack",                   "~> 1.5.0"
+  s.add_dependency "ransack",                   "~> 1.6.3"
   s.add_dependency "recaptcha",                 ">= 0"
   s.add_dependency "ri_cal",                    ">= 0"
   s.add_dependency "sanitize",                  ">= 2.0.6"
