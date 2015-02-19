@@ -57,6 +57,6 @@ require 'actionpack/action_caching'
 require 'actionpack/page_caching'
 
 # We need this here because it will not get autoloaded.      Maybe this should go in lib?
-require File.dirname(__FILE__) + "/../app/models/acts_as_taggable_on/tag"
+require_dependency File.dirname(__FILE__) + "/../app/models/acts_as_taggable_on/tag"
 
 include EnginesExtensions

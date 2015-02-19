@@ -21,7 +21,7 @@ class Clipping < ActiveRecord::Base
 
   def self.find_related_to(clipping, options = {})
     options.reverse_merge!({:limit => 8,
-        :order => 'created_at DESC',
+        :order => 'clippings.created_at DESC',
         :conditions => [ 'clippings.id != ?', clipping.id ]
     })
 

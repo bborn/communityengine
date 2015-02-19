@@ -8,10 +8,11 @@ class TagsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+
   def test_should_show_tag
-   get :show, :id => tags(:general).name
-   assert_response :success
-   assert assigns(:photos).include?(photos(:library_pic))
+    get :show, :id => tags(:general).name
+    assert_response :success
+    assert assigns(:photos).include?(photos(:library_pic))
   end
 
   def test_should_show_special_character_tag
@@ -29,6 +30,7 @@ class TagsControllerTest < ActionController::TestCase
      assert_response :success
    end
   end
+
 
   def test_should_fail_to_show_tag
    get :show, :id => 'tag_that_does_not_exist'

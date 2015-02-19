@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency "actionpack-page_caching",   ">= 0"
   s.add_dependency "acts_as_commentable",       "~> 4.0.2"
   s.add_dependency "acts_as_list",              ">= 0.3.0"
-  s.add_dependency "acts-as-taggable-on",       '>= 3.4.4'
+  s.add_dependency "acts-as-taggable-on",       '~> 3.4.4'
   s.add_dependency "authlogic",                 ">= 3.3.0"
   s.add_dependency "aws-sdk",                   "< 2.0"
   s.add_dependency "bcrypt",                    ">= 0"
@@ -45,10 +45,10 @@ Gem::Specification.new do |s|
   s.add_dependency "koala",                     "~> 1.6.0"
   s.add_dependency "omniauth",                  "~> 1.1.4"
   s.add_dependency "rails_autolink",            ">= 0"
-  s.add_dependency "paperclip",                 "~> 4.2.1"
-  s.add_dependency "power_enum",                "~> 2.0.1"
+  s.add_dependency "paperclip",                 "~> 4.2.0"
+  s.add_dependency "power_enum",                "~> 2.7"
   s.add_dependency "rack",                      ">= 1.5.2"
-  s.add_dependency "rails",                     "~> 4.0.4"
+  s.add_dependency "rails",                     "~> 4.1.0"
   s.add_dependency "rails-observers",           ">= 0"
   s.add_dependency "rakismet",                  ">= 0"
   s.add_dependency "ransack",                   "~> 1.6.3"

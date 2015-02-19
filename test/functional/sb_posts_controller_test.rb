@@ -55,7 +55,7 @@ class SbPostsControllerTest < ActionController::TestCase
     login_as :admin
 
     assert_difference SbPost, :count, -1 do
-      delete :destroy, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_reply).to_param, :format => :js
+      xhr :delete, :destroy, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_reply).to_param, :format => :js
       assert_response :success
     end
 
@@ -65,13 +65,13 @@ class SbPostsControllerTest < ActionController::TestCase
   def test_should_delete_reply_as_moderator
     assert_difference SbPost, :count, -1 do
       login_as :sam
-      delete :destroy, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param
+      xhr :delete, :destroy, :forum_id => forums(:rails).to_param, :topic_id => topics(:pdi).to_param, :id => sb_posts(:pdi_rebuttal).to_param
     end
   end
 
   def test_edit_js
     login_as :sam
-    get :edit, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:silver_surfer).to_param, :format => 'js'
+    xhr :get, :edit, :forum_id => forums(:comics).to_param, :topic_id => topics(:galactus).to_param, :id => sb_posts(:silver_surfer).to_param, :format => :js
     assert_response :success
   end
 

@@ -150,25 +150,25 @@ class CommentsControllerTest < ActionController::TestCase
 
   def test_should_get_edit_js_as_admin
     login_as :admin
-    get :edit, :id => comments(:quentins_comment_on_his_own_post), :format => 'js'
+    xhr :get, :edit, :id => comments(:quentins_comment_on_his_own_post), :format => :js
     assert_response :success
   end
 
   def test_should_update_as_admin
     login_as :admin
     edited_text = 'edited the comment body'
-    patch :update, :id => comments(:quentins_comment_on_his_own_post), :comment => {:comment => edited_text}, :format => 'js'
-    
+    xhr :patch, :update, :id => comments(:quentins_comment_on_his_own_post), :comment => {:comment => edited_text}, :format => :js
+
     assert assigns(:comment).comment.eql?(edited_text)
     assert_response :success
   end
 
   def test_should_not_update_if_not_admin_or_moderator
     login_as :quentin
-    
-    edited_text = 'edited the comment body'    
-    patch :update, :id => comments(:quentins_comment_on_his_own_post), :comment => {:comment => edited_text}, :format => "js"
-    
+
+    edited_text = 'edited the comment body'
+    xhr :patch, :update, :id => comments(:quentins_comment_on_his_own_post), :comment => {:comment => edited_text}, :format => :js
+
     assert_response :success #js redirect
     assert_not_equal(comments(:quentins_comment_on_his_own_post).comment, edited_text)
   end

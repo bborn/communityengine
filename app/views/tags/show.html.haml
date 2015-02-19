@@ -8,7 +8,7 @@
   %ul.list-unstyled
     - @tags.each do |tag|
       %li= link_to h(tag.name), tag_path(tag)
-       
+
 -if @related_tags.to_a.size > 0
   -widget do
     %h3=:related_tags.l
@@ -17,9 +17,9 @@
     %p
       = link_to fa_icon('plus-circle', :text => :all_tags.l), tags_path
 
-.clearfix    
+.clearfix
   - if @posts.any?
-    -unless params[:type]    
+    -unless params[:type]
       %h2=:posts.l
       %ul
         - @posts.each do |post|
