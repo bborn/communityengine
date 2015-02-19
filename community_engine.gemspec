@@ -51,7 +51,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails",                     "~> 4.0.4"
   s.add_dependency "rails-observers",           ">= 0"
   s.add_dependency "rakismet",                  ">= 0"
-  s.add_dependency "ransack",                   "~> 1.5.0"
+  s.add_dependency "ransack",                   "~> 1.6.3"
   s.add_dependency "recaptcha",                 ">= 0"
   s.add_dependency "ri_cal",                    ">= 0"
   s.add_dependency "sanitize",                  ">= 2.0.6"
