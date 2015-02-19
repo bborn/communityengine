@@ -1,19 +1,20 @@
 general:
   id: 1
   name: General
-  
+  taggings_count: 1
 misc:
   id: 2
   name: Misc
-
+  taggings_count: 1
 extra:
   id: 3
   name: Extra
-
+  taggings_count: 1
 special_characters:
   id: 4
   name: Svår
-
+  taggings_count: 1
 related_to_misc:
   id: 5
   name: Related
+  taggings_count: 1
