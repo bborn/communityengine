@@ -2,20 +2,29 @@ ActiveAdmin.register Post do
   permit_params :title, :raw_post, :published_at, :published_as, :category_id
 
   filter :title
-  filter :user
+  filter :user_login_cont, if: proc{ current_user.admin? }, label: "User"
   filter :published_as, as: :select, collection: [['Published','live'], ['Draft','draft']], include_blank: true
   filter :published_at
   filter :created_at
 
-  scope_to do
-    current_user
+  scope_to unless: proc{ current_user.admin? } do
+    current_user.posts
   end
+
+  controller do
+    def scoped_collection
+      end_of_association_chain.unscoped
+    end
+  end
+
 
   index do
     selectable_column
     column :id do |post|
       link_to post.id, admin_post_path(post)
     end
+
+    column :user
 
     column :published_at
     column :published_as do |post|
