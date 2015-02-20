@@ -74,7 +74,7 @@
 -content_for :end_javascript do
   :javascript
     $.ajax({
-      type: "PUT",
+      type: "PATCH",
       url: "#{update_views_user_post_path(@post.user, @post)}",
     });
     $('.email').on('click', function(e){
