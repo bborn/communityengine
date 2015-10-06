@@ -1,7 +1,7 @@
 CommunityEngine
 ===============
 
-[![Build Status](https://img.shields.io/travis/bborn/communityengine/master.svg?style=flat)](https://travis-ci.org/bborn/communityengine)
+[![Build Status](https://travis-ci.org/bborn/communityengine.svg?branch=master)](https://travis-ci.org/bborn/communityengine)
 [![Dependency Status](https://img.shields.io/gemnasium/bborn/communityengine.svg?style=flat)](https://gemnasium.com/bborn/communityengine)
 [![Code Climate](https://img.shields.io/codeclimate/github/bborn/communityengine.svg?style=flat)](https://codeclimate.com/github/bborn/communityengine)
 [![Gem Version](https://img.shields.io/gem/v/community_engine.svg?style=flat)](https://rubygems.org/gems/community_engine)
