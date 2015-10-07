@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_commentable",       "~> 4.0.2"
   s.add_dependency "acts_as_list",              ">= 0.3.0"
   s.add_dependency "acts-as-taggable-on",       '~> 2.4.1'
-  s.add_dependency "authlogic",                 ">= 3.3.0"
+  s.add_dependency "authlogic",                 "~> 3.4.6"
   s.add_dependency "aws-sdk",                   "< 2.0"
   s.add_dependency "bcrypt",                    ">= 0"
   s.add_dependency "cocaine",                   "~> 0.5.1"
