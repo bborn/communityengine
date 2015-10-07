@@ -5,7 +5,7 @@
     .clearfix
       .col-sm-2.pull-right
         .list-group
-          = link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login, :class => "img-responsive"), user_path(comment.user), :rel => 'bookmark', :class => 'photo', :title => :users_profile.l(:user => comment.user.login), :class => 'list-group-item'
+          = link_to image_tag(comment.user.avatar_photo_url(:medium), :alt => comment.user.login, :class => "img-responsive"), user_path(comment.user), :rel => 'bookmark', :title => :users_profile.l(:user => comment.user.login), :class => 'list-group-item'
           %a{:href => user_path(comment.user), :class => "list-group-item"}
             =fa_icon "hand-o-right fw", :text => comment.user.login
           %a{:href => commentable_url(comment), :rel => "bookmark", :class => "list-group-item"}
