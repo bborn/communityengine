@@ -29,12 +29,12 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   def test_should_login_with_cookie
-    @request.cookies["user_credentials"] = {:value => {:value => users(:quentin).persistence_token}, :expires => nil}
+    @request.cookies["user_credentials"] = {:value => {:value => "#{users(:quentin).persistence_token}::#{users(:quentin).id}"}, :expires => nil}
     assert @controller.send(:logged_in?)
   end
 
   def test_should_fail_cookie_login
-    @request.cookies["user_credentials"] = {:value => {:value => users(:quentin).persistence_token}, :expires => 5.minutes.ago.utc}
+    @request.cookies["user_credentials"] = {:value => {:value => "#{users(:quentin).persistence_token}::#{users(:quentin).id}"}, :expires => 5.minutes.ago.utc}
     assert !@controller.send(:logged_in?)
   end
 
