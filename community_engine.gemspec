@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n") rescue ''
   s.test_files = `git ls-files -- {test}/*`.split("\n")
 
-  s.add_dependency "activeadmin"
+  s.add_dependency "activeadmin",               "~> 1.0.0.pre1"
   s.add_dependency "pundit",                    "0.3.0"
   s.add_dependency "actionpack-action_caching", ">= 0"
   s.add_dependency "actionpack-page_caching",   ">= 0"
