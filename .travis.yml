@@ -2,6 +2,9 @@ language: ruby
 
 bundler_args: --binstubs
 
+sudo: false
+cache: bundler
+
 rvm:
   - 2.0.0
   - 2.1.1
