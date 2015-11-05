@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n") rescue ''
   s.test_files = `git ls-files -- {test}/*`.split("\n")
 
-  s.add_dependency "activeadmin",               "~> 1.0.0.pre1"
+  s.add_dependency "activeadmin",               "~> 1.0.0.pre2"
   s.add_dependency "pundit",                    "0.3.0"
   s.add_dependency "actionpack-action_caching", ">= 0"
   s.add_dependency "actionpack-page_caching",   ">= 0"
@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "cocaine",                   "~> 0.5.1"
   s.add_dependency "configatron",               "~> 4.2.0"
   s.add_dependency "dynamic_form",              ">= 0"
-  s.add_dependency "friendly_id",               "~> 5.0.0.beta1"
+  s.add_dependency "friendly_id",               "~> 5.1.0"
   s.add_dependency "haml",                      ">= 0"
   s.add_dependency "hpricot",                   ">= 0"
   s.add_dependency "htmlentities",              ">= 0"
@@ -45,13 +45,13 @@ Gem::Specification.new do |s|
   s.add_dependency "koala",                     "~> 1.6.0"
   s.add_dependency "omniauth",                  "~> 1.1.4"
   s.add_dependency "rails_autolink",            ">= 0"
-  s.add_dependency "paperclip",                 "~> 4.2.0"
+  s.add_dependency "paperclip",                 "~> 4.3.0"
   s.add_dependency "power_enum",                "~> 2.7"
   s.add_dependency "rack",                      ">= 1.5.2"
   s.add_dependency "rails",                     "~> 4.1.0"
   s.add_dependency "rails-observers",           ">= 0"
   s.add_dependency "rakismet",                  ">= 0"
-  s.add_dependency "ransack",                   "~> 1.6.3"
+  s.add_dependency "ransack",                   "~> 1.7.0"
   s.add_dependency "recaptcha",                 ">= 0"
   s.add_dependency "ri_cal",                    ">= 0"
   s.add_dependency "sanitize",                  ">= 2.0.6"
