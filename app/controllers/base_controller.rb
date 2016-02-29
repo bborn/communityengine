@@ -94,14 +94,6 @@ class BaseController < ApplicationController
 
     def popular_tags(limit = 20, type = nil)
       ActsAsTaggableOn::Tag.popular(limit, type)
-=begin
-      if type == nil
-        ActsAsTaggableOn::Tag.most_used(limit)
-      else
-        klass = Object.const_get type
-        klass.tag_counts.most_used(limit)
-      end
-=end
     end
 
 

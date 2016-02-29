@@ -14,15 +14,7 @@ class TagsController < BaseController
   end
 
   def index
-    @tags = popular_tags(100).to_a
-
-    @user_tags = popular_tags(75, 'User').to_a
-
-    @post_tags = popular_tags(75, 'Post').to_a
-
-    @photo_tags = popular_tags(75, 'Photo').to_a
-
-    @clipping_tags = popular_tags(75, 'Clipping').to_a
+    @tags = popular_tags(100)
   end
 
 

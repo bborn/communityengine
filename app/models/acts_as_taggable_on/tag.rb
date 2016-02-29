@@ -4,8 +4,12 @@ class ActsAsTaggableOn::Tag < ActiveRecord::Base
 
   class << self
     def popular(limit = 20, type = nil)
-      tags = ActsAsTaggableOn::Tag.most_used(limit)
-      tags
+      if type == nil
+        ActsAsTaggableOn::Tag.most_used(limit)
+      else
+        klass = Object.const_get type
+        klass.tag_counts.most_used(limit)
+      end
     end
 
     def default_per_page
