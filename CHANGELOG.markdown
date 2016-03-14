@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.2.0
+
+* Rails 4.1 compatibility
+
 ## 3.1.0
 
 * Swapped TinyMCE for CKEditor

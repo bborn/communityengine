@@ -11,12 +11,12 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
 **Requirements:**
 
-	- RAILS VERSION 4.0.x
+	- RAILS VERSION 4.1.x
 	- RUBY  2.0.x
 
-For Rails 2.x use the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
-
 For Rails 3.x use the [rails3.x branch](https://github.com/bborn/communityengine/tree/rails3.x)
+
+For Rails 4.0 use the [rails4.0 branch](https://github.com/bborn/communityengine/tree/rails4.0)
 
 
 Getting CommunityEngine Running
@@ -25,7 +25,7 @@ Getting CommunityEngine Running
 1. Copy the following into your `Gemfile`:
 
   ```ruby
-  gem 'community_engine', '~> 3.0.0'
+  gem 'community_engine', '~> 3.2.0'
   ```
 
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
@@ -221,6 +221,7 @@ Any views you create in your app directory will override those in CommunityEngin
 Contributors - Thanks! :)
 -------------------------
 
+- [Trevor Bullock](http://github.com/t-bullock) - maintenance, Rails 4 compatibility and more
 - Bryan Kearney - localization
 - Alex Nesbitt - forgot password bugs
 - Alejandro Raiczyk - Spanish localization
