@@ -32,23 +32,25 @@ namespace :test do
     t.libs << "lib"
     t.libs << "test"
     t.pattern = 'test/functional/**/*_test.rb'
-    t.verbose = true
+    t.verbose = false
+    t.warning = false
   end
-  
+
   Rake::TestTask.new(:units) do |t|
     t.libs << "lib"
     t.libs << "test"
     t.pattern = 'test/unit/**/*_test.rb'
-    t.verbose = true    
-  end  
-  
+    t.verbose = false
+    t.warning = false
+  end
+
 end
 
 
 task :build do
   system "gem build community_engine.gemspec"
 end
- 
+
 task :release => :build do
   system "gem push community_engine-#{CommunityEngine::Version::STRING}.gem"
 end

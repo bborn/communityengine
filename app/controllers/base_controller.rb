@@ -16,6 +16,8 @@ class BaseController < ApplicationController
 
   caches_action :site_index, :footer_content, :if => Proc.new{|c| c.cache_action? }
 
+  rescue_from Pundit::NotAuthorizedError, with: :access_denied
+
   def cache_action?
     !logged_in? && controller_name.eql?('base') && params[:format].blank?
   end
@@ -61,6 +63,7 @@ class BaseController < ApplicationController
   end
 
   private
+
     def admin_required
       current_user && current_user.admin? ? true : access_denied
     end
