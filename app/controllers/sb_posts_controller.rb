@@ -89,6 +89,8 @@ class SbPostsController < BaseController
   end
 
   def edit
+    authorize @post
+
     respond_to do |format|
       format.html
       format.js
@@ -96,10 +98,13 @@ class SbPostsController < BaseController
   end
 
   def update
-    @post.update_attributes!(sb_post_params)
-  rescue ActiveRecord::RecordInvalid
-    flash[:bad_reply] = :an_error_occurred.l
-  ensure
+    authorize @post
+    @post.update_attributes(sb_post_params)
+
+    unless @post.valid?
+      flash[:bad_reply] = :an_error_occurred.l
+    end
+
     respond_to do |format|
       format.html do
         redirect_to forum_topic_path(:forum_id => params[:forum_id], :id => params[:topic_id], :anchor => @post.dom_id, :page => params[:page] || '1')
@@ -107,9 +112,12 @@ class SbPostsController < BaseController
       format.js
       format.xml { head 200 }
     end
+    
   end
 
   def destroy
+    authorize @post
+
     @post.destroy
     flash[:notice] = :sb_post_was_deleted.l_with_args(:title => CGI::escapeHTML(@post.topic.title))
     # check for posts_count == 1 because its cached and counting the currently deleted post
