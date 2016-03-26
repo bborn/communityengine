@@ -18,6 +18,8 @@ For Rails 3.x use the [rails3.x branch](https://github.com/bborn/communityengine
 
 For Rails 4.0 use the [rails4.0 branch](https://github.com/bborn/communityengine/tree/rails4.0)
 
+For Rails 4.2 (experimental) use the [edge branch](https://github.com/bborn/communityengine/tree/edge)
+
 
 Getting CommunityEngine Running
 --------------------------------
