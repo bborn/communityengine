@@ -272,7 +272,7 @@ class User < ActiveRecord::Base
       update_attribute(:activated_at, Time.now.utc)
       update_attribute(:activation_code, nil)
     end
-    UserNotifier.activation(self).deliver
+    UserNotifier.activation(self).deliver_now
   end
 
   def active?
@@ -326,7 +326,7 @@ class User < ActiveRecord::Base
   end
 
   def deliver_signup_notification
-    UserNotifier.signup_notification(self).deliver
+    UserNotifier.signup_notification(self).deliver_now
   end
 
   def update_last_login
@@ -405,7 +405,7 @@ class User < ActiveRecord::Base
 
   def deliver_password_reset_instructions!
     reset_perishable_token!
-    UserNotifier.password_reset_instructions(self).deliver
+    UserNotifier.password_reset_instructions(self).deliver_now
   end
 
   def valid_birthday

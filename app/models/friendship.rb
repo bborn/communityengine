@@ -52,7 +52,7 @@ class Friendship < ActiveRecord::Base
   end
   
   def notify_requester
-    UserNotifier.friendship_accepted(self).deliver
+    UserNotifier.friendship_accepted(self).deliver_now
   end
     
   private
