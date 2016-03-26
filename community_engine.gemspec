@@ -6,7 +6,7 @@ require 'community_engine/version'
 Gem::Specification.new do |s|
   s.name        = "community_engine"
   s.version     = CommunityEngine::Version::STRING
-  s.summary     = "CommunityEngine for Rails 4"
+  s.summary     = "CommunityEngine for Rails 4.2"
   s.description = "CommunityEngine is a free, open-source social network platform for Ruby on Rails applications. Drop it into your new or existing application, and you’ll instantly have all the features of a basic community site."
   s.homepage    = "http://www.communityengine.org"
 
@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.add_dependency "paperclip",                 "~> 4.3.0"
   s.add_dependency "power_enum",                "~> 2.7"
   s.add_dependency "rack",                      ">= 1.5.2"
-  s.add_dependency "rails",                     "~> 4.1.0"
+  s.add_dependency "rails",                     ">= 4.2"
   s.add_dependency "rails-observers",           ">= 0"
   s.add_dependency "rakismet",                  ">= 0"
   s.add_dependency "ransack",                   "~> 1.7.0"
