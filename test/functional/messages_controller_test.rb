@@ -37,7 +37,7 @@ class MessagesControllerTest < ActionController::TestCase
   def test_send_message_link_should_populate_to_field
     get :new, :user_id => users(:leopoldo).id, :to => 'aaron'
     assert_response :success
-    assert_tag :tag=>'input', :attributes=>{:value=>'aaron'}
+    assert_select 'input', :attributes=>{:value=>'aaron'}
     assert assigns(:message)
   end  
   
@@ -47,7 +47,7 @@ class MessagesControllerTest < ActionController::TestCase
     get :new, :user_id => users(:leopoldo).id, :reply_to => m.id
     assert_response :success
     assert_equal assigns(:message).to, m.sender.login
-    assert_tag :tag=>'input', :attributes=>{:name=>'message[to]', :value=> m.sender.login}
+    assert_select 'input', :attributes=>{:name=>'message[to]', :value=> m.sender.login}
     assert_equal assigns(:message).subject, "#{m.subject}"
   end
   
@@ -101,7 +101,7 @@ class MessagesControllerTest < ActionController::TestCase
     
     assert_response :success
     assert_equal assigns(:message).body, 'Some content'
-    assert_tag :tag=>'form', :attributes=>{:action=> user_messages_path(users(:leopoldo))}
+    assert_select 'form', :attributes=>{:action=> user_messages_path(users(:leopoldo))}
   end
   
   def test_show_send_links_if_logged_in
@@ -128,7 +128,7 @@ class MessagesControllerTest < ActionController::TestCase
   def test_do_not_show_send_links
     get :show, :user_id => users(:aaron).id, :id => Message.last.id
     assert_redirected_to '/login'
-    assert_no_tag :tag=>'a', :attributes=>{:href=>'/quentin/messages/new?to=aaron'}
+    assert_select 'a[href=?]', '/quentin/messages/new?to=aaron', :count => 0
   end
   
   def test_should_mark_sender_deleted

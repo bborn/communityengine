@@ -42,14 +42,14 @@ class ClippingsControllerTest < ActionController::TestCase
   
   test "should get site index with recent param" do
     get :site_index, :recent => 'true'
-    assert_response :success    
-    assert_select 'a[href*=/clippings]'
+    assert_response :success
+    assert_select 'a[href*=?]', '/clippings'
   end
 
   test "should get site index without recent param" do
     get :site_index
     assert_response :success
-    assert_select 'a[href*=/clippings?recent=true]'
+    assert_select 'a[href*=?]', '/clippings?recent=true'
   end
 
 

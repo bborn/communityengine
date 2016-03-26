@@ -63,15 +63,15 @@ class EventsControllerTest < ActionController::TestCase
   def test_index_should_show_link_to_past_only
     login_as :admin
     get :index
-    assert_tag :tag=>'a', :attributes=>{:href=>'/events/past'}, :content=> :past_events.l
-    assert_no_tag :tag=>'a', :attributes=>{:href=>'/events'}, :content=> :upcoming_events.l
+    assert_select 'a', :attributes=>{:href=>'/events/past'}, :text=> :past_events.l
+    assert_select 'a', :attributes=>{:href=>'/events'}, :text=> :upcoming_events.l, :count=> 0
   end
 
   def test_past_should_show_link_to_index_only
     login_as :admin
     get :past
-    assert_no_tag :tag=>'a', :attributes=>{:href=>'/events/past'}, :content=> :past_events.l
-    assert_tag :tag=>'a', :attributes=>{:href=>'/events'}, :content=> :upcoming_events.l
+    assert_select 'a', :attributes=>{:href=>'/events/past'}, :text=> :past_events.l, :count=> 0
+    assert_select 'a', :attributes=>{:href=>'/events'}, :text=> :upcoming_events.l
   end
 
   def test_should_get_ical
@@ -83,15 +83,15 @@ class EventsControllerTest < ActionController::TestCase
   def test_should_show_rsvp
     login_as :admin
     get :show, :id=>2
-    assert_tag :tag=>'a', :content=>:rsvp.l
-    assert_tag :tag=>'dt', :content=>"#{:rsvps.l}"
+    assert_select 'a', :text=>:rsvp.l
+    assert_select 'dt', :text=>"#{:rsvps.l}"
   end
 
   def test_should_not_show_rsvp
     login_as :admin
     get :show, :id=>6
-    assert_no_tag :tag=>'a', :content=>:rsvp.l
-    assert_no_tag :tag=>'dt', :content=>"#{:rsvps.l}"
+    assert_select 'a', :text=>:rsvp.l, :count=>0
+    assert_select 'dt', :text=>"#{:rsvps.l}", :count=>0
   end
   
   def test_should_clone_event
