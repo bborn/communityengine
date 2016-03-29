@@ -968,6 +968,8 @@ fr:
   recent_blog_posts: Derniers articles de mon blog
   #en: recent_posts: Recent Posts
   recent_posts: Nouveaux messages
+  all_recent_posts: Tous les nouveaux messages
+  see_all_recent_posts: Voir tous les nouveaux messages
   #en: recommended_posts: Recommended Posts
   recommended_posts: Messages conseillés
   #en: related_clippings_all_members: Related Clippings (all members)
