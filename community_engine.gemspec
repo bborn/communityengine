@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency "dynamic_form",              ">= 0"
   s.add_dependency "friendly_id",               "~> 5.1.0"
   s.add_dependency "haml",                      ">= 0"
-  s.add_dependency "hpricot",                   ">= 0"
+  s.add_dependency "nokogiri",                  ">= 0"
   s.add_dependency "htmlentities",              ">= 0"
   s.add_dependency "kaminari",                  ">= 0"
   s.add_dependency "koala",                     "~> 1.6.0"

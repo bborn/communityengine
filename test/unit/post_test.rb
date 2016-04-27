@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'hpricot'
+require 'nokogiri'
 
 class PostTest < ActiveSupport::TestCase
   fixtures :all

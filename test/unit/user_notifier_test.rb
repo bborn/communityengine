@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'hpricot'
+require 'nokogiri'
 
 class UserNotifierTest < ActiveSupport::TestCase
   FIXTURES_PATH = File.dirname(__FILE__) + '/../fixtures'
