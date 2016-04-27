@@ -1,4 +1,4 @@
-require 'hpricot'
+require 'nokogiri'
 require 'open-uri'
 require 'pp'
 

@@ -12,7 +12,7 @@ require 'community_engine/url_upload'
 require 'community_engine/engines_extensions'
 
 require 'configatron'
-require 'hpricot'
+require 'nokogiri'
 require 'htmlentities'
 require 'haml'
 require 'sass-rails'

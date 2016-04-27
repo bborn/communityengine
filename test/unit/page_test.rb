@@ -1,6 +1,6 @@
 require 'test_helper'
-require 'hpricot'
-    
+require 'nokogiri'
+
 class PageTest < ActiveSupport::TestCase
   fixtures :pages
 

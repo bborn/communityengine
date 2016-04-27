@@ -82,7 +82,7 @@ class ClippingsController < BaseController
   def load_images_from_uri
     uri = URI.parse(params[:uri])
     begin
-      doc = Hpricot( open( uri ) )
+      doc = Nokogiri::HTML( open( uri ) )
     rescue
       return
     end
