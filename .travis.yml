@@ -9,6 +9,7 @@ rvm:
   - 2.0.0
   - 2.1.1
   - 2.2.0
+  - 2.3.1
 env: "RAILS_ENV='test' RAILS_VERSION=4.1.0"
 
 script: "bundle exec rake db:drop db:create db:migrate test"
