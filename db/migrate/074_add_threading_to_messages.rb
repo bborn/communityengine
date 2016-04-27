@@ -7,11 +7,11 @@ class AddThreadingToMessages < ActiveRecord::Migration
       t.integer :recipient_id
       t.integer :message_id
       t.integer :parent_message_id
-      t.timestamps
+      t.timestamps null: false
     end
-        
+
   end
-  
+
   def self.down
     remove_column :messages, :parent_id
     drop_table :message_threads

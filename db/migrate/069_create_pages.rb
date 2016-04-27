@@ -10,7 +10,7 @@ class CreatePages < ActiveRecord::Migration
       t.text :body
       t.string :published_as, :limit => 16, :default => 'draft'
       t.boolean :page_public, :default => true
-      t.timestamps
+      t.timestamps null: false
     end
 
     #remove static pages table id needed and migrate StaticPages to Pages

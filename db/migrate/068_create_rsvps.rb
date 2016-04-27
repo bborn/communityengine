@@ -3,7 +3,7 @@ class CreateRsvps < ActiveRecord::Migration
     create_table :rsvps do |t|
       t.belongs_to :user, :event
       t.integer :attendees_count
-      t.timestamps
+      t.timestamps null: false
     end
   end
 

@@ -6,7 +6,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string :subject
       t.text :body
       t.datetime :read_at
-      t.timestamps
+      t.timestamps null: false
     end
   end
 

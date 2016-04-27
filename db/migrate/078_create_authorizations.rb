@@ -9,8 +9,8 @@ class CreateAuthorizations < ActiveRecord::Migration
       t.string :email
       t.string :picture_url
       t.string :access_token
-      t.string :access_token_secret      
-      t.timestamps
+      t.string :access_token_secret
+      t.timestamps null: false
     end
   end
 

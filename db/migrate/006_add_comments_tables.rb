@@ -6,7 +6,7 @@ class AddCommentsTables < ActiveRecord::Migration
       t.references :commentable, :polymorphic => true
       t.references :user
       t.references :recipient
-      t.timestamps      
+      t.timestamps null: false
     end
 
     add_index :comments, ["user_id"], :name => "fk_comments_user"

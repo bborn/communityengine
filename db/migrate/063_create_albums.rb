@@ -5,7 +5,7 @@ class CreateAlbums < ActiveRecord::Migration
       t.text :description
       t.integer :user_id
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 
