@@ -28,8 +28,8 @@ class AlbumsControllerTest < ActionController::TestCase
   
   test "should not create album" do
     login_as :quentin
-    assert_no_difference Album, :count do      
-      post :create, :user_id => users(:quentin), :album => {:description => 'Some content'}, :user_id => users(:quentin)
+    assert_no_difference Album, :count do
+      post :create, :user_id => users(:quentin), :album => {:description => 'Some content'}
     end
     assert_response 200
   end
