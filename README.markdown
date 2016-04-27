@@ -12,7 +12,7 @@ Information at: [http://www.communityengine.org](http://www.communityengine.org)
 **Requirements:**
 
 	- RAILS VERSION 4.2
-	- RUBY  2.1.x
+	- RUBY  2.0.x
 
 For Rails 2.x use the [rails2.x branch](https://github.com/bborn/communityengine/tree/rails2.x)
 
