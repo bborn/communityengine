@@ -18,10 +18,10 @@
 = bootstrap_form_for @user, :layout => :horizontal do |f|
   = f.text_field :login, :label => :username.l, :help => :required_your_username_must_not_contain_numerals_spaces_or_special_characters.l
   = f.text_field :email, :label => :e_mail_address.l, :help => :required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
-  = f.date_select :birthday, {:label => birthday.l, :start_year => (Time.now.year - configatron.max_age), :end_year => (Time.now.year - configatron.min_age)}, :help => :required_you_must_be_at_least_years_old_to_sign_up.l_with_args(:min_age => configatron.min_age)
+  = f.date_select :birthday, {:label => :birthday.l, :start_year => (Time.now.year - configatron.max_age), :end_year => (Time.now.year - configatron.min_age)}, :help => :required_you_must_be_at_least_years_old_to_sign_up.l_with_args(:min_age => configatron.min_age)
 
-  = f.password_field :password.l
-  = f.password_field :confirm_password.l, :help => :re_type_your_password_to_confirm.l
+  = f.password_field :password, :label => :password.l
+  = f.password_field :password_confirmation, :label => :confirm_password.l, :help => :re_type_your_password_to_confirm.l
   = hidden_field_tag :inviter_id, params[:inviter_id]
   = hidden_field_tag :inviter_code, params[:inviter_code]
 
