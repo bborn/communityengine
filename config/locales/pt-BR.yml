@@ -1,0 +1,1657 @@
+pt-BR:
+  authorizations:
+    create:
+      success_existing_user: "Autenticação com  %{provider} Adicionanda com sucesso"
+      success_message: "Bem vindo Usuário %{provider}. Você está logado(a)."
+    failure:
+      notice: "Desculpe, Você não autorizou"
+    destroy:
+      notice: "Autenticação via %{provider} foi removida com sucesso."
+  sessions:
+    new:
+      omniauth:
+        header: "Entrar com:"
+        button_alt: "Entrar com sua conta %{provider}"
+  users:
+    edit_account:
+      omniauth:
+        confirm_remove: "Tem certeza que deseja remover a authenticação via %{provider}?"
+        title_remove: "Remover autênticação via %{provider}?"
+  tags:
+    show:
+      users: Usuários
+  sitemaps:
+    index:
+      users: Usuários
+
+
+  date:
+    formats:
+      published_date: "%d/%m/%Y"
+      date_ago: "%b %Y"
+
+  time:
+    formats:
+      published_date: "%d/%m/%Y"
+      short_published_date: "%d/%m/%y"
+      literal_date: "%B %d, %Y"
+      short_literal_date: "%d %b, %Y"
+      time_ago: "%l:%M%p"
+
+  activerecord:
+    attributes:
+      photo:
+        created_at: "Criado em: "
+
+      sb_posts:
+        body: "Corpo"
+
+
+  greeting: "Olá %{name}"
+
+  #en: a_few_seconds_ago:  a few seconds ago
+  a_few_seconds_ago:  Alguns segundos atrás
+  #en: about_me: About Me
+  about_me: Sobre mim
+  #en: about_you: About You
+  about_you: Sobre você
+  #en: admin_pages: Pages
+  admin_pages: Páginas
+  #en: accept: Accept
+  accept: Aceitar
+  #en: accepted: accepted
+  accepted: aceito
+  #en: accepted_friendships: %{count} Accepted Friendships
+  accepted_friendships:
+    one: Amizade aceita
+    other: "%{count} Amizades aceitas"
+  #en: accept_this_request: Accept this request
+  accept_this_request: Aceititar este pedido
+  #en: account: account
+  account: conta
+  #en: account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail %{email} for help.
+  account_activation_error: "A ativação da conta falhou. Sua conta pode está ativa. Tente fazer login"
+  #en: account_settings: Account settings
+  account_settings: Configurações da conta
+  #en: actions: Actions
+  actions: Ações
+  #en: activate: Activate
+  activate: Ativar
+  #en: activation_email_not_sent_message: Activation e-mail could not be sent. Perhaps that user is already active?
+  activation_email_not_sent_message: E-mail de ativação não pode ser enviado. Talvez este usuário já esteja ativo
+  #en: activation_email_resent_message: An activation e-mail was resent to the e-mail address you used to sign up.
+  activation_email_resent_message: Um email de ativação foi re-enviado para o endereço de e-mail informado no cadastro.
+  #en: active: active
+  active: ativo
+  #en: active_users: Active Users
+  active_users: Usuários Ativos
+  #en: activity_from_your_network: Activity from your network
+  activity_from_your_network: Atividade de sua rede
+  #en: ad_was_successfully_created: Ad was successfully created.
+  ad_was_successfully_created: Anúcio foi criado com sucesso.
+  #en: ad_was_successfully_updated: Ad was successfully updated.
+  ad_was_successfully_updated: Anúncio foi atualizado com sucesso.
+  #en: add_a_photo: Add a photo
+  add_a_photo: Adicionar uma foto
+  #en: add_a_poll: Add a poll
+  add_a_poll: Adicionar uma enquete
+  #en: add_comment: Add Comment
+  add_comment: Adicinar comentário
+  #en: add_from_my_address_book: "Add from my address book"
+  add_from_my_address_book: "Adicionar do meu livro de endereços"
+  #en: add_some_friends_to_get_started: Add some friends to get started!
+  add_some_friends_to_get_started: Adicione alguns amigos para começar
+  #en: add_your_comment: Add Your Comment!
+  add_your_comment: Adicione seu comentário
+  #en: added_a_clipping: "added a clipping:"
+  added_a_clipping: "Adicione um clipping:"
+  #en: added_to_a_forum_topic: "added to a forum topic:"
+  added_to_a_forum_topic: "Adicionar à um tópico no forum:"
+  #en: admin: Admin
+  admin: Admin
+  #en: admin_controls: Admin Controls
+  admin_controls: Controles de admin
+  #en: admin_dashboard: Admin dashboard
+  admin_dashboard: Painel do admin
+  #en: administer_events: Administer events
+  administer_events: Administrar eventos
+  #en: ads: Ads
+  ads: Publicidades
+  #en: advertise: Advertise
+  advertise: Anunciar
+  #en: advertise_on: Advertise on
+  advertise_on: Anunciar no
+  #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
+  after_signing_up_youll_receive_an_e_mail_confirmation_message: "Depois de se inscrever, você receberá uma mensagem de confirmação no seu e-mail."
+  #en: all_clippings_tagged: All clippings tagged %{tag_name}
+  all_clippings_tagged: "Todos os clippings marcados: %{tag_name}"
+  #en: all_comments: All comments
+  all_comments: Todos os comentários
+  #en: all_photos_tagged: All photos tagged %{tag_name}
+  all_photos_tagged: "Todas as fotos marcadas: %{tag_name}"
+  #en: all_posts_tagged: All posts tagged %{tag_name}
+  all_posts_tagged: "Todos os posts marcados: %{tag_name}"
+  #en: all_tags: All tags
+  all_tags: "Todas as tags"
+  #en: all_users_tagged: All users tagged %{tag_name}
+  all_users_tagged: "Todos os usuários marcados: %{tag_name}"
+  #en: allow_rsvp: Allow RSVPs
+  allow_rsvp: Permitir RSVPs
+  #en: already_have_an_account: Already have an account?
+  already_have_an_account: Já tem uma conta?
+  #en: anonymous: Anonymous
+  anonymous: Anônimo
+  #en: an_error_occurred: An error occurred
+  an_error_occurred: Ocorreu um erro
+  #en: are_attending_this_event: are attending this event
+  are_attending_this_event: Vão à este evento
+  #en: is_attending_this_event: is attending this event
+  is_attending_this_event: Vai à este evento
+  #en: are_you_sure: Are you sure?
+  are_you_sure: Você tem certeza?
+  #en: are_you_sure_you_want_to_delete_this_page: "Are you sure you want to delete this page?"
+  are_you_sure_you_want_to_delete_this_page: "Você tem certeza que deseja deletar esta página"
+  #en: are_you_sure_you_want_to_delete_this_photo: "Are you sure you want to delete this photo?"
+  are_you_sure_you_want_to_delete_this_photo: "Você tem certeza que deseja deletar essa foto?"
+  #en: are_you_sure_you_want_to_delete_this_post: "Are you sure you want to delete this post?"
+  are_you_sure_you_want_to_delete_this_post: "Tem certeza que deseja remover esse post?"
+  #en: are_you_sure_you_want_to_permanently_delete_this_comment: "Are you sure you want to permanently delete this comment?"
+  are_you_sure_you_want_to_permanently_delete_this_comment: "Você tem certeza que deseja remover esse comentário"
+  #en: are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
+  are_you_sure_you_want_to_permanently_delete_this_user: Você tem certeza que deseja remover este usuário permanentemente?
+  #en: are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam: Are you sure you want to permanently delete this user and mark it as spam!?
+  are_you_sure_you_want_to_permanently_delete_this_user_and_mark_as_spam: Você tem certeza que deseja remover este usuário permanentemente e marcar isso como spam?
+  #en: assume_id: Assume ID
+  assume_id: Assume ID
+  #en: assume_user_id: "Assume this user's ID"
+  assume_user_id: "Assume this user's ID"
+  #en: assign_role: Assign role
+  assign_role: Atribuir papel
+  #en: attendees: Attendees
+  attendees: Os participantes
+  #en: audience: Audience
+  audience: Público
+  #en: author: Author
+  author: Autor
+  #en: back: Back
+  back: Voltar
+  #en: back_to_all_users: Back to all users
+  back_to_all_users: Voltar para todos os usuários
+  #en: back_to_my_photos: Back to my photos
+  back_to_my_photos: Voltar para minhas fotos
+  #en: back_to_all_statistics: Back to all statistics
+  back_to_all_statistics: Voltar para todas as estatísticas
+  #en: banner_subtitle_required: "Banner subtitle (required):"
+  banner_subtitle_required: "Legenda do Banner (Obrigatório)"
+  #en: banner_title_required: "Banner title (required):"
+  banner_title_required: "Título do Banner (Obrigatório):"
+  #en: begin: begin
+  begin: início
+  #en: begin_required: begin (required)
+  begin_required: início (obrigatório)
+  #en: bigger_font_size_more_popular_tag: "Bigger font size = more popular tag"
+  bigger_font_size_more_popular_tag: "Tamanho de fonte maior = tag mais populares"
+  #en: birthday: Birthday
+  birthday: "Data de Nascimento"
+  #en: birthday_gender: Birthday & Gender
+  birthday_gender: "Aniversário & Gênero"
+  #en: blog: Blog
+  blog: Blog
+  #en: body_text: Body Text
+  body_text: Conteúdo
+  #en: body_text_reqiured: Body Text (required)
+  body_text_required: Conteúdo (obrigatório)
+  #en: bookmarklet: bookmarklet
+  bookmarklet: bookmarklet
+  #en: browse_all_members: browse all members
+  browse_all_members: Veja todos os membros
+  #en: browse_content_by_tags: Browse content by tags
+  browse_content_by_tags: Procurar conteúdos por tags
+  #en: by: by %{login}
+  by: "por %{login}"
+  #en: by_looking_at_the: by looking at the
+  by_looking_at_the: by looking at the
+  #en: cache_cleared: The cache was cleared
+  cache_cleared: O cache foi limpo
+  #en: cache_clear_link: Clear the cache
+  cache_clear_link: Limpar o cache
+  #en: cancel: Cancel
+  cancel: Cancelar
+  #en: cancel_and_go_back_to: cancel and go back to
+  cancel_and_go_back_to: Cancelar e voltar ao
+  #en: cancel_and_go_back_to_all_features: cancel and go back to all features
+  cancel_and_go_back_to_all_features: cancelar e voltar para todos os recursos
+  #en: cancel_and_go_back_to_my_clippings: cancel and go back to my clippings
+  cancel_and_go_back_to_my_clippings: cancelar e voltar para meus recortes
+  #en: cancel_and_go_back_to_my_photos: cancel and go back to my photos
+  cancel_and_go_back_to_my_photos: cancelar e voltar para minhas fotos
+  #en: cancel_and_go_back_to_my_posts: cancel and go back to my posts
+  cancel_and_go_back_to_my_posts: cancelar e voltar para meus posts
+  #en: cancel_and_go_back_to_pages: cancel and go back to pages
+  cancel_and_go_back_to_pages: cancelar e voltar para páginas
+  #en: cannot_rsvp_for_an_event_that_has_already_happened: Cannot RSVP for an event that has already happened.
+  cannot_rsvp_for_an_event_that_has_already_happened: Impossível confirmar presença em um evento que já aconteceu.
+  #en: categories: Categories
+  categories: Categorias
+  #en: category: Category
+  category: Categoria
+  #en: category_was_successfully_created: Category was successfully created.
+  category_was_successfully_created: Categoria criada com sucesso.
+  #en: check_out_this_story_on: Check out this story on %{site}
+  check_out_this_story_on: Confira essa história em %{site}
+  #en: choices: Choices
+  choices: Escolhas
+  #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
+  choose_a_photo_for_your_profile: "Escolha uma foto para o seu perfil:"
+  #en: choose_a_photo_to_upload: "Choose a photo to upload:"
+  choose_a_photo_to_upload: "Escolha uma foto para o upload:"
+  #en: choose_your_location: Choose your location
+  choose_your_location: Escolha sua localização
+  #en: click_here: click here
+  click_here: clique aqui
+  #en: click_here_to_retrieve_it: Click here to retrieve it
+  click_here_to_retrieve_it: Clique aqui para recuperar
+  #en: click_here_to_sign_up: Click here to sign up
+  click_here_to_sign_up: Clique aqui para se escrever
+  #en: click_here_to_sign_up_for_an_account_and_enter: Click here to sign up for an account and enter
+  click_here_to_sign_up_for_an_account_and_enter: Clique aqui para se escrever em uma conta e entrar
+  #en: click_here_to_upload_one: Click here to upload one!
+  click_here_to_upload_one: Clique aqui para enviar uma
+  #en: click_here_to_view_as_a_list: Click here to view as a list
+  click_here_to_view_as_a_list: Clique aqui para ver a lista
+  #en: click_on_an_image_below_to_clip_it: Click on an image below to clip it
+  click_on_an_image_below_to_clip_it: Clique na imagem abaixo para prendê-lo
+  #en: click_the_activation_link_in_the_e_mail_to_log_in: Click the activation link in the e-mail to log in.
+  click_the_activation_link_in_the_e_mail_to_log_in: Clique no link de ativação do email para logar
+  #en: click_to_accept_it: Click to accept it!
+  click_to_accept_it: clique para aceitar isso!
+  #en: clipping_comments: Clipping Comments
+  clipping_comments: Clipping Comentários
+  #en: clipping_from_user: Clipping from %{user}
+  clipping_from_user: "Clipping de %{user}"
+  #en: clipping_was_successfully_created: Clipping was successfully created.
+  clipping_was_successfully_created: Clipping foi criado com sucesso.
+  #en: clippings: Clippings
+  clippings: Clippings
+  #en: clippings_are_a_way_to_save_images_you_like_from_around_the_web: Clippings are a way to save images you like from around the Web
+  clippings_are_a_way_to_save_images_you_like_from_around_the_web: Clippings é uma maneira de salvar imagens que você goste da web.
+  #en: clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
+  clippings_let_you_to_save_cool_images_from_around_the_web: Clippings permite que você salve imagens legais da internet.
+  #en: clone: Clone
+  clone: Clone
+  #en: clippings_tagged: Clippings tagged
+  clippings_tagged: "Clippings tagged"
+  #en: close_this_message: Close this message
+  close_this_message: Fechar essa mensagem
+  #en: comma_separated: (comma separated)
+  comma_separated: (separado por vírgula)
+  #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.
+  comma_separated_keywords_that_describe_you: Palavras que descrevem você, separadas por vírgula.
+  #en: commentable_type: "Commentable Type (Post, User, etc.)"
+  commentable_type: "Commentable Type (Post, User, etc.)"
+  #en: commentable_id: "Commentable ID"
+  commentable_id: "Commentable ID"
+  #en: comment_character_limit: (2000 character limit)
+  comment_character_limit: (Limite de 2000 caracteres)
+  #en: comment_could_not_be_deleted: Comment could not be deleted.
+  comment_could_not_be_deleted: "Comentário não pode ser removido"
+  #en: comment_notifications_off: Comment notifications are currently off
+  comment_notifications_off: "Notificações de comentários estão atualmente desligadas"
+  #en: comment_save_error: Your comment couldn't be saved.
+  comment_save_error: "Seu comentário não pode ser salvo: %{error}"
+  #en: comment_was_successfully_created: Comment was successfully created.
+  comment_was_successfully_created: "Comentário criado com sucesso."
+  #en: comment_author_email_required: Required, won't be shown on the site.
+  comment_author_email_required: "Requerido, não será exibido no site"
+  #en: comment_web_site_label: "Web site (include http://)"
+  comment_web_site_label: "Website (Incluir http://)"
+  #en: comment_spam_error: "Comment was flagged as spam. Please make sure you aren't including any spammy words or links and try again."
+  comment_spam_error: "Comentário foi marcado como spam. Certifique-se de você não incluir palavras ou links de spam e tente novamente"
+  #en: comments: Comments
+  comments: Comentários
+  #en: comments_count: %{count} comments
+  comments_count:
+    one: Um comentário
+    other: "%{count} comentários"
+  #en: comments_deleted: Comments deleted
+  comments_deleted: "Comentários removidos"
+  #en: comments_rss: Comments RSS
+  comments_rss: "Comentários RSS"
+  #en: community_tagline: CommunityEngine Rocks!
+  community_tagline: Ghender - Sua nova Experiência Social
+  #en: comment_unsubscribe_succeeded: Thanks, you have been unsubscribed from notifications on this comment.
+  comment_unsubscribe_succeeded: "Obrigado, você desbailitou as notificações para este comentário"
+  #en: compose: Compose
+  compose: "Escrever"
+  #en: compose_message: Compose message
+  compose_message: "Escrever mensagem"
+  #en: confirm_password: Confirm Password
+  confirm_password: "Confirmação de Senha"
+  #en: country: Country
+  country: "País"
+  #en: create: Create
+  create: "Criar"
+  #en: create_an_account: Create an account
+  create_an_account: "Criar uma conta"
+  #en: create_a_clipping: Create a clipping
+  create_a_clipping: "Criar um clipping"
+  #en: create_a_post: Create a post
+  create_a_post: "Criar um post"
+  #en: create_new_forum: Create new forum
+  create_new_forum: Criar um novo Fórum
+  #en: create_your_account: Create Your Account
+  create_your_account: Criar sua conta
+  #en: created_at: Created at
+  created_at: Criado em
+  #en: custom_friendly_local: custom, friendly, local
+  custom_friendly_local: "personalizado, amigável, local"
+  #en: dashboard: Dashboard
+  dashboard: Dashboard
+  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on %{site} here
+  dashboard_friends: "Uma vez que você comece a adicionar amigos, você poderá monitorar sua atividade no %{site} aqui"
+  #en: date: Date
+  date_title: "Data"
+  #en: date_created: Date Created
+  date_created: "Data de criação"
+  #en: date_published: Date Published
+  date_published: "Data de publicação"
+  #en: days_ago: %{count} days ago
+  days_ago:
+    one: "um dia atrás"
+    other: "%{count} dias atrás"
+  #en: deactivate_link: Click here to deactivate your account
+  deactivate_link: "Clique aqui para desativar sua conta"
+  #en: deactivate_tip: Deactivating your account will remove your profile from the site.
+  deactivate_tip: "Ao desativar sua conta, o seu perfil no site será removido"
+  #en: deactivate_confirmation: Are you sure you want to deactivate your account?
+  deactivate_confirmation: "Você tem certeza que deseja desativar sua conta?"
+  #en: deactivate_completed: Thanks. Your account has been deactivated and you have been logged out.
+  deactivate_completed: "Obrigado. Sua conta foi desativada e você foi deslogado."
+  #en: delete: Delete
+  delete: "Deletar"
+  #en: delete_selected: Delete selected
+  delete_selected: "Deletar selecionados"
+  #en: delete_selected_mark_as_spam: Delete selected and mark spam
+  delete_selected_mark_as_spam: "Marque como spam"
+  #en: delete_this_event: Delete this event
+  delete_this_event: "Deletar este evento"
+  #en: delete_this_forum: Delete this forum
+  delete_this_forum: "Deletar este forum"
+  #en: delete_this_photo: Delete this photo
+  delete_this_photo: "Deletar esta foto"
+  #en: delete_this_page: Delete this page
+  delete_this_page: "deletar esta página"
+  #en: delete_this_post: Delete this post?
+  delete_this_post: "Deletar este post?"
+  #en: delete_this_topic_forever: Delete this topic forever?
+  delete_this_topic_forever: "Deletar este post permanentemente?"
+  #en: delete_this_user: Delete this user
+  delete_this_user: "Deletar este usuário"
+  #en: deny: Deny
+  deny: "Recuzar"
+  #en: denied: denied
+  denied: "recuzado"
+  #en: denied_friendships: Denied Friendships
+  denied_friendships: "Amizades recuzadas"
+  #en: description: Description
+  description: "Descrição"
+  #en: destroy: Destroy
+  destroy: "Destruir"
+  #en: dont_have_an_account: Don't have an account?
+  dont_have_an_account: "Não tem uma conta?"
+  #en: dont_wait_its: Don't wait! It's
+  dont_wait_its: Don't wait! It's
+  #en: draft: draft
+  draft: rascunho
+  #en: drag_the_bookmarklet: Drag the %{site}-It! bookmarklet to your bookmarks toolbar.
+  drag_the_bookmarklet: "Coloque o %{site} na sua barra de favoritos."
+  #en: drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
+  drag_this_to_your_bookmarks_toolbar: "Arraste para sua barra de favoritos"
+  #en: e_mail: E-mail
+  e_mail: E-mail
+  #en: e_mail_address: E-mail address
+  e_mail_address: Endereço de E-mail
+  #en: e_mail_notification: E-mail Notification
+  e_mail_notification: E-mail Notification
+  #en: edit: Edit
+  edit: Editar
+  #en: edit_account: Edit account
+  edit_account: "Editar conta"
+  #en: edit_event: Edit event
+  edit_event: "Editar evento"
+  #en: edit_forum: Edit forum
+  edit_forum: "Editar forum"
+  #en: edit_page: Edit page
+  edit_page: "Editar página"
+  #en: edit_post: Edit post
+  edit_post: "Editar post"
+  #en: edit_profile: Edit profile
+  edit_profile: "Editar perfil"
+  #en: edit_rsvp_for: Edit RSVP for
+  edit_rsvp_for: "Editar RSPV para"
+  #en: edit_this_event: Edit this event
+  edit_this_event: "Edite este evento"
+  #en: edit_this_photo_details: Edit this photo's details
+  edit_this_photo_details: "Edite os detalahes dessa foto"
+  #en: edit_topic: Edit topic
+  edit_topic: "Editar tópico"
+  #en: edit_your_account_settings_instead: "Edit your account settings instead?"
+  edit_your_account_settings_instead: "Editar suas configurações de conta em vez disso?"
+  #en: edit_your_user_profile: Edit your user profile?
+  edit_your_user_profile: "Editar seu perfil de usuário"
+  #en: editing_ad: Editing ad
+  editing_ad: "Editing ad"
+  #en: editing_category: Editing category
+  editing_category: "Editando categoria"
+  #en: editing_clipping: Editing clipping
+  editing_clipping: "Editando clipping"
+  #en: editing_homepage_feature: Editing homepage feature
+  editing_homepage_feature: "Editando recursos da home"
+  #en: editing_metro_area: Editing Metro Area
+  editing_metro_area: "Editing Metro Area"
+  #en: editing_photo: Editing photo
+  editing_photo: "Editando foto"
+  #en: editing_post: Editing post
+  editing_post: "Editar Post"
+  #en: editing_tag: Editing tag
+  editing_tag: "Editar Tag"
+  #en: email: Email
+  email: "E-mail"
+  #en: email_addresses: Email Addresses
+  email_addresses: "Endereços de E-mail"
+  #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at %{email}
+  email_signup_thanks: "Obrigado por se cadastrar, em breve voce receberá um e-mail de confirmação em %{email}"
+  #en: email_this_story_to_friends: "E-mail this story to friends"
+  email_this_story_to_friends: "Enviar essa história para e-mail de amigos"
+  #en: email_to_friends: E-mail to friends
+  email_to_friends: "Enviar por email"
+  #en: end: end
+  end: fim
+  #en: end_date: End date
+  end_date: Data Final
+  #en: end_required: end (required)
+  end_required: fim (obrigatório)
+  #en: end_time: End time
+  end_time: Fim de tempo
+  #en: enter_a_message: Enter a message
+  enter_a_message: Insira uma mensagem
+  #en: enter_e_mail_addresses: Enter e-mail addresses
+  enter_e_mail_addresses: Insira o endereço de e-mail
+  #en: enter_e_mail_addresses_comma_sep: Enter e-mail addresses (comma-separated)
+  enter_e_mail_addresses_comma_sep: Informe os endereços de e-mail (Separados por vírgula)
+  #en: enter_your_email_address: "Enter your email address"
+  enter_your_email_address: "Insira seu endereço de E-mail"
+  #en: error: Error!
+  error: Erro!
+  #en: estimated_total_for_this_month: Estimated total for this month
+  estimated_total_for_this_month: "Total estimado para este mês"
+  #en: estimated_writers_costs_this_month: "Estimated writers' costs this month"
+  estimated_writers_costs_this_month: "Estimated writers' costs this month"
+  #en: event_details: Event Details
+  event_details: "Detalhes do evento"
+  #en: event_comments: Event Comments
+  event_comments: "Comentários do evento"
+  #en: event_does_not_allow_rsvp: This event does not allow RSVPs.
+  event_does_not_allow_rsvp: "Este evento não permite RSVPs."
+  #en: event_was_successfully_created: Event was successfully created.
+  event_was_successfully_created: "Evento criado com sucesso"
+  #en: events: Events
+  events: "Eventos"
+  #en: every_person_has_something_to_say: Every single person has something to say, something to give, something that will help someone else.  Join in!
+  every_person_has_something_to_say: "Cada pessoa tem algo a dizer, algo para dar, algo que vai ajudar alguém. Junte-se!"
+  #en: expert_in: expert in
+  expert_in: "especialista em"
+  #en: explore_site: Explore %{site}
+  explore_site: "Explore %{site}"
+  #en: failed: failed
+  failed: "falhou"
+  #en: favorited: favorited
+  favorited: "favoritado"
+  #en: favorites: Favorites
+  favorites: "Favoritos"
+  #en: favorite_this: Favorite this
+  favorite_this: "Favorite isso"
+  #en: featured_posts: Featured posts
+  featured_posts: "Posts em destaque"
+  #en: featured_writer: Featured writer
+  featured_writer: "Escritor em destaque"
+  #en: featured_writers: Featured writers
+  featured_writers: "Escritores em destaque"
+  #en: features: Features
+  features: "Características"
+  #en: feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
+  feel_free_to_embed_images_or_videos: "Sinta-se livre para adicionar imagens ou vídeos"
+  #en: female: Female
+  female: "Feminino"
+  #en: filename: Filename
+  filename: "Nome do arquivo"
+  #en: find_an_expert: Find an Expert
+  find_an_expert: "Encontre um especialista"
+  #en: find_an_expert_in: Find an Expert in
+  find_an_expert_in: "Encontre um especialista em"
+  #en: find_experts: Find experts
+  find_experts: "Encontre especialistas"
+  #en: find_out_where_to_be_and_when_to_be_there: Find out where to be, and when to be there.
+  find_out_where_to_be_and_when_to_be_there: "Find out where to be, and when to be there."
+  #en: for_more_information_on_tags_check_out_the: For more information on tags check out the
+  for_more_information_on_tags_check_out_the: For more information on tags check out the
+  #en: forgot_your_password: Forgot your password?
+  forgot_your_password: "Esqueceu sua senha?"
+  #en: forgot_your_username: Forgot your username?
+  forgot_your_username: "Esqueceu seu nome de usuário?"
+  #en: forum: Forum
+  forum: Fórum
+  #en: forums: Forums
+  forums: Forums
+  #en: post_found: %{count} posts found
+  post_found:
+    one: "1 post encontrado"
+    other: "%{count} Posts encontrados"
+  #en: frequency: Frequency
+  frequency: "Frequência"
+  #en: frequent_asked_questions: Frequent Asked Questions
+  frequent_asked_questions: "Perguntas Frequantes"
+  #en: frequently_asked_questions: Frequently Asked Questions
+  frequently_asked_questions: "Perguntas frequentes"
+  #en: friend: friend
+  friend: amigo
+  #en: friends: Friends
+  friends: Amigos
+  #en: friendship_could_not_be_created: Friendship could not be created
+  friendship_could_not_be_created: "Amizade não pode ser criada"
+  #en: friendship_request_accepted: Friendship request accepted!
+  friendship_request_accepted: "Solicitação de amizade aceito!"
+  #en: friendship_request_detail: Friendship request detail
+  friendship_request_detail: "Detalhes do solicitação de amizade"
+  #en: friendship_requested: Requested friendship with %{friend}.
+  friendship_requested: "Solicitada amizade com %{friend}"
+  #en: from: From
+  from: "De"
+  #en: from2: From
+  from2: "De"
+  #en: gender: Gender
+  gender: "Gênero"
+  #en: get_help_from_someone_who_knows: Get help from someone who knows
+  get_help_from_someone_who_knows: "Obtenha ajuda de alguém que sabe"
+  #en: get_popular: Get popular.
+  get_popular: "Seja popular"
+  #en: get_started: "Get started:"
+  get_started: "Começar:"
+  #en: get_started_banner: Get started with <a href="/">%{site}</a> today!
+  get_started_banner: "Comece com <a href='/'>%{site}</a> hoje!"
+  #en: invite_some_friends: "Invite some friends!"
+  invite_some_friends: "Convide alguns amigos"
+  #en: tell_us_about_yourself: "Tell us about yourself"
+  tell_us_about_yourself: "Conte-nos sobre você"
+  #en: upload_a_profile_photo: "Upload a profile photo"
+  upload_a_profile_photo: "Enviar uma foto de perfil."
+  #en: go: Go
+  go: "Ir"
+  #en: go_check_your_e_mail: Go check your e-mail!
+  go_check_your_e_mail: "Cheque seu e-mail"
+  #en: go_to_the_forums: go to the forums
+  go_to_the_forums: "Ir para os forunms"
+  #en: go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
+  go_to_your_clippings_page_to_get_started: "Vá para sua página de clippings para começar"
+  #en: go_to_your_profile: Go to your profile
+  go_to_your_profile: "Vá para o seu perfil"
+  #en: has_commented_on_something_that_you_also_commented_on: %{user} has commented on a %{item} that you also commented on.
+  has_commented_on_something_that_you_also_commented_on: "%{user} comentou em um %{item} que você também comentou."
+  #en: has_posted_in_a_thread_you_are_monitoring: %{user} has posted in a thread you are monitoring.
+  has_posted_in_a_thread_you_are_monitoring: "%{user} postou em uma thread que você está monitorando."
+  #en: has_something_to_say_to_you_on: %{user} has something to say to you on %{site}!
+  has_something_to_say_to_you_on: "%{user} tem algo a lhe dizer em %{site}!"
+  #en: have_an_account: "Have an account? "
+  have_an_account: "Tem uma conta? "
+  #en: have_something_to_contribute: Have something to contribute?
+  have_something_to_contribute: "Tem algo a contribuir?"
+  #en: his: his
+  his: "dele"
+  #en: her: her
+  her: "dela"
+  #en: help: Help
+  help: Ajuda
+  #en: home: Home
+  home: Home
+  #en: homepage_banner_download_msg: Download it now and get started
+  homepage_banner_download_msg: "Bixe agora e comece"
+  #en: homepage_banner_msg: CommunityEngine is the best way to go from zero to hero in no time
+  homepage_banner_msg: "Ghender - Sua nova experiência social"
+  #en: homepage_banner_signup_prompt: See how it works
+  homepage_banner_signup_prompt: "Veja como funciona"
+  #en: homepage_features: Homepage Features
+  homepage_features: "Veja como funciona"
+  #en: homepage_feature_created: Homepage feature created
+  homepage_feature_created: "Recurso Homepage criado"
+  #en: hours_ago: %{count} hours ago
+  hours_ago:
+    one: "uma hora atrás"
+    other: "%{count} horas atrás"
+  #en: how_do_i_do_that: How do I do that?
+  how_do_i_do_that: "Como faço isso?"
+  #en: html: HTML
+  html: HTML
+  #en: image: Image
+  image: Imagem
+  #en: image_url: Image URL
+  image_url: "URL da Imagem"
+  #en: in_the_forums: In the forums
+  in_the_forums: "Nos forumns"
+  #en: in_your_favorites: In your favorites
+  in_your_favorites: "Nos seus favoritos"
+  #en: inactive: inactive
+  inactive: "inativo"
+  #en: inbox: Inbox
+  inbox: Inbox
+  #en: insert: Insert
+  insert: "Inserir"
+  #en: invite_a_friend: Invite a friend
+  invite_a_friend: "Convidar um amigo"
+  #en: invitation_was_successfully_created: Invitation was successfully created.
+  invitation_was_successfully_created: "Convite criado com sucesso"
+  #en: invite_message: The more people you invite the better %{site} becomes.
+  invite_message: "Quanto mais pessoas você convida, melhor fica o %{site}."
+  #en: invite_some_customers: Invite some customers!
+  invite_some_customers: "Convite alguns clientes"
+  #en: invite_your_friends_to_join: Invite Your Friends To Join!
+  invite_your_friends_to_join: "Convide seus amigos para participar!"
+  #en: invited_friends: invited some friends to join!
+  invited_friends: "Convidou alguns amigos para participar"
+  #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
+  is_great_check_it_out_youll_love_it: "É ótimo, experimente, você vai adorar!"
+  #en: items: Items
+  items: Items
+  #en: items_tagged: Items tagged
+  items_tagged: "Items tagged"
+  #en: joined: joined
+  joined: "ingressou"
+  #en: joined_the_site: joined %{site}
+  joined_the_site: ingressou %{site}
+  #en: just_uploading_one_photo: Just uploading one photo?
+  just_uploading_one_photo: "Apenas enviando um foto?"
+  #en: keywords: Keywords
+  keywords: Keywords
+  #en: large: Large
+  large: "Grande"
+  #en: last: last
+  last: "Último"
+  #en: last_post: Last post
+  last_post: "Último Post"
+  #en: left_a_comment: "left a comment:"
+  left_a_comment: "Deixe um comentário:"
+  #en: links: Links
+  links: Links
+  #en: listing_invitations: Listing invitations
+  listing_invitations: "Listagem de Convites"
+  #en: loading_images: Loading images
+  loading_images: "Carregando imagens"
+  #en: loading_recent_content: Loading recent content...
+  loading_recent_content: "Carregando conteúdo recente"
+  #en: location: Location
+  location: "Localização"
+  #en: log_in: Log in
+  log_in: "Entrar"
+  #en: log_in_to_create_a_new_topic: Log in to create a new topic
+  log_in_to_create_a_new_topic: "Faça login para criar um novo tópico"
+  #en: log_in_to_leave_a_comment: Log in to leave a comment
+  log_in_to_leave_a_comment: Efetue login para deixar um comentário.
+  #en: log_in_to_reply_to_this_topic: Log in to reply to this topic
+  log_in_to_reply_to_this_topic: "Faça login para responder à este tópico"
+  #en: log_in_to_site: Log in to %{site}
+  log_in_to_site: "Faça login em %{site}"
+  #en: log_in_to_vote: Log in to vote
+  log_in_to_vote: "Faça login para votar"
+  #en: log_in_to_your: Log in to your
+  log_in_to_your: "Entre na sua"
+  #en: log_out: Log Out
+  log_out: "Logout"
+  #en: log_out_of_your: Log out of your
+  log_out_of_your: "Deslogar da sua conta"
+  #en: logged_in: "Logged in:"
+  logged_in: "Logado:"
+  #en: logged_into_the_site: logged into the site
+  logged_into_the_site: "Logado(a) no site"
+  #en: login: Login
+  login: "Login"
+  #en: logins: Logins
+  logins: "Logins"
+  #en: location: Location
+  location: "Localização"
+  #en: locked: Locked
+  locked: "Trancado"
+  #en: locked2: (locked)
+  locked2: "(trancado)"
+  #en: look_for_a_message_from: "Look for a message from: %{from}"
+  look_for_a_message_from: "Procure por uma mensagem de: %{from}"
+  #en: looking_for_most_x: Looking for %{link}
+  looking_for_most_x: "buscando por %{link}"
+  #en: most_recent: most recent
+  most_recent: "Mais recentes"
+  #en: most_popular: most popular
+  most_popular: "Mais populares"
+  #en: make_moderator: Make moderator
+  make_moderator: "Make moderator"
+  #en: make_page_public: Make this page public
+  make_page_public: "Tornar essa página pública"
+  #en: make_my_profile_public: Make my profile public
+  make_my_profile_public: "Tornar meu perfil público"
+  #en: make_this_my_profile_photo: Make this my profile photo
+  make_this_my_profile_photo: "Fazer deste minha foto de perfil"
+  #en: male: Male
+  male: Masculino
+  #en: manage: "Manage"
+  manage: "Gerenciar"
+  #en: manage_pages: Manage Pages
+  manage_pages: "Gerenciar Páginas"
+  #en: manage_posts: Manage Posts
+  manage_posts: "Gerenciar Posts"
+  #en: medium: Medium
+  #en: map_it: Map It!
+  map_it: "Mapeá-lo"
+  medium: "Médio"
+  #en: megabyte_upload_limit: %{count} megabytes upload limit
+  megabyte_upload_limit:
+    one: "Limite de upload de um megabyte."
+    other: "limite de uploud de %{count} megabytes."
+  #en: megabyte_upload_limit_per_file: %{count} megabytes upload limit per file.
+  megabyte_upload_limit_per_file:
+    one: "Limite de um megabyte por arquivo."
+    other: "Limite de %{count} megabytes por arquivo."
+  #en: member: Member
+  member: "Membro"
+  #en: members: Members
+  members: "Membros"
+  #en: member_since: Member since
+  member_since: "Membro desde"
+  #en: message: Message
+  message: "Mensagem"
+  #en: messages_deleted: Messages deleted
+  messages_deleted: "Messagens removidas"
+  #en: messages_sent: Messages sent!
+  messages_sent: "Mensagens enviada"
+  #en: message_sent: Message sent!
+  message_sent: "Mensagem enviada!"
+  #en: read: read
+  read: "ler"
+  #en: unread: unread
+  unread: "não lida"
+  #en: unread_messages: %{count} unread messages
+  unread_messages:
+    one: "Uma mensagem não lida"
+    other: "%{count} mensagens não lidas"
+  #en: metro_area: Metro Area
+  metro_area: "Região Metropolitana"
+  #en: metro_areas: Metro Areas
+  metro_areas: "Regiões Metropolitanas"
+  #en: metro_area_was_successfully_created: MetroArea was successfully created.
+  metro_area_was_successfully_created: "MetroArea foi criada com sucesso."
+  #en: minutes_ago: %{count} minutes ago
+  minutes_ago:
+    one: "um minuto atrás"
+    other: "%{count} minutos atrás."
+  #en: moderator: Moderator
+  moderator: "Moderador"
+  #en: moderators: Moderators
+  moderators: Moderadores
+  #en: monitored_topics: Monitored Topics
+  monitored_topics: "Tópicos monitorados"
+  #en: month: Month
+  month: Mês
+  #en: more: More
+  more: mais
+  #en: most_active_1_month: Most active (1 month)
+  most_active_1_month: "Mais ativo (1 mês)"
+  #en: my_account: My Account
+  my_account: "MInha conta"
+  #en: my_blog: My Blog
+  my_blog: "Meu Blog"
+  #en: my_blog_posts: My Blog Posts
+  my_blog_posts: "Minhas postagens do Blog"
+  #en: my_clippings: My Clippings
+  my_clippings: "Meus Clippings"
+  #en: my_details: My Details
+  my_details: "Meus detalhes"
+  #en: my_friends: My Friends
+  my_friends: "Meus Amigos"
+  #en: my_photos: My Photos
+  my_photos: "Minhas Fotos"
+  #en: my_profile: My Profile
+  my_profile: "Meu Perfil"
+  #en: my_recent_comments: My recent comments
+  my_recent_comments: "Meus comentários recentes"
+  #en: my_tags: My tags
+  my_tags: "Minhas tags"
+  #en: name: Name
+  name: "Nome"
+  #en: navigation_menu_text: Navigation menu text
+  navigation_menu_text: "Texto do menu de navegação"
+  #en: need_some_help_contact_our: Need some help?  Check out our
+  need_some_help_contact_our: "Precisa de ajuda? confira nosso"
+  #en: need_to_contact_us: Need to contact us?
+  need_to_contact_us: "Precisa nos contactar?"
+  #en: new: New1
+  new: Novo!
+  #en: new_ad: New Ad
+  new_ad: New Ad
+  #en: new_category: New category
+  new_category: "Nova categoria"
+  #en: new_clipping: New clipping
+  new_clipping: "Novo clipping"
+  #en: new_event: New Event
+  new_event: "Novo Evento"
+  #en: new_forum: New Forum
+  new_forum: "Novo Fórum"
+  #en: new_homepage_feature: New Homepage Feature
+  new_homepage_feature: "Características da nova homepage"
+  #en: new_invitation: New Invitation
+  new_invitation: "Novo convite"
+  #en: new_invitation_from: New Invitation from
+  new_invitation_from: "Novo convite de"
+  #en: new_metro_area: New Metro Area
+  new_metro_area: "Nova área metropolitana"
+  #en: new_page: New Page
+  new_page: "Nova página"
+  #en: new_photo: New photo
+  new_photo: "Nova foto"
+  #en: new_photos_multiple_uploader: "New Photos &raquo; Multiple Uploader"
+  new_photos_multiple_uploader: "Novas Fotos &raquo; Multiplo Upload"
+  #en: new_post: New post
+  new_post: "Novo post"
+  #en: new_post_for_category: New %{category}
+  new_post_for_category: "Nova %{category}"
+  #en: new_post_text: New Post text
+  new_post_text: "Novo Post Texto "
+  #en: new_today: New today
+  new_today: "Novo hoje"
+  #en: new_topic: New topic
+  new_topic: "Novo tópico"
+  #en: new_yesterday: New yesterday
+  new_yesterday: "Novo ontem"
+  #en: next: next
+  next: "próximo"
+  #en: no_activation_email: No activation e-mail?
+  no_activation_email: "Não recebeu E-mail de ativação?"
+  #en: no_comments_found_for_that_item: Sorry, we couldn't find any comments for that %{type}
+  no_comments_found: "Desculpe, não encontramos nenhum comentário para %{type}"
+  #en: no_clippings_yet: No clippings saved yet.
+  no_clippings_yet: "Nenhum clippings salvo"
+  #en: no_images_uploaded_yet: No images uploaded yet.
+  no_images_uploaded_yet: "Nenhuma imagem foi enviada ainda"
+  #en: no_messages: no messages
+  no_messages: "sem messages"
+  #en: no_profile_photo: "No profile photo?"
+  no_profile_photo: "Nenhuma foto de perfil"
+  #en: no_recent_activity: No recent activity
+  no_recent_activity: "Nenhuma atividade recente"
+  #en: no_tags: No tags
+  no_tags: "Sem tags"
+  #en: notify_email_updates: Notify of community news
+  notify_email_updates: "Notificar das novidades da comunidade"
+  #en: notify_me_of_follow_ups_via_email: Notify me of follow ups via e-mail
+  notify_me_of_follow_ups_via_email: "Notifique-me de follow ups via E-mail"
+  #en: notify_of_comments: Notify of comments
+  notify_of_comments: "Notificar comentários"
+  #en: notify_of_friend_requests: Notify of friend requests
+  notify_of_friend_requests: "Notificar solicitações de amizade"
+  #en: number_of_attendees: Number of attendees (including you)
+  number_of_attendees: "Número de participantes (Incluindo Você)"
+  #en: of: of
+  of: of
+  #en: on_commentable: On
+  on_commentable: 'On'
+  #en: optional: optional
+  optional: "opcional"
+  #en: optional_keywords_describing_this_clipping_separated_by_commas: optional keywords describing this clipping, separated by commas
+  optional_keywords_describing_this_clipping_separated_by_commas: "Palavras-chave opcionais que descrevem este clipping, separadas por vírgulas."
+  #en: optional_keywords_describing_this_forum_separated_by_commas: optional keywords describing this forum, separated by commas
+  optional_keywords_describing_this_forum_separated_by_commas: "Palavras-chave opcionais que descrevem este fórum, separadas por vírgulas."
+  #en: optional_keywords_describing_this_photo_separated_by_commas: optional keywords describing this photo, separated by commas
+  optional_keywords_describing_this_photo_separated_by_commas: "Palavras-chave opcionais que descrevem essa foto, separadas por vírgulas."
+  #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
+  optional_keywords_describing_this_post_separated_by_commas: "Palavras-chave opcionais que descrevem este post, separadas por vírgulas."
+  #en: optional_keywords_describing_this_topic_separated_by_commas: optional keywords describing this topic, separated by commas
+  optional_keywords_describing_this_topic_separated_by_commas: "Palavras-chave opcionais que descrevem esse tópico, separadas por vírgulas."
+  #en: yes_status: yes
+  yes_status: "sim"
+  #en: no_status: no
+  no_status: "não"
+  #en: or: or
+  or: "ou"
+  #en: page: page
+  page: "página"
+  #en: page_not_found: The page you are trying to view has been moved or no longer exists.
+  page_not_found: "A página que está a tentar ver foi movida ou não existe mais."
+  #en: page_not_public_warning: This page is not public, you'll need to create an account and log in to access it
+  page_not_public_warning: "Essa página não é publica, você deverá criar uma conta e logar poder visualiza-la."
+  #en: page_was_successfully_created: Page was successfully created.
+  page_was_successfully_created: "Página criada com sucesso"
+  #en: page_was_successfully_deleted: Page was successfully deleted.
+  page_was_successfully_deleted: "Página removida com sucesso"
+  #en: page_was_successfully_updated: Page was successfully updated.
+  page_was_successfully_updated: "Página atualizada com sucesso"
+  #en: pages: Pages
+  pages: "Páginas"
+  #en: page_tips: "Pages are a good place to put static content that you would rather not post to the blog or the forums."
+  page_tips: "Páginas são um bom lugar para colocar o conteúdo estático que você preferiria não postar no blog ou fóruns."
+  #en: password: Password
+  password: Senha
+  #en: pending: pending
+  pending: pendente
+  #en: pending_friendships: Pending Friendships
+  pending_friendships: "Amizades pendentes"
+  #en: people: People
+  people: "Pessoas"
+  #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: People who sign up using your invitation will automatically be added as your friends
+  people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends: "Pessoas que se cadastram usando o seu convite serão automáticamente adicionadas como seus amigos."
+  #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
+  people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: "Pessoas que se cadastram usando o seu convite serão automaticamnte adicionadas como seus amigos"
+  #en: permanently_delete_this_clipping: Permanently delete this clipping?
+  permanently_delete_this_clipping: "Remover esse clipping permanentemente?"
+  #en: permanently_delete_this_event: Permanently delete this event?
+  permanently_delete_this_event: "Remover este evento permanentemente?"
+  #en: permanently_delete_this_post: Permanently delete this post?
+  permanently_delete_this_post: "Remover este post permanentemente?"
+  #en: photo_comments: Photo Comments
+  photo_comments: "Comentários na Fotos"
+  #en: photo_description_from_user: "%{photo_description} from %{user}"
+  photo_description_from_user: "%{photo_description} de %{user}"
+  #en: photo_from_user: "Photo from %{user}"
+  photo_from_user: "Foto de %{user}"
+  #en: photo_message: Your profile photo represents you on %{site}. You can change it later.
+  photo_message: "Sua foto de perfil representa você em %{site}. Você poderá altera-la depois."
+  #en: photo_was_successfully_created: Photo was successfully created.
+  photo_was_successfully_created: "Foto criada com sucesso".
+  #en: photos: Photos
+  photos: Fotos
+  #en: plural_photos: %{count} Photos
+  plural_photos:
+    one: 1 Foto
+    other: "%{count} Fotos"
+  #en: photos_should_be_x_pixels: Photos should be 300x200 pixels.
+  photos_should_be_x_pixels: "Fotos devem ter 300x200 pixels."
+  #en: photos_tagged: Photos tagged
+  photos_tagged: "Fotos marcadas"
+  #en: photo_tip_1: Photos show the world your creativity. Pick your best pics, and give them good titles and descriptions.
+  photo_tip_1: "Fotos mostram sua criatividade ao mundo. Escolha suas melhores fotos e dê lhes bons títulos e descrições."
+  #en: photo_tip_2: Use tags to organize your photos. Separate tags with commas.
+  photo_tip_2: "Use tags para organizar suas fotos. Separe tags com vírgula."
+  #en: please_activate_your_new_account: Please activate your new %{site} account
+  please_activate_your_new_account: "Por favor ative sua nova conta %{site}."
+  #en: please_log_in: Please log in.
+  please_log_in: "Por favor entre"
+  #en: please_post_something_at_least: Please post something at least...
+  please_post_something_at_least: "Por favor post algo pelo menos..."
+  #en: plural_posts: "%{count} posts"
+  plural_posts: "%{count} posts"
+  #en: popular: Popular
+  popular: Popular
+  #en: popular_category: Popular %{name}
+  popular_category: "Popular %{name}"
+  #en: popular_posts: Popular Posts
+  popular_posts: Popular Posts
+  #en: popular_posts_on: Popular Posts on
+  popular_posts_on: "Posts Populares"
+  #en: popular_polls: Popular Polls
+  popular_polls: "Pesquisas populares"
+  #en position: Position
+  position: "Posição"
+  #en: post: Post
+  post: Post
+  #en: posts: Posts
+  posts: Posts
+  #en: post_a_new_topic: Post a new topic
+  post_a_new_topic: "Criar um novo tópico"
+  #en: post_an_event: Post an event
+  post_an_event: "Criar um evento"
+  #en: posted_an_event: "posted an event:"
+  posted_an_event: "postu um evento:"
+  #en: upcoming_events: Upcoming Events
+  upcoming_events: "Próximos eventos"
+  #en: past_events: Past Events
+  past_events: "Eventos passados"
+  #en: post_created_for_category: Your '%{category}' post was successfully created.
+  post_created_for_category: "Sua '%{category}' de post foi criada com sucesso"
+  #en: post_comments: Post Comments
+  post_comments: Comentários do Post
+  #en: postal_code: "Postal code:"
+  postal_code: "Código Postal:"
+  #en: posting_tips: "Posting Tips"
+  posting_tips: "Dicas de postagem"
+  #en: post_topic: Post topic
+  post_topic: "Post topic"
+  #en: posts_photos_and_bookmarks: %{name} posts, photos and bookmarks
+  posts_photos_and_bookmarks: "%{name} mensagens, fotos e favoritos"
+  #en: posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts saved with 'draft' status won't appear in your blog until you publish them."
+  posts_saved_with_draft_status_wont_appear_in_your_blog_until_you_publish_them: "Posts salvos como 'rascunho' não aparecerão em seu Blog até que você os publique."
+  post_not_published_yet: "Este post ainda não foi publicado"
+  #en: posts_tagged: Posts tagged
+  posts_tagged: "Posts marcados"
+  #en: pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
+  pages_saved_with_draft_status_wont_appear_on_the_site_until_you_publish_them: Pages saved with 'draft' status won't appear on the site until you publish them.
+  #en: public: Public
+  public: "Público"
+  #en: preview: Preview
+  preview: "Visualizar"
+  #en: previewing_your_post: Previewing your post
+  previewing_your_post: "Previsualizando seu post"
+  #en: previous: previous
+  previous: "anterior"
+  #en: print: Print
+  print: Imprimir
+  #en: print_this_story: "Print this story"
+  print_this_story: "Imprimir essa história"
+  #en: profile: Profile
+  profile: "Perfil"
+  #en: profile_comments: Profile Comments
+  profile_comments: "Comentários do perfil"
+  #en: profile_photo: Profile Photo
+  profile_photo: "Foto de Perfil"
+  #en: profile_photo_change: Change profile photo
+  profile_photo_change: "Mudar a foto de perfil"
+  #en: profile_photo_crop: Crop profile photo
+  profile_photo_crop: "Cortar foto de perfil"
+  #en: profile_privacy: Profile Privacy
+  profile_privacy: "Privacidade do perfil"
+  #en: profile_views: profile views
+  profile_views: "visualizações do perfil"
+  #en: pros: Pros
+  pros: Pros
+  #en: published: Published
+  published: "Publicado"
+  #en: question: Question
+  question: "Questão"
+  #en: re_type_your_password_to_confirm: "Re-type your password to confirm:"
+  re_type_your_password_to_confirm: "Insira novamente sua senha para confirmar:"
+  #en: read_more: read more
+  read_more: leia mais
+  #en: recent: Recent
+  recent: Recente
+  #en: recent_activity: Recent activity
+  recent_activity: Atividade recente
+  #en: recent_blog_posts: Recent Blog Posts
+  recent_blog_posts: Blog Posts Recentes
+  #en: recent_photos: Recent Photos
+  recent_photos: Fotos Recentes
+  #en: recent_posts: Recent Posts
+  recent_posts: Posts Recentes
+  #en: recommended_posts: Recommended Posts
+  recommended_posts: Posts Recomendados
+  #en: related_clippings_all_members: Related Clippings (all members)
+  related_clippings_all_members: "Clippings relacionados (Todos os membros)"
+  #en: related_photos_all_members: Related Photos (all members)
+  related_photos_all_members: "Fotos Relaciondas (Todos os membros)"
+  #en: related_posts: Related Posts
+  related_posts: "Posts Relacionados"
+  #en: related_tags: Related Tags
+  related_tags: "Tags relacionadas"
+  #en: remember_me: Remember me
+  remember_me: Lembre-me
+  #en: remember_you_can_always_change_this_later: Remember, you can always change this later.
+  remember_you_can_always_change_this_later: "Lembre-se, você sempre pode mudar isso mais tarde"
+  #en: remove_moderator: Remove moderator
+  remove_moderator: "Remover moderador"
+  #en: remove_this_friend: Remove this friend
+  remove_this_friend: "Remover este amigo"
+  #en: reply: Reply
+  reply: "Resposta"
+  #en: reply_to_topic: Reply
+  reply_to_topic: "Resposta"
+  #en: request_friendship: Request friendship
+  request_friendship: "Pedido de amizade"
+  #en: requested: requested
+  requested: "solicitado"
+  #en: requested_friendship_with: Requested friendship with
+  requested_friendship_with: "Solicitar amizade com"
+  #en: requesting_friendship: Requesting friendship
+  requesting_friendship: "Solicitando amizade"
+  #en: friendship_request_failed
+  friendship_request_failed: "A solicitação de amizade falhou"
+  #en: required: required
+  required: "obrigatório"
+  #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
+  required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Obrigatório: Enviaremos um e-mail de confirmação para este endereço.)"
+  #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: You must be at least %{min_age} years old to sign up.)"
+  required_you_must_be_at_least_years_old_to_sign_up: "(Obrigatório: Você deve ter pelo menos %{min_age} anos de idade para se cadastrar.)"
+  #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain spaces or special characters.)"
+  required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Obrigatório: Nome de usuário não deve conter espaços ou caracteres especiais.)"
+  #en: resend_my_activation_e_mail: Resend my activation e-mail
+  resend_my_activation_e_mail: "Re-enviar meu email de ativação"
+  #en: resend_your_activation_e_mail: Resend your activation e-mail
+  resend_your_activation_e_mail: "Re-enviar seu email de ativação"
+  #en: reset_my_password: Reset my password
+  reset_my_password: "Resetar minha senha"
+  #en: retract_rsvp: Retract RSVP
+  retract_rsvp: "Recolhimento de RSVP"
+  #en: rss: RSS
+  rss: "RSS"
+  #en: rss_feed: RSS feed
+  rss_feed: "RSS feed"
+  #en: rsvp_for: RSVP for
+  rsvp_for: "RSVP para"
+  #en: rsvped_for_an_event: "RSVPed for an event:"
+  rsvped_for_an_event: "Confirmado para um evento:"
+  #en: rsvp: RSVP
+  rsvp: RSVP
+  #en: rsvps: RSVPs
+  rsvps: RSVPs
+  #en: run: Run
+  run: "Run"
+  #en: save: Save
+  save: "Salvar"
+  #en: save_and_continue_to_step_three: Save, and continue to step three
+  save_and_continue_to_step_three: "Salvar e continuar para o passo três."
+  #en: save_changes: Save Changes
+  save_changes: "Salvar mudanças"
+  #en: save_forum: Save Forum
+  save_forum: "Salvar fórum"
+  #en: save_page_as: "Save page as:"
+  save_page_as: "Salvar página como:"
+  #en: save_post_as: "Save post as:"
+  save_post_as: "Salvar post como:"
+  #en: save_reply: Save reply
+  save_reply: "Salvar resposta"
+  #en: says: says
+  says: "says"
+  #en: sb_post_was_deleted: Post '%{title}' was deleted.
+  sb_post_was_deleted: "Post '%{title}' foi deletado"
+  #en: scrapbook: Scrapbook
+  scrapbook: "Scrapbook"
+  #en: search: Search
+  search: Busca
+  #en: search_users: Search Users
+  search_users: Buscar usuários
+  #en: searching_for: Searching for
+  searching_for: Procurando por
+  #en: see_all: SEE ALL
+  see_all: "VER TUDO"
+  #en: see_all_activity: See all activity
+  see_all_activity: "Ver todas as atividades"
+  #en: see_all_events: See all events
+  see_all_events: "Ver todos os eventos"
+  #en: see_all_recent_posts: See all recent posts
+  see_all_recent_posts: "Veja todos os posts recentes"
+  #en: see_you_back_here_in_a_short_while: See you back here in a short while.
+  see_you_back_here_in_a_short_while: Esperamos vê-lo(a) de volta aqui em breve.
+  #en: select_images_to_upload: Select Images to Upload
+  select_images_to_upload: "Selecione imagens para enviar"
+  #en: select_your_city: Select your city
+  select_your_city: "Selecione sua cidade"
+  #en: send: "Send"
+  send: "Enviar"
+  #en: send_comment_notifications: Send comment notifications?
+  send_comment_notifications: "Enviar notificações de comentários?"
+  #en: send_me_a_message: "Send me a message"
+  send_me_a_message: "Enviar uma mensagem"
+  #en: send_invitations: Send Invitations!
+  send_invitations: "Enviar convites!"
+  #en: send_me_my_username: Send me my username
+  send_me_my_username: "Envie-me meu nome de usuário"
+  #en: send_this_story_to_friends: Send this message to friends
+  send_this_story_to_friends: "Enviar essa mensagem aos amigos"
+  #en: sent_messages: Sent messages
+  sent_messages: "Enviar mensagens"
+  #en: sent_you_a_private_message: %{user} sent you a private message!
+  sent_you_a_private_message: "%{user} te enviou uma mensagem privada!"
+  #en: service_could_not_be_deleted: Service could not be deleted.
+  service_could_not_be_deleted: "Serviço não pode ser deletado"
+  #en: share_the_love: Share the love
+  share_the_love: "Compartilhe o amor"
+  #en: sharethis: ShareThis
+  sharethis: "Compartilhe isso"
+  #en: show: Show
+  show: Mostrar
+  #en: show_category: %{category}
+  show_category: "%{category}"
+  #en: show_this_photo: Show this photo
+  show_this_photo: "Mostrar essa foto"
+  #en: showing: Showing
+  showing: "Mostrando"
+  #en: showing_ad: Showing Ad
+  showing_ad: "Mostrando Ad"
+  #en: showing_categories: Showing categories
+  showing_categories: "Mostrando categorias"
+  #en: showing_metro_area_details: Showing Metro Area Details
+  showing_metro_area_details: "Mostrando detalhes da área metropolitana"
+  #en: showing_users: Showing users
+  showing_users: "Mostrando usuários"
+  #en: sign_up: Sign Up!
+  sign_up: "Cadastrar!"
+  #en: sign_up_for_an_account: Sign up for an account.
+  sign_up_for_an_account: "Registre-se para uma conta"
+  #en: sign_up_for_a_: Sign up for a
+  sign_up_for_a_: "Cadastre-se para"
+  #en: sign_up_reason_1: Some reason to sign up
+  sign_up_reason_1: "Alguma razão para se inscrever"
+  #en: sign_up_reason_2: Some reason to sign up
+  sign_up_reason_2: "Alguma razão para se inscrever"
+  #en: singular_posts: "%{count} post"
+  singular_posts: "%{count} post"
+  #en: site_members: "%{site} members"
+  site_members: "Membros %{site}"
+  #en: skip_this_and_go_to_your_profile: Skip this and go to your profile
+  skip_this_and_go_to_your_profile: "Pular isso e ir para o perfil"
+  #en: skip_this_step: Skip this step
+  skip_this_step: "Pular este passo"
+  #en: small_profile: "%{user} doesn't have much here yet. Stay tuned."
+  small_profile: "%{user} não tem muito aqui ainda. Fique ligado."
+  #en: sorry_there_was_an_error: "Sorry, there was an error."
+  sorry_there_was_an_error: "Desculpe, houve um erro"
+  #en: sorry_there_was_an_error_requesting_friendship: "Sorry, there was an error requesting friendship."
+  sorry_there_was_an_error_requesting_friendship: "Desculpe, houve um erro ao solicitar amizade"
+  #en: sorry_there_was_an_error_uploading_the_photo: "Sorry, there was an error uploading the photo."
+  sorry_there_was_an_error_uploading_the_photo: "Desculpe, houve um erro ao enviar a foto"
+  #en: sorry_we_dont_recognize_that_email_address: "Sorry. That e-mail address is not associated with an active account. Are you sure you typed it correctly? Have you signed up and activated your account?"
+  sorry_we_dont_recognize_that_email_address: "Desculpa. Esse endereço de e-mail não está associado a uma conta ativa. Tem certeza de que digitou corretamente? Você já se inscreveu e ativou sua conta?"
+  #en: spread_the_word: Spread the word
+  spread_the_word: "Espalhe a palavra"
+  #en: start_date: Start date
+  start_date: "Data de Início"
+  #en: start_time: Start time
+  start_time: "Data de término"
+  #en: started_a_topic: "started a topic:"
+  started_a_topic: "começar um tópico:"
+  #en: state: State
+  state: "Estado"
+  #en: statistics: Statistics
+  statistics: "Estatísticas"
+  #en: stats: Stats
+  stats: "Estatísticas"
+  #en: status: Status
+  status: Status
+  #en: sticky: Sticky
+  sticky: Sticky
+  #en: subject: Subject
+  subject: "Assunto"
+  #en: subscribe_to: Subscribe to
+  subscribe_to: "Inscrever-se para"
+  #en: subscribe_events_instructions:  Keep up to date with events using your favorite software (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) or online service (Google Calendar, AirSet, iScrybe, etc.).
+  subscribe_events_instructions:  "Mantenha-se atualizado com eventos usando seu software favorito (Outlook, Lightning / Thunderbird, Sunbird, iCal, etc.) ou serviço on-line (Google Calendar, AirSet, iScribe, etc.)."
+  #en: tag_does_not_exists: The tag %{tag} does not exist
+  tag_does_not_exists: "A tag %{tag} não existe"
+  #en: tag_name: Tag name
+  tag_name: "Nome da tag"
+  #en: tag_yourself: tag yourself
+  tag_yourself: "Marcar-se"
+  #en: tags: Tags
+  tags: Tags
+  #en: taggings: Taggings
+  taggings: Taggings
+  #en: tag_was_successfully_updated: Tag was successfully updated
+  tag_was_successfully_updated: "Tag foi atualizada"
+  #en: tag_was_successfully_deleted: Tag was successfully deleted
+  tag_was_successfully_deleted: "Tag removida com sucesso"
+  #en: tags_are_comma_separated_keywords_that_describe_you: Tags are comma-separated keywords that describe you.
+  tags_are_comma_separated_keywords_that_describe_you: "Tags são palavras chaves, separadas por vírgula, que descrevem você"
+  #en: tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: Tags are keywords you use to organize your clippings. Separate multiple tags with commas.
+  tags_are_keywords_you_use_to_organize_your_clippings_separate_multiple_tags_with_commas: "Tags são palavras-chave que você usa para organizar seus clippings. separe várias tags com vírgulas."
+  #en: tags_are_keywords_you_use_to_organize_your_photos: Tags are keywords you use to organize your photos. Separate multiple tags with commas.
+  tags_are_keywords_you_use_to_organize_your_photos: "Tags são palavras-chave que você usa para organizar suas fotos. Separe várias tags com vírgulas."
+  #en: tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: Tags are one-word descriptors users assign to blog posts, pictures and clippings on
+  tags_are_one_word_descriptors_users_assign_to_blog_posts_pictures_and_clippings_on: "Tags são descriçõs de uma palavra que podem ser atribuidas à posts de blog, fotos, clippings, etc."
+  #en: tagged: tagged
+  tagged: "marcado"
+  #en: tags_page: tags page
+  tags_page: "tags da página"
+  #en: thanks_for_activating_your_account: Thanks for activating your account!
+  thanks_for_activating_your_account: "Obrigado por ativar sua conta"
+  #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
+  thanks_youre_now_logged_in: "Obrigado! você está logado agora."
+  #en: the_comment_was_deleted: The comment was deleted.
+  the_comment_was_deleted: "O comentário foi removido"
+  #en: the_community_team: "The %{community} team"
+  the_community_team: "Equipe %{community}"
+  #en: the_friendship_was_accepted: The friendship was accepted.
+  the_friendship_was_accepted: "Pedido de amizade aceito"
+  #en: the_friendship_was_denied: The friendship was denied.
+  the_friendship_was_denied: "Pedido de amizade recusado"
+  #en: the_more_people_you_invite_the_better: The more people you invite, the better
+  the_more_people_you_invite_the_better: "Quanto mais pessoas voce convida, melhor."
+  #en: the_selected_users_were_deleted: The selected users were deleted.
+  the_selected_users_were_deleted: "Usuários seleciondados foram removidos"
+  #en: the_service_was_deleted: The service was deleted.
+  the_service_was_deleted: "O serviço foi removido"
+  #en: the_slideshow_is_disabled: The slideshow is disabled.
+  the_slideshow_is_disabled: "A apresentação de slides está desativada"
+  #en: the_team: The %{site} Team <%{email}>
+  the_team: "Equipe %{site} < %{email} >"
+  #en: the_user_was_activated: The user was activated
+  the_user_was_activated: "O usuário foi ativado"
+  #en: the_user_was_deactivated: The user was deactivated
+  the_user_was_deactivated: "O usuário foi desativado"
+  #en: the_user_was_deleted: The user was deleted.
+  the_user_was_deleted: "O usuário foi removido"
+  #en: their: their
+  their: "deles"
+  #en: this_forum_is_still_getting_started: "This forum is still getting started ... here are some blog posts to get you thinking ..."
+  this_forum_is_still_getting_started: "Este fórum ainda está começando... aqui estão alguns posts do blog para você pensar..."
+  #en: this_friendship_is_pending: This Friendship is pending.
+  this_friendship_is_pending: "Esta amizade está pendente"
+  #en: this_is_your_dashboard: This is your dashboard.
+  this_is_your_dashboard: "Este é o seu painel"
+  #en: this_month_best: "This month's Best"
+  this_month_best: "This month's Best"
+  #en: this_story_is_awesome: "This story is awesome!"
+  this_story_is_awesome: "Essa história é maravilhosa"
+  #en: this_topic_is_locked: This topic is locked.
+  this_topic_is_locked: "Este tópico está bloqueado"
+  #en: private_user_profile_message: This user's profile is not public. You'll need to create an account and log in to access it.
+  private_user_profile_message: "Este perfil de usuário não é público. Você precisará criar uma conta e fazer login para acessá-lo."
+  #en: thumb: Thumb
+  thumb: Thumb
+  #en: time_constrained: Time constrained
+  time_constrained: "Tempo limitado"
+  #en: tips: "Tips:"
+  tips: "Dicas:"
+  #en: title: Title
+  title: "Título"
+  #en: title_required: "Title (required)"
+  title_required: "Titulo (Obrigatório)"
+  #en: to: To
+  to: "Para"
+  #en: to_accept: to accept
+  to_accept: "aceitar"
+  #en: to_get_recommended_content_on_your_dashboard: to start getting recommended content on your dashboard.
+  to_get_recommended_content_on_your_dashboard: "para começar a receber conteúdo recomendado em seu painel."
+  #en: to_get_started_with_clippings_first: To get started with clippings, first
+  to_get_started_with_clippings_first: "Para começar com clippings, primeiro "
+  #en: to_start_adding_friends: To start adding friends, you can
+  to_start_adding_friends: "Para começar a adicionar amigos, você pode"
+  #en: to_you: You
+  to_you: "Você"
+  #en: toggle: Toggle
+  toggle: Toggle
+  #en_ top_pros: Top Pros
+  top_pros: Top Pros
+  #en: top_writers: Top Writers
+  top_writers: "Top Escritores"
+  #en: topic: Topics
+  topic: "Tópicos"
+  #en: topics: Topics
+  topics: "Tópicos"
+  #en: topic_deleted: Topic '%{topic}' was deleted.
+  topic_deleted: "Tópico '%{topic}' foi deletado."
+  #en: topic_locked: Topic locked
+  topic_locked: "Tópico bloqueado"
+  #en: total_users: Total users
+  total_users: "Total de usuários"
+  #en: total_votes: Total votes
+  total_votes: "Total de votos"
+  #en: type_a_username: Type a username
+  type_a_username: "Digite um nome de usuário"
+  #en: type_your_password: "Type your password:"
+  type_your_password: "Digite sua senha:"
+  #en: uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: "Uh oh. We couldn't log you in with the username and password you entered. Try again?"
+  uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again: "Uh oh. Nós não conseguimos fazer seu login com o nome de usuário e senha que você digitou. Tente novamente!"
+  #en: un_favorite_this: Un-favorite this
+  un_favorite_this: "Desfavorite isso"
+  #en: unactivated_users: Unactivated users
+  unactivated_users: "Usuários inativos"
+  #en: uncategorized: Uncategorized
+  uncategorized: "Sem categoria"
+  #en: update: Update
+  update: "Atualizar"
+  #en: update_comment: Update Comment
+  update_comment: "Atualizar comentário"
+  #en: update_rsvp: Update RSVP
+  update_rsvp: "Atualizar RSVP"
+  #en: update_profile_and_tag_yourself: Update your profile and tag yourself
+  update_profile_and_tag_yourself: "Atualize seu perfil e marque você mesmo"
+  #en: update_your_profile: update your profile
+  update_your_profile: "atualize seu perfil"
+  #en: updated_at: Updated at
+  updated_at: "Atualizado em"
+  #en: updated_their_profile: updated their profile
+  updated_their_profile: "Atualize o seu perfil"
+  #en: upload_an_image_for_your_post: Upload an image for your post
+  upload_an_image_for_your_post: "Upload uma imagem para o seu post"
+  #en: upload_and_continue_to_step_two: Upload, and continue to step two
+  upload_and_continue_to_step_two: "Upload, e continue para o passo dois"
+  #en: uploaded_a_photo: "uploaded a photo:"
+  uploaded_a_photo: "adicionou uma foto:"
+  #en: uploaded_by: uploaded by
+  uploaded_by: "Enviado por"
+  #en: url: Url
+  url: Url
+  #en: username: Username
+  username: "Nome de Usuário"
+  #en: user: User
+  user: "Usuário"
+  #en: user_information: %{site} User information
+  user_information: "%{site} Informação do Usuário"
+  #en: users_blog: "%{user}'s Blog"
+  users_blog: "Blog de %{user}"
+  #en: user_clippings: %{user}'s Clippings
+  user_clippings: "Clippings de %{user}"
+  #en: user_login: User login
+  user_login: "Login do usuário"
+  #en: users_online: Users online
+  users_online: "Usuários Online"
+  #en: users_photos: "%{user}'s Photos"
+  users_photos: "Fotos de %{user}"
+  #en: users_profile: %{user}'s profile
+  users_profile: "Profile %{user}"
+  #en: users_tagged: Users tagged
+  users_tagged: "Usuários marcados"
+  #en: user_vendor_offer: "<p>Describe the product or service you offer:<ul><li> Tell people what you do</li><li> Explain why you love your work</li><li> How can people contact you? What's your Web site?</li></ul></p>"
+  user_vendor_offer: "<p>Descreva o produto ou serviço que você oferece:<ul><li> Diga às pessoas o que você faz</li><li> Explique por que você ama seu trabalho</li><li> Como as pessoas podem entrar em contato com você? qual o seu website?</li></ul></p>"
+  #en: user_bio_help: "<p>Your bio is first thing people see on your profile. Some ideas:<ul><li> Describe your sense of style</li><li> Explain what you love about life.</li><li> What's the last thing you purchased for a friend?</li></ul></p>"
+  user_bio_help: "<p>Sua bio é a primeira coisa que as pessoas visulizam em seu perfil. Algumas ideias:<ul><li> Descreva o seu estilo</li><li> Explique o que você adora na vida</li><li> Qual foi a última coisa que você comprou par aum amigo?</li></ul></p>"
+  #en: vendor_avatar_hint: "You may want to use your company logo, or a photo of one of your products. "
+  vendor_avatar_hint: "Você pode querer usar o logotipo da empresa, ou uma foto de um de seus produtos. "
+  #en: view: View
+  view: View
+  #en: views_count: Views
+  view_count: "Visualizações"
+  #en: view_all_my_clippings: View all my clippings
+  view_all_my_clippings: "Ver todos os meus clippings"
+  #en: view_all_my_friend_requests: View all my friend requests
+  view_all_my_friend_requests: "Ver todos os pedidos de amizade"
+  #en: view_all_my_photos: View all my photos
+  view_all_my_photos: "Ver todas as minhas fotos"
+  #en: view_comment: View Comment
+  view_comment: "Ver comentário"
+  #en: view_my_blog: View my blog
+  view_my_blog: "Ver meu blog"
+  #en: voice: voice
+  voice: "voz"
+  #en: voices: Voices
+  voices: "Vozes"
+  #en_ vote: Vote
+  vote: "Voto"
+  #en: vote_now: Vote now!
+  vote_now: "Vote agora"
+  #en: votes: votes
+  votes: "votos"
+  #en: waiting_for: Waiting for
+  waiting_for: "Esperando por"
+  #en: walkthrough_complete: You've completed the %{site} walk-through. Now you can continue exploring!
+  walkthrough_complete: "Você completou a apresentação inicial do %{site}. Agora você pode continuar explorando."
+  #en: want_to_be_popular: Want to be popular?
+  want_to_be_popular: "Quer ser popular"
+  #en: want_to_list_your_services_on: Want to list your services on
+  want_to_list_your_services_on: "Quer listar seus serviços em"
+  #en: want_to_post_in_this_category: Want to post in this category?
+  want_to_post_in_this_category: "Quer enviar nessa categoria?"
+  #en: want_to_upload_multiple_files_at_once: Want to upload multiple files at once?
+  want_to_upload_multiple_files_at_once: "Quer fazer upload de vários arquivos de uma só vez?"
+  #en: watch_topic: Watch topic
+  watch_topic: "Acompanhar tópico"
+  #en: watching_topic: Watching topic
+  watching_topic: "Acompanhando tópico"
+  #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to: %{email}"
+  we_just_sent_an_e_mail_to: "Acabamos de enviar um email para: %{email}"
+  #en: we_need_you: We need you
+  we_need_you: "Nós precisamos de você"
+  #en: welcome_message: Welcome! %{login_link} or %{signup_link}
+  welcome_message: "Bem-vindo! %{login_link} ou %{signup_link}"
+  #en: what_are_tags: 'What are "Tags"?'
+  what_are_tags: "O que são 'Tags'?"
+  #en: what_is: What is %{site}
+  what_is_site: "O que é %{site}"
+  #en: what_is_popular: What's Popular
+  what_is_popular: "O que há de popular"
+  #en: whats_fresh: What's fresh
+  whats_fresh: "O que há de novo"
+  #en: whats_hot: What's Hot
+  whats_hot: "O que há de novo?"
+  #en: whats_popular: What's Popular
+  whats_popular: " O que há de popular"
+  #en: when: When
+  when: "Quando"
+  #en: where: Where
+  where: "Onde"
+  #en: when_checked_this_page_will_be_visible_to_anyone: "When checked, this page will be visible to anyone."
+  when_checked_this_page_will_be_visible_to_anyone: "Quando marcada, esta página será visível para qualquer pessoa."
+  #en: when_checked_users_will_be_able_to_rsvp_for_this_event: "When checked, logged in users will be able to RSVP for this event."
+  when_checked_users_will_be_able_to_rsvp_for_this_event: "Quando marcado, usuários logados serão capazes de RSVP para este evento"
+  #en: when_checked_your_profile_will_be_visible_to_anyone: "When checked, your profile will be visible to anyone."
+  when_checked_your_profile_will_be_visible_to_anyone: "Quando marcado, o seu perfil será visível para qualquer pessoa."
+  #en: when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, this page will only be visible to people who are logged in to
+  when_unchecked_this_page_will_only_be_visible_to_people_who_are_logged_in_to: "Quando desmarcada, esta página será visível apenas para as pessoas que estão conectadas"
+  #en: when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: When unchecked, your profile will only be visible to people who are logged in to
+  when_unchecked_your_profile_will_only_be_visible_to_people_who_are_logged_in_to: "Quando desmarcado, o seu perfil será visível apenas para as pessoas que estão conectadas"
+  #en: when_you_see_an_image_you_like_on_the_web: When you see an image you like on the Web, click the bookmarklet to save it to %{site}
+  when_you_see_an_image_you_like_on_the_web: "Quando você vê uma imagem que você gosta na Web, clique no bookmarklet para salvá-lo %{site}"
+  #en: why_sign_up: Why Sign up?
+  why_sign_up: "Por que registrar-se?"
+  #en: would_like_to_be_friends_with_you_on: %{user} would like to be friends with you on %{site}!
+  would_like_to_be_friends_with_you_on: "%{user} gostaria de iniciar uma amizade com você no %{site}!"
+  #en: would_like_you_to_join: %{user} would like you to join %{site}!
+  would_like_you_to_join: "%{user} gostaria que você se cadastrasse no %{site}!"
+  #en: write_a_blog_post: Write a blog post!
+  write_a_blog_post: "Escreva um blog post"
+  #en: write_a_message: "Write a message:"
+  write_a_message: "Escreva uma mensagem:"
+  #en: write_new_post: Write a '%{category}' post
+  write_new_post: "escreva uma '%{category}' post"
+  #en: wrote_a_post: "wrote a post:"
+  wrote_a_post: "escreveu um post:"
+  #en: yesterday: Yesterday
+  yesterday: "Ontem"
+  #en: you_are_editing_your_account: You are editing your account.
+  you_are_editing_your_account: "Você está editando sua conta"
+  #en: you_are_editing_your_profile: "You're editing your profile."
+  you_are_editing_your_profile: "Você está editando seu perfil"
+  #en: you_can_browse_all_content_and_users_on: You can browse all content and users on
+  you_can_browse_all_content_and_users_on: "Você pode navegar por todo o conteúdo e usuários on"
+  #en: you_cant_delete_that_user: You can't delete that user.
+  you_cant_delete_that_user: "Você não pode deleatar esse usuário."
+  #en: you_cannot_make_an_administrator_a_moderator
+  you_cannot_make_an_administrator_a_moderator: "Você não pode fazxer um administrator_a_moderator"
+  #en: you_can_select_up_to_5_files_at_a_time: You can select up to 5 files at a time.
+  you_can_select_up_to_5_files_at_a_time: "Você pode selecionar até 5 arquivos de uma vez"
+  #en: you_could_tag_yourself: You could tag yourself
+  you_could_tag_yourself: "você pode se marcar."
+  #en: you_have_friends: You have %{count} friends
+  you_have_friends:
+    one: "você tem um amigo"
+    other: "Você tem %{count} amigos."
+  #en: you_have_added_clippings: You have added %{count} clippings
+  you_have_added_clippings:
+    one: "Você adicionou 1 clipping."
+    other: "Você adicionou %{count} clippings."
+  #en: you_have: You have
+  you_have: "Você tem"
+  #en: you_have_already_rsvped_for_this_event: You have already RSVPed for this event.
+  you_have_already_rsvped_for_this_event: "Você já confirmou sua presença neste evento"
+  #en: you_have_already_voted: You have already voted.
+  you_have_already_voted: "Você já votou"
+  #en: you_have_created: You have created
+  you_have_created: "Você criou"
+  #en: you_have_left_comments: You have left %{count} comments
+  you_have_left_comments:
+    one: "Você deixou um comentário"
+    other: "Você deixou %{count} comentários."
+  #en: you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: You have no clippings. Use the bookmarklet on the right to add some.
+  you_have_no_clippings_use_the_bookmarklet_on_the_right_to_add_some: "Você não tem clippings, use o bookmarklet à direita para adicionar alguns."
+  #en: you_have_no_network_activity_yet: You have no network activity yet.
+  you_have_no_network_activity_yet: "Você ainda não tem atividade em sua rede"
+  #en: you_have_pending_friendship_requests: You have pending friendship requests.
+  you_have_pending_friendship_requests: "Você tem pedidos de amizades pendentes"
+  #en: you_have_uploaded_photos: You have uploaded %{count} photos
+  you_have_uploaded_photos:
+    one: "Você enviou uma foto"
+    other: "Você enviou %{count} fotos."
+  #en: you_have_written_blog_posts: You have written %{count} blog posts
+  you_have_written_blog_posts:
+    one: "Você escreveu um blog post"
+    other: "Você escreveu %{count} blog posts."
+  #en: you_last_logged_in_on: You last logged in on
+  you_last_logged_in_on: "Sua última vez online foi"
+  #en: you_must_vote_to_see_the_results: You must vote to see the resuts.
+  you_must_vote_to_see_the_results: "Você deve votar para ver os resultados"
+  #en: your_about_text_goes_here: Your About Text Goes Here
+  your_about_text_goes_here: "Seu texto 'sobre' vai aqui."
+  #en: your_account_has_been_activated: Your %{site} account has been activated!
+  your_account_has_been_activated: "Sua conta %{site} foi ativada!"
+  #en: your_changes_were_saved: Your changes were saved.
+  your_changes_were_saved: "Suas mudanças foram salvas"
+  #en:   your_password_reset_instructions_have_been_emailed_to_you: Instructions to reset your password have been emailed to you.
+  your_password_reset_instructions_have_been_emailed_to_you: "Instruções para resetar sua senha foram enviadas para oseu e-mail"
+  #en: your_post_was_deleted: Your post was deleted.
+  your_post_was_deleted: "Seu post foi deletado"
+  #en: your_post_was_successfully_created: Your post was successfully created.
+  your_post_was_successfully_created: "Seu post foi criado com sucesso"
+  #en: your_profile_photo: "Your profile photo:"
+  your_profile_photo: "Sua foto de perfil:"
+  #en: your_rsvp_has_been_retracted: Your RSVP has been retracted.
+  your_rsvp_has_been_retracted: "Seu RSVP foi criado."
+  #en: your_rsvp_was_successfully_created: Your RSVP was successfully created.
+  your_rsvp_was_successfully_created: "Seu RSVP foi criado com sucesso"
+  #en: your_rsvp_was_successfully_updated: Your RSVP was successfully updated.
+  your_rsvp_was_successfully_updated: "Seu RSVP foi atualizado com sucesso"
+  #en: your_username_was_emailed_to_you: Your username was emailed to you.
+  your_username_was_emailed_to_you: "Seu username foi enviado por email"
+  #en: youve_been_logged_out_hope_you_come_back_soon: You've been logged out. Hope you come back soon!
+  youve_been_logged_out_hope_you_come_back_soon: "Você efetuou logout. Esperamos vacê aqui em breve"
+  #en: zippostal_code: "ZIP/Postal code:"
+  zippostal_code: "CEP:"
+
+
+  #This stuff needs to be checked
+  #en: photo_manager: "Photo manager"
+  photo_manager: "Gerenciador de Fotos"
+  #en: album: "Album"
+  album: "Albúm"
+  #en: albums: "Albums"
+  albums: "Albums"
+  #en: album_added_photos: Photos added to album
+  album_added_photos: "Fotos adicionadas ao album"
+  # en album_updated: "Album updated"
+  album_updated: "Album atualizado"
+  #en: album_comments: "Comentarios de álbum"
+  album_comments: "Comentários do album"
+  #en: album_tip: "Albums let you organize yout photos. Share whole experiencies with other %{community_name} users"
+  album_tip: "Albuns ajuda você a organizar suas fotos. Compartilhe suas experiências com outros usuários %{community_name}"
+  #en: delete_album_and_photos: Delete album and its associated photos?
+  delete_album_and_photos: "Deletar o album e as fotos associadas à ele?"
+  #en: album_was_successfully_created: "Album was successfully created"
+  album_was_successfully_created: "Album criado com sucesso"
+  #en: view_more: "View more"
+  view_more: "Ver mais"
+  #en: assign_album: "Assign album"
+  assign_album: "atribuir album"
+  #en: new_album: "New album"
+  new_album: "Novo album"
+  #en: created_an_album: "Created an album"
+  created_an_album: "Criou um album"
+  #en: add_photos: "Add photos"
+  add_photos: "Adicionar fotos"
+  #en: view_my_album: "View my album"
+  view_my_album: "Vr meu album"
+  #en: photos_of_this_album: "Photos from this album"
+  photos_of_this_album: "Fotos deste album"
+  #en: not_assigned_photos: "Photos not assigned to an album"
+  not_assigned_photos: "Fotos não vinculadas à um album"
+  #en: create_and_add_photos: "Create and add photos to this album"
+  create_and_add_photos: "Criar e adicionar fotos à este album"
+  #en: edit_and_add_photos: "Edit and add photos to this album"
+  edit_and_add_photos: "Editar e adicionar fotos à este album"
+  #en: create_album: "Create album"
+  create_album: "Criar album"
+  #en: edit_album: "Edit album"
+  edit_album: "Editar album"
+  #en; cancel_and_go_back_to_photo_manager: "Cancel and go back to photo manager"
+  cancel_and_go_back_to_photo_manager: "Cancelar e voltar ao gerenciador de fotos"
+  #en: back_to_photo_manager: "Back to photo manager"
+  back_to_photo_manager: "Voltar ao gerenciador de fotos"
