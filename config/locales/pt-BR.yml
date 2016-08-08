@@ -960,7 +960,7 @@ pt-BR:
   #en: photo_message: Your profile photo represents you on %{site}. You can change it later.
   photo_message: "Sua foto de perfil representa você em %{site}. Você poderá altera-la depois."
   #en: photo_was_successfully_created: Photo was successfully created.
-  photo_was_successfully_created: "Foto criada com sucesso".
+  photo_was_successfully_created: "Foto criada com sucesso"
   #en: photos: Photos
   photos: Fotos
   #en: plural_photos: %{count} Photos
