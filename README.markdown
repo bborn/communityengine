@@ -6,6 +6,8 @@ CommunityEngine
 [![Code Climate](https://img.shields.io/codeclimate/github/bborn/communityengine.svg?style=flat)](https://codeclimate.com/github/bborn/communityengine)
 [![Gem Version](https://img.shields.io/gem/v/community_engine.svg?style=flat)](https://rubygems.org/gems/community_engine)
 
+Travis for taro-k account  
+[![Build Status](https://travis-ci.org/taro-k/communityengine.svg?branch=edge)](https://travis-ci.org/taro-k/communityengine)
 
 Information at: [http://www.communityengine.org](http://www.communityengine.org)
 
