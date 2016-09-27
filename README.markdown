@@ -61,6 +61,12 @@ Getting CommunityEngine Running
   $ bin/rails server
   ```
 
+Alternative installation
+------------------------
+
+For a user with difficulty. Try
+https://github.com/taro-k/ce_base
+
 Optional Configuration
 ----------------------
 
