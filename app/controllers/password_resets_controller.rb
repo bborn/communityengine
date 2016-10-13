@@ -26,6 +26,13 @@ class PasswordResetsController < BaseController
   def update
     @user.password = params[:password]
     @user.password_confirmation = params[:password_confirmation]
+    
+    # If the user is clicking on a 'reset password' link we emailed him, he's confirming that email
+    if !@user.active?
+      @user.activate
+      @user.last_request_at = Time.now
+      @user.save
+    end    
 
     if @user.save
       flash[:notice] = :your_changes_were_saved.l
