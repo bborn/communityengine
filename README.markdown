@@ -33,7 +33,7 @@ Getting CommunityEngine Running
 2. Add a file called `application_config.rb` to your `config` directory. In it put (at least):
 
   ```ruby
-  configatron.community_name = "Your Application Name"
+  configuration.community_name = "Your Application Name"
   # See CE's application_config.rb to see all the other configuration options available
   ```
 
