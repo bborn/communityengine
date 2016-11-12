@@ -3,6 +3,7 @@ class AlbumsController < BaseController
   before_action :login_required, :except => [:show]
   before_action :find_user, :only => [:new, :edit, :index]
   before_action :require_current_user, :only => [:new, :edit, :update, :destroy, :create]
+  before_action :require_ownership, :only => [:new, :edit, :update, :destroy, :create]
 
   # GET /albums/1
   # GET /albums/1.xml
@@ -100,8 +101,17 @@ class AlbumsController < BaseController
 
   private
 
-  def album_params
-    params[:album].permit(:title, :description)
-  end
+    def require_ownership
+      @user = User.find(params[:user_id])
+      @album = Album.find(params[:id]) if params[:id]
+      unless admin? || (@album && (@album.user.eql?(current_user))) || (!@album && @user && @user.eql?(current_user))
+        redirect_to :controller => 'sessions', :action => 'new' and return false
+      end
+      return @user
+    end
+
+    def album_params
+      params[:album].permit(:title, :description)
+    end
 
 end
