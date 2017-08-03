@@ -1,5 +1,6 @@
 require "community_engine"
 require 'rails/all'
+require 'actionpack/action_caching'
 
 module CommunityEngine
   class Engine < Rails::Engine
