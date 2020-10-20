@@ -1,10 +1,9 @@
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+// @import "bootstrap-sprockets";
+@import "bootstrap";
 
 body {
   padding-top: 60px;
 }
-
 
 // .row-fluid [class*='span'].pull-right, .row [class*='span'].pull-right{
 //   float: right;
@@ -12,7 +11,6 @@ body {
 // .row>[class*='span']:first-child {
 //   margin-left: 0;
 // }
-
 
 .clear-right {
   clear: right;
@@ -22,7 +20,7 @@ body {
   clear: left;
 }
 
-.clear-all, .clear-both {
+.clear-all,
+.clear-both {
   clear: both;
 }
-
