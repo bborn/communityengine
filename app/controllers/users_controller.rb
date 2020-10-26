@@ -431,7 +431,7 @@ class UsersController < BaseController
 
   def user_params
     params[:user].permit(:avatar_id, :company_name, :country_id, :description, :email,
-                                 :firstname, :fullname, :gender, :lastname, :login, :metro_area_id,
+                                 :firstname, :fullname, :name, :gender, :lastname, :login, :metro_area_id,
                                  :middlename, :notify_comments, :notify_community_news,
                                  :notify_friend_requests, :password, :password_confirmation,
                                  :profile_public, :state_id, :stylesheet, :time_zone, :vendor, :zip,
