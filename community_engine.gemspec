@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
   s.add_dependency "htmlentities",              ">= 0"
   s.add_dependency "kaminari",                  ">= 0"
   s.add_dependency "koala",                     "~> 1.6.0"
-  s.add_dependency "omniauth",                  "~> 1.1.4"
+  s.add_dependency "omniauth",                  "~> 1.3.2"
   s.add_dependency "rails_autolink",            ">= 0"
   s.add_dependency "paperclip",                 "~> 4.3.0"
   s.add_dependency "power_enum",                "~> 2.8.0"
@@ -63,7 +63,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-turbolinks"
   s.add_dependency "turbolinks"
   s.add_dependency "sass-rails",                "~> 4.0.0"
-  s.add_dependency "sprockets",                 "~> 2.10.0"
+  s.add_dependency "sprockets",                 "~> 2.12.5"
   s.add_dependency "ckeditor",                  "~> 4.1.1"
 end
 
