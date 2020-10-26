@@ -1,4 +1,5 @@
 ActiveAdmin.register Category do
+  menu false
   permit_params :name, :tips, :new_post_text, :nav_text, :slug
 
   menu :parent => "Taxonomy", :priority => 1

@@ -1,5 +1,4 @@
 ActiveAdmin.register Page do
-
   form do |f|
     tabs do
       tab 'Main' do

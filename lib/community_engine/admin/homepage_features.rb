@@ -1,4 +1,5 @@
 ActiveAdmin.register HomepageFeature, as: "Features" do
+  menu false
   permit_params :url, :title, :description, :image
 
   form do |f|
