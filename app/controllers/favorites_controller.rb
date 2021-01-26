@@ -2,8 +2,6 @@ class FavoritesController < BaseController
   before_action :login_required, :only => [:destroy]
   before_action :find_user, :only => [:show, :index]
 
-  cache_sweeper :favorite_sweeper, :only => [:create, :destroy]
-
   def create
     @favoritable = params[:favoritable_type].classify.constantize.find(params[:favoritable_id])
     @favorite = Favorite.new(:ip_address => request.remote_ip, :favoritable => @favoritable )

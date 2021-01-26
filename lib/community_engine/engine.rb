@@ -28,15 +28,6 @@ module CommunityEngine
     #   end
     # end
 
-    # initializer "#{engine_name}.sweeper.rails4", :after => "action_controller.caching.sweepers" do
-    #   ActiveSupport.on_load(:action_controller) do
-    #     ActionController::Caching::Sweeper.send(:include, ActiveSupport::Configurable)
-    #     ActionController::Caching::Sweeper.send(:include, ActionController::Caching)
-    #     ActionController::Caching::Sweeper.send(:include, ActionController::Caching::Pages)
-    #     ActionController::Caching::Sweeper.send(:include, ActionController::Caching::Actions)
-    #   end
-    # end
-
     initializer "#{engine_name}.rakismet_config", :before => "rakismet.setup" do |app|
       if configatron.has_key?(:akismet_key)
         app.config.rakismet.key  = configatron.akismet_key

@@ -7,8 +7,6 @@ class CommentsController < BaseController
     skip_before_action :login_required, :only => [:create]
   end
 
-  cache_sweeper :comment_sweeper, :only => [:create, :destroy]
-
   def edit
     @comment = Comment.find(params[:id])
     respond_to do |format|

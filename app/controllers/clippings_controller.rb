@@ -3,8 +3,6 @@ class ClippingsController < BaseController
   before_action :find_user, :only => [:new, :edit, :index, :show]
   before_action :require_current_user, :only => [:new, :edit, :update, :destroy]
 
-  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
-
   def site_index
     @clippings = Clipping.includes(:tags).order(params[:recent] ? "created_at DESC" : "clippings.favorited_count DESC")
 

@@ -2,7 +2,6 @@ class EventsController < BaseController
 
   require 'htmlentities'
   caches_page :ical
-  cache_sweeper :event_sweeper, :only => [:create, :update, :destroy]
 
   before_action :admin_required, :except => [:index, :show, :ical]
 

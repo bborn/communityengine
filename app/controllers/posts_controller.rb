@@ -1,8 +1,6 @@
 class PostsController < BaseController
   include Viewable
 
-  cache_sweeper :post_sweeper, :only => [:create, :update, :destroy]
-  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
   caches_action :show, :if => Proc.new{|c| !logged_in? }
 
   before_action :login_required, :only => [:new, :edit, :update, :destroy, :create, :manage, :preview]

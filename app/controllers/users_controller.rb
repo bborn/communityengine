@@ -1,6 +1,5 @@
 class UsersController < BaseController
   include Viewable
-  cache_sweeper :taggable_sweeper, :only => [:activate, :update, :destroy]
 
   before_action :login_required, :only => [:edit, :edit_account, :update, :welcome_photo, :welcome_about,
                                           :welcome_invite, :return_admin, :assume, :featured,

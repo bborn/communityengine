@@ -8,8 +8,6 @@ class PhotosController < BaseController
 
   skip_before_action :verify_authenticity_token, :only => [:create]
 
-  cache_sweeper :taggable_sweeper, :only => [:create, :update, :destroy]
-
   def recent
     @photos = Photo.recent.page(params[:page])
   end
