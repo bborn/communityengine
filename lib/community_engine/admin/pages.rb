@@ -1,4 +1,6 @@
 ActiveAdmin.register Page do
+  permit_params :title, :body, :published_as
+
   form do |f|
     tabs do
       tab 'Main' do
@@ -10,7 +12,7 @@ ActiveAdmin.register Page do
         end
 
         inputs 'Content' do
-          input :body, input_html: {class: 'rich_text_editor'}
+          input :body, input_html: {:style => "width:95%;", :class => "codemirror"}
         end
       end
 

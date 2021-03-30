@@ -49,7 +49,6 @@ class TopicsController < BaseController
   def create
     @topic = @forum.topics.new(topic_params)
     authorize @topic
-
     assign_protected
 
     @post = @topic.sb_posts.first
