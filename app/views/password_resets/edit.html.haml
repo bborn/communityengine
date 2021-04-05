@@ -1,8 +1,12 @@
 -@page_title=:forgot_your_password.l
 
-= bootstrap_form_tag :url => password_reset_path, :method => :put, :layout => :horizontal do |f|
-  = f.password_field :password
-  = f.password_field :password_confirmation, :label => :confirm_password.l
+= form_tag password_reset_path, :method => :put, :class => "form form-horizontal" do
+  .control-group
+    %label.control-label=:password.l
+    .controls= password_field_tag :password, '', :class => 'required'
 
-  = f.form_group :submit_group do
-    = f.primary :reset_my_password.l
+  .control-group
+    %label.control-label=:confirm_password.l
+    .controls= password_field_tag :password_confirmation, '', :class => 'required'
+  .controls= submit_tag :reset_my_password.l, :class => 'btn btn-primary'
+
